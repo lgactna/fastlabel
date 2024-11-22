@@ -1,7 +1,7 @@
 [project]
-name = "template"
+name = "fastlabel"
 version = "0.0.1"
-description = "hello world"
+description = "fast disk image labeling"
 requires-python = ">=3.11"
 
 dependencies = [
@@ -36,8 +36,8 @@ dev = [
 #     "requests",
 # ]
 
-#[tool.setuptools]
-#packages = ["template"]
+[tool.setuptools]
+packages = ["fastlabel"]
 
 [tool.flake8]
 extend_ignore = [
@@ -46,6 +46,7 @@ extend_ignore = [
 ]
 
 [tool.mypy]
+mypy_path = "./fastlabel"
 strict_optional = true
 
 [tool.isort]
