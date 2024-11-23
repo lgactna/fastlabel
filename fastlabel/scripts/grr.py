@@ -77,6 +77,7 @@ class ArtifactSupportedOS(str, Enum):
     IOS = "iOS"
     LINUX = "Linux"
     WINDOWS = "Windows"
+    ESXI = "ESXi"
 
 # See https://stackoverflow.com/questions/70914419/how-to-get-pydantic-to-discriminate-on-a-field-within-listuniontypea-typeb
 
@@ -95,7 +96,7 @@ class ArtifactDefinition(BaseModel):
     doc: str
     name: str
     sources: list[ArtifactSource]
-    supported_os: list[ArtifactSupportedOS]
+    supported_os: Optional[list[ArtifactSupportedOS]] = None
     urls: Optional[list[str]] = None
     
     # Deprecated fields. All optional, generally not used.
@@ -113,7 +114,20 @@ def get_artifacts_dir() -> Path:
 if __name__ == "__main__":
     # print(list(get_artifacts_dir().glob("*.yaml")))
     
-    with open("./grr_artifacts/antivirus.yaml", "rt") as fp:
-        yaml = YAML(typ="safe")
-        for d in yaml.load_all(fp):
-            x = ArtifactDefinition.model_validate(d)
+    for artifact_file in get_artifacts_dir().glob("*.yaml"):
+        print(f"Validating {artifact_file}")
+        with open(artifact_file, "rt") as fp:
+            yaml = YAML(typ="safe")
+            for d in yaml.load_all(fp):
+                try:
+                    x = ArtifactDefinition.model_validate(d)
+                except Exception as e:
+                    print(f"Error validating {d}")
+                    raise e
+    
+    print("ok")
+    
+    # with open("./grr_artifacts/antivirus.yaml", "rt") as fp:
+    #     yaml = YAML(typ="safe")
+    #     for d in yaml.load_all(fp):
+    #         x = ArtifactDefinition.model_validate(d)
