@@ -5,212 +5,114 @@ Auto-generated classes from the SHACL graph in observable.ttl.
 This file was generated using the `case_models.py` script.
 """
 
-class FileSystemFacet(Facet):
+class ComputerSpecification(observable.ObservableObject):
     """
-    A file system facet is a grouping of characteristics unique to the process that
-    manages how and where data on a storage medium is stored, accessed and managed.
-    [based on https://www.techopedia.com/definition/5510/file-system]
-    """
-    clusterSize: Optional[int] = None
-    fileSystemType: Optional[str] = None
-
-class DiskFacet(Facet):
-    """
-    A disk facet is a grouping of characteristics unique to a storage mechanism
-    where data is recorded by various electronic, magnetic, optical, or mechanical
-    changes to a surface layer of one or more rotating disks.
-    """
-    partition: Optional[ObservableObject] = None
-    diskSize: Optional[int] = None
-    freeSpace: Optional[int] = None
-    diskType: Optional[str] = None
-
-class ICMPConnectionFacet(Facet):
-    """
-    An ICMP connection facet is a grouping of characteristics unique to portions of
-    a network connection that are conformant to the Internet Control Message
-    Protocol (ICMP) standard.
-    """
-    icmpCode: Optional[str] = None
-    icmpType: Optional[str] = None
-
-class SQLiteBlobFacet(Facet):
-    """
-    An SQLite blob facet is a grouping of characteristics unique to a blob (binary
-    large object) of data within an SQLite database. [based on
-    https://en.wikipedia.org/wiki/SQLite]
-    """
-    rowIndex: Optional[str] = None
-    columnName: Optional[str] = None
-    rowCondition: Optional[str] = None
-    tableName: Optional[str] = None
-
-class OperatingSystem(ObservableObject):
-    """
-    An operating system is the software that manages computer hardware, software
-    resources, and provides common services for computer programs. [based on
-    https://en.wikipedia.org/wiki/Operating_system]
+    A computer specification is the hardware and software of a programmable
+    electronic device that can store, retrieve, and process data. {based on
+    merriam-webster.com/dictionary/computer]
     """
 
-class GenericObservableObject(ObservableObject):
+
+class IShowMessageActionType(core.UcoInherentCharacterizationThing):
     """
-    A generic observable object is an article or unit within the digital domain.
+    An IShow message action type is a grouping of characteristics unique to an
+    action that shows a message box when a task is activate. [based on
+    https://docs.microsoft.com/en-us/windows/win32/api/taskschd/nn-taskschd-ishowmessageaction?redirectedfrom=MSDN]
     """
 
-class WhoisRegistrarInfoType(UcoInherentCharacterizationThing):
-    """
-    A Whois registrar info type is a grouping of characteristics unique to
-    registrar-related information present in a response record conformant to the
-    WHOIS protocol standard (RFC 3912). [based on
-    https://en.wikipedia.org/wiki/WHOIS]
-    """
-    geolocationAddress: Optional[Location] = None
-    contactPhoneNumber: Optional[ObservableObject] = None
-    emailAddress: Optional[ObservableObject] = None
-    referralURL: Optional[ObservableObject] = None
-    whoisServer: Optional[ObservableObject] = None
-    registrarGUID: Optional[str] = None
-    registrarID: Optional[str] = None
-    registrarName: Optional[str] = None
+    showMessageBody: Optional[str] = None
+    showMessageTitle: Optional[str] = None
 
-class BluetoothAddressFacet(MACAddressFacet):
+class WindowsHandle(observable.ObservableObject):
     """
-    A Bluetooth address facet is a grouping of characteristics unique to a Bluetooth
-    standard conformant identifier assigned to a Bluetooth device to enable routing
-    and management of Bluetooth standards conformant communication to or from that
-    device.
+    A Windows handle is an abstract reference to a resource within the Windows
+    operating system, such as a window, memory, an open file or a pipe. It is
+    the mechanism by which applications interact with such resources in the
+    Windows operating system.
     """
 
-class GeoLocationTrack(ObservableObject):
-    """
-    A geolocation track is a set of contiguous geolocation entries representing a
-    path/track taken.
-    """
 
-class FileSystemObject(ObservableObject):
+class UNIXFilePermissionsFacet(core.Facet):
     """
-    A file system object is an informational object represented and managed within a
+    A UNIX file permissions facet is a grouping of characteristics unique to the
+    access rights (e.g., view, change, navigate, execute) of a file on a UNIX
     file system.
     """
 
-class UserAccountFacet(Facet):
-    """
-    A user account facet is a grouping of characteristics unique to an account
-    controlling a user's access to a network, system, or platform.
-    """
-    canEscalatePrivs: Optional[bool] = None
-    isPrivileged: Optional[bool] = None
-    isServiceAccount: Optional[bool] = None
-    homeDirectory: Optional[str] = None
 
-class CookieHistory(ObservableObject):
+class UNIXProcessFacet(core.Facet):
     """
-    A cookie history is the stored web cookie history for a particular web browser.
+    A UNIX process facet is a grouping of characteristics unique to an instance
+    of a computer program executed on a UNIX operating system.
     """
 
-class GeoLocationLog(ObservableObject):
+    openFileDescriptor: Optional[int] = None
+    ruid: Optional[int] = None
+
+class ContactSIP(core.UcoInherentCharacterizationThing):
     """
-    A geolocation log is a record containing geolocation tracks and/or geolocation
-    entries.
+    A contact SIP is a grouping of characteristics unique to details for
+    contacting a contact entity by Session Initiation Protocol (SIP).
     """
 
-class URLHistoryFacet(Facet):
-    """
-    A URL history facet is a grouping of characteristics unique to the stored URL
-    history for a particular web browser
-    """
-    browserInformation: Optional[ObservableObject] = None
-    urlHistoryEntry: Optional[URLHistoryEntry] = None
-
-class ProtocolConverter(Device):
-    """
-    A protocol converter is a device that converts from one protocol to another
-    (e.g. SD to USB, SATA to USB, etc.
-    """
-
-class WindowsNetworkShare(ObservableObject):
-    """
-    A Windows network share is a Windows computer resource made available from one
-    host to other hosts on a computer network. It is a device or piece of
-    information on a computer that can be remotely accessed from another computer
-    transparently as if it were a resource in the local machine. Network sharing is
-    made possible by inter-process communication over the network. [based on
-    https://en.wikipedia.org/wiki/Shared_resource]
-    """
-
-class ApplicationVersion(UcoInherentCharacterizationThing):
-    """
-    An application version is a grouping of characteristics unique to a particular
-    software program version.
-    """
-    installDate: Optional[str] = None
-    uninstallDate: Optional[str] = None
-    version: Optional[str] = None
-
-class ContactSIP(UcoInherentCharacterizationThing):
-    """
-    A contact SIP is a grouping of characteristics unique to details for contacting
-    a contact entity by Session Initiation Protocol (SIP).
-    """
     sipAddress: Optional[ObservableObject] = None
     contactSIPScope: Optional[str] = None
     contactSIPScope: Optional[Any] = None
     contactSIPScope: Optional[Any] = None
 
-class FragmentFacet(Facet):
+class EmailAddress(observable.DigitalAddress):
     """
-    A fragment facet is a grouping of characteristics unique to an individual piece
-    of the content of a file.
-    """
-    fragmentIndex: Optional[int] = None
-    totalFragments: Optional[int] = None
-
-class NTFSFilePermissionsFacet(Facet):
-    """
-    An NTFS file permissions facet is a grouping of characteristics unique to the
-    access rights (e.g., view, change, navigate, execute) of a file on an NTFS (new
-    technology filesystem) file system.
+    An email address is an identifier for an electronic mailbox to which
+    electronic mail messages (conformant to the Simple Mail Transfer Protocol
+    (SMTP)) are sent from and delivered to.
     """
 
-class URLHistory(ObservableObject):
+
+class TCPConnectionFacet(core.Facet):
     """
-    A URL history characterizes the stored URL history for a particular web browser
+    A TCP connection facet is a grouping of characteristics unique to portions
+    of a network connection that are conformant to the Transmission Control
+    Protocl (TCP) standard.
     """
 
-class ContactList(ObservableObject):
+    destinationFlags: Optional[str] = None
+    sourceFlags: Optional[str] = None
+
+class Tweet(observable.Message):
     """
-    A contact list is a set of multiple individual contacts such as that found in a
-    digital address book.
+    A tweet is message submitted by a Twitter user account to the Twitter
+    microblogging platform.
     """
 
-class NamedPipe(FileSystemObject):
+
+class UNIXFile(observable.File):
     """
-    A named pipe is a mechanism for FIFO (first-in-first-out) inter-process
-    communication. It is persisted as a filesystem object (that can be deleted like
-    any other file), can be written to or read from by any process and exists beyond
-    the lifespan of any process interacting with it (unlike simple anonymous pipes).
-    [based on https://en.wikipedia.org/wiki/Named_pipe]
+    A UNIX file is a file pertaining to the UNIX operating system.
     """
 
-class WebPage(ObservableObject):
+
+class X509V3Certificate(observable.ObservableObject):
     """
-    A web page is a specific collection of information provided by a website and
-    displayed to a user in a web browser. A website typically consists of many web
-    pages linked together in a coherent fashion. [based on
-    https://en.wikipedia.org/wiki/Web_page]
+    An X.509 v3 certificate is a public key digital identity certificate
+    conformant to the X.509 v3 PKI (Public Key Infrastructure) standard.
     """
 
-class Observable(UcoObject):
+
+class MACAddress(observable.DigitalAddress):
     """
-    An observable is a characterizable item or action within the digital domain.
+    A MAC address is a media access control standards conformant identifier
+    assigned to a network interface to enable routing and management of
+    communications at the data link layer of a network segment.
     """
 
-class WhoIsFacet(Facet):
+
+class WhoIsFacet(core.Facet):
     """
     A whois facet is a grouping of characteristics unique to a response record
     conformant to the WHOIS protocol standard (RFC 3912). [based on
     https://en.wikipedia.org/wiki/WHOIS]
     """
+
     regionalInternetRegistry: Optional[Any] = None
     regionalInternetRegistry: Optional[str] = None
     domainName: Optional[ObservableObject] = None
@@ -233,451 +135,595 @@ class WhoIsFacet(Facet):
     status: Optional[Any] = None
     status: Optional[Any] = None
 
-class Adaptor(Device):
+class WindowsService(observable.ObservableObject):
     """
-    An adaptor is a device that physically converts the pin outputs but does not
-    alter the underlying protocol (e.g. uSD to SD, CF to ATA, etc.)
-    """
-
-class Account(ObservableObject):
-    """
-    An account is an arrangement with an entity to enable and control the provision
-    of some capability or service.
+    A Windows service is a specific Windows service (a computer program that
+    operates in the background of a Windows operating system, similar to the way
+    a UNIX daemon runs on UNIX). [based on
+    https://en.wikipedia.org/wiki/Windows_service]
     """
 
-class PhoneAccountFacet(Facet):
-    """
-    A phone account facet is a grouping of characteristics unique to an arrangement
-    with an entity to enable and control the provision of a telephony capability or
-    service.
-    """
-    phoneNumber: Optional[str] = None
 
-class WindowsAccount(DigitalAccount):
+class CalendarFacet(core.Facet):
     """
-    A Windows account is a user account on a Windows operating system.
+    A calendar facet is a grouping of characteristics unique to a collection of
+    appointments, meetings, and events.
     """
 
-class ArchiveFileFacet(Facet):
-    """
-    An archive file facet is a grouping of characteristics unique to a file that is
-    composed of one or more computer files along with metadata.
-    """
-    archiveType: Optional[str] = None
-    comment: Optional[str] = None
-    version: Optional[str] = None
+    owner: Optional[UcoObject] = None
+    application: Optional[ObservableObject] = None
 
-class Code(ObservableObject):
+class MobileDeviceFacet(core.Facet):
     """
-    Code is a direct representation (source, byte or binary) of a collection of
-    computer instructions that form software which tell a computer how to work.
-    [based on https://en.wikipedia.org/wiki/Software]
+    A mobile device facet is a grouping of characteristics unique to a portable
+    computing device. [based on https://www.lexico.com/definition/mobile_device]
     """
 
-class ProfileFacet(Facet):
-    """
-    A profile facet is a grouping of characteristics unique to an explicit digital
-    representation of identity and characteristics of the owner of a single user
-    account associated with an online service or application. [based on
-    https://en.wikipedia.org/wiki/User_profile]
-    """
-    profileIdentity: Optional[Identity] = None
-    contactAddress: Optional[ContactAddress] = None
-    contactEmail: Optional[ContactEmail] = None
-    contactMessaging: Optional[ContactMessaging] = None
-    contactPhone: Optional[ContactPhone] = None
-    contactURL: Optional[ContactURL] = None
-    profileAccount: Optional[ObservableObject] = None
-    profileService: Optional[ObservableObject] = None
-    profileWebsite: Optional[ObservableObject] = None
-    profileCreated: Optional[str] = None
-    name: Optional[str] = None
-    displayName: Optional[str] = None
-    profileLanguage: Optional[str] = None
+    mockLocationsAllowed: Optional[bool] = None
+    clockSetting: Optional[str] = None
+    phoneActivationTime: Optional[str] = None
+    storageCapacityInBytes: Optional[int] = None
+    ESN: Optional[str] = None
+    bluetoothDeviceName: Optional[str] = None
+    keypadUnlockCode: Optional[str] = None
+    network: Optional[str] = None
+    IMEI: Optional[str] = None
 
-class WearableDevice(SmartDevice):
+class SQLiteBlob(observable.ObservableObject):
     """
-    A wearable device is an electronic device that is designed to be worn on a
-    person's body.
+    An SQLite blob is a blob (binary large object) of data within an SQLite
+    database. [based on https://en.wikipedia.org/wiki/SQLite]
     """
 
-class NetworkFlow(ObservableObject):
+
+class Disk(observable.ObservableObject):
     """
-    A network flow is a sequence of data transiting one or more digital network (a
-    group or two or more computer systems linked together) connections. [based on
-    https://www.webopedia.com/TERM/N/network.html]
+    A disk is a storage mechanism where data is recorded by various electronic,
+    magnetic, optical, or mechanical changes to a surface layer of one or more
+    rotating disks.
     """
 
-class AutonomousSystemFacet(Facet):
-    """
-    An autonomous system facet is a grouping of characteristics unique to a
-    collection of connected Internet Protocol (IP) routing prefixes under the
-    control of one or more network operators on behalf of a single administrative
-    entity or domain that presents a common, clearly defined routing policy to the
-    Internet. [based on https://en.wikipedia.org/wiki/Autonomous_system_(Internet)]
-    """
-    regionalInternetRegistry: Optional[Any] = None
-    regionalInternetRegistry: Optional[str] = None
-    number: Optional[int] = None
-    asHandle: Optional[str] = None
-    regionalInternetRegistry: Optional[Any] = None
 
-class WirelessNetworkConnectionFacet(Facet):
+class WindowsHook(observable.ObservableObject):
     """
-    A wireless network connection facet is a grouping of characteristics unique to a
-    connection (completed or attempted) across an IEEE 802.11 standards-conformant
-    digital network (a group of two or more computer systems linked together).
-    [based on https://www.webopedia.com/TERM/N/network.html]
+    A Windows hook is a mechanism by which an application can intercept events,
+    such as messages, mouse actions, and keystrokes within the Windows operating
+    system. A function that intercepts a particular type of event is known as a
+    hook procedure. A hook procedure can act on each event it receives, and then
+    modify or discard the event. [based on
+    https://docs.microsoft.com/en-us/windows/win32/winmsg/about-hooks]
     """
-    baseStation: Optional[str] = None
-    password: Optional[str] = None
-    ssid: Optional[str] = None
-    wirelessNetworkSecurityMode: Optional[Any] = None
-    wirelessNetworkSecurityMode: Optional[Any] = None
 
-class ObservablePattern(Observable):
+
+class NetworkRoute(observable.ObservableObject):
+    """
+    A network route is a specific path (of specific network nodes, connections
+    and protocols) for traffic in a network or between or across multiple
+    networks.
+    """
+
+
+class Image(observable.ObservableObject):
+    """
+    An image is a complete copy of a hard disk, memory, or other digital media.
+    """
+
+
+class ProtocolConverter(observable.Device):
+    """
+    A protocol converter is a device that converts from one protocol to another
+    (e.g. SD to USB, SATA to USB, etc.
+    """
+
+
+class DigitalAccount(observable.Account):
+    """
+    A digital account is an arrangement with an entity to enable and control the
+    provision of some capability or service within the digital domain.
+    """
+
+
+class IPhone(observable.AppleDevice):
+    """
+    An iPhone is a smart phone that applies the iOS mobile operating system.
+    """
+
+
+class ForumPrivateMessage(observable.Message):
+    """
+    A forum private message (aka PM or DM (direct message)) is a one-to-one
+    message from one specific user account to another specific user account on
+    an online form where transmission is managed by the online forum platform
+    and the message is only viewable by the parties directly involved.
+    """
+
+
+class Directory(observable.FileSystemObject):
+    """
+    A directory is a file system cataloging structure which contains references
+    to other computer files, and possibly other directories. On many computers,
+    directories are known as folders, or drawers, analogous to a workbench or
+    the traditional office filing cabinet. In UNIX a directory is implemented as
+    a special file. [based on
+    https://en.wikipedia.org/wiki/Directory_(computing)]
+    """
+
+
+class GUI(observable.ObservableObject):
+    """
+    A GUI is a graphical user interface that allows users to interact with
+    electronic devices through graphical icons and audio indicators such as
+    primary notation, instead of text-based user interfaces, typed command
+    labels or text navigation. [based on
+    https://en.wikipedia.org/wiki/Graphical_user_interface]
+    """
+
+
+class BluetoothAddressFacet(observable.MACAddressFacet):
+    """
+    A Bluetooth address facet is a grouping of characteristics unique to a
+    Bluetooth standard conformant identifier assigned to a Bluetooth device to
+    enable routing and management of Bluetooth standards conformant
+    communication to or from that device.
+    """
+
+
+class HTTPConnectionFacet(core.Facet):
+    """
+    An HTTP connection facet is a grouping of characteristics unique to portions
+    of a network connection that are conformant to the Hypertext Transfer
+    Protocol (HTTP) standard.
+    """
+
+    httpMessageBodyData: Optional[ObservableObject] = None
+    httpRequestHeader: Optional[Dictionary] = None
+    httpMesageBodyLength: Optional[int] = None
+    requestMethod: Optional[str] = None
+    requestValue: Optional[str] = None
+    requestVersion: Optional[str] = None
+
+class FileFacet(core.Facet):
+    """
+    A file facet is a grouping of characteristics unique to the storage of a
+    file (computer resource for recording data discretely in a computer storage
+    device) on a file system (process that manages how and where data on a
+    storage device is stored, accessed and managed). [based on
+    https://en.wikipedia.org/Computer_file and
+    https://www.techopedia.com/definition/5510/file-system]
+    """
+
+    isDirectory: Optional[bool] = None
+    accessedTime: Optional[str] = None
+    metadataChangeTime: Optional[str] = None
+    modifiedTime: Optional[str] = None
+    observableCreatedTime: Optional[str] = None
+    sizeInBytes: Optional[int] = None
+    allocationStatus: Optional[str] = None
+    extension: Optional[str] = None
+    fileName: Optional[str] = None
+    filePath: Optional[str] = None
+
+class ObservablePattern(observable.Observable):
     """
     An observable pattern is a grouping of characteristics unique to a logical
     pattern composed of observable object and observable action properties.
     """
 
-class ContactProfile(UcoInherentCharacterizationThing):
+
+class ContactURL(core.UcoInherentCharacterizationThing):
+    """
+    A contact URL is a grouping of characteristics unique to details for
+    contacting a contact entity by Uniform Resource Locator (URL).
+    """
+
+    url: Optional[ObservableObject] = None
+    contactURLScope: Optional[str] = None
+    contactURLScope: Optional[Any] = None
+    contactURLScope: Optional[Any] = None
+
+class TableField(observable.ObservableObject):
+    """
+    A database table field and its associated value contained within a
+    relational database.
+    """
+
+
+class DataRangeFacet(core.Facet):
+    """
+    A data range facet is a grouping of characteristics unique to a particular
+    contiguous scope within a block of digital data.
+    """
+
+    rangeOffset: Optional[int] = None
+    rangeSize: Optional[int] = None
+    rangeOffsetType: Optional[str] = None
+
+class SIPAddressFacet(observable.DigitalAddressFacet):
+    """
+    A SIP address facet is a grouping of characteristics unique to a Session
+    Initiation Protocol (SIP) standards conformant identifier assigned to a user
+    to enable routing and management of SIP standards conformant communication
+    to or from that user loosely coupled from any particular devices.
+    """
+
+
+class ContactList(observable.ObservableObject):
+    """
+    A contact list is a set of multiple individual contacts such as that found
+    in a digital address book.
+    """
+
+
+class WindowsWaitableTime(observable.ObservableObject):
+    """
+    A Windows waitable timer is a synchronization object within the Windows
+    operating system whose state is set to signaled when a specified due time
+    arrives. There are two types of waitable timers that can be created:
+    manual-reset and synchronization. A timer of either type can also be a
+    periodic timer. [based on
+    https://docs.microsoft.com/en-us/windows/win32/sync/waitable-timer-objects]
+    """
+
+
+class WindowsAccountFacet(core.Facet):
+    """
+    A Windows account facet is a grouping of characteristics unique to a user
+    account on a Windows operating system.
+    """
+
+    groups: Optional[str] = None
+
+class NetworkInterfaceFacet(core.Facet):
+    """
+    A network interface facet is a grouping of characteristics unique to a
+    software or hardware interface between two pieces of equipment or protocol
+    layers in a computer network.
+    """
+
+    macAddress: Optional[ObservableObject] = None
+    dhcpServer: Optional[ObservableObject] = None
+    ip: Optional[ObservableObject] = None
+    ipGateway: Optional[ObservableObject] = None
+    dhcpLeaseExpires: Optional[str] = None
+    dhcpLeaseObtained: Optional[str] = None
+    adapterName: Optional[str] = None
+
+class DigitalAccountFacet(core.Facet):
+    """
+    A digital account facet is a grouping of characteristics unique to an
+    arrangement with an entity to enable and control the provision of some
+    capability or service within the digital domain.
+    """
+
+    isDisabled: Optional[bool] = None
+    firstLoginTime: Optional[str] = None
+    lastLoginTime: Optional[str] = None
+    displayName: Optional[str] = None
+    accountLogin: Optional[str] = None
+
+class ContactPhone(core.UcoInherentCharacterizationThing):
+    """
+    A contact phone is a grouping of characteristics unique to details for
+    contacting a contact entity by telephone.
+    """
+
+    contactPhoneNumber: Optional[ObservableObject] = None
+    contactPhoneScope: Optional[str] = None
+    contactPhoneScope: Optional[Any] = None
+    contactPhoneScope: Optional[Any] = None
+
+class AlternateDataStreamFacet(core.Facet):
+    """
+    An alternate data stream facet is a grouping of characteristics unique to
+    data content stored within an NTFS file that is independent of the standard
+    content stream of the file and is hidden from access by default NTFS file
+    viewing mechanisms.
+    """
+
+    hashes: Optional[Hash] = None
+    size: Optional[int] = None
+    name: Optional[str] = None
+
+class Application(observable.ObservableObject):
+    """
+    An application is a particular software program designed for end users.
+    """
+
+
+class ContactProfile(core.UcoInherentCharacterizationThing):
     """
     A contact profile is a grouping of characteristics unique to details for
     contacting a contact entity by online service.
     """
+
     contactProfilePlatform: Optional[ObservableObject] = None
     profile: Optional[ObservableObject] = None
 
-class IPAddressFacet(DigitalAddressFacet):
+class DiskPartitionFacet(core.Facet):
     """
-    An IP address facet is a grouping of characteristics unique to an Internet
-    Protocol (IP) standards conformant identifier assigned to a device to enable
-    routing and management of IP standards conformant communication to or from that
-    device.
+    A disk partition facet is a grouping of characteristics unique to a
+    particular managed region on a storage mechanism.
     """
 
-class MemoryFacet(Facet):
-    """
-    A memory facet is a grouping of characteristics unique to a particular region of
-    temporary information storage (e.g., RAM (random access memory), ROM (read only
-    memory)) on a digital device.
-    """
-    isInjected: Optional[bool] = None
-    isMapped: Optional[bool] = None
-    isProtected: Optional[bool] = None
-    isVolatile: Optional[bool] = None
-    regionEndAddress: Optional[str] = None
-    regionStartAddress: Optional[str] = None
-    regionSize: Optional[int] = None
-    blockType: Optional[str] = None
-    blockType: Optional[Any] = None
-    blockType: Optional[Any] = None
+    observableCreatedTime: Optional[str] = None
+    partitionLength: Optional[int] = None
+    partitionOffset: Optional[int] = None
+    spaceLeft: Optional[int] = None
+    spaceUsed: Optional[int] = None
+    totalSpace: Optional[int] = None
+    diskPartitionType: Optional[str] = None
+    mountPoint: Optional[str] = None
+    partitionID: Optional[str] = None
 
-class NetworkConnectionFacet(Facet):
+class EventRecord(observable.ObservableObject):
     """
-    A network connection facet is a grouping of characteristics unique to a
-    connection (complete or attempted) accross a digital network (a group of two or
-    more computer systems linked together). [based on
-    https://www.webopedia.com/TERM/N/network.html]
-    """
-    src: Optional[UcoObject] = None
-    dst: Optional[ObservableObject] = None
-    protocols: Optional[ControlledDictionary] = None
-    isActive: Optional[bool] = None
-    endTime: Optional[str] = None
-    startTime: Optional[str] = None
-    destinationPort: Optional[int] = None
-    sourcePort: Optional[int] = None
-
-class WindowsMailslot(ObservableObject):
-    """
-    A Windows mailslot is is a pseudofile that resides in memory, and may be
-    accessed using standard file functions. The data in a mailslot message can be in
-    any form, but cannot be larger than 424 bytes when sent between computers.
-    Unlike disk files, mailslots are temporary. When all handles to a mailslot are
-    closed, the mailslot and all the data it contains are deleted. [based on
-    https://docs.microsoft.com/en-us/windows/win32/ipc/about-mailslots]
+    An event record is something that happens in a digital context (e.g.,
+    operating system events).
     """
 
-class NetworkRoute(ObservableObject):
+
+class InstantMessagingAddressFacet(observable.DigitalAddressFacet):
     """
-    A network route is a specific path (of specific network nodes, connections and
-    protocols) for traffic in a network or between or across multiple networks.
+    An instant messaging address facet is a grouping of characteristics unique
+    to an identifier assigned to enable routing and management of instant
+    messaging digital communication.
     """
 
-class CellSiteFacet(Facet):
-    """
-    A cell site facet contains the metadata surrounding the cell site.
-    """
-    cellSiteCountryCode: Optional[str] = None
-    cellSiteIdentifier: Optional[str] = None
-    cellSiteLocationAreaCode: Optional[str] = None
-    cellSiteNetworkCode: Optional[str] = None
-    cellSiteType: Optional[str] = None
 
-class EmailMessage(Message):
+class WindowsRegistryValue(core.UcoInherentCharacterizationThing):
     """
-    An email message is a message that is an instance of an electronic mail
-    correspondence conformant to the internet message format described in RFC 5322
-    and related RFCs.
+    A Windows registry value is a grouping of characteristics unique to a
+    particular value within a Windows registry (a hierarchical database that
+    stores low-level settings for the Microsoft Windows operating system and for
+    applications that opt to use the registry. [based on
+    https://en.wikipedia.org/wiki/Windows_Registry]
     """
 
-class WindowsFilemapping(ObservableObject):
+    name: Optional[str] = None
+    data: Optional[str] = None
+    dataType: Optional[str] = None
+
+class ContactMessaging(core.UcoInherentCharacterizationThing):
     """
-    A Windows file mapping is the association of a file's contents with a portion of
-    the virtual address space of a process within a Windows operating system. The
-    system creates a file mapping object (also known as a section object) to
-    maintain this association. A file view is the portion of virtual address space
-    that a process uses to access the file's contents. File mapping allows the
-    process to use both random input and output (I/O) and sequential I/O. It also
-    allows the process to work efficiently with a large data file, such as a
-    database, without having to map the whole file into memory. Multiple processes
-    can also use memory-mapped files to share data. Processes read from and write to
-    the file view using pointers, just as they would with dynamically allocated
-    memory. The use of file mapping improves efficiency because the file resides on
-    disk, but the file view resides in memory.[based on
-    https://docs.microsoft.com/en-us/windows/win32/memory/file-mapping]
+    A contact messaging is a grouping of characteristics unique to details for
+    contacting a contact entity by digital messaging.
     """
 
-class TaskActionType(UcoInherentCharacterizationThing):
-    """
-    A task action type is a grouping of characteristics for a scheduled action to be
-    completed.
-    """
-    iComHandlerAction: Optional[IComHandlerActionType] = None
-    iExecAction: Optional[IExecActionType] = None
-    iShowMessageAction: Optional[IShowMessageActionType] = None
-    iEmailAction: Optional[ObservableObject] = None
-    actionID: Optional[str] = None
-    actionType: Optional[str] = None
-    actionType: Optional[Any] = None
-    actionType: Optional[Any] = None
+    contactMessagingPlatform: Optional[ObservableObject] = None
+    messagingAddress: Optional[ObservableObject] = None
 
-class WindowsActiveDirectoryAccount(DigitalAccount):
+class BrowserCookieFacet(core.Facet):
     """
-    A Windows Active Directory account is an account managed by directory-based
-    identity-related services of a Windows operating system.
+    A browser cookie facet is a grouping of characteristics unique to a piece of
+    data sent from a website and stored on the user's computer by the user's web
+    browser while the user is browsing. [based on
+    https://en.wikipedia.org/wiki/HTTP_cookie]
     """
 
-class Note(ObservableObject):
+    application: Optional[ObservableObject] = None
+    cookieDomain: Optional[ObservableObject] = None
+    isSecure: Optional[bool] = None
+    accessedTime: Optional[str] = None
+    expirationTime: Optional[str] = None
+    observableCreatedTime: Optional[str] = None
+    cookieName: Optional[str] = None
+    cookiePath: Optional[str] = None
+
+class BlackberryPhone(observable.SmartPhone):
     """
-    A note is a brief textual record.
+    A blackberry phone is a smart phone that applies the Blackberry OS mobile
+    operating system. (Blackberry 10 re-introduces Blackberry OS, prior to that
+    the OS was Android.)
     """
 
-class WindowsService(ObservableObject):
+
+class WhoisRegistrarInfoType(core.UcoInherentCharacterizationThing):
     """
-    A Windows service is a specific Windows service (a computer program that
-    operates in the background of a Windows operating system, similar to the way a
-    UNIX daemon runs on UNIX). [based on
-    https://en.wikipedia.org/wiki/Windows_service]
+    A Whois registrar info type is a grouping of characteristics unique to
+    registrar-related information present in a response record conformant to the
+    WHOIS protocol standard (RFC 3912). [based on
+    https://en.wikipedia.org/wiki/WHOIS]
     """
 
-class ContactAffiliation(UcoInherentCharacterizationThing):
-    """
-    A contact affiliation is a grouping of characteristics unique to details of an
-    organizational affiliation for a single contact entity.
-    """
-    contactOrganization: Optional[Organization] = None
-    organizationLocation: Optional[ContactAddress] = None
-    contactEmail: Optional[ContactEmail] = None
-    contactMessaging: Optional[ContactMessaging] = None
-    contactPhone: Optional[ContactPhone] = None
-    contactProfile: Optional[ContactProfile] = None
-    contactURL: Optional[ContactURL] = None
-    organizationDepartment: Optional[str] = None
-    organizationPosition: Optional[str] = None
+    geolocationAddress: Optional[Location] = None
+    contactPhoneNumber: Optional[ObservableObject] = None
+    emailAddress: Optional[ObservableObject] = None
+    referralURL: Optional[ObservableObject] = None
+    whoisServer: Optional[ObservableObject] = None
+    registrarGUID: Optional[str] = None
+    registrarID: Optional[str] = None
+    registrarName: Optional[str] = None
 
-class SendControlCodeEffectFacet(DefinedEffectFacet):
+class EncryptedStreamFacet(core.Facet):
     """
-    A send control code effect facet is a grouping of characteristics unique to the
-    effects of actions upon observable objects where a control code, or other
-    control-oriented communication signal, is sent to the observable object. An
-    example of this would be an action sending a control code changing the running
-    state of a process.
-    """
-    controlCode: Optional[str] = None
-
-class Server(Computer):
-    """
-    A server is a server rack-mount based computer, minicomputer, supercomputer,
-    etc.
+    An encrypted stream facet is a grouping of characteristics unique to the
+    conversion of a body of data content from one form to another obfuscated
+    form in such a way that reversing the conversion to obtain the original data
+    form can only be accomplished through possession and use of a specific key.
     """
 
-class MessageThreadFacet(Facet):
-    """
-    A message thread facet is a grouping of characteristics unique to a running
-    commentary of electronic messages pertaining to one topic or question.
-    """
-    n93ca2faa79014de6ab3022099d056a89b463: Optional[Message] = None
-    n93ca2faa79014de6ab3022099d056a89b467: Optional[Message] = None
-    n93ca2faa79014de6ab3022099d056a89b471: Optional[Message] = None
-    n93ca2faa79014de6ab3022099d056a89b475: Optional[Message] = None
-    participant: Optional[ObservableObject] = None
-    messageThread: Optional[Thread] = None
-    visibility: Optional[bool] = None
+    encryptionMethod: Optional[str] = None
+    encryptionMode: Optional[str] = None
+    encryptionIV: Optional[str] = None
+    encryptionKey: Optional[str] = None
 
-class TableFieldFacet(Facet):
+class URLHistoryFacet(core.Facet):
     """
-    A database record facet contains properties associated with a specific table
-    record value from a database.
+    A URL history facet is a grouping of characteristics unique to the stored
+    URL history for a particular web browser
     """
-    recordFieldIsNull: Optional[bool] = None
-    recordFieldName: Optional[str] = None
-    tableName: Optional[str] = None
-    tableSchema: Optional[str] = None
-    recordFieldValue: Optional[Any] = None
-    recordRowID: Optional[Any] = None
 
-class WindowsCriticalSection(ObservableObject):
+    browserInformation: Optional[ObservableObject] = None
+    urlHistoryEntry: Optional[URLHistoryEntry] = None
+
+class WindowsCriticalSection(observable.ObservableObject):
     """
     A Windows critical section is a Windows object that provides synchronization
-    similar to that provided by a mutex object, except that a critical section can
-    be used only by the threads of a single process. Critical section objects cannot
-    be shared across processes. Event, mutex, and semaphore objects can also be used
-    in a single-process application, but critical section objects provide a slightly
-    faster, more efficient mechanism for mutual-exclusion synchronization (a
-    processor-specific test and set instruction). Like a mutex object, a critical
-    section object can be owned by only one thread at a time, which makes it useful
-    for protecting a shared resource from simultaneous access. Unlike a mutex
-    object, there is no way to tell whether a critical section has been abandoned.
-    [based on
+    similar to that provided by a mutex object, except that a critical section
+    can be used only by the threads of a single process. Critical section
+    objects cannot be shared across processes. Event, mutex, and semaphore
+    objects can also be used in a single-process application, but critical
+    section objects provide a slightly faster, more efficient mechanism for
+    mutual-exclusion synchronization (a processor-specific test and set
+    instruction). Like a mutex object, a critical section object can be owned by
+    only one thread at a time, which makes it useful for protecting a shared
+    resource from simultaneous access. Unlike a mutex object, there is no way to
+    tell whether a critical section has been abandoned. [based on
     https://docs.microsoft.com/en-us/windows/win32/sync/critical-section-objects]
     """
 
-class ContactListFacet(Facet):
-    """
-    A contact list facet is a grouping of characteristics unique to a set of
-    multiple individual contacts such as that found in a digital address book.
-    """
-    sourceApplication: Optional[ObservableObject] = None
-    contact: Optional[ObservableObject] = None
 
-class AutonomousSystem(ObservableObject):
+class Pipe(observable.ObservableObject):
     """
-    An autonomous system is a collection of connected Internet Protocol (IP) routing
-    prefixes under the control of one or more network operators on behalf of a
-    single administrative entity or domain that presents a common, clearly defined
-    routing policy to the Internet. [based on
-    https://en.wikipedia.org/wiki/Autonomous_system_(Internet)]
+    A pipe is a mechanism for one-way inter-process communication using message
+    passing where data written by one process is buffered by the operating
+    system until it is read by the next process, and this uni-directional
+    channel disappears when the processes are completed. [based on
+    https://en.wikipedia.org/wiki/Pipeline_(Unix) ;
+    https://en.wikipedia.org/wiki/Anonymous_pipe]
     """
 
-class DigitalAddress(Address):
+
+class Post(observable.Message):
     """
-    A digital address is an identifier assigned to enable routing and management of
-    digital communication.
+    A post is message submitted to an online discussion/publishing site (forum,
+    blog, etc.).
     """
 
-class TCPConnection(NetworkConnection):
+
+class MessageThread(observable.ObservableObject):
     """
-    A TCP connection is a network connection that is conformant to the Transfer
+    A message thread is a running commentary of electronic messages pertaining
+    to one topic or question.
     """
 
-class PropertyReadEffectFacet(DefinedEffectFacet):
-    """
-    A properties read effect facet is a grouping of characteristics unique to the
-    effects of actions upon observable objects where a characteristic is read from
-    an observable object. An example of this would be the current running state of a
-    process.
-    """
-    propertyName: Optional[str] = None
-    value: Optional[str] = None
 
-class WindowsPrefetch(ObservableObject):
+class SendControlCodeEffectFacet(observable.DefinedEffectFacet):
     """
-    The Windows prefetch contains entries in a Windows prefetch file (used to speed
-    up application startup starting with Windows XP).
+    A send control code effect facet is a grouping of characteristics unique to
+    the effects of actions upon observable objects where a control code, or
+    other control-oriented communication signal, is sent to the observable
+    object. An example of this would be an action sending a control code
+    changing the running state of a process.
     """
 
-class Device(ObservableObject):
+    controlCode: Optional[str] = None
+
+class MutexFacet(core.Facet):
     """
-    A device is a piece of equipment or a mechanism designed to serve a special
-    purpose or perform a special function. [based on
-    https://www.merriam-webster.com/dictionary/device]
+    A mutex facet is a grouping of characteristics unique to a mechanism that
+    enforces limits on access to a resource when there are many threads of
+    execution. A mutex is designed to enforce a mutual exclusion concurrency
+    control policy, and with a variety of possible methods there exists multiple
+    unique implementations for different applications. [based on
+    https://en.wikipedia.org/wiki/Lock_(computer_science)]
     """
 
-class StorageMediumFacet(Facet):
-    """
-    A storage medium facet is a grouping of characteristics unique to a the storage
-    capabilities of a piece of equipment or a mechanism designed to serve a special
-    purpose or perform a special function.
-    """
-    totalStorageCapacityInBytes: Optional[int] = None
+    isNamed: Optional[bool] = None
+    mutexName: Optional[str] = None
 
-class SMSMessageFacet(Facet):
+class X509Certificate(observable.ObservableObject):
     """
-    A SMS message facet is a grouping of characteristics unique to a message
-    conformant to the short message service (SMS) communication protocol standards.
-    """
-    isRead: Optional[bool] = None
-
-class PDFFile(File):
-    """
-    A PDF file is a Portable Document Format (PDF) file.
+    A X.509 certificate is a public key digital identity certificate conformant
+    to the X.509 PKI (Public Key Infrastructure) standard.
     """
 
-class ProcessThread(ObservableObject):
+
+class PDFFileFacet(core.Facet):
     """
-    A process thread is the smallest sequence of programmed instructions that can be
-    managed independently by a scheduler on a computer, which is typically a part of
-    the operating system. It is a component of a process. Multiple threads can exist
-    within one process, executing concurrently and sharing resources such as memory,
-    while different processes do not share these resources. In particular, the
-    threads of a process share its executable code and the values of its dynamically
-    allocated variables and non-thread-local global variables at any given time.
-    [based on https://en.wikipedia.org/wiki/Thread_(computing)]
+    A PDF file facet is a grouping of characteristics unique to a PDF (Portable
+    Document Format) file.
     """
 
-class URLVisit(ObservableObject):
+    documentInformationDictionary: Optional[ControlledDictionary] = None
+    isOptimized: Optional[bool] = None
+    pdfCreationDate: Optional[str] = None
+    pdfModDate: Optional[str] = None
+    pdfId1: Optional[str] = None
+    version: Optional[str] = None
+    pdfId0: Optional[str] = None
+
+class RasterPictureFacet(core.Facet):
     """
-    A URL visit characterizes the properties of a visit of a URL within a particular
-    browser.
+    A raster picture facet is a grouping of characteristics unique to a raster
+    (or bitmap) image.
     """
 
-class SecurityAppliance(Appliance):
+    camera: Optional[ObservableObject] = None
+    bitsPerPixel: Optional[int] = None
+    pictureHeight: Optional[int] = None
+    pictureWidth: Optional[int] = None
+    imageCompressionMethod: Optional[str] = None
+    pictureType: Optional[str] = None
+
+class ContentData(observable.ObservableObject):
     """
-    A security appliance is a purpose-built computer with software or firmware that
-    is designed to provide a specific security function to protect computer
-    networks.
+    Content data is a block of digital data.
     """
 
-class UNIXAccount(DigitalAccount):
+
+class TriggerType(core.UcoInherentCharacterizationThing):
     """
-    A UNIX account is an account on a UNIX operating system.
+    A trigger type is a grouping of characterizes unique to a set of criteria
+    that, when met, starts the execution of a task within a Windows operating
+    system. [based on
+    https://docs.microsoft.com/en-us/windows/win32/taskschd/task-triggers]
     """
 
-class ARPCacheEntry(ObservableObject):
+    isEnabled: Optional[bool] = None
+    triggerBeginTime: Optional[str] = None
+    triggerEndTime: Optional[str] = None
+    triggerDelay: Optional[str] = None
+    triggerMaxRunTime: Optional[str] = None
+    triggerSessionChangeType: Optional[str] = None
+    triggerFrequency: Optional[str] = None
+    triggerType: Optional[str] = None
+    triggerFrequency: Optional[Any] = None
+    triggerType: Optional[Any] = None
+    triggerFrequency: Optional[Any] = None
+    triggerType: Optional[Any] = None
+
+class UNIXAccountFacet(core.Facet):
     """
-    An ARP cache entry is a single Address Resolution Protocol (ARP) response record
-    that is created when an IP address is resolved to a MAC address (so the computer
-    can effectively communicate with the IP address). [based on
-    https://en.wikipedia.org/wiki/ARP_cache]
+    A UNIX account facet is a grouping of characteristics unique to an account
+    on a UNIX operating system.
     """
 
-class UserSessionFacet(Facet):
-    """
-    A user session facet is a grouping of characteristics unique to a temporary and
-    interactive information interchange between two or more communicating devices
-    within the managed scope of a single user. [based on
-    https://en.wikipedia.org/wiki/Session_(computer_science)]
-    """
-    effectiveUser: Optional[ObservableObject] = None
-    loginTime: Optional[str] = None
-    logoutTime: Optional[str] = None
-    effectiveGroup: Optional[str] = None
-    effectiveGroupID: Optional[str] = None
+    gid: Optional[int] = None
+    shell: Optional[str] = None
 
-class Snapshot(FileSystemObject):
+class SymbolicLinkFacet(core.Facet):
     """
-    A snapshot is a file system object representing a snapshot of the contents of a
-    part of a file system at a point in time.
+    A symbolic link facet is a grouping of characteristics unique to a file that
+    contains a reference to another file or directory in the form of an absolute
+    or relative path and that affects pathname resolution. [based on
+    https://en.wikipedia.org/wiki/Symbolic_link]
     """
 
-class WindowsPEBinaryFileFacet(Facet):
+    targetFile: Optional[ObservableObject] = None
+
+class EmailAddressFacet(observable.DigitalAddressFacet):
+    """
+    An email address facet is a grouping of characteristics unique to an
+    identifier for an electronic mailbox to which electronic mail messages
+    (conformant to the Simple Mail Transfer Protocol (SMTP)) are sent from and
+    delivered to.
+    """
+
+
+class ArchiveFile(observable.File):
+    """
+    An archive file is a file that is composed of one or more computer files
+    along with metadata.
+    """
+
+
+class WindowsPEBinaryFileFacet(core.Facet):
     """
     A Windows PE binary file facet is a grouping of characteristics unique to a
     Windows portable executable (PE) file.
     """
+
     optionalHeader: Optional[WindowsPEOptionalHeader] = None
     sections: Optional[WindowsPESection] = None
     fileHeaderHashes: Optional[Hash] = None
@@ -691,170 +737,92 @@ class WindowsPEBinaryFileFacet(Facet):
     machine: Optional[str] = None
     characteristics: Optional[str] = None
 
-class IComHandlerActionType(UcoInherentCharacterizationThing):
+class ContentDataFacet(core.Facet):
     """
-    An IComHandler action type is a grouping of characteristics unique to a Windows
-    Task-related action that fires a Windows COM handler (smart code in the client
-    address space that can optimize calls between a client and server). [based on
-    https://docs.microsoft.com/en-us/windows/win32/taskschd/comhandleraction]
-    """
-    comClassID: Optional[str] = None
-    comData: Optional[str] = None
-
-class WindowsThread(ProcessThread):
-    """
-    A Windows thread is a single thread of execution within a Windows process.
+    A content data facet is a grouping of characteristics unique to a block of
+    digital data.
     """
 
-class DigitalAddressFacet(Facet):
-    """
-    A digital address facet is a grouping of characteristics unique to an identifier
-    assigned to enable routing and management of digital communication.
-    """
-    addressValue: Optional[str] = None
-    displayName: Optional[str] = None
+    dataPayloadReferenceURL: Optional[ObservableObject] = None
+    hash: Optional[Hash] = None
+    isEncrypted: Optional[bool] = None
+    entropy: Optional[float] = None
+    sizeInBytes: Optional[int] = None
+    dataPayload: Optional[str] = None
+    magicNumber: Optional[str] = None
+    mimeClass: Optional[str] = None
+    mimeType: Optional[str] = None
+    byteOrder: Optional[str] = None
+    byteOrder: Optional[Any] = None
+    byteOrder: Optional[Any] = None
 
-class MutexFacet(Facet):
+class ProcessFacet(core.Facet):
     """
-    A mutex facet is a grouping of characteristics unique to a mechanism that
-    enforces limits on access to a resource when there are many threads of
-    execution. A mutex is designed to enforce a mutual exclusion concurrency control
-    policy, and with a variety of possible methods there exists multiple unique
-    implementations for different applications. [based on
-    https://en.wikipedia.org/wiki/Lock_(computer_science)]
-    """
-    isNamed: Optional[bool] = None
-    mutexName: Optional[str] = None
-
-class EnvironmentVariable(UcoInherentCharacterizationThing):
-    """
-    An environment variable is a grouping of characteristics unique to a
-    dynamic-named value that can affect the way running processes will behave on a
-    computer. [based on https://en.wikipedia.org/wiki/Environment_variable]
-    """
-    name: Optional[str] = None
-    value: Optional[str] = None
-
-class DefinedEffectFacet(Facet):
-    """
-    A defined effect facet is a grouping of characteristics unique to the effect of
-    an observable action in relation to one or more observable objects.
+    A process facet is a grouping of characteristics unique to an instance of a
+    computer program executed on an operating system.
     """
 
-class WindowsProcessFacet(Facet):
-    """
-    A Windows process facet is a grouping of characteristics unique to a program
-    running on a Windows operating system.
-    """
-    startupInfo: Optional[Dictionary] = None
-    aslrEnabled: Optional[bool] = None
-    depEnabled: Optional[bool] = None
-    ownerSID: Optional[str] = None
-    priority: Optional[str] = None
-    windowTitle: Optional[str] = None
+    binary: Optional[ObservableObject] = None
+    creatorUser: Optional[ObservableObject] = None
+    parent: Optional[ObservableObject] = None
+    environmentVariables: Optional[Dictionary] = None
+    isHidden: Optional[bool] = None
+    exitTime: Optional[str] = None
+    observableCreatedTime: Optional[str] = None
+    exitStatus: Optional[int] = None
+    pid: Optional[int] = None
+    currentWorkingDirectory: Optional[str] = None
+    status: Optional[str] = None
+    arguments: Optional[str] = None
 
-class WifiAddress(MACAddress):
+class DomainName(observable.ObservableObject):
     """
-    A Wi-Fi address is a media access control (MAC) standards-conformant identifier
-    assigned to a device network interface to enable routing and management of IEEE
-    802.11 standards-conformant communications to and from that device.
-    """
-
-class PathRelationFacet(Facet):
-    """
-    A path relation facet is a grouping of characteristics unique to the location of
-    one object within another containing object.
-    """
-    path: Optional[str] = None
-
-class ImageFacet(Facet):
-    """
-    An image facet is a grouping of characteristics unique to a complete copy of a
-    hard disk, memory, or other digital media.
-    """
-    imageType: Optional[str] = None
-
-class RecoveredObject(ObservableObject):
-    """
-    An observable object that was the result of a recovery operation.
+    A domain name is an identification string that defines a realm of
+    administrative autonomy, authority or control within the Internet. [based on
+    https://en.wikipedia.org/wiki/Domain_name]
     """
 
-class Image(ObservableObject):
+
+class ApplicationAccountFacet(core.Facet):
     """
-    An image is a complete copy of a hard disk, memory, or other digital media.
+    An application account facet is a grouping of characteristics unique to an
+    account within a particular software program designed for end users.
     """
 
-class PDFFileFacet(Facet):
-    """
-    A PDF file facet is a grouping of characteristics unique to a PDF (Portable
-    Document Format) file.
-    """
-    documentInformationDictionary: Optional[ControlledDictionary] = None
-    isOptimized: Optional[bool] = None
-    pdfCreationDate: Optional[str] = None
-    pdfModDate: Optional[str] = None
-    pdfId1: Optional[str] = None
-    version: Optional[str] = None
-    pdfId0: Optional[str] = None
+    application: Optional[ObservableObject] = None
 
-class ARPCache(ObservableObject):
+class Library(observable.ObservableObject):
     """
-    An ARP cache is a collection of Address Resolution Protocol (ARP) entries
-    (mostly dynamic) that are created when an IP address is resolved to a MAC
-    address (so the computer can effectively communicate with the IP address).
-    [based on https://en.wikipedia.org/wiki/ARP_cache]
+    A library is a suite of data and programming code that is used to develop
+    software programs and applications. [based on
+    https://www.techopedia.com/definition/3828/software-library]
     """
 
-class WindowsWaitableTime(ObservableObject):
+
+class DefinedEffectFacet(core.Facet):
     """
-    A Windows waitable timer is a synchronization object within the Windows
-    operating system whose state is set to signaled when a specified due time
-    arrives. There are two types of waitable timers that can be created:
-    manual-reset and synchronization. A timer of either type can also be a periodic
-    timer. [based on
-    https://docs.microsoft.com/en-us/windows/win32/sync/waitable-timer-objects]
+    A defined effect facet is a grouping of characteristics unique to the effect
+    of an observable action in relation to one or more observable objects.
     """
 
-class WindowsComputerSpecification(ObservableObject):
+
+class StateChangeEffectFacet(observable.DefinedEffectFacet):
     """
-    A Windows computer specification is the hardware ans software of a programmable
-    electronic device that can store, retrieve, and process data running a Microsoft
-    Windows operating system. [based on merriam-webster.com/dictionary/computer]
+    A state change effect facet is a grouping of characteristics unique to the
+    effects of actions upon observable objects where a state of the observable
+    object is changed.
     """
 
-class WindowsPEBinaryFile(File):
-    """
-    A Windows PE binary file is a Windows portable executable (PE) file.
-    """
+    newObject: Optional[ObservableObject] = None
+    oldObject: Optional[ObservableObject] = None
 
-class CellSite(ObservableObject):
-
-class Tweet(Message):
-    """
-    A tweet is message submitted by a Twitter user account to the Twitter
-    microblogging platform.
-    """
-
-class RecoveredObjectFacet(Facet):
-    """
-    Recoverability status of name, metadata, and content.
-    """
-    contentRecoveredStatus: Optional[str] = None
-    metadataRecoveredStatus: Optional[str] = None
-    nameRecoveredStatus: Optional[str] = None
-    nameRecoveredStatus: Optional[Any] = None
-    metadataRecoveredStatus: Optional[Any] = None
-    contentRecoveredStatus: Optional[Any] = None
-    nameRecoveredStatus: Optional[Any] = None
-    metadataRecoveredStatus: Optional[Any] = None
-    contentRecoveredStatus: Optional[Any] = None
-
-class CalendarEntryFacet(Facet):
+class CalendarEntryFacet(core.Facet):
     """
     A calendar entry facet is a grouping of characteristics unique to an
-    appointment, meeting, or event within a collection of appointments, meetings,
-    and events.
+    appointment, meeting, or event within a collection of appointments,
+    meetings, and events.
     """
+
     owner: Optional[UcoObject] = None
     attendant: Optional[Identity] = None
     location: Optional[Location] = None
@@ -871,545 +839,410 @@ class CalendarEntryFacet(Facet):
     recurrence: Optional[str] = None
     subject: Optional[str] = None
 
-class CapturedTelecommunicationsInformation(ObservableObject):
-
-class WindowsHook(ObservableObject):
+class WindowsThread(observable.ProcessThread):
     """
-    A Windows hook is a mechanism by which an application can intercept events, such
-    as messages, mouse actions, and keystrokes within the Windows operating system.
-    A function that intercepts a particular type of event is known as a hook
-    procedure. A hook procedure can act on each event it receives, and then modify
-    or discard the event. [based on
-    https://docs.microsoft.com/en-us/windows/win32/winmsg/about-hooks]
+    A Windows thread is a single thread of execution within a Windows process.
     """
 
-class AndroidPhone(AndroidDevice):
+
+class WhoisContactFacet(observable.ContactFacet):
     """
-    An android phone is a smart phone that applies the Android mobile operating
-    system.
+    A Whois contact type is a grouping of characteristics unique to
+    contact-related information present in a response record conformant to the
+    WHOIS protocol standard (RFC 3912). [based on
+    https://en.wikipedia.org/wiki/WHOIS]
     """
 
-class ForumPrivateMessage(Message):
-    """
-    A forum private message (aka PM or DM (direct message)) is a one-to-one message
-    from one specific user account to another specific user account on an online
-    form where transmission is managed by the online forum platform and the message
-    is only viewable by the parties directly involved.
-    """
-
-class Post(Message):
-    """
-    A post is message submitted to an online discussion/publishing site (forum,
-    blog, etc.).
-    """
-
-class UNIXProcessFacet(Facet):
-    """
-    A UNIX process facet is a grouping of characteristics unique to an instance of a
-    computer program executed on a UNIX operating system.
-    """
-    openFileDescriptor: Optional[int] = None
-    ruid: Optional[int] = None
-
-class GamingConsole(Device):
-    """
-    A gaming console (video game console or game console) is an electronic system
-    that connects to a display, typically a TV or computer monitor, for the primary
-    purpose of playing video games.
-    """
-
-class ConfiguredSoftware(Software):
-    """
-    A ConfiguredSoftware is a Software that is known to be configured to run in a
-    more specified manner than some unconfigured or less-configured Software.
-    """
-    usesConfiguration: Optional[Configuration] = None
-    isConfigurationOf: Optional[Software] = None
-
-class AndroidDevice(Device):
-    """
-    An Android device is a device running the Android operating system. [based on
-    https://en.wikipedia.org/wiki/Android_(operating_system)]
-    """
-
-class SMSMessage(Message):
-    """
-    An SMS message is a message conformant to the short message service (SMS)
-    communication protocol standards.
-    """
-
-class ComputerSpecification(ObservableObject):
-    """
-    A computer specification is the hardware and software of a programmable
-    electronic device that can store, retrieve, and process data. {based on
-    merriam-webster.com/dictionary/computer]
-    """
-
-class HTTPConnectionFacet(Facet):
-    """
-    An HTTP connection facet is a grouping of characteristics unique to portions of
-    a network connection that are conformant to the Hypertext Transfer Protocol
-    (HTTP) standard.
-    """
-    httpMessageBodyData: Optional[ObservableObject] = None
-    httpRequestHeader: Optional[Dictionary] = None
-    httpMesageBodyLength: Optional[int] = None
-    requestMethod: Optional[str] = None
-    requestValue: Optional[str] = None
-    requestVersion: Optional[str] = None
-
-class WindowsActiveDirectoryAccountFacet(Facet):
-    """
-    A Windows Active Directory account facet is a grouping of characteristics unique
-    to an account managed by directory-based identity-related services of a Windows
-    operating system.
-    """
-    objectGUID: Optional[str] = None
-    activeDirectoryGroups: Optional[str] = None
-
-class Library(ObservableObject):
-    """
-    A library is a suite of data and programming code that is used to develop
-    software programs and applications. [based on
-    https://www.techopedia.com/definition/3828/software-library]
-    """
-
-class RasterPicture(File):
-    """
-    A raster picture is a raster (or bitmap) image.
-    """
-
-class Mutex(ObservableObject):
-    """
-    A mutex is a mechanism that enforces limits on access to a resource when there
-    are many threads of execution. A mutex is designed to enforce a mutual exclusion
-    concurrency control policy, and with a variety of possible methods there exists
-    multiple unique implementations for different applications. [based on
-    https://en.wikipedia.org/wiki/Lock_(computer_science)]
-    """
-
-class WhoisContactFacet(ContactFacet):
-    """
-    A Whois contact type is a grouping of characteristics unique to contact-related
-    information present in a response record conformant to the WHOIS protocol
-    standard (RFC 3912). [based on https://en.wikipedia.org/wiki/WHOIS]
-    """
     whoisContactType: Optional[str] = None
     whoisContactType: Optional[Any] = None
     whoisContactType: Optional[Any] = None
 
-class WindowsSystemRestore(ObservableObject):
+class EmailAccount(observable.DigitalAccount):
     """
-    A Windows system restore is a capture of a Windows computer's state (including
-    system files, installed applications, Windows Registry, and system settings) at
-    a particular point in time such that the computer can be reverted to that state
-    in the event of system malfunctions or other problems. [based on
-    https://en.wikipedia.org/wiki/System_Restore]
+    An email account is an arrangement with an entity to enable and control the
+    provision of electronic mail (email) capabilities or services.
     """
 
-class ContentData(ObservableObject):
+
+class NetworkFlow(observable.ObservableObject):
     """
-    Content data is a block of digital data.
+    A network flow is a sequence of data transiting one or more digital network
+    (a group or two or more computer systems linked together) connections.
+    [based on https://www.webopedia.com/TERM/N/network.html]
     """
 
-class EmbeddedDevice(Device):
+
+class API(observable.ObservableObject):
     """
-    An embedded device is a highly specialized microprocessor device meant for one
-    or very few specific purposes and is usually embedded or included within another
-    object or as part of a larger system. Examples include answer machine, door
-    access logger, card scanner, etc.
+    An API (application programming interface) is a computing interface that
+    defines interactions between multiple software or mixed hardware-software
+    intermediaries. It defines the kinds of calls or requests that can be made,
+    how to make them, the data formats that should be used, the conventions to
+    follow, etc. [based on https://en.wikipedia.org/wiki/API]
     """
 
-class IShowMessageActionType(UcoInherentCharacterizationThing):
-    """
-    An IShow message action type is a grouping of characteristics unique to an
-    action that shows a message box when a task is activate. [based on
-    https://docs.microsoft.com/en-us/windows/win32/api/taskschd/nn-taskschd-ishowmessageaction?redirectedfrom=MSDN]
-    """
-    showMessageBody: Optional[str] = None
-    showMessageTitle: Optional[str] = None
 
-class Drone(MobileDevice):
+class Appliance(observable.Device):
     """
-    A drone, unmanned aerial vehicle (UAV), is an aircraft without a human pilot,
-    crew, or passengers that typically involve a ground-based controller and a
-    system for communications with the UAV.
+    An appliance is a purpose-built computer with software or firmware that is
+    designed to provide a specific computing capability or resource. [based on
+    https://en.wikipedia.org/wiki/Computer_appliance]
     """
 
-class Semaphore(ObservableObject):
+
+class NoteFacet(core.Facet):
     """
-    A semaphore is a variable or abstract data type used to control access to a
-    common resource by multiple processes and avoid critical section problems in a
-    concurrent system such as a multitasking operating system. [based on
-    https://en.wikipedia.org/wiki/Semaphore_(programming)]
+    A note facet is a grouping of characteristics unique to a brief textual
+    record.
     """
 
-class ContactEmail(UcoInherentCharacterizationThing):
-    """
-    A contact email is a grouping of characteristics unique to details for
-    contacting a contact entity by email.
-    """
-    emailAddress: Optional[ObservableObject] = None
-    contactEmailScope: Optional[str] = None
-    contactEmailScope: Optional[Any] = None
-    contactEmailScope: Optional[Any] = None
+    application: Optional[ObservableObject] = None
+    modifiedTime: Optional[str] = None
+    observableCreatedTime: Optional[str] = None
+    text: Optional[str] = None
 
-class ReparsePoint(FileSystemObject):
+class CallFacet(core.Facet):
     """
-    A reparse point is a type of NTFS (New Technology File System) object which is
-    an optional attribute of files and directories meant to define some sort of
-    preprocessing before accessing the said file or directory. For instance reparse
-    points can be used to redirect access to files which have been moved to long
-    term storage so that some application would retrieve them and make them directly
-    accessible. A reparse point contains a reparse tag and data that are interpreted
-    by a filesystem filter identified by the tag. [based on
-    https://jp-andre.pagesperso-orange.fr/junctions.html ;
-    https://en.wikipedia.org/wiki/NTFS_reparse_point]
+    A call facet is a grouping of characteristics unique to a connection as part
+    of a realtime cyber communication between one or more parties.
     """
 
-class UserAccount(DigitalAccount):
-    """
-    A user account is an account controlling a user's access to a network, system or
-    platform.
-    """
-
-class WindowsVolumeFacet(Facet):
-    """
-    A Windows volume facet is a grouping of characteristics unique to a single
-    accessible storage area (volume) with a single Windows file system. [based on
-    https://en.wikipedia.org/wiki/Volume_(computing)]
-    """
-    driveLetter: Optional[str] = None
-    driveType: Optional[str] = None
-    windowsVolumeAttributes: List[str] = None
-    driveType: Optional[Any] = None
-    driveType: Optional[Any] = None
-
-class GlobalFlagType(UcoInherentCharacterizationThing):
-    """
-    A global flag type is a grouping of characteristics unique to the Windows
-    systemwide global variable named NtGlobalFlag that enables various internal
-    debugging, tracing, and validation support in the operating system. [based on
-    "Windows Global Flags, Chapter 3: System Mechanisms of Windows Internals by
-    Solomon, Russinovich, and Ionescu]
-    """
-    hexadecimalValue: Optional[str] = None
-    abbreviation: Optional[str] = None
-    destination: Optional[str] = None
-    symbolicName: Optional[str] = None
-
-class WindowsAccountFacet(Facet):
-    """
-    A Windows account facet is a grouping of characteristics unique to a user
-    account on a Windows operating system.
-    """
-    groups: Optional[str] = None
-
-class HTTPConnection(NetworkConnection):
-    """
-    An HTTP connection is network connection that is conformant to the Hypertext
-    Transfer Protocol (HTTP) standard.
-    """
-
-class UNIXAccountFacet(Facet):
-    """
-    A UNIX account facet is a grouping of characteristics unique to an account on a
-    UNIX operating system.
-    """
-    gid: Optional[int] = None
-    shell: Optional[str] = None
-
-class DigitalAccount(Account):
-    """
-    A digital account is an arrangement with an entity to enable and control the
-    provision of some capability or service within the digital domain.
-    """
-
-class RasterPictureFacet(Facet):
-    """
-    A raster picture facet is a grouping of characteristics unique to a raster (or
-    bitmap) image.
-    """
-    camera: Optional[ObservableObject] = None
-    bitsPerPixel: Optional[int] = None
-    pictureHeight: Optional[int] = None
-    pictureWidth: Optional[int] = None
-    imageCompressionMethod: Optional[str] = None
-    pictureType: Optional[str] = None
-
-class MobileDeviceFacet(Facet):
-    """
-    A mobile device facet is a grouping of characteristics unique to a portable
-    computing device. [based on https://www.lexico.com/definition/mobile_device]
-    """
-    mockLocationsAllowed: Optional[bool] = None
-    clockSetting: Optional[str] = None
-    phoneActivationTime: Optional[str] = None
-    storageCapacityInBytes: Optional[int] = None
-    ESN: Optional[str] = None
-    bluetoothDeviceName: Optional[str] = None
-    keypadUnlockCode: Optional[str] = None
-    network: Optional[str] = None
-    IMEI: Optional[str] = None
-
-class Software(ObservableObject):
-    """
-    Software is a definitely scoped instance of a collection of data or computer
-    instructions that tell the computer how to work. [based on
-    https://en.wikipedia.org/wiki/Software]
-    """
-
-class ExtractedString(UcoInherentCharacterizationThing):
-    """
-    An extracted string is a grouping of characteristics unique to a series of
-    characters pulled from an observable object.
-    """
-    byteStringValue: Optional[str] = None
-    length: Optional[int] = None
-    encoding: Optional[str] = None
-    englishTranslation: Optional[str] = None
-    language: Optional[str] = None
-    stringValue: Optional[str] = None
-
-class NetworkFlowFacet(Facet):
-    """
-    A network flow facet is a grouping of characteristics unique to a sequence of
-    data transiting one or more digital network (a group of two or more computer
-    systems linked together) connections. [based on
-    https://www.webopedia.com/TERM/N/network.html]
-    """
-    dstPayload: Optional[ObservableObject] = None
-    srcPayload: Optional[ObservableObject] = None
-    ipfix: Optional[Dictionary] = None
-    dstBytes: Optional[int] = None
-    dstPackets: Optional[int] = None
-    srcBytes: Optional[int] = None
-    srcPackets: Optional[int] = None
-
-class MACAddress(DigitalAddress):
-    """
-    A MAC address is a media access control standards conformant identifier assigned
-    to a network interface to enable routing and management of communications at the
-    data link layer of a network segment.
-    """
-
-class Application(ObservableObject):
-    """
-    An application is a particular software program designed for end users.
-    """
-
-class MimePartType(UcoInherentCharacterizationThing):
-    """
-    A mime part type is a grouping of characteristics unique to a component of a
-    multi-part email body.
-    """
-    bodyRaw: Optional[ObservableObject] = None
-    body: Optional[str] = None
-    contentDisposition: Optional[str] = None
-    contentType: Optional[str] = None
-
-class AudioFacet(Facet):
-    """
-    An audio facet is a grouping of characteristics unique to a digital
-    representation of sound.
-    """
-    bitRate: Optional[int] = None
+    application: Optional[ObservableObject] = None
+    from: Optional[ObservableObject] = None
+    participant: Optional[ObservableObject] = None
+    to: Optional[ObservableObject] = None
+    endTime: Optional[str] = None
+    startTime: Optional[str] = None
     duration: Optional[int] = None
-    audioType: Optional[str] = None
-    format: Optional[str] = None
+    callType: Optional[str] = None
 
-class EmailAccountFacet(Facet):
+class UNIXAccount(observable.DigitalAccount):
     """
-    An email account facet is a grouping of characteristics unique to an arrangement
-    with an entity to enable and control the provision of electronic mail (email)
-    capabilities or services.
-    """
-    emailAddress: Optional[ObservableObject] = None
-
-class IPhone(AppleDevice):
-    """
-    An iPhone is a smart phone that applies the iOS mobile operating system.
+    A UNIX account is an account on a UNIX operating system.
     """
 
-class AccountAuthenticationFacet(Facet):
+
+class RecoveredObject(observable.ObservableObject):
     """
-    An account authentication facet is a grouping of characteristics unique to the
-    mechanism of accessing an account.
+    An observable object that was the result of a recovery operation.
     """
+
+
+class ComputerSpecificationFacet(core.Facet):
+    """
+    A computer specificaiton facet is a grouping of characteristics unique to
+    the hardware and software of a programmable electronic device that can
+    store, retrieve, and process data. [based on
+    merriam-webster.com/dictionary/computer]
+    """
+
+    networkInterface: Optional[ObservableObject] = None
+    biosDate: Optional[str] = None
+    biosReleaseDate: Optional[str] = None
+    currentSystemDate: Optional[str] = None
+    localTime: Optional[str] = None
+    systemTime: Optional[str] = None
+    availableRam: Optional[int] = None
+    totalRam: Optional[int] = None
+    biosManufacturer: Optional[str] = None
+    biosSerialNumber: Optional[str] = None
+    biosVersion: Optional[str] = None
+    cpu: Optional[str] = None
+    cpuFamily: Optional[str] = None
+    gpu: Optional[str] = None
+    gpuFamily: Optional[str] = None
+    hostname: Optional[str] = None
+    processorArchitecture: Optional[str] = None
+    timezoneDST: Optional[str] = None
+    timezoneStandard: Optional[str] = None
+    uptime: Optional[str] = None
+
+class FileSystemFacet(core.Facet):
+    """
+    A file system facet is a grouping of characteristics unique to the process
+    that manages how and where data on a storage medium is stored, accessed and
+    managed. [based on https://www.techopedia.com/definition/5510/file-system]
+    """
+
+    clusterSize: Optional[int] = None
+    fileSystemType: Optional[str] = None
+
+class WindowsTask(observable.ObservableObject):
+    """
+    A Windows task is a process that is scheduled to execute on a Windows
+    operating system by the Windows Task Scheduler. [based on
+    http://msdn.microsoft.com/en-us/library/windows/desktop/aa381311(v=vs.85).aspx]
+    """
+
+
+class SIMCard(observable.Device):
+    """
+    A SIM card is a subscriber identification module card intended to securely
+    store the international mobile subscriber identity (IMSI) number and its
+    related key, which are used to identify and authenticate subscribers on
+    mobile telephony. [based on https://en.wikipedia.org/wiki/SIM_card]
+    """
+
+
+class ExtractedStringsFacet(core.Facet):
+    """
+    An extracted strings facet is a grouping of characteristics unique to one or
+    more sequences of characters pulled from an observable object.
+    """
+
+    strings: Optional[ExtractedString] = None
+
+class RasterPicture(observable.File):
+    """
+    A raster picture is a raster (or bitmap) image.
+    """
+
+
+class Code(observable.ObservableObject):
+    """
+    Code is a direct representation (source, byte or binary) of a collection of
+    computer instructions that form software which tell a computer how to work.
+    [based on https://en.wikipedia.org/wiki/Software]
+    """
+
+
+class UserAccount(observable.DigitalAccount):
+    """
+    A user account is an account controlling a user's access to a network,
+    system or platform.
+    """
+
+
+class NetworkAppliance(observable.Appliance):
+    """
+    A network appliance is a purpose-built computer with software or firmware
+    that is designed to provide a specific network management function.
+    """
+
+
+class Laptop(observable.Computer):
+    """
+    A laptop, laptop computer, or notebook computer is a small, portable
+    personal computer with a screen and alphanumeric keyboard. These typically
+    have a clam shell form factor with the screen mounted on the inside of the
+    upper lid and the keyboard on the inside of the lower lid, although 2-in-1
+    PCs with a detachable keyboard are often marketed as laptops or as having a
+    laptop mode. (Devices categorized by their manufacturer as a Laptop)
+    """
+
+
+class SQLiteBlobFacet(core.Facet):
+    """
+    An SQLite blob facet is a grouping of characteristics unique to a blob
+    (binary large object) of data within an SQLite database. [based on
+    https://en.wikipedia.org/wiki/SQLite]
+    """
+
+    rowIndex: Optional[str] = None
+    columnName: Optional[str] = None
+    rowCondition: Optional[str] = None
+    tableName: Optional[str] = None
+
+class ICMPConnection(observable.NetworkConnection):
+    """
+    An ICMP connection is a network connection that is conformant to the
+    Internet Control Message Protocol (ICMP) standard.
+    """
+
+
+class AccountFacet(core.Facet):
+    """
+    An account facet is a grouping of characteristics unique to an arrangement
+    with an entity to enable and control the provision of some capability or
+    service.
+    """
+
+    accountIssuer: Optional[UcoObject] = None
+    owner: Optional[UcoObject] = None
+    isActive: Optional[bool] = None
+    expirationTime: Optional[str] = None
+    modifiedTime: Optional[str] = None
+    observableCreatedTime: Optional[str] = None
+    accountIdentifier: Optional[str] = None
+    accountType: Optional[str] = None
+    accountType: Optional[Any] = None
+    accountType: Optional[Any] = None
+
+class WindowsProcessFacet(core.Facet):
+    """
+    A Windows process facet is a grouping of characteristics unique to a program
+    running on a Windows operating system.
+    """
+
+    startupInfo: Optional[Dictionary] = None
+    aslrEnabled: Optional[bool] = None
+    depEnabled: Optional[bool] = None
+    ownerSID: Optional[str] = None
+    priority: Optional[str] = None
+    windowTitle: Optional[str] = None
+
+class WindowsThreadFacet(core.Facet):
+    """
+    A Windows thread facet is a grouping os characteristics unique to a single
+    thread of execution within a Windows process.
+    """
+
+    creationTime: Optional[str] = None
+    observableCreatedTime: Optional[str] = None
+    parameterAddress: Optional[str] = None
+    startAddress: Optional[str] = None
+    priority: Optional[int] = None
+    stackSize: Optional[int] = None
+    threadID: Optional[int] = None
+    context: Optional[str] = None
+    runningStatus: Optional[str] = None
+    securityAttributes: Optional[str] = None
+    creationFlags: Optional[str] = None
+
+class Call(observable.ObservableObject):
+    """
+    A call is a connection as part of a realtime cyber communication between one
+    or more parties.
+    """
+
+
+class AlternateDataStream(observable.ObservableObject):
+    """
+    An alternate data stream is data content stored within an NTFS file that is
+    independent of the standard content stream of the file and is hidden from
+    access by default NTFS file viewing mechanisms.
+    """
+
+
+class Audio(observable.ObservableObject):
+    """
+    Audio is a digital representation of sound.
+    """
+
+
+class AccountAuthenticationFacet(core.Facet):
+    """
+    An account authentication facet is a grouping of characteristics unique to
+    the mechanism of accessing an account.
+    """
+
     passwordLastChanged: Optional[str] = None
     password: Optional[str] = None
     passwordType: Optional[str] = None
 
-class NetworkConnection(ObservableObject):
+class Server(observable.Computer):
     """
-    A network connection is a connection (completed or attempted) across a digital
-    network (a group of two or more computer systems linked together). [based on
-    https://www.webopedia.com/TERM/N/network.html]
-    """
-
-class SymbolicLink(FileSystemObject):
-    """
-    A symbolic link is a file that contains a reference to another file or directory
-    in the form of an absolute or relative path and that affects pathname
-    resolution. [based on https://en.wikipedia.org/wiki/Symbolic_link]
+    A server is a server rack-mount based computer, minicomputer, supercomputer,
+    etc.
     """
 
-class GUI(ObservableObject):
+
+class EventLog(observable.ObservableObject):
     """
-    A GUI is a graphical user interface that allows users to interact with
-    electronic devices through graphical icons and audio indicators such as primary
-    notation, instead of text-based user interfaces, typed command labels or text
-    navigation. [based on https://en.wikipedia.org/wiki/Graphical_user_interface]
+    An event log is a collection of event records.
     """
 
-class Calendar(ObservableObject):
+
+class BrowserCookie(observable.ObservableObject):
     """
-    A calendar is a collection of appointments, meetings, and events.
+    A browser cookie is a piece of of data sent from a website and stored on the
+    user's computer by the user's web browser while the user is browsing. [based
+    on https://en.wikipedia.org/wiki/HTTP_cookie]
     """
 
-class IPAddress(DigitalAddress):
+
+class DNSCache(observable.ObservableObject):
     """
-    An IP address is an Internet Protocol (IP) standards conformant identifier
-    assigned to a device to enable routing and management of IP standards conformant
-    communication to or from that device.
+    An DNS cache is a temporary locally stored collection of previous Domain
+    Name System (DNS) query results (created when an domain name is resolved to
+    a IP address) for a particular computer.
     """
 
-class ForumPost(Message):
+
+class FileSystemObject(observable.ObservableObject):
     """
-    A forum post is message submitted by a user account to an online forum where the
-    message content (and typically metadata including who posted it and when) is
-    viewable by any party with viewing permissions on the forum.
+    A file system object is an informational object represented and managed
+    within a file system.
     """
 
-class NTFSFile(File):
+
+class ICMPConnectionFacet(core.Facet):
     """
-    An NTFS file is a New Technology File System (NTFS) file.
+    An ICMP connection facet is a grouping of characteristics unique to portions
+    of a network connection that are conformant to the Internet Control Message
+    Protocol (ICMP) standard.
     """
 
-class NetworkInterfaceFacet(Facet):
-    """
-    A network interface facet is a grouping of characteristics unique to a software
-    or hardware interface between two pieces of equipment or protocol layers in a
-    computer network.
-    """
-    macAddress: Optional[ObservableObject] = None
-    dhcpServer: Optional[ObservableObject] = None
-    ip: Optional[ObservableObject] = None
-    ipGateway: Optional[ObservableObject] = None
-    dhcpLeaseExpires: Optional[str] = None
-    dhcpLeaseObtained: Optional[str] = None
-    adapterName: Optional[str] = None
+    icmpCode: Optional[str] = None
+    icmpType: Optional[str] = None
 
-class EventRecordFacet(Facet):
+class WindowsTaskFacet(core.Facet):
     """
-    An event record facet is a grouping of characteristics unique to something that
-    happens in a digital context (e.g., operating system events).
+    A Windows Task facet is a grouping of characteristics unique to a Windows
+    Task (a process that is scheduled to execute on a Windows operating system
+    by the Windows Task Scheduler). [based on
+    http://msdn.microsoft.com/en-us/library/windows/desktop/aa381311(v=vs.85).aspx]
     """
-    cyberAction: Optional[ObservableAction] = None
+
     account: Optional[ObservableObject] = None
     application: Optional[ObservableObject] = None
-    eventRecordDevice: Optional[ObservableObject] = None
-    endTime: Optional[str] = None
+    workItemData: Optional[ObservableObject] = None
+    workingDirectory: Optional[ObservableObject] = None
+    actionList: Optional[TaskActionType] = None
+    triggerList: Optional[TriggerType] = None
+    mostRecentRunTime: Optional[str] = None
+    nextRunTime: Optional[str] = None
     observableCreatedTime: Optional[str] = None
-    startTime: Optional[str] = None
-    eventID: Optional[str] = None
-    eventRecordID: Optional[str] = None
-    eventRecordRaw: Optional[str] = None
-    eventRecordServiceName: Optional[str] = None
-    eventRecordText: Optional[str] = None
-    eventType: Optional[str] = None
+    exitCode: Optional[int] = None
+    maxRunTime: Optional[int] = None
+    accountLogonType: Optional[str] = None
+    accountRunLevel: Optional[str] = None
+    imageName: Optional[str] = None
+    parameters: Optional[str] = None
+    taskComment: Optional[str] = None
+    taskCreator: Optional[str] = None
+    flags: Optional[str] = None
+    priority: Optional[str] = None
+    status: Optional[str] = None
+    priority: Optional[Any] = None
+    status: Optional[Any] = None
+    flags: Optional[Any] = None
+    priority: Optional[Any] = None
+    status: Optional[Any] = None
+    flags: Optional[Any] = None
 
-class WikiArticle(ObservableObject):
-    """
-    A wiki article is one or more pages in a wiki focused on characterizing a
-    particular topic.
-    """
-
-class WindowsRegistryValue(UcoInherentCharacterizationThing):
-    """
-    A Windows registry value is a grouping of characteristics unique to a particular
-    value within a Windows registry (a hierarchical database that stores low-level
-    settings for the Microsoft Windows operating system and for applications that
-    opt to use the registry. [based on
-    https://en.wikipedia.org/wiki/Windows_Registry]
-    """
-    name: Optional[str] = None
-    data: Optional[str] = None
-    dataType: Optional[str] = None
-
-class BlackberryPhone(SmartPhone):
-    """
-    A blackberry phone is a smart phone that applies the Blackberry OS mobile
-    operating system. (Blackberry 10 re-introduces Blackberry OS, prior to that the
-    OS was Android.)
-    """
-
-class Hostname(ObservableObject):
-    """
-    A hostname is a label that is assigned to a device connected to a computer
-    network and that is used to identify the device in various forms of electronic
-    communication, such as the World Wide Web. A hostname may be a domain name, if
-    it is properly organized into the domain name system. A domain name may be a
-    hostname if it has been assigned to an Internet host and associated with the
-    host's IP address. [based on https://en.wikipedia.org/wiki/Hostname]
-    """
-
-class DigitalCamera(Device):
-    """
-    A digital camera is a camera that captures photographs in digital memory as
-    opposed to capturing images on photographic film.
-    """
-
-class EncodedStreamFacet(Facet):
+class EncodedStreamFacet(core.Facet):
     """
     An encoded stream facet is a grouping of characteristics unique to the
     conversion of a body of data content from one form to another form.
     """
+
     encodingMethod: Optional[str] = None
 
-class MobileDevice(Device):
+class OperatingSystemFacet(core.Facet):
     """
-    A mobile device is a portable computing device. [based on
-    https://www.lexico.com.definition/mobile_device]
-    """
-
-class VolumeFacet(Facet):
-    """
-    A volume facet is a grouping of characteristics unique to a single accessible
-    storage area (volume) with a single file system. [based on
-    https://en.wikipedia.org/wiki/Volume_(computing)]
-    """
-    sectorSize: Optional[int] = None
-    volumeID: Optional[str] = None
-
-class UNIXProcess(Process):
-    """
-    A UNIX process is an instance of a computer program executed on a UNIX operating
-    system.
+    An operating system facet is a grouping of characteristics unique to the
+    software that manages computer hardware, software resources, and provides
+    common services for computer programs. [based on
+    https://en.wikipedia.org/wiki/Operating_system]
     """
 
-class LibraryFacet(Facet):
-    """
-    A library facet is a grouping of characteristics unique to a suite of data and
-    programming code that is used to develop software programs and applications.
-    [based on https://www.techopedia.com/definition/3828/software-library]
-    """
-    libraryType: Optional[str] = None
+    manufacturer: Optional[Identity] = None
+    environmentVariables: Optional[Dictionary] = None
+    isLimitAdTrackingEnabled: Optional[bool] = None
+    installDate: Optional[str] = None
+    bitness: Optional[str] = None
+    version: Optional[str] = None
+    advertisingID: Optional[str] = None
 
-class DiskPartition(ObservableObject):
+class TwitterProfileFacet(core.Facet):
     """
-    A disk partition is a particular managed region on a storage mechanism where
-    data is recorded by various electronic, magnetic, optical, or mechanical changes
-    to a surface layer of one or more rotating disks. [based on
-    https://en.wikipedia.org/wiki/Disk_storage]
+    A twitter profile facet is a grouping of characteristics unique to an
+    explicit digital representation of identity and characteristics of the owner
+    of a single Twitter user account. [based on
+    https://en.wikipedia.org/wiki/User_profile]
     """
 
-class TwitterProfileFacet(Facet):
-    """
-    A twitter profile facet is a grouping of characteristics unique to an explicit
-    digital representation of identity and characteristics of the owner of a single
-    Twitter user account. [based on https://en.wikipedia.org/wiki/User_profile]
-    """
     profileBackgroundLocation: Optional[ObservableObject] = None
     profileBannerLocation: Optional[ObservableObject] = None
     profileImageLocation: Optional[ObservableObject] = None
@@ -1427,136 +1260,399 @@ class TwitterProfileFacet(Facet):
     twitterId: Optional[str] = None
     userLocationString: Optional[str] = None
 
-class Volume(ObservableObject):
+class WikiArticle(observable.ObservableObject):
     """
-    A volume is a single accessible storage area (volume) with a single file system.
-    [based on https://en.wikipedia.org/wiki/Volume_(computing)]
-    """
-
-class BrowserCookie(ObservableObject):
-    """
-    A browser cookie is a piece of of data sent from a website and stored on the
-    user's computer by the user's web browser while the user is browsing. [based on
-    https://en.wikipedia.org/wiki/HTTP_cookie]
+    A wiki article is one or more pages in a wiki focused on characterizing a
+    particular topic.
     """
 
-class UNIXVolumeFacet(Facet):
-    """
-    A UNIX volume facet is a grouping of characteristics unique to a single
-    accessible storage area (volume) with a single UNIX file system. [based on
-    https://en.wikipedia.org/wiki/Volume_(computing)]
-    """
-    mountPoint: Optional[str] = None
-    options: Optional[str] = None
 
-class AppleDevice(Device):
+class EmailAccountFacet(core.Facet):
     """
-    An apple device is a smart device that applies either the MacOS or iOS operating
+    An email account facet is a grouping of characteristics unique to an
+    arrangement with an entity to enable and control the provision of electronic
+    mail (email) capabilities or services.
+    """
+
+    emailAddress: Optional[ObservableObject] = None
+
+class Drone(observable.MobileDevice):
+    """
+    A drone, unmanned aerial vehicle (UAV), is an aircraft without a human
+    pilot, crew, or passengers that typically involve a ground-based controller
+    and a system for communications with the UAV.
+    """
+
+
+class SIMCardFacet(core.Facet):
+    """
+    A SIM card facet is a grouping of characteristics unique to a subscriber
+    identification module card intended to securely store the international
+    mobile subscriber identity (IMSI) number and its related key, which are used
+    to identify and authenticate subscribers on mobile telephony devices (such
+    as mobile phones and computers). [based on
+    https://en.wikipedia.org/wiki/SIM_card]
+    """
+
+    carrier: Optional[Identity] = None
+    storageCapacityInBytes: Optional[int] = None
+    ICCID: Optional[str] = None
+    IMSI: Optional[str] = None
+    PIN: Optional[str] = None
+    PUK: Optional[str] = None
+    SIMForm: Optional[str] = None
+    SIMType: Optional[str] = None
+
+class NetworkSubnet(observable.ObservableObject):
+    """
+    A network subnet is a logical subdivision of an IP network. [based on
+    https://en.wikipedia.org/wiki/Subnetwork]
+    """
+
+
+class MimePartType(core.UcoInherentCharacterizationThing):
+    """
+    A mime part type is a grouping of characteristics unique to a component of a
+    multi-part email body.
+    """
+
+    bodyRaw: Optional[ObservableObject] = None
+    body: Optional[str] = None
+    contentDisposition: Optional[str] = None
+    contentType: Optional[str] = None
+
+class ValuesEnumeratedEffectFacet(observable.DefinedEffectFacet):
+    """
+    A values enumerated effect facet is a grouping of characteristics unique to
+    the effects of actions upon observable objects where a value of the
+    observable object is enumerated. An example of this would be the values of a
+    registry key.
+    """
+
+    values: Optional[str] = None
+
+class ExtInodeFacet(core.Facet):
+    """
+    An extInode facet is a grouping of characteristics unique to a file system
+    object (file, directory, etc.) conformant to the extended file system (EXT
+    or related derivations) specification.
+    """
+
+    extDeletionTime: Optional[str] = None
+    extInodeChangeTime: Optional[str] = None
+    extFileType: Optional[int] = None
+    extFlags: Optional[int] = None
+    extHardLinkCount: Optional[int] = None
+    extInodeID: Optional[int] = None
+    extPermissions: Optional[int] = None
+    extSGID: Optional[int] = None
+    extSUID: Optional[int] = None
+
+class SmartPhone(observable.Computer):
+    """
+    A smartphone is a portable device that combines mobile telephone and
+    computing functions into one unit. Examples include iPhone, Samsung Galaxy,
+    Huawei, Blackberry. (Inferred by model and OperatingSystemFacet)
+    """
+
+
+class WhoIs(observable.ObservableObject):
+    """
+    WhoIs is a response record conformant to the WHOIS protocol standard (RFC
+    3912). [based on https://en.wikipedia.org/wiki/WHOIS]
+    """
+
+
+class ContactListFacet(core.Facet):
+    """
+    A contact list facet is a grouping of characteristics unique to a set of
+    multiple individual contacts such as that found in a digital address book.
+    """
+
+    sourceApplication: Optional[ObservableObject] = None
+    contact: Optional[ObservableObject] = None
+
+class PhoneAccountFacet(core.Facet):
+    """
+    A phone account facet is a grouping of characteristics unique to an
+    arrangement with an entity to enable and control the provision of a
+    telephony capability or service.
+    """
+
+    phoneNumber: Optional[str] = None
+
+class WearableDevice(observable.SmartDevice):
+    """
+    A wearable device is an electronic device that is designed to be worn on a
+    person's body.
+    """
+
+
+class EnvironmentVariable(core.UcoInherentCharacterizationThing):
+    """
+    An environment variable is a grouping of characteristics unique to a
+    dynamic-named value that can affect the way running processes will behave on
+    a computer. [based on https://en.wikipedia.org/wiki/Environment_variable]
+    """
+
+    name: Optional[str] = None
+    value: Optional[str] = None
+
+class WindowsActiveDirectoryAccount(observable.DigitalAccount):
+    """
+    A Windows Active Directory account is an account managed by directory-based
+    identity-related services of a Windows operating system.
+    """
+
+
+class ApplicationAccount(observable.DigitalAccount):
+    """
+    An application account is an account within a particular software program
+    designed for end users.
+    """
+
+
+class IPv6Address(observable.IPAddress):
+    """
+    An IPv6 (Internet Protocol version 6) address is an IPv6 standards
+    conformant identifier assigned to a device to enable routing and management
+    of IPv6 standards conformant communication to or from that device.
+    """
+
+
+class Mutex(observable.ObservableObject):
+    """
+    A mutex is a mechanism that enforces limits on access to a resource when
+    there are many threads of execution. A mutex is designed to enforce a mutual
+    exclusion concurrency control policy, and with a variety of possible methods
+    there exists multiple unique implementations for different applications.
+    [based on https://en.wikipedia.org/wiki/Lock_(computer_science)]
+    """
+
+
+class Semaphore(observable.ObservableObject):
+    """
+    A semaphore is a variable or abstract data type used to control access to a
+    common resource by multiple processes and avoid critical section problems in
+    a concurrent system such as a multitasking operating system. [based on
+    https://en.wikipedia.org/wiki/Semaphore_(programming)]
+    """
+
+
+class Credential(observable.ObservableObject):
+    """
+    A credential is a single specific login and password combination for
+    authorization of access to a digital account or system.
+    """
+
+
+class TaskActionType(core.UcoInherentCharacterizationThing):
+    """
+    A task action type is a grouping of characteristics for a scheduled action
+    to be completed.
+    """
+
+    iComHandlerAction: Optional[IComHandlerActionType] = None
+    iExecAction: Optional[IExecActionType] = None
+    iShowMessageAction: Optional[IShowMessageActionType] = None
+    iEmailAction: Optional[ObservableObject] = None
+    actionID: Optional[str] = None
+    actionType: Optional[str] = None
+    actionType: Optional[Any] = None
+    actionType: Optional[Any] = None
+
+class WindowsSystemRestore(observable.ObservableObject):
+    """
+    A Windows system restore is a capture of a Windows computer's state
+    (including system files, installed applications, Windows Registry, and
+    system settings) at a particular point in time such that the computer can be
+    reverted to that state in the event of system malfunctions or other
+    problems. [based on https://en.wikipedia.org/wiki/System_Restore]
+    """
+
+
+class CellSiteFacet(core.Facet):
+    """
+    A cell site facet contains the metadata surrounding the cell site.
+    """
+
+    cellSiteCountryCode: Optional[str] = None
+    cellSiteIdentifier: Optional[str] = None
+    cellSiteLocationAreaCode: Optional[str] = None
+    cellSiteNetworkCode: Optional[str] = None
+    cellSiteType: Optional[str] = None
+
+class WirelessNetworkConnection(observable.NetworkConnection):
+    """
+    A wireless network connection is a connection (completed or attempted)
+    across an IEEE 802.11 standards-confromant digital network (a group of two
+    or more computer systems linked together). [based on
+    https://www.webopedia.com/TERM/N/network.html]
+    """
+
+
+class WindowsRegistryKeyFacet(core.Facet):
+    """
+    A Windows registry key facet is a grouping of characteristics unique to a
+    particular key within a Windows registry (A hierarchical database that
+    stores low-level settings for the Microsoft Windows operating system and for
+    applications that opt to use the registry). [based on
+    https://en.wikipedia.org/wiki/Windows_Registry]
+    """
+
+    creator: Optional[ObservableObject] = None
+    registryValues: Optional[WindowsRegistryValue] = None
+    modifiedTime: Optional[str] = None
+    numberOfSubkeys: Optional[int] = None
+    key: Optional[str] = None
+
+class MobileAccount(observable.DigitalAccount):
+    """
+    A mobile account is an arrangement with an entity to enable and control the
+    provision of some capability or service on a portable computing device.
+    [based on https://www.lexico.com/definition/mobile_device]
+    """
+
+
+class CredentialDump(observable.ObservableObject):
+    """
+    A credential dump is a collection (typically forcibly extracted from a
+    system) of specific login and password combinations for authorization of
+    access to a digital account or system.
+    """
+
+
+class GeoLocationTrack(observable.ObservableObject):
+    """
+    A geolocation track is a set of contiguous geolocation entries representing
+    a path/track taken.
+    """
+
+
+class Process(observable.ObservableObject):
+    """
+    A process is an instance of a computer program executed on an operating
     system.
     """
 
-class WindowsPESection(UcoInherentCharacterizationThing):
-    """
-    A Windows PE section is a grouping of characteristics unique to a specific
-    default or custom-defined region of a Windows PE (Portable Executable) file,
-    consisting of an individual portion of the actual executable content of the file
-    delineated according to unique purpose and memory protection requirements.
-    """
-    hashes: Optional[Hash] = None
-    entropy: Optional[float] = None
-    size: Optional[int] = None
-    name: Optional[str] = None
 
-class AlternateDataStream(ObservableObject):
+class ContactAffiliation(core.UcoInherentCharacterizationThing):
     """
-    An alternate data stream is data content stored within an NTFS file that is
-    independent of the standard content stream of the file and is hidden from access
-    by default NTFS file viewing mechanisms.
+    A contact affiliation is a grouping of characteristics unique to details of
+    an organizational affiliation for a single contact entity.
     """
 
-class MftRecordFacet(Facet):
-    """
-    An MFT record facet is a grouping of characteristics unique to the details of a
-    single file as managed in an NTFS (new technology filesystem) master file table
-    (which is a collection of information about all files on an NTFS filesystem).
-    [based on
-    https://docs.microsoft.com/en-us/windows/win32/devnotes/master-file-table]
-    """
-    mftFileNameAccessedTime: Optional[str] = None
-    mftFileNameCreatedTime: Optional[str] = None
-    mftFileNameModifiedTime: Optional[str] = None
-    mftFileNameRecordChangeTime: Optional[str] = None
-    mftRecordChangeTime: Optional[str] = None
-    mftFileID: Optional[int] = None
-    mftFileNameLength: Optional[int] = None
-    mftFlags: Optional[int] = None
-    mftParentID: Optional[int] = None
-    ntfsHardLinkCount: Optional[int] = None
-    ntfsOwnerID: Optional[str] = None
-    ntfsOwnerSID: Optional[str] = None
+    contactOrganization: Optional[Organization] = None
+    organizationLocation: Optional[ContactAddress] = None
+    contactEmail: Optional[ContactEmail] = None
+    contactMessaging: Optional[ContactMessaging] = None
+    contactPhone: Optional[ContactPhone] = None
+    contactProfile: Optional[ContactProfile] = None
+    contactURL: Optional[ContactURL] = None
+    organizationDepartment: Optional[str] = None
+    organizationPosition: Optional[str] = None
 
-class EXIFFacet(Facet):
+class PropertiesEnumeratedEffectFacet(core.Facet):
     """
-    An EXIF (exchangeable image file format) facet is a grouping of characteristics
-    unique to the formats for images, sound, and ancillary tags used by digital
-    cameras (including smartphones), scanners and other systems handling image and
-    sound files recorded by digital cameras conformant to JEIDA/JEITA/CIPA
-    specifications. [based on https://en.wikipedia.org/wiki/Exif]
-    """
-    exifData: Optional[ControlledDictionary] = None
-
-class Computer(Device):
-    """
-    A computer is an electronic device for storing and processing data, typically in
-    binary, according to instructions given to it in a variable program. [based on
-    'Computer.' Oxford English Dictionary, Oxford University Press, 2022.]
+    A properties enumerated effect facet is a grouping of characteristics unique
+    to the effects of actions upon observable objects where a characteristic of
+    the observable object is enumerated. An example of this would be startup
+    parameters for a process.
     """
 
-class X509V3ExtensionsFacet(Facet):
-    """
-    An X.509 v3 certificate extensions facet is a grouping of characteristics unique
-    to a public key digital identity certificate conformant to the X.509 v3 PKI
-    (Public Key Infrastructure) standard.
-    """
-    privateKeyUsagePeriodNotAfter: Optional[str] = None
-    privateKeyUsagePeriodNotBefore: Optional[str] = None
-    authorityKeyIdentifier: Optional[str] = None
-    basicConstraints: Optional[str] = None
-    certificatePolicies: Optional[str] = None
-    crlDistributionPoints: Optional[str] = None
-    extendedKeyUsage: Optional[str] = None
-    inhibitAnyPolicy: Optional[str] = None
-    issuerAlternativeName: Optional[str] = None
-    keyUsage: Optional[str] = None
-    nameConstraints: Optional[str] = None
-    policyConstraints: Optional[str] = None
-    policyMappings: Optional[str] = None
-    subjectAlternativeName: Optional[str] = None
-    subjectDirectoryAttributes: Optional[str] = None
-    subjectKeyIdentifier: Optional[str] = None
+    properties: Optional[str] = None
 
-class ApplicationAccountFacet(Facet):
+class ReparsePoint(observable.FileSystemObject):
     """
-    An application account facet is a grouping of characteristics unique to an
-    account within a particular software program designed for end users.
+    A reparse point is a type of NTFS (New Technology File System) object which
+    is an optional attribute of files and directories meant to define some sort
+    of preprocessing before accessing the said file or directory. For instance
+    reparse points can be used to redirect access to files which have been moved
+    to long term storage so that some application would retrieve them and make
+    them directly accessible. A reparse point contains a reparse tag and data
+    that are interpreted by a filesystem filter identified by the tag. [based on
+    https://jp-andre.pagesperso-orange.fr/junctions.html ;
+    https://en.wikipedia.org/wiki/NTFS_reparse_point]
     """
+
+
+class PhoneAccount(observable.DigitalAccount):
+    """
+    A phone account is an arrangement with an entity to enable and control the
+    provision of a telephony capability or service.
+    """
+
+
+class WifiAddressFacet(observable.MACAddressFacet):
+    """
+    A Wi-Fi address facet is a grouping of characteristics unique to a media
+    access control (MAC) standards conformant identifier assigned to a device
+    network interface to enable routing and management of IEEE 802.11
+    standards-conformant communications to and from that device.
+    """
+
+
+class TableFieldFacet(core.Facet):
+    """
+    A database record facet contains properties associated with a specific table
+    record value from a database.
+    """
+
+    recordFieldIsNull: Optional[bool] = None
+    recordFieldName: Optional[str] = None
+    tableName: Optional[str] = None
+    tableSchema: Optional[str] = None
+    recordFieldValue: Optional[Any] = None
+    recordRowID: Optional[Any] = None
+
+class Wiki(observable.ObservableObject):
+    """
+    A wiki is an online hypertext publication collaboratively edited and managed
+    by its own audience directly using a web browser. A typical wiki contains
+    multiple pages/articles for the subjects or scope of the project and could
+    be either open to the public or limited to use within an organization for
+    maintaining its internal knowledge base. [based on
+    https://en.wikipedia.org/wiki/Wiki]
+    """
+
+
+class EventRecordFacet(core.Facet):
+    """
+    An event record facet is a grouping of characteristics unique to something
+    that happens in a digital context (e.g., operating system events).
+    """
+
+    cyberAction: Optional[ObservableAction] = None
+    account: Optional[ObservableObject] = None
     application: Optional[ObservableObject] = None
+    eventRecordDevice: Optional[ObservableObject] = None
+    endTime: Optional[str] = None
+    observableCreatedTime: Optional[str] = None
+    startTime: Optional[str] = None
+    eventID: Optional[str] = None
+    eventRecordID: Optional[str] = None
+    eventRecordRaw: Optional[str] = None
+    eventRecordServiceName: Optional[str] = None
+    eventRecordText: Optional[str] = None
+    eventType: Optional[str] = None
 
-class TCPConnectionFacet(Facet):
+class BlockDeviceNode(observable.FileSystemObject):
     """
-    A TCP connection facet is a grouping of characteristics unique to portions of a
-    network connection that are conformant to the Transmission Control Protocl (TCP)
-    standard.
+    A block device node is a UNIX filesystem special file that serves as a
+    conduit to communicate with devices, providing buffered randomly accesible
+    input and output. Block device nodes are used to apply access rights to the
+    devices and to direct operations on the files to the appropriate device
+    drivers. [based on https://en.wikipedia.org/wiki/Unix_file_types]
     """
-    destinationFlags: Optional[str] = None
-    sourceFlags: Optional[str] = None
 
-class WindowsPEOptionalHeader(UcoInherentCharacterizationThing):
+
+class WindowsPEOptionalHeader(core.UcoInherentCharacterizationThing):
     """
     A Windows PE optional header is a grouping of characteristics unique to the
-    'optional header' of a Windows PE (Portable Executable) file, consisting of a
-    collection of metadata about the executable code structure of the file.
+    'optional header' of a Windows PE (Portable Executable) file, consisting of
+    a collection of metadata about the executable code structure of the file.
     """
+
     majorLinkerVersion: Optional[str] = None
     minorLinkerVersion: Optional[str] = None
     addressOfEntryPoint: Optional[str] = None
@@ -1587,278 +1683,337 @@ class WindowsPEOptionalHeader(UcoInherentCharacterizationThing):
     minorSubsystemVersion: Optional[str] = None
     subsystem: Optional[str] = None
 
-class IPv6Address(IPAddress):
+class IPv6AddressFacet(observable.IPAddressFacet):
     """
-    An IPv6 (Internet Protocol version 6) address is an IPv6 standards conformant
-    identifier assigned to a device to enable routing and management of IPv6
-    standards conformant communication to or from that device.
-    """
-
-class WifiAddressFacet(MACAddressFacet):
-    """
-    A Wi-Fi address facet is a grouping of characteristics unique to a media access
-    control (MAC) standards conformant identifier assigned to a device network
-    interface to enable routing and management of IEEE 802.11 standards-conformant
-    communications to and from that device.
+    An IPv6 (Internet Protocol version 6) address facet is a grouping of
+    characteristics unique to an IPv6 standards conformant identifier assigned
+    to a device to enable routing and management of IPv6 standards conformant
+    communication to or from that device.
     """
 
-class ContactPhone(UcoInherentCharacterizationThing):
-    """
-    A contact phone is a grouping of characteristics unique to details for
-    contacting a contact entity by telephone.
-    """
-    contactPhoneNumber: Optional[ObservableObject] = None
-    contactPhoneScope: Optional[str] = None
-    contactPhoneScope: Optional[Any] = None
-    contactPhoneScope: Optional[Any] = None
 
-class GeoLocationEntry(ObservableObject):
+class MemoryFacet(core.Facet):
     """
-    A geolocation entry is a single application-specific geolocation entry.
+    A memory facet is a grouping of characteristics unique to a particular
+    region of temporary information storage (e.g., RAM (random access memory),
+    ROM (read only memory)) on a digital device.
     """
 
-class ValuesEnumeratedEffectFacet(DefinedEffectFacet):
-    """
-    A values enumerated effect facet is a grouping of characteristics unique to the
-    effects of actions upon observable objects where a value of the observable
-    object is enumerated. An example of this would be the values of a registry key.
-    """
-    values: Optional[str] = None
+    isInjected: Optional[bool] = None
+    isMapped: Optional[bool] = None
+    isProtected: Optional[bool] = None
+    isVolatile: Optional[bool] = None
+    regionEndAddress: Optional[str] = None
+    regionStartAddress: Optional[str] = None
+    regionSize: Optional[int] = None
+    blockType: Optional[str] = None
+    blockType: Optional[Any] = None
+    blockType: Optional[Any] = None
 
-class DigitalSignatureInfo(ObservableObject):
+class CookieHistory(observable.ObservableObject):
     """
-    A digital signature info is a value calculated via a mathematical scheme for
-    demonstrating the authenticity of an electronic message or document.
+    A cookie history is the stored web cookie history for a particular web
+    browser.
     """
 
-class DeviceFacet(Facet):
+
+class URL(observable.ObservableObject):
     """
-    A device facet is a grouping of characteristics unique to a piece of equipment
-    or a mechanism designed to serve a special purpose or perform a special
-    function. [based on https://www.merriam-webster.com/dictionary/device]
+    A URL is a uniform resource locator (URL) acting as a resolvable address to
+    a particular WWW (World Wide Web) accessible resource.
     """
+
+
+class SMSMessageFacet(core.Facet):
+    """
+    A SMS message facet is a grouping of characteristics unique to a message
+    conformant to the short message service (SMS) communication protocol
+    standards.
+    """
+
+    isRead: Optional[bool] = None
+
+class Software(observable.ObservableObject):
+    """
+    Software is a definitely scoped instance of a collection of data or computer
+    instructions that tell the computer how to work. [based on
+    https://en.wikipedia.org/wiki/Software]
+    """
+
+
+class ARPCacheEntry(observable.ObservableObject):
+    """
+    An ARP cache entry is a single Address Resolution Protocol (ARP) response
+    record that is created when an IP address is resolved to a MAC address (so
+    the computer can effectively communicate with the IP address). [based on
+    https://en.wikipedia.org/wiki/ARP_cache]
+    """
+
+
+class SecurityAppliance(observable.Appliance):
+    """
+    A security appliance is a purpose-built computer with software or firmware
+    that is designed to provide a specific security function to protect computer
+    networks.
+    """
+
+
+class Device(observable.ObservableObject):
+    """
+    A device is a piece of equipment or a mechanism designed to serve a special
+    purpose or perform a special function. [based on
+    https://www.merriam-webster.com/dictionary/device]
+    """
+
+
+class DigitalCamera(observable.Device):
+    """
+    A digital camera is a camera that captures photographs in digital memory as
+    opposed to capturing images on photographic film.
+    """
+
+
+class DeviceFacet(core.Facet):
+    """
+    A device facet is a grouping of characteristics unique to a piece of
+    equipment or a mechanism designed to serve a special purpose or perform a
+    special function. [based on
+    https://www.merriam-webster.com/dictionary/device]
+    """
+
     manufacturer: Optional[Identity] = None
     deviceType: Optional[str] = None
     model: Optional[str] = None
     serialNumber: Optional[str] = None
 
-class OnlineServiceFacet(Facet):
+class MACAddressFacet(observable.DigitalAddressFacet):
     """
-    An online service facet is a grouping of characteristics unique to a particular
-    provision mechanism of information access, distribution or manipulation over the
-    Internet.
+    A MAC address facet is a grouping of characteristics unique to a media
+    access control standards conformant identifier assigned to a network
+    interface to enable routing and management of communications at the data
+    link layer of a network segment.
     """
+
+
+class WindowsPrefetchFacet(core.Facet):
+    """
+    A Windows prefetch facet is a grouping of characteristics unique to entries
+    in the Windows prefetch file (used to speed up application startup starting
+    with Windows XP).
+    """
+
+    volume: Optional[ObservableObject] = None
+    accessedDirectory: Optional[ObservableObject] = None
+    accessedFile: Optional[ObservableObject] = None
+    firstRun: Optional[str] = None
+    lastRun: Optional[str] = None
+    timesExecuted: Optional[int] = None
+    applicationFileName: Optional[str] = None
+    prefetchHash: Optional[str] = None
+
+class UNIXVolumeFacet(core.Facet):
+    """
+    A UNIX volume facet is a grouping of characteristics unique to a single
+    accessible storage area (volume) with a single UNIX file system. [based on
+    https://en.wikipedia.org/wiki/Volume_(computing)]
+    """
+
+    mountPoint: Optional[str] = None
+    options: Optional[str] = None
+
+class ProcessThread(observable.ObservableObject):
+    """
+    A process thread is the smallest sequence of programmed instructions that
+    can be managed independently by a scheduler on a computer, which is
+    typically a part of the operating system. It is a component of a process.
+    Multiple threads can exist within one process, executing concurrently and
+    sharing resources such as memory, while different processes do not share
+    these resources. In particular, the threads of a process share its
+    executable code and the values of its dynamically allocated variables and
+    non-thread-local global variables at any given time. [based on
+    https://en.wikipedia.org/wiki/Thread_(computing)]
+    """
+
+
+class CapturedTelecommunicationsInformation(observable.ObservableObject):
+
+
+class GeoLocationEntryFacet(core.Facet):
+    """
+    A geolocation entry facet is a grouping of characteristics unique to a
+    single application-specific geolocation entry.
+    """
+
     location: Optional[Location] = None
-    inetLocation: Optional[ObservableObject] = None
-    name: Optional[str] = None
+    application: Optional[ObservableObject] = None
+    observableCreatedTime: Optional[str] = None
 
-class Process(ObservableObject):
+class URLHistory(observable.ObservableObject):
     """
-    A process is an instance of a computer program executed on an operating system.
+    A URL history characterizes the stored URL history for a particular web
+    browser
     """
 
-class DigitalAccountFacet(Facet):
-    """
-    A digital account facet is a grouping of characteristics unique to an
-    arrangement with an entity to enable and control the provision of some
-    capability or service within the digital domain.
-    """
-    isDisabled: Optional[bool] = None
-    firstLoginTime: Optional[str] = None
-    lastLoginTime: Optional[str] = None
-    displayName: Optional[str] = None
-    accountLogin: Optional[str] = None
 
-class SIPAddress(DigitalAddress):
+class WebPage(observable.ObservableObject):
     """
-    A SIP address is an identifier for Session Initiation Protocol (SIP)
+    A web page is a specific collection of information provided by a website and
+    displayed to a user in a web browser. A website typically consists of many
+    web pages linked together in a coherent fashion. [based on
+    https://en.wikipedia.org/wiki/Web_page]
+    """
+
+
+class IPv4AddressFacet(observable.IPAddressFacet):
+    """
+    An IPv4 (Internet Protocol version 4) address facet is a grouping of
+    characteristics unique to an IPv4 standards conformant identifier assigned
+    to a device to enable routing and management of IPv4 standards conformant
+    communication to or from that device.
+    """
+
+
+class ImageFacet(core.Facet):
+    """
+    An image facet is a grouping of characteristics unique to a complete copy of
+    a hard disk, memory, or other digital media.
+    """
+
+    imageType: Optional[str] = None
+
+class GamingConsole(observable.Device):
+    """
+    A gaming console (video game console or game console) is an electronic
+    system that connects to a display, typically a TV or computer monitor, for
+    the primary purpose of playing video games.
+    """
+
+
+class CompressedStreamFacet(core.Facet):
+    """
+    A compressed stream facet is a grouping of characteristics unique to the
+    application of a size-reduction process to a body of data content.
+    """
+
+    compressionRatio: Optional[float] = None
+    compressionMethod: Optional[str] = None
+
+class WindowsMailslot(observable.ObservableObject):
+    """
+    A Windows mailslot is is a pseudofile that resides in memory, and may be
+    accessed using standard file functions. The data in a mailslot message can
+    be in any form, but cannot be larger than 424 bytes when sent between
+    computers. Unlike disk files, mailslots are temporary. When all handles to a
+    mailslot are closed, the mailslot and all the data it contains are deleted.
+    [based on
+    https://docs.microsoft.com/en-us/windows/win32/ipc/about-mailslots]
+    """
+
+
+class AndroidDevice(observable.Device):
+    """
+    An Android device is a device running the Android operating system. [based
+    on https://en.wikipedia.org/wiki/Android_(operating_system)]
+    """
+
+
+class DiskPartition(observable.ObservableObject):
+    """
+    A disk partition is a particular managed region on a storage mechanism where
+    data is recorded by various electronic, magnetic, optical, or mechanical
+    changes to a surface layer of one or more rotating disks. [based on
+    https://en.wikipedia.org/wiki/Disk_storage]
+    """
+
+
+class UserAccountFacet(core.Facet):
+    """
+    A user account facet is a grouping of characteristics unique to an account
+    controlling a user's access to a network, system, or platform.
+    """
+
+    canEscalatePrivs: Optional[bool] = None
+    isPrivileged: Optional[bool] = None
+    isServiceAccount: Optional[bool] = None
+    homeDirectory: Optional[str] = None
+
+class MobileDevice(observable.Device):
+    """
+    A mobile device is a portable computing device. [based on
+    https://www.lexico.com.definition/mobile_device]
+    """
+
+
+class NTFSFile(observable.File):
+    """
+    An NTFS file is a New Technology File System (NTFS) file.
+    """
+
+
+class IPNetmask(observable.ObservableObject):
+    """
+    An IP netmask is a 32-bit 'mask' used to divide an IP address into subnets
+    and specify the network's available hosts.
+    """
+
+
+class NetworkConnectionFacet(core.Facet):
+    """
+    A network connection facet is a grouping of characteristics unique to a
+    connection (complete or attempted) accross a digital network (a group of two
+    or more computer systems linked together). [based on
+    https://www.webopedia.com/TERM/N/network.html]
+    """
+
+    src: Optional[UcoObject] = None
+    dst: Optional[ObservableObject] = None
+    protocols: Optional[ControlledDictionary] = None
+    isActive: Optional[bool] = None
+    endTime: Optional[str] = None
+    startTime: Optional[str] = None
+    destinationPort: Optional[int] = None
+    sourcePort: Optional[int] = None
+
+class BluetoothAddress(observable.MACAddress):
+    """
+    A Bluetooth address is a Bluetooth standard conformant identifier assigned
+    to a Bluetooth device to enable routing and management of Bluetooth
+    standards conformant communication to or from that device.
+    """
+
+
+class WindowsPrefetch(observable.ObservableObject):
+    """
+    The Windows prefetch contains entries in a Windows prefetch file (used to
+    speed up application startup starting with Windows XP).
+    """
+
+
+class StorageMedium(observable.Device):
+    """
+    A storage medium is any digital storage device that applies electromagnetic
+    or optical surfaces, or depends solely on electronic circuits as solid state
+    storage, for storing digital data. Examples include HDD (PATA), SATA, SSD,
+    Optical, Memory_Card, Tape, etc
+    """
+
+
+class DigitalAddressFacet(core.Facet):
+    """
+    A digital address facet is a grouping of characteristics unique to an
+    identifier assigned to enable routing and management of digital
     communication.
     """
 
-class BotConfiguration(ObservableObject):
-    """
-    A bot configuration is a set of contextual settings for a software application
-    that runs automated tasks (scripts) over the Internet at a much higher rate than
-    would be possible for a human alone.
-    """
+    addressValue: Optional[str] = None
+    displayName: Optional[str] = None
 
-class WriteBlocker(Device):
-    """
-    A write blocker is a device that allows read-only access to storage mediums in
-    order to preserve the integrity of the data being analyzed. Examples include
-    Tableau, Cellibrite, Talon, etc.
-    """
-
-class GeoLocationTrackFacet(Facet):
-    """
-    A geolocation track facet is a grouping of characteristics unique to a set of
-    contiguous geolocation entries representing a path/track taken.
-    """
-    application: Optional[ObservableObject] = None
-    geoLocationEntry: Optional[ObservableObject] = None
-    endTime: Optional[str] = None
-    startTime: Optional[str] = None
-
-class EncryptedStreamFacet(Facet):
-    """
-    An encrypted stream facet is a grouping of characteristics unique to the
-    conversion of a body of data content from one form to another obfuscated form in
-    such a way that reversing the conversion to obtain the original data form can
-    only be accomplished through possession and use of a specific key.
-    """
-    encryptionMethod: Optional[str] = None
-    encryptionMode: Optional[str] = None
-    encryptionIV: Optional[str] = None
-    encryptionKey: Optional[str] = None
-
-class ArchiveFile(File):
-    """
-    An archive file is a file that is composed of one or more computer files along
-    with metadata.
-    """
-
-class Socket(FileSystemObject):
-    """
-    A socket is a special file used for inter-process communication, which enables
-    communication between two processes. In addition to sending data, processes can
-    send file descriptors across a Unix domain socket connection using the sendmsg()
-    and recvmsg() system calls. Unlike named pipes which allow only unidirectional
-    data flow, sockets are fully duplex-capable. [based on
-    https://en.wikipedia.org/wiki/Unix_file_types]
-    """
-
-class Tablet(Computer):
-    """
-    A tablet is a mobile computer that is primarily operated by touching the screen.
-    (Devices categorized by their manufacturer as a Tablet)
-    """
-
-class WindowsPEFileHeader(UcoInherentCharacterizationThing):
-    """
-    A Windows PE file header is a grouping of characteristics unique to the 'header'
-    of a Windows PE (Portable Executable) file, consisting of a collection of
-    metadata about the overall nature and structure of the file.
-    """
-    timeDateStamp: Optional[str] = None
-
-class PaymentCard(ObservableObject):
-    """
-    A payment card is a physical token that is part of a payment system issued by
-    financial institutions, such as a bank, to a customer that enables its owner
-    (the cardholder) to access the funds in the customer's designated bank accounts,
-    or through a credit account and make payments by electronic funds transfer and
-    access automated teller machines (ATMs). [based on
-    https://en.wikipedia.org/wiki/Payment_card]
-    """
-
-class URLVisitFacet(Facet):
-    """
-    A URL visit facet is a grouping of characteristics unique to the properties of a
-    visit of a URL within a particular browser.
-    """
-    browserInformation: Optional[ObservableObject] = None
-    fromURLVisit: Optional[ObservableObject] = None
-    url: Optional[ObservableObject] = None
-    visitTime: Optional[str] = None
-    visitDuration: Optional[str] = None
-    urlTransitionType: Optional[str] = None
-    urlTransitionType: Optional[Any] = None
-    urlTransitionType: Optional[Any] = None
-
-class WhoIs(ObservableObject):
-    """
-    WhoIs is a response record conformant to the WHOIS protocol standard (RFC 3912).
-    [based on https://en.wikipedia.org/wiki/WHOIS]
-    """
-
-class ContactMessaging(UcoInherentCharacterizationThing):
-    """
-    A contact messaging is a grouping of characteristics unique to details for
-    contacting a contact entity by digital messaging.
-    """
-    contactMessagingPlatform: Optional[ObservableObject] = None
-    messagingAddress: Optional[ObservableObject] = None
-
-class URLFacet(Facet):
-    """
-    A URL facet is a grouping of characteristics unique to a uniform resource
-    locator (URL) acting as a resolvable address to a particular WWW (World Wide
-    Web) accessible resource.
-    """
-    host: Optional[ObservableObject] = None
-    port: Optional[int] = None
-    fragment: Optional[str] = None
-    fullValue: Optional[str] = None
-    password: Optional[str] = None
-    path: Optional[str] = None
-    query: Optional[str] = None
-    scheme: Optional[str] = None
-    userName: Optional[str] = None
-
-class BlockDeviceNode(FileSystemObject):
-    """
-    A block device node is a UNIX filesystem special file that serves as a conduit
-    to communicate with devices, providing buffered randomly accesible input and
-    output. Block device nodes are used to apply access rights to the devices and to
-    direct operations on the files to the appropriate device drivers. [based on
-    https://en.wikipedia.org/wiki/Unix_file_types]
-    """
-
-class CalendarEntry(ObservableObject):
-    """
-    A calendar entry is an appointment, meeting or event within a collection of
-    appointments, meetings and events.
-    """
-
-class MobileAccount(DigitalAccount):
-    """
-    A mobile account is an arrangement with an entity to enable and control the
-    provision of some capability or service on a portable computing device. [based
-    on https://www.lexico.com/definition/mobile_device]
-    """
-
-class SIPAddressFacet(DigitalAddressFacet):
-    """
-    A SIP address facet is a grouping of characteristics unique to a Session
-    Initiation Protocol (SIP) standards conformant identifier assigned to a user to
-    enable routing and management of SIP standards conformant communication to or
-    from that user loosely coupled from any particular devices.
-    """
-
-class BrowserCookieFacet(Facet):
-    """
-    A browser cookie facet is a grouping of characteristics unique to a piece of
-    data sent from a website and stored on the user's computer by the user's web
-    browser while the user is browsing. [based on
-    https://en.wikipedia.org/wiki/HTTP_cookie]
-    """
-    application: Optional[ObservableObject] = None
-    cookieDomain: Optional[ObservableObject] = None
-    isSecure: Optional[bool] = None
-    accessedTime: Optional[str] = None
-    expirationTime: Optional[str] = None
-    observableCreatedTime: Optional[str] = None
-    cookieName: Optional[str] = None
-    cookiePath: Optional[str] = None
-
-class X509V3Certificate(ObservableObject):
-    """
-    An X.509 v3 certificate is a public key digital identity certificate conformant
-    to the X.509 v3 PKI (Public Key Infrastructure) standard.
-    """
-
-class EmailAddress(DigitalAddress):
-    """
-    An email address is an identifier for an electronic mailbox to which electronic
-    mail messages (conformant to the Simple Mail Transfer Protocol (SMTP)) are sent
-    from and delivered to.
-    """
-
-class ContactFacet(Facet):
+class ContactFacet(core.Facet):
     """
     A contact facet is a grouping of characteristics unique to a set of
     identification and communication related details for a single entity.
     """
+
     contactAddress: Optional[ContactAddress] = None
     contactAffiliation: Optional[ContactAffiliation] = None
     contactEmail: Optional[ContactEmail] = None
@@ -1883,495 +2038,60 @@ class ContactFacet(Facet):
     contactNote: Optional[str] = None
     nickname: Optional[str] = None
 
-class URL(ObservableObject):
+class Adaptor(observable.Device):
     """
-    A URL is a uniform resource locator (URL) acting as a resolvable address to a
-    particular WWW (World Wide Web) accessible resource.
-    """
-
-class ExtractedStringsFacet(Facet):
-    """
-    An extracted strings facet is a grouping of characteristics unique to one or
-    more sequences of characters pulled from an observable object.
-    """
-    strings: Optional[ExtractedString] = None
-
-class SIMCardFacet(Facet):
-    """
-    A SIM card facet is a grouping of characteristics unique to a subscriber
-    identification module card intended to securely store the international mobile
-    subscriber identity (IMSI) number and its related key, which are used to
-    identify and authenticate subscribers on mobile telephony devices (such as
-    mobile phones and computers). [based on https://en.wikipedia.org/wiki/SIM_card]
-    """
-    carrier: Optional[Identity] = None
-    storageCapacityInBytes: Optional[int] = None
-    ICCID: Optional[str] = None
-    IMSI: Optional[str] = None
-    PIN: Optional[str] = None
-    PUK: Optional[str] = None
-    SIMForm: Optional[str] = None
-    SIMType: Optional[str] = None
-
-class MobileAccountFacet(Facet):
-    """
-    A mobile account facet is a grouping of characteristics unique to an arrangement
-    with an entity to enable and control the provision of some capability or service
-    on a portable computing device. [based on
-    https://www.lexico.com/definition/mobile_device]
-    """
-    IMSI: Optional[str] = None
-    MSISDN: Optional[str] = None
-    MSISDNType: Optional[str] = None
-
-class API(ObservableObject):
-    """
-    An API (application programming interface) is a computing interface that defines
-    interactions between multiple software or mixed hardware-software
-    intermediaries. It defines the kinds of calls or requests that can be made, how
-    to make them, the data formats that should be used, the conventions to follow,
-    etc. [based on https://en.wikipedia.org/wiki/API]
+    An adaptor is a device that physically converts the pin outputs but does not
+    alter the underlying protocol (e.g. uSD to SD, CF to ATA, etc.)
     """
 
-class UserSession(ObservableObject):
+
+class NTFSFileFacet(core.Facet):
     """
-    A user session is a temporary and interactive information interchange between
-    two or more communicating devices within the managed scope of a single user.
-    [based on https://en.wikipedia.org/wiki/Session_(computer_science)]
+    An NTFS file facet is a grouping of characteristics unique to a file on an
+    NTFS (new technology filesystem) file system.
     """
 
-class CompressedStreamFacet(Facet):
-    """
-    A compressed stream facet is a grouping of characteristics unique to the
-    application of a size-reduction process to a body of data content.
-    """
-    compressionRatio: Optional[float] = None
-    compressionMethod: Optional[str] = None
+    alternateDataStreams: Optional[AlternateDataStream] = None
+    entryID: Optional[int] = None
+    sid: Optional[str] = None
 
-class IPNetmask(ObservableObject):
+class OperatingSystem(observable.ObservableObject):
     """
-    An IP netmask is a 32-bit 'mask' used to divide an IP address into subnets and
-    specify the network's available hosts.
-    """
-
-class CharacterDeviceNode(FileSystemObject):
-    """
-    A character device node is a UNIX filesystem special file that serves as a
-    conduit to communicate with devices, providing only a serial stream of input or
-    accepting a serial stream of output. Character device nodes are used to apply
-    access rights to the devices and to direct operations on the files to the
-    appropriate device drivers. [based on
-    https://en.wikipedia.org/wiki/Unix_file_types]
-    """
-
-class WindowsThreadFacet(Facet):
-    """
-    A Windows thread facet is a grouping os characteristics unique to a single
-    thread of execution within a Windows process.
-    """
-    creationTime: Optional[str] = None
-    observableCreatedTime: Optional[str] = None
-    parameterAddress: Optional[str] = None
-    startAddress: Optional[str] = None
-    priority: Optional[int] = None
-    stackSize: Optional[int] = None
-    threadID: Optional[int] = None
-    context: Optional[str] = None
-    runningStatus: Optional[str] = None
-    securityAttributes: Optional[str] = None
-    creationFlags: Optional[str] = None
-
-class IPv4AddressFacet(IPAddressFacet):
-    """
-    An IPv4 (Internet Protocol version 4) address facet is a grouping of
-    characteristics unique to an IPv4 standards conformant identifier assigned to a
-    device to enable routing and management of IPv4 standards conformant
-    communication to or from that device.
-    """
-
-class ICMPConnection(NetworkConnection):
-    """
-    An ICMP connection is a network connection that is conformant to the Internet
-    Control Message Protocol (ICMP) standard.
-    """
-
-class OnlineService(ObservableObject):
-    """
-    An online service is a particular provision mechanism of information access,
-    distribution or manipulation over the Internet.
-    """
-
-class SoftwareFacet(Facet):
-    """
-    A software facet is a grouping of characteristics unique to a software program
-    (a definitively scoped instance of a collection of data or computer instructions
-    that tell the computer how to work). [based on
-    https://en.wikipedia.org/wiki/Software]
-    """
-    manufacturer: Optional[Identity] = None
-    cpeid: Optional[str] = None
-    language: Optional[str] = None
-    swid: Optional[str] = None
-    version: Optional[str] = None
-
-class SocketAddress(Address):
-    """
-    A socket address (combining and IP address and a port number) is a composite
-    identifier for a network socket endpoint supporting internet protocol
-    communications.
-    """
-
-class ApplicationFacet(Facet):
-    """
-    An application facet is a grouping of characteristics unique to a particular
-    software program designed for end users.
-    """
-    installedVersionHistory: Optional[ApplicationVersion] = None
-    operatingSystem: Optional[ObservableObject] = None
-    numberOfLaunches: Optional[int] = None
-    applicationIdentifier: Optional[str] = None
-    version: Optional[str] = None
-
-class AccountFacet(Facet):
-    """
-    An account facet is a grouping of characteristics unique to an arrangement with
-    an entity to enable and control the provision of some capability or service.
-    """
-    accountIssuer: Optional[UcoObject] = None
-    owner: Optional[UcoObject] = None
-    isActive: Optional[bool] = None
-    expirationTime: Optional[str] = None
-    modifiedTime: Optional[str] = None
-    observableCreatedTime: Optional[str] = None
-    accountIdentifier: Optional[str] = None
-    accountType: Optional[str] = None
-    accountType: Optional[Any] = None
-    accountType: Optional[Any] = None
-
-class SymbolicLinkFacet(Facet):
-    """
-    A symbolic link facet is a grouping of characteristics unique to a file that
-    contains a reference to another file or directory in the form of an absolute or
-    relative path and that affects pathname resolution. [based on
-    https://en.wikipedia.org/wiki/Symbolic_link]
-    """
-    targetFile: Optional[ObservableObject] = None
-
-class GeoLocationLogFacet(Facet):
-    """
-    A geolocation log facet is a grouping of characteristics unique to a record
-    containing geolocation tracks and/or geolocation entries.
-    """
-    application: Optional[ObservableObject] = None
-    observableCreatedTime: Optional[str] = None
-
-class StorageMedium(Device):
-    """
-    A storage medium is any digital storage device that applies electromagnetic or
-    optical surfaces, or depends solely on electronic circuits as solid state
-    storage, for storing digital data. Examples include HDD (PATA), SATA, SSD,
-    Optical, Memory_Card, Tape, etc
-    """
-
-class StateChangeEffectFacet(DefinedEffectFacet):
-    """
-    A state change effect facet is a grouping of characteristics unique to the
-    effects of actions upon observable objects where a state of the observable
-    object is changed.
-    """
-    newObject: Optional[ObservableObject] = None
-    oldObject: Optional[ObservableObject] = None
-
-class ExtInodeFacet(Facet):
-    """
-    An extInode facet is a grouping of characteristics unique to a file system
-    object (file, directory, etc.) conformant to the extended file system (EXT or
-    related derivations) specification.
-    """
-    extDeletionTime: Optional[str] = None
-    extInodeChangeTime: Optional[str] = None
-    extFileType: Optional[int] = None
-    extFlags: Optional[int] = None
-    extHardLinkCount: Optional[int] = None
-    extInodeID: Optional[int] = None
-    extPermissions: Optional[int] = None
-    extSGID: Optional[int] = None
-    extSUID: Optional[int] = None
-
-class TriggerType(UcoInherentCharacterizationThing):
-    """
-    A trigger type is a grouping of characterizes unique to a set of criteria that,
-    when met, starts the execution of a task within a Windows operating system.
-    [based on https://docs.microsoft.com/en-us/windows/win32/taskschd/task-triggers]
-    """
-    isEnabled: Optional[bool] = None
-    triggerBeginTime: Optional[str] = None
-    triggerEndTime: Optional[str] = None
-    triggerDelay: Optional[str] = None
-    triggerMaxRunTime: Optional[str] = None
-    triggerSessionChangeType: Optional[str] = None
-    triggerFrequency: Optional[str] = None
-    triggerType: Optional[str] = None
-    triggerFrequency: Optional[Any] = None
-    triggerType: Optional[Any] = None
-    triggerFrequency: Optional[Any] = None
-    triggerType: Optional[Any] = None
-
-class WindowsRegistryHive(ObservableObject):
-    """
-    The Windows registry hive is a particular logical group of keys, subkeys, and
-    values in a Windows registry (a hierarchical database that stores low-level
-    settings for the Microsoft Windows operating system and for applications that
-    opt to use the registry). [based on
-    https://en.wikipedia.org/wiki/Windows_Registry]
-    """
-
-class FilePermissionsFacet(Facet):
-    """
-    A file permissions facet is a grouping of characteristics unique to the access
-    rights (e.g., view, change, navigate, execute) of a file on a file system.
-    """
-    owner: Optional[UcoObject] = None
-
-class InstantMessagingAddressFacet(DigitalAddressFacet):
-    """
-    An instant messaging address facet is a grouping of characteristics unique to an
-    identifier assigned to enable routing and management of instant messaging
-    digital communication.
-    """
-
-class FileSystem(ObservableObject):
-    """
-    A file system is the process that manages how and where data on a storage medium
-    is stored, accessed and managed. [based on
-    https://www.techopedia.com/definition/5510/file-system]
-    """
-
-class Message(ObservableObject):
-    """
-    A message is a discrete unit of electronic communication intended by the source
-    for consumption by some recipient or group of recipients. [based on
-    https://en.wikipedia.org/wiki/Message]
-    """
-
-class Observation(Action):
-    """
-    An observation is a temporal perception of an observable.
-    """
-    name: str = ...
-
-class Profile(ObservableObject):
-    """
-    A profile is an explicit digital representation of identity and characteristics
-    of the owner of a single user account associated with an online service or
-    application. [based on https://en.wikipedia.org/wiki/User_profile]
-    """
-
-class PhoneAccount(DigitalAccount):
-    """
-    A phone account is an arrangement with an entity to enable and control the
-    provision of a telephony capability or service.
-    """
-
-class TableField(ObservableObject):
-    """
-    A database table field and its associated value contained within a relational
-    database.
-    """
-
-class SmartPhone(Computer):
-    """
-    A smartphone is a portable device that combines mobile telephone and computing
-    functions into one unit. Examples include iPhone, Samsung Galaxy, Huawei,
-    Blackberry. (Inferred by model and OperatingSystemFacet)
-    """
-
-class DomainName(ObservableObject):
-    """
-    A domain name is an identification string that defines a realm of administrative
-    autonomy, authority or control within the Internet. [based on
-    https://en.wikipedia.org/wiki/Domain_name]
-    """
-
-class File(FileSystemObject):
-    """
-    A file is a computer resource for recording data discretely on a computer
-    storage device.
-    """
-
-class WindowsEvent(ObservableObject):
-    """
-    A Windows event is a notification record of an occurance of interest (system,
-    security, application, etc.) on a Windows operating system.
-    """
-
-class WindowsRegistryHiveFacet(Facet):
-    """
-    A Windows registry hive facet is a grouping of characteristics unique to a
-    particular logical group of keys, subkeys, and values in a Windows registry (a
-    hierarchical database that stores low-level settings for the Microsoft Windows
-    operating system and for applications that opt to use the registry). [based on
-    https://en.wikipedia.org/wiki/Windows_Registry]
-    """
-    hiveType: Optional[str] = None
-
-class ObservableAction(Action):
-    """
-    An observable action is a grouping of characteristics unique to something that
-    may be done or performed within the digital domain.
-    """
-
-class WindowsTask(ObservableObject):
-    """
-    A Windows task is a process that is scheduled to execute on a Windows operating
-    system by the Windows Task Scheduler. [based on
-    http://msdn.microsoft.com/en-us/library/windows/desktop/aa381311(v=vs.85).aspx]
-    """
-
-class CalendarFacet(Facet):
-    """
-    A calendar facet is a grouping of characteristics unique to a collection of
-    appointments, meetings, and events.
-    """
-    owner: Optional[UcoObject] = None
-    application: Optional[ObservableObject] = None
-
-class ShopListing(ObservableObject):
-    """
-    A shop listing is a listing of offered products on an online marketplace/shop.
-    """
-
-class MessageThread(ObservableObject):
-    """
-    A message thread is a running commentary of electronic messages pertaining to
-    one topic or question.
-    """
-
-class Appliance(Device):
-    """
-    An appliance is a purpose-built computer with software or firmware that is
-    designed to provide a specific computing capability or resource. [based on
-    https://en.wikipedia.org/wiki/Computer_appliance]
-    """
-
-class MobilePhone(MobileDevice):
-    """
-    A mobile phone is a portable telephone that at least can make and receive calls
-    over a radio frequency link while the user is moving within a telephone service
-    area. This category encompasses all types of mobiles, simple and smart and
-    satellite ones all together.
-    """
-
-class OperatingSystemFacet(Facet):
-    """
-    An operating system facet is a grouping of characteristics unique to the
-    software that manages computer hardware, software resources, and provides common
-    services for computer programs. [based on
+    An operating system is the software that manages computer hardware, software
+    resources, and provides common services for computer programs. [based on
     https://en.wikipedia.org/wiki/Operating_system]
     """
-    manufacturer: Optional[Identity] = None
-    environmentVariables: Optional[Dictionary] = None
-    isLimitAdTrackingEnabled: Optional[bool] = None
-    installDate: Optional[str] = None
-    bitness: Optional[str] = None
-    version: Optional[str] = None
-    advertisingID: Optional[str] = None
 
-class AndroidDeviceFacet(Facet):
-    """
-    An Android device facet is a grouping of characteristics unique to an Android
-    device. [based on https://en.wikipedia.org/wiki/Android_(operating_system)]
-    """
-    isADBRootEnabled: Optional[bool] = None
-    isSURootEnabled: Optional[bool] = None
-    androidID: Optional[str] = None
-    androidFingerprint: Optional[str] = None
-    androidVersion: Optional[str] = None
 
-class MessageFacet(Facet):
+class MftRecordFacet(core.Facet):
     """
-    A message facet is a grouping of characteristics unique to a discrete unit of
-    electronic communication intended by the source for consumption by some
-    recipient or group of recipients. [based on
-    https://en.wikipedia.org/wiki/Message]
-    """
-    application: Optional[ObservableObject] = None
-    from: Optional[ObservableObject] = None
-    to: Optional[ObservableObject] = None
-    sentTime: Optional[str] = None
-    messageID: Optional[str] = None
-    messageText: Optional[str] = None
-    messageType: Optional[str] = None
-    sessionID: Optional[str] = None
-
-class BrowserBookmarkFacet(Facet):
-    """
-    A browser bookmark facet is a grouping of characteristics unique to a saved
-    shortcut that directs a WWW (World Wide Web) browser software program to a
-    particular WWW accessible resource. [based on
-    https://techterms.com/definition/bookmark]
-    """
-    application: Optional[ObservableObject] = None
-    urlTargeted: Optional[str] = None
-    accessedTime: Optional[str] = None
-    modifiedTime: Optional[str] = None
-    observableCreatedTime: Optional[str] = None
-    visitCount: Optional[int] = None
-    bookmarkPath: Optional[str] = None
-
-class WindowsTaskFacet(Facet):
-    """
-    A Windows Task facet is a grouping of characteristics unique to a Windows Task
-    (a process that is scheduled to execute on a Windows operating system by the
-    Windows Task Scheduler). [based on
-    http://msdn.microsoft.com/en-us/library/windows/desktop/aa381311(v=vs.85).aspx]
-    """
-    account: Optional[ObservableObject] = None
-    application: Optional[ObservableObject] = None
-    workItemData: Optional[ObservableObject] = None
-    workingDirectory: Optional[ObservableObject] = None
-    actionList: Optional[TaskActionType] = None
-    triggerList: Optional[TriggerType] = None
-    mostRecentRunTime: Optional[str] = None
-    nextRunTime: Optional[str] = None
-    observableCreatedTime: Optional[str] = None
-    exitCode: Optional[int] = None
-    maxRunTime: Optional[int] = None
-    accountLogonType: Optional[str] = None
-    accountRunLevel: Optional[str] = None
-    imageName: Optional[str] = None
-    parameters: Optional[str] = None
-    taskComment: Optional[str] = None
-    taskCreator: Optional[str] = None
-    flags: Optional[str] = None
-    priority: Optional[str] = None
-    status: Optional[str] = None
-    priority: Optional[Any] = None
-    status: Optional[Any] = None
-    flags: Optional[Any] = None
-    priority: Optional[Any] = None
-    status: Optional[Any] = None
-    flags: Optional[Any] = None
-
-class Credential(ObservableObject):
-    """
-    A credential is a single specific login and password combination for
-    authorization of access to a digital account or system.
+    An MFT record facet is a grouping of characteristics unique to the details
+    of a single file as managed in an NTFS (new technology filesystem) master
+    file table (which is a collection of information about all files on an NTFS
+    filesystem). [based on
+    https://docs.microsoft.com/en-us/windows/win32/devnotes/master-file-table]
     """
 
-class EmailAddressFacet(DigitalAddressFacet):
+    mftFileNameAccessedTime: Optional[str] = None
+    mftFileNameCreatedTime: Optional[str] = None
+    mftFileNameModifiedTime: Optional[str] = None
+    mftFileNameRecordChangeTime: Optional[str] = None
+    mftRecordChangeTime: Optional[str] = None
+    mftFileID: Optional[int] = None
+    mftFileNameLength: Optional[int] = None
+    mftFlags: Optional[int] = None
+    mftParentID: Optional[int] = None
+    ntfsHardLinkCount: Optional[int] = None
+    ntfsOwnerID: Optional[str] = None
+    ntfsOwnerSID: Optional[str] = None
+
+class EmailMessageFacet(core.Facet):
     """
-    An email address facet is a grouping of characteristics unique to an identifier
-    for an electronic mailbox to which electronic mail messages (conformant to the
-    Simple Mail Transfer Protocol (SMTP)) are sent from and delivered to.
+    An email message facet is a grouping of characteristics unique to a message
+    that is an instance of an electronic mail correspondence conformant to the
+    internet message format described in RFC 5322 and related RFCs.
     """
 
-class EmailMessageFacet(Facet):
-    """
-    An email message facet is a grouping of characteristics unique to a message that
-    is an instance of an electronic mail correspondence conformant to the internet
-    message format described in RFC 5322 and related RFCs.
-    """
     bodyMultipart: Optional[MimePartType] = None
     application: Optional[ObservableObject] = None
     bodyRaw: Optional[ObservableObject] = None
@@ -2402,156 +2122,211 @@ class EmailMessageFacet(Facet):
     labels: Optional[str] = None
     receivedLines: Optional[str] = None
 
-class PropertiesEnumeratedEffectFacet(Facet):
+class CapturedTelecommunicationsInformationFacet(core.Facet):
     """
-    A properties enumerated effect facet is a grouping of characteristics unique to
-    the effects of actions upon observable objects where a characteristic of the
-    observable object is enumerated. An example of this would be startup parameters
-    for a process.
-    """
-    properties: Optional[str] = None
-
-class Laptop(Computer):
-    """
-    A laptop, laptop computer, or notebook computer is a small, portable personal
-    computer with a screen and alphanumeric keyboard. These typically have a clam
-    shell form factor with the screen mounted on the inside of the upper lid and the
-    keyboard on the inside of the lower lid, although 2-in-1 PCs with a detachable
-    keyboard are often marketed as laptops or as having a laptop mode. (Devices
-    categorized by their manufacturer as a Laptop)
+    A captured telecommunications information facet represents certain
+    information within captured or intercepted telecommunications data.
     """
 
-class GeoLocationEntryFacet(Facet):
-    """
-    A geolocation entry facet is a grouping of characteristics unique to a single
-    application-specific geolocation entry.
-    """
-    location: Optional[Location] = None
-    application: Optional[ObservableObject] = None
-    observableCreatedTime: Optional[str] = None
-
-class MACAddressFacet(DigitalAddressFacet):
-    """
-    A MAC address facet is a grouping of characteristics unique to a media access
-    control standards conformant identifier assigned to a network interface to
-    enable routing and management of communications at the data link layer of a
-    network segment.
-    """
-
-class InstantMessagingAddress(DigitalAddress):
-
-class BrowserBookmark(ObservableObject):
-    """
-    A browser bookmark is a saved shortcut that directs a WWW (World Wide Web)
-    browser software program to a particular WWW accessible resource. [based on
-    https://techterms.com/definition/bookmark]
-    """
-
-class Pipe(ObservableObject):
-    """
-    A pipe is a mechanism for one-way inter-process communication using message
-    passing where data written by one process is buffered by the operating system
-    until it is read by the next process, and this uni-directional channel
-    disappears when the processes are completed. [based on
-    https://en.wikipedia.org/wiki/Pipeline_(Unix) ;
-    https://en.wikipedia.org/wiki/Anonymous_pipe]
-    """
-
-class DiskPartitionFacet(Facet):
-    """
-    A disk partition facet is a grouping of characteristics unique to a particular
-    managed region on a storage mechanism.
-    """
-    observableCreatedTime: Optional[str] = None
-    partitionLength: Optional[int] = None
-    partitionOffset: Optional[int] = None
-    spaceLeft: Optional[int] = None
-    spaceUsed: Optional[int] = None
-    totalSpace: Optional[int] = None
-    diskPartitionType: Optional[str] = None
-    mountPoint: Optional[str] = None
-    partitionID: Optional[str] = None
-
-class ComputerSpecificationFacet(Facet):
-    """
-    A computer specificaiton facet is a grouping of characteristics unique to the
-    hardware and software of a programmable electronic device that can store,
-    retrieve, and process data. [based on merriam-webster.com/dictionary/computer]
-    """
-    networkInterface: Optional[ObservableObject] = None
-    biosDate: Optional[str] = None
-    biosReleaseDate: Optional[str] = None
-    currentSystemDate: Optional[str] = None
-    localTime: Optional[str] = None
-    systemTime: Optional[str] = None
-    availableRam: Optional[int] = None
-    totalRam: Optional[int] = None
-    biosManufacturer: Optional[str] = None
-    biosSerialNumber: Optional[str] = None
-    biosVersion: Optional[str] = None
-    cpu: Optional[str] = None
-    cpuFamily: Optional[str] = None
-    gpu: Optional[str] = None
-    gpuFamily: Optional[str] = None
-    hostname: Optional[str] = None
-    processorArchitecture: Optional[str] = None
-    timezoneDST: Optional[str] = None
-    timezoneStandard: Optional[str] = None
-    uptime: Optional[str] = None
-
-class IPv4Address(IPAddress):
-    """
-    An IPv4 (Internet Protocol version 4) address is an IPv4 standards conformant
-    identifier assigned to a device to enable routing and management of IPv4
-    standards conformant communication to or from that device.
-    """
-
-class URLHistoryEntry(UcoInherentCharacterizationThing):
-    """
-    A URL history entry is a grouping of characteristics unique to the properties of
-    a single URL history entry for a particular browser.
-    """
-    url: Optional[ObservableObject] = None
-    referrerUrl: Optional[ObservableObject] = None
-    expirationTime: Optional[str] = None
-    firstVisit: Optional[str] = None
-    lastVisit: Optional[str] = None
-    visitCount: Optional[int] = None
-    manuallyEnteredCount: Optional[int] = None
-    browserUserProfile: Optional[str] = None
-    hostname: Optional[str] = None
-    pageTitle: Optional[str] = None
-    keywordSearchTerm: Optional[str] = None
-
-class CapturedTelecommunicationsInformationFacet(Facet):
-    """
-    A captured telecommunications information facet represents certain information
-    within captured or intercepted telecommunications data.
-    """
-    captureCellSite: CellSite = ...
+    captureCellSite: CellSite
     endTime: Optional[str] = None
     startTime: Optional[str] = None
     interceptedCallState: Optional[str] = None
 
-class SQLiteBlob(ObservableObject):
+class Note(observable.ObservableObject):
     """
-    An SQLite blob is a blob (binary large object) of data within an SQLite
-    database. [based on https://en.wikipedia.org/wiki/SQLite]
-    """
-
-class UNIXFilePermissionsFacet(Facet):
-    """
-    A UNIX file permissions facet is a grouping of characteristics unique to the
-    access rights (e.g., view, change, navigate, execute) of a file on a UNIX file
-    system.
+    A note is a brief textual record.
     """
 
-class X509CertificateFacet(Facet):
+
+class WindowsEvent(observable.ObservableObject):
     """
-    A X.509 certificate facet is a grouping of characteristics unique to a public
-    key digital identity certificate conformant to the X.509 PKI (Public Key
-    Infrastructure) standard.
+    A Windows event is a notification record of an occurance of interest
+    (system, security, application, etc.) on a Windows operating system.
     """
+
+
+class RecoveredObjectFacet(core.Facet):
+    """
+    Recoverability status of name, metadata, and content.
+    """
+
+    contentRecoveredStatus: Optional[str] = None
+    metadataRecoveredStatus: Optional[str] = None
+    nameRecoveredStatus: Optional[str] = None
+    nameRecoveredStatus: Optional[Any] = None
+    metadataRecoveredStatus: Optional[Any] = None
+    contentRecoveredStatus: Optional[Any] = None
+    nameRecoveredStatus: Optional[Any] = None
+    metadataRecoveredStatus: Optional[Any] = None
+    contentRecoveredStatus: Optional[Any] = None
+
+class ConfiguredSoftware(observable.Software):
+    """
+    A ConfiguredSoftware is a Software that is known to be configured to run in
+    a more specified manner than some unconfigured or less-configured Software.
+    """
+
+    usesConfiguration: Optional[Configuration] = None
+    isConfigurationOf: Optional[Software] = None
+
+class PropertyReadEffectFacet(observable.DefinedEffectFacet):
+    """
+    A properties read effect facet is a grouping of characteristics unique to
+    the effects of actions upon observable objects where a characteristic is
+    read from an observable object. An example of this would be the current
+    running state of a process.
+    """
+
+    propertyName: Optional[str] = None
+    value: Optional[str] = None
+
+class Profile(observable.ObservableObject):
+    """
+    A profile is an explicit digital representation of identity and
+    characteristics of the owner of a single user account associated with an
+    online service or application. [based on
+    https://en.wikipedia.org/wiki/User_profile]
+    """
+
+
+class AudioFacet(core.Facet):
+    """
+    An audio facet is a grouping of characteristics unique to a digital
+    representation of sound.
+    """
+
+    bitRate: Optional[int] = None
+    duration: Optional[int] = None
+    audioType: Optional[str] = None
+    format: Optional[str] = None
+
+class IPAddressFacet(observable.DigitalAddressFacet):
+    """
+    An IP address facet is a grouping of characteristics unique to an Internet
+    Protocol (IP) standards conformant identifier assigned to a device to enable
+    routing and management of IP standards conformant communication to or from
+    that device.
+    """
+
+
+class Address(observable.ObservableObject):
+    """
+    An address is an identifier assigned to enable routing and management of
+    information.
+    """
+
+
+class IComHandlerActionType(core.UcoInherentCharacterizationThing):
+    """
+    An IComHandler action type is a grouping of characteristics unique to a
+    Windows Task-related action that fires a Windows COM handler (smart code in
+    the client address space that can optimize calls between a client and
+    server). [based on
+    https://docs.microsoft.com/en-us/windows/win32/taskschd/comhandleraction]
+    """
+
+    comClassID: Optional[str] = None
+    comData: Optional[str] = None
+
+class PDFFile(observable.File):
+    """
+    A PDF file is a Portable Document Format (PDF) file.
+    """
+
+
+class ObservableRelationship(core.Relationship):
+    """
+    An observable relationship is a grouping of characteristics unique to an
+    assertion of an association between two observable objects.
+    """
+
+
+class SIPAddress(observable.DigitalAddress):
+    """
+    A SIP address is an identifier for Session Initiation Protocol (SIP)
+    communication.
+    """
+
+
+class CellSite(observable.ObservableObject):
+
+
+class SMSMessage(observable.Message):
+    """
+    An SMS message is a message conformant to the short message service (SMS)
+    communication protocol standards.
+    """
+
+
+class WindowsPEFileHeader(core.UcoInherentCharacterizationThing):
+    """
+    A Windows PE file header is a grouping of characteristics unique to the
+    'header' of a Windows PE (Portable Executable) file, consisting of a
+    collection of metadata about the overall nature and structure of the file.
+    """
+
+    timeDateStamp: Optional[str] = None
+
+class EmailMessage(observable.Message):
+    """
+    An email message is a message that is an instance of an electronic mail
+    correspondence conformant to the internet message format described in RFC
+    5322 and related RFCs.
+    """
+
+
+class FileSystem(observable.ObservableObject):
+    """
+    A file system is the process that manages how and where data on a storage
+    medium is stored, accessed and managed. [based on
+    https://www.techopedia.com/definition/5510/file-system]
+    """
+
+
+class WindowsServiceFacet(core.Facet):
+    """
+    A Windows service facet is a grouping of characteristics unique to a
+    specific Windows service (a computer program that operates in the background
+    of a Windows operating system, similar to the way a UNIX daemon runs on
+    UNIX). [based on https://en.wikipedia.org/wiki/Windows_service]
+    """
+
+    displayName: Optional[str] = None
+    groupName: Optional[str] = None
+    serviceName: Optional[str] = None
+    serviceStatus: Optional[str] = None
+    serviceType: Optional[str] = None
+    startCommandLine: Optional[str] = None
+    startType: Optional[str] = None
+    descriptions: Optional[str] = None
+
+class SocketAddress(observable.Address):
+    """
+    A socket address (combining and IP address and a port number) is a composite
+    identifier for a network socket endpoint supporting internet protocol
+    communications.
+    """
+
+
+class CharacterDeviceNode(observable.FileSystemObject):
+    """
+    A character device node is a UNIX filesystem special file that serves as a
+    conduit to communicate with devices, providing only a serial stream of input
+    or accepting a serial stream of output. Character device nodes are used to
+    apply access rights to the devices and to direct operations on the files to
+    the appropriate device drivers. [based on
+    https://en.wikipedia.org/wiki/Unix_file_types]
+    """
+
+
+class X509CertificateFacet(core.Facet):
+    """
+    A X.509 certificate facet is a grouping of characteristics unique to a
+    public key digital identity certificate conformant to the X.509 PKI (Public
+    Key Infrastructure) standard.
+    """
+
     x509v3extensions: Optional[X509V3ExtensionsFacet] = None
     issuerHash: Optional[Hash] = None
     subjectHash: Optional[Hash] = None
@@ -2569,18 +2344,442 @@ class X509CertificateFacet(Facet):
     subjectPublicKeyModulus: Optional[str] = None
     version: Optional[str] = None
 
-class CredentialDump(ObservableObject):
+class URLVisit(observable.ObservableObject):
     """
-    A credential dump is a collection (typically forcibly extracted from a system)
-    of specific login and password combinations for authorization of access to a
-    digital account or system.
+    A URL visit characterizes the properties of a visit of a URL within a
+    particular browser.
     """
 
-class AntennaFacet(Facet):
+
+class AndroidPhone(observable.AndroidDevice):
     """
-    An antenna alignment facet contains the metadata surrounding the cell tower's
-    antenna position.
+    An android phone is a smart phone that applies the Android mobile operating
+    system.
     """
+
+
+class X509V3ExtensionsFacet(core.Facet):
+    """
+    An X.509 v3 certificate extensions facet is a grouping of characteristics
+    unique to a public key digital identity certificate conformant to the X.509
+    v3 PKI (Public Key Infrastructure) standard.
+    """
+
+    privateKeyUsagePeriodNotAfter: Optional[str] = None
+    privateKeyUsagePeriodNotBefore: Optional[str] = None
+    authorityKeyIdentifier: Optional[str] = None
+    basicConstraints: Optional[str] = None
+    certificatePolicies: Optional[str] = None
+    crlDistributionPoints: Optional[str] = None
+    extendedKeyUsage: Optional[str] = None
+    inhibitAnyPolicy: Optional[str] = None
+    issuerAlternativeName: Optional[str] = None
+    keyUsage: Optional[str] = None
+    nameConstraints: Optional[str] = None
+    policyConstraints: Optional[str] = None
+    policyMappings: Optional[str] = None
+    subjectAlternativeName: Optional[str] = None
+    subjectDirectoryAttributes: Optional[str] = None
+    subjectKeyIdentifier: Optional[str] = None
+
+class Message(observable.ObservableObject):
+    """
+    A message is a discrete unit of electronic communication intended by the
+    source for consumption by some recipient or group of recipients. [based on
+    https://en.wikipedia.org/wiki/Message]
+    """
+
+
+class PaymentCard(observable.ObservableObject):
+    """
+    A payment card is a physical token that is part of a payment system issued
+    by financial institutions, such as a bank, to a customer that enables its
+    owner (the cardholder) to access the funds in the customer's designated bank
+    accounts, or through a credit account and make payments by electronic funds
+    transfer and access automated teller machines (ATMs). [based on
+    https://en.wikipedia.org/wiki/Payment_card]
+    """
+
+
+class EXIFFacet(core.Facet):
+    """
+    An EXIF (exchangeable image file format) facet is a grouping of
+    characteristics unique to the formats for images, sound, and ancillary tags
+    used by digital cameras (including smartphones), scanners and other systems
+    handling image and sound files recorded by digital cameras conformant to
+    JEIDA/JEITA/CIPA specifications. [based on
+    https://en.wikipedia.org/wiki/Exif]
+    """
+
+    exifData: Optional[ControlledDictionary] = None
+
+class ApplicationFacet(core.Facet):
+    """
+    An application facet is a grouping of characteristics unique to a particular
+    software program designed for end users.
+    """
+
+    installedVersionHistory: Optional[ApplicationVersion] = None
+    operatingSystem: Optional[ObservableObject] = None
+    numberOfLaunches: Optional[int] = None
+    applicationIdentifier: Optional[str] = None
+    version: Optional[str] = None
+
+class WindowsVolumeFacet(core.Facet):
+    """
+    A Windows volume facet is a grouping of characteristics unique to a single
+    accessible storage area (volume) with a single Windows file system. [based
+    on https://en.wikipedia.org/wiki/Volume_(computing)]
+    """
+
+    driveLetter: Optional[str] = None
+    driveType: Optional[str] = None
+    windowsVolumeAttributes: list[str] = None
+    driveType: Optional[Any] = None
+    driveType: Optional[Any] = None
+
+class GlobalFlagType(core.UcoInherentCharacterizationThing):
+    """
+    A global flag type is a grouping of characteristics unique to the Windows
+    systemwide global variable named NtGlobalFlag that enables various internal
+    debugging, tracing, and validation support in the operating system. [based
+    on "Windows Global Flags, Chapter 3: System Mechanisms of Windows Internals
+    by Solomon, Russinovich, and Ionescu]
+    """
+
+    hexadecimalValue: Optional[str] = None
+    abbreviation: Optional[str] = None
+    destination: Optional[str] = None
+    symbolicName: Optional[str] = None
+
+class IPAddress(observable.DigitalAddress):
+    """
+    An IP address is an Internet Protocol (IP) standards conformant identifier
+    assigned to a device to enable routing and management of IP standards
+    conformant communication to or from that device.
+    """
+
+
+class StorageMediumFacet(core.Facet):
+    """
+    A storage medium facet is a grouping of characteristics unique to a the
+    storage capabilities of a piece of equipment or a mechanism designed to
+    serve a special purpose or perform a special function.
+    """
+
+    totalStorageCapacityInBytes: Optional[int] = None
+
+class WifiAddress(observable.MACAddress):
+    """
+    A Wi-Fi address is a media access control (MAC) standards-conformant
+    identifier assigned to a device network interface to enable routing and
+    management of IEEE 802.11 standards-conformant communications to and from
+    that device.
+    """
+
+
+class DomainNameFacet(core.Facet):
+    """
+    A domain name facet is a grouping of characteristics unique to an
+    identification string that defines a realm of administrative autonomy,
+    authority or control within the Internet. [based on
+    https://en.wikipedia.org/wiki/Domain_name]
+    """
+
+    isTLD: Optional[bool] = None
+    value: Optional[str] = None
+
+class WindowsFilemapping(observable.ObservableObject):
+    """
+    A Windows file mapping is the association of a file's contents with a
+    portion of the virtual address space of a process within a Windows operating
+    system. The system creates a file mapping object (also known as a section
+    object) to maintain this association. A file view is the portion of virtual
+    address space that a process uses to access the file's contents. File
+    mapping allows the process to use both random input and output (I/O) and
+    sequential I/O. It also allows the process to work efficiently with a large
+    data file, such as a database, without having to map the whole file into
+    memory. Multiple processes can also use memory-mapped files to share data.
+    Processes read from and write to the file view using pointers, just as they
+    would with dynamically allocated memory. The use of file mapping improves
+    efficiency because the file resides on disk, but the file view resides in
+    memory.[based on
+    https://docs.microsoft.com/en-us/windows/win32/memory/file-mapping]
+    """
+
+
+class GenericObservableObject(observable.ObservableObject):
+    """
+    A generic observable object is an article or unit within the digital domain.
+    """
+
+
+class Hostname(observable.ObservableObject):
+    """
+    A hostname is a label that is assigned to a device connected to a computer
+    network and that is used to identify the device in various forms of
+    electronic communication, such as the World Wide Web. A hostname may be a
+    domain name, if it is properly organized into the domain name system. A
+    domain name may be a hostname if it has been assigned to an Internet host
+    and associated with the host's IP address. [based on
+    https://en.wikipedia.org/wiki/Hostname]
+    """
+
+
+class SmartDevice(observable.Device):
+    """
+    A smart device is a microprocessor IoT device that is expected to be
+    connected directly to cloud-based networks or via smartphone
+    """
+
+
+class UserSessionFacet(core.Facet):
+    """
+    A user session facet is a grouping of characteristics unique to a temporary
+    and interactive information interchange between two or more communicating
+    devices within the managed scope of a single user. [based on
+    https://en.wikipedia.org/wiki/Session_(computer_science)]
+    """
+
+    effectiveUser: Optional[ObservableObject] = None
+    loginTime: Optional[str] = None
+    logoutTime: Optional[str] = None
+    effectiveGroup: Optional[str] = None
+    effectiveGroupID: Optional[str] = None
+
+class EmbeddedDevice(observable.Device):
+    """
+    An embedded device is a highly specialized microprocessor device meant for
+    one or very few specific purposes and is usually embedded or included within
+    another object or as part of a larger system. Examples include answer
+    machine, door access logger, card scanner, etc.
+    """
+
+
+class HTTPConnection(observable.NetworkConnection):
+    """
+    An HTTP connection is network connection that is conformant to the Hypertext
+    Transfer Protocol (HTTP) standard.
+    """
+
+
+class UNIXProcess(observable.Process):
+    """
+    A UNIX process is an instance of a computer program executed on a UNIX
+    operating system.
+    """
+
+
+class UserSession(observable.ObservableObject):
+    """
+    A user session is a temporary and interactive information interchange
+    between two or more communicating devices within the managed scope of a
+    single user. [based on
+    https://en.wikipedia.org/wiki/Session_(computer_science)]
+    """
+
+
+class OnlineServiceFacet(core.Facet):
+    """
+    An online service facet is a grouping of characteristics unique to a
+    particular provision mechanism of information access, distribution or
+    manipulation over the Internet.
+    """
+
+    location: Optional[Location] = None
+    inetLocation: Optional[ObservableObject] = None
+    name: Optional[str] = None
+
+class WindowsAccount(observable.DigitalAccount):
+    """
+    A Windows account is a user account on a Windows operating system.
+    """
+
+
+class Socket(observable.FileSystemObject):
+    """
+    A socket is a special file used for inter-process communication, which
+    enables communication between two processes. In addition to sending data,
+    processes can send file descriptors across a Unix domain socket connection
+    using the sendmsg() and recvmsg() system calls. Unlike named pipes which
+    allow only unidirectional data flow, sockets are fully duplex-capable.
+    [based on https://en.wikipedia.org/wiki/Unix_file_types]
+    """
+
+
+class InstantMessagingAddress(observable.DigitalAddress):
+
+
+class DiskFacet(core.Facet):
+    """
+    A disk facet is a grouping of characteristics unique to a storage mechanism
+    where data is recorded by various electronic, magnetic, optical, or
+    mechanical changes to a surface layer of one or more rotating disks.
+    """
+
+    partition: Optional[ObservableObject] = None
+    diskSize: Optional[int] = None
+    freeSpace: Optional[int] = None
+    diskType: Optional[str] = None
+
+class Memory(observable.ObservableObject):
+    """
+    Memory is a particular region of temporary information storage (e.g., RAM
+    (random access memory), ROM (read only memory)) on a digital device.
+    """
+
+
+class Computer(observable.Device):
+    """
+    A computer is an electronic device for storing and processing data,
+    typically in binary, according to instructions given to it in a variable
+    program. [based on 'Computer.' Oxford English Dictionary, Oxford University
+    Press, 2022.]
+    """
+
+
+class Contact(observable.ObservableObject):
+    """
+    A contact is a set of identification and communication related details for a
+    single entity.
+    """
+
+
+class WindowsActiveDirectoryAccountFacet(core.Facet):
+    """
+    A Windows Active Directory account facet is a grouping of characteristics
+    unique to an account managed by directory-based identity-related services of
+    a Windows operating system.
+    """
+
+    objectGUID: Optional[str] = None
+    activeDirectoryGroups: Optional[str] = None
+
+class WriteBlocker(observable.Device):
+    """
+    A write blocker is a device that allows read-only access to storage mediums
+    in order to preserve the integrity of the data being analyzed. Examples
+    include Tableau, Cellibrite, Talon, etc.
+    """
+
+
+class MessageFacet(core.Facet):
+    """
+    A message facet is a grouping of characteristics unique to a discrete unit
+    of electronic communication intended by the source for consumption by some
+    recipient or group of recipients. [based on
+    https://en.wikipedia.org/wiki/Message]
+    """
+
+    application: Optional[ObservableObject] = None
+    from: Optional[ObservableObject] = None
+    to: Optional[ObservableObject] = None
+    sentTime: Optional[str] = None
+    messageID: Optional[str] = None
+    messageText: Optional[str] = None
+    messageType: Optional[str] = None
+    sessionID: Optional[str] = None
+
+class FragmentFacet(core.Facet):
+    """
+    A fragment facet is a grouping of characteristics unique to an individual
+    piece of the content of a file.
+    """
+
+    fragmentIndex: Optional[int] = None
+    totalFragments: Optional[int] = None
+
+class WindowsProcess(observable.Process):
+    """
+    A Windows process is a program running on a Windows operating system.
+    """
+
+
+class SoftwareFacet(core.Facet):
+    """
+    A software facet is a grouping of characteristics unique to a software
+    program (a definitively scoped instance of a collection of data or computer
+    instructions that tell the computer how to work). [based on
+    https://en.wikipedia.org/wiki/Software]
+    """
+
+    manufacturer: Optional[Identity] = None
+    cpeid: Optional[str] = None
+    language: Optional[str] = None
+    swid: Optional[str] = None
+    version: Optional[str] = None
+
+class BrowserBookmark(observable.ObservableObject):
+    """
+    A browser bookmark is a saved shortcut that directs a WWW (World Wide Web)
+    browser software program to a particular WWW accessible resource. [based on
+    https://techterms.com/definition/bookmark]
+    """
+
+
+class File(observable.FileSystemObject):
+    """
+    A file is a computer resource for recording data discretely on a computer
+    storage device.
+    """
+
+
+class DigitalSignatureInfo(observable.ObservableObject):
+    """
+    A digital signature info is a value calculated via a mathematical scheme for
+    demonstrating the authenticity of an electronic message or document.
+    """
+
+
+class ContactEmail(core.UcoInherentCharacterizationThing):
+    """
+    A contact email is a grouping of characteristics unique to details for
+    contacting a contact entity by email.
+    """
+
+    emailAddress: Optional[ObservableObject] = None
+    contactEmailScope: Optional[str] = None
+    contactEmailScope: Optional[Any] = None
+    contactEmailScope: Optional[Any] = None
+
+class NamedPipe(observable.FileSystemObject):
+    """
+    A named pipe is a mechanism for FIFO (first-in-first-out) inter-process
+    communication. It is persisted as a filesystem object (that can be deleted
+    like any other file), can be written to or read from by any process and
+    exists beyond the lifespan of any process interacting with it (unlike simple
+    anonymous pipes). [based on https://en.wikipedia.org/wiki/Named_pipe]
+    """
+
+
+class MessageThreadFacet(core.Facet):
+    """
+    A message thread facet is a grouping of characteristics unique to a running
+    commentary of electronic messages pertaining to one topic or question.
+    """
+
+    n5ebc1febb0674ef188f70389706031c3b463: Optional[Message] = None
+    n5ebc1febb0674ef188f70389706031c3b467: Optional[Message] = None
+    n5ebc1febb0674ef188f70389706031c3b471: Optional[Message] = None
+    n5ebc1febb0674ef188f70389706031c3b475: Optional[Message] = None
+    participant: Optional[ObservableObject] = None
+    messageThread: Optional[Thread] = None
+    visibility: Optional[bool] = None
+
+class NTFSFilePermissionsFacet(core.Facet):
+    """
+    An NTFS file permissions facet is a grouping of characteristics unique to
+    the access rights (e.g., view, change, navigate, execute) of a file on an
+    NTFS (new technology filesystem) file system.
+    """
+
+
+class AntennaFacet(core.Facet):
+    """
+    An antenna alignment facet contains the metadata surrounding the cell
+    tower's antenna position.
+    """
+
     antennaHeight: Optional[float] = None
     azimuth: Optional[float] = None
     elevation: Optional[float] = None
@@ -2588,188 +2787,59 @@ class AntennaFacet(Facet):
     signalStrength: Optional[float] = None
     skew: Optional[float] = None
 
-class CallFacet(Facet):
+class AppleDevice(observable.Device):
     """
-    A call facet is a grouping of characteristics unique to a connection as part of
-    a realtime cyber communication between one or more parties.
-    """
-    application: Optional[ObservableObject] = None
-    from: Optional[ObservableObject] = None
-    participant: Optional[ObservableObject] = None
-    to: Optional[ObservableObject] = None
-    endTime: Optional[str] = None
-    startTime: Optional[str] = None
-    duration: Optional[int] = None
-    callType: Optional[str] = None
-
-class Contact(ObservableObject):
-    """
-    A contact is a set of identification and communication related details for a
-    single entity.
+    An apple device is a smart device that applies either the MacOS or iOS
+    operating system.
     """
 
-class Memory(ObservableObject):
+
+class Account(observable.ObservableObject):
     """
-    Memory is a particular region of temporary information storage (e.g., RAM
-    (random access memory), ROM (read only memory)) on a digital device.
+    An account is an arrangement with an entity to enable and control the
+    provision of some capability or service.
     """
 
-class DomainNameFacet(Facet):
-    """
-    A domain name facet is a grouping of characteristics unique to an identification
-    string that defines a realm of administrative autonomy, authority or control
-    within the Internet. [based on https://en.wikipedia.org/wiki/Domain_name]
-    """
-    isTLD: Optional[bool] = None
-    value: Optional[str] = None
 
-class Wiki(ObservableObject):
+class Volume(observable.ObservableObject):
     """
-    A wiki is an online hypertext publication collaboratively edited and managed by
-    its own audience directly using a web browser. A typical wiki contains multiple
-    pages/articles for the subjects or scope of the project and could be either open
-    to the public or limited to use within an organization for maintaining its
-    internal knowledge base. [based on https://en.wikipedia.org/wiki/Wiki]
+    A volume is a single accessible storage area (volume) with a single file
+    system. [based on https://en.wikipedia.org/wiki/Volume_(computing)]
     """
 
-class DigitalSignatureInfoFacet(Facet):
-    """
-    A digital signature info facet is a grouping of characteristics unique to a
-    value calculated via a mathematical scheme for demonstrating the authenticity of
-    an electronic message or document.
-    """
-    certificateSubject: Optional[UcoObject] = None
-    certificateIssuer: Optional[Identity] = None
-    signatureExists: Optional[bool] = None
-    signatureVerified: Optional[bool] = None
-    signatureDescription: Optional[str] = None
 
-class Audio(ObservableObject):
+class PathRelationFacet(core.Facet):
     """
-    Audio is a digital representation of sound.
+    A path relation facet is a grouping of characteristics unique to the
+    location of one object within another containing object.
     """
 
-class Junction(FileSystemObject):
+    path: Optional[str] = None
+
+class CalendarEntry(observable.ObservableObject):
     """
-    A junction is a specific NTFS (New Technology File System) reparse point to
-    redirect a directory access to another directory which can be on the same volume
-    or another volume. A junction is similar to a directory symbolic link but may
-    differ on whether they are processed on the local system or on the remote file
-    server. [based on https://jp-andre.pagesperso-orange.fr/junctions.html]
+    A calendar entry is an appointment, meeting or event within a collection of
+    appointments, meetings and events.
     """
 
-class NoteFacet(Facet):
-    """
-    A note facet is a grouping of characteristics unique to a brief textual record.
-    """
-    application: Optional[ObservableObject] = None
-    modifiedTime: Optional[str] = None
-    observableCreatedTime: Optional[str] = None
-    text: Optional[str] = None
 
-class WindowsProcess(Process):
-    """
-    A Windows process is a program running on a Windows operating system.
-    """
-
-class ContactURL(UcoInherentCharacterizationThing):
-    """
-    A contact URL is a grouping of characteristics unique to details for contacting
-    a contact entity by Uniform Resource Locator (URL).
-    """
-    url: Optional[ObservableObject] = None
-    contactURLScope: Optional[str] = None
-    contactURLScope: Optional[Any] = None
-    contactURLScope: Optional[Any] = None
-
-class X509Certificate(ObservableObject):
-    """
-    A X.509 certificate is a public key digital identity certificate conformant to
-    the X.509 PKI (Public Key Infrastructure) standard.
-    """
-
-class NetworkSubnet(ObservableObject):
-    """
-    A network subnet is a logical subdivision of an IP network. [based on
-    https://en.wikipedia.org/wiki/Subnetwork]
-    """
-
-class DataRangeFacet(Facet):
-    """
-    A data range facet is a grouping of characteristics unique to a particular
-    contiguous scope within a block of digital data.
-    """
-    rangeOffset: Optional[int] = None
-    rangeSize: Optional[int] = None
-    rangeOffsetType: Optional[str] = None
-
-class NTFSFileFacet(Facet):
-    """
-    An NTFS file facet is a grouping of characteristics unique to a file on an NTFS
-    (new technology filesystem) file system.
-    """
-    alternateDataStreams: Optional[AlternateDataStream] = None
-    entryID: Optional[int] = None
-    sid: Optional[str] = None
-
-class WindowsRegistryKey(ObservableObject):
+class WindowsRegistryKey(observable.ObservableObject):
     """
     A Windows registry key is a particular key within a Windows registry (a
-    hierarchical database that stores low-level settings for the Microsoft Windows
-    operating system and for applications that opt to use the registry). [based on
-    https://en.wikipedia.org/wiki/Windows_Registry]
+    hierarchical database that stores low-level settings for the Microsoft
+    Windows operating system and for applications that opt to use the registry).
+    [based on https://en.wikipedia.org/wiki/Windows_Registry]
     """
 
-class SIMCard(Device):
+
+class WindowsComputerSpecificationFacet(core.Facet):
     """
-    A SIM card is a subscriber identification module card intended to securely store
-    the international mobile subscriber identity (IMSI) number and its related key,
-    which are used to identify and authenticate subscribers on mobile telephony.
-    [based on https://en.wikipedia.org/wiki/SIM_card]
+    A Windows computer specification facet is a grouping of characteristics
+    unique to the hardware and software of a programmable electronic device that
+    can store, retrieve, and process data running a Microsoft Windows operating
+    system. [based on merriam-webster.com/dictionary/computer]
     """
 
-class DNSCache(ObservableObject):
-    """
-    An DNS cache is a temporary locally stored collection of previous Domain Name
-    System (DNS) query results (created when an domain name is resolved to a IP
-    address) for a particular computer.
-    """
-
-class WindowsServiceFacet(Facet):
-    """
-    A Windows service facet is a grouping of characteristics unique to a specific
-    Windows service (a computer program that operates in the background of a Windows
-    operating system, similar to the way a UNIX daemon runs on UNIX). [based on
-    https://en.wikipedia.org/wiki/Windows_service]
-    """
-    displayName: Optional[str] = None
-    groupName: Optional[str] = None
-    serviceName: Optional[str] = None
-    serviceStatus: Optional[str] = None
-    serviceType: Optional[str] = None
-    startCommandLine: Optional[str] = None
-    startType: Optional[str] = None
-    descriptions: Optional[str] = None
-
-class SmartDevice(Device):
-    """
-    A smart device is a microprocessor IoT device that is expected to be connected
-    directly to cloud-based networks or via smartphone
-    """
-
-class ObservableRelationship(Relationship):
-    """
-    An observable relationship is a grouping of characteristics unique to an
-    assertion of an association between two observable objects.
-    """
-
-class WindowsComputerSpecificationFacet(Facet):
-    """
-    A Windows computer specification facet is a grouping of characteristics unique
-    to the hardware and software of a programmable electronic device that can store,
-    retrieve, and process data running a Microsoft Windows operating system. [based
-    on merriam-webster.com/dictionary/computer]
-    """
     registeredOrganization: Optional[Identity] = None
     registeredOwner: Optional[Identity] = None
     globalFlagList: Optional[GlobalFlagType] = None
@@ -2784,242 +2854,537 @@ class WindowsComputerSpecificationFacet(Facet):
     netBIOSName: Optional[str] = None
     domain: Optional[str] = None
 
-class Call(ObservableObject):
+class LibraryFacet(core.Facet):
     """
-    A call is a connection as part of a realtime cyber communication between one or
-    more parties.
-    """
-
-class NetworkProtocol(ObservableObject):
-    """
-    A network protocol is an established set of structured rules that determine how
-    data is transmitted between different devices in the same network. Essentially,
-    it allows connected devices to communicate with each other, regardless of any
-    differences in their internal processes, structure or design. [based on
-    https://www.comptia.org/content/guides/what-is-a-network-protocol]
+    A library facet is a grouping of characteristics unique to a suite of data
+    and programming code that is used to develop software programs and
+    applications. [based on
+    https://www.techopedia.com/definition/3828/software-library]
     """
 
-class ObservableObject(Item):
+    libraryType: Optional[str] = None
+
+class WindowsNetworkShare(observable.ObservableObject):
+    """
+    A Windows network share is a Windows computer resource made available from
+    one host to other hosts on a computer network. It is a device or piece of
+    information on a computer that can be remotely accessed from another
+    computer transparently as if it were a resource in the local machine.
+    Network sharing is made possible by inter-process communication over the
+    network. [based on https://en.wikipedia.org/wiki/Shared_resource]
+    """
+
+
+class Junction(observable.FileSystemObject):
+    """
+    A junction is a specific NTFS (New Technology File System) reparse point to
+    redirect a directory access to another directory which can be on the same
+    volume or another volume. A junction is similar to a directory symbolic link
+    but may differ on whether they are processed on the local system or on the
+    remote file server. [based on
+    https://jp-andre.pagesperso-orange.fr/junctions.html]
+    """
+
+
+class NetworkFlowFacet(core.Facet):
+    """
+    A network flow facet is a grouping of characteristics unique to a sequence
+    of data transiting one or more digital network (a group of two or more
+    computer systems linked together) connections. [based on
+    https://www.webopedia.com/TERM/N/network.html]
+    """
+
+    dstPayload: Optional[ObservableObject] = None
+    srcPayload: Optional[ObservableObject] = None
+    ipfix: Optional[Dictionary] = None
+    dstBytes: Optional[int] = None
+    dstPackets: Optional[int] = None
+    srcBytes: Optional[int] = None
+    srcPackets: Optional[int] = None
+
+class URLVisitFacet(core.Facet):
+    """
+    A URL visit facet is a grouping of characteristics unique to the properties
+    of a visit of a URL within a particular browser.
+    """
+
+    browserInformation: Optional[ObservableObject] = None
+    fromURLVisit: Optional[ObservableObject] = None
+    url: Optional[ObservableObject] = None
+    visitTime: Optional[str] = None
+    visitDuration: Optional[str] = None
+    urlTransitionType: Optional[str] = None
+    urlTransitionType: Optional[Any] = None
+    urlTransitionType: Optional[Any] = None
+
+class GeoLocationLogFacet(core.Facet):
+    """
+    A geolocation log facet is a grouping of characteristics unique to a record
+    containing geolocation tracks and/or geolocation entries.
+    """
+
+    application: Optional[ObservableObject] = None
+    observableCreatedTime: Optional[str] = None
+
+class BotConfiguration(observable.ObservableObject):
+    """
+    A bot configuration is a set of contextual settings for a software
+    application that runs automated tasks (scripts) over the Internet at a much
+    higher rate than would be possible for a human alone.
+    """
+
+
+class NetworkInterface(observable.ObservableObject):
+    """
+    A network interface is a software or hardware interface between two pieces
+    of equipment or protocol layers in a computer network.
+    """
+
+
+class ObservableObject(core.Item):
     """
     An observable object is a grouping of characteristics unique to a distinct
     article or unit within the digital domain.
     """
+
     hasChanged: Optional[bool] = None
     state: Optional[str] = None
 
-class WindowsPrefetchFacet(Facet):
+class IExecActionType(core.UcoInherentCharacterizationThing):
     """
-    A Windows prefetch facet is a grouping of characteristics unique to entries in
-    the Windows prefetch file (used to speed up application startup starting with
-    Windows XP).
-    """
-    volume: Optional[ObservableObject] = None
-    accessedDirectory: Optional[ObservableObject] = None
-    accessedFile: Optional[ObservableObject] = None
-    firstRun: Optional[str] = None
-    lastRun: Optional[str] = None
-    timesExecuted: Optional[int] = None
-    applicationFileName: Optional[str] = None
-    prefetchHash: Optional[str] = None
-
-class DNSRecord(ObservableObject):
-    """
-    A DNS record is a single Domain Name System (DNS) artifact specifying
-    information of a particular type (routing, authority, responsibility, security,
-    etc.) for a specific Internet domain name.
-    """
-
-class WirelessNetworkConnection(NetworkConnection):
-    """
-    A wireless network connection is a connection (completed or attempted) across an
-    IEEE 802.11 standards-confromant digital network (a group of two or more
-    computer systems linked together). [based on
-    https://www.webopedia.com/TERM/N/network.html]
-    """
-
-class NetworkInterface(ObservableObject):
-    """
-    A network interface is a software or hardware interface between two pieces of
-    equipment or protocol layers in a computer network.
-    """
-
-class UNIXFile(File):
-    """
-    A UNIX file is a file pertaining to the UNIX operating system.
-    """
-
-class ContactAddress(UcoInherentCharacterizationThing):
-    """
-    A contact address is a grouping of characteristics unique to a geolocation
-    address of a contact entity.
-    """
-    geolocationAddress: Optional[Location] = None
-    contactAddressScope: Optional[str] = None
-    contactAddressScope: Optional[Any] = None
-    contactAddressScope: Optional[Any] = None
-
-class ContentDataFacet(Facet):
-    """
-    A content data facet is a grouping of characteristics unique to a block of
-    digital data.
-    """
-    dataPayloadReferenceURL: Optional[ObservableObject] = None
-    hash: Optional[Hash] = None
-    isEncrypted: Optional[bool] = None
-    entropy: Optional[float] = None
-    sizeInBytes: Optional[int] = None
-    dataPayload: Optional[str] = None
-    magicNumber: Optional[str] = None
-    mimeClass: Optional[str] = None
-    mimeType: Optional[str] = None
-    byteOrder: Optional[str] = None
-    byteOrder: Optional[Any] = None
-    byteOrder: Optional[Any] = None
-
-class BluetoothAddress(MACAddress):
-    """
-    A Bluetooth address is a Bluetooth standard conformant identifier assigned to a
-    Bluetooth device to enable routing and management of Bluetooth standards
-    conformant communication to or from that device.
-    """
-
-class IExecActionType(UcoInherentCharacterizationThing):
-    """
-    An IExec action type is a grouping of characteristics unique to an action that
-    executes a command-line operation on a Windows operating system. [based on
+    An IExec action type is a grouping of characteristics unique to an action
+    that executes a command-line operation on a Windows operating system. [based
+    on
     https://docs.microsoft.com/en-us/windows/win32/api/taskschd/nn-taskschd-iexecaction?redirectedfrom=MSDN]
     """
+
     execProgramHashes: Optional[Hash] = None
     execArguments: Optional[str] = None
     execProgramPath: Optional[str] = None
     execWorkingDirectory: Optional[str] = None
 
-class EventRecord(ObservableObject):
+class DigitalAddress(observable.Address):
     """
-    An event record is something that happens in a digital context (e.g., operating
-    system events).
-    """
-
-class Directory(FileSystemObject):
-    """
-    A directory is a file system cataloging structure which contains references to
-    other computer files, and possibly other directories. On many computers,
-    directories are known as folders, or drawers, analogous to a workbench or the
-    traditional office filing cabinet. In UNIX a directory is implemented as a
-    special file. [based on https://en.wikipedia.org/wiki/Directory_(computing)]
+    A digital address is an identifier assigned to enable routing and management
+    of digital communication.
     """
 
-class AlternateDataStreamFacet(Facet):
+
+class ObservableAction(action.Action):
     """
-    An alternate data stream facet is a grouping of characteristics unique to data
-    content stored within an NTFS file that is independent of the standard content
-    stream of the file and is hidden from access by default NTFS file viewing
-    mechanisms.
+    An observable action is a grouping of characteristics unique to something
+    that may be done or performed within the digital domain.
     """
+
+
+class AutonomousSystem(observable.ObservableObject):
+    """
+    An autonomous system is a collection of connected Internet Protocol (IP)
+    routing prefixes under the control of one or more network operators on
+    behalf of a single administrative entity or domain that presents a common,
+    clearly defined routing policy to the Internet. [based on
+    https://en.wikipedia.org/wiki/Autonomous_system_(Internet)]
+    """
+
+
+class ShopListing(observable.ObservableObject):
+    """
+    A shop listing is a listing of offered products on an online
+    marketplace/shop.
+    """
+
+
+class AutonomousSystemFacet(core.Facet):
+    """
+    An autonomous system facet is a grouping of characteristics unique to a
+    collection of connected Internet Protocol (IP) routing prefixes under the
+    control of one or more network operators on behalf of a single
+    administrative entity or domain that presents a common, clearly defined
+    routing policy to the Internet. [based on
+    https://en.wikipedia.org/wiki/Autonomous_system_(Internet)]
+    """
+
+    regionalInternetRegistry: Optional[Any] = None
+    regionalInternetRegistry: Optional[str] = None
+    number: Optional[int] = None
+    asHandle: Optional[str] = None
+    regionalInternetRegistry: Optional[Any] = None
+
+class DNSRecord(observable.ObservableObject):
+    """
+    A DNS record is a single Domain Name System (DNS) artifact specifying
+    information of a particular type (routing, authority, responsibility,
+    security, etc.) for a specific Internet domain name.
+    """
+
+
+class NetworkConnection(observable.ObservableObject):
+    """
+    A network connection is a connection (completed or attempted) across a
+    digital network (a group of two or more computer systems linked together).
+    [based on https://www.webopedia.com/TERM/N/network.html]
+    """
+
+
+class DigitalSignatureInfoFacet(core.Facet):
+    """
+    A digital signature info facet is a grouping of characteristics unique to a
+    value calculated via a mathematical scheme for demonstrating the
+    authenticity of an electronic message or document.
+    """
+
+    certificateSubject: Optional[UcoObject] = None
+    certificateIssuer: Optional[Identity] = None
+    signatureExists: Optional[bool] = None
+    signatureVerified: Optional[bool] = None
+    signatureDescription: Optional[str] = None
+
+class ArchiveFileFacet(core.Facet):
+    """
+    An archive file facet is a grouping of characteristics unique to a file that
+    is composed of one or more computer files along with metadata.
+    """
+
+    archiveType: Optional[str] = None
+    comment: Optional[str] = None
+    version: Optional[str] = None
+
+class GeoLocationEntry(observable.ObservableObject):
+    """
+    A geolocation entry is a single application-specific geolocation entry.
+    """
+
+
+class WindowsComputerSpecification(observable.ObservableObject):
+    """
+    A Windows computer specification is the hardware ans software of a
+    programmable electronic device that can store, retrieve, and process data
+    running a Microsoft Windows operating system. [based on
+    merriam-webster.com/dictionary/computer]
+    """
+
+
+class Tablet(observable.Computer):
+    """
+    A tablet is a mobile computer that is primarily operated by touching the
+    screen. (Devices categorized by their manufacturer as a Tablet)
+    """
+
+
+class IPv4Address(observable.IPAddress):
+    """
+    An IPv4 (Internet Protocol version 4) address is an IPv4 standards
+    conformant identifier assigned to a device to enable routing and management
+    of IPv4 standards conformant communication to or from that device.
+    """
+
+
+class GeoLocationLog(observable.ObservableObject):
+    """
+    A geolocation log is a record containing geolocation tracks and/or
+    geolocation entries.
+    """
+
+
+class Observation(action.Action):
+    """
+    An observation is a temporal perception of an observable.
+    """
+
+    name: str
+
+class NetworkProtocol(observable.ObservableObject):
+    """
+    A network protocol is an established set of structured rules that determine
+    how data is transmitted between different devices in the same network.
+    Essentially, it allows connected devices to communicate with each other,
+    regardless of any differences in their internal processes, structure or
+    design. [based on
+    https://www.comptia.org/content/guides/what-is-a-network-protocol]
+    """
+
+
+class Observable(core.UcoObject):
+    """
+    An observable is a characterizable item or action within the digital domain.
+    """
+
+
+class ExtractedString(core.UcoInherentCharacterizationThing):
+    """
+    An extracted string is a grouping of characteristics unique to a series of
+    characters pulled from an observable object.
+    """
+
+    byteStringValue: Optional[str] = None
+    length: Optional[int] = None
+    encoding: Optional[str] = None
+    englishTranslation: Optional[str] = None
+    language: Optional[str] = None
+    stringValue: Optional[str] = None
+
+class WindowsPESection(core.UcoInherentCharacterizationThing):
+    """
+    A Windows PE section is a grouping of characteristics unique to a specific
+    default or custom-defined region of a Windows PE (Portable Executable) file,
+    consisting of an individual portion of the actual executable content of the
+    file delineated according to unique purpose and memory protection
+    requirements.
+    """
+
     hashes: Optional[Hash] = None
+    entropy: Optional[float] = None
     size: Optional[int] = None
     name: Optional[str] = None
 
-class ProcessFacet(Facet):
+class TCPConnection(observable.NetworkConnection):
     """
-    A process facet is a grouping of characteristics unique to an instance of a
-    computer program executed on an operating system.
-    """
-    binary: Optional[ObservableObject] = None
-    creatorUser: Optional[ObservableObject] = None
-    parent: Optional[ObservableObject] = None
-    environmentVariables: Optional[Dictionary] = None
-    isHidden: Optional[bool] = None
-    exitTime: Optional[str] = None
-    observableCreatedTime: Optional[str] = None
-    exitStatus: Optional[int] = None
-    pid: Optional[int] = None
-    currentWorkingDirectory: Optional[str] = None
-    status: Optional[str] = None
-    arguments: Optional[str] = None
-
-class Disk(ObservableObject):
-    """
-    A disk is a storage mechanism where data is recorded by various electronic,
-    magnetic, optical, or mechanical changes to a surface layer of one or more
-    rotating disks.
+    A TCP connection is a network connection that is conformant to the Transfer
     """
 
-class Address(ObservableObject):
-    """
-    An address is an identifier assigned to enable routing and management of
-    information.
-    """
 
-class EventLog(ObservableObject):
+class WindowsRegistryHive(observable.ObservableObject):
     """
-    An event log is a collection of event records.
-    """
-
-class ApplicationAccount(DigitalAccount):
-    """
-    An application account is an account within a particular software program
-    designed for end users.
-    """
-
-class EmailAccount(DigitalAccount):
-    """
-    An email account is an arrangement with an entity to enable and control the
-    provision of electronic mail (email) capabilities or services.
-    """
-
-class WindowsRegistryKeyFacet(Facet):
-    """
-    A Windows registry key facet is a grouping of characteristics unique to a
-    particular key within a Windows registry (A hierarchical database that stores
+    The Windows registry hive is a particular logical group of keys, subkeys,
+    and values in a Windows registry (a hierarchical database that stores
     low-level settings for the Microsoft Windows operating system and for
     applications that opt to use the registry). [based on
     https://en.wikipedia.org/wiki/Windows_Registry]
     """
-    creator: Optional[ObservableObject] = None
-    registryValues: Optional[WindowsRegistryValue] = None
-    modifiedTime: Optional[str] = None
-    numberOfSubkeys: Optional[int] = None
-    key: Optional[str] = None
 
-class NetworkAppliance(Appliance):
+
+class FilePermissionsFacet(core.Facet):
     """
-    A network appliance is a purpose-built computer with software or firmware that
-    is designed to provide a specific network management function.
+    A file permissions facet is a grouping of characteristics unique to the
+    access rights (e.g., view, change, navigate, execute) of a file on a file
+    system.
     """
 
-class FileFacet(Facet):
+    owner: Optional[UcoObject] = None
+
+class WindowsPEBinaryFile(observable.File):
     """
-    A file facet is a grouping of characteristics unique to the storage of a file
-    (computer resource for recording data discretely in a computer storage device)
-    on a file system (process that manages how and where data on a storage device is
-    stored, accessed and managed). [based on https://en.wikipedia.org/Computer_file
-    and https://www.techopedia.com/definition/5510/file-system]
+    A Windows PE binary file is a Windows portable executable (PE) file.
     """
-    isDirectory: Optional[bool] = None
+
+
+class AndroidDeviceFacet(core.Facet):
+    """
+    An Android device facet is a grouping of characteristics unique to an
+    Android device. [based on
+    https://en.wikipedia.org/wiki/Android_(operating_system)]
+    """
+
+    isADBRootEnabled: Optional[bool] = None
+    isSURootEnabled: Optional[bool] = None
+    androidID: Optional[str] = None
+    androidFingerprint: Optional[str] = None
+    androidVersion: Optional[str] = None
+
+class VolumeFacet(core.Facet):
+    """
+    A volume facet is a grouping of characteristics unique to a single
+    accessible storage area (volume) with a single file system. [based on
+    https://en.wikipedia.org/wiki/Volume_(computing)]
+    """
+
+    sectorSize: Optional[int] = None
+    volumeID: Optional[str] = None
+
+class Calendar(observable.ObservableObject):
+    """
+    A calendar is a collection of appointments, meetings, and events.
+    """
+
+
+class WirelessNetworkConnectionFacet(core.Facet):
+    """
+    A wireless network connection facet is a grouping of characteristics unique
+    to a connection (completed or attempted) across an IEEE 802.11
+    standards-conformant digital network (a group of two or more computer
+    systems linked together). [based on
+    https://www.webopedia.com/TERM/N/network.html]
+    """
+
+    baseStation: Optional[str] = None
+    password: Optional[str] = None
+    ssid: Optional[str] = None
+    wirelessNetworkSecurityMode: Optional[Any] = None
+    wirelessNetworkSecurityMode: Optional[Any] = None
+
+class MobileAccountFacet(core.Facet):
+    """
+    A mobile account facet is a grouping of characteristics unique to an
+    arrangement with an entity to enable and control the provision of some
+    capability or service on a portable computing device. [based on
+    https://www.lexico.com/definition/mobile_device]
+    """
+
+    IMSI: Optional[str] = None
+    MSISDN: Optional[str] = None
+    MSISDNType: Optional[str] = None
+
+class ForumPost(observable.Message):
+    """
+    A forum post is message submitted by a user account to an online forum where
+    the message content (and typically metadata including who posted it and
+    when) is viewable by any party with viewing permissions on the forum.
+    """
+
+
+class BrowserBookmarkFacet(core.Facet):
+    """
+    A browser bookmark facet is a grouping of characteristics unique to a saved
+    shortcut that directs a WWW (World Wide Web) browser software program to a
+    particular WWW accessible resource. [based on
+    https://techterms.com/definition/bookmark]
+    """
+
+    application: Optional[ObservableObject] = None
+    urlTargeted: Optional[str] = None
     accessedTime: Optional[str] = None
-    metadataChangeTime: Optional[str] = None
     modifiedTime: Optional[str] = None
     observableCreatedTime: Optional[str] = None
-    sizeInBytes: Optional[int] = None
-    allocationStatus: Optional[str] = None
-    extension: Optional[str] = None
-    fileName: Optional[str] = None
-    filePath: Optional[str] = None
+    visitCount: Optional[int] = None
+    bookmarkPath: Optional[str] = None
 
-class IPv6AddressFacet(IPAddressFacet):
+class GeoLocationTrackFacet(core.Facet):
     """
-    An IPv6 (Internet Protocol version 6) address facet is a grouping of
-    characteristics unique to an IPv6 standards conformant identifier assigned to a
-    device to enable routing and management of IPv6 standards conformant
-    communication to or from that device.
+    A geolocation track facet is a grouping of characteristics unique to a set
+    of contiguous geolocation entries representing a path/track taken.
     """
 
-class WindowsHandle(ObservableObject):
+    application: Optional[ObservableObject] = None
+    geoLocationEntry: Optional[ObservableObject] = None
+    endTime: Optional[str] = None
+    startTime: Optional[str] = None
+
+class ARPCache(observable.ObservableObject):
     """
-    A Windows handle is an abstract reference to a resource within the Windows
-    operating system, such as a window, memory, an open file or a pipe. It is the
-    mechanism by which applications interact with such resources in the Windows
-    operating system.
+    An ARP cache is a collection of Address Resolution Protocol (ARP) entries
+    (mostly dynamic) that are created when an IP address is resolved to a MAC
+    address (so the computer can effectively communicate with the IP address).
+    [based on https://en.wikipedia.org/wiki/ARP_cache]
     """
+
+
+class ApplicationVersion(core.UcoInherentCharacterizationThing):
+    """
+    An application version is a grouping of characteristics unique to a
+    particular software program version.
+    """
+
+    installDate: Optional[str] = None
+    uninstallDate: Optional[str] = None
+    version: Optional[str] = None
+
+class ContactAddress(core.UcoInherentCharacterizationThing):
+    """
+    A contact address is a grouping of characteristics unique to a geolocation
+    address of a contact entity.
+    """
+
+    geolocationAddress: Optional[Location] = None
+    contactAddressScope: Optional[str] = None
+    contactAddressScope: Optional[Any] = None
+    contactAddressScope: Optional[Any] = None
+
+class ProfileFacet(core.Facet):
+    """
+    A profile facet is a grouping of characteristics unique to an explicit
+    digital representation of identity and characteristics of the owner of a
+    single user account associated with an online service or application. [based
+    on https://en.wikipedia.org/wiki/User_profile]
+    """
+
+    profileIdentity: Optional[Identity] = None
+    contactAddress: Optional[ContactAddress] = None
+    contactEmail: Optional[ContactEmail] = None
+    contactMessaging: Optional[ContactMessaging] = None
+    contactPhone: Optional[ContactPhone] = None
+    contactURL: Optional[ContactURL] = None
+    profileAccount: Optional[ObservableObject] = None
+    profileService: Optional[ObservableObject] = None
+    profileWebsite: Optional[ObservableObject] = None
+    profileCreated: Optional[str] = None
+    name: Optional[str] = None
+    displayName: Optional[str] = None
+    profileLanguage: Optional[str] = None
+
+class URLFacet(core.Facet):
+    """
+    A URL facet is a grouping of characteristics unique to a uniform resource
+    locator (URL) acting as a resolvable address to a particular WWW (World Wide
+    Web) accessible resource.
+    """
+
+    host: Optional[ObservableObject] = None
+    port: Optional[int] = None
+    fragment: Optional[str] = None
+    fullValue: Optional[str] = None
+    password: Optional[str] = None
+    path: Optional[str] = None
+    query: Optional[str] = None
+    scheme: Optional[str] = None
+    userName: Optional[str] = None
+
+class OnlineService(observable.ObservableObject):
+    """
+    An online service is a particular provision mechanism of information access,
+    distribution or manipulation over the Internet.
+    """
+
+
+class URLHistoryEntry(core.UcoInherentCharacterizationThing):
+    """
+    A URL history entry is a grouping of characteristics unique to the
+    properties of a single URL history entry for a particular browser.
+    """
+
+    url: Optional[ObservableObject] = None
+    referrerUrl: Optional[ObservableObject] = None
+    expirationTime: Optional[str] = None
+    firstVisit: Optional[str] = None
+    lastVisit: Optional[str] = None
+    visitCount: Optional[int] = None
+    manuallyEnteredCount: Optional[int] = None
+    browserUserProfile: Optional[str] = None
+    hostname: Optional[str] = None
+    pageTitle: Optional[str] = None
+    keywordSearchTerm: Optional[str] = None
+
+class SymbolicLink(observable.FileSystemObject):
+    """
+    A symbolic link is a file that contains a reference to another file or
+    directory in the form of an absolute or relative path and that affects
+    pathname resolution. [based on https://en.wikipedia.org/wiki/Symbolic_link]
+    """
+
+
+class MobilePhone(observable.MobileDevice):
+    """
+    A mobile phone is a portable telephone that at least can make and receive
+    calls over a radio frequency link while the user is moving within a
+    telephone service area. This category encompasses all types of mobiles,
+    simple and smart and satellite ones all together.
+    """
+
+
+class WindowsRegistryHiveFacet(core.Facet):
+    """
+    A Windows registry hive facet is a grouping of characteristics unique to a
+    particular logical group of keys, subkeys, and values in a Windows registry
+    (a hierarchical database that stores low-level settings for the Microsoft
+    Windows operating system and for applications that opt to use the registry).
+    [based on https://en.wikipedia.org/wiki/Windows_Registry]
+    """
+
+    hiveType: Optional[str] = None
+
+class Snapshot(observable.FileSystemObject):
+    """
+    A snapshot is a file system object representing a snapshot of the contents
+    of a part of a file system at a point in time.
+    """
+
 
