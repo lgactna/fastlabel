@@ -56,27 +56,48 @@ def get_target_dir() -> Path:
 
 
 def generate_classes_from_graph(g: Graph) -> str:
-    """
-    Generate Python classes from a SHACL graph.
-    """
+    # Stores the generated class definitions
+    class_definitions = ""
+
+    # Stores the Enum definitions
+    enum_definitions = ""
+
+    # Keep track of vocabularies for Enums
+    vocabularies = {}
+
     # Get all classes that are sh:NodeShape and owl:Class
     classes = set()
     for s in g.subjects(RDF.type, SH.NodeShape):
         if (s, RDF.type, OWL.Class) in g:
             classes.add(s)
 
-    output = ""
+    # First, process vocabularies to create Enums
+    for s in g.subjects(RDF.type, RDFS_NS.Datatype):
+        vocab_name = get_local_name(s)
+        members = []
+        for value in g.objects(subject=s, predicate=RDF.type):
+            members.append(str(value))
+        if members:
+            vocabularies[vocab_name] = members
+
+    # Generate Enum classes for vocabularies
+    for vocab_name, members in vocabularies.items():
+        enum_definitions += f"class {vocab_name}(str, Enum):\n"
+        for member in members:
+            enum_member_name = re.sub(r'\W|^(?=\d)', '_', member).upper()
+            enum_definitions += f"    {enum_member_name} = '{member}'\n"
+        enum_definitions += "\n"
 
     # Process each class
     for cls in classes:
         class_name = get_local_name(cls)
         # Get superclass (if any)
         superclasses = [get_local_name(o) for o in g.objects(cls, RDFS.subClassOf)]
-        superclass = superclasses[0] if superclasses else "BaseModel"
+        superclass = superclasses[0] if superclasses else 'BaseModel'
 
         # Get rdfs:comment for docstring
         comment = None
-        for o in g.objects(cls, RDFS.comment):
+        for o in g.objects(cls, RDFS_NS.comment):
             if isinstance(o, Literal):
                 comment = str(o)
                 break
@@ -84,27 +105,8 @@ def generate_classes_from_graph(g: Graph) -> str:
         # Start building the class definition
         class_def = f"class {class_name}({superclass}):\n"
         if comment:
-            # Split the comment into lines of maximum 80 characters
-            words = comment.split()
-            lines = []
-            current_line = ""
-            for word in words:
-                if len(current_line) + len(word) + 1 > 80:
-                    lines.append(current_line)
-                    current_line = word
-                else:
-                    if current_line:
-                        current_line += " " + word
-                    else:
-                        current_line = word
-            if current_line:
-                lines.append(current_line)
-
             # Indent the docstring correctly
-            docstring = '    """\n'
-            for line in lines:
-                docstring += f"    {line}\n"
-            docstring += '    """\n'
+            docstring = '    """' + comment + '"""\n'
             class_def += docstring
 
         # Get properties
@@ -115,17 +117,21 @@ def generate_classes_from_graph(g: Graph) -> str:
                 continue
             field_name = get_local_name(path)
 
-            # Handle datatype
-            datatype = g.value(prop_list, SH.datatype)
-            if datatype:
-                python_type = DATATYPE_MAPPING.get(datatype, "str")
+            # Initialize variables
+            python_types = []
+            validation_messages = []
+
+            # Handle sh:or constraints
+            or_list = g.value(prop_list, SH['or'])
+            if or_list:
+                # If there is an sh:or constraint
+                for or_constraint in g.items(or_list):
+                    python_type = process_constraint(g, or_constraint, vocabularies)
+                    python_types.append(python_type)
             else:
-                # Handle sh:class
-                prop_class = g.value(prop_list, SH["class"])
-                if prop_class:
-                    python_type = get_local_name(prop_class)
-                else:
-                    python_type = "Any"
+                # Handle single constraint
+                python_type = process_constraint(g, prop_list, vocabularies)
+                python_types.append(python_type)
 
             # Handle cardinality
             max_count = g.value(prop_list, SH.maxCount)
@@ -138,38 +144,65 @@ def generate_classes_from_graph(g: Graph) -> str:
             if max_count and int(max_count.toPython()) != 1:
                 is_list = True
 
+            # Build the field type
             if is_list:
-                python_type = f"List[{python_type}]"
+                if len(python_types) > 1:
+                    union_type = f"Union[{', '.join(python_types)}]"
+                    python_type = f"List[{union_type}]"
+                else:
+                    python_type = f"List[{python_types[0]}]"
             else:
+                if len(python_types) > 1:
+                    python_type = f"Union[{', '.join(python_types)}]"
+                else:
+                    python_type = python_types[0]
                 if not is_required:
                     python_type = f"Optional[{python_type}]"
 
-            # Build the field definition
-            # TODO: Are there default values that need to be extracted?
-            # TODO: Some of these fields get duplicated, which is not great...
-            #       Probably the best way is to build an "object" that holds the 
-            #       field name, type, and default value... a Pydantic model that 
-            #       serializes to a field lol
-            #       
-            #       In any case, this needs to be aware of the file it's currently
-            #       in, so we know whether or not it's an external import or just
-            #       a reference to another class in the same file   
-            default_value = "..." if is_required else "None"
-            class_def += f"    {field_name}: {python_type} = {default_value}\n"
+            # Extract validation messages
+            messages = [str(msg) for msg in g.objects(prop_list, SH.message)]
+            if messages:
+                validation_messages.extend(messages)
 
-        # This is a single class definition
-        output += class_def + "\n"
-    
-    # TODO: We have to figure out a valid import order, because the parent class
-    #       of some classes are declared later down in the file. Python doesn't do
-    #       forward declarations, so we may need to do some kind of topological sort
-    #
-    #       That is, keep track of all class relationships (which classes are 
-    #       dependent on what?), topologically sort them, then write them out in
-    #       that order. See:
-    #       https://docs.python.org/3/library/graphlib.html
+            # Build the field definition
+            default_value = "..." if is_required else "None"
+            field_args = []
+            if validation_messages:
+                field_args.append(f'description="{"; ".join(validation_messages)}"')
+            field_definition = f"{field_name}: {python_type} = Field({default_value}"
+            if field_args:
+                field_definition += ", " + ", ".join(field_args)
+            field_definition += ")"
+            class_def += f"    {field_definition}\n"
+
+        class_definitions += class_def + "\n"
+
+    # Combine enum definitions and class definitions
+    output = enum_definitions + "\n" + class_definitions
     return output
 
+def process_constraint(g: Graph, constraint_node, vocabularies):
+    # Handle datatype
+    datatype = g.value(constraint_node, SH.datatype)
+    if datatype:
+        datatype_str = str(datatype)
+        python_type = DATATYPE_MAPPING.get(datatype_str)
+        if not python_type:
+            # Check if datatype is a vocabulary
+            vocab_name = get_local_name(datatype)
+            if vocab_name in vocabularies:
+                python_type = vocab_name
+            else:
+                python_type = 'str'
+    else:
+        # Handle sh:class
+        prop_class = g.value(constraint_node, SH['class'])
+        if prop_class:
+            python_type = get_local_name(prop_class)
+        else:
+            python_type = 'Any'
+
+    return python_type
 
 if __name__ == "__main__":
     for artifact_file in get_artifacts_dir().glob("*/*.ttl"):
