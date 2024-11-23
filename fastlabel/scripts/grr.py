@@ -102,8 +102,17 @@ class ArtifactDefinition(BaseModel):
     conditions: Optional[list[str]] = None
     labels: Optional[list[str]] = None
     provides: Optional[list[str]] = None
-    
+
+def get_artifacts_dir() -> Path:
+    """
+    Get a resolved path to `/grr_artifacts`.
+    """
+    # Go up three directories from this source file
+    return (Path(__file__).parents[2] / "grr_artifacts").resolve()
+
 if __name__ == "__main__":
+    # print(list(get_artifacts_dir().glob("*.yaml")))
+    
     with open("./grr_artifacts/antivirus.yaml", "rt") as fp:
         yaml = YAML(typ="safe")
         for d in yaml.load_all(fp):
