@@ -1,5 +1,5 @@
 # Functional
-pycryptodomex
+pydantic==2.9.2
 
 # Linting
 black
