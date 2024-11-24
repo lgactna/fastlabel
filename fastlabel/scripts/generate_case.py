@@ -7,7 +7,7 @@ Code generated with Copilot using the o1-preview model.
 List of manual fixes:
 - The vocabulary in `fastlabel.case.investigation` should come from fastlabel.case,
   not `fastlabel.uco`
-- eventAttribute in fastlabel.uco.core should be a Optional[dict[str, Any]], 
+- eventAttribute in fastlabel.uco.core should be a Optional[dict[str, Any]],
   which means you should also remove the import to fastlabel.uco.types
 """
 
@@ -208,14 +208,6 @@ class Property(BaseModel):
         """
         # Build the field definition
         # TODO: Are there default values that need to be extracted?
-        # TODO: Some of these fields get duplicated, which is not great...
-        #       Probably the best way is to build an "object" that holds the
-        #       field name, type, and default value... a Pydantic model that
-        #       serializes to a field lol
-        #
-        #       In any case, this needs to be aware of the file it's currently
-        #       in, so we know whether or not it's an external import or just
-        #       a reference to another class in the same file
 
         # If the field name is a reserved keyword, append an underscore
         field_name = self.field_name
@@ -234,8 +226,8 @@ class Property(BaseModel):
         result = f"    {field_name}: {self.generate_type_annotation(containing_class)}"
 
         # Decide on the default value
-        # TODO: compatibility with IRI type fields?
         #
+        # TODO: regarding the iterable vs not iterable problem
         # maybe the strat is to treat EVERYTHING as a list unless cardinality is
         # specified, and if the number of items is exactly one, treat it as a scalar
         # when serialization is done

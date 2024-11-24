@@ -3,6 +3,7 @@ Manually-created file that centralizes all the logic for UCO/CASE by hijacking
 `owl.Thing`.
 """
 
+import datetime
 import uuid
 from typing import Any, Type
 
@@ -100,14 +101,29 @@ class Thing(BaseModel):
             if field in ["prefix_iri", "prefix_label", "internal_id"]:
                 continue
 
-            # If the field is not a basic JSON type (str, int, float, bool, list, dict)
-            # then it must be represented in the {"@type": "...", "@value": "..." format.}
-            # TODO: the above
-
             # Get the corresponding field name in the JSON-LD mapping
             field_name = field_mapping[field]
-            
-            if "IRI" in field_info.json_schema_extra:
+
+            # If the field is not a basic JSON type (str, int, float, bool, list, dict)
+            # then it must be represented in the {"@type": "...", "@value": "..." format.}
+            if isinstance(value, datetime.datetime):
+                result[field_name] = {
+                    "@type": "xsd:dateTime",
+                    "@value": value.isoformat(timespec="milliseconds"),
+                }
+                continue
+            elif type(value) not in (str, int, float, bool, list, dict):
+                result[field_name] = {
+                    "@type": get_class_as_jsonld(type(value)),
+                    "@value": value,
+                }
+                continue
+
+            # mypy: trust me it's not going to be a callable
+            if (
+                field_info.json_schema_extra
+                and "IRI" in field_info.json_schema_extra.keys()  # type: ignore[union-attr]
+            ):
                 # This field is an IRI, so we should only include the @id and move on
                 result[field_name] = {"@id": value.computed_id}
                 continue
