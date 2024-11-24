@@ -367,39 +367,6 @@ class X509V3ExtensionsFacet(core.Facet):
     subjectKeyIdentifier: Optional[str] = None
 
 
-class FilePermissionsFacet(core.Facet):
-    """
-    A file permissions facet is a grouping of characteristics unique to the
-    access rights (e.g., view, change, navigate, execute) of a file on a file
-    system.
-    """
-
-    owner: Optional[core.UcoObject] = None
-
-
-class Observable(core.UcoObject):
-    """
-    An observable is a characterizable item or action within the digital domain.
-    """
-
-
-class AccountFacet(core.Facet):
-    """
-    An account facet is a grouping of characteristics unique to an arrangement
-    with an entity to enable and control the provision of some capability or
-    service.
-    """
-
-    accountIssuer: Optional[core.UcoObject] = None
-    owner: Optional[core.UcoObject] = None
-    isActive: Optional[bool] = None
-    expirationTime: Optional[str] = None
-    modifiedTime: Optional[str] = None
-    observableCreatedTime: Optional[str] = None
-    accountIdentifier: Optional[str] = None
-    accountType: Optional[vocabulary.AccountTypeVocab] = None
-
-
 class DigitalAccountFacet(core.Facet):
     """
     A digital account facet is a grouping of characteristics unique to an
@@ -472,6 +439,39 @@ class UserAccountFacet(core.Facet):
     isPrivileged: Optional[bool] = None
     isServiceAccount: Optional[bool] = None
     homeDirectory: Optional[str] = None
+
+
+class FilePermissionsFacet(core.Facet):
+    """
+    A file permissions facet is a grouping of characteristics unique to the
+    access rights (e.g., view, change, navigate, execute) of a file on a file
+    system.
+    """
+
+    owner: Optional[core.UcoObject] = None
+
+
+class Observable(core.UcoObject):
+    """
+    An observable is a characterizable item or action within the digital domain.
+    """
+
+
+class AccountFacet(core.Facet):
+    """
+    An account facet is a grouping of characteristics unique to an arrangement
+    with an entity to enable and control the provision of some capability or
+    service.
+    """
+
+    accountIssuer: Optional[core.UcoObject] = None
+    owner: Optional[core.UcoObject] = None
+    isActive: Optional[bool] = None
+    expirationTime: Optional[str] = None
+    modifiedTime: Optional[str] = None
+    observableCreatedTime: Optional[str] = None
+    accountIdentifier: Optional[str] = None
+    accountType: Optional[vocabulary.AccountTypeVocab] = None
 
 
 class AlternateDataStreamFacet(core.Facet):
@@ -1150,7 +1150,7 @@ class WindowsVolumeFacet(core.Facet):
 
     driveLetter: Optional[str] = None
     driveType: Optional[vocabulary.WindowsDriveTypeVocab] = None
-    windowsVolumeAttributes: list[vocabulary.WindowsVolumeAttributeVocab] = None
+    windowsVolumeAttributes: list[vocabulary.WindowsVolumeAttributeVocab] = []
 
 
 class PropertyReadEffectFacet(DefinedEffectFacet):
@@ -1270,8 +1270,8 @@ class ObservableRelationship(core.Relationship):
     assertion of an association between two observable objects.
     """
 
-    source: Optional[Observable] = None
-    target: Optional[Observable] = None
+    source: Observable
+    target: Observable
 
 
 class ExtractedStringsFacet(core.Facet):
@@ -3074,10 +3074,10 @@ class MessageThreadFacet(core.Facet):
     commentary of electronic messages pertaining to one topic or question.
     """
 
-    ndee7f2c7ef294dbe9a73e1b60194c7fcb463: Optional[Message] = None
-    ndee7f2c7ef294dbe9a73e1b60194c7fcb467: Optional[Message] = None
-    ndee7f2c7ef294dbe9a73e1b60194c7fcb471: Optional[Message] = None
-    ndee7f2c7ef294dbe9a73e1b60194c7fcb475: Optional[Message] = None
+    n3cd33877c9fb49cdbb12731429fd5996b463: Optional[Message] = None
+    n3cd33877c9fb49cdbb12731429fd5996b467: Optional[Message] = None
+    n3cd33877c9fb49cdbb12731429fd5996b471: Optional[Message] = None
+    n3cd33877c9fb49cdbb12731429fd5996b475: Optional[Message] = None
     participant: Optional[ObservableObject] = None
     messageThread: Optional[types.Thread] = None
     visibility: Optional[bool] = None

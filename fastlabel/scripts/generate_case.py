@@ -13,7 +13,7 @@ from textwrap import dedent
 from typing import Any, Optional
 
 from pydantic import BaseModel
-from rdflib import RDF, RDFS, Graph, Literal, Namespace, URIRef
+from rdflib import RDF, RDFS, BNode, Graph, Literal, Namespace, URIRef
 
 from fastlabel.scripts.util import generate_docstring
 
@@ -100,7 +100,9 @@ class Property(BaseModel):
     namespace: str
 
     @classmethod
-    def from_property_shape(cls, prop_list, namespace: str) -> Optional["Property"]:
+    def from_property_shape(
+        cls, prop_list: URIRef | BNode, namespace: str
+    ) -> Optional["Property"]:
         """
         Create a Property instance from a SHACL property shape (sh:property).
         """
@@ -199,14 +201,19 @@ class Property(BaseModel):
 
         # Alternatively, if the field name is exactly that of its corresponding
         # class, append an underscore
-        # TODO: this is hacky, a robust solution would require knowledge of all
-        #       the types in use in a single class
+        # NOTE: this is hacky, a robust solution would require knowledge of all
+        #       the types in use in a single class -- however, there is no place
+        #       this is an issue except for "location" fields using the
+        #       "location.Location" type
         if self.field_name in self.python_type:
             field_name += "_"
 
         result = f"    {field_name}: {self.generate_type_annotation(containing_class)}"
 
-        if not self.is_required:
+        # Decide on the default value
+        if self.is_list:
+            result += " = []"
+        elif not self.is_required:
             result += " = None"
 
         return result + "\n"
@@ -481,7 +488,7 @@ def generate_classes_from_graph(g: Graph, namespace: str) -> tuple[str, str]:
     return imports, output
 
 
-def generate_enums_from_datatypes(graph):
+def generate_enums_from_datatypes(graph: Graph) -> str:
     enum_definitions = ""
     # Find all nodes of type rdfs:Datatype
     for datatype in graph.subjects(RDF.type, RDFS_NS.Datatype):
