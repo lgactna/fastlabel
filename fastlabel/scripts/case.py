@@ -75,7 +75,6 @@ class Property(BaseModel):
     """
 
     # The name of the field itself.
-    # TODO: handle reserved keywords, e.g. "class" -> "class_"
     field_name: str
 
     # This is a non-annotated type, or a class name. It is *not* something like
@@ -403,14 +402,6 @@ def generate_classes_from_graph(g: Graph, namespace: str) -> str:
     imports = generate_import_list(dependency_graph, namespace)
     output = imports + "\n" + output
 
-    # TODO: We have to figure out a valid import order, because the parent class
-    #       of some classes are declared later down in the file. Python doesn't do
-    #       forward declarations, so we may need to do some kind of topological sort
-    #
-    #       That is, keep track of all class relationships (which classes are
-    #       dependent on what?), topologically sort them, then write them out in
-    #       that order. See:
-    #       https://docs.python.org/3/library/graphlib.html
     return output
 
 
