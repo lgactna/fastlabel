@@ -163,6 +163,11 @@ class Property(BaseModel):
             # This is local
             python_type = self.python_type.replace(f"{self.namespace}.", "")
 
+        # Special: If this is an XMLSchema import, prefix the second component
+        # with `xsd_`.
+        if self.python_type.startswith("XMLSchema."):
+            python_type = f"XMLSchema.xsd_{self.python_type.split('.')[1]}"
+
         # If this field's type is equal to its containing Pydantic model, then we
         # must perform deferred evaluation of the type annotation. The field name
         # must be in quotes.

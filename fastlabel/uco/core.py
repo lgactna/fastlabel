@@ -34,7 +34,7 @@ class ExternalReference(UcoInherentCharacterizationThing):
     Characteristics of a reference to a resource outside of the UCO.
     """
 
-    referenceURL: Optional[XMLSchema.anyURI] = None
+    referenceURL: Optional[XMLSchema.xsd_anyURI] = None
     definingContext: Optional[str] = None
     externalIdentifier: Optional[str] = None
 
@@ -104,7 +104,7 @@ class ControlledVocabulary(UcoObject):
     A controlled vocabulary is an explicitly constrained set of string values.
     """
 
-    constrainingVocabularyReference: Optional[XMLSchema.anyURI] = None
+    constrainingVocabularyReference: Optional[XMLSchema.xsd_anyURI] = None
     value: str
     constrainingVocabularyName: Optional[str] = None
 

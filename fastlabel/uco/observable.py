@@ -113,29 +113,6 @@ class WindowsServiceType(str, Enum):
     SERVICE_WIN32_SHARE_PROCESS = "service_win32_share_process"
 
 
-class DefinedEffectFacet(core.Facet):
-    """
-    A defined effect facet is a grouping of characteristics unique to the effect
-    of an observable action in relation to one or more observable objects.
-    """
-
-
-class NTFSFilePermissionsFacet(core.Facet):
-    """
-    An NTFS file permissions facet is a grouping of characteristics unique to
-    the access rights (e.g., view, change, navigate, execute) of a file on an
-    NTFS (new technology filesystem) file system.
-    """
-
-
-class UNIXFilePermissionsFacet(core.Facet):
-    """
-    A UNIX file permissions facet is a grouping of characteristics unique to the
-    access rights (e.g., view, change, navigate, execute) of a file on a UNIX
-    file system.
-    """
-
-
 class AccountAuthenticationFacet(core.Facet):
     """
     An account authentication facet is a grouping of characteristics unique to
@@ -168,6 +145,13 @@ class CellSiteFacet(core.Facet):
     cellSiteLocationAreaCode: Optional[str] = None
     cellSiteNetworkCode: Optional[str] = None
     cellSiteType: Optional[str] = None
+
+
+class DefinedEffectFacet(core.Facet):
+    """
+    A defined effect facet is a grouping of characteristics unique to the effect
+    of an observable action in relation to one or more observable objects.
+    """
 
 
 class DigitalAddressFacet(core.Facet):
@@ -237,6 +221,14 @@ class MobileAccountFacet(core.Facet):
     MSISDNType: Optional[str] = None
 
 
+class NTFSFilePermissionsFacet(core.Facet):
+    """
+    An NTFS file permissions facet is a grouping of characteristics unique to
+    the access rights (e.g., view, change, navigate, execute) of a file on an
+    NTFS (new technology filesystem) file system.
+    """
+
+
 class PathRelationFacet(core.Facet):
     """
     A path relation facet is a grouping of characteristics unique to the
@@ -265,6 +257,14 @@ class PropertiesEnumeratedEffectFacet(core.Facet):
     """
 
     properties: Optional[str] = None
+
+
+class UNIXFilePermissionsFacet(core.Facet):
+    """
+    A UNIX file permissions facet is a grouping of characteristics unique to the
+    access rights (e.g., view, change, navigate, execute) of a file on a UNIX
+    file system.
+    """
 
 
 class UNIXVolumeFacet(core.Facet):
@@ -367,6 +367,22 @@ class X509V3ExtensionsFacet(core.Facet):
     subjectKeyIdentifier: Optional[str] = None
 
 
+class FilePermissionsFacet(core.Facet):
+    """
+    A file permissions facet is a grouping of characteristics unique to the
+    access rights (e.g., view, change, navigate, execute) of a file on a file
+    system.
+    """
+
+    owner: Optional[core.UcoObject] = None
+
+
+class Observable(core.UcoObject):
+    """
+    An observable is a characterizable item or action within the digital domain.
+    """
+
+
 class DigitalAccountFacet(core.Facet):
     """
     A digital account facet is a grouping of characteristics unique to an
@@ -458,20 +474,17 @@ class AccountFacet(core.Facet):
     accountType: Optional[vocabulary.AccountTypeVocab] = None
 
 
-class FilePermissionsFacet(core.Facet):
+class AlternateDataStreamFacet(core.Facet):
     """
-    A file permissions facet is a grouping of characteristics unique to the
-    access rights (e.g., view, change, navigate, execute) of a file on a file
-    system.
+    An alternate data stream facet is a grouping of characteristics unique to
+    data content stored within an NTFS file that is independent of the standard
+    content stream of the file and is hidden from access by default NTFS file
+    viewing mechanisms.
     """
 
-    owner: Optional[core.UcoObject] = None
-
-
-class Observable(core.UcoObject):
-    """
-    An observable is a characterizable item or action within the digital domain.
-    """
+    hashes: Optional[types.Hash] = None
+    size: Optional[int] = None
+    name: Optional[str] = None
 
 
 class AudioFacet(core.Facet):
@@ -656,19 +669,6 @@ class VolumeFacet(core.Facet):
     volumeID: Optional[str] = None
 
 
-class AlternateDataStreamFacet(core.Facet):
-    """
-    An alternate data stream facet is a grouping of characteristics unique to
-    data content stored within an NTFS file that is independent of the standard
-    content stream of the file and is hidden from access by default NTFS file
-    viewing mechanisms.
-    """
-
-    hashes: Optional[types.Hash] = None
-    size: Optional[int] = None
-    name: Optional[str] = None
-
-
 class AndroidDeviceFacet(core.Facet):
     """
     An Android device facet is a grouping of characteristics unique to an
@@ -678,7 +678,7 @@ class AndroidDeviceFacet(core.Facet):
 
     isADBRootEnabled: Optional[bool] = None
     isSURootEnabled: Optional[bool] = None
-    androidID: Optional[XMLSchema.hexBinary] = None
+    androidID: Optional[XMLSchema.xsd_hexBinary] = None
     androidFingerprint: Optional[str] = None
     androidVersion: Optional[str] = None
 
@@ -690,8 +690,8 @@ class ICMPConnectionFacet(core.Facet):
     Protocol (ICMP) standard.
     """
 
-    icmpCode: Optional[XMLSchema.hexBinary] = None
-    icmpType: Optional[XMLSchema.hexBinary] = None
+    icmpCode: Optional[XMLSchema.xsd_hexBinary] = None
+    icmpType: Optional[XMLSchema.xsd_hexBinary] = None
 
 
 class TCPConnectionFacet(core.Facet):
@@ -701,8 +701,8 @@ class TCPConnectionFacet(core.Facet):
     Protocl (TCP) standard.
     """
 
-    destinationFlags: Optional[XMLSchema.hexBinary] = None
-    sourceFlags: Optional[XMLSchema.hexBinary] = None
+    destinationFlags: Optional[XMLSchema.xsd_hexBinary] = None
+    sourceFlags: Optional[XMLSchema.xsd_hexBinary] = None
 
 
 class AntennaFacet(core.Facet):
@@ -760,7 +760,7 @@ class GlobalFlagType(core.UcoInherentCharacterizationThing):
     by Solomon, Russinovich, and Ionescu]
     """
 
-    hexadecimalValue: Optional[XMLSchema.hexBinary] = None
+    hexadecimalValue: Optional[XMLSchema.xsd_hexBinary] = None
     abbreviation: Optional[str] = None
     destination: Optional[str] = None
     symbolicName: Optional[str] = None
@@ -994,7 +994,7 @@ class ExtractedString(core.UcoInherentCharacterizationThing):
     characters pulled from an observable object.
     """
 
-    byteStringValue: Optional[XMLSchema.base64Binary] = None
+    byteStringValue: Optional[XMLSchema.xsd_base64Binary] = None
     length: Optional[int] = None
     encoding: Optional[str] = None
     englishTranslation: Optional[str] = None
@@ -1013,8 +1013,8 @@ class MemoryFacet(core.Facet):
     isMapped: Optional[bool] = None
     isProtected: Optional[bool] = None
     isVolatile: Optional[bool] = None
-    regionEndAddress: Optional[XMLSchema.hexBinary] = None
-    regionStartAddress: Optional[XMLSchema.hexBinary] = None
+    regionEndAddress: Optional[XMLSchema.xsd_hexBinary] = None
+    regionStartAddress: Optional[XMLSchema.xsd_hexBinary] = None
     regionSize: Optional[int] = None
     blockType: Optional[vocabulary.MemoryBlockTypeVocab] = None
 
@@ -1061,7 +1061,7 @@ class SQLiteBlobFacet(core.Facet):
     https://en.wikipedia.org/wiki/SQLite]
     """
 
-    rowIndex: Optional[XMLSchema.positiveInteger] = None
+    rowIndex: Optional[XMLSchema.xsd_positiveInteger] = None
     columnName: Optional[str] = None
     rowCondition: Optional[str] = None
     tableName: Optional[str] = None
@@ -1085,24 +1085,6 @@ class TriggerType(core.UcoInherentCharacterizationThing):
     triggerType: Optional[vocabulary.TriggerTypeVocab] = None
 
 
-class WindowsThreadFacet(core.Facet):
-    """
-    A Windows thread facet is a grouping os characteristics unique to a single
-    thread of execution within a Windows process.
-    """
-
-    observableCreatedTime: Optional[str] = None
-    parameterAddress: Optional[XMLSchema.hexBinary] = None
-    startAddress: Optional[XMLSchema.hexBinary] = None
-    priority: Optional[int] = None
-    stackSize: Optional[int] = None
-    threadID: Optional[int] = None
-    context: Optional[str] = None
-    runningStatus: Optional[str] = None
-    securityAttributes: Optional[str] = None
-    creationFlags: Optional[XMLSchema.unsignedInt] = None
-
-
 class WindowsPEOptionalHeader(core.UcoInherentCharacterizationThing):
     """
     A Windows PE optional header is a grouping of characteristics unique to the
@@ -1110,35 +1092,53 @@ class WindowsPEOptionalHeader(core.UcoInherentCharacterizationThing):
     a collection of metadata about the executable code structure of the file.
     """
 
-    majorLinkerVersion: Optional[XMLSchema.byte] = None
-    minorLinkerVersion: Optional[XMLSchema.byte] = None
-    addressOfEntryPoint: Optional[XMLSchema.unsignedInt] = None
-    baseOfCode: Optional[XMLSchema.unsignedInt] = None
-    checksum: Optional[XMLSchema.unsignedInt] = None
-    fileAlignment: Optional[XMLSchema.unsignedInt] = None
-    imageBase: Optional[XMLSchema.unsignedInt] = None
-    loaderFlags: Optional[XMLSchema.unsignedInt] = None
-    numberOfRVAAndSizes: Optional[XMLSchema.unsignedInt] = None
-    sectionAlignment: Optional[XMLSchema.unsignedInt] = None
-    sizeOfCode: Optional[XMLSchema.unsignedInt] = None
-    sizeOfHeaders: Optional[XMLSchema.unsignedInt] = None
-    sizeOfHeapCommit: Optional[XMLSchema.unsignedInt] = None
-    sizeOfHeapReserve: Optional[XMLSchema.unsignedInt] = None
-    sizeOfImage: Optional[XMLSchema.unsignedInt] = None
-    sizeOfInitializedData: Optional[XMLSchema.unsignedInt] = None
-    sizeOfStackCommit: Optional[XMLSchema.unsignedInt] = None
-    sizeOfStackReserve: Optional[XMLSchema.unsignedInt] = None
-    sizeOfUninitializedData: Optional[XMLSchema.unsignedInt] = None
-    win32VersionValue: Optional[XMLSchema.unsignedInt] = None
-    dllCharacteristics: Optional[XMLSchema.unsignedShort] = None
-    magic: Optional[XMLSchema.unsignedShort] = None
-    majorImageVersion: Optional[XMLSchema.unsignedShort] = None
-    majorOSVersion: Optional[XMLSchema.unsignedShort] = None
-    majorSubsystemVersion: Optional[XMLSchema.unsignedShort] = None
-    minorImageVersion: Optional[XMLSchema.unsignedShort] = None
-    minorOSVersion: Optional[XMLSchema.unsignedShort] = None
-    minorSubsystemVersion: Optional[XMLSchema.unsignedShort] = None
-    subsystem: Optional[XMLSchema.unsignedShort] = None
+    majorLinkerVersion: Optional[XMLSchema.xsd_byte] = None
+    minorLinkerVersion: Optional[XMLSchema.xsd_byte] = None
+    addressOfEntryPoint: Optional[XMLSchema.xsd_unsignedInt] = None
+    baseOfCode: Optional[XMLSchema.xsd_unsignedInt] = None
+    checksum: Optional[XMLSchema.xsd_unsignedInt] = None
+    fileAlignment: Optional[XMLSchema.xsd_unsignedInt] = None
+    imageBase: Optional[XMLSchema.xsd_unsignedInt] = None
+    loaderFlags: Optional[XMLSchema.xsd_unsignedInt] = None
+    numberOfRVAAndSizes: Optional[XMLSchema.xsd_unsignedInt] = None
+    sectionAlignment: Optional[XMLSchema.xsd_unsignedInt] = None
+    sizeOfCode: Optional[XMLSchema.xsd_unsignedInt] = None
+    sizeOfHeaders: Optional[XMLSchema.xsd_unsignedInt] = None
+    sizeOfHeapCommit: Optional[XMLSchema.xsd_unsignedInt] = None
+    sizeOfHeapReserve: Optional[XMLSchema.xsd_unsignedInt] = None
+    sizeOfImage: Optional[XMLSchema.xsd_unsignedInt] = None
+    sizeOfInitializedData: Optional[XMLSchema.xsd_unsignedInt] = None
+    sizeOfStackCommit: Optional[XMLSchema.xsd_unsignedInt] = None
+    sizeOfStackReserve: Optional[XMLSchema.xsd_unsignedInt] = None
+    sizeOfUninitializedData: Optional[XMLSchema.xsd_unsignedInt] = None
+    win32VersionValue: Optional[XMLSchema.xsd_unsignedInt] = None
+    dllCharacteristics: Optional[XMLSchema.xsd_unsignedShort] = None
+    magic: Optional[XMLSchema.xsd_unsignedShort] = None
+    majorImageVersion: Optional[XMLSchema.xsd_unsignedShort] = None
+    majorOSVersion: Optional[XMLSchema.xsd_unsignedShort] = None
+    majorSubsystemVersion: Optional[XMLSchema.xsd_unsignedShort] = None
+    minorImageVersion: Optional[XMLSchema.xsd_unsignedShort] = None
+    minorOSVersion: Optional[XMLSchema.xsd_unsignedShort] = None
+    minorSubsystemVersion: Optional[XMLSchema.xsd_unsignedShort] = None
+    subsystem: Optional[XMLSchema.xsd_unsignedShort] = None
+
+
+class WindowsThreadFacet(core.Facet):
+    """
+    A Windows thread facet is a grouping os characteristics unique to a single
+    thread of execution within a Windows process.
+    """
+
+    observableCreatedTime: Optional[str] = None
+    parameterAddress: Optional[XMLSchema.xsd_hexBinary] = None
+    startAddress: Optional[XMLSchema.xsd_hexBinary] = None
+    priority: Optional[int] = None
+    stackSize: Optional[int] = None
+    threadID: Optional[int] = None
+    context: Optional[str] = None
+    runningStatus: Optional[str] = None
+    securityAttributes: Optional[str] = None
+    creationFlags: Optional[XMLSchema.xsd_unsignedInt] = None
 
 
 class WindowsVolumeFacet(core.Facet):
@@ -1394,7 +1394,7 @@ class BrowserBookmarkFacet(core.Facet):
     """
 
     application: Optional[ObservableObject] = None
-    urlTargeted: Optional[XMLSchema.anyURI] = None
+    urlTargeted: Optional[XMLSchema.xsd_anyURI] = None
     accessedTime: Optional[str] = None
     modifiedTime: Optional[str] = None
     observableCreatedTime: Optional[str] = None
@@ -2380,7 +2380,7 @@ class URLVisitFacet(core.Facet):
     fromURLVisit: Optional[ObservableObject] = None
     url: Optional[ObservableObject] = None
     visitTime: Optional[str] = None
-    visitDuration: Optional[XMLSchema.duration] = None
+    visitDuration: Optional[XMLSchema.xsd_duration] = None
     urlTransitionType: Optional[vocabulary.URLTransitionTypeVocab] = None
 
 
@@ -2706,14 +2706,14 @@ class WindowsPEBinaryFileFacet(core.Facet):
     sections: Optional[WindowsPESection] = None
     fileHeaderHashes: Optional[types.Hash] = None
     timeDateStamp: Optional[str] = None
-    pointerToSymbolTable: Optional[XMLSchema.hexBinary] = None
+    pointerToSymbolTable: Optional[XMLSchema.xsd_hexBinary] = None
     numberOfSections: Optional[int] = None
     numberOfSymbols: Optional[int] = None
     sizeOfOptionalHeader: Optional[int] = None
     impHash: Optional[str] = None
     peType: Optional[str] = None
     machine: Optional[str] = None
-    characteristics: Optional[XMLSchema.unsignedShort] = None
+    characteristics: Optional[XMLSchema.xsd_unsignedShort] = None
 
 
 class IPv4AddressFacet(IPAddressFacet):
@@ -3074,10 +3074,10 @@ class MessageThreadFacet(core.Facet):
     commentary of electronic messages pertaining to one topic or question.
     """
 
-    n6d466bf75c6c44afba6c63345d5305d0b463: Optional[Message] = None
-    n6d466bf75c6c44afba6c63345d5305d0b467: Optional[Message] = None
-    n6d466bf75c6c44afba6c63345d5305d0b471: Optional[Message] = None
-    n6d466bf75c6c44afba6c63345d5305d0b475: Optional[Message] = None
+    n1eccbff2a21b4df6a359247ff8b7acebb463: Optional[Message] = None
+    n1eccbff2a21b4df6a359247ff8b7acebb467: Optional[Message] = None
+    n1eccbff2a21b4df6a359247ff8b7acebb471: Optional[Message] = None
+    n1eccbff2a21b4df6a359247ff8b7acebb475: Optional[Message] = None
     participant: Optional[ObservableObject] = None
     messageThread: Optional[types.Thread] = None
     visibility: Optional[bool] = None

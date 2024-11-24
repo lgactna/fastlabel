@@ -53,7 +53,7 @@ class Tool(core.UcoObject):
     """
 
     creator: Optional[identity.Identity] = None
-    references: Optional[XMLSchema.anyURI] = None
+    references: Optional[XMLSchema.xsd_anyURI] = None
     servicePack: Optional[str] = None
     toolType: Optional[str] = None
     version: Optional[str] = None
