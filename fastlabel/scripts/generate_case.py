@@ -209,7 +209,9 @@ class Property(BaseModel):
         Convert this property to a Pydantic field definition.
         """
         # Build the field definition
-        # TODO: Are there default values that need to be extracted?
+        
+        # NOTE: to the best of my knowledge, CASE/UCO does not use default values.
+        #       They are not supported by this library.
 
         # If the field name is a reserved keyword, append an underscore
         field_name = self.field_name
@@ -228,11 +230,6 @@ class Property(BaseModel):
         result = f"    {field_name}: {self.generate_type_annotation(containing_class)}"
 
         # Decide on the default value
-        #
-        # TODO: regarding the iterable vs not iterable problem
-        # maybe the strat is to treat EVERYTHING as a list unless cardinality is
-        # specified, and if the number of items is exactly one, treat it as a scalar
-        # when serialization is done
         if self.is_list:
             result += " = []"
         elif self.is_iri:
