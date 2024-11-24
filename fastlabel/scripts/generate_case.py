@@ -188,7 +188,7 @@ class Property(BaseModel):
         field_name = self.field_name
         if keyword.iskeyword(self.field_name):
             field_name += "_"
-            
+
         # Alternatively, if the field name is exactly that of its corresponding
         # class, append an underscore
         # TODO: this is hacky, a robust solution would require knowledge of all
@@ -303,6 +303,7 @@ class UCOModel(BaseModel):
         dependencies.discard(self.class_name)
         return dependencies
 
+
 class VocabularyModel(BaseModel):
     # Qualified class name, e.g. `vocabulary.TriggerTypeVocab`
     class_name: str
@@ -320,18 +321,20 @@ class VocabularyModel(BaseModel):
     # In general, this should be the name of the source turtle file (excluding
     # the .ttl extension).
     namespace: str
-    
+
     @classmethod
-    def from_datatype(cls, datatype: Any, g: Graph, namespace: str) -> "VocabularyModel":
+    def from_datatype(
+        cls, datatype: Any, g: Graph, namespace: str
+    ) -> "VocabularyModel":
         enum_name = get_local_name(datatype)
-        
+
         # Get rdfs:comment for docstring
         comment = None
         for c in g.objects(datatype, RDFS_NS.comment):
             if isinstance(c, Literal):
                 comment = str(c)
                 break
-        
+
         # Get the owl:equivalentClass and owl:oneOf list
         members = []
         eq_class = g.value(subject=datatype, predicate=OWL.equivalentClass)
@@ -344,16 +347,16 @@ class VocabularyModel(BaseModel):
                     # Get the string value of each item
                     value = str(item)
                     # Create a valid Python identifier for the enum member
-                    member_name = re.sub(r'\W|^(?=\d)', '_', value).upper()
+                    member_name = re.sub(r"\W|^(?=\d)", "_", value).upper()
                     members.append((member_name, value))
-        
+
         return VocabularyModel(
             class_name=enum_name,
             comment=comment,
             members=members,
             namespace=namespace,
         )
-        
+
     def to_enum(self) -> str:
         """
         Convert this datatype to a string enumeration.
@@ -366,17 +369,17 @@ class VocabularyModel(BaseModel):
 
         # Convert qualified name to local name
         class_name = self.class_name.split(".")[-1]
-                
+
         class_def = f"class {class_name}(str, Enum):"
         docstring = generate_docstring(self.comment)
         result += class_def + "\n" + docstring
-        
+
         # Add members
         for member_name, value in self.members:
             result += f"    {member_name} = '{value}'\n"
-        
+
         return result + "\n"
-        
+
 
 def generate_import_list(dependency_graph: dict[str, set[str]], namespace: str) -> str:
     """
@@ -408,7 +411,7 @@ def generate_import_list(dependency_graph: dict[str, set[str]], namespace: str) 
     # NOTE: we used to import individual objects from each namespace, now we just
     # import the whole namespace -- this is why the code is like this
     imports = ""
-    
+
     if grouped_dependencies:
         imports += f"from fastlabel.case import ({', '.join(sorted(grouped_dependencies.keys()))})\n"
     # for namespace, _ in grouped_dependencies.items():
@@ -416,7 +419,7 @@ def generate_import_list(dependency_graph: dict[str, set[str]], namespace: str) 
 
     # Always import Any and Optional -- these can be removed manually if not needed
     imports += "from typing import Any, Optional\n"
-    
+
     # Always import Enum -- these can be removed manually if not needed
     imports += "from enum import Enum\n"
 
@@ -426,7 +429,7 @@ def generate_import_list(dependency_graph: dict[str, set[str]], namespace: str) 
 def generate_classes_from_graph(g: Graph, namespace: str) -> tuple[str, str]:
     """
     Generate Python classes from a SHACL graph.
-    
+
     The return value is a 2-tuple, where the first element is the import list
     and the second element is the generated Python code for each class.
     """
@@ -478,6 +481,7 @@ def generate_enums_from_datatypes(graph):
         enum_definitions += model.to_enum()
     return enum_definitions
 
+
 if __name__ == "__main__":
     # Recursively search for all .ttl files in the /case_artifacts directory
     for artifact_file in get_artifacts_dir().glob("*/*.ttl"):
@@ -490,7 +494,7 @@ if __name__ == "__main__":
         # Load the RDF graph for this file
         g = Graph()
         g.parse(artifact_file, format="turtle")
-        
+
         vocabularies = generate_enums_from_datatypes(g)
 
         imports, class_defs = generate_classes_from_graph(g, namespace)
@@ -504,7 +508,9 @@ if __name__ == "__main__":
             '''  # noqa: W293
         )
 
-        class_file = docstring + "\n" + imports + "\n" + vocabularies + "\n" + class_defs
+        class_file = (
+            docstring + "\n" + imports + "\n" + vocabularies + "\n" + class_defs
+        )
 
         # Write file based on the artifact file name
         target_file = get_target_dir() / f"{namespace}.py"

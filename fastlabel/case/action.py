@@ -1,13 +1,13 @@
-
 """
 Auto-generated classes from the SHACL graph in action.ttl.
 
 This file was generated using the `case_models.py` script.
 """
 
-from fastlabel.case import (core, location)
-from typing import Any, Optional
 from enum import Enum
+from typing import Any, Optional
+
+from fastlabel.case import core, location
 
 
 class Action(core.UcoObject):
@@ -31,6 +31,7 @@ class Action(core.UcoObject):
     actionStatus: Optional[Any] = None
     actionStatus: Optional[Any] = None
 
+
 class ActionArgumentFacet(core.Facet):
     """
     An action argument facet is a grouping of characteristics unique to a single
@@ -39,6 +40,7 @@ class ActionArgumentFacet(core.Facet):
 
     argumentName: str
     value: str
+
 
 class ActionEstimationFacet(core.Facet):
     """
@@ -51,6 +53,7 @@ class ActionEstimationFacet(core.Facet):
     estimatedEfficacy: Optional[str] = None
     estimatedImpact: Optional[str] = None
     objective: Optional[str] = None
+
 
 class ActionFrequencyFacet(core.Facet):
     """
@@ -65,6 +68,7 @@ class ActionFrequencyFacet(core.Facet):
     trend: Any
     trend: Optional[Any] = None
 
+
 class ActionPattern(Action):
     """
     An action pattern is a grouping of characteristics unique to a combination
@@ -73,6 +77,7 @@ class ActionPattern(Action):
 
     pass
 
+
 class ArrayOfAction(core.UcoInherentCharacterizationThing):
     """
     An array of action is an ordered list of references to things that may be
@@ -80,6 +85,7 @@ class ArrayOfAction(core.UcoInherentCharacterizationThing):
     """
 
     action_: Action
+
 
 class ActionLifecycle(ActionPattern):
     """
@@ -93,4 +99,3 @@ class ActionLifecycle(ActionPattern):
     startTime: Optional[str] = None
     actionCount: Optional[int] = None
     actionStatus: Optional[Any] = None
-

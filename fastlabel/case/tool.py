@@ -1,13 +1,13 @@
-
 """
 Auto-generated classes from the SHACL graph in tool.ttl.
 
 This file was generated using the `case_models.py` script.
 """
 
-from fastlabel.case import (configuration, core, identity)
-from typing import Any, Optional
 from enum import Enum
+from typing import Any, Optional
+
+from fastlabel.case import configuration, core, identity
 
 
 class BuildUtilityType(core.UcoInherentCharacterizationThing):
@@ -19,6 +19,7 @@ class BuildUtilityType(core.UcoInherentCharacterizationThing):
     buildUtilityName: Optional[str] = None
     cpeid: Optional[str] = None
     swid: Optional[str] = None
+
 
 class CompilerType(core.UcoInherentCharacterizationThing):
     """
@@ -35,6 +36,7 @@ class CompilerType(core.UcoInherentCharacterizationThing):
     cpeid: Optional[str] = None
     swid: Optional[str] = None
 
+
 class LibraryType(core.UcoInherentCharacterizationThing):
     """
     A library type is a grouping of characteristics unique to a collection of
@@ -43,6 +45,7 @@ class LibraryType(core.UcoInherentCharacterizationThing):
 
     libraryName: Optional[str] = None
     libraryVersion: Optional[str] = None
+
 
 class Tool(core.UcoObject):
     """
@@ -55,6 +58,7 @@ class Tool(core.UcoObject):
     servicePack: Optional[str] = None
     toolType: Optional[str] = None
     version: Optional[str] = None
+
 
 class BuildInformationType(core.UcoInherentCharacterizationThing):
     """
@@ -75,6 +79,7 @@ class BuildInformationType(core.UcoInherentCharacterizationThing):
     buildScript: Optional[str] = None
     buildVersion: Optional[str] = None
 
+
 class AnalyticTool(Tool):
     """
     An analytic tool is an artifact of hardware and/or software utilized to
@@ -83,6 +88,7 @@ class AnalyticTool(Tool):
     """
 
     pass
+
 
 class ConfiguredTool(Tool):
     """
@@ -93,6 +99,7 @@ class ConfiguredTool(Tool):
     usesConfiguration: Optional[configuration.Configuration] = None
     isConfigurationOf: Optional[Tool] = None
 
+
 class DefensiveTool(Tool):
     """
     A defensive tool is an artifact of hardware and/or software utilized to
@@ -100,6 +107,7 @@ class DefensiveTool(Tool):
     """
 
     pass
+
 
 class MaliciousTool(Tool):
     """
@@ -109,6 +117,7 @@ class MaliciousTool(Tool):
 
     pass
 
+
 class BuildFacet(core.Facet):
     """
     A build facet is a grouping of characteristics unique to a particular
@@ -116,4 +125,3 @@ class BuildFacet(core.Facet):
     """
 
     buildInformation: Optional[BuildInformationType] = None
-
