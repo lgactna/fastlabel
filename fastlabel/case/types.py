@@ -4,9 +4,9 @@ Auto-generated classes from the SHACL graph in types.ttl.
 This file was generated using the `case_models.py` script.
 """
 
-from typing import Any, Optional
+from typing import Optional
 
-from fastlabel.case import co, core
+from fastlabel.case import XMLSchema, co, core, vocabulary
 
 
 class DictionaryEntry(core.UcoInherentCharacterizationThing):
@@ -27,10 +27,8 @@ class Hash(core.UcoInherentCharacterizationThing):
     [based on https://en.wikipedia.org/wiki/Cryptographic_hash_function]
     """
 
-    hashValue: str
-    hashMethod: Optional[str] = None
-    hashMethod: Any
-    hashMethod: Optional[Any] = None
+    hashValue: XMLSchema.hexBinary
+    hashMethod: Optional[vocabulary.HashNameVocab] = None
 
 
 class ThreadItem(co.Item):

@@ -5,9 +5,18 @@ This file was generated using the `case_models.py` script.
 """
 
 from enum import Enum
-from typing import Any, Optional
+from typing import Optional
 
-from fastlabel.case import action, configuration, core, identity, location, types
+from fastlabel.case import (
+    XMLSchema,
+    action,
+    configuration,
+    core,
+    identity,
+    location,
+    types,
+    vocabulary,
+)
 
 
 class NetworkSocketAddressFamily(str, Enum):
@@ -195,17 +204,6 @@ class EncryptedStreamFacet(core.Facet):
     encryptionKey: Optional[str] = None
 
 
-class ICMPConnectionFacet(core.Facet):
-    """
-    An ICMP connection facet is a grouping of characteristics unique to portions
-    of a network connection that are conformant to the Internet Control Message
-    Protocol (ICMP) standard.
-    """
-
-    icmpCode: Optional[str] = None
-    icmpType: Optional[str] = None
-
-
 class ImageFacet(core.Facet):
     """
     An image facet is a grouping of characteristics unique to a complete copy of
@@ -269,30 +267,6 @@ class PropertiesEnumeratedEffectFacet(core.Facet):
     properties: Optional[str] = None
 
 
-class SQLiteBlobFacet(core.Facet):
-    """
-    An SQLite blob facet is a grouping of characteristics unique to a blob
-    (binary large object) of data within an SQLite database. [based on
-    https://en.wikipedia.org/wiki/SQLite]
-    """
-
-    rowIndex: Optional[str] = None
-    columnName: Optional[str] = None
-    rowCondition: Optional[str] = None
-    tableName: Optional[str] = None
-
-
-class TCPConnectionFacet(core.Facet):
-    """
-    A TCP connection facet is a grouping of characteristics unique to portions
-    of a network connection that are conformant to the Transmission Control
-    Protocl (TCP) standard.
-    """
-
-    destinationFlags: Optional[str] = None
-    sourceFlags: Optional[str] = None
-
-
 class UNIXVolumeFacet(core.Facet):
     """
     A UNIX volume facet is a grouping of characteristics unique to a single
@@ -354,6 +328,20 @@ class WindowsServiceFacet(core.Facet):
     descriptions: Optional[str] = None
 
 
+class WirelessNetworkConnectionFacet(core.Facet):
+    """
+    A wireless network connection facet is a grouping of characteristics unique
+    to a connection (completed or attempted) across an IEEE 802.11
+    standards-conformant digital network (a group of two or more computer
+    systems linked together). [based on
+    https://www.webopedia.com/TERM/N/network.html]
+    """
+
+    baseStation: Optional[str] = None
+    password: Optional[str] = None
+    ssid: Optional[str] = None
+
+
 class X509V3ExtensionsFacet(core.Facet):
     """
     An X.509 v3 certificate extensions facet is a grouping of characteristics
@@ -377,52 +365,6 @@ class X509V3ExtensionsFacet(core.Facet):
     subjectAlternativeName: Optional[str] = None
     subjectDirectoryAttributes: Optional[str] = None
     subjectKeyIdentifier: Optional[str] = None
-
-
-class RecoveredObjectFacet(core.Facet):
-    """
-    Recoverability status of name, metadata, and content.
-    """
-
-    contentRecoveredStatus: Optional[str] = None
-    metadataRecoveredStatus: Optional[str] = None
-    nameRecoveredStatus: Optional[str] = None
-    nameRecoveredStatus: Optional[Any] = None
-    metadataRecoveredStatus: Optional[Any] = None
-    contentRecoveredStatus: Optional[Any] = None
-    nameRecoveredStatus: Optional[Any] = None
-    metadataRecoveredStatus: Optional[Any] = None
-    contentRecoveredStatus: Optional[Any] = None
-
-
-class WindowsVolumeFacet(core.Facet):
-    """
-    A Windows volume facet is a grouping of characteristics unique to a single
-    accessible storage area (volume) with a single Windows file system. [based
-    on https://en.wikipedia.org/wiki/Volume_(computing)]
-    """
-
-    driveLetter: Optional[str] = None
-    driveType: Optional[str] = None
-    windowsVolumeAttributes: list[str] = None
-    driveType: Optional[Any] = None
-    driveType: Optional[Any] = None
-
-
-class WirelessNetworkConnectionFacet(core.Facet):
-    """
-    A wireless network connection facet is a grouping of characteristics unique
-    to a connection (completed or attempted) across an IEEE 802.11
-    standards-conformant digital network (a group of two or more computer
-    systems linked together). [based on
-    https://www.webopedia.com/TERM/N/network.html]
-    """
-
-    baseStation: Optional[str] = None
-    password: Optional[str] = None
-    ssid: Optional[str] = None
-    wirelessNetworkSecurityMode: Optional[Any] = None
-    wirelessNetworkSecurityMode: Optional[Any] = None
 
 
 class FilePermissionsFacet(core.Facet):
@@ -455,23 +397,7 @@ class AccountFacet(core.Facet):
     modifiedTime: Optional[str] = None
     observableCreatedTime: Optional[str] = None
     accountIdentifier: Optional[str] = None
-    accountType: Optional[str] = None
-    accountType: Optional[Any] = None
-    accountType: Optional[Any] = None
-
-
-class AndroidDeviceFacet(core.Facet):
-    """
-    An Android device facet is a grouping of characteristics unique to an
-    Android device. [based on
-    https://en.wikipedia.org/wiki/Android_(operating_system)]
-    """
-
-    isADBRootEnabled: Optional[bool] = None
-    isSURootEnabled: Optional[bool] = None
-    androidID: Optional[str] = None
-    androidFingerprint: Optional[str] = None
-    androidVersion: Optional[str] = None
+    accountType: Optional[vocabulary.AccountTypeVocab] = None
 
 
 class DigitalAccountFacet(core.Facet):
@@ -534,8 +460,6 @@ class TableFieldFacet(core.Facet):
     recordFieldName: Optional[str] = None
     tableName: Optional[str] = None
     tableSchema: Optional[str] = None
-    recordFieldValue: Optional[Any] = None
-    recordRowID: Optional[Any] = None
 
 
 class UserAccountFacet(core.Facet):
@@ -573,23 +497,6 @@ class AudioFacet(core.Facet):
     duration: Optional[int] = None
     audioType: Optional[str] = None
     format: Optional[str] = None
-
-
-class AutonomousSystemFacet(core.Facet):
-    """
-    An autonomous system facet is a grouping of characteristics unique to a
-    collection of connected Internet Protocol (IP) routing prefixes under the
-    control of one or more network operators on behalf of a single
-    administrative entity or domain that presents a common, clearly defined
-    routing policy to the Internet. [based on
-    https://en.wikipedia.org/wiki/Autonomous_system_(Internet)]
-    """
-
-    regionalInternetRegistry: Optional[Any] = None
-    regionalInternetRegistry: Optional[str] = None
-    number: Optional[int] = None
-    asHandle: Optional[str] = None
-    regionalInternetRegistry: Optional[Any] = None
 
 
 class DataRangeFacet(core.Facet):
@@ -681,25 +588,6 @@ class FragmentFacet(core.Facet):
     totalFragments: Optional[int] = None
 
 
-class MemoryFacet(core.Facet):
-    """
-    A memory facet is a grouping of characteristics unique to a particular
-    region of temporary information storage (e.g., RAM (random access memory),
-    ROM (read only memory)) on a digital device.
-    """
-
-    isInjected: Optional[bool] = None
-    isMapped: Optional[bool] = None
-    isProtected: Optional[bool] = None
-    isVolatile: Optional[bool] = None
-    regionEndAddress: Optional[str] = None
-    regionStartAddress: Optional[str] = None
-    regionSize: Optional[int] = None
-    blockType: Optional[str] = None
-    blockType: Optional[Any] = None
-    blockType: Optional[Any] = None
-
-
 class MftRecordFacet(core.Facet):
     """
     An MFT record facet is a grouping of characteristics unique to the details
@@ -781,22 +669,40 @@ class VolumeFacet(core.Facet):
     volumeID: Optional[str] = None
 
 
-class WindowsThreadFacet(core.Facet):
+class AndroidDeviceFacet(core.Facet):
     """
-    A Windows thread facet is a grouping os characteristics unique to a single
-    thread of execution within a Windows process.
+    An Android device facet is a grouping of characteristics unique to an
+    Android device. [based on
+    https://en.wikipedia.org/wiki/Android_(operating_system)]
     """
 
-    observableCreatedTime: Optional[str] = None
-    parameterAddress: Optional[str] = None
-    startAddress: Optional[str] = None
-    priority: Optional[int] = None
-    stackSize: Optional[int] = None
-    threadID: Optional[int] = None
-    context: Optional[str] = None
-    runningStatus: Optional[str] = None
-    securityAttributes: Optional[str] = None
-    creationFlags: Optional[str] = None
+    isADBRootEnabled: Optional[bool] = None
+    isSURootEnabled: Optional[bool] = None
+    androidID: Optional[XMLSchema.hexBinary] = None
+    androidFingerprint: Optional[str] = None
+    androidVersion: Optional[str] = None
+
+
+class ICMPConnectionFacet(core.Facet):
+    """
+    An ICMP connection facet is a grouping of characteristics unique to portions
+    of a network connection that are conformant to the Internet Control Message
+    Protocol (ICMP) standard.
+    """
+
+    icmpCode: Optional[XMLSchema.hexBinary] = None
+    icmpType: Optional[XMLSchema.hexBinary] = None
+
+
+class TCPConnectionFacet(core.Facet):
+    """
+    A TCP connection facet is a grouping of characteristics unique to portions
+    of a network connection that are conformant to the Transmission Control
+    Protocl (TCP) standard.
+    """
+
+    destinationFlags: Optional[XMLSchema.hexBinary] = None
+    sourceFlags: Optional[XMLSchema.hexBinary] = None
 
 
 class AntennaFacet(core.Facet):
@@ -845,20 +751,6 @@ class EnvironmentVariable(core.UcoInherentCharacterizationThing):
     value: Optional[str] = None
 
 
-class ExtractedString(core.UcoInherentCharacterizationThing):
-    """
-    An extracted string is a grouping of characteristics unique to a series of
-    characters pulled from an observable object.
-    """
-
-    byteStringValue: Optional[str] = None
-    length: Optional[int] = None
-    encoding: Optional[str] = None
-    englishTranslation: Optional[str] = None
-    language: Optional[str] = None
-    stringValue: Optional[str] = None
-
-
 class GlobalFlagType(core.UcoInherentCharacterizationThing):
     """
     A global flag type is a grouping of characteristics unique to the Windows
@@ -868,7 +760,7 @@ class GlobalFlagType(core.UcoInherentCharacterizationThing):
     by Solomon, Russinovich, and Ionescu]
     """
 
-    hexadecimalValue: Optional[str] = None
+    hexadecimalValue: Optional[XMLSchema.hexBinary] = None
     abbreviation: Optional[str] = None
     destination: Optional[str] = None
     symbolicName: Optional[str] = None
@@ -912,28 +804,6 @@ class IShowMessageActionType(core.UcoInherentCharacterizationThing):
     showMessageTitle: Optional[str] = None
 
 
-class TriggerType(core.UcoInherentCharacterizationThing):
-    """
-    A trigger type is a grouping of characterizes unique to a set of criteria
-    that, when met, starts the execution of a task within a Windows operating
-    system. [based on
-    https://docs.microsoft.com/en-us/windows/win32/taskschd/task-triggers]
-    """
-
-    isEnabled: Optional[bool] = None
-    triggerBeginTime: Optional[str] = None
-    triggerEndTime: Optional[str] = None
-    triggerDelay: Optional[str] = None
-    triggerMaxRunTime: Optional[str] = None
-    triggerSessionChangeType: Optional[str] = None
-    triggerFrequency: Optional[str] = None
-    triggerType: Optional[str] = None
-    triggerFrequency: Optional[Any] = None
-    triggerType: Optional[Any] = None
-    triggerFrequency: Optional[Any] = None
-    triggerType: Optional[Any] = None
-
-
 class WindowsPEFileHeader(core.UcoInherentCharacterizationThing):
     """
     A Windows PE file header is a grouping of characteristics unique to the
@@ -942,44 +812,6 @@ class WindowsPEFileHeader(core.UcoInherentCharacterizationThing):
     """
 
     timeDateStamp: Optional[str] = None
-
-
-class WindowsPEOptionalHeader(core.UcoInherentCharacterizationThing):
-    """
-    A Windows PE optional header is a grouping of characteristics unique to the
-    'optional header' of a Windows PE (Portable Executable) file, consisting of
-    a collection of metadata about the executable code structure of the file.
-    """
-
-    majorLinkerVersion: Optional[str] = None
-    minorLinkerVersion: Optional[str] = None
-    addressOfEntryPoint: Optional[str] = None
-    baseOfCode: Optional[str] = None
-    checksum: Optional[str] = None
-    fileAlignment: Optional[str] = None
-    imageBase: Optional[str] = None
-    loaderFlags: Optional[str] = None
-    numberOfRVAAndSizes: Optional[str] = None
-    sectionAlignment: Optional[str] = None
-    sizeOfCode: Optional[str] = None
-    sizeOfHeaders: Optional[str] = None
-    sizeOfHeapCommit: Optional[str] = None
-    sizeOfHeapReserve: Optional[str] = None
-    sizeOfImage: Optional[str] = None
-    sizeOfInitializedData: Optional[str] = None
-    sizeOfStackCommit: Optional[str] = None
-    sizeOfStackReserve: Optional[str] = None
-    sizeOfUninitializedData: Optional[str] = None
-    win32VersionValue: Optional[str] = None
-    dllCharacteristics: Optional[str] = None
-    magic: Optional[str] = None
-    majorImageVersion: Optional[str] = None
-    majorOSVersion: Optional[str] = None
-    majorSubsystemVersion: Optional[str] = None
-    minorImageVersion: Optional[str] = None
-    minorOSVersion: Optional[str] = None
-    minorSubsystemVersion: Optional[str] = None
-    subsystem: Optional[str] = None
 
 
 class WindowsPESection(core.UcoInherentCharacterizationThing):
@@ -1011,16 +843,19 @@ class WindowsRegistryValue(core.UcoInherentCharacterizationThing):
     dataType: Optional[str] = None
 
 
-class ContactAddress(core.UcoInherentCharacterizationThing):
+class AutonomousSystemFacet(core.Facet):
     """
-    A contact address is a grouping of characteristics unique to a geolocation
-    address of a contact entity.
+    An autonomous system facet is a grouping of characteristics unique to a
+    collection of connected Internet Protocol (IP) routing prefixes under the
+    control of one or more network operators on behalf of a single
+    administrative entity or domain that presents a common, clearly defined
+    routing policy to the Internet. [based on
+    https://en.wikipedia.org/wiki/Autonomous_system_(Internet)]
     """
 
-    geolocationAddress: Optional[location.Location] = None
-    contactAddressScope: Optional[str] = None
-    contactAddressScope: Optional[Any] = None
-    contactAddressScope: Optional[Any] = None
+    regionalInternetRegistry: Optional[vocabulary.RegionalRegistryTypeVocab] = None
+    number: Optional[int] = None
+    asHandle: Optional[str] = None
 
 
 class DeviceFacet(core.Facet):
@@ -1086,6 +921,16 @@ class SoftwareFacet(core.Facet):
     version: Optional[str] = None
 
 
+class ContactAddress(core.UcoInherentCharacterizationThing):
+    """
+    A contact address is a grouping of characteristics unique to a geolocation
+    address of a contact entity.
+    """
+
+    geolocationAddress: Optional[location.Location] = None
+    contactAddressScope: Optional[vocabulary.ContactAddressScopeVocab] = None
+
+
 class EXIFFacet(core.Facet):
     """
     An EXIF (exchangeable image file format) facet is a grouping of
@@ -1127,8 +972,6 @@ class OperatingSystemFacet(core.Facet):
     installDate: Optional[str] = None
     bitness: Optional[str] = None
     advertisingID: Optional[str] = None
-    manufacturer: Optional[Any] = None
-    version: Optional[Any] = None
 
 
 class WindowsProcessFacet(core.Facet):
@@ -1143,6 +986,37 @@ class WindowsProcessFacet(core.Facet):
     ownerSID: Optional[str] = None
     priority: Optional[str] = None
     windowTitle: Optional[str] = None
+
+
+class ExtractedString(core.UcoInherentCharacterizationThing):
+    """
+    An extracted string is a grouping of characteristics unique to a series of
+    characters pulled from an observable object.
+    """
+
+    byteStringValue: Optional[XMLSchema.base64Binary] = None
+    length: Optional[int] = None
+    encoding: Optional[str] = None
+    englishTranslation: Optional[str] = None
+    language: Optional[str] = None
+    stringValue: Optional[str] = None
+
+
+class MemoryFacet(core.Facet):
+    """
+    A memory facet is a grouping of characteristics unique to a particular
+    region of temporary information storage (e.g., RAM (random access memory),
+    ROM (read only memory)) on a digital device.
+    """
+
+    isInjected: Optional[bool] = None
+    isMapped: Optional[bool] = None
+    isProtected: Optional[bool] = None
+    isVolatile: Optional[bool] = None
+    regionEndAddress: Optional[XMLSchema.hexBinary] = None
+    regionStartAddress: Optional[XMLSchema.hexBinary] = None
+    regionSize: Optional[int] = None
+    blockType: Optional[vocabulary.MemoryBlockTypeVocab] = None
 
 
 class ObservableAction(action.Action):
@@ -1168,6 +1042,115 @@ class ObservableObject(core.Item):
 
     hasChanged: Optional[bool] = None
     state: Optional[str] = None
+
+
+class RecoveredObjectFacet(core.Facet):
+    """
+    Recoverability status of name, metadata, and content.
+    """
+
+    contentRecoveredStatus: Optional[vocabulary.RecoveredObjectStatusVocab] = None
+    metadataRecoveredStatus: Optional[vocabulary.RecoveredObjectStatusVocab] = None
+    nameRecoveredStatus: Optional[vocabulary.RecoveredObjectStatusVocab] = None
+
+
+class SQLiteBlobFacet(core.Facet):
+    """
+    An SQLite blob facet is a grouping of characteristics unique to a blob
+    (binary large object) of data within an SQLite database. [based on
+    https://en.wikipedia.org/wiki/SQLite]
+    """
+
+    rowIndex: Optional[XMLSchema.positiveInteger] = None
+    columnName: Optional[str] = None
+    rowCondition: Optional[str] = None
+    tableName: Optional[str] = None
+
+
+class TriggerType(core.UcoInherentCharacterizationThing):
+    """
+    A trigger type is a grouping of characterizes unique to a set of criteria
+    that, when met, starts the execution of a task within a Windows operating
+    system. [based on
+    https://docs.microsoft.com/en-us/windows/win32/taskschd/task-triggers]
+    """
+
+    isEnabled: Optional[bool] = None
+    triggerBeginTime: Optional[str] = None
+    triggerEndTime: Optional[str] = None
+    triggerDelay: Optional[str] = None
+    triggerMaxRunTime: Optional[str] = None
+    triggerSessionChangeType: Optional[str] = None
+    triggerFrequency: Optional[vocabulary.TriggerFrequencyVocab] = None
+    triggerType: Optional[vocabulary.TriggerTypeVocab] = None
+
+
+class WindowsPEOptionalHeader(core.UcoInherentCharacterizationThing):
+    """
+    A Windows PE optional header is a grouping of characteristics unique to the
+    'optional header' of a Windows PE (Portable Executable) file, consisting of
+    a collection of metadata about the executable code structure of the file.
+    """
+
+    majorLinkerVersion: Optional[XMLSchema.byte] = None
+    minorLinkerVersion: Optional[XMLSchema.byte] = None
+    addressOfEntryPoint: Optional[XMLSchema.unsignedInt] = None
+    baseOfCode: Optional[XMLSchema.unsignedInt] = None
+    checksum: Optional[XMLSchema.unsignedInt] = None
+    fileAlignment: Optional[XMLSchema.unsignedInt] = None
+    imageBase: Optional[XMLSchema.unsignedInt] = None
+    loaderFlags: Optional[XMLSchema.unsignedInt] = None
+    numberOfRVAAndSizes: Optional[XMLSchema.unsignedInt] = None
+    sectionAlignment: Optional[XMLSchema.unsignedInt] = None
+    sizeOfCode: Optional[XMLSchema.unsignedInt] = None
+    sizeOfHeaders: Optional[XMLSchema.unsignedInt] = None
+    sizeOfHeapCommit: Optional[XMLSchema.unsignedInt] = None
+    sizeOfHeapReserve: Optional[XMLSchema.unsignedInt] = None
+    sizeOfImage: Optional[XMLSchema.unsignedInt] = None
+    sizeOfInitializedData: Optional[XMLSchema.unsignedInt] = None
+    sizeOfStackCommit: Optional[XMLSchema.unsignedInt] = None
+    sizeOfStackReserve: Optional[XMLSchema.unsignedInt] = None
+    sizeOfUninitializedData: Optional[XMLSchema.unsignedInt] = None
+    win32VersionValue: Optional[XMLSchema.unsignedInt] = None
+    dllCharacteristics: Optional[XMLSchema.unsignedShort] = None
+    magic: Optional[XMLSchema.unsignedShort] = None
+    majorImageVersion: Optional[XMLSchema.unsignedShort] = None
+    majorOSVersion: Optional[XMLSchema.unsignedShort] = None
+    majorSubsystemVersion: Optional[XMLSchema.unsignedShort] = None
+    minorImageVersion: Optional[XMLSchema.unsignedShort] = None
+    minorOSVersion: Optional[XMLSchema.unsignedShort] = None
+    minorSubsystemVersion: Optional[XMLSchema.unsignedShort] = None
+    subsystem: Optional[XMLSchema.unsignedShort] = None
+
+
+class WindowsThreadFacet(core.Facet):
+    """
+    A Windows thread facet is a grouping os characteristics unique to a single
+    thread of execution within a Windows process.
+    """
+
+    observableCreatedTime: Optional[str] = None
+    parameterAddress: Optional[XMLSchema.hexBinary] = None
+    startAddress: Optional[XMLSchema.hexBinary] = None
+    priority: Optional[int] = None
+    stackSize: Optional[int] = None
+    threadID: Optional[int] = None
+    context: Optional[str] = None
+    runningStatus: Optional[str] = None
+    securityAttributes: Optional[str] = None
+    creationFlags: Optional[XMLSchema.unsignedInt] = None
+
+
+class WindowsVolumeFacet(core.Facet):
+    """
+    A Windows volume facet is a grouping of characteristics unique to a single
+    accessible storage area (volume) with a single Windows file system. [based
+    on https://en.wikipedia.org/wiki/Volume_(computing)]
+    """
+
+    driveLetter: Optional[str] = None
+    driveType: Optional[vocabulary.WindowsDriveTypeVocab] = None
+    windowsVolumeAttributes: list[vocabulary.WindowsVolumeAttributeVocab] = None
 
 
 class PropertyReadEffectFacet(DefinedEffectFacet):
@@ -1300,26 +1283,6 @@ class ExtractedStringsFacet(core.Facet):
     strings: Optional[ExtractedString] = None
 
 
-class WindowsPEBinaryFileFacet(core.Facet):
-    """
-    A Windows PE binary file facet is a grouping of characteristics unique to a
-    Windows portable executable (PE) file.
-    """
-
-    optionalHeader: Optional[WindowsPEOptionalHeader] = None
-    sections: Optional[WindowsPESection] = None
-    fileHeaderHashes: Optional[types.Hash] = None
-    timeDateStamp: Optional[str] = None
-    pointerToSymbolTable: Optional[str] = None
-    numberOfSections: Optional[int] = None
-    numberOfSymbols: Optional[int] = None
-    sizeOfOptionalHeader: Optional[int] = None
-    impHash: Optional[str] = None
-    peType: Optional[str] = None
-    machine: Optional[str] = None
-    characteristics: Optional[str] = None
-
-
 class API(ObservableObject):
     """
     An API (application programming interface) is a computing interface that
@@ -1431,7 +1394,7 @@ class BrowserBookmarkFacet(core.Facet):
     """
 
     application: Optional[ObservableObject] = None
-    urlTargeted: Optional[str] = None
+    urlTargeted: Optional[XMLSchema.anyURI] = None
     accessedTime: Optional[str] = None
     modifiedTime: Optional[str] = None
     observableCreatedTime: Optional[str] = None
@@ -1605,9 +1568,7 @@ class ContactEmail(core.UcoInherentCharacterizationThing):
     """
 
     emailAddress: Optional[ObservableObject] = None
-    contactEmailScope: Optional[str] = None
-    contactEmailScope: Optional[Any] = None
-    contactEmailScope: Optional[Any] = None
+    contactEmailScope: Optional[vocabulary.ContactEmailScopeVocab] = None
 
 
 class ContactList(ObservableObject):
@@ -1644,9 +1605,7 @@ class ContactPhone(core.UcoInherentCharacterizationThing):
     """
 
     contactPhoneNumber: Optional[ObservableObject] = None
-    contactPhoneScope: Optional[str] = None
-    contactPhoneScope: Optional[Any] = None
-    contactPhoneScope: Optional[Any] = None
+    contactPhoneScope: Optional[vocabulary.ContactPhoneScopeVocab] = None
 
 
 class ContactProfile(core.UcoInherentCharacterizationThing):
@@ -1666,9 +1625,7 @@ class ContactSIP(core.UcoInherentCharacterizationThing):
     """
 
     sipAddress: Optional[ObservableObject] = None
-    contactSIPScope: Optional[str] = None
-    contactSIPScope: Optional[Any] = None
-    contactSIPScope: Optional[Any] = None
+    contactSIPScope: Optional[vocabulary.ContactSIPScopeVocab] = None
 
 
 class ContactURL(core.UcoInherentCharacterizationThing):
@@ -1678,9 +1635,7 @@ class ContactURL(core.UcoInherentCharacterizationThing):
     """
 
     url: Optional[ObservableObject] = None
-    contactURLScope: Optional[str] = None
-    contactURLScope: Optional[Any] = None
-    contactURLScope: Optional[Any] = None
+    contactURLScope: Optional[vocabulary.ContactURLScopeVocab] = None
 
 
 class ContentData(ObservableObject):
@@ -1704,9 +1659,7 @@ class ContentDataFacet(core.Facet):
     magicNumber: Optional[str] = None
     mimeClass: Optional[str] = None
     mimeType: Optional[str] = None
-    byteOrder: Optional[str] = None
-    byteOrder: Optional[Any] = None
-    byteOrder: Optional[Any] = None
+    byteOrder: Optional[vocabulary.EndiannessTypeVocab] = None
 
 
 class CookieHistory(ObservableObject):
@@ -2330,9 +2283,7 @@ class TaskActionType(core.UcoInherentCharacterizationThing):
     iShowMessageAction: Optional[IShowMessageActionType] = None
     iEmailAction: Optional[ObservableObject] = None
     actionID: Optional[str] = None
-    actionType: Optional[str] = None
-    actionType: Optional[Any] = None
-    actionType: Optional[Any] = None
+    actionType: Optional[vocabulary.TaskActionTypeVocab] = None
 
 
 class TwitterProfileFacet(core.Facet):
@@ -2429,10 +2380,8 @@ class URLVisitFacet(core.Facet):
     fromURLVisit: Optional[ObservableObject] = None
     url: Optional[ObservableObject] = None
     visitTime: Optional[str] = None
-    visitDuration: Optional[str] = None
-    urlTransitionType: Optional[str] = None
-    urlTransitionType: Optional[Any] = None
-    urlTransitionType: Optional[Any] = None
+    visitDuration: Optional[XMLSchema.duration] = None
+    urlTransitionType: Optional[vocabulary.URLTransitionTypeVocab] = None
 
 
 class UserSession(ObservableObject):
@@ -2745,6 +2694,26 @@ class X509V3Certificate(ObservableObject):
     An X.509 v3 certificate is a public key digital identity certificate
     conformant to the X.509 v3 PKI (Public Key Infrastructure) standard.
     """
+
+
+class WindowsPEBinaryFileFacet(core.Facet):
+    """
+    A Windows PE binary file facet is a grouping of characteristics unique to a
+    Windows portable executable (PE) file.
+    """
+
+    optionalHeader: Optional[WindowsPEOptionalHeader] = None
+    sections: Optional[WindowsPESection] = None
+    fileHeaderHashes: Optional[types.Hash] = None
+    timeDateStamp: Optional[str] = None
+    pointerToSymbolTable: Optional[XMLSchema.hexBinary] = None
+    numberOfSections: Optional[int] = None
+    numberOfSymbols: Optional[int] = None
+    sizeOfOptionalHeader: Optional[int] = None
+    impHash: Optional[str] = None
+    peType: Optional[str] = None
+    machine: Optional[str] = None
+    characteristics: Optional[XMLSchema.unsignedShort] = None
 
 
 class IPv4AddressFacet(IPAddressFacet):
@@ -3105,10 +3074,10 @@ class MessageThreadFacet(core.Facet):
     commentary of electronic messages pertaining to one topic or question.
     """
 
-    nb8058c61738e4f7688107d6cb6194024b463: Optional[Message] = None
-    nb8058c61738e4f7688107d6cb6194024b467: Optional[Message] = None
-    nb8058c61738e4f7688107d6cb6194024b471: Optional[Message] = None
-    nb8058c61738e4f7688107d6cb6194024b475: Optional[Message] = None
+    ndee7f2c7ef294dbe9a73e1b60194c7fcb463: Optional[Message] = None
+    ndee7f2c7ef294dbe9a73e1b60194c7fcb467: Optional[Message] = None
+    ndee7f2c7ef294dbe9a73e1b60194c7fcb471: Optional[Message] = None
+    ndee7f2c7ef294dbe9a73e1b60194c7fcb475: Optional[Message] = None
     participant: Optional[ObservableObject] = None
     messageThread: Optional[types.Thread] = None
     visibility: Optional[bool] = None
@@ -3264,15 +3233,9 @@ class WindowsTaskFacet(core.Facet):
     parameters: Optional[str] = None
     taskComment: Optional[str] = None
     taskCreator: Optional[str] = None
-    flags: Optional[str] = None
-    priority: Optional[str] = None
-    status: Optional[str] = None
-    priority: Optional[Any] = None
-    status: Optional[Any] = None
-    flags: Optional[Any] = None
-    priority: Optional[Any] = None
-    status: Optional[Any] = None
-    flags: Optional[Any] = None
+    flags: Optional[vocabulary.TaskFlagVocab] = None
+    priority: Optional[vocabulary.TaskPriorityVocab] = None
+    status: Optional[vocabulary.TaskStatusVocab] = None
 
 
 class URLHistoryFacet(core.Facet):
@@ -3292,8 +3255,7 @@ class WhoIsFacet(core.Facet):
     https://en.wikipedia.org/wiki/WHOIS]
     """
 
-    regionalInternetRegistry: Optional[Any] = None
-    regionalInternetRegistry: Optional[str] = None
+    regionalInternetRegistry: Optional[vocabulary.RegionalRegistryTypeVocab] = None
     domainName: Optional[ObservableObject] = None
     ipAddress: Optional[ObservableObject] = None
     registrantContactInfo: Optional[ObservableObject] = None
@@ -3308,11 +3270,8 @@ class WhoIsFacet(core.Facet):
     remarks: Optional[str] = None
     sponsoringRegistrar: Optional[str] = None
     registrantIDs: Optional[str] = None
-    dnssec: Optional[str] = None
-    status: Optional[str] = None
-    regionalInternetRegistry: Optional[Any] = None
-    status: Optional[Any] = None
-    status: Optional[Any] = None
+    dnssec: Optional[vocabulary.WhoisDNSSECTypeVocab] = None
+    status: Optional[vocabulary.WhoisStatusTypeVocab] = None
 
 
 class ApplicationAccount(DigitalAccount):
@@ -3619,9 +3578,7 @@ class WhoisContactFacet(ContactFacet):
     https://en.wikipedia.org/wiki/WHOIS]
     """
 
-    whoisContactType: Optional[str] = None
-    whoisContactType: Optional[Any] = None
-    whoisContactType: Optional[Any] = None
+    whoisContactType: Optional[vocabulary.WhoisContactTypeVocab] = None
 
 
 class BlackberryPhone(SmartPhone):

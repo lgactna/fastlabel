@@ -34,6 +34,8 @@ DATATYPE_MAPPING = {
     XSD.date: "str",
 }
 
+UNKNOWN_DATATYPE_VAL = "UNKNOWN.UNKNOWN"
+
 
 def get_local_name(uri: Any, components: int = 1) -> str:
     """
@@ -111,17 +113,23 @@ class Property(BaseModel):
         # Handle datatype
         datatype = g.value(prop_list, SH.datatype)
         if datatype:
-            python_type = DATATYPE_MAPPING.get(datatype, "str")
+            # Check if a native mapping exists
+            if datatype in DATATYPE_MAPPING:
+                python_type = DATATYPE_MAPPING[datatype]
+            else:
+                # If not, use the URI
+                python_type = get_local_name(datatype, 2)
         else:
             # Handle sh:class
             prop_class = g.value(prop_list, SH["class"])
+            # print(prop_class)
             if prop_class:
                 # Get the field name, up to two components, so we know what
                 # namespace it's in
                 python_type = get_local_name(prop_class, 2)
             else:
-                # TODO: how do we handle this? what even is this?
-                python_type = "Any"
+                # The datatype doesn't exist
+                python_type = UNKNOWN_DATATYPE_VAL
 
         # Handle cardinality
         max_count = g.value(prop_list, SH.maxCount)
@@ -247,11 +255,11 @@ class UCOModel(BaseModel):
                 comment = str(o)
                 break
 
-        # Add properties
+        # Add properties, excluding those that have a unknown datatype
         properties = []
         for prop_list in g.objects(owl_class, SH.property):
             prop = Property.from_property_shape(prop_list, namespace)
-            if prop:
+            if prop and prop.python_type != UNKNOWN_DATATYPE_VAL:
                 properties.append(prop)
 
         return UCOModel(
