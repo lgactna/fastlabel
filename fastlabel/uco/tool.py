@@ -6,6 +6,8 @@ This file was generated using the `case_models.py` script.
 
 from typing import Optional
 
+from pydantic import AwareDatetime
+
 from fastlabel.uco import XMLSchema, configuration, core, identity
 
 
@@ -70,7 +72,7 @@ class BuildInformationType(core.UcoInherentCharacterizationThing):
     buildUtility: Optional[BuildUtilityType] = None
     compilers: Optional[CompilerType] = None
     libraries: Optional[LibraryType] = None
-    compilationDate: Optional[str] = None
+    compilationDate: Optional[AwareDatetime] = None
     buildID: Optional[str] = None
     buildLabel: Optional[str] = None
     buildOutputLog: Optional[str] = None

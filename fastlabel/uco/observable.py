@@ -7,6 +7,8 @@ This file was generated using the `case_models.py` script.
 from enum import Enum
 from typing import Optional
 
+from pydantic import AwareDatetime
+
 from fastlabel.uco import (
     XMLSchema,
     action,
@@ -111,17 +113,6 @@ class WindowsServiceType(str, Enum):
     SERVICE_KERNEL_DRIVER = "service_kernel_driver"
     SERVICE_WIN32_OWN_PROCESS = "service_win32_own_process"
     SERVICE_WIN32_SHARE_PROCESS = "service_win32_share_process"
-
-
-class AccountAuthenticationFacet(core.Facet):
-    """
-    An account authentication facet is a grouping of characteristics unique to
-    the mechanism of accessing an account.
-    """
-
-    passwordLastChanged: Optional[str] = None
-    password: Optional[str] = None
-    passwordType: Optional[str] = None
 
 
 class ArchiveFileFacet(core.Facet):
@@ -342,6 +333,17 @@ class WirelessNetworkConnectionFacet(core.Facet):
     ssid: Optional[str] = None
 
 
+class AccountAuthenticationFacet(core.Facet):
+    """
+    An account authentication facet is a grouping of characteristics unique to
+    the mechanism of accessing an account.
+    """
+
+    passwordLastChanged: Optional[AwareDatetime] = None
+    password: Optional[str] = None
+    passwordType: Optional[str] = None
+
+
 class X509V3ExtensionsFacet(core.Facet):
     """
     An X.509 v3 certificate extensions facet is a grouping of characteristics
@@ -349,8 +351,8 @@ class X509V3ExtensionsFacet(core.Facet):
     v3 PKI (Public Key Infrastructure) standard.
     """
 
-    privateKeyUsagePeriodNotAfter: Optional[str] = None
-    privateKeyUsagePeriodNotBefore: Optional[str] = None
+    privateKeyUsagePeriodNotAfter: Optional[AwareDatetime] = None
+    privateKeyUsagePeriodNotBefore: Optional[AwareDatetime] = None
     authorityKeyIdentifier: Optional[str] = None
     basicConstraints: Optional[str] = None
     certificatePolicies: Optional[str] = None
@@ -383,6 +385,23 @@ class Observable(core.UcoObject):
     """
 
 
+class AccountFacet(core.Facet):
+    """
+    An account facet is a grouping of characteristics unique to an arrangement
+    with an entity to enable and control the provision of some capability or
+    service.
+    """
+
+    accountIssuer: Optional[core.UcoObject] = None
+    owner: Optional[core.UcoObject] = None
+    isActive: Optional[bool] = None
+    expirationTime: Optional[AwareDatetime] = None
+    modifiedTime: Optional[AwareDatetime] = None
+    observableCreatedTime: Optional[AwareDatetime] = None
+    accountIdentifier: Optional[str] = None
+    accountType: Optional[vocabulary.AccountTypeVocab] = None
+
+
 class DigitalAccountFacet(core.Facet):
     """
     A digital account facet is a grouping of characteristics unique to an
@@ -391,8 +410,8 @@ class DigitalAccountFacet(core.Facet):
     """
 
     isDisabled: Optional[bool] = None
-    firstLoginTime: Optional[str] = None
-    lastLoginTime: Optional[str] = None
+    firstLoginTime: Optional[AwareDatetime] = None
+    lastLoginTime: Optional[AwareDatetime] = None
     displayName: Optional[str] = None
     accountLogin: Optional[str] = None
 
@@ -457,23 +476,6 @@ class UserAccountFacet(core.Facet):
     homeDirectory: Optional[str] = None
 
 
-class AccountFacet(core.Facet):
-    """
-    An account facet is a grouping of characteristics unique to an arrangement
-    with an entity to enable and control the provision of some capability or
-    service.
-    """
-
-    accountIssuer: Optional[core.UcoObject] = None
-    owner: Optional[core.UcoObject] = None
-    isActive: Optional[bool] = None
-    expirationTime: Optional[str] = None
-    modifiedTime: Optional[str] = None
-    observableCreatedTime: Optional[str] = None
-    accountIdentifier: Optional[str] = None
-    accountType: Optional[vocabulary.AccountTypeVocab] = None
-
-
 class AlternateDataStreamFacet(core.Facet):
     """
     An alternate data stream facet is a grouping of characteristics unique to
@@ -516,7 +518,7 @@ class DiskPartitionFacet(core.Facet):
     particular managed region on a storage mechanism.
     """
 
-    observableCreatedTime: Optional[str] = None
+    observableCreatedTime: Optional[AwareDatetime] = None
     partitionLength: Optional[int] = None
     partitionOffset: Optional[int] = None
     spaceLeft: Optional[int] = None
@@ -534,8 +536,8 @@ class ExtInodeFacet(core.Facet):
     or related derivations) specification.
     """
 
-    extDeletionTime: Optional[str] = None
-    extInodeChangeTime: Optional[str] = None
+    extDeletionTime: Optional[AwareDatetime] = None
+    extInodeChangeTime: Optional[AwareDatetime] = None
     extFileType: Optional[int] = None
     extFlags: Optional[int] = None
     extHardLinkCount: Optional[int] = None
@@ -556,10 +558,10 @@ class FileFacet(core.Facet):
     """
 
     isDirectory: Optional[bool] = None
-    accessedTime: Optional[str] = None
-    metadataChangeTime: Optional[str] = None
-    modifiedTime: Optional[str] = None
-    observableCreatedTime: Optional[str] = None
+    accessedTime: Optional[AwareDatetime] = None
+    metadataChangeTime: Optional[AwareDatetime] = None
+    modifiedTime: Optional[AwareDatetime] = None
+    observableCreatedTime: Optional[AwareDatetime] = None
     sizeInBytes: Optional[int] = None
     allocationStatus: Optional[str] = None
     extension: Optional[str] = None
@@ -597,11 +599,11 @@ class MftRecordFacet(core.Facet):
     https://docs.microsoft.com/en-us/windows/win32/devnotes/master-file-table]
     """
 
-    mftFileNameAccessedTime: Optional[str] = None
-    mftFileNameCreatedTime: Optional[str] = None
-    mftFileNameModifiedTime: Optional[str] = None
-    mftFileNameRecordChangeTime: Optional[str] = None
-    mftRecordChangeTime: Optional[str] = None
+    mftFileNameAccessedTime: Optional[AwareDatetime] = None
+    mftFileNameCreatedTime: Optional[AwareDatetime] = None
+    mftFileNameModifiedTime: Optional[AwareDatetime] = None
+    mftFileNameRecordChangeTime: Optional[AwareDatetime] = None
+    mftRecordChangeTime: Optional[AwareDatetime] = None
     mftFileID: Optional[int] = None
     mftFileNameLength: Optional[int] = None
     mftFlags: Optional[int] = None
@@ -618,8 +620,8 @@ class MobileDeviceFacet(core.Facet):
     """
 
     mockLocationsAllowed: Optional[bool] = None
-    clockSetting: Optional[str] = None
-    phoneActivationTime: Optional[str] = None
+    clockSetting: Optional[AwareDatetime] = None
+    phoneActivationTime: Optional[AwareDatetime] = None
     storageCapacityInBytes: Optional[int] = None
     ESN: Optional[str] = None
     bluetoothDeviceName: Optional[str] = None
@@ -735,8 +737,8 @@ class ApplicationVersion(core.UcoInherentCharacterizationThing):
     particular software program version.
     """
 
-    installDate: Optional[str] = None
-    uninstallDate: Optional[str] = None
+    installDate: Optional[AwareDatetime] = None
+    uninstallDate: Optional[AwareDatetime] = None
     version: Optional[str] = None
 
 
@@ -811,7 +813,7 @@ class WindowsPEFileHeader(core.UcoInherentCharacterizationThing):
     collection of metadata about the overall nature and structure of the file.
     """
 
-    timeDateStamp: Optional[str] = None
+    timeDateStamp: Optional[AwareDatetime] = None
 
 
 class WindowsPESection(core.UcoInherentCharacterizationThing):
@@ -952,8 +954,8 @@ class PDFFileFacet(core.Facet):
 
     documentInformationDictionary: Optional[types.ControlledDictionary] = None
     isOptimized: Optional[bool] = None
-    pdfCreationDate: Optional[str] = None
-    pdfModDate: Optional[str] = None
+    pdfCreationDate: Optional[AwareDatetime] = None
+    pdfModDate: Optional[AwareDatetime] = None
     pdfId1: Optional[str] = None
     version: Optional[str] = None
     pdfId0: Optional[str] = None
@@ -969,7 +971,7 @@ class OperatingSystemFacet(core.Facet):
 
     environmentVariables: Optional[types.Dictionary] = None
     isLimitAdTrackingEnabled: Optional[bool] = None
-    installDate: Optional[str] = None
+    installDate: Optional[AwareDatetime] = None
     bitness: Optional[str] = None
     advertisingID: Optional[str] = None
 
@@ -1076,13 +1078,31 @@ class TriggerType(core.UcoInherentCharacterizationThing):
     """
 
     isEnabled: Optional[bool] = None
-    triggerBeginTime: Optional[str] = None
-    triggerEndTime: Optional[str] = None
+    triggerBeginTime: Optional[AwareDatetime] = None
+    triggerEndTime: Optional[AwareDatetime] = None
     triggerDelay: Optional[str] = None
     triggerMaxRunTime: Optional[str] = None
     triggerSessionChangeType: Optional[str] = None
     triggerFrequency: Optional[vocabulary.TriggerFrequencyVocab] = None
     triggerType: Optional[vocabulary.TriggerTypeVocab] = None
+
+
+class WindowsThreadFacet(core.Facet):
+    """
+    A Windows thread facet is a grouping os characteristics unique to a single
+    thread of execution within a Windows process.
+    """
+
+    observableCreatedTime: Optional[AwareDatetime] = None
+    parameterAddress: Optional[XMLSchema.xsd_hexBinary] = None
+    startAddress: Optional[XMLSchema.xsd_hexBinary] = None
+    priority: Optional[int] = None
+    stackSize: Optional[int] = None
+    threadID: Optional[int] = None
+    context: Optional[str] = None
+    runningStatus: Optional[str] = None
+    securityAttributes: Optional[str] = None
+    creationFlags: Optional[XMLSchema.xsd_unsignedInt] = None
 
 
 class WindowsPEOptionalHeader(core.UcoInherentCharacterizationThing):
@@ -1121,24 +1141,6 @@ class WindowsPEOptionalHeader(core.UcoInherentCharacterizationThing):
     minorOSVersion: Optional[XMLSchema.xsd_unsignedShort] = None
     minorSubsystemVersion: Optional[XMLSchema.xsd_unsignedShort] = None
     subsystem: Optional[XMLSchema.xsd_unsignedShort] = None
-
-
-class WindowsThreadFacet(core.Facet):
-    """
-    A Windows thread facet is a grouping os characteristics unique to a single
-    thread of execution within a Windows process.
-    """
-
-    observableCreatedTime: Optional[str] = None
-    parameterAddress: Optional[XMLSchema.xsd_hexBinary] = None
-    startAddress: Optional[XMLSchema.xsd_hexBinary] = None
-    priority: Optional[int] = None
-    stackSize: Optional[int] = None
-    threadID: Optional[int] = None
-    context: Optional[str] = None
-    runningStatus: Optional[str] = None
-    securityAttributes: Optional[str] = None
-    creationFlags: Optional[XMLSchema.xsd_unsignedInt] = None
 
 
 class WindowsVolumeFacet(core.Facet):
@@ -1244,8 +1246,8 @@ class X509CertificateFacet(core.Facet):
     subjectHash: Optional[types.Hash] = None
     thumbprintHash: Optional[types.Hash] = None
     isSelfSigned: Optional[bool] = None
-    validityNotAfter: Optional[str] = None
-    validityNotBefore: Optional[str] = None
+    validityNotAfter: Optional[AwareDatetime] = None
+    validityNotBefore: Optional[AwareDatetime] = None
     subjectPublicKeyExponent: Optional[int] = None
     issuer: Optional[str] = None
     serialNumber: Optional[str] = None
@@ -1395,9 +1397,9 @@ class BrowserBookmarkFacet(core.Facet):
 
     application: Optional[ObservableObject] = None
     urlTargeted: Optional[XMLSchema.xsd_anyURI] = None
-    accessedTime: Optional[str] = None
-    modifiedTime: Optional[str] = None
-    observableCreatedTime: Optional[str] = None
+    accessedTime: Optional[AwareDatetime] = None
+    modifiedTime: Optional[AwareDatetime] = None
+    observableCreatedTime: Optional[AwareDatetime] = None
     visitCount: Optional[int] = None
     bookmarkPath: Optional[str] = None
 
@@ -1421,9 +1423,9 @@ class BrowserCookieFacet(core.Facet):
     application: Optional[ObservableObject] = None
     cookieDomain: Optional[ObservableObject] = None
     isSecure: Optional[bool] = None
-    accessedTime: Optional[str] = None
-    expirationTime: Optional[str] = None
-    observableCreatedTime: Optional[str] = None
+    accessedTime: Optional[AwareDatetime] = None
+    expirationTime: Optional[AwareDatetime] = None
+    observableCreatedTime: Optional[AwareDatetime] = None
     cookieName: Optional[str] = None
     cookiePath: Optional[str] = None
 
@@ -1453,11 +1455,11 @@ class CalendarEntryFacet(core.Facet):
     location_: Optional[location.Location] = None
     application: Optional[ObservableObject] = None
     isPrivate: Optional[bool] = None
-    endTime: Optional[str] = None
-    modifiedTime: Optional[str] = None
-    observableCreatedTime: Optional[str] = None
-    remindTime: Optional[str] = None
-    startTime: Optional[str] = None
+    endTime: Optional[AwareDatetime] = None
+    modifiedTime: Optional[AwareDatetime] = None
+    observableCreatedTime: Optional[AwareDatetime] = None
+    remindTime: Optional[AwareDatetime] = None
+    startTime: Optional[AwareDatetime] = None
     duration: Optional[int] = None
     eventStatus: Optional[str] = None
     eventType: Optional[str] = None
@@ -1492,8 +1494,8 @@ class CallFacet(core.Facet):
     from_: Optional[ObservableObject] = None
     participant: Optional[ObservableObject] = None
     to: Optional[ObservableObject] = None
-    endTime: Optional[str] = None
-    startTime: Optional[str] = None
+    endTime: Optional[AwareDatetime] = None
+    startTime: Optional[AwareDatetime] = None
     duration: Optional[int] = None
     callType: Optional[str] = None
 
@@ -1533,11 +1535,11 @@ class ComputerSpecificationFacet(core.Facet):
     """
 
     networkInterface: Optional[ObservableObject] = None
-    biosDate: Optional[str] = None
-    biosReleaseDate: Optional[str] = None
-    currentSystemDate: Optional[str] = None
-    localTime: Optional[str] = None
-    systemTime: Optional[str] = None
+    biosDate: Optional[AwareDatetime] = None
+    biosReleaseDate: Optional[AwareDatetime] = None
+    currentSystemDate: Optional[AwareDatetime] = None
+    localTime: Optional[AwareDatetime] = None
+    systemTime: Optional[AwareDatetime] = None
     availableRam: Optional[int] = None
     totalRam: Optional[int] = None
     biosManufacturer: Optional[str] = None
@@ -1778,9 +1780,9 @@ class EventRecordFacet(core.Facet):
     account: Optional[ObservableObject] = None
     application: Optional[ObservableObject] = None
     eventRecordDevice: Optional[ObservableObject] = None
-    endTime: Optional[str] = None
-    observableCreatedTime: Optional[str] = None
-    startTime: Optional[str] = None
+    endTime: Optional[AwareDatetime] = None
+    observableCreatedTime: Optional[AwareDatetime] = None
+    startTime: Optional[AwareDatetime] = None
     eventID: Optional[str] = None
     eventRecordID: Optional[str] = None
     eventRecordRaw: Optional[str] = None
@@ -1834,7 +1836,7 @@ class GeoLocationEntryFacet(core.Facet):
 
     location_: Optional[location.Location] = None
     application: Optional[ObservableObject] = None
-    observableCreatedTime: Optional[str] = None
+    observableCreatedTime: Optional[AwareDatetime] = None
 
 
 class GeoLocationLog(ObservableObject):
@@ -1851,7 +1853,7 @@ class GeoLocationLogFacet(core.Facet):
     """
 
     application: Optional[ObservableObject] = None
-    observableCreatedTime: Optional[str] = None
+    observableCreatedTime: Optional[AwareDatetime] = None
 
 
 class GeoLocationTrack(ObservableObject):
@@ -1869,8 +1871,8 @@ class GeoLocationTrackFacet(core.Facet):
 
     application: Optional[ObservableObject] = None
     geoLocationEntry: Optional[ObservableObject] = None
-    endTime: Optional[str] = None
-    startTime: Optional[str] = None
+    endTime: Optional[AwareDatetime] = None
+    startTime: Optional[AwareDatetime] = None
 
 
 class HTTPConnectionFacet(core.Facet):
@@ -1947,7 +1949,7 @@ class MessageFacet(core.Facet):
     application: Optional[ObservableObject] = None
     from_: Optional[ObservableObject] = None
     to: Optional[ObservableObject] = None
-    sentTime: Optional[str] = None
+    sentTime: Optional[AwareDatetime] = None
     messageID: Optional[str] = None
     messageText: Optional[str] = None
     messageType: Optional[str] = None
@@ -2003,8 +2005,8 @@ class NetworkConnectionFacet(core.Facet):
     dst: Optional[ObservableObject] = None
     protocols: Optional[types.ControlledDictionary] = None
     isActive: Optional[bool] = None
-    endTime: Optional[str] = None
-    startTime: Optional[str] = None
+    endTime: Optional[AwareDatetime] = None
+    startTime: Optional[AwareDatetime] = None
     destinationPort: Optional[int] = None
     sourcePort: Optional[int] = None
 
@@ -2052,8 +2054,8 @@ class NetworkInterfaceFacet(core.Facet):
     dhcpServer: Optional[ObservableObject] = None
     ip: Optional[ObservableObject] = None
     ipGateway: Optional[ObservableObject] = None
-    dhcpLeaseExpires: Optional[str] = None
-    dhcpLeaseObtained: Optional[str] = None
+    dhcpLeaseExpires: Optional[AwareDatetime] = None
+    dhcpLeaseObtained: Optional[AwareDatetime] = None
     adapterName: Optional[str] = None
 
 
@@ -2096,8 +2098,8 @@ class NoteFacet(core.Facet):
     """
 
     application: Optional[ObservableObject] = None
-    modifiedTime: Optional[str] = None
-    observableCreatedTime: Optional[str] = None
+    modifiedTime: Optional[AwareDatetime] = None
+    observableCreatedTime: Optional[AwareDatetime] = None
     text: Optional[str] = None
 
 
@@ -2160,8 +2162,8 @@ class ProcessFacet(core.Facet):
     parent: Optional[ObservableObject] = None
     environmentVariables: Optional[types.Dictionary] = None
     isHidden: Optional[bool] = None
-    exitTime: Optional[str] = None
-    observableCreatedTime: Optional[str] = None
+    exitTime: Optional[AwareDatetime] = None
+    observableCreatedTime: Optional[AwareDatetime] = None
     exitStatus: Optional[int] = None
     pid: Optional[int] = None
     currentWorkingDirectory: Optional[str] = None
@@ -2352,9 +2354,9 @@ class URLHistoryEntry(core.UcoInherentCharacterizationThing):
 
     url: Optional[ObservableObject] = None
     referrerUrl: Optional[ObservableObject] = None
-    expirationTime: Optional[str] = None
-    firstVisit: Optional[str] = None
-    lastVisit: Optional[str] = None
+    expirationTime: Optional[AwareDatetime] = None
+    firstVisit: Optional[AwareDatetime] = None
+    lastVisit: Optional[AwareDatetime] = None
     visitCount: Optional[int] = None
     manuallyEnteredCount: Optional[int] = None
     browserUserProfile: Optional[str] = None
@@ -2379,7 +2381,7 @@ class URLVisitFacet(core.Facet):
     browserInformation: Optional[ObservableObject] = None
     fromURLVisit: Optional[ObservableObject] = None
     url: Optional[ObservableObject] = None
-    visitTime: Optional[str] = None
+    visitTime: Optional[AwareDatetime] = None
     visitDuration: Optional[XMLSchema.xsd_duration] = None
     urlTransitionType: Optional[vocabulary.URLTransitionTypeVocab] = None
 
@@ -2402,8 +2404,8 @@ class UserSessionFacet(core.Facet):
     """
 
     effectiveUser: Optional[ObservableObject] = None
-    loginTime: Optional[str] = None
-    logoutTime: Optional[str] = None
+    loginTime: Optional[AwareDatetime] = None
+    logoutTime: Optional[AwareDatetime] = None
     effectiveGroup: Optional[str] = None
     effectiveGroupID: Optional[str] = None
 
@@ -2490,9 +2492,9 @@ class WindowsComputerSpecificationFacet(core.Facet):
     windowsDirectory: Optional[ObservableObject] = None
     windowsSystemDirectory: Optional[ObservableObject] = None
     windowsTempDirectory: Optional[ObservableObject] = None
-    lastShutdownDate: Optional[str] = None
-    osInstallDate: Optional[str] = None
-    osLastUpgradeDate: Optional[str] = None
+    lastShutdownDate: Optional[AwareDatetime] = None
+    osInstallDate: Optional[AwareDatetime] = None
+    osLastUpgradeDate: Optional[AwareDatetime] = None
     msProductID: Optional[str] = None
     msProductName: Optional[str] = None
     netBIOSName: Optional[str] = None
@@ -2602,8 +2604,8 @@ class WindowsPrefetchFacet(core.Facet):
     volume: Optional[ObservableObject] = None
     accessedDirectory: Optional[ObservableObject] = None
     accessedFile: Optional[ObservableObject] = None
-    firstRun: Optional[str] = None
-    lastRun: Optional[str] = None
+    firstRun: Optional[AwareDatetime] = None
+    lastRun: Optional[AwareDatetime] = None
     timesExecuted: Optional[int] = None
     applicationFileName: Optional[str] = None
     prefetchHash: Optional[str] = None
@@ -2639,7 +2641,7 @@ class WindowsRegistryKeyFacet(core.Facet):
 
     creator: Optional[ObservableObject] = None
     registryValues: Optional[WindowsRegistryValue] = None
-    modifiedTime: Optional[str] = None
+    modifiedTime: Optional[AwareDatetime] = None
     numberOfSubkeys: Optional[int] = None
     key: Optional[str] = None
 
@@ -2705,7 +2707,7 @@ class WindowsPEBinaryFileFacet(core.Facet):
     optionalHeader: Optional[WindowsPEOptionalHeader] = None
     sections: Optional[WindowsPESection] = None
     fileHeaderHashes: Optional[types.Hash] = None
-    timeDateStamp: Optional[str] = None
+    timeDateStamp: Optional[AwareDatetime] = None
     pointerToSymbolTable: Optional[XMLSchema.xsd_hexBinary] = None
     numberOfSections: Optional[int] = None
     numberOfSymbols: Optional[int] = None
@@ -2781,8 +2783,8 @@ class CapturedTelecommunicationsInformationFacet(core.Facet):
     """
 
     captureCellSite: CellSite
-    endTime: Optional[str] = None
-    startTime: Optional[str] = None
+    endTime: Optional[AwareDatetime] = None
+    startTime: Optional[AwareDatetime] = None
     interceptedCallState: Optional[str] = None
 
 
@@ -2820,7 +2822,7 @@ class ProfileFacet(core.Facet):
     profileAccount: Optional[ObservableObject] = None
     profileService: Optional[ObservableObject] = None
     profileWebsite: Optional[ObservableObject] = None
-    profileCreated: Optional[str] = None
+    profileCreated: Optional[AwareDatetime] = None
     name: Optional[str] = None
     displayName: Optional[str] = None
     profileLanguage: Optional[str] = None
@@ -3074,10 +3076,10 @@ class MessageThreadFacet(core.Facet):
     commentary of electronic messages pertaining to one topic or question.
     """
 
-    n1eccbff2a21b4df6a359247ff8b7acebb463: Optional[Message] = None
-    n1eccbff2a21b4df6a359247ff8b7acebb467: Optional[Message] = None
-    n1eccbff2a21b4df6a359247ff8b7acebb471: Optional[Message] = None
-    n1eccbff2a21b4df6a359247ff8b7acebb475: Optional[Message] = None
+    n8625a760942a423a951de64f52819373b463: Optional[Message] = None
+    n8625a760942a423a951de64f52819373b467: Optional[Message] = None
+    n8625a760942a423a951de64f52819373b471: Optional[Message] = None
+    n8625a760942a423a951de64f52819373b475: Optional[Message] = None
     participant: Optional[ObservableObject] = None
     messageThread: Optional[types.Thread] = None
     visibility: Optional[bool] = None
@@ -3126,9 +3128,9 @@ class EmailMessageFacet(core.Facet):
     isMimeEncoded: Optional[bool] = None
     isMultipart: Optional[bool] = None
     isRead: Optional[bool] = None
-    modifiedTime: Optional[str] = None
-    receivedTime: Optional[str] = None
-    sentTime: Optional[str] = None
+    modifiedTime: Optional[AwareDatetime] = None
+    receivedTime: Optional[AwareDatetime] = None
+    sentTime: Optional[AwareDatetime] = None
     body: Optional[str] = None
     contentDisposition: Optional[str] = None
     contentType: Optional[str] = None
@@ -3222,9 +3224,9 @@ class WindowsTaskFacet(core.Facet):
     workingDirectory: Optional[ObservableObject] = None
     actionList: Optional[TaskActionType] = None
     triggerList: Optional[TriggerType] = None
-    mostRecentRunTime: Optional[str] = None
-    nextRunTime: Optional[str] = None
-    observableCreatedTime: Optional[str] = None
+    mostRecentRunTime: Optional[AwareDatetime] = None
+    nextRunTime: Optional[AwareDatetime] = None
+    observableCreatedTime: Optional[AwareDatetime] = None
     exitCode: Optional[int] = None
     maxRunTime: Optional[int] = None
     accountLogonType: Optional[str] = None
@@ -3262,10 +3264,10 @@ class WhoIsFacet(core.Facet):
     serverName: Optional[ObservableObject] = None
     nameServer: Optional[ObservableObject] = None
     registrarInfo: Optional[WhoisRegistrarInfoType] = None
-    creationDate: Optional[str] = None
-    expirationDate: Optional[str] = None
-    lookupDate: Optional[str] = None
-    updatedDate: Optional[str] = None
+    creationDate: Optional[AwareDatetime] = None
+    expirationDate: Optional[AwareDatetime] = None
+    lookupDate: Optional[AwareDatetime] = None
+    updatedDate: Optional[AwareDatetime] = None
     domainID: Optional[str] = None
     remarks: Optional[str] = None
     sponsoringRegistrar: Optional[str] = None
@@ -3380,8 +3382,8 @@ class ContactFacet(core.Facet):
     contactSIP: Optional[ContactSIP] = None
     contactURL: Optional[ContactURL] = None
     sourceApplication: Optional[ObservableObject] = None
-    birthdate: Optional[str] = None
-    lastTimeContacted: Optional[str] = None
+    birthdate: Optional[AwareDatetime] = None
+    lastTimeContacted: Optional[AwareDatetime] = None
     numberTimesContacted: Optional[int] = None
     contactID: Optional[str] = None
     displayName: Optional[str] = None

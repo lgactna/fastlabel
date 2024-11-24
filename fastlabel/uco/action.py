@@ -6,6 +6,8 @@ This file was generated using the `case_models.py` script.
 
 from typing import Optional
 
+from pydantic import AwareDatetime
+
 from fastlabel.uco import core, location, vocabulary
 
 
@@ -23,8 +25,8 @@ class Action(core.UcoObject):
     participant: Optional[core.UcoObject] = None
     result: Optional[core.UcoObject] = None
     location_: Optional[location.Location] = None
-    endTime: Optional[str] = None
-    startTime: Optional[str] = None
+    endTime: Optional[AwareDatetime] = None
+    startTime: Optional[AwareDatetime] = None
     actionCount: Optional[int] = None
     actionStatus: Optional[vocabulary.ActionStatusTypeVocab] = None
 
@@ -88,6 +90,6 @@ class ActionLifecycle(ActionPattern):
 
     phase: ArrayOfAction
     error: Optional[core.UcoObject] = None
-    endTime: Optional[str] = None
-    startTime: Optional[str] = None
+    endTime: Optional[AwareDatetime] = None
+    startTime: Optional[AwareDatetime] = None
     actionCount: Optional[int] = None

@@ -6,6 +6,8 @@ This file was generated using the `case_models.py` script.
 
 from typing import Optional
 
+from pydantic import AwareDatetime
+
 from fastlabel.case import vocabulary
 from fastlabel.uco import action, core, role
 
@@ -41,8 +43,8 @@ class Authorization(core.UcoObject):
     authoritative permission identified for investigative action.
     """
 
-    endTime: Optional[str] = None
-    startTime: Optional[str] = None
+    endTime: Optional[AwareDatetime] = None
+    startTime: Optional[AwareDatetime] = None
     authorizationType: Optional[str] = None
     authorizationIdentifier: Optional[str] = None
 
@@ -102,8 +104,8 @@ class Investigation(core.ContextualCompilation):
     """
 
     relevantAuthorization: Optional[Authorization] = None
-    endTime: Optional[str] = None
-    startTime: Optional[str] = None
+    endTime: Optional[AwareDatetime] = None
+    startTime: Optional[AwareDatetime] = None
     investigationStatus: Optional[str] = None
     focus: Optional[str] = None
     investigationForm: Optional[vocabulary.InvestigationFormVocab] = None
