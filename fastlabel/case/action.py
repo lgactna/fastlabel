@@ -5,44 +5,10 @@ Auto-generated classes from the SHACL graph in action.ttl.
 This file was generated using the `case_models.py` script.
 """
 
-from fastlabel.case import (location, core)
+from fastlabel.case import (core, location)
 from typing import Any, Optional
 from enum import Enum
 
-
-class ActionEstimationFacet(core.Facet):
-    """
-    An action estimation facet is a grouping of characteristics unique to
-    decision-focused approximation aspects for an action that may potentially be
-    performed.
-    """
-
-    estimatedCost: Optional[str] = None
-    estimatedEfficacy: Optional[str] = None
-    estimatedImpact: Optional[str] = None
-    objective: Optional[str] = None
-
-class ActionArgumentFacet(core.Facet):
-    """
-    An action argument facet is a grouping of characteristics unique to a single
-    parameter of an action.
-    """
-
-    argumentName: str
-    value: str
-
-class ActionFrequencyFacet(core.Facet):
-    """
-    An action frequency facet is a grouping of characteristics unique to the
-    frequency of occurrence for an action.
-    """
-
-    rate: float
-    scale: str
-    units: str
-    trend: Optional[str] = None
-    trend: Any
-    trend: Optional[Any] = None
 
 class Action(core.UcoObject):
     """
@@ -65,13 +31,39 @@ class Action(core.UcoObject):
     actionStatus: Optional[Any] = None
     actionStatus: Optional[Any] = None
 
-class ArrayOfAction(core.UcoInherentCharacterizationThing):
+class ActionArgumentFacet(core.Facet):
     """
-    An array of action is an ordered list of references to things that may be
-    done or performed.
+    An action argument facet is a grouping of characteristics unique to a single
+    parameter of an action.
     """
 
-    action_: Action
+    argumentName: str
+    value: str
+
+class ActionEstimationFacet(core.Facet):
+    """
+    An action estimation facet is a grouping of characteristics unique to
+    decision-focused approximation aspects for an action that may potentially be
+    performed.
+    """
+
+    estimatedCost: Optional[str] = None
+    estimatedEfficacy: Optional[str] = None
+    estimatedImpact: Optional[str] = None
+    objective: Optional[str] = None
+
+class ActionFrequencyFacet(core.Facet):
+    """
+    An action frequency facet is a grouping of characteristics unique to the
+    frequency of occurrence for an action.
+    """
+
+    rate: float
+    scale: str
+    units: str
+    trend: Optional[str] = None
+    trend: Any
+    trend: Optional[Any] = None
 
 class ActionPattern(Action):
     """
@@ -80,6 +72,14 @@ class ActionPattern(Action):
     """
 
     pass
+
+class ArrayOfAction(core.UcoInherentCharacterizationThing):
+    """
+    An array of action is an ordered list of references to things that may be
+    done or performed.
+    """
+
+    action_: Action
 
 class ActionLifecycle(ActionPattern):
     """

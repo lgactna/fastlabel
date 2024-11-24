@@ -5,10 +5,26 @@ Auto-generated classes from the SHACL graph in analysis.ttl.
 This file was generated using the `case_models.py` script.
 """
 
-from fastlabel.case import (core, action)
+from fastlabel.case import (action, core)
 from typing import Any, Optional
 from enum import Enum
 
+
+class Analysis(action.Action):
+    """
+    An analysis is an action of detailed examination of something in order to
+    understand its nature, context or essential features.
+    """
+
+    pass
+
+class AnalyticResultFacet(core.Facet):
+    """
+    An analytic result facet is a grouping of characteristics unique to the
+    results of an analysis action.
+    """
+
+    pass
 
 class ArtifactClassification(core.UcoInherentCharacterizationThing):
     """
@@ -19,30 +35,6 @@ class ArtifactClassification(core.UcoInherentCharacterizationThing):
     classificationConfidence: Optional[float] = None
     class_: str
 
-class AnalyticResultFacet(core.Facet):
-    """
-    An analytic result facet is a grouping of characteristics unique to the
-    results of an analysis action.
-    """
-
-    pass
-
-class Analysis(action.Action):
-    """
-    An analysis is an action of detailed examination of something in order to
-    understand its nature, context or essential features.
-    """
-
-    pass
-
-class ArtifactClassificationResultFacet(AnalyticResultFacet):
-    """
-    An artifact classification result facet is a grouping of characteristics
-    unique to the results of an artifact classification analysis action.
-    """
-
-    classification: Optional[ArtifactClassification] = None
-
 class AnalyticResult(core.Assertion):
     """
     An analytic result is a characterization of the understanding resulting from
@@ -51,4 +43,12 @@ class AnalyticResult(core.Assertion):
 
     originatingAnalysis: Optional[Analysis] = None
     resultContent: Optional[core.UcoObject] = None
+
+class ArtifactClassificationResultFacet(AnalyticResultFacet):
+    """
+    An artifact classification result facet is a grouping of characteristics
+    unique to the results of an artifact classification analysis action.
+    """
+
+    classification: Optional[ArtifactClassification] = None
 

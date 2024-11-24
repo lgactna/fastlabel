@@ -18,13 +18,6 @@ class DictionaryEntry(core.UcoInherentCharacterizationThing):
     key: str
     value: str
 
-class ThreadItem(co.Item):
-    """
-    A ThreadItem is a member of a thread.
-    """
-
-    itemContent: Optional[core.UcoObject] = None
-
 class Hash(core.UcoInherentCharacterizationThing):
     """
     A hash is a grouping of characteristics unique to the result of applying a
@@ -38,6 +31,13 @@ class Hash(core.UcoInherentCharacterizationThing):
     hashMethod: Optional[str] = None
     hashMethod: Any
     hashMethod: Optional[Any] = None
+
+class ThreadItem(co.Item):
+    """
+    A ThreadItem is a member of a thread.
+    """
+
+    itemContent: Optional[core.UcoObject] = None
 
 class ControlledDictionaryEntry(DictionaryEntry):
     """

@@ -5,19 +5,10 @@ Auto-generated classes from the SHACL graph in tool.ttl.
 This file was generated using the `case_models.py` script.
 """
 
-from fastlabel.case import (core, configuration, identity)
+from fastlabel.case import (configuration, core, identity)
 from typing import Any, Optional
 from enum import Enum
 
-
-class LibraryType(core.UcoInherentCharacterizationThing):
-    """
-    A library type is a grouping of characteristics unique to a collection of
-    resources incorporated into the build of a software.
-    """
-
-    libraryName: Optional[str] = None
-    libraryVersion: Optional[str] = None
 
 class BuildUtilityType(core.UcoInherentCharacterizationThing):
     """
@@ -43,6 +34,15 @@ class CompilerType(core.UcoInherentCharacterizationThing):
     compilerInformalDescription: Optional[str] = None
     cpeid: Optional[str] = None
     swid: Optional[str] = None
+
+class LibraryType(core.UcoInherentCharacterizationThing):
+    """
+    A library type is a grouping of characteristics unique to a collection of
+    resources incorporated into the build of a software.
+    """
+
+    libraryName: Optional[str] = None
+    libraryVersion: Optional[str] = None
 
 class Tool(core.UcoObject):
     """
@@ -93,18 +93,18 @@ class ConfiguredTool(Tool):
     usesConfiguration: Optional[configuration.Configuration] = None
     isConfigurationOf: Optional[Tool] = None
 
-class MaliciousTool(Tool):
-    """
-    A malicious tool is an artifact of hardware and/or software utilized to
-    accomplish a malevolent task or purpose.
-    """
-
-    pass
-
 class DefensiveTool(Tool):
     """
     A defensive tool is an artifact of hardware and/or software utilized to
     accomplish a task or purpose of guarding.
+    """
+
+    pass
+
+class MaliciousTool(Tool):
+    """
+    A malicious tool is an artifact of hardware and/or software utilized to
+    accomplish a malevolent task or purpose.
     """
 
     pass

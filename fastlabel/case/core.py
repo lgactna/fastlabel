@@ -47,6 +47,14 @@ class Facet(UcoInherentCharacterizationThing):
 
     pass
 
+class ConfidenceFacet(Facet):
+    """
+    A confidence is a grouping of characteristics unique to an asserted level of
+    certainty in the accuracy of some information.
+    """
+
+    confidence: int
+
 class UcoObject(UcoThing):
     """
     A UCO object is a representation of a fundamental concept either directly
@@ -67,20 +75,12 @@ class UcoObject(UcoThing):
     tag: Optional[str] = None
     objectStatus: Optional[str] = None
 
-class ConfidenceFacet(Facet):
+class Assertion(UcoObject):
     """
-    A confidence is a grouping of characteristics unique to an asserted level of
-    certainty in the accuracy of some information.
-    """
-
-    confidence: int
-
-class Item(UcoObject):
-    """
-    An item is a distinct article or unit.
+    An assertion is a statement declared to be true.
     """
 
-    pass
+    statement: Optional[str] = None
 
 class AttributedName(UcoObject):
     """
@@ -90,33 +90,12 @@ class AttributedName(UcoObject):
 
     namingAuthority: Optional[str] = None
 
-class Relationship(UcoObject):
+class Compilation(UcoObject):
     """
-    A relationship is a grouping of characteristics unique to an assertion that
-    one or more objects are related to another object in some way.
-    """
-
-    target: UcoObject
-    source: UcoObject
-    isDirectional: bool
-    endTime: Optional[str] = None
-    startTime: Optional[str] = None
-    kindOfRelationship: Optional[str] = None
-
-class ModusOperandi(UcoObject):
-    """
-    A modus operandi is a particular method of operation (how a particular
-    entity behaves or the resources they use).
+    A compilation is a grouping of things.
     """
 
     pass
-
-class Assertion(UcoObject):
-    """
-    An assertion is a statement declared to be true.
-    """
-
-    statement: Optional[str] = None
 
 class ControlledVocabulary(UcoObject):
     """
@@ -126,23 +105,6 @@ class ControlledVocabulary(UcoObject):
     constrainingVocabularyReference: Optional[str] = None
     value: str
     constrainingVocabularyName: Optional[str] = None
-
-class Compilation(UcoObject):
-    """
-    A compilation is a grouping of things.
-    """
-
-    pass
-
-class IdentityAbstraction(UcoObject):
-    """
-    An identity abstraction is a grouping of identifying characteristics unique
-    to an individual or organization. This class is an ontological structural
-    abstraction for this concept. Implementations of this concept should utilize
-    the identity:Identity class.
-    """
-
-    pass
 
 class Event(UcoObject):
     """
@@ -156,6 +118,23 @@ class Event(UcoObject):
     startTime: Optional[str] = None
     eventType: Optional[str] = None
 
+class IdentityAbstraction(UcoObject):
+    """
+    An identity abstraction is a grouping of identifying characteristics unique
+    to an individual or organization. This class is an ontological structural
+    abstraction for this concept. Implementations of this concept should utilize
+    the identity:Identity class.
+    """
+
+    pass
+
+class Item(UcoObject):
+    """
+    An item is a distinct article or unit.
+    """
+
+    pass
+
 class MarkingDefinitionAbstraction(UcoObject):
     """
     A marking definition abstraction is a grouping of characteristics unique to
@@ -167,6 +146,27 @@ class MarkingDefinitionAbstraction(UcoObject):
     """
 
     pass
+
+class ModusOperandi(UcoObject):
+    """
+    A modus operandi is a particular method of operation (how a particular
+    entity behaves or the resources they use).
+    """
+
+    pass
+
+class Relationship(UcoObject):
+    """
+    A relationship is a grouping of characteristics unique to an assertion that
+    one or more objects are related to another object in some way.
+    """
+
+    target: UcoObject
+    source: UcoObject
+    isDirectional: bool
+    endTime: Optional[str] = None
+    startTime: Optional[str] = None
+    kindOfRelationship: Optional[str] = None
 
 class Annotation(Assertion):
     """

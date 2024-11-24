@@ -19,34 +19,6 @@ class MarkingModel(core.UcoInherentCharacterizationThing):
 
     pass
 
-class StatementMarking(MarkingModel):
-    """
-    A statement marking is a grouping of characteristics unique to the
-    expression of data marking definitions (restrictions, permissions, and other
-    guidance for how data can be used and shared) to convey details of a textual
-    marking statement, (e.g., copyright) whose semantic meaning should apply to
-    the associated content. Statement markings are generally not
-    machine-readable. An example of this would be a simple marking to apply
-    copyright information, such as 'Copyright 2014 Acme Inc.'.
-    """
-
-    definitionType: Optional[str] = None
-    statement: str
-
-class ReleaseToMarking(MarkingModel):
-    """
-    A release-to marking is a grouping of characteristics unique to the
-    expression of data marking definitions (restrictions, permissions, and other
-    guidance for how data can be used and shared) to convey details of
-    authorized persons and/or organizations to which to the associated content
-    may be released. The existence of the Release-To marking restricts access to
-    ONLY those identities explicitly listed, regardless of whether another data
-    marking exists that allows sharing with other members of the community.
-    """
-
-    definitionType: Optional[str] = None
-    authorizedIdentities: str
-
 class LicenseMarking(MarkingModel):
     """
     A license marking is a grouping of characteristics unique to the expression
@@ -67,6 +39,34 @@ class MarkingDefinition(core.MarkingDefinitionAbstraction):
 
     definition: Optional[MarkingModel] = None
     definitionType: str
+
+class ReleaseToMarking(MarkingModel):
+    """
+    A release-to marking is a grouping of characteristics unique to the
+    expression of data marking definitions (restrictions, permissions, and other
+    guidance for how data can be used and shared) to convey details of
+    authorized persons and/or organizations to which to the associated content
+    may be released. The existence of the Release-To marking restricts access to
+    ONLY those identities explicitly listed, regardless of whether another data
+    marking exists that allows sharing with other members of the community.
+    """
+
+    definitionType: Optional[str] = None
+    authorizedIdentities: str
+
+class StatementMarking(MarkingModel):
+    """
+    A statement marking is a grouping of characteristics unique to the
+    expression of data marking definitions (restrictions, permissions, and other
+    guidance for how data can be used and shared) to convey details of a textual
+    marking statement, (e.g., copyright) whose semantic meaning should apply to
+    the associated content. Statement markings are generally not
+    machine-readable. An example of this would be a simple marking to apply
+    copyright information, such as 'Copyright 2014 Acme Inc.'.
+    """
+
+    definitionType: Optional[str] = None
+    statement: str
 
 class TermsOfUseMarking(MarkingModel):
     """
