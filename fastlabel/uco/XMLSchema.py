@@ -4,18 +4,20 @@ Manually created file that defines XML Schema types for UCO.
 
 import base64
 import re
-from typing import Any, Optional, Union
+from typing import Any, Optional
+
 from pydantic import GetCoreSchemaHandler
 from pydantic_core import core_schema
 
 # Integer types with constraints
+
 
 class xsd_byte(int):
     """Represents xsd:byte (-128 to 127)"""
 
     def __new__(cls, value: Any) -> "xsd_byte":
         value = int(value)
-        if not (-2**7 <= value < 2**7):
+        if not (-(2**7) <= value < 2**7):
             raise ValueError("Value out of range for xsd:byte")
         return super().__new__(cls, value)
 
@@ -28,6 +30,7 @@ class xsd_byte(int):
             lt=128,
             serialization=core_schema.to_string_ser_schema(),
         )
+
 
 class xsd_unsignedInt(int):
     """Represents xsd:unsignedInt (0 to 4294967295)"""
@@ -48,6 +51,7 @@ class xsd_unsignedInt(int):
             serialization=core_schema.to_string_ser_schema(),
         )
 
+
 class xsd_unsignedShort(int):
     """Represents xsd:unsignedShort (0 to 65535)"""
 
@@ -67,6 +71,7 @@ class xsd_unsignedShort(int):
             serialization=core_schema.to_string_ser_schema(),
         )
 
+
 class xsd_positiveInteger(int):
     """Represents xsd:positiveInteger (> 0)"""
 
@@ -85,7 +90,9 @@ class xsd_positiveInteger(int):
             serialization=core_schema.to_string_ser_schema(),
         )
 
+
 # Duration type
+
 
 class xsd_duration:
     """Represents xsd:duration (ISO 8601 duration)"""
@@ -126,7 +133,9 @@ class xsd_duration:
             raise TypeError("xsd_duration must be a string")
         return cls(value)
 
+
 # Binary types
+
 
 class xsd_hexBinary:
     """Represents xsd:hexBinary (hexadecimal string)"""
@@ -160,13 +169,14 @@ class xsd_hexBinary:
             raise TypeError("xsd_hexBinary must be a string")
         return cls(value)
 
+
 class xsd_base64Binary:
     """Represents xsd:base64Binary (base64 encoded data)"""
 
     def __init__(self, value: str):
         try:
             self.value: bytes = base64.b64decode(value, validate=True)
-        except (ValueError, base64.binascii.Error):
+        except ValueError:
             raise ValueError("Invalid xsd:base64Binary value")
 
     def __bytes__(self) -> bytes:
@@ -193,7 +203,9 @@ class xsd_base64Binary:
             raise TypeError("xsd_base64Binary must be a string")
         return cls(value)
 
+
 # AnyURI type
+
 
 class xsd_anyURI(str):
     """Represents xsd:anyURI"""
