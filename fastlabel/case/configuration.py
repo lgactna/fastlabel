@@ -10,6 +10,15 @@ from typing import Any, Optional
 from enum import Enum
 
 
+class Dependency(core.UcoInherentCharacterizationThing):
+    """
+    A dependency is a grouping of characteristics unique to something that a
+    tool or other software relies on to function as intended.
+    """
+
+    dependencyDescription: Optional[str] = None
+    dependencyType: Optional[str] = None
+
 class ConfigurationEntry(core.UcoInherentCharacterizationThing):
     """
     A configuration entry is a grouping of characteristics unique to a
@@ -22,15 +31,6 @@ class ConfigurationEntry(core.UcoInherentCharacterizationThing):
     itemName: Optional[str] = None
     itemType: Optional[str] = None
     itemValue: Optional[str] = None
-
-class Dependency(core.UcoInherentCharacterizationThing):
-    """
-    A dependency is a grouping of characteristics unique to something that a
-    tool or other software relies on to function as intended.
-    """
-
-    dependencyDescription: Optional[str] = None
-    dependencyType: Optional[str] = None
 
 class Configuration(core.UcoObject):
     """

@@ -17,6 +17,13 @@ class Role(core.UcoObject):
 
     pass
 
+class BenevolentRole(Role):
+    """
+    A benevolent role is a role with positive and/or beneficial intent.
+    """
+
+    pass
+
 class NeutralRole(Role):
     """
     A neutral role is a role with impartial intent.
@@ -27,13 +34,6 @@ class NeutralRole(Role):
 class MaliciousRole(Role):
     """
     A malicious role is a role with malevolent intent.
-    """
-
-    pass
-
-class BenevolentRole(Role):
-    """
-    A benevolent role is a role with positive and/or beneficial intent.
     """
 
     pass

@@ -10,14 +10,6 @@ from typing import Any, Optional
 from enum import Enum
 
 
-class AnalyticResultFacet(core.Facet):
-    """
-    An analytic result facet is a grouping of characteristics unique to the
-    results of an analysis action.
-    """
-
-    pass
-
 class ArtifactClassification(core.UcoInherentCharacterizationThing):
     """
     An artifact classification is a single specific assertion that a particular
@@ -26,6 +18,14 @@ class ArtifactClassification(core.UcoInherentCharacterizationThing):
 
     classificationConfidence: Optional[float] = None
     class_: str
+
+class AnalyticResultFacet(core.Facet):
+    """
+    An analytic result facet is a grouping of characteristics unique to the
+    results of an analysis action.
+    """
+
+    pass
 
 class Analysis(action.Action):
     """
