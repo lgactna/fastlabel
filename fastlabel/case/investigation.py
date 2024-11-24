@@ -4,8 +4,6 @@ Auto-generated classes from the SHACL graph in investigation.ttl.
 This file was generated using the `case_models.py` script.
 """
 
-from typing import Optional
-
 from pydantic import AwareDatetime
 
 from fastlabel.case import vocabulary
@@ -43,10 +41,10 @@ class Authorization(core.UcoObject):
     authoritative permission identified for investigative action.
     """
 
-    endTime: Optional[AwareDatetime] = None
-    startTime: Optional[AwareDatetime] = None
-    authorizationType: Optional[str] = None
-    authorizationIdentifier: Optional[str] = None
+    endTime: AwareDatetime | None = None
+    startTime: AwareDatetime | None = None
+    authorizationType: str | None = None
+    authorizationIdentifier: str | list[str] | None = []
 
 
 class ExaminerActionLifecycle(action.ActionLifecycle):
@@ -83,8 +81,8 @@ class ProvenanceRecord(core.ContextualCompilation):
     actions) or interpretations that result from it.
     """
 
-    exhibitNumber: Optional[str] = None
-    rootExhibitNumber: Optional[str] = None
+    exhibitNumber: str | None = None
+    rootExhibitNumber: str | list[str] | None = []
 
 
 class InvestigativeAction(action.Action):
@@ -94,7 +92,7 @@ class InvestigativeAction(action.Action):
     other data.
     """
 
-    wasInformedBy: Optional["InvestigativeAction"] = None
+    wasInformedBy: "InvestigativeAction" | list["InvestigativeAction"] | None = []
 
 
 class Investigation(core.ContextualCompilation):
@@ -103,9 +101,13 @@ class Investigation(core.ContextualCompilation):
     of the facts involved in a cyber-relevant set of suspicious activity.
     """
 
-    relevantAuthorization: Optional[Authorization] = None
-    endTime: Optional[AwareDatetime] = None
-    startTime: Optional[AwareDatetime] = None
-    investigationStatus: Optional[str] = None
-    focus: Optional[str] = None
-    investigationForm: Optional[vocabulary.InvestigationFormVocab] = None
+    relevantAuthorization: Authorization | list[Authorization] | None = []
+    endTime: AwareDatetime | None = None
+    startTime: AwareDatetime | None = None
+    investigationStatus: str | None = None
+    focus: str | list[str] | None = []
+    investigationForm: (
+        vocabulary.InvestigationFormVocab
+        | list[vocabulary.InvestigationFormVocab]
+        | None
+    ) = []

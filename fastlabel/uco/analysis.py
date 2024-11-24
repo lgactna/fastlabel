@@ -4,8 +4,6 @@ Auto-generated classes from the SHACL graph in analysis.ttl.
 This file was generated using the `case_models.py` script.
 """
 
-from typing import Optional
-
 from pydantic import Field
 
 from fastlabel.uco import action, core
@@ -31,8 +29,8 @@ class ArtifactClassification(core.UcoInherentCharacterizationThing):
     class of a classification taxonomy applies to something.
     """
 
-    classificationConfidence: Optional[float] = None
-    class_: str
+    classificationConfidence: float | None = None
+    class_: str | list[str] = []
 
 
 class AnalyticResult(core.Assertion):
@@ -41,12 +39,10 @@ class AnalyticResult(core.Assertion):
     an analysis action.
     """
 
-    originatingAnalysis: Optional[Analysis] = Field(
+    originatingAnalysis: Analysis | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    resultContent: Optional[core.UcoObject] = Field(
-        default=None, json_schema_extra={"IRI": True}
-    )
+    resultContent: core.UcoObject | list[core.UcoObject] | None = []
 
 
 class ArtifactClassificationResultFacet(AnalyticResultFacet):
@@ -55,6 +51,4 @@ class ArtifactClassificationResultFacet(AnalyticResultFacet):
     unique to the results of an artifact classification analysis action.
     """
 
-    classification: Optional[ArtifactClassification] = Field(
-        default=None, json_schema_extra={"IRI": True}
-    )
+    classification: ArtifactClassification | list[ArtifactClassification] | None = []

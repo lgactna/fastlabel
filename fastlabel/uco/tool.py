@@ -4,8 +4,6 @@ Auto-generated classes from the SHACL graph in tool.ttl.
 This file was generated using the `case_models.py` script.
 """
 
-from typing import Optional
-
 from pydantic import AwareDatetime, Field
 
 from fastlabel.uco import XMLSchema, configuration, core, identity
@@ -17,9 +15,9 @@ class BuildUtilityType(core.UcoInherentCharacterizationThing):
     to executable code for a particular version of software.
     """
 
-    buildUtilityName: Optional[str] = None
-    cpeid: Optional[str] = None
-    swid: Optional[str] = None
+    buildUtilityName: str | None = None
+    cpeid: str | None = None
+    swid: str | None = None
 
 
 class CompilerType(core.UcoInherentCharacterizationThing):
@@ -33,9 +31,9 @@ class CompilerType(core.UcoInherentCharacterizationThing):
     https://en.wikipedia.org/wiki/Compiler]
     """
 
-    compilerInformalDescription: Optional[str] = None
-    cpeid: Optional[str] = None
-    swid: Optional[str] = None
+    compilerInformalDescription: str | None = None
+    cpeid: str | None = None
+    swid: str | None = None
 
 
 class LibraryType(core.UcoInherentCharacterizationThing):
@@ -44,8 +42,8 @@ class LibraryType(core.UcoInherentCharacterizationThing):
     resources incorporated into the build of a software.
     """
 
-    libraryName: Optional[str] = None
-    libraryVersion: Optional[str] = None
+    libraryName: str | None = None
+    libraryVersion: str | None = None
 
 
 class Tool(core.UcoObject):
@@ -54,13 +52,13 @@ class Tool(core.UcoObject):
     particular function.
     """
 
-    creator: Optional[identity.Identity] = Field(
+    creator: identity.Identity | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    references: Optional[XMLSchema.xsd_anyURI] = None
-    servicePack: Optional[str] = None
-    toolType: Optional[str] = None
-    version: Optional[str] = None
+    references: XMLSchema.xsd_anyURI | list[XMLSchema.xsd_anyURI] | None = []
+    servicePack: str | None = None
+    toolType: str | None = None
+    version: str | None = None
 
 
 class BuildInformationType(core.UcoInherentCharacterizationThing):
@@ -70,25 +68,21 @@ class BuildInformationType(core.UcoInherentCharacterizationThing):
     executable code.
     """
 
-    buildConfiguration: Optional[configuration.Configuration] = Field(
+    buildConfiguration: configuration.Configuration | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    buildUtility: Optional[BuildUtilityType] = Field(
+    buildUtility: BuildUtilityType | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    compilers: Optional[CompilerType] = Field(
-        default=None, json_schema_extra={"IRI": True}
-    )
-    libraries: Optional[LibraryType] = Field(
-        default=None, json_schema_extra={"IRI": True}
-    )
-    compilationDate: Optional[AwareDatetime] = None
-    buildID: Optional[str] = None
-    buildLabel: Optional[str] = None
-    buildOutputLog: Optional[str] = None
-    buildProject: Optional[str] = None
-    buildScript: Optional[str] = None
-    buildVersion: Optional[str] = None
+    compilers: CompilerType | list[CompilerType] | None = []
+    libraries: LibraryType | list[LibraryType] | None = []
+    compilationDate: AwareDatetime | None = None
+    buildID: str | None = None
+    buildLabel: str | None = None
+    buildOutputLog: str | None = None
+    buildProject: str | None = None
+    buildScript: str | None = None
+    buildVersion: str | None = None
 
 
 class AnalyticTool(Tool):
@@ -105,8 +99,8 @@ class ConfiguredTool(Tool):
     specified manner than some unconfigured or less-configured Tool.
     """
 
-    usesConfiguration: Optional[configuration.Configuration] = None
-    isConfigurationOf: Optional[Tool] = None
+    usesConfiguration: configuration.Configuration | None = None
+    isConfigurationOf: Tool | None = None
 
 
 class DefensiveTool(Tool):
@@ -129,6 +123,6 @@ class BuildFacet(core.Facet):
     version of a software.
     """
 
-    buildInformation: Optional[BuildInformationType] = Field(
+    buildInformation: BuildInformationType | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )

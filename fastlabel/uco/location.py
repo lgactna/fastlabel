@@ -4,8 +4,6 @@ Auto-generated classes from the SHACL graph in location.ttl.
 This file was generated using the `case_models.py` script.
 """
 
-from typing import Optional
-
 from fastlabel.uco import core
 
 
@@ -17,10 +15,10 @@ class GPSCoordinatesFacet(core.Facet):
     as the Global Positioning System (GPS).
     """
 
-    hdop: Optional[float] = None
-    pdop: Optional[float] = None
-    tdop: Optional[float] = None
-    vdop: Optional[float] = None
+    hdop: float | None = None
+    pdop: float | None = None
+    tdop: float | None = None
+    vdop: float | None = None
 
 
 class LatLongCoordinatesFacet(core.Facet):
@@ -30,9 +28,9 @@ class LatLongCoordinatesFacet(core.Facet):
     longitude, and altitude values.
     """
 
-    altitude: Optional[float] = None
-    latitude: Optional[float] = None
-    longitude: Optional[float] = None
+    altitude: float | None = None
+    latitude: float | None = None
+    longitude: float | None = None
 
 
 class Location(core.UcoObject):
@@ -47,9 +45,9 @@ class SimpleAddressFacet(core.Facet):
     geolocation expressed as an administrative address.
     """
 
-    addressType: Optional[str] = None
-    country: Optional[str] = None
-    locality: Optional[str] = None
-    postalCode: Optional[str] = None
-    region: Optional[str] = None
-    street: Optional[str] = None
+    addressType: str | None = None
+    country: str | None = None
+    locality: str | None = None
+    postalCode: str | None = None
+    region: str | None = None
+    street: str | None = None

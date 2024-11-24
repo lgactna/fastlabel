@@ -4,8 +4,6 @@ Auto-generated classes from the SHACL graph in identity.ttl.
 This file was generated using the `case_models.py` script.
 """
 
-from typing import Optional
-
 from pydantic import AwareDatetime, Field
 
 from fastlabel.uco import core, location
@@ -49,7 +47,7 @@ class AddressFacet(IdentityFacet):
     identity.
     """
 
-    address: Optional[location.Location] = Field(
+    address: location.Location | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
 
@@ -67,7 +65,7 @@ class BirthInformationFacet(IdentityFacet):
     pertaining to the birth of an entity.
     """
 
-    birthdate: Optional[AwareDatetime] = None
+    birthdate: AwareDatetime | None = None
 
 
 class CountryOfResidenceFacet(IdentityFacet):
@@ -154,10 +152,10 @@ class SimpleNameFacet(IdentityFacet):
     name (e.g., Dr. John Smith Jr.) held by an identity.
     """
 
-    familyName: Optional[str] = None
-    givenName: Optional[str] = None
-    honorificPrefix: Optional[str] = None
-    honorificSuffix: Optional[str] = None
+    familyName: str | list[str] | None = []
+    givenName: str | list[str] | None = []
+    honorificPrefix: str | list[str] | None = []
+    honorificSuffix: str | list[str] | None = []
 
 
 class VisaFacet(IdentityFacet):

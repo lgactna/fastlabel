@@ -4,7 +4,7 @@ Auto-generated classes from the SHACL graph in action.ttl.
 This file was generated using the `case_models.py` script.
 """
 
-from typing import Optional
+from typing import Type
 
 from pydantic import AwareDatetime, Field
 
@@ -16,35 +16,25 @@ class Action(core.UcoObject):
     An action is something that may be done or performed.
     """
 
-    subaction: Optional["Action"] = Field(default=None, json_schema_extra={"IRI": True})
-    environment: Optional[core.UcoObject] = Field(
+    subaction: Type["Action"] | list["Action"] | None = []
+    environment: core.UcoObject | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    performer: Optional[core.UcoObject] = Field(
+    performer: core.UcoObject | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    error: Optional[core.UcoObject] = Field(
-        default=None, json_schema_extra={"IRI": True}
-    )
-    instrument: Optional[core.UcoObject] = Field(
-        default=None, json_schema_extra={"IRI": True}
-    )
-    object: Optional[core.UcoObject] = Field(
-        default=None, json_schema_extra={"IRI": True}
-    )
-    participant: Optional[core.UcoObject] = Field(
-        default=None, json_schema_extra={"IRI": True}
-    )
-    result: Optional[core.UcoObject] = Field(
-        default=None, json_schema_extra={"IRI": True}
-    )
-    location_: Optional[location.Location] = Field(
-        default=None, json_schema_extra={"IRI": True}
-    )
-    endTime: Optional[AwareDatetime] = None
-    startTime: Optional[AwareDatetime] = None
-    actionCount: Optional[int] = None
-    actionStatus: Optional[vocabulary.ActionStatusTypeVocab] = None
+    error: core.UcoObject | list[core.UcoObject] | None = []
+    instrument: core.UcoObject | list[core.UcoObject] | None = []
+    object: core.UcoObject | list[core.UcoObject] | None = []
+    participant: core.UcoObject | list[core.UcoObject] | None = []
+    result: core.UcoObject | list[core.UcoObject] | None = []
+    location_: location.Location | list[location.Location] | None = []
+    endTime: AwareDatetime | None = None
+    startTime: AwareDatetime | None = None
+    actionCount: int | None = None
+    actionStatus: (
+        vocabulary.ActionStatusTypeVocab | list[vocabulary.ActionStatusTypeVocab] | None
+    ) = []
 
 
 class ActionArgumentFacet(core.Facet):
@@ -64,10 +54,10 @@ class ActionEstimationFacet(core.Facet):
     performed.
     """
 
-    estimatedCost: Optional[str] = None
-    estimatedEfficacy: Optional[str] = None
-    estimatedImpact: Optional[str] = None
-    objective: Optional[str] = None
+    estimatedCost: str | None = None
+    estimatedEfficacy: str | None = None
+    estimatedImpact: str | None = None
+    objective: str | None = None
 
 
 class ActionFrequencyFacet(core.Facet):
@@ -79,7 +69,7 @@ class ActionFrequencyFacet(core.Facet):
     rate: float
     scale: str
     units: str
-    trend: Optional[vocabulary.TrendVocab] = None
+    trend: vocabulary.TrendVocab | list[vocabulary.TrendVocab] | None = []
 
 
 class ActionPattern(Action):
@@ -95,7 +85,7 @@ class ArrayOfAction(core.UcoInherentCharacterizationThing):
     done or performed.
     """
 
-    action_: Action = Field(json_schema_extra={"IRI": True})
+    action_: Action | list[Action] = []
 
 
 class ActionLifecycle(ActionPattern):
@@ -105,9 +95,7 @@ class ActionLifecycle(ActionPattern):
     """
 
     phase: ArrayOfAction = Field(json_schema_extra={"IRI": True})
-    error: Optional[core.UcoObject] = Field(
-        default=None, json_schema_extra={"IRI": True}
-    )
-    endTime: Optional[AwareDatetime] = None
-    startTime: Optional[AwareDatetime] = None
-    actionCount: Optional[int] = None
+    error: core.UcoObject | None = Field(default=None, json_schema_extra={"IRI": True})
+    endTime: AwareDatetime | None = None
+    startTime: AwareDatetime | None = None
+    actionCount: int | None = None

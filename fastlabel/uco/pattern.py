@@ -4,8 +4,6 @@ Auto-generated classes from the SHACL graph in pattern.ttl.
 This file was generated using the `case_models.py` script.
 """
 
-from typing import Optional
-
 from fastlabel.uco import core
 
 
@@ -31,4 +29,4 @@ class LogicalPattern(Pattern):
     following the rules of logic.
     """
 
-    patternExpression: Optional[str] = None
+    patternExpression: str | None = None

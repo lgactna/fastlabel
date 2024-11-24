@@ -5,7 +5,6 @@ This file was generated using the `case_models.py` script.
 """
 
 from enum import Enum
-from typing import Optional
 
 from pydantic import AwareDatetime, Field
 
@@ -138,15 +137,26 @@ class UNIXFilePermissionsFacet(core.Facet):
     """
 
 
+class AccountAuthenticationFacet(core.Facet):
+    """
+    An account authentication facet is a grouping of characteristics unique to
+    the mechanism of accessing an account.
+    """
+
+    passwordLastChanged: AwareDatetime | None = None
+    password: str | None = None
+    passwordType: str | None = None
+
+
 class ArchiveFileFacet(core.Facet):
     """
     An archive file facet is a grouping of characteristics unique to a file that
     is composed of one or more computer files along with metadata.
     """
 
-    archiveType: Optional[str] = None
-    comment: Optional[str] = None
-    version: Optional[str] = None
+    archiveType: str | None = None
+    comment: str | None = None
+    version: str | None = None
 
 
 class CellSiteFacet(core.Facet):
@@ -154,11 +164,11 @@ class CellSiteFacet(core.Facet):
     A cell site facet contains the metadata surrounding the cell site.
     """
 
-    cellSiteCountryCode: Optional[str] = None
-    cellSiteIdentifier: Optional[str] = None
-    cellSiteLocationAreaCode: Optional[str] = None
-    cellSiteNetworkCode: Optional[str] = None
-    cellSiteType: Optional[str] = None
+    cellSiteCountryCode: str | None = None
+    cellSiteIdentifier: str | None = None
+    cellSiteLocationAreaCode: str | None = None
+    cellSiteNetworkCode: str | None = None
+    cellSiteType: str | None = None
 
 
 class DigitalAddressFacet(core.Facet):
@@ -168,8 +178,8 @@ class DigitalAddressFacet(core.Facet):
     communication.
     """
 
-    addressValue: Optional[str] = None
-    displayName: Optional[str] = None
+    addressValue: str | None = None
+    displayName: str | None = None
 
 
 class EncodedStreamFacet(core.Facet):
@@ -178,7 +188,7 @@ class EncodedStreamFacet(core.Facet):
     conversion of a body of data content from one form to another form.
     """
 
-    encodingMethod: Optional[str] = None
+    encodingMethod: str | None = None
 
 
 class EncryptedStreamFacet(core.Facet):
@@ -189,10 +199,10 @@ class EncryptedStreamFacet(core.Facet):
     form can only be accomplished through possession and use of a specific key.
     """
 
-    encryptionMethod: Optional[str] = None
-    encryptionMode: Optional[str] = None
-    encryptionIV: Optional[str] = None
-    encryptionKey: Optional[str] = None
+    encryptionMethod: str | None = None
+    encryptionMode: str | None = None
+    encryptionIV: str | list[str] | None = []
+    encryptionKey: str | list[str] | None = []
 
 
 class ImageFacet(core.Facet):
@@ -201,7 +211,7 @@ class ImageFacet(core.Facet):
     a hard disk, memory, or other digital media.
     """
 
-    imageType: Optional[str] = None
+    imageType: str | None = None
 
 
 class LibraryFacet(core.Facet):
@@ -212,7 +222,7 @@ class LibraryFacet(core.Facet):
     https://www.techopedia.com/definition/3828/software-library]
     """
 
-    libraryType: Optional[str] = None
+    libraryType: str | None = None
 
 
 class MobileAccountFacet(core.Facet):
@@ -223,9 +233,9 @@ class MobileAccountFacet(core.Facet):
     https://www.lexico.com/definition/mobile_device]
     """
 
-    IMSI: Optional[str] = None
-    MSISDN: Optional[str] = None
-    MSISDNType: Optional[str] = None
+    IMSI: str | None = None
+    MSISDN: str | None = None
+    MSISDNType: str | None = None
 
 
 class PathRelationFacet(core.Facet):
@@ -234,7 +244,7 @@ class PathRelationFacet(core.Facet):
     location of one object within another containing object.
     """
 
-    path: Optional[str] = None
+    path: str | list[str] | None = []
 
 
 class PhoneAccountFacet(core.Facet):
@@ -244,7 +254,7 @@ class PhoneAccountFacet(core.Facet):
     telephony capability or service.
     """
 
-    phoneNumber: Optional[str] = None
+    phoneNumber: str | None = None
 
 
 class PropertiesEnumeratedEffectFacet(core.Facet):
@@ -255,7 +265,7 @@ class PropertiesEnumeratedEffectFacet(core.Facet):
     parameters for a process.
     """
 
-    properties: Optional[str] = None
+    properties: str | None = None
 
 
 class UNIXVolumeFacet(core.Facet):
@@ -265,8 +275,8 @@ class UNIXVolumeFacet(core.Facet):
     https://en.wikipedia.org/wiki/Volume_(computing)]
     """
 
-    mountPoint: Optional[str] = None
-    options: Optional[str] = None
+    mountPoint: str | None = None
+    options: str | None = None
 
 
 class WindowsAccountFacet(core.Facet):
@@ -275,7 +285,7 @@ class WindowsAccountFacet(core.Facet):
     account on a Windows operating system.
     """
 
-    groups: Optional[str] = None
+    groups: str | list[str] | None = []
 
 
 class WindowsActiveDirectoryAccountFacet(core.Facet):
@@ -285,8 +295,8 @@ class WindowsActiveDirectoryAccountFacet(core.Facet):
     a Windows operating system.
     """
 
-    objectGUID: Optional[str] = None
-    activeDirectoryGroups: Optional[str] = None
+    objectGUID: str | None = None
+    activeDirectoryGroups: str | list[str] | None = []
 
 
 class WindowsRegistryHiveFacet(core.Facet):
@@ -298,7 +308,7 @@ class WindowsRegistryHiveFacet(core.Facet):
     [based on https://en.wikipedia.org/wiki/Windows_Registry]
     """
 
-    hiveType: Optional[str] = None
+    hiveType: str | None = None
 
 
 class WindowsServiceFacet(core.Facet):
@@ -309,14 +319,14 @@ class WindowsServiceFacet(core.Facet):
     UNIX). [based on https://en.wikipedia.org/wiki/Windows_service]
     """
 
-    displayName: Optional[str] = None
-    groupName: Optional[str] = None
-    serviceName: Optional[str] = None
-    serviceStatus: Optional[str] = None
-    serviceType: Optional[str] = None
-    startCommandLine: Optional[str] = None
-    startType: Optional[str] = None
-    descriptions: Optional[str] = None
+    displayName: str | None = None
+    groupName: str | None = None
+    serviceName: str | None = None
+    serviceStatus: str | None = None
+    serviceType: str | None = None
+    startCommandLine: str | None = None
+    startType: str | None = None
+    descriptions: str | list[str] | None = []
 
 
 class WirelessNetworkConnectionFacet(core.Facet):
@@ -328,20 +338,9 @@ class WirelessNetworkConnectionFacet(core.Facet):
     https://www.webopedia.com/TERM/N/network.html]
     """
 
-    baseStation: Optional[str] = None
-    password: Optional[str] = None
-    ssid: Optional[str] = None
-
-
-class AccountAuthenticationFacet(core.Facet):
-    """
-    An account authentication facet is a grouping of characteristics unique to
-    the mechanism of accessing an account.
-    """
-
-    passwordLastChanged: Optional[AwareDatetime] = None
-    password: Optional[str] = None
-    passwordType: Optional[str] = None
+    baseStation: str | None = None
+    password: str | None = None
+    ssid: str | None = None
 
 
 class X509V3ExtensionsFacet(core.Facet):
@@ -351,22 +350,22 @@ class X509V3ExtensionsFacet(core.Facet):
     v3 PKI (Public Key Infrastructure) standard.
     """
 
-    privateKeyUsagePeriodNotAfter: Optional[AwareDatetime] = None
-    privateKeyUsagePeriodNotBefore: Optional[AwareDatetime] = None
-    authorityKeyIdentifier: Optional[str] = None
-    basicConstraints: Optional[str] = None
-    certificatePolicies: Optional[str] = None
-    crlDistributionPoints: Optional[str] = None
-    extendedKeyUsage: Optional[str] = None
-    inhibitAnyPolicy: Optional[str] = None
-    issuerAlternativeName: Optional[str] = None
-    keyUsage: Optional[str] = None
-    nameConstraints: Optional[str] = None
-    policyConstraints: Optional[str] = None
-    policyMappings: Optional[str] = None
-    subjectAlternativeName: Optional[str] = None
-    subjectDirectoryAttributes: Optional[str] = None
-    subjectKeyIdentifier: Optional[str] = None
+    privateKeyUsagePeriodNotAfter: AwareDatetime | None = None
+    privateKeyUsagePeriodNotBefore: AwareDatetime | None = None
+    authorityKeyIdentifier: str | None = None
+    basicConstraints: str | None = None
+    certificatePolicies: str | None = None
+    crlDistributionPoints: str | None = None
+    extendedKeyUsage: str | None = None
+    inhibitAnyPolicy: str | None = None
+    issuerAlternativeName: str | None = None
+    keyUsage: str | None = None
+    nameConstraints: str | None = None
+    policyConstraints: str | None = None
+    policyMappings: str | None = None
+    subjectAlternativeName: str | None = None
+    subjectDirectoryAttributes: str | None = None
+    subjectKeyIdentifier: str | None = None
 
 
 class DigitalAccountFacet(core.Facet):
@@ -376,11 +375,11 @@ class DigitalAccountFacet(core.Facet):
     capability or service within the digital domain.
     """
 
-    isDisabled: Optional[bool] = None
-    firstLoginTime: Optional[AwareDatetime] = None
-    lastLoginTime: Optional[AwareDatetime] = None
-    displayName: Optional[str] = None
-    accountLogin: Optional[str] = None
+    isDisabled: bool | None = None
+    firstLoginTime: AwareDatetime | None = None
+    lastLoginTime: AwareDatetime | None = None
+    displayName: str | None = None
+    accountLogin: str | list[str] | None = []
 
 
 class DomainNameFacet(core.Facet):
@@ -391,8 +390,8 @@ class DomainNameFacet(core.Facet):
     https://en.wikipedia.org/wiki/Domain_name]
     """
 
-    isTLD: Optional[bool] = None
-    value: Optional[str] = None
+    isTLD: bool | None = None
+    value: str | None = None
 
 
 class MutexFacet(core.Facet):
@@ -405,8 +404,8 @@ class MutexFacet(core.Facet):
     https://en.wikipedia.org/wiki/Lock_(computer_science)]
     """
 
-    isNamed: Optional[bool] = None
-    mutexName: Optional[str] = None
+    isNamed: bool | None = None
+    mutexName: str | None = None
 
 
 class SMSMessageFacet(core.Facet):
@@ -416,7 +415,7 @@ class SMSMessageFacet(core.Facet):
     standards.
     """
 
-    isRead: Optional[bool] = None
+    isRead: bool | None = None
 
 
 class TableFieldFacet(core.Facet):
@@ -425,10 +424,10 @@ class TableFieldFacet(core.Facet):
     record value from a database.
     """
 
-    recordFieldIsNull: Optional[bool] = None
-    recordFieldName: Optional[str] = None
-    tableName: Optional[str] = None
-    tableSchema: Optional[str] = None
+    recordFieldIsNull: bool | None = None
+    recordFieldName: str | None = None
+    tableName: str | None = None
+    tableSchema: str | None = None
 
 
 class UserAccountFacet(core.Facet):
@@ -437,10 +436,10 @@ class UserAccountFacet(core.Facet):
     controlling a user's access to a network, system, or platform.
     """
 
-    canEscalatePrivs: Optional[bool] = None
-    isPrivileged: Optional[bool] = None
-    isServiceAccount: Optional[bool] = None
-    homeDirectory: Optional[str] = None
+    canEscalatePrivs: bool | None = None
+    isPrivileged: bool | None = None
+    isServiceAccount: bool | None = None
+    homeDirectory: str | None = None
 
 
 class AccountFacet(core.Facet):
@@ -450,18 +449,18 @@ class AccountFacet(core.Facet):
     service.
     """
 
-    accountIssuer: Optional[core.UcoObject] = Field(
+    accountIssuer: core.UcoObject | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    owner: Optional[core.UcoObject] = Field(
-        default=None, json_schema_extra={"IRI": True}
-    )
-    isActive: Optional[bool] = None
-    expirationTime: Optional[AwareDatetime] = None
-    modifiedTime: Optional[AwareDatetime] = None
-    observableCreatedTime: Optional[AwareDatetime] = None
-    accountIdentifier: Optional[str] = None
-    accountType: Optional[vocabulary.AccountTypeVocab] = None
+    owner: core.UcoObject | None = Field(default=None, json_schema_extra={"IRI": True})
+    isActive: bool | None = None
+    expirationTime: AwareDatetime | None = None
+    modifiedTime: AwareDatetime | None = None
+    observableCreatedTime: AwareDatetime | None = None
+    accountIdentifier: str | None = None
+    accountType: (
+        vocabulary.AccountTypeVocab | list[vocabulary.AccountTypeVocab] | None
+    ) = []
 
 
 class FilePermissionsFacet(core.Facet):
@@ -471,9 +470,7 @@ class FilePermissionsFacet(core.Facet):
     system.
     """
 
-    owner: Optional[core.UcoObject] = Field(
-        default=None, json_schema_extra={"IRI": True}
-    )
+    owner: core.UcoObject | None = Field(default=None, json_schema_extra={"IRI": True})
 
 
 class Observable(core.UcoObject):
@@ -482,29 +479,16 @@ class Observable(core.UcoObject):
     """
 
 
-class AlternateDataStreamFacet(core.Facet):
-    """
-    An alternate data stream facet is a grouping of characteristics unique to
-    data content stored within an NTFS file that is independent of the standard
-    content stream of the file and is hidden from access by default NTFS file
-    viewing mechanisms.
-    """
-
-    hashes: Optional[types.Hash] = Field(default=None, json_schema_extra={"IRI": True})
-    size: Optional[int] = None
-    name: Optional[str] = None
-
-
 class AudioFacet(core.Facet):
     """
     An audio facet is a grouping of characteristics unique to a digital
     representation of sound.
     """
 
-    bitRate: Optional[int] = None
-    duration: Optional[int] = None
-    audioType: Optional[str] = None
-    format: Optional[str] = None
+    bitRate: int | None = None
+    duration: int | None = None
+    audioType: str | None = None
+    format: str | None = None
 
 
 class DataRangeFacet(core.Facet):
@@ -513,9 +497,9 @@ class DataRangeFacet(core.Facet):
     contiguous scope within a block of digital data.
     """
 
-    rangeOffset: Optional[int] = None
-    rangeSize: Optional[int] = None
-    rangeOffsetType: Optional[str] = None
+    rangeOffset: int | None = None
+    rangeSize: int | None = None
+    rangeOffsetType: str | None = None
 
 
 class DiskPartitionFacet(core.Facet):
@@ -524,15 +508,15 @@ class DiskPartitionFacet(core.Facet):
     particular managed region on a storage mechanism.
     """
 
-    observableCreatedTime: Optional[AwareDatetime] = None
-    partitionLength: Optional[int] = None
-    partitionOffset: Optional[int] = None
-    spaceLeft: Optional[int] = None
-    spaceUsed: Optional[int] = None
-    totalSpace: Optional[int] = None
-    diskPartitionType: Optional[str] = None
-    mountPoint: Optional[str] = None
-    partitionID: Optional[str] = None
+    observableCreatedTime: AwareDatetime | None = None
+    partitionLength: int | None = None
+    partitionOffset: int | None = None
+    spaceLeft: int | None = None
+    spaceUsed: int | None = None
+    totalSpace: int | None = None
+    diskPartitionType: str | None = None
+    mountPoint: str | None = None
+    partitionID: str | None = None
 
 
 class ExtInodeFacet(core.Facet):
@@ -542,15 +526,15 @@ class ExtInodeFacet(core.Facet):
     or related derivations) specification.
     """
 
-    extDeletionTime: Optional[AwareDatetime] = None
-    extInodeChangeTime: Optional[AwareDatetime] = None
-    extFileType: Optional[int] = None
-    extFlags: Optional[int] = None
-    extHardLinkCount: Optional[int] = None
-    extInodeID: Optional[int] = None
-    extPermissions: Optional[int] = None
-    extSGID: Optional[int] = None
-    extSUID: Optional[int] = None
+    extDeletionTime: AwareDatetime | None = None
+    extInodeChangeTime: AwareDatetime | None = None
+    extFileType: int | None = None
+    extFlags: int | None = None
+    extHardLinkCount: int | None = None
+    extInodeID: int | None = None
+    extPermissions: int | None = None
+    extSGID: int | None = None
+    extSUID: int | None = None
 
 
 class FileFacet(core.Facet):
@@ -563,16 +547,16 @@ class FileFacet(core.Facet):
     https://www.techopedia.com/definition/5510/file-system]
     """
 
-    isDirectory: Optional[bool] = None
-    accessedTime: Optional[AwareDatetime] = None
-    metadataChangeTime: Optional[AwareDatetime] = None
-    modifiedTime: Optional[AwareDatetime] = None
-    observableCreatedTime: Optional[AwareDatetime] = None
-    sizeInBytes: Optional[int] = None
-    allocationStatus: Optional[str] = None
-    extension: Optional[str] = None
-    fileName: Optional[str] = None
-    filePath: Optional[str] = None
+    isDirectory: bool | list[bool] | None = []
+    accessedTime: AwareDatetime | None = None
+    metadataChangeTime: AwareDatetime | None = None
+    modifiedTime: AwareDatetime | None = None
+    observableCreatedTime: AwareDatetime | None = None
+    sizeInBytes: int | None = None
+    allocationStatus: str | None = None
+    extension: str | None = None
+    fileName: str | list[str] | None = []
+    filePath: str | list[str] | None = []
 
 
 class FileSystemFacet(core.Facet):
@@ -582,8 +566,8 @@ class FileSystemFacet(core.Facet):
     managed. [based on https://www.techopedia.com/definition/5510/file-system]
     """
 
-    clusterSize: Optional[int] = None
-    fileSystemType: Optional[str] = None
+    clusterSize: int | None = None
+    fileSystemType: str | None = None
 
 
 class FragmentFacet(core.Facet):
@@ -592,8 +576,8 @@ class FragmentFacet(core.Facet):
     piece of the content of a file.
     """
 
-    fragmentIndex: Optional[int] = None
-    totalFragments: Optional[int] = None
+    fragmentIndex: int | list[int] | None = []
+    totalFragments: int | list[int] | None = []
 
 
 class MftRecordFacet(core.Facet):
@@ -605,18 +589,18 @@ class MftRecordFacet(core.Facet):
     https://docs.microsoft.com/en-us/windows/win32/devnotes/master-file-table]
     """
 
-    mftFileNameAccessedTime: Optional[AwareDatetime] = None
-    mftFileNameCreatedTime: Optional[AwareDatetime] = None
-    mftFileNameModifiedTime: Optional[AwareDatetime] = None
-    mftFileNameRecordChangeTime: Optional[AwareDatetime] = None
-    mftRecordChangeTime: Optional[AwareDatetime] = None
-    mftFileID: Optional[int] = None
-    mftFileNameLength: Optional[int] = None
-    mftFlags: Optional[int] = None
-    mftParentID: Optional[int] = None
-    ntfsHardLinkCount: Optional[int] = None
-    ntfsOwnerID: Optional[str] = None
-    ntfsOwnerSID: Optional[str] = None
+    mftFileNameAccessedTime: AwareDatetime | None = None
+    mftFileNameCreatedTime: AwareDatetime | None = None
+    mftFileNameModifiedTime: AwareDatetime | None = None
+    mftFileNameRecordChangeTime: AwareDatetime | None = None
+    mftRecordChangeTime: AwareDatetime | None = None
+    mftFileID: int | None = None
+    mftFileNameLength: int | None = None
+    mftFlags: int | None = None
+    mftParentID: int | None = None
+    ntfsHardLinkCount: int | None = None
+    ntfsOwnerID: str | None = None
+    ntfsOwnerSID: str | None = None
 
 
 class MobileDeviceFacet(core.Facet):
@@ -625,15 +609,15 @@ class MobileDeviceFacet(core.Facet):
     computing device. [based on https://www.lexico.com/definition/mobile_device]
     """
 
-    mockLocationsAllowed: Optional[bool] = None
-    clockSetting: Optional[AwareDatetime] = None
-    phoneActivationTime: Optional[AwareDatetime] = None
-    storageCapacityInBytes: Optional[int] = None
-    ESN: Optional[str] = None
-    bluetoothDeviceName: Optional[str] = None
-    keypadUnlockCode: Optional[str] = None
-    network: Optional[str] = None
-    IMEI: Optional[str] = None
+    mockLocationsAllowed: bool | None = None
+    clockSetting: AwareDatetime | None = None
+    phoneActivationTime: AwareDatetime | None = None
+    storageCapacityInBytes: int | None = None
+    ESN: str | None = None
+    bluetoothDeviceName: str | None = None
+    keypadUnlockCode: str | None = None
+    network: str | None = None
+    IMEI: str | list[str] | None = []
 
 
 class StorageMediumFacet(core.Facet):
@@ -643,7 +627,7 @@ class StorageMediumFacet(core.Facet):
     serve a special purpose or perform a special function.
     """
 
-    totalStorageCapacityInBytes: Optional[int] = None
+    totalStorageCapacityInBytes: int | None = None
 
 
 class UNIXAccountFacet(core.Facet):
@@ -652,8 +636,8 @@ class UNIXAccountFacet(core.Facet):
     on a UNIX operating system.
     """
 
-    gid: Optional[int] = None
-    shell: Optional[str] = None
+    gid: int | None = None
+    shell: str | None = None
 
 
 class UNIXProcessFacet(core.Facet):
@@ -662,8 +646,8 @@ class UNIXProcessFacet(core.Facet):
     of a computer program executed on a UNIX operating system.
     """
 
-    openFileDescriptor: Optional[int] = None
-    ruid: Optional[int] = None
+    openFileDescriptor: int | list[int] | None = []
+    ruid: int | list[int] | None = []
 
 
 class VolumeFacet(core.Facet):
@@ -673,8 +657,21 @@ class VolumeFacet(core.Facet):
     https://en.wikipedia.org/wiki/Volume_(computing)]
     """
 
-    sectorSize: Optional[int] = None
-    volumeID: Optional[str] = None
+    sectorSize: int | None = None
+    volumeID: str | None = None
+
+
+class AlternateDataStreamFacet(core.Facet):
+    """
+    An alternate data stream facet is a grouping of characteristics unique to
+    data content stored within an NTFS file that is independent of the standard
+    content stream of the file and is hidden from access by default NTFS file
+    viewing mechanisms.
+    """
+
+    hashes: types.Hash | None = Field(default=None, json_schema_extra={"IRI": True})
+    size: int | None = None
+    name: str | None = None
 
 
 class AndroidDeviceFacet(core.Facet):
@@ -684,11 +681,11 @@ class AndroidDeviceFacet(core.Facet):
     https://en.wikipedia.org/wiki/Android_(operating_system)]
     """
 
-    isADBRootEnabled: Optional[bool] = None
-    isSURootEnabled: Optional[bool] = None
-    androidID: Optional[XMLSchema.xsd_hexBinary] = None
-    androidFingerprint: Optional[str] = None
-    androidVersion: Optional[str] = None
+    isADBRootEnabled: bool | None = None
+    isSURootEnabled: bool | None = None
+    androidID: XMLSchema.xsd_hexBinary | None = None
+    androidFingerprint: str | None = None
+    androidVersion: str | None = None
 
 
 class ICMPConnectionFacet(core.Facet):
@@ -698,8 +695,8 @@ class ICMPConnectionFacet(core.Facet):
     Protocol (ICMP) standard.
     """
 
-    icmpCode: Optional[XMLSchema.xsd_hexBinary] = None
-    icmpType: Optional[XMLSchema.xsd_hexBinary] = None
+    icmpCode: XMLSchema.xsd_hexBinary | list[XMLSchema.xsd_hexBinary] | None = []
+    icmpType: XMLSchema.xsd_hexBinary | list[XMLSchema.xsd_hexBinary] | None = []
 
 
 class TCPConnectionFacet(core.Facet):
@@ -709,8 +706,10 @@ class TCPConnectionFacet(core.Facet):
     Protocl (TCP) standard.
     """
 
-    destinationFlags: Optional[XMLSchema.xsd_hexBinary] = None
-    sourceFlags: Optional[XMLSchema.xsd_hexBinary] = None
+    destinationFlags: XMLSchema.xsd_hexBinary | list[XMLSchema.xsd_hexBinary] | None = (
+        []
+    )
+    sourceFlags: XMLSchema.xsd_hexBinary | list[XMLSchema.xsd_hexBinary] | None = []
 
 
 class AntennaFacet(core.Facet):
@@ -719,12 +718,12 @@ class AntennaFacet(core.Facet):
     tower's antenna position.
     """
 
-    antennaHeight: Optional[float] = None
-    azimuth: Optional[float] = None
-    elevation: Optional[float] = None
-    horizontalBeamWidth: Optional[float] = None
-    signalStrength: Optional[float] = None
-    skew: Optional[float] = None
+    antennaHeight: float | None = None
+    azimuth: float | None = None
+    elevation: float | None = None
+    horizontalBeamWidth: float | None = None
+    signalStrength: float | None = None
+    skew: float | None = None
 
 
 class CompressedStreamFacet(core.Facet):
@@ -733,8 +732,8 @@ class CompressedStreamFacet(core.Facet):
     application of a size-reduction process to a body of data content.
     """
 
-    compressionRatio: Optional[float] = None
-    compressionMethod: Optional[str] = None
+    compressionRatio: float | None = None
+    compressionMethod: str | None = None
 
 
 class ApplicationVersion(core.UcoInherentCharacterizationThing):
@@ -743,9 +742,9 @@ class ApplicationVersion(core.UcoInherentCharacterizationThing):
     particular software program version.
     """
 
-    installDate: Optional[AwareDatetime] = None
-    uninstallDate: Optional[AwareDatetime] = None
-    version: Optional[str] = None
+    installDate: AwareDatetime | None = None
+    uninstallDate: AwareDatetime | None = None
+    version: str | None = None
 
 
 class EnvironmentVariable(core.UcoInherentCharacterizationThing):
@@ -755,8 +754,8 @@ class EnvironmentVariable(core.UcoInherentCharacterizationThing):
     a computer. [based on https://en.wikipedia.org/wiki/Environment_variable]
     """
 
-    name: Optional[str] = None
-    value: Optional[str] = None
+    name: str | None = None
+    value: str | None = None
 
 
 class GlobalFlagType(core.UcoInherentCharacterizationThing):
@@ -768,10 +767,12 @@ class GlobalFlagType(core.UcoInherentCharacterizationThing):
     by Solomon, Russinovich, and Ionescu]
     """
 
-    hexadecimalValue: Optional[XMLSchema.xsd_hexBinary] = None
-    abbreviation: Optional[str] = None
-    destination: Optional[str] = None
-    symbolicName: Optional[str] = None
+    hexadecimalValue: XMLSchema.xsd_hexBinary | list[XMLSchema.xsd_hexBinary] | None = (
+        []
+    )
+    abbreviation: str | None = None
+    destination: str | None = None
+    symbolicName: str | None = None
 
 
 class IComHandlerActionType(core.UcoInherentCharacterizationThing):
@@ -783,8 +784,8 @@ class IComHandlerActionType(core.UcoInherentCharacterizationThing):
     https://docs.microsoft.com/en-us/windows/win32/taskschd/comhandleraction]
     """
 
-    comClassID: Optional[str] = None
-    comData: Optional[str] = None
+    comClassID: str | None = None
+    comData: str | None = None
 
 
 class IExecActionType(core.UcoInherentCharacterizationThing):
@@ -795,12 +796,10 @@ class IExecActionType(core.UcoInherentCharacterizationThing):
     https://docs.microsoft.com/en-us/windows/win32/api/taskschd/nn-taskschd-iexecaction?redirectedfrom=MSDN]
     """
 
-    execProgramHashes: Optional[types.Hash] = Field(
-        default=None, json_schema_extra={"IRI": True}
-    )
-    execArguments: Optional[str] = None
-    execProgramPath: Optional[str] = None
-    execWorkingDirectory: Optional[str] = None
+    execProgramHashes: types.Hash | list[types.Hash] | None = []
+    execArguments: str | None = None
+    execProgramPath: str | None = None
+    execWorkingDirectory: str | None = None
 
 
 class IShowMessageActionType(core.UcoInherentCharacterizationThing):
@@ -810,8 +809,8 @@ class IShowMessageActionType(core.UcoInherentCharacterizationThing):
     https://docs.microsoft.com/en-us/windows/win32/api/taskschd/nn-taskschd-ishowmessageaction?redirectedfrom=MSDN]
     """
 
-    showMessageBody: Optional[str] = None
-    showMessageTitle: Optional[str] = None
+    showMessageBody: str | None = None
+    showMessageTitle: str | None = None
 
 
 class WindowsPEFileHeader(core.UcoInherentCharacterizationThing):
@@ -821,7 +820,7 @@ class WindowsPEFileHeader(core.UcoInherentCharacterizationThing):
     collection of metadata about the overall nature and structure of the file.
     """
 
-    timeDateStamp: Optional[AwareDatetime] = None
+    timeDateStamp: AwareDatetime | None = None
 
 
 class WindowsPESection(core.UcoInherentCharacterizationThing):
@@ -833,10 +832,10 @@ class WindowsPESection(core.UcoInherentCharacterizationThing):
     requirements.
     """
 
-    hashes: Optional[types.Hash] = Field(default=None, json_schema_extra={"IRI": True})
-    entropy: Optional[float] = None
-    size: Optional[int] = None
-    name: Optional[str] = None
+    hashes: types.Hash | list[types.Hash] | None = []
+    entropy: float | None = None
+    size: int | None = None
+    name: str | None = None
 
 
 class WindowsRegistryValue(core.UcoInherentCharacterizationThing):
@@ -848,9 +847,9 @@ class WindowsRegistryValue(core.UcoInherentCharacterizationThing):
     https://en.wikipedia.org/wiki/Windows_Registry]
     """
 
-    name: Optional[str] = None
-    data: Optional[str] = None
-    dataType: Optional[str] = None
+    name: str | None = None
+    data: str | None = None
+    dataType: str | None = None
 
 
 class AutonomousSystemFacet(core.Facet):
@@ -863,9 +862,13 @@ class AutonomousSystemFacet(core.Facet):
     https://en.wikipedia.org/wiki/Autonomous_system_(Internet)]
     """
 
-    regionalInternetRegistry: Optional[vocabulary.RegionalRegistryTypeVocab] = None
-    number: Optional[int] = None
-    asHandle: Optional[str] = None
+    regionalInternetRegistry: (
+        vocabulary.RegionalRegistryTypeVocab
+        | list[vocabulary.RegionalRegistryTypeVocab]
+        | None
+    ) = []
+    number: int | None = None
+    asHandle: str | None = None
 
 
 class DeviceFacet(core.Facet):
@@ -876,12 +879,12 @@ class DeviceFacet(core.Facet):
     https://www.merriam-webster.com/dictionary/device]
     """
 
-    manufacturer: Optional[identity.Identity] = Field(
+    manufacturer: identity.Identity | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    deviceType: Optional[str] = None
-    model: Optional[str] = None
-    serialNumber: Optional[str] = None
+    deviceType: str | None = None
+    model: str | None = None
+    serialNumber: str | None = None
 
 
 class DigitalSignatureInfoFacet(core.Facet):
@@ -891,15 +894,15 @@ class DigitalSignatureInfoFacet(core.Facet):
     authenticity of an electronic message or document.
     """
 
-    certificateSubject: Optional[core.UcoObject] = Field(
+    certificateSubject: core.UcoObject | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    certificateIssuer: Optional[identity.Identity] = Field(
+    certificateIssuer: identity.Identity | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    signatureExists: Optional[bool] = None
-    signatureVerified: Optional[bool] = None
-    signatureDescription: Optional[str] = None
+    signatureExists: bool | None = None
+    signatureVerified: bool | None = None
+    signatureDescription: str | None = None
 
 
 class SIMCardFacet(core.Facet):
@@ -912,16 +915,16 @@ class SIMCardFacet(core.Facet):
     https://en.wikipedia.org/wiki/SIM_card]
     """
 
-    carrier: Optional[identity.Identity] = Field(
+    carrier: identity.Identity | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    storageCapacityInBytes: Optional[int] = None
-    ICCID: Optional[str] = None
-    IMSI: Optional[str] = None
-    PIN: Optional[str] = None
-    PUK: Optional[str] = None
-    SIMForm: Optional[str] = None
-    SIMType: Optional[str] = None
+    storageCapacityInBytes: int | None = None
+    ICCID: str | None = None
+    IMSI: str | None = None
+    PIN: str | None = None
+    PUK: str | None = None
+    SIMForm: str | None = None
+    SIMType: str | None = None
 
 
 class SoftwareFacet(core.Facet):
@@ -932,13 +935,13 @@ class SoftwareFacet(core.Facet):
     https://en.wikipedia.org/wiki/Software]
     """
 
-    manufacturer: Optional[identity.Identity] = Field(
+    manufacturer: identity.Identity | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    cpeid: Optional[str] = None
-    language: Optional[str] = None
-    swid: Optional[str] = None
-    version: Optional[str] = None
+    cpeid: str | None = None
+    language: str | None = None
+    swid: str | None = None
+    version: str | None = None
 
 
 class ContactAddress(core.UcoInherentCharacterizationThing):
@@ -947,10 +950,14 @@ class ContactAddress(core.UcoInherentCharacterizationThing):
     address of a contact entity.
     """
 
-    geolocationAddress: Optional[location.Location] = Field(
+    geolocationAddress: location.Location | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    contactAddressScope: Optional[vocabulary.ContactAddressScopeVocab] = None
+    contactAddressScope: (
+        vocabulary.ContactAddressScopeVocab
+        | list[vocabulary.ContactAddressScopeVocab]
+        | None
+    ) = []
 
 
 class EXIFFacet(core.Facet):
@@ -963,9 +970,7 @@ class EXIFFacet(core.Facet):
     https://en.wikipedia.org/wiki/Exif]
     """
 
-    exifData: Optional[types.ControlledDictionary] = Field(
-        default=None, json_schema_extra={"IRI": True}
-    )
+    exifData: types.ControlledDictionary | list[types.ControlledDictionary] | None = []
 
 
 class PDFFileFacet(core.Facet):
@@ -974,15 +979,15 @@ class PDFFileFacet(core.Facet):
     Document Format) file.
     """
 
-    documentInformationDictionary: Optional[types.ControlledDictionary] = Field(
+    documentInformationDictionary: types.ControlledDictionary | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    isOptimized: Optional[bool] = None
-    pdfCreationDate: Optional[AwareDatetime] = None
-    pdfModDate: Optional[AwareDatetime] = None
-    pdfId1: Optional[str] = None
-    version: Optional[str] = None
-    pdfId0: Optional[str] = None
+    isOptimized: bool | None = None
+    pdfCreationDate: AwareDatetime | None = None
+    pdfModDate: AwareDatetime | None = None
+    pdfId1: str | None = None
+    version: str | None = None
+    pdfId0: str | list[str] | None = []
 
 
 class OperatingSystemFacet(core.Facet):
@@ -993,13 +998,13 @@ class OperatingSystemFacet(core.Facet):
     https://en.wikipedia.org/wiki/Operating_system]
     """
 
-    environmentVariables: Optional[types.Dictionary] = Field(
+    environmentVariables: types.Dictionary | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    isLimitAdTrackingEnabled: Optional[bool] = None
-    installDate: Optional[AwareDatetime] = None
-    bitness: Optional[str] = None
-    advertisingID: Optional[str] = None
+    isLimitAdTrackingEnabled: bool | None = None
+    installDate: AwareDatetime | None = None
+    bitness: str | None = None
+    advertisingID: str | list[str] | None = []
 
 
 class WindowsProcessFacet(core.Facet):
@@ -1008,14 +1013,14 @@ class WindowsProcessFacet(core.Facet):
     running on a Windows operating system.
     """
 
-    startupInfo: Optional[types.Dictionary] = Field(
+    startupInfo: types.Dictionary | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    aslrEnabled: Optional[bool] = None
-    depEnabled: Optional[bool] = None
-    ownerSID: Optional[str] = None
-    priority: Optional[str] = None
-    windowTitle: Optional[str] = None
+    aslrEnabled: bool | None = None
+    depEnabled: bool | None = None
+    ownerSID: str | None = None
+    priority: str | None = None
+    windowTitle: str | None = None
 
 
 class ExtractedString(core.UcoInherentCharacterizationThing):
@@ -1024,12 +1029,12 @@ class ExtractedString(core.UcoInherentCharacterizationThing):
     characters pulled from an observable object.
     """
 
-    byteStringValue: Optional[XMLSchema.xsd_base64Binary] = None
-    length: Optional[int] = None
-    encoding: Optional[str] = None
-    englishTranslation: Optional[str] = None
-    language: Optional[str] = None
-    stringValue: Optional[str] = None
+    byteStringValue: XMLSchema.xsd_base64Binary | None = None
+    length: int | None = None
+    encoding: str | None = None
+    englishTranslation: str | None = None
+    language: str | None = None
+    stringValue: str | None = None
 
 
 class MemoryFacet(core.Facet):
@@ -1039,14 +1044,20 @@ class MemoryFacet(core.Facet):
     ROM (read only memory)) on a digital device.
     """
 
-    isInjected: Optional[bool] = None
-    isMapped: Optional[bool] = None
-    isProtected: Optional[bool] = None
-    isVolatile: Optional[bool] = None
-    regionEndAddress: Optional[XMLSchema.xsd_hexBinary] = None
-    regionStartAddress: Optional[XMLSchema.xsd_hexBinary] = None
-    regionSize: Optional[int] = None
-    blockType: Optional[vocabulary.MemoryBlockTypeVocab] = None
+    isInjected: bool | None = None
+    isMapped: bool | None = None
+    isProtected: bool | None = None
+    isVolatile: bool | None = None
+    regionEndAddress: XMLSchema.xsd_hexBinary | list[XMLSchema.xsd_hexBinary] | None = (
+        []
+    )
+    regionStartAddress: (
+        XMLSchema.xsd_hexBinary | list[XMLSchema.xsd_hexBinary] | None
+    ) = []
+    regionSize: int | None = None
+    blockType: (
+        vocabulary.MemoryBlockTypeVocab | list[vocabulary.MemoryBlockTypeVocab] | None
+    ) = []
 
 
 class ObservableAction(action.Action):
@@ -1070,8 +1081,8 @@ class ObservableObject(core.Item):
     article or unit within the digital domain.
     """
 
-    hasChanged: Optional[bool] = None
-    state: Optional[str] = None
+    hasChanged: bool | None = None
+    state: str | None = None
 
 
 class RecoveredObjectFacet(core.Facet):
@@ -1079,9 +1090,21 @@ class RecoveredObjectFacet(core.Facet):
     Recoverability status of name, metadata, and content.
     """
 
-    contentRecoveredStatus: Optional[vocabulary.RecoveredObjectStatusVocab] = None
-    metadataRecoveredStatus: Optional[vocabulary.RecoveredObjectStatusVocab] = None
-    nameRecoveredStatus: Optional[vocabulary.RecoveredObjectStatusVocab] = None
+    contentRecoveredStatus: (
+        vocabulary.RecoveredObjectStatusVocab
+        | list[vocabulary.RecoveredObjectStatusVocab]
+        | None
+    ) = []
+    metadataRecoveredStatus: (
+        vocabulary.RecoveredObjectStatusVocab
+        | list[vocabulary.RecoveredObjectStatusVocab]
+        | None
+    ) = []
+    nameRecoveredStatus: (
+        vocabulary.RecoveredObjectStatusVocab
+        | list[vocabulary.RecoveredObjectStatusVocab]
+        | None
+    ) = []
 
 
 class SQLiteBlobFacet(core.Facet):
@@ -1091,10 +1114,12 @@ class SQLiteBlobFacet(core.Facet):
     https://en.wikipedia.org/wiki/SQLite]
     """
 
-    rowIndex: Optional[XMLSchema.xsd_positiveInteger] = None
-    columnName: Optional[str] = None
-    rowCondition: Optional[str] = None
-    tableName: Optional[str] = None
+    rowIndex: (
+        XMLSchema.xsd_positiveInteger | list[XMLSchema.xsd_positiveInteger] | None
+    ) = []
+    columnName: str | None = None
+    rowCondition: str | None = None
+    tableName: str | None = None
 
 
 class TriggerType(core.UcoInherentCharacterizationThing):
@@ -1105,14 +1130,18 @@ class TriggerType(core.UcoInherentCharacterizationThing):
     https://docs.microsoft.com/en-us/windows/win32/taskschd/task-triggers]
     """
 
-    isEnabled: Optional[bool] = None
-    triggerBeginTime: Optional[AwareDatetime] = None
-    triggerEndTime: Optional[AwareDatetime] = None
-    triggerDelay: Optional[str] = None
-    triggerMaxRunTime: Optional[str] = None
-    triggerSessionChangeType: Optional[str] = None
-    triggerFrequency: Optional[vocabulary.TriggerFrequencyVocab] = None
-    triggerType: Optional[vocabulary.TriggerTypeVocab] = None
+    isEnabled: bool | None = None
+    triggerBeginTime: AwareDatetime | None = None
+    triggerEndTime: AwareDatetime | None = None
+    triggerDelay: str | None = None
+    triggerMaxRunTime: str | None = None
+    triggerSessionChangeType: str | None = None
+    triggerFrequency: (
+        vocabulary.TriggerFrequencyVocab | list[vocabulary.TriggerFrequencyVocab] | None
+    ) = []
+    triggerType: (
+        vocabulary.TriggerTypeVocab | list[vocabulary.TriggerTypeVocab] | None
+    ) = []
 
 
 class WindowsPEOptionalHeader(core.UcoInherentCharacterizationThing):
@@ -1122,35 +1151,75 @@ class WindowsPEOptionalHeader(core.UcoInherentCharacterizationThing):
     a collection of metadata about the executable code structure of the file.
     """
 
-    majorLinkerVersion: Optional[XMLSchema.xsd_byte] = None
-    minorLinkerVersion: Optional[XMLSchema.xsd_byte] = None
-    addressOfEntryPoint: Optional[XMLSchema.xsd_unsignedInt] = None
-    baseOfCode: Optional[XMLSchema.xsd_unsignedInt] = None
-    checksum: Optional[XMLSchema.xsd_unsignedInt] = None
-    fileAlignment: Optional[XMLSchema.xsd_unsignedInt] = None
-    imageBase: Optional[XMLSchema.xsd_unsignedInt] = None
-    loaderFlags: Optional[XMLSchema.xsd_unsignedInt] = None
-    numberOfRVAAndSizes: Optional[XMLSchema.xsd_unsignedInt] = None
-    sectionAlignment: Optional[XMLSchema.xsd_unsignedInt] = None
-    sizeOfCode: Optional[XMLSchema.xsd_unsignedInt] = None
-    sizeOfHeaders: Optional[XMLSchema.xsd_unsignedInt] = None
-    sizeOfHeapCommit: Optional[XMLSchema.xsd_unsignedInt] = None
-    sizeOfHeapReserve: Optional[XMLSchema.xsd_unsignedInt] = None
-    sizeOfImage: Optional[XMLSchema.xsd_unsignedInt] = None
-    sizeOfInitializedData: Optional[XMLSchema.xsd_unsignedInt] = None
-    sizeOfStackCommit: Optional[XMLSchema.xsd_unsignedInt] = None
-    sizeOfStackReserve: Optional[XMLSchema.xsd_unsignedInt] = None
-    sizeOfUninitializedData: Optional[XMLSchema.xsd_unsignedInt] = None
-    win32VersionValue: Optional[XMLSchema.xsd_unsignedInt] = None
-    dllCharacteristics: Optional[XMLSchema.xsd_unsignedShort] = None
-    magic: Optional[XMLSchema.xsd_unsignedShort] = None
-    majorImageVersion: Optional[XMLSchema.xsd_unsignedShort] = None
-    majorOSVersion: Optional[XMLSchema.xsd_unsignedShort] = None
-    majorSubsystemVersion: Optional[XMLSchema.xsd_unsignedShort] = None
-    minorImageVersion: Optional[XMLSchema.xsd_unsignedShort] = None
-    minorOSVersion: Optional[XMLSchema.xsd_unsignedShort] = None
-    minorSubsystemVersion: Optional[XMLSchema.xsd_unsignedShort] = None
-    subsystem: Optional[XMLSchema.xsd_unsignedShort] = None
+    majorLinkerVersion: XMLSchema.xsd_byte | list[XMLSchema.xsd_byte] | None = []
+    minorLinkerVersion: XMLSchema.xsd_byte | list[XMLSchema.xsd_byte] | None = []
+    addressOfEntryPoint: (
+        XMLSchema.xsd_unsignedInt | list[XMLSchema.xsd_unsignedInt] | None
+    ) = []
+    baseOfCode: XMLSchema.xsd_unsignedInt | list[XMLSchema.xsd_unsignedInt] | None = []
+    checksum: XMLSchema.xsd_unsignedInt | list[XMLSchema.xsd_unsignedInt] | None = []
+    fileAlignment: (
+        XMLSchema.xsd_unsignedInt | list[XMLSchema.xsd_unsignedInt] | None
+    ) = []
+    imageBase: XMLSchema.xsd_unsignedInt | list[XMLSchema.xsd_unsignedInt] | None = []
+    loaderFlags: XMLSchema.xsd_unsignedInt | list[XMLSchema.xsd_unsignedInt] | None = []
+    numberOfRVAAndSizes: (
+        XMLSchema.xsd_unsignedInt | list[XMLSchema.xsd_unsignedInt] | None
+    ) = []
+    sectionAlignment: (
+        XMLSchema.xsd_unsignedInt | list[XMLSchema.xsd_unsignedInt] | None
+    ) = []
+    sizeOfCode: XMLSchema.xsd_unsignedInt | list[XMLSchema.xsd_unsignedInt] | None = []
+    sizeOfHeaders: (
+        XMLSchema.xsd_unsignedInt | list[XMLSchema.xsd_unsignedInt] | None
+    ) = []
+    sizeOfHeapCommit: (
+        XMLSchema.xsd_unsignedInt | list[XMLSchema.xsd_unsignedInt] | None
+    ) = []
+    sizeOfHeapReserve: (
+        XMLSchema.xsd_unsignedInt | list[XMLSchema.xsd_unsignedInt] | None
+    ) = []
+    sizeOfImage: XMLSchema.xsd_unsignedInt | list[XMLSchema.xsd_unsignedInt] | None = []
+    sizeOfInitializedData: (
+        XMLSchema.xsd_unsignedInt | list[XMLSchema.xsd_unsignedInt] | None
+    ) = []
+    sizeOfStackCommit: (
+        XMLSchema.xsd_unsignedInt | list[XMLSchema.xsd_unsignedInt] | None
+    ) = []
+    sizeOfStackReserve: (
+        XMLSchema.xsd_unsignedInt | list[XMLSchema.xsd_unsignedInt] | None
+    ) = []
+    sizeOfUninitializedData: (
+        XMLSchema.xsd_unsignedInt | list[XMLSchema.xsd_unsignedInt] | None
+    ) = []
+    win32VersionValue: (
+        XMLSchema.xsd_unsignedInt | list[XMLSchema.xsd_unsignedInt] | None
+    ) = []
+    dllCharacteristics: (
+        XMLSchema.xsd_unsignedShort | list[XMLSchema.xsd_unsignedShort] | None
+    ) = []
+    magic: XMLSchema.xsd_unsignedShort | list[XMLSchema.xsd_unsignedShort] | None = []
+    majorImageVersion: (
+        XMLSchema.xsd_unsignedShort | list[XMLSchema.xsd_unsignedShort] | None
+    ) = []
+    majorOSVersion: (
+        XMLSchema.xsd_unsignedShort | list[XMLSchema.xsd_unsignedShort] | None
+    ) = []
+    majorSubsystemVersion: (
+        XMLSchema.xsd_unsignedShort | list[XMLSchema.xsd_unsignedShort] | None
+    ) = []
+    minorImageVersion: (
+        XMLSchema.xsd_unsignedShort | list[XMLSchema.xsd_unsignedShort] | None
+    ) = []
+    minorOSVersion: (
+        XMLSchema.xsd_unsignedShort | list[XMLSchema.xsd_unsignedShort] | None
+    ) = []
+    minorSubsystemVersion: (
+        XMLSchema.xsd_unsignedShort | list[XMLSchema.xsd_unsignedShort] | None
+    ) = []
+    subsystem: (
+        XMLSchema.xsd_unsignedShort | list[XMLSchema.xsd_unsignedShort] | None
+    ) = []
 
 
 class WindowsThreadFacet(core.Facet):
@@ -1159,16 +1228,20 @@ class WindowsThreadFacet(core.Facet):
     thread of execution within a Windows process.
     """
 
-    observableCreatedTime: Optional[AwareDatetime] = None
-    parameterAddress: Optional[XMLSchema.xsd_hexBinary] = None
-    startAddress: Optional[XMLSchema.xsd_hexBinary] = None
-    priority: Optional[int] = None
-    stackSize: Optional[int] = None
-    threadID: Optional[int] = None
-    context: Optional[str] = None
-    runningStatus: Optional[str] = None
-    securityAttributes: Optional[str] = None
-    creationFlags: Optional[XMLSchema.xsd_unsignedInt] = None
+    observableCreatedTime: AwareDatetime | None = None
+    parameterAddress: XMLSchema.xsd_hexBinary | list[XMLSchema.xsd_hexBinary] | None = (
+        []
+    )
+    startAddress: XMLSchema.xsd_hexBinary | list[XMLSchema.xsd_hexBinary] | None = []
+    priority: int | None = None
+    stackSize: int | list[int] | None = []
+    threadID: int | list[int] | None = []
+    context: str | None = None
+    runningStatus: str | None = None
+    securityAttributes: str | None = None
+    creationFlags: (
+        XMLSchema.xsd_unsignedInt | list[XMLSchema.xsd_unsignedInt] | None
+    ) = []
 
 
 class WindowsVolumeFacet(core.Facet):
@@ -1178,9 +1251,15 @@ class WindowsVolumeFacet(core.Facet):
     on https://en.wikipedia.org/wiki/Volume_(computing)]
     """
 
-    driveLetter: Optional[str] = None
-    driveType: Optional[vocabulary.WindowsDriveTypeVocab] = None
-    windowsVolumeAttributes: list[vocabulary.WindowsVolumeAttributeVocab] = []
+    driveLetter: str | None = None
+    driveType: (
+        vocabulary.WindowsDriveTypeVocab | list[vocabulary.WindowsDriveTypeVocab] | None
+    ) = []
+    windowsVolumeAttributes: (
+        vocabulary.WindowsVolumeAttributeVocab
+        | list[vocabulary.WindowsVolumeAttributeVocab]
+        | None
+    ) = []
 
 
 class PropertyReadEffectFacet(DefinedEffectFacet):
@@ -1191,8 +1270,8 @@ class PropertyReadEffectFacet(DefinedEffectFacet):
     running state of a process.
     """
 
-    propertyName: Optional[str] = None
-    value: Optional[str] = None
+    propertyName: str | None = None
+    value: str | None = None
 
 
 class SendControlCodeEffectFacet(DefinedEffectFacet):
@@ -1204,7 +1283,7 @@ class SendControlCodeEffectFacet(DefinedEffectFacet):
     changing the running state of a process.
     """
 
-    controlCode: Optional[str] = None
+    controlCode: str | None = None
 
 
 class ValuesEnumeratedEffectFacet(DefinedEffectFacet):
@@ -1215,7 +1294,7 @@ class ValuesEnumeratedEffectFacet(DefinedEffectFacet):
     registry key.
     """
 
-    values: Optional[str] = None
+    values: str | None = None
 
 
 class EmailAddressFacet(DigitalAddressFacet):
@@ -1269,30 +1348,28 @@ class X509CertificateFacet(core.Facet):
     Key Infrastructure) standard.
     """
 
-    x509v3extensions: Optional[X509V3ExtensionsFacet] = Field(
+    x509v3extensions: X509V3ExtensionsFacet | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    issuerHash: Optional[types.Hash] = Field(
+    issuerHash: types.Hash | None = Field(default=None, json_schema_extra={"IRI": True})
+    subjectHash: types.Hash | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    subjectHash: Optional[types.Hash] = Field(
+    thumbprintHash: types.Hash | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    thumbprintHash: Optional[types.Hash] = Field(
-        default=None, json_schema_extra={"IRI": True}
-    )
-    isSelfSigned: Optional[bool] = None
-    validityNotAfter: Optional[AwareDatetime] = None
-    validityNotBefore: Optional[AwareDatetime] = None
-    subjectPublicKeyExponent: Optional[int] = None
-    issuer: Optional[str] = None
-    serialNumber: Optional[str] = None
-    signature: Optional[str] = None
-    signatureAlgorithm: Optional[str] = None
-    subject: Optional[str] = None
-    subjectPublicKeyAlgorithm: Optional[str] = None
-    subjectPublicKeyModulus: Optional[str] = None
-    version: Optional[str] = None
+    isSelfSigned: bool | None = None
+    validityNotAfter: AwareDatetime | None = None
+    validityNotBefore: AwareDatetime | None = None
+    subjectPublicKeyExponent: int | None = None
+    issuer: str | None = None
+    serialNumber: str | None = None
+    signature: str | None = None
+    signatureAlgorithm: str | None = None
+    subject: str | None = None
+    subjectPublicKeyAlgorithm: str | None = None
+    subjectPublicKeyModulus: str | None = None
+    version: str | None = None
 
 
 class ObservablePattern(Observable):
@@ -1318,9 +1395,7 @@ class ExtractedStringsFacet(core.Facet):
     more sequences of characters pulled from an observable object.
     """
 
-    strings: Optional[ExtractedString] = Field(
-        default=None, json_schema_extra={"IRI": True}
-    )
+    strings: ExtractedString | list[ExtractedString] | None = []
 
 
 class API(ObservableObject):
@@ -1377,7 +1452,7 @@ class ApplicationAccountFacet(core.Facet):
     account within a particular software program designed for end users.
     """
 
-    application: Optional[ObservableObject] = Field(
+    application: ObservableObject | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
 
@@ -1388,15 +1463,13 @@ class ApplicationFacet(core.Facet):
     software program designed for end users.
     """
 
-    installedVersionHistory: Optional[ApplicationVersion] = Field(
+    installedVersionHistory: ApplicationVersion | list[ApplicationVersion] | None = []
+    operatingSystem: ObservableObject | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    operatingSystem: Optional[ObservableObject] = Field(
-        default=None, json_schema_extra={"IRI": True}
-    )
-    numberOfLaunches: Optional[int] = None
-    applicationIdentifier: Optional[str] = None
-    version: Optional[str] = None
+    numberOfLaunches: int | None = None
+    applicationIdentifier: str | None = None
+    version: str | None = None
 
 
 class Audio(ObservableObject):
@@ -1439,15 +1512,15 @@ class BrowserBookmarkFacet(core.Facet):
     https://techterms.com/definition/bookmark]
     """
 
-    application: Optional[ObservableObject] = Field(
+    application: ObservableObject | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    urlTargeted: Optional[XMLSchema.xsd_anyURI] = None
-    accessedTime: Optional[AwareDatetime] = None
-    modifiedTime: Optional[AwareDatetime] = None
-    observableCreatedTime: Optional[AwareDatetime] = None
-    visitCount: Optional[int] = None
-    bookmarkPath: Optional[str] = None
+    urlTargeted: XMLSchema.xsd_anyURI | list[XMLSchema.xsd_anyURI] | None = []
+    accessedTime: AwareDatetime | None = None
+    modifiedTime: AwareDatetime | None = None
+    observableCreatedTime: AwareDatetime | None = None
+    visitCount: int | None = None
+    bookmarkPath: str | None = None
 
 
 class BrowserCookie(ObservableObject):
@@ -1466,18 +1539,18 @@ class BrowserCookieFacet(core.Facet):
     https://en.wikipedia.org/wiki/HTTP_cookie]
     """
 
-    application: Optional[ObservableObject] = Field(
+    application: ObservableObject | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    cookieDomain: Optional[ObservableObject] = Field(
+    cookieDomain: ObservableObject | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    isSecure: Optional[bool] = None
-    accessedTime: Optional[AwareDatetime] = None
-    expirationTime: Optional[AwareDatetime] = None
-    observableCreatedTime: Optional[AwareDatetime] = None
-    cookieName: Optional[str] = None
-    cookiePath: Optional[str] = None
+    isSecure: bool | None = None
+    accessedTime: AwareDatetime | None = None
+    expirationTime: AwareDatetime | None = None
+    observableCreatedTime: AwareDatetime | None = None
+    cookieName: str | None = None
+    cookiePath: str | None = None
 
 
 class Calendar(ObservableObject):
@@ -1500,29 +1573,25 @@ class CalendarEntryFacet(core.Facet):
     meetings, and events.
     """
 
-    owner: Optional[core.UcoObject] = Field(
+    owner: core.UcoObject | None = Field(default=None, json_schema_extra={"IRI": True})
+    attendant: identity.Identity | list[identity.Identity] | None = []
+    location_: location.Location | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    attendant: Optional[identity.Identity] = Field(
+    application: ObservableObject | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    location_: Optional[location.Location] = Field(
-        default=None, json_schema_extra={"IRI": True}
-    )
-    application: Optional[ObservableObject] = Field(
-        default=None, json_schema_extra={"IRI": True}
-    )
-    isPrivate: Optional[bool] = None
-    endTime: Optional[AwareDatetime] = None
-    modifiedTime: Optional[AwareDatetime] = None
-    observableCreatedTime: Optional[AwareDatetime] = None
-    remindTime: Optional[AwareDatetime] = None
-    startTime: Optional[AwareDatetime] = None
-    duration: Optional[int] = None
-    eventStatus: Optional[str] = None
-    eventType: Optional[str] = None
-    recurrence: Optional[str] = None
-    subject: Optional[str] = None
+    isPrivate: bool | None = None
+    endTime: AwareDatetime | None = None
+    modifiedTime: AwareDatetime | None = None
+    observableCreatedTime: AwareDatetime | None = None
+    remindTime: AwareDatetime | None = None
+    startTime: AwareDatetime | None = None
+    duration: int | None = None
+    eventStatus: str | None = None
+    eventType: str | None = None
+    recurrence: str | None = None
+    subject: str | None = None
 
 
 class CalendarFacet(core.Facet):
@@ -1531,10 +1600,8 @@ class CalendarFacet(core.Facet):
     appointments, meetings, and events.
     """
 
-    owner: Optional[core.UcoObject] = Field(
-        default=None, json_schema_extra={"IRI": True}
-    )
-    application: Optional[ObservableObject] = Field(
+    owner: core.UcoObject | None = Field(default=None, json_schema_extra={"IRI": True})
+    application: ObservableObject | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
 
@@ -1552,22 +1619,18 @@ class CallFacet(core.Facet):
     of a realtime cyber communication between one or more parties.
     """
 
-    application: Optional[ObservableObject] = Field(
+    application: ObservableObject | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    from_: Optional[ObservableObject] = Field(
+    from_: ObservableObject | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    participant: Optional[ObservableObject] = Field(
-        default=None, json_schema_extra={"IRI": True}
-    )
-    to: Optional[ObservableObject] = Field(
-        default=None, json_schema_extra={"IRI": True}
-    )
-    endTime: Optional[AwareDatetime] = None
-    startTime: Optional[AwareDatetime] = None
-    duration: Optional[int] = None
-    callType: Optional[str] = None
+    participant: ObservableObject | list[ObservableObject] | None = []
+    to: ObservableObject | list[ObservableObject] | None = []
+    endTime: AwareDatetime | None = None
+    startTime: AwareDatetime | None = None
+    duration: int | None = None
+    callType: str | None = None
 
 
 class CapturedTelecommunicationsInformation(ObservableObject):
@@ -1604,28 +1667,26 @@ class ComputerSpecificationFacet(core.Facet):
     merriam-webster.com/dictionary/computer]
     """
 
-    networkInterface: Optional[ObservableObject] = Field(
-        default=None, json_schema_extra={"IRI": True}
-    )
-    biosDate: Optional[AwareDatetime] = None
-    biosReleaseDate: Optional[AwareDatetime] = None
-    currentSystemDate: Optional[AwareDatetime] = None
-    localTime: Optional[AwareDatetime] = None
-    systemTime: Optional[AwareDatetime] = None
-    availableRam: Optional[int] = None
-    totalRam: Optional[int] = None
-    biosManufacturer: Optional[str] = None
-    biosSerialNumber: Optional[str] = None
-    biosVersion: Optional[str] = None
-    cpu: Optional[str] = None
-    cpuFamily: Optional[str] = None
-    gpu: Optional[str] = None
-    gpuFamily: Optional[str] = None
-    hostname: Optional[str] = None
-    processorArchitecture: Optional[str] = None
-    timezoneDST: Optional[str] = None
-    timezoneStandard: Optional[str] = None
-    uptime: Optional[str] = None
+    networkInterface: ObservableObject | list[ObservableObject] | None = []
+    biosDate: AwareDatetime | None = None
+    biosReleaseDate: AwareDatetime | None = None
+    currentSystemDate: AwareDatetime | None = None
+    localTime: AwareDatetime | None = None
+    systemTime: AwareDatetime | None = None
+    availableRam: int | None = None
+    totalRam: int | None = None
+    biosManufacturer: str | None = None
+    biosSerialNumber: str | None = None
+    biosVersion: str | None = None
+    cpu: str | None = None
+    cpuFamily: str | None = None
+    gpu: str | None = None
+    gpuFamily: str | None = None
+    hostname: str | None = None
+    processorArchitecture: str | None = None
+    timezoneDST: str | None = None
+    timezoneStandard: str | None = None
+    uptime: str | None = None
 
 
 class Contact(ObservableObject):
@@ -1641,10 +1702,14 @@ class ContactEmail(core.UcoInherentCharacterizationThing):
     contacting a contact entity by email.
     """
 
-    emailAddress: Optional[ObservableObject] = Field(
+    emailAddress: ObservableObject | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    contactEmailScope: Optional[vocabulary.ContactEmailScopeVocab] = None
+    contactEmailScope: (
+        vocabulary.ContactEmailScopeVocab
+        | list[vocabulary.ContactEmailScopeVocab]
+        | None
+    ) = []
 
 
 class ContactList(ObservableObject):
@@ -1660,12 +1725,10 @@ class ContactListFacet(core.Facet):
     multiple individual contacts such as that found in a digital address book.
     """
 
-    sourceApplication: Optional[ObservableObject] = Field(
+    sourceApplication: ObservableObject | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    contact: Optional[ObservableObject] = Field(
-        default=None, json_schema_extra={"IRI": True}
-    )
+    contact: ObservableObject | list[ObservableObject] | None = []
 
 
 class ContactMessaging(core.UcoInherentCharacterizationThing):
@@ -1674,10 +1737,10 @@ class ContactMessaging(core.UcoInherentCharacterizationThing):
     contacting a contact entity by digital messaging.
     """
 
-    contactMessagingPlatform: Optional[ObservableObject] = Field(
+    contactMessagingPlatform: ObservableObject | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    messagingAddress: Optional[ObservableObject] = Field(
+    messagingAddress: ObservableObject | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
 
@@ -1688,10 +1751,14 @@ class ContactPhone(core.UcoInherentCharacterizationThing):
     contacting a contact entity by telephone.
     """
 
-    contactPhoneNumber: Optional[ObservableObject] = Field(
+    contactPhoneNumber: ObservableObject | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    contactPhoneScope: Optional[vocabulary.ContactPhoneScopeVocab] = None
+    contactPhoneScope: (
+        vocabulary.ContactPhoneScopeVocab
+        | list[vocabulary.ContactPhoneScopeVocab]
+        | None
+    ) = []
 
 
 class ContactProfile(core.UcoInherentCharacterizationThing):
@@ -1700,10 +1767,10 @@ class ContactProfile(core.UcoInherentCharacterizationThing):
     contacting a contact entity by online service.
     """
 
-    contactProfilePlatform: Optional[ObservableObject] = Field(
+    contactProfilePlatform: ObservableObject | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    profile: Optional[ObservableObject] = Field(
+    profile: ObservableObject | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
 
@@ -1714,10 +1781,12 @@ class ContactSIP(core.UcoInherentCharacterizationThing):
     contacting a contact entity by Session Initiation Protocol (SIP).
     """
 
-    sipAddress: Optional[ObservableObject] = Field(
+    sipAddress: ObservableObject | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    contactSIPScope: Optional[vocabulary.ContactSIPScopeVocab] = None
+    contactSIPScope: (
+        vocabulary.ContactSIPScopeVocab | list[vocabulary.ContactSIPScopeVocab] | None
+    ) = []
 
 
 class ContactURL(core.UcoInherentCharacterizationThing):
@@ -1726,10 +1795,10 @@ class ContactURL(core.UcoInherentCharacterizationThing):
     contacting a contact entity by Uniform Resource Locator (URL).
     """
 
-    url: Optional[ObservableObject] = Field(
-        default=None, json_schema_extra={"IRI": True}
-    )
-    contactURLScope: Optional[vocabulary.ContactURLScopeVocab] = None
+    url: ObservableObject | None = Field(default=None, json_schema_extra={"IRI": True})
+    contactURLScope: (
+        vocabulary.ContactURLScopeVocab | list[vocabulary.ContactURLScopeVocab] | None
+    ) = []
 
 
 class ContentData(ObservableObject):
@@ -1744,18 +1813,20 @@ class ContentDataFacet(core.Facet):
     digital data.
     """
 
-    dataPayloadReferenceURL: Optional[ObservableObject] = Field(
+    dataPayloadReferenceURL: ObservableObject | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    hash: Optional[types.Hash] = Field(default=None, json_schema_extra={"IRI": True})
-    isEncrypted: Optional[bool] = None
-    entropy: Optional[float] = None
-    sizeInBytes: Optional[int] = None
-    dataPayload: Optional[str] = None
-    magicNumber: Optional[str] = None
-    mimeClass: Optional[str] = None
-    mimeType: Optional[str] = None
-    byteOrder: Optional[vocabulary.EndiannessTypeVocab] = None
+    hash: types.Hash | list[types.Hash] | None = []
+    isEncrypted: bool | None = None
+    entropy: float | None = None
+    sizeInBytes: int | None = None
+    dataPayload: str | None = None
+    magicNumber: str | None = None
+    mimeClass: str | None = None
+    mimeType: str | list[str] | None = []
+    byteOrder: (
+        vocabulary.EndiannessTypeVocab | list[vocabulary.EndiannessTypeVocab] | None
+    ) = []
 
 
 class CookieHistory(ObservableObject):
@@ -1818,12 +1889,10 @@ class DiskFacet(core.Facet):
     mechanical changes to a surface layer of one or more rotating disks.
     """
 
-    partition: Optional[ObservableObject] = Field(
-        default=None, json_schema_extra={"IRI": True}
-    )
-    diskSize: Optional[int] = None
-    freeSpace: Optional[int] = None
-    diskType: Optional[str] = None
+    partition: ObservableObject | list[ObservableObject] | None = []
+    diskSize: int | None = None
+    freeSpace: int | None = None
+    diskType: str | None = None
 
 
 class DiskPartition(ObservableObject):
@@ -1850,7 +1919,7 @@ class EmailAccountFacet(core.Facet):
     mail (email) capabilities or services.
     """
 
-    emailAddress: Optional[ObservableObject] = Field(
+    emailAddress: ObservableObject | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
 
@@ -1874,27 +1943,27 @@ class EventRecordFacet(core.Facet):
     that happens in a digital context (e.g., operating system events).
     """
 
-    cyberAction: Optional[ObservableAction] = Field(
+    cyberAction: ObservableAction | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    account: Optional[ObservableObject] = Field(
+    account: ObservableObject | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    application: Optional[ObservableObject] = Field(
+    application: ObservableObject | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    eventRecordDevice: Optional[ObservableObject] = Field(
+    eventRecordDevice: ObservableObject | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    endTime: Optional[AwareDatetime] = None
-    observableCreatedTime: Optional[AwareDatetime] = None
-    startTime: Optional[AwareDatetime] = None
-    eventID: Optional[str] = None
-    eventRecordID: Optional[str] = None
-    eventRecordRaw: Optional[str] = None
-    eventRecordServiceName: Optional[str] = None
-    eventRecordText: Optional[str] = None
-    eventType: Optional[str] = None
+    endTime: AwareDatetime | None = None
+    observableCreatedTime: AwareDatetime | None = None
+    startTime: AwareDatetime | None = None
+    eventID: str | None = None
+    eventRecordID: str | None = None
+    eventRecordRaw: str | None = None
+    eventRecordServiceName: str | None = None
+    eventRecordText: str | None = None
+    eventType: str | None = None
 
 
 class FileSystem(ObservableObject):
@@ -1940,13 +2009,13 @@ class GeoLocationEntryFacet(core.Facet):
     single application-specific geolocation entry.
     """
 
-    location_: Optional[location.Location] = Field(
+    location_: location.Location | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    application: Optional[ObservableObject] = Field(
+    application: ObservableObject | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    observableCreatedTime: Optional[AwareDatetime] = None
+    observableCreatedTime: AwareDatetime | None = None
 
 
 class GeoLocationLog(ObservableObject):
@@ -1962,10 +2031,10 @@ class GeoLocationLogFacet(core.Facet):
     containing geolocation tracks and/or geolocation entries.
     """
 
-    application: Optional[ObservableObject] = Field(
+    application: ObservableObject | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    observableCreatedTime: Optional[AwareDatetime] = None
+    observableCreatedTime: AwareDatetime | None = None
 
 
 class GeoLocationTrack(ObservableObject):
@@ -1981,14 +2050,12 @@ class GeoLocationTrackFacet(core.Facet):
     of contiguous geolocation entries representing a path/track taken.
     """
 
-    application: Optional[ObservableObject] = Field(
+    application: ObservableObject | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    geoLocationEntry: Optional[ObservableObject] = Field(
-        default=None, json_schema_extra={"IRI": True}
-    )
-    endTime: Optional[AwareDatetime] = None
-    startTime: Optional[AwareDatetime] = None
+    geoLocationEntry: ObservableObject | list[ObservableObject] | None = []
+    endTime: AwareDatetime | None = None
+    startTime: AwareDatetime | None = None
 
 
 class HTTPConnectionFacet(core.Facet):
@@ -1998,16 +2065,16 @@ class HTTPConnectionFacet(core.Facet):
     Protocol (HTTP) standard.
     """
 
-    httpMessageBodyData: Optional[ObservableObject] = Field(
+    httpMessageBodyData: ObservableObject | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    httpRequestHeader: Optional[types.Dictionary] = Field(
+    httpRequestHeader: types.Dictionary | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    httpMesageBodyLength: Optional[int] = None
-    requestMethod: Optional[str] = None
-    requestValue: Optional[str] = None
-    requestVersion: Optional[str] = None
+    httpMesageBodyLength: int | None = None
+    requestMethod: str | None = None
+    requestValue: str | None = None
+    requestVersion: str | None = None
 
 
 class Hostname(ObservableObject):
@@ -2066,20 +2133,18 @@ class MessageFacet(core.Facet):
     https://en.wikipedia.org/wiki/Message]
     """
 
-    application: Optional[ObservableObject] = Field(
+    application: ObservableObject | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    from_: Optional[ObservableObject] = Field(
+    from_: ObservableObject | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    to: Optional[ObservableObject] = Field(
-        default=None, json_schema_extra={"IRI": True}
-    )
-    sentTime: Optional[AwareDatetime] = None
-    messageID: Optional[str] = None
-    messageText: Optional[str] = None
-    messageType: Optional[str] = None
-    sessionID: Optional[str] = None
+    to: ObservableObject | list[ObservableObject] | None = []
+    sentTime: AwareDatetime | None = None
+    messageID: str | None = None
+    messageText: str | None = None
+    messageType: str | None = None
+    sessionID: str | None = None
 
 
 class MessageThread(ObservableObject):
@@ -2095,12 +2160,12 @@ class MimePartType(core.UcoInherentCharacterizationThing):
     multi-part email body.
     """
 
-    bodyRaw: Optional[ObservableObject] = Field(
+    bodyRaw: ObservableObject | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    body: Optional[str] = None
-    contentDisposition: Optional[str] = None
-    contentType: Optional[str] = None
+    body: str | None = None
+    contentDisposition: str | None = None
+    contentType: str | None = None
 
 
 class Mutex(ObservableObject):
@@ -2129,18 +2194,16 @@ class NetworkConnectionFacet(core.Facet):
     https://www.webopedia.com/TERM/N/network.html]
     """
 
-    src: Optional[core.UcoObject] = Field(default=None, json_schema_extra={"IRI": True})
-    dst: Optional[ObservableObject] = Field(
+    src: core.UcoObject | list[core.UcoObject] | None = []
+    dst: ObservableObject | list[ObservableObject] | None = []
+    protocols: types.ControlledDictionary | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    protocols: Optional[types.ControlledDictionary] = Field(
-        default=None, json_schema_extra={"IRI": True}
-    )
-    isActive: Optional[bool] = None
-    endTime: Optional[AwareDatetime] = None
-    startTime: Optional[AwareDatetime] = None
-    destinationPort: Optional[int] = None
-    sourcePort: Optional[int] = None
+    isActive: bool | None = None
+    endTime: AwareDatetime | None = None
+    startTime: AwareDatetime | None = None
+    destinationPort: int | None = None
+    sourcePort: int | None = None
 
 
 class NetworkFlow(ObservableObject):
@@ -2159,19 +2222,19 @@ class NetworkFlowFacet(core.Facet):
     https://www.webopedia.com/TERM/N/network.html]
     """
 
-    dstPayload: Optional[ObservableObject] = Field(
+    dstPayload: ObservableObject | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    srcPayload: Optional[ObservableObject] = Field(
+    srcPayload: ObservableObject | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    ipfix: Optional[types.Dictionary] = Field(
+    ipfix: types.Dictionary | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    dstBytes: Optional[int] = None
-    dstPackets: Optional[int] = None
-    srcBytes: Optional[int] = None
-    srcPackets: Optional[int] = None
+    dstBytes: int | None = None
+    dstPackets: int | None = None
+    srcBytes: int | None = None
+    srcPackets: int | None = None
 
 
 class NetworkInterface(ObservableObject):
@@ -2188,21 +2251,15 @@ class NetworkInterfaceFacet(core.Facet):
     layers in a computer network.
     """
 
-    macAddress: Optional[ObservableObject] = Field(
+    macAddress: ObservableObject | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    dhcpServer: Optional[ObservableObject] = Field(
-        default=None, json_schema_extra={"IRI": True}
-    )
-    ip: Optional[ObservableObject] = Field(
-        default=None, json_schema_extra={"IRI": True}
-    )
-    ipGateway: Optional[ObservableObject] = Field(
-        default=None, json_schema_extra={"IRI": True}
-    )
-    dhcpLeaseExpires: Optional[AwareDatetime] = None
-    dhcpLeaseObtained: Optional[AwareDatetime] = None
-    adapterName: Optional[str] = None
+    dhcpServer: ObservableObject | list[ObservableObject] | None = []
+    ip: ObservableObject | list[ObservableObject] | None = []
+    ipGateway: ObservableObject | list[ObservableObject] | None = []
+    dhcpLeaseExpires: AwareDatetime | None = None
+    dhcpLeaseObtained: AwareDatetime | None = None
+    adapterName: str | None = None
 
 
 class NetworkProtocol(ObservableObject):
@@ -2243,12 +2300,12 @@ class NoteFacet(core.Facet):
     record.
     """
 
-    application: Optional[ObservableObject] = Field(
+    application: ObservableObject | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    modifiedTime: Optional[AwareDatetime] = None
-    observableCreatedTime: Optional[AwareDatetime] = None
-    text: Optional[str] = None
+    modifiedTime: AwareDatetime | None = None
+    observableCreatedTime: AwareDatetime | None = None
+    text: str | None = None
 
 
 class OnlineService(ObservableObject):
@@ -2265,13 +2322,9 @@ class OnlineServiceFacet(core.Facet):
     manipulation over the Internet.
     """
 
-    location_: Optional[location.Location] = Field(
-        default=None, json_schema_extra={"IRI": True}
-    )
-    inetLocation: Optional[ObservableObject] = Field(
-        default=None, json_schema_extra={"IRI": True}
-    )
-    name: Optional[str] = None
+    location_: location.Location | list[location.Location] | None = []
+    inetLocation: ObservableObject | list[ObservableObject] | None = []
+    name: str | None = None
 
 
 class PaymentCard(ObservableObject):
@@ -2309,26 +2362,26 @@ class ProcessFacet(core.Facet):
     computer program executed on an operating system.
     """
 
-    binary: Optional[ObservableObject] = Field(
+    binary: ObservableObject | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    creatorUser: Optional[ObservableObject] = Field(
+    creatorUser: ObservableObject | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    parent: Optional[ObservableObject] = Field(
+    parent: ObservableObject | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    environmentVariables: Optional[types.Dictionary] = Field(
+    environmentVariables: types.Dictionary | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    isHidden: Optional[bool] = None
-    exitTime: Optional[AwareDatetime] = None
-    observableCreatedTime: Optional[AwareDatetime] = None
-    exitStatus: Optional[int] = None
-    pid: Optional[int] = None
-    currentWorkingDirectory: Optional[str] = None
-    status: Optional[str] = None
-    arguments: Optional[str] = None
+    isHidden: bool | None = None
+    exitTime: AwareDatetime | None = None
+    observableCreatedTime: AwareDatetime | None = None
+    exitStatus: int | None = None
+    pid: int | None = None
+    currentWorkingDirectory: str | None = None
+    status: str | None = None
+    arguments: str | list[str] | None = []
 
 
 class ProcessThread(ObservableObject):
@@ -2360,14 +2413,14 @@ class RasterPictureFacet(core.Facet):
     (or bitmap) image.
     """
 
-    camera: Optional[ObservableObject] = Field(
+    camera: ObservableObject | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    bitsPerPixel: Optional[int] = None
-    pictureHeight: Optional[int] = None
-    pictureWidth: Optional[int] = None
-    imageCompressionMethod: Optional[str] = None
-    pictureType: Optional[str] = None
+    bitsPerPixel: int | None = None
+    pictureHeight: int | None = None
+    pictureWidth: int | None = None
+    imageCompressionMethod: str | None = None
+    pictureType: str | None = None
 
 
 class RecoveredObject(ObservableObject):
@@ -2414,10 +2467,10 @@ class StateChangeEffectFacet(DefinedEffectFacet):
     object is changed.
     """
 
-    newObject: Optional[ObservableObject] = Field(
+    newObject: ObservableObject | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    oldObject: Optional[ObservableObject] = Field(
+    oldObject: ObservableObject | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
 
@@ -2430,7 +2483,7 @@ class SymbolicLinkFacet(core.Facet):
     https://en.wikipedia.org/wiki/Symbolic_link]
     """
 
-    targetFile: Optional[ObservableObject] = Field(
+    targetFile: ObservableObject | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
 
@@ -2448,20 +2501,22 @@ class TaskActionType(core.UcoInherentCharacterizationThing):
     to be completed.
     """
 
-    iComHandlerAction: Optional[IComHandlerActionType] = Field(
+    iComHandlerAction: IComHandlerActionType | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    iExecAction: Optional[IExecActionType] = Field(
+    iExecAction: IExecActionType | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    iShowMessageAction: Optional[IShowMessageActionType] = Field(
+    iShowMessageAction: IShowMessageActionType | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    iEmailAction: Optional[ObservableObject] = Field(
+    iEmailAction: ObservableObject | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    actionID: Optional[str] = None
-    actionType: Optional[vocabulary.TaskActionTypeVocab] = None
+    actionID: str | None = None
+    actionType: (
+        vocabulary.TaskActionTypeVocab | list[vocabulary.TaskActionTypeVocab] | None
+    ) = []
 
 
 class TwitterProfileFacet(core.Facet):
@@ -2472,34 +2527,28 @@ class TwitterProfileFacet(core.Facet):
     https://en.wikipedia.org/wiki/User_profile]
     """
 
-    profileBackgroundLocation: Optional[ObservableObject] = Field(
+    profileBackgroundLocation: ObservableObject | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    profileBannerLocation: Optional[ObservableObject] = Field(
+    profileBannerLocation: ObservableObject | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    profileImageLocation: Optional[ObservableObject] = Field(
+    profileImageLocation: ObservableObject | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    profileBackgroundHash: Optional[types.Hash] = Field(
-        default=None, json_schema_extra={"IRI": True}
-    )
-    profileBannerHash: Optional[types.Hash] = Field(
-        default=None, json_schema_extra={"IRI": True}
-    )
-    profileImageHash: Optional[types.Hash] = Field(
-        default=None, json_schema_extra={"IRI": True}
-    )
-    profileIsProtected: Optional[bool] = None
-    profileIsVerified: Optional[bool] = None
-    listedCount: Optional[int] = None
-    favoritesCount: Optional[int] = None
-    followersCount: Optional[int] = None
-    friendsCount: Optional[int] = None
-    statusesCount: Optional[int] = None
-    twitterHandle: Optional[str] = None
-    twitterId: Optional[str] = None
-    userLocationString: Optional[str] = None
+    profileBackgroundHash: types.Hash | list[types.Hash] | None = []
+    profileBannerHash: types.Hash | list[types.Hash] | None = []
+    profileImageHash: types.Hash | list[types.Hash] | None = []
+    profileIsProtected: bool | None = None
+    profileIsVerified: bool | None = None
+    listedCount: int | None = None
+    favoritesCount: int | None = None
+    followersCount: int | None = None
+    friendsCount: int | None = None
+    statusesCount: int | None = None
+    twitterHandle: str | None = None
+    twitterId: str | None = None
+    userLocationString: str | None = None
 
 
 class URL(ObservableObject):
@@ -2516,17 +2565,15 @@ class URLFacet(core.Facet):
     Web) accessible resource.
     """
 
-    host: Optional[ObservableObject] = Field(
-        default=None, json_schema_extra={"IRI": True}
-    )
-    port: Optional[int] = None
-    fragment: Optional[str] = None
-    fullValue: Optional[str] = None
-    password: Optional[str] = None
-    path: Optional[str] = None
-    query: Optional[str] = None
-    scheme: Optional[str] = None
-    userName: Optional[str] = None
+    host: ObservableObject | None = Field(default=None, json_schema_extra={"IRI": True})
+    port: int | None = None
+    fragment: str | None = None
+    fullValue: str | None = None
+    password: str | None = None
+    path: str | None = None
+    query: str | None = None
+    scheme: str | None = None
+    userName: str | None = None
 
 
 class URLHistory(ObservableObject):
@@ -2542,21 +2589,17 @@ class URLHistoryEntry(core.UcoInherentCharacterizationThing):
     properties of a single URL history entry for a particular browser.
     """
 
-    url: Optional[ObservableObject] = Field(
-        default=None, json_schema_extra={"IRI": True}
-    )
-    referrerUrl: Optional[ObservableObject] = Field(
-        default=None, json_schema_extra={"IRI": True}
-    )
-    expirationTime: Optional[AwareDatetime] = None
-    firstVisit: Optional[AwareDatetime] = None
-    lastVisit: Optional[AwareDatetime] = None
-    visitCount: Optional[int] = None
-    manuallyEnteredCount: Optional[int] = None
-    browserUserProfile: Optional[str] = None
-    hostname: Optional[str] = None
-    pageTitle: Optional[str] = None
-    keywordSearchTerm: Optional[str] = None
+    url: ObservableObject | None = Field(default=None, json_schema_extra={"IRI": True})
+    referrerUrl: ObservableObject | list[ObservableObject] | None = []
+    expirationTime: AwareDatetime | None = None
+    firstVisit: AwareDatetime | None = None
+    lastVisit: AwareDatetime | None = None
+    visitCount: int | None = None
+    manuallyEnteredCount: int | None = None
+    browserUserProfile: str | None = None
+    hostname: str | None = None
+    pageTitle: str | None = None
+    keywordSearchTerm: str | list[str] | None = []
 
 
 class URLVisit(ObservableObject):
@@ -2572,18 +2615,20 @@ class URLVisitFacet(core.Facet):
     of a visit of a URL within a particular browser.
     """
 
-    browserInformation: Optional[ObservableObject] = Field(
+    browserInformation: ObservableObject | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    fromURLVisit: Optional[ObservableObject] = Field(
+    fromURLVisit: ObservableObject | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    url: Optional[ObservableObject] = Field(
-        default=None, json_schema_extra={"IRI": True}
-    )
-    visitTime: Optional[AwareDatetime] = None
-    visitDuration: Optional[XMLSchema.xsd_duration] = None
-    urlTransitionType: Optional[vocabulary.URLTransitionTypeVocab] = None
+    url: ObservableObject | None = Field(default=None, json_schema_extra={"IRI": True})
+    visitTime: AwareDatetime | None = None
+    visitDuration: XMLSchema.xsd_duration | None = None
+    urlTransitionType: (
+        vocabulary.URLTransitionTypeVocab
+        | list[vocabulary.URLTransitionTypeVocab]
+        | None
+    ) = []
 
 
 class UserSession(ObservableObject):
@@ -2603,13 +2648,13 @@ class UserSessionFacet(core.Facet):
     https://en.wikipedia.org/wiki/Session_(computer_science)]
     """
 
-    effectiveUser: Optional[ObservableObject] = Field(
+    effectiveUser: ObservableObject | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    loginTime: Optional[AwareDatetime] = None
-    logoutTime: Optional[AwareDatetime] = None
-    effectiveGroup: Optional[str] = None
-    effectiveGroupID: Optional[str] = None
+    loginTime: AwareDatetime | None = None
+    logoutTime: AwareDatetime | None = None
+    effectiveGroup: str | None = None
+    effectiveGroupID: str | None = None
 
 
 class Volume(ObservableObject):
@@ -2643,24 +2688,24 @@ class WhoisRegistrarInfoType(core.UcoInherentCharacterizationThing):
     https://en.wikipedia.org/wiki/WHOIS]
     """
 
-    geolocationAddress: Optional[location.Location] = Field(
+    geolocationAddress: location.Location | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    contactPhoneNumber: Optional[ObservableObject] = Field(
+    contactPhoneNumber: ObservableObject | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    emailAddress: Optional[ObservableObject] = Field(
+    emailAddress: ObservableObject | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    referralURL: Optional[ObservableObject] = Field(
+    referralURL: ObservableObject | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    whoisServer: Optional[ObservableObject] = Field(
+    whoisServer: ObservableObject | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    registrarGUID: Optional[str] = None
-    registrarID: Optional[str] = None
-    registrarName: Optional[str] = None
+    registrarGUID: str | None = None
+    registrarID: str | None = None
+    registrarName: str | None = None
 
 
 class Wiki(ObservableObject):
@@ -2698,31 +2743,29 @@ class WindowsComputerSpecificationFacet(core.Facet):
     system. [based on merriam-webster.com/dictionary/computer]
     """
 
-    registeredOrganization: Optional[identity.Identity] = Field(
+    registeredOrganization: identity.Identity | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    registeredOwner: Optional[identity.Identity] = Field(
+    registeredOwner: identity.Identity | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    globalFlagList: Optional[GlobalFlagType] = Field(
+    globalFlagList: GlobalFlagType | list[GlobalFlagType] | None = []
+    windowsDirectory: ObservableObject | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    windowsDirectory: Optional[ObservableObject] = Field(
+    windowsSystemDirectory: ObservableObject | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    windowsSystemDirectory: Optional[ObservableObject] = Field(
+    windowsTempDirectory: ObservableObject | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    windowsTempDirectory: Optional[ObservableObject] = Field(
-        default=None, json_schema_extra={"IRI": True}
-    )
-    lastShutdownDate: Optional[AwareDatetime] = None
-    osInstallDate: Optional[AwareDatetime] = None
-    osLastUpgradeDate: Optional[AwareDatetime] = None
-    msProductID: Optional[str] = None
-    msProductName: Optional[str] = None
-    netBIOSName: Optional[str] = None
-    domain: Optional[str] = None
+    lastShutdownDate: AwareDatetime | None = None
+    osInstallDate: AwareDatetime | None = None
+    osLastUpgradeDate: AwareDatetime | None = None
+    msProductID: str | None = None
+    msProductName: str | None = None
+    netBIOSName: str | None = None
+    domain: str | list[str] | None = []
 
 
 class WindowsCriticalSection(ObservableObject):
@@ -2825,20 +2868,16 @@ class WindowsPrefetchFacet(core.Facet):
     with Windows XP).
     """
 
-    volume: Optional[ObservableObject] = Field(
+    volume: ObservableObject | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    accessedDirectory: Optional[ObservableObject] = Field(
-        default=None, json_schema_extra={"IRI": True}
-    )
-    accessedFile: Optional[ObservableObject] = Field(
-        default=None, json_schema_extra={"IRI": True}
-    )
-    firstRun: Optional[AwareDatetime] = None
-    lastRun: Optional[AwareDatetime] = None
-    timesExecuted: Optional[int] = None
-    applicationFileName: Optional[str] = None
-    prefetchHash: Optional[str] = None
+    accessedDirectory: ObservableObject | list[ObservableObject] | None = []
+    accessedFile: ObservableObject | list[ObservableObject] | None = []
+    firstRun: AwareDatetime | None = None
+    lastRun: AwareDatetime | None = None
+    timesExecuted: int | None = None
+    applicationFileName: str | None = None
+    prefetchHash: str | None = None
 
 
 class WindowsRegistryHive(ObservableObject):
@@ -2869,15 +2908,13 @@ class WindowsRegistryKeyFacet(core.Facet):
     https://en.wikipedia.org/wiki/Windows_Registry]
     """
 
-    creator: Optional[ObservableObject] = Field(
+    creator: ObservableObject | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    registryValues: Optional[WindowsRegistryValue] = Field(
-        default=None, json_schema_extra={"IRI": True}
-    )
-    modifiedTime: Optional[AwareDatetime] = None
-    numberOfSubkeys: Optional[int] = None
-    key: Optional[str] = None
+    registryValues: WindowsRegistryValue | list[WindowsRegistryValue] | None = []
+    modifiedTime: AwareDatetime | None = None
+    numberOfSubkeys: int | None = None
+    key: str | None = None
 
 
 class WindowsService(ObservableObject):
@@ -2938,24 +2975,24 @@ class WindowsPEBinaryFileFacet(core.Facet):
     Windows portable executable (PE) file.
     """
 
-    optionalHeader: Optional[WindowsPEOptionalHeader] = Field(
+    optionalHeader: WindowsPEOptionalHeader | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    sections: Optional[WindowsPESection] = Field(
-        default=None, json_schema_extra={"IRI": True}
-    )
-    fileHeaderHashes: Optional[types.Hash] = Field(
-        default=None, json_schema_extra={"IRI": True}
-    )
-    timeDateStamp: Optional[AwareDatetime] = None
-    pointerToSymbolTable: Optional[XMLSchema.xsd_hexBinary] = None
-    numberOfSections: Optional[int] = None
-    numberOfSymbols: Optional[int] = None
-    sizeOfOptionalHeader: Optional[int] = None
-    impHash: Optional[str] = None
-    peType: Optional[str] = None
-    machine: Optional[str] = None
-    characteristics: Optional[XMLSchema.xsd_unsignedShort] = None
+    sections: WindowsPESection | list[WindowsPESection] | None = []
+    fileHeaderHashes: types.Hash | list[types.Hash] | None = []
+    timeDateStamp: AwareDatetime | None = None
+    pointerToSymbolTable: (
+        XMLSchema.xsd_hexBinary | list[XMLSchema.xsd_hexBinary] | None
+    ) = []
+    numberOfSections: int | None = None
+    numberOfSymbols: int | None = None
+    sizeOfOptionalHeader: int | None = None
+    impHash: str | None = None
+    peType: str | None = None
+    machine: str | list[str] | None = []
+    characteristics: (
+        XMLSchema.xsd_unsignedShort | list[XMLSchema.xsd_unsignedShort] | None
+    ) = []
 
 
 class IPv4AddressFacet(IPAddressFacet):
@@ -3023,9 +3060,9 @@ class CapturedTelecommunicationsInformationFacet(core.Facet):
     """
 
     captureCellSite: CellSite = Field(json_schema_extra={"IRI": True})
-    endTime: Optional[AwareDatetime] = None
-    startTime: Optional[AwareDatetime] = None
-    interceptedCallState: Optional[str] = None
+    endTime: AwareDatetime | None = None
+    startTime: AwareDatetime | None = None
+    interceptedCallState: str | None = None
 
 
 class ContactAffiliation(core.UcoInherentCharacterizationThing):
@@ -3034,29 +3071,17 @@ class ContactAffiliation(core.UcoInherentCharacterizationThing):
     an organizational affiliation for a single contact entity.
     """
 
-    contactOrganization: Optional[identity.Organization] = Field(
+    contactOrganization: identity.Organization | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    organizationLocation: Optional[ContactAddress] = Field(
-        default=None, json_schema_extra={"IRI": True}
-    )
-    contactEmail: Optional[ContactEmail] = Field(
-        default=None, json_schema_extra={"IRI": True}
-    )
-    contactMessaging: Optional[ContactMessaging] = Field(
-        default=None, json_schema_extra={"IRI": True}
-    )
-    contactPhone: Optional[ContactPhone] = Field(
-        default=None, json_schema_extra={"IRI": True}
-    )
-    contactProfile: Optional[ContactProfile] = Field(
-        default=None, json_schema_extra={"IRI": True}
-    )
-    contactURL: Optional[ContactURL] = Field(
-        default=None, json_schema_extra={"IRI": True}
-    )
-    organizationDepartment: Optional[str] = None
-    organizationPosition: Optional[str] = None
+    organizationLocation: ContactAddress | list[ContactAddress] | None = []
+    contactEmail: ContactEmail | list[ContactEmail] | None = []
+    contactMessaging: ContactMessaging | list[ContactMessaging] | None = []
+    contactPhone: ContactPhone | list[ContactPhone] | None = []
+    contactProfile: ContactProfile | list[ContactProfile] | None = []
+    contactURL: ContactURL | list[ContactURL] | None = []
+    organizationDepartment: str | None = None
+    organizationPosition: str | None = None
 
 
 class ProfileFacet(core.Facet):
@@ -3067,37 +3092,35 @@ class ProfileFacet(core.Facet):
     on https://en.wikipedia.org/wiki/User_profile]
     """
 
-    profileIdentity: Optional[identity.Identity] = Field(
+    profileIdentity: identity.Identity | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    contactAddress: Optional[ContactAddress] = Field(
+    contactAddress: ContactAddress | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    contactEmail: Optional[ContactEmail] = Field(
+    contactEmail: ContactEmail | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    contactMessaging: Optional[ContactMessaging] = Field(
+    contactMessaging: ContactMessaging | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    contactPhone: Optional[ContactPhone] = Field(
+    contactPhone: ContactPhone | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    contactURL: Optional[ContactURL] = Field(
+    contactURL: ContactURL | None = Field(default=None, json_schema_extra={"IRI": True})
+    profileAccount: ObservableObject | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    profileAccount: Optional[ObservableObject] = Field(
+    profileService: ObservableObject | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    profileService: Optional[ObservableObject] = Field(
+    profileWebsite: ObservableObject | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    profileWebsite: Optional[ObservableObject] = Field(
-        default=None, json_schema_extra={"IRI": True}
-    )
-    profileCreated: Optional[AwareDatetime] = None
-    name: Optional[str] = None
-    displayName: Optional[str] = None
-    profileLanguage: Optional[str] = None
+    profileCreated: AwareDatetime | None = None
+    name: str | None = None
+    displayName: str | None = None
+    profileLanguage: str | list[str] | None = []
 
 
 class Adaptor(Device):
@@ -3348,17 +3371,15 @@ class MessageThreadFacet(core.Facet):
     commentary of electronic messages pertaining to one topic or question.
     """
 
-    n8c7e723aff1f4a57bd41810be91ca9b6b463: Optional[Message] = None
-    n8c7e723aff1f4a57bd41810be91ca9b6b467: Optional[Message] = None
-    n8c7e723aff1f4a57bd41810be91ca9b6b471: Optional[Message] = None
-    n8c7e723aff1f4a57bd41810be91ca9b6b475: Optional[Message] = None
-    participant: Optional[ObservableObject] = Field(
+    n4151fc4a91fc4cbf87986287e9b360ceb463: Message | list[Message] | None = []
+    n4151fc4a91fc4cbf87986287e9b360ceb467: Message | list[Message] | None = []
+    n4151fc4a91fc4cbf87986287e9b360ceb471: Message | list[Message] | None = []
+    n4151fc4a91fc4cbf87986287e9b360ceb475: Message | list[Message] | None = []
+    participant: ObservableObject | list[ObservableObject] | None = []
+    messageThread: types.Thread | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    messageThread: Optional[types.Thread] = Field(
-        default=None, json_schema_extra={"IRI": True}
-    )
-    visibility: Optional[bool] = None
+    visibility: bool | None = None
 
 
 class Post(Message):
@@ -3389,59 +3410,49 @@ class EmailMessageFacet(core.Facet):
     internet message format described in RFC 5322 and related RFCs.
     """
 
-    bodyMultipart: Optional[MimePartType] = Field(
+    bodyMultipart: MimePartType | list[MimePartType] | None = []
+    application: ObservableObject | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    application: Optional[ObservableObject] = Field(
+    bodyRaw: ObservableObject | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    bodyRaw: Optional[ObservableObject] = Field(
+    from_: ObservableObject | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    from_: Optional[ObservableObject] = Field(
+    headerRaw: ObservableObject | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    headerRaw: Optional[ObservableObject] = Field(
+    sender: ObservableObject | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    sender: Optional[ObservableObject] = Field(
+    xOriginatingIP: ObservableObject | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    xOriginatingIP: Optional[ObservableObject] = Field(
+    bcc: ObservableObject | list[ObservableObject] | None = []
+    cc: ObservableObject | list[ObservableObject] | None = []
+    references: ObservableObject | list[ObservableObject] | None = []
+    to: ObservableObject | list[ObservableObject] | None = []
+    otherHeaders: types.Dictionary | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    bcc: Optional[ObservableObject] = Field(
-        default=None, json_schema_extra={"IRI": True}
-    )
-    cc: Optional[ObservableObject] = Field(
-        default=None, json_schema_extra={"IRI": True}
-    )
-    references: Optional[ObservableObject] = Field(
-        default=None, json_schema_extra={"IRI": True}
-    )
-    to: Optional[ObservableObject] = Field(
-        default=None, json_schema_extra={"IRI": True}
-    )
-    otherHeaders: Optional[types.Dictionary] = Field(
-        default=None, json_schema_extra={"IRI": True}
-    )
-    isMimeEncoded: Optional[bool] = None
-    isMultipart: Optional[bool] = None
-    isRead: Optional[bool] = None
-    modifiedTime: Optional[AwareDatetime] = None
-    receivedTime: Optional[AwareDatetime] = None
-    sentTime: Optional[AwareDatetime] = None
-    body: Optional[str] = None
-    contentDisposition: Optional[str] = None
-    contentType: Optional[str] = None
-    inReplyTo: Optional[str] = None
-    messageID: Optional[str] = None
-    priority: Optional[str] = None
-    subject: Optional[str] = None
-    xMailer: Optional[str] = None
-    categories: Optional[str] = None
-    labels: Optional[str] = None
-    receivedLines: Optional[str] = None
+    isMimeEncoded: bool | None = None
+    isMultipart: bool | None = None
+    isRead: bool | None = None
+    modifiedTime: AwareDatetime | None = None
+    receivedTime: AwareDatetime | None = None
+    sentTime: AwareDatetime | None = None
+    body: str | None = None
+    contentDisposition: str | None = None
+    contentType: str | None = None
+    inReplyTo: str | None = None
+    messageID: str | None = None
+    priority: str | None = None
+    subject: str | None = None
+    xMailer: str | None = None
+    categories: str | list[str] | None = []
+    labels: str | list[str] | None = []
+    receivedLines: str | list[str] | None = []
 
 
 class HTTPConnection(NetworkConnection):
@@ -3498,10 +3509,10 @@ class ConfiguredSoftware(Software):
     a more specified manner than some unconfigured or less-configured Software.
     """
 
-    usesConfiguration: Optional[configuration.Configuration] = Field(
+    usesConfiguration: configuration.Configuration | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    isConfigurationOf: Optional[Software] = Field(
+    isConfigurationOf: Software | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
 
@@ -3522,38 +3533,36 @@ class WindowsTaskFacet(core.Facet):
     http://msdn.microsoft.com/en-us/library/windows/desktop/aa381311(v=vs.85).aspx]
     """
 
-    account: Optional[ObservableObject] = Field(
+    account: ObservableObject | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    application: Optional[ObservableObject] = Field(
+    application: ObservableObject | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    workItemData: Optional[ObservableObject] = Field(
+    workItemData: ObservableObject | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    workingDirectory: Optional[ObservableObject] = Field(
+    workingDirectory: ObservableObject | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    actionList: Optional[TaskActionType] = Field(
-        default=None, json_schema_extra={"IRI": True}
-    )
-    triggerList: Optional[TriggerType] = Field(
-        default=None, json_schema_extra={"IRI": True}
-    )
-    mostRecentRunTime: Optional[AwareDatetime] = None
-    nextRunTime: Optional[AwareDatetime] = None
-    observableCreatedTime: Optional[AwareDatetime] = None
-    exitCode: Optional[int] = None
-    maxRunTime: Optional[int] = None
-    accountLogonType: Optional[str] = None
-    accountRunLevel: Optional[str] = None
-    imageName: Optional[str] = None
-    parameters: Optional[str] = None
-    taskComment: Optional[str] = None
-    taskCreator: Optional[str] = None
-    flags: Optional[vocabulary.TaskFlagVocab] = None
-    priority: Optional[vocabulary.TaskPriorityVocab] = None
-    status: Optional[vocabulary.TaskStatusVocab] = None
+    actionList: TaskActionType | list[TaskActionType] | None = []
+    triggerList: TriggerType | list[TriggerType] | None = []
+    mostRecentRunTime: AwareDatetime | None = None
+    nextRunTime: AwareDatetime | None = None
+    observableCreatedTime: AwareDatetime | None = None
+    exitCode: int | None = None
+    maxRunTime: int | None = None
+    accountLogonType: str | None = None
+    accountRunLevel: str | None = None
+    imageName: str | None = None
+    parameters: str | None = None
+    taskComment: str | None = None
+    taskCreator: str | None = None
+    flags: vocabulary.TaskFlagVocab | list[vocabulary.TaskFlagVocab] | None = []
+    priority: (
+        vocabulary.TaskPriorityVocab | list[vocabulary.TaskPriorityVocab] | None
+    ) = []
+    status: vocabulary.TaskStatusVocab | list[vocabulary.TaskStatusVocab] | None = []
 
 
 class URLHistoryFacet(core.Facet):
@@ -3562,12 +3571,10 @@ class URLHistoryFacet(core.Facet):
     URL history for a particular web browser
     """
 
-    browserInformation: Optional[ObservableObject] = Field(
+    browserInformation: ObservableObject | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    urlHistoryEntry: Optional[URLHistoryEntry] = Field(
-        default=None, json_schema_extra={"IRI": True}
-    )
+    urlHistoryEntry: URLHistoryEntry | list[URLHistoryEntry] | None = []
 
 
 class WhoIsFacet(core.Facet):
@@ -3577,35 +3584,39 @@ class WhoIsFacet(core.Facet):
     https://en.wikipedia.org/wiki/WHOIS]
     """
 
-    regionalInternetRegistry: Optional[vocabulary.RegionalRegistryTypeVocab] = None
-    domainName: Optional[ObservableObject] = Field(
+    regionalInternetRegistry: (
+        vocabulary.RegionalRegistryTypeVocab
+        | list[vocabulary.RegionalRegistryTypeVocab]
+        | None
+    ) = []
+    domainName: ObservableObject | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    ipAddress: Optional[ObservableObject] = Field(
+    ipAddress: ObservableObject | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    registrantContactInfo: Optional[ObservableObject] = Field(
+    registrantContactInfo: ObservableObject | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    serverName: Optional[ObservableObject] = Field(
+    serverName: ObservableObject | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    nameServer: Optional[ObservableObject] = Field(
+    nameServer: ObservableObject | list[ObservableObject] | None = []
+    registrarInfo: WhoisRegistrarInfoType | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    registrarInfo: Optional[WhoisRegistrarInfoType] = Field(
-        default=None, json_schema_extra={"IRI": True}
-    )
-    creationDate: Optional[AwareDatetime] = None
-    expirationDate: Optional[AwareDatetime] = None
-    lookupDate: Optional[AwareDatetime] = None
-    updatedDate: Optional[AwareDatetime] = None
-    domainID: Optional[str] = None
-    remarks: Optional[str] = None
-    sponsoringRegistrar: Optional[str] = None
-    registrantIDs: Optional[str] = None
-    dnssec: Optional[vocabulary.WhoisDNSSECTypeVocab] = None
-    status: Optional[vocabulary.WhoisStatusTypeVocab] = None
+    creationDate: AwareDatetime | None = None
+    expirationDate: AwareDatetime | None = None
+    lookupDate: AwareDatetime | None = None
+    updatedDate: AwareDatetime | None = None
+    domainID: str | None = None
+    remarks: str | None = None
+    sponsoringRegistrar: str | None = None
+    registrantIDs: str | list[str] | None = []
+    dnssec: vocabulary.WhoisDNSSECTypeVocab | None = None
+    status: (
+        vocabulary.WhoisStatusTypeVocab | list[vocabulary.WhoisStatusTypeVocab] | None
+    ) = []
 
 
 class ApplicationAccount(DigitalAccount):
@@ -3705,47 +3716,31 @@ class ContactFacet(core.Facet):
     identification and communication related details for a single entity.
     """
 
-    contactAddress: Optional[ContactAddress] = Field(
+    contactAddress: ContactAddress | list[ContactAddress] | None = []
+    contactAffiliation: ContactAffiliation | list[ContactAffiliation] | None = []
+    contactEmail: ContactEmail | list[ContactEmail] | None = []
+    contactMessaging: ContactMessaging | list[ContactMessaging] | None = []
+    contactPhone: ContactPhone | list[ContactPhone] | None = []
+    contactProfile: ContactProfile | list[ContactProfile] | None = []
+    contactSIP: ContactSIP | list[ContactSIP] | None = []
+    contactURL: ContactURL | list[ContactURL] | None = []
+    sourceApplication: ObservableObject | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )
-    contactAffiliation: Optional[ContactAffiliation] = Field(
-        default=None, json_schema_extra={"IRI": True}
-    )
-    contactEmail: Optional[ContactEmail] = Field(
-        default=None, json_schema_extra={"IRI": True}
-    )
-    contactMessaging: Optional[ContactMessaging] = Field(
-        default=None, json_schema_extra={"IRI": True}
-    )
-    contactPhone: Optional[ContactPhone] = Field(
-        default=None, json_schema_extra={"IRI": True}
-    )
-    contactProfile: Optional[ContactProfile] = Field(
-        default=None, json_schema_extra={"IRI": True}
-    )
-    contactSIP: Optional[ContactSIP] = Field(
-        default=None, json_schema_extra={"IRI": True}
-    )
-    contactURL: Optional[ContactURL] = Field(
-        default=None, json_schema_extra={"IRI": True}
-    )
-    sourceApplication: Optional[ObservableObject] = Field(
-        default=None, json_schema_extra={"IRI": True}
-    )
-    birthdate: Optional[AwareDatetime] = None
-    lastTimeContacted: Optional[AwareDatetime] = None
-    numberTimesContacted: Optional[int] = None
-    contactID: Optional[str] = None
-    displayName: Optional[str] = None
-    firstName: Optional[str] = None
-    lastName: Optional[str] = None
-    middleName: Optional[str] = None
-    namePhonetic: Optional[str] = None
-    namePrefix: Optional[str] = None
-    nameSuffix: Optional[str] = None
-    contactGroup: Optional[str] = None
-    contactNote: Optional[str] = None
-    nickname: Optional[str] = None
+    birthdate: AwareDatetime | None = None
+    lastTimeContacted: AwareDatetime | None = None
+    numberTimesContacted: int | None = None
+    contactID: str | None = None
+    displayName: str | None = None
+    firstName: str | None = None
+    lastName: str | None = None
+    middleName: str | None = None
+    namePhonetic: str | None = None
+    namePrefix: str | None = None
+    nameSuffix: str | None = None
+    contactGroup: str | list[str] | None = []
+    contactNote: str | list[str] | None = []
+    nickname: str | list[str] | None = []
 
 
 class AndroidPhone(AndroidDevice):
@@ -3847,11 +3842,9 @@ class NTFSFileFacet(core.Facet):
     NTFS (new technology filesystem) file system.
     """
 
-    alternateDataStreams: Optional[AlternateDataStream] = Field(
-        default=None, json_schema_extra={"IRI": True}
-    )
-    entryID: Optional[int] = None
-    sid: Optional[str] = None
+    alternateDataStreams: AlternateDataStream | list[AlternateDataStream] | None = []
+    entryID: int | None = None
+    sid: str | None = None
 
 
 class ArchiveFile(File):
@@ -3932,7 +3925,9 @@ class WhoisContactFacet(ContactFacet):
     https://en.wikipedia.org/wiki/WHOIS]
     """
 
-    whoisContactType: Optional[vocabulary.WhoisContactTypeVocab] = None
+    whoisContactType: (
+        vocabulary.WhoisContactTypeVocab | list[vocabulary.WhoisContactTypeVocab] | None
+    ) = []
 
 
 class BlackberryPhone(SmartPhone):

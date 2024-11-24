@@ -152,7 +152,9 @@ class Property(BaseModel):
             is_required = True
 
         is_list = False
-        if max_count and int(max_count.toPython()) != 1:
+        if max_count is None or (max_count and int(max_count.toPython()) != 1):
+            # Assume all properties are lists unless a cardinality of 1 is explicitly
+            # specified
             is_list = True
 
         # Handle IRI
@@ -195,10 +197,10 @@ class Property(BaseModel):
             python_type = f'"{python_type}"'
 
         if self.is_list:
-            python_type = f"list[{python_type}]"
-        else:
-            if not self.is_required:
-                python_type = f"Optional[{python_type}]"
+            python_type = f"{python_type} | list[{python_type}]"
+
+        if not self.is_required:
+            python_type = f"{python_type} | None"
 
         return python_type
 
@@ -461,7 +463,7 @@ def generate_import_list(dependency_graph: dict[str, set[str]], namespace: str) 
     #     imports += f"from fastlabel.case import {namespace}\n"
 
     # Always import these, which can be removed if needed
-    imports += "from typing import Any, Optional\n"
+    imports += "from typing import Any\n"
     imports += "from enum import Enum\n"
     imports += "from pydantic import AwareDatetime, Field\n"
 
