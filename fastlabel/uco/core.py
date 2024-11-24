@@ -7,6 +7,8 @@ This file was generated using the `case_models.py` script.
 from enum import Enum
 from typing import Optional
 
+from pydantic import AwareDatetime
+
 from fastlabel.uco import XMLSchema, owl, types
 
 
@@ -67,8 +69,8 @@ class UcoObject(UcoThing):
 
     externalReference: Optional[ExternalReference] = None
     hasFacet: Optional[Facet] = None
-    objectCreatedTime: Optional[str] = None
-    modifiedTime: Optional[str] = None
+    objectCreatedTime: Optional[AwareDatetime] = None
+    modifiedTime: Optional[AwareDatetime] = None
     name: Optional[str] = None
     specVersion: Optional[str] = None
     description: Optional[str] = None
@@ -117,8 +119,8 @@ class Event(UcoObject):
 
     eventContext: Optional[UcoObject] = None
     eventAttribute: Optional[types.Dictionary] = None
-    endTime: Optional[str] = None
-    startTime: Optional[str] = None
+    endTime: Optional[AwareDatetime] = None
+    startTime: Optional[AwareDatetime] = None
     eventType: Optional[str] = None
 
 
@@ -164,8 +166,8 @@ class Relationship(UcoObject):
     target: UcoObject
     source: UcoObject
     isDirectional: bool
-    endTime: Optional[str] = None
-    startTime: Optional[str] = None
+    endTime: Optional[AwareDatetime] = None
+    startTime: Optional[AwareDatetime] = None
     kindOfRelationship: Optional[str] = None
 
 

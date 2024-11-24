@@ -6,6 +6,8 @@ This file was generated using the `case_models.py` script.
 
 from typing import Optional
 
+from pydantic import AwareDatetime
+
 from fastlabel.uco import core, location
 
 
@@ -63,7 +65,7 @@ class BirthInformationFacet(IdentityFacet):
     pertaining to the birth of an entity.
     """
 
-    birthdate: Optional[str] = None
+    birthdate: Optional[AwareDatetime] = None
 
 
 class CountryOfResidenceFacet(IdentityFacet):

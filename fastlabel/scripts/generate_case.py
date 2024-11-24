@@ -29,7 +29,7 @@ DATATYPE_MAPPING = {
     XSD.integer: "int",
     XSD.decimal: "float",
     XSD.boolean: "bool",
-    XSD.dateTime: "str",  # Use 'datetime' if you handle date parsing
+    XSD.dateTime: "AwareDatetime",  # Use 'datetime' if you handle date parsing
     XSD.nonNegativeInteger: "int",
     XSD.date: "str",
 }
@@ -410,8 +410,8 @@ def generate_import_list(dependency_graph: dict[str, set[str]], namespace: str) 
     for deps in dependency_graph.values():
         dependencies.update(deps)
 
-    # Don't include builtin types
-    dependencies -= {"str", "int", "float", "bool"}
+    # Don't include types that aren't part of CASE/UCO
+    dependencies -= {"str", "int", "float", "bool", "AwareDatetime"}
 
     # Handle special cases
     for dep in ("Any", "Optional", "List"):
@@ -440,11 +440,10 @@ def generate_import_list(dependency_graph: dict[str, set[str]], namespace: str) 
     # for namespace, _ in grouped_dependencies.items():
     #     imports += f"from fastlabel.case import {namespace}\n"
 
-    # Always import Any and Optional -- these can be removed manually if not needed
+    # Always import these, which can be removed if needed
     imports += "from typing import Any, Optional\n"
-
-    # Always import Enum -- these can be removed manually if not needed
     imports += "from enum import Enum\n"
+    imports += "from pydantic import AwareDatetime\n"
 
     return imports
 
