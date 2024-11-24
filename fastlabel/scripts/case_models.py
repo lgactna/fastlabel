@@ -65,9 +65,9 @@ def get_artifacts_dir() -> Path:
 
 def get_target_dir() -> Path:
     """
-    Get a resolved path to `/fastlabel/grr`.
+    Get a resolved path to `/fastlabel/case`.
     """
-    return (Path(__file__).parents[1] / "grr").resolve()
+    return (Path(__file__).parents[1] / "case").resolve()
 
 
 class Property(BaseModel):
@@ -90,7 +90,7 @@ class Property(BaseModel):
     namespace: str
         
     @classmethod
-    def from_property_shape(cls, prop_list) -> Optional["Property"]:
+    def from_property_shape(cls, prop_list, namespace: str) -> Optional["Property"]:
         """
         Create a Property instance from a SHACL property shape (sh:property).
         """
@@ -133,7 +133,8 @@ class Property(BaseModel):
             field_name=field_name, 
             python_type=python_type, 
             is_required=is_required, 
-            is_list=is_list
+            is_list=is_list,
+            namespace=namespace
         )        
         
     def to_pydantic_field(self) -> str:
@@ -190,11 +191,19 @@ class UCOModel(BaseModel):
             if isinstance(o, Literal):
                 comment = str(o)
                 break
+            
+        # Add properties
+        properties = []
+        for prop_list in g.objects(owl_class, SH.property):
+            prop = Property.from_property_shape(prop_list, namespace)
+            if prop:
+                properties.append(prop)
            
         return UCOModel(
             class_name=class_name,
             superclass=superclass,
             comment=comment,
+            properties=properties,
             namespace=namespace
         )
     
@@ -246,7 +255,7 @@ class UCOModel(BaseModel):
         
         return result
 
-def generate_classes_from_graph(g: Graph) -> str:
+def generate_classes_from_graph(g: Graph, namespace: str) -> str:
     """
     Generate Python classes from a SHACL graph.
     """
@@ -263,13 +272,7 @@ def generate_classes_from_graph(g: Graph) -> str:
     # sort them to determine the order of output
     for cls in classes:
         # TODO: extract namespace
-        model = UCOModel.from_owl_class(cls, g, "TODO")
-
-        # Get properties
-        for prop_list in g.objects(cls, SH.property):
-            prop = Property.from_property_shape(prop_list)
-            if prop:
-                model.properties.append(prop)
+        model = UCOModel.from_owl_class(cls, g, namespace)
 
         # This is a single class definition
         output += model.to_pydantic_model() + "\n"
@@ -288,12 +291,16 @@ def generate_classes_from_graph(g: Graph) -> str:
 if __name__ == "__main__":
     for artifact_file in get_artifacts_dir().glob("*/*.ttl"):
         print(f"Validating {artifact_file}")
+        
+        # The name of the generated Python file. The absolute import path should 
+        # be `fastlabel.case.<namespace>`
+        namespace = artifact_file.stem
 
         # Load the RDF graph
         g = Graph()
         g.parse(artifact_file, format="turtle")
 
-        class_file = generate_classes_from_graph(g)
+        class_file = generate_classes_from_graph(g, namespace)
         docstring = dedent(
             f'''
             """
@@ -310,6 +317,6 @@ if __name__ == "__main__":
         class_file = docstring + "\n" + class_file
 
         # Write file based on the artifact file name
-        target_file = get_target_dir() / f"{artifact_file.stem}.py"
+        target_file = get_target_dir() / f"{namespace}.py"
         with open(target_file, "wt+") as fp:
             fp.write(class_file)

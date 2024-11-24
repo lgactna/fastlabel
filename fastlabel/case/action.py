@@ -5,6 +5,35 @@ Auto-generated classes from the SHACL graph in action.ttl.
 This file was generated using the `case_models.py` script.
 """
 
+class ArrayOfAction(core.UcoInherentCharacterizationThing):
+    """
+    An array of action is an ordered list of references to things that may be
+    done or performed.
+    """
+
+    action: Action
+
+class Action(core.UcoObject):
+    """
+    An action is something that may be done or performed.
+    """
+
+    subaction: Optional[Action] = None
+    environment: Optional[UcoObject] = None
+    performer: Optional[UcoObject] = None
+    error: Optional[UcoObject] = None
+    instrument: Optional[UcoObject] = None
+    object: Optional[UcoObject] = None
+    participant: Optional[UcoObject] = None
+    result: Optional[UcoObject] = None
+    location: Optional[Location] = None
+    endTime: Optional[str] = None
+    startTime: Optional[str] = None
+    actionCount: Optional[int] = None
+    actionStatus: Optional[str] = None
+    actionStatus: Optional[Any] = None
+    actionStatus: Optional[Any] = None
+
 class ActionEstimationFacet(core.Facet):
     """
     An action estimation facet is a grouping of characteristics unique to
@@ -16,6 +45,13 @@ class ActionEstimationFacet(core.Facet):
     estimatedEfficacy: Optional[str] = None
     estimatedImpact: Optional[str] = None
     objective: Optional[str] = None
+
+class ActionPattern(action.Action):
+    """
+    An action pattern is a grouping of characteristics unique to a combination
+    of actions forming a consistent or characteristic arrangement.
+    """
+
 
 class ActionLifecycle(action.Action):
     """
@@ -51,40 +87,4 @@ class ActionFrequencyFacet(core.Facet):
     trend: Optional[str] = None
     trend: Any
     trend: Optional[Any] = None
-
-class ActionPattern(action.Action):
-    """
-    An action pattern is a grouping of characteristics unique to a combination
-    of actions forming a consistent or characteristic arrangement.
-    """
-
-
-class Action(core.UcoObject):
-    """
-    An action is something that may be done or performed.
-    """
-
-    subaction: Optional[Action] = None
-    environment: Optional[UcoObject] = None
-    performer: Optional[UcoObject] = None
-    error: Optional[UcoObject] = None
-    instrument: Optional[UcoObject] = None
-    object: Optional[UcoObject] = None
-    participant: Optional[UcoObject] = None
-    result: Optional[UcoObject] = None
-    location: Optional[Location] = None
-    endTime: Optional[str] = None
-    startTime: Optional[str] = None
-    actionCount: Optional[int] = None
-    actionStatus: Optional[str] = None
-    actionStatus: Optional[Any] = None
-    actionStatus: Optional[Any] = None
-
-class ArrayOfAction(core.UcoInherentCharacterizationThing):
-    """
-    An array of action is an ordered list of references to things that may be
-    done or performed.
-    """
-
-    action: Action
 

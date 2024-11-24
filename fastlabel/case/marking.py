@@ -16,19 +16,13 @@ class GranularMarking(core.UcoInherentCharacterizationThing):
     marking: Optional[MarkingDefinition] = None
     contentSelectors: Optional[str] = None
 
-class ReleaseToMarking(marking.MarkingModel):
+class MarkingModel(core.UcoInherentCharacterizationThing):
     """
-    A release-to marking is a grouping of characteristics unique to the
-    expression of data marking definitions (restrictions, permissions, and other
-    guidance for how data can be used and shared) to convey details of
-    authorized persons and/or organizations to which to the associated content
-    may be released. The existence of the Release-To marking restricts access to
-    ONLY those identities explicitly listed, regardless of whether another data
-    marking exists that allows sharing with other members of the community.
+    A marking model is a grouping of characteristics unique to the expression of
+    a particular form of data marking definitions (restrictions, permissions,
+    and other guidance for how data can be used and shared).
     """
 
-    definitionType: Optional[str] = None
-    authorizedIdentities: str
 
 class MarkingDefinition(core.MarkingDefinitionAbstraction):
     """
@@ -79,11 +73,17 @@ class LicenseMarking(marking.MarkingModel):
     definitionType: Optional[str] = None
     license: str
 
-class MarkingModel(core.UcoInherentCharacterizationThing):
+class ReleaseToMarking(marking.MarkingModel):
     """
-    A marking model is a grouping of characteristics unique to the expression of
-    a particular form of data marking definitions (restrictions, permissions,
-    and other guidance for how data can be used and shared).
+    A release-to marking is a grouping of characteristics unique to the
+    expression of data marking definitions (restrictions, permissions, and other
+    guidance for how data can be used and shared) to convey details of
+    authorized persons and/or organizations to which to the associated content
+    may be released. The existence of the Release-To marking restricts access to
+    ONLY those identities explicitly listed, regardless of whether another data
+    marking exists that allows sharing with other members of the community.
     """
 
+    definitionType: Optional[str] = None
+    authorizedIdentities: str
 
