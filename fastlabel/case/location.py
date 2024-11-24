@@ -10,17 +10,6 @@ from typing import Any, Optional
 from enum import Enum
 
 
-class LatLongCoordinatesFacet(core.Facet):
-    """
-    A lat long coordinates facet is a grouping of characteristics unique to the
-    expression of a geolocation as the intersection of specific latitude,
-    longitude, and altitude values.
-    """
-
-    altitude: Optional[float] = None
-    latitude: Optional[float] = None
-    longitude: Optional[float] = None
-
 class GPSCoordinatesFacet(core.Facet):
     """
     A GPS coordinates facet is a grouping of characteristics unique to the
@@ -34,6 +23,24 @@ class GPSCoordinatesFacet(core.Facet):
     tdop: Optional[float] = None
     vdop: Optional[float] = None
 
+class LatLongCoordinatesFacet(core.Facet):
+    """
+    A lat long coordinates facet is a grouping of characteristics unique to the
+    expression of a geolocation as the intersection of specific latitude,
+    longitude, and altitude values.
+    """
+
+    altitude: Optional[float] = None
+    latitude: Optional[float] = None
+    longitude: Optional[float] = None
+
+class Location(core.UcoObject):
+    """
+    A location is a geospatial place, site, or position.
+    """
+
+    pass
+
 class SimpleAddressFacet(core.Facet):
     """
     A simple address facet is a grouping of characteristics unique to a
@@ -46,11 +53,4 @@ class SimpleAddressFacet(core.Facet):
     postalCode: Optional[str] = None
     region: Optional[str] = None
     street: Optional[str] = None
-
-class Location(core.UcoObject):
-    """
-    A location is a geospatial place, site, or position.
-    """
-
-    pass
 

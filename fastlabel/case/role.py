@@ -24,16 +24,16 @@ class BenevolentRole(Role):
 
     pass
 
-class NeutralRole(Role):
+class MaliciousRole(Role):
     """
-    A neutral role is a role with impartial intent.
+    A malicious role is a role with malevolent intent.
     """
 
     pass
 
-class MaliciousRole(Role):
+class NeutralRole(Role):
     """
-    A malicious role is a role with malevolent intent.
+    A neutral role is a role with impartial intent.
     """
 
     pass

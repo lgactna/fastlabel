@@ -405,11 +405,12 @@ def generate_import_list(dependency_graph: dict[str, set[str]], namespace: str) 
         grouped_dependencies[namespace].add(name)
 
     # Generate import statements
-    # note: we used to import individual objects, now we just use the qualified name
+    # NOTE: we used to import individual objects from each namespace, now we just
+    # import the whole namespace -- this is why the code is like this
     imports = ""
     
     if grouped_dependencies:
-        imports += f"from fastlabel.case import ({', '.join(grouped_dependencies.keys())})\n"
+        imports += f"from fastlabel.case import ({', '.join(sorted(grouped_dependencies.keys()))})\n"
     # for namespace, _ in grouped_dependencies.items():
     #     imports += f"from fastlabel.case import {namespace}\n"
 
@@ -449,6 +450,9 @@ def generate_classes_from_graph(g: Graph, namespace: str) -> tuple[str, str]:
 
         names_to_classes[model.class_name] = model
         dependency_graph[model.class_name] = model.get_dependencies()
+
+    # Sort the keys of dependency_graph to ensure the class order is deterministic.
+    dependency_graph = {k: dependency_graph[k] for k in sorted(dependency_graph)}
 
     # Topologically sort the classes according to their dependencies.
     # If a dependency cannot be found in this file, it must be external.
