@@ -9,15 +9,6 @@ from typing import Any, Optional
 from fastlabel.case import core, location
 
 
-class IdentityFacet(core.Facet):
-    """
-    An identity facet is a grouping of characteristics unique to a particular
-    aspect of an identity.
-    """
-
-    pass
-
-
 class Identity(core.IdentityAbstraction):
     """
     An identity is a grouping of identifying characteristics unique to an
@@ -27,29 +18,86 @@ class Identity(core.IdentityAbstraction):
     pass
 
 
-class OrganizationDetailsFacet(IdentityFacet):
+class IdentityFacet(core.Facet):
     """
-    Organization details is a grouping of characteristics unique to an identity
-    representing an administrative and functional structure.
+    An identity facet is a grouping of characteristics unique to a particular
+    aspect of an identity.
     """
 
     pass
 
 
-class AddressFacet(IdentityFacet):
+class Person(Identity):
     """
-    An address facet is a grouping of characteristics unique to an
-    administrative identifier for a geolocation associated with a specific
-    identity.
+    A person is a grouping of identifying characteristics unique to a human
+    being regarded as an individual. [based on
+    https://www.lexico.com/en/definition/person]
     """
 
-    address: Optional[location.Location] = None
+    pass
+
+
+class Organization(Identity):
+    """
+    An organization is a grouping of identifying characteristics unique to a
+    group of people who work together in an organized way for a shared purpose.
+    [based on
+    https://dictionary.cambridge.org/us/dictionary/english/organization]
+    """
+
+    pass
+
+
+class OccupationFacet(IdentityFacet):
+    """
+    Occupation is a grouping of characteristics unique to the job or profession
+    of an entity.
+    """
+
+    pass
+
+
+class CountryOfResidenceFacet(IdentityFacet):
+    """
+    Country of residence is a grouping of characteristics unique to information
+    related to the country, or countries, where an entity resides.
+    """
+
+    pass
+
+
+class AffiliationFacet(IdentityFacet):
+    """
+    An affiliation is a grouping of characteristics unique to the established
+    affiliations of an entity.
+    """
+
+    pass
+
+
+class VisaFacet(IdentityFacet):
+    """
+    Visa is a grouping of characteristics unique to information related to a
+    person's ability to enter, leave, or stay for a specified period of time in
+    a country.
+    """
+
+    pass
 
 
 class IdentifierFacet(IdentityFacet):
     """
     Identifier is a grouping of characteristics unique to information that
     uniquely and specifically identities an entity.
+    """
+
+    pass
+
+
+class PersonalDetailsFacet(IdentityFacet):
+    """
+    Personal details is a grouping of characteristics unique to an identity
+    representing an individual person.
     """
 
     pass
@@ -67,16 +115,6 @@ class SimpleNameFacet(IdentityFacet):
     honorificSuffix: Optional[str] = None
 
 
-class VisaFacet(IdentityFacet):
-    """
-    Visa is a grouping of characteristics unique to information related to a
-    person's ability to enter, leave, or stay for a specified period of time in
-    a country.
-    """
-
-    pass
-
-
 class BirthInformationFacet(IdentityFacet):
     """
     Birth information is a grouping of characteristics unique to information
@@ -86,10 +124,11 @@ class BirthInformationFacet(IdentityFacet):
     birthdate: Optional[str] = None
 
 
-class EventsFacet(IdentityFacet):
+class LanguagesFacet(IdentityFacet):
     """
-    Events is a grouping of characteristics unique to information related to
-    specific relevant things that happen in the lifetime of an entity.
+    Languages is a grouping of characteristics unique to specific syntactically
+    and grammatically standardized forms of communication (human or computer) in
+    which an entity has proficiency (comprehends, speaks, reads, or writes).
     """
 
     pass
@@ -104,19 +143,19 @@ class NationalityFacet(IdentityFacet):
     pass
 
 
-class CountryOfResidenceFacet(IdentityFacet):
+class EventsFacet(IdentityFacet):
     """
-    Country of residence is a grouping of characteristics unique to information
-    related to the country, or countries, where an entity resides.
+    Events is a grouping of characteristics unique to information related to
+    specific relevant things that happen in the lifetime of an entity.
     """
 
     pass
 
 
-class PhysicalInfoFacet(IdentityFacet):
+class OrganizationDetailsFacet(IdentityFacet):
     """
-    Physical info is a grouping of characteristics unique to the outwardly
-    observable nature of an individual person.
+    Organization details is a grouping of characteristics unique to an identity
+    representing an administrative and functional structure.
     """
 
     pass
@@ -132,11 +171,20 @@ class QualificationFacet(IdentityFacet):
     pass
 
 
-class LanguagesFacet(IdentityFacet):
+class AddressFacet(IdentityFacet):
     """
-    Languages is a grouping of characteristics unique to specific syntactically
-    and grammatically standardized forms of communication (human or computer) in
-    which an entity has proficiency (comprehends, speaks, reads, or writes).
+    An address facet is a grouping of characteristics unique to an
+    administrative identifier for a geolocation associated with a specific
+    identity.
+    """
+
+    address: Optional[location.Location] = None
+
+
+class PhysicalInfoFacet(IdentityFacet):
+    """
+    Physical info is a grouping of characteristics unique to the outwardly
+    observable nature of an individual person.
     """
 
     pass
@@ -145,54 +193,6 @@ class LanguagesFacet(IdentityFacet):
 class RelatedIdentityFacet(IdentityFacet):
     """
     <Needs fleshed out from CIQ>
-    """
-
-    pass
-
-
-class PersonalDetailsFacet(IdentityFacet):
-    """
-    Personal details is a grouping of characteristics unique to an identity
-    representing an individual person.
-    """
-
-    pass
-
-
-class AffiliationFacet(IdentityFacet):
-    """
-    An affiliation is a grouping of characteristics unique to the established
-    affiliations of an entity.
-    """
-
-    pass
-
-
-class OccupationFacet(IdentityFacet):
-    """
-    Occupation is a grouping of characteristics unique to the job or profession
-    of an entity.
-    """
-
-    pass
-
-
-class Organization(Identity):
-    """
-    An organization is a grouping of identifying characteristics unique to a
-    group of people who work together in an organized way for a shared purpose.
-    [based on
-    https://dictionary.cambridge.org/us/dictionary/english/organization]
-    """
-
-    pass
-
-
-class Person(Identity):
-    """
-    A person is a grouping of identifying characteristics unique to a human
-    being regarded as an individual. [based on
-    https://www.lexico.com/en/definition/person]
     """
 
     pass

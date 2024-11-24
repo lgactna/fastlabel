@@ -9,6 +9,23 @@ from typing import Any, Optional
 from fastlabel.case import co, core
 
 
+class ThreadItem(co.Item):
+    """
+    A ThreadItem is a member of a thread.
+    """
+
+    itemContent: Optional[core.UcoObject] = None
+
+
+class DictionaryEntry(core.UcoInherentCharacterizationThing):
+    """
+    A dictionary entry is a single (term/key, value) pair.
+    """
+
+    key: str
+    value: str
+
+
 class Hash(core.UcoInherentCharacterizationThing):
     """
     A hash is a grouping of characteristics unique to the result of applying a
@@ -24,30 +41,15 @@ class Hash(core.UcoInherentCharacterizationThing):
     hashMethod: Optional[Any] = None
 
 
-class DictionaryEntry(core.UcoInherentCharacterizationThing):
+class Thread(co.Bag):
     """
-    A dictionary entry is a single (term/key, value) pair.
-    """
-
-    key: str
-    value: str
-
-
-class ThreadItem(co.Item):
-    """
-    A ThreadItem is a member of a thread.
+    A semi-ordered array of items, that can be present in multiple copies.
+    Implemetation of a UCO Thread is similar to a Collections Ontology List,
+    except a Thread may fork and merge - that is, one of its members may have
+    two or more direct successors, and two or more direct predecessors.
     """
 
-    itemContent: Optional[core.UcoObject] = None
-
-
-class Dictionary(core.UcoInherentCharacterizationThing):
-    """
-    A dictionary is list of (term/key, value) pairs with each term/key existing
-    no more than once.
-    """
-
-    entry: DictionaryEntry
+    item: Optional[ThreadItem] = None
 
 
 class ControlledDictionaryEntry(DictionaryEntry):
@@ -59,15 +61,32 @@ class ControlledDictionaryEntry(DictionaryEntry):
     pass
 
 
-class Thread(co.Bag):
+class Dictionary(core.UcoInherentCharacterizationThing):
     """
-    A semi-ordered array of items, that can be present in multiple copies.
-    Implemetation of a UCO Thread is similar to a Collections Ontology List,
-    except a Thread may fork and merge - that is, one of its members may have
-    two or more direct successors, and two or more direct predecessors.
+    A dictionary is list of (term/key, value) pairs with each term/key having an
+    expectation to exist no more than once. types:Dictionary alone does not
+    validate this expectation, but validation is available. For use cases where
+    this expectation must be validated, the subclass types:ProperDictionary
+    should be used instead of types:Dictionary. For instances where this
+    expectation has been found to be violated, the subclass
+    types:ImproperDictionary should be used instead of types:Dictionary.
     """
 
-    item: Optional[ThreadItem] = None
+    entry: Optional[DictionaryEntry] = None
+
+
+class ImproperDictionary(Dictionary):
+
+    repeatsKey: Optional[str] = None
+
+
+class ProperDictionary(Dictionary):
+    """
+    A proper dictionary is list of (term/key, value) pairs with each term/key
+    existing no more than once.
+    """
+
+    pass
 
 
 class ControlledDictionary(Dictionary):

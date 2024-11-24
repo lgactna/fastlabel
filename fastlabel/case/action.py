@@ -9,6 +9,20 @@ from typing import Any, Optional
 from fastlabel.case import core, location
 
 
+class ActionFrequencyFacet(core.Facet):
+    """
+    An action frequency facet is a grouping of characteristics unique to the
+    frequency of occurrence for an action.
+    """
+
+    rate: float
+    scale: str
+    units: str
+    trend: Optional[str] = None
+    trend: Any
+    trend: Optional[Any] = None
+
+
 class ActionEstimationFacet(core.Facet):
     """
     An action estimation facet is a grouping of characteristics unique to
@@ -30,20 +44,6 @@ class ActionArgumentFacet(core.Facet):
 
     argumentName: str
     value: str
-
-
-class ActionFrequencyFacet(core.Facet):
-    """
-    An action frequency facet is a grouping of characteristics unique to the
-    frequency of occurrence for an action.
-    """
-
-    rate: float
-    scale: str
-    units: str
-    trend: Optional[str] = None
-    trend: Any
-    trend: Optional[Any] = None
 
 
 class Action(core.UcoObject):
@@ -86,7 +86,7 @@ class ArrayOfAction(core.UcoInherentCharacterizationThing):
     action: Action
 
 
-class ActionLifecycle(Action):
+class ActionLifecycle(ActionPattern):
     """
     An action lifecycle is an action pattern consisting of an ordered set of
     multiple actions or subordinate action lifecycles.
