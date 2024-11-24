@@ -14,18 +14,18 @@ class LogicalPattern(pattern.Pattern):
 
     patternExpression: Optional[str] = None
 
+class Pattern(core.UcoObject):
+    """
+    A pattern is a combination of properties, acts, tendencies, etc., forming a
+    consistent or characteristic arrangement.
+    """
+
+
 class PatternExpression(core.UcoInherentCharacterizationThing):
     """
     A pattern expression is a grouping of characteristics unique to an explicit
     logical expression defining a pattern (e.g., regular expression, SQL Select
     expression, etc.).
-    """
-
-
-class Pattern(core.UcoObject):
-    """
-    A pattern is a combination of properties, acts, tendencies, etc., forming a
-    consistent or characteristic arrangement.
     """
 
 
