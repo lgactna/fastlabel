@@ -1,99 +1,136 @@
-
 """
 Auto-generated classes from the SHACL graph in observable.ttl.
 
 This file was generated using the `case_models.py` script.
 """
 
-from fastlabel.case import (action, configuration, core, identity, location, types)
-from typing import Any, Optional
 from enum import Enum
+from typing import Any, Optional
+
+from fastlabel.case import action, configuration, core, identity, location, types
+
 
 class NetworkSocketAddressFamily(str, Enum):
-    AF_APPLETALK = 'af_appletalk'
-    AF_BTH = 'af_bth'
-    AF_INET = 'af_inet'
-    AF_INET6 = 'af_inet6'
-    AF_IPX = 'af_ipx'
-    AF_IRDA = 'af_irda'
-    AF_NETBIOS = 'af_netbios'
-    AF_UNSPEC = 'af_unspec'
+    AF_APPLETALK = "af_appletalk"
+    AF_BTH = "af_bth"
+    AF_INET = "af_inet"
+    AF_INET6 = "af_inet6"
+    AF_IPX = "af_ipx"
+    AF_IRDA = "af_irda"
+    AF_NETBIOS = "af_netbios"
+    AF_UNSPEC = "af_unspec"
+
 
 class NetworkSocketProtocolFamily(str, Enum):
-    PF_APPLETALK = 'pf_appletalk'
-    PF_ASH = 'pf_ash'
-    PF_ATMPVC = 'pf_atmpvc'
-    PF_ATMSVC = 'pf_atmsvc'
-    PF_AX25 = 'pf_ax25'
-    PF_BLUETOOTH = 'pf_bluetooth'
-    PF_BRIDGE = 'pf_bridge'
-    PF_DECNET = 'pf_decnet'
-    PF_ECONET = 'pf_econet'
-    PF_INET = 'pf_inet'
-    PF_INET6 = 'pf_inet6'
-    PF_IPX = 'pf_ipx'
-    PF_IRDA = 'pf_irda'
-    PF_KEY = 'pf_key'
-    PF_NETBEUI = 'pf_netbeui'
-    PF_NETLINK = 'pf_netlink'
-    PF_NETROM = 'pf_netrom'
-    PF_PACKET = 'pf_packet'
-    PF_PPPOX = 'pf_pppox'
-    PF_ROSE = 'pf_rose'
-    PF_ROUTE = 'pf_route'
-    PF_SECURITY = 'pf_security'
-    PF_SNA = 'pf_sna'
-    PF_WANPIPE = 'pf_wanpipe'
-    PF_X25 = 'pf_x25'
+    PF_APPLETALK = "pf_appletalk"
+    PF_ASH = "pf_ash"
+    PF_ATMPVC = "pf_atmpvc"
+    PF_ATMSVC = "pf_atmsvc"
+    PF_AX25 = "pf_ax25"
+    PF_BLUETOOTH = "pf_bluetooth"
+    PF_BRIDGE = "pf_bridge"
+    PF_DECNET = "pf_decnet"
+    PF_ECONET = "pf_econet"
+    PF_INET = "pf_inet"
+    PF_INET6 = "pf_inet6"
+    PF_IPX = "pf_ipx"
+    PF_IRDA = "pf_irda"
+    PF_KEY = "pf_key"
+    PF_NETBEUI = "pf_netbeui"
+    PF_NETLINK = "pf_netlink"
+    PF_NETROM = "pf_netrom"
+    PF_PACKET = "pf_packet"
+    PF_PPPOX = "pf_pppox"
+    PF_ROSE = "pf_rose"
+    PF_ROUTE = "pf_route"
+    PF_SECURITY = "pf_security"
+    PF_SNA = "pf_sna"
+    PF_WANPIPE = "pf_wanpipe"
+    PF_X25 = "pf_x25"
+
 
 class NetworkSocketType(str, Enum):
-    SOCK_DGRAM = 'sock_dgram'
-    SOCK_RAW = 'sock_raw'
-    SOCK_RDM = 'sock_rdm'
-    SOCK_SEQPACKET = 'sock_seqpacket'
-    SOCK_STREAM = 'sock_stream'
+    SOCK_DGRAM = "sock_dgram"
+    SOCK_RAW = "sock_raw"
+    SOCK_RDM = "sock_rdm"
+    SOCK_SEQPACKET = "sock_seqpacket"
+    SOCK_STREAM = "sock_stream"
+
 
 class RegistryDatatype(str, Enum):
-    REG_BINARY = 'reg_binary'
-    REG_DWORD = 'reg_dword'
-    REG_DWORD_BIG_ENDIAN = 'reg_dword_big_endian'
-    REG_EXPAND_SZ = 'reg_expand_sz'
-    REG_FULL_RESOURCE_DESCRIPTOR = 'reg_full_resource_descriptor'
-    REG_INVALID_TYPE = 'reg_invalid_type'
-    REG_LINK = 'reg_link'
-    REG_MULTI_SZ = 'reg_multi_sz'
-    REG_NONE = 'reg_none'
-    REG_QWORD = 'reg_qword'
-    REG_RESOURCE_LIST = 'reg_resource_list'
-    REG_RESOURCE_REQUIREMENTS_LIST = 'reg_resource_requirements_list'
-    REG_SZ = 'reg_sz'
+    REG_BINARY = "reg_binary"
+    REG_DWORD = "reg_dword"
+    REG_DWORD_BIG_ENDIAN = "reg_dword_big_endian"
+    REG_EXPAND_SZ = "reg_expand_sz"
+    REG_FULL_RESOURCE_DESCRIPTOR = "reg_full_resource_descriptor"
+    REG_INVALID_TYPE = "reg_invalid_type"
+    REG_LINK = "reg_link"
+    REG_MULTI_SZ = "reg_multi_sz"
+    REG_NONE = "reg_none"
+    REG_QWORD = "reg_qword"
+    REG_RESOURCE_LIST = "reg_resource_list"
+    REG_RESOURCE_REQUIREMENTS_LIST = "reg_resource_requirements_list"
+    REG_SZ = "reg_sz"
+
 
 class WindowsPEBinaryType(str, Enum):
-    DLL = 'dll'
-    EXE = 'exe'
-    SYS = 'sys'
+    DLL = "dll"
+    EXE = "exe"
+    SYS = "sys"
+
 
 class WindowsServiceStartType(str, Enum):
-    SERVICE_AUTO_START = 'service_auto_start'
-    SERVICE_BOOT_START = 'service_boot_start'
-    SERVICE_DEMAND_START = 'service_demand_start'
-    SERVICE_DISABLED = 'service_disabled'
-    SERVICE_SYSTEM_ALERT = 'service_system_alert'
+    SERVICE_AUTO_START = "service_auto_start"
+    SERVICE_BOOT_START = "service_boot_start"
+    SERVICE_DEMAND_START = "service_demand_start"
+    SERVICE_DISABLED = "service_disabled"
+    SERVICE_SYSTEM_ALERT = "service_system_alert"
+
 
 class WindowsServiceStatus(str, Enum):
-    SERVICE_CONTINUE_PENDING = 'service_continue_pending'
-    SERVICE_PAUSE_PENDING = 'service_pause_pending'
-    SERVICE_PAUSED = 'service_paused'
-    SERVICE_RUNNING = 'service_running'
-    SERVICE_START_PENDING = 'service_start_pending'
-    SERVICE_STOP_PENDING = 'service_stop_pending'
-    SERVICE_STOPPED = 'service_stopped'
+    SERVICE_CONTINUE_PENDING = "service_continue_pending"
+    SERVICE_PAUSE_PENDING = "service_pause_pending"
+    SERVICE_PAUSED = "service_paused"
+    SERVICE_RUNNING = "service_running"
+    SERVICE_START_PENDING = "service_start_pending"
+    SERVICE_STOP_PENDING = "service_stop_pending"
+    SERVICE_STOPPED = "service_stopped"
+
 
 class WindowsServiceType(str, Enum):
-    SERVICE_FILE_SYSTEM_DRIVER = 'service_file_system_driver'
-    SERVICE_KERNEL_DRIVER = 'service_kernel_driver'
-    SERVICE_WIN32_OWN_PROCESS = 'service_win32_own_process'
-    SERVICE_WIN32_SHARE_PROCESS = 'service_win32_share_process'
+    SERVICE_FILE_SYSTEM_DRIVER = "service_file_system_driver"
+    SERVICE_KERNEL_DRIVER = "service_kernel_driver"
+    SERVICE_WIN32_OWN_PROCESS = "service_win32_own_process"
+    SERVICE_WIN32_SHARE_PROCESS = "service_win32_share_process"
+
+
+class DefinedEffectFacet(core.Facet):
+    """
+    A defined effect facet is a grouping of characteristics unique to the effect
+    of an observable action in relation to one or more observable objects.
+    """
+
+    pass
+
+
+class NTFSFilePermissionsFacet(core.Facet):
+    """
+    An NTFS file permissions facet is a grouping of characteristics unique to
+    the access rights (e.g., view, change, navigate, execute) of a file on an
+    NTFS (new technology filesystem) file system.
+    """
+
+    pass
+
+
+class UNIXFilePermissionsFacet(core.Facet):
+    """
+    A UNIX file permissions facet is a grouping of characteristics unique to the
+    access rights (e.g., view, change, navigate, execute) of a file on a UNIX
+    file system.
+    """
+
+    pass
 
 
 class AccountAuthenticationFacet(core.Facet):
@@ -106,6 +143,7 @@ class AccountAuthenticationFacet(core.Facet):
     password: Optional[str] = None
     passwordType: Optional[str] = None
 
+
 class ArchiveFileFacet(core.Facet):
     """
     An archive file facet is a grouping of characteristics unique to a file that
@@ -115,6 +153,7 @@ class ArchiveFileFacet(core.Facet):
     archiveType: Optional[str] = None
     comment: Optional[str] = None
     version: Optional[str] = None
+
 
 class CellSiteFacet(core.Facet):
     """
@@ -127,13 +166,6 @@ class CellSiteFacet(core.Facet):
     cellSiteNetworkCode: Optional[str] = None
     cellSiteType: Optional[str] = None
 
-class DefinedEffectFacet(core.Facet):
-    """
-    A defined effect facet is a grouping of characteristics unique to the effect
-    of an observable action in relation to one or more observable objects.
-    """
-
-    pass
 
 class DigitalAddressFacet(core.Facet):
     """
@@ -145,6 +177,7 @@ class DigitalAddressFacet(core.Facet):
     addressValue: Optional[str] = None
     displayName: Optional[str] = None
 
+
 class EncodedStreamFacet(core.Facet):
     """
     An encoded stream facet is a grouping of characteristics unique to the
@@ -152,6 +185,7 @@ class EncodedStreamFacet(core.Facet):
     """
 
     encodingMethod: Optional[str] = None
+
 
 class EncryptedStreamFacet(core.Facet):
     """
@@ -166,6 +200,7 @@ class EncryptedStreamFacet(core.Facet):
     encryptionIV: Optional[str] = None
     encryptionKey: Optional[str] = None
 
+
 class ICMPConnectionFacet(core.Facet):
     """
     An ICMP connection facet is a grouping of characteristics unique to portions
@@ -176,6 +211,7 @@ class ICMPConnectionFacet(core.Facet):
     icmpCode: Optional[str] = None
     icmpType: Optional[str] = None
 
+
 class ImageFacet(core.Facet):
     """
     An image facet is a grouping of characteristics unique to a complete copy of
@@ -183,6 +219,7 @@ class ImageFacet(core.Facet):
     """
 
     imageType: Optional[str] = None
+
 
 class LibraryFacet(core.Facet):
     """
@@ -193,6 +230,7 @@ class LibraryFacet(core.Facet):
     """
 
     libraryType: Optional[str] = None
+
 
 class MobileAccountFacet(core.Facet):
     """
@@ -206,14 +244,6 @@ class MobileAccountFacet(core.Facet):
     MSISDN: Optional[str] = None
     MSISDNType: Optional[str] = None
 
-class NTFSFilePermissionsFacet(core.Facet):
-    """
-    An NTFS file permissions facet is a grouping of characteristics unique to
-    the access rights (e.g., view, change, navigate, execute) of a file on an
-    NTFS (new technology filesystem) file system.
-    """
-
-    pass
 
 class PathRelationFacet(core.Facet):
     """
@@ -222,6 +252,7 @@ class PathRelationFacet(core.Facet):
     """
 
     path: Optional[str] = None
+
 
 class PhoneAccountFacet(core.Facet):
     """
@@ -232,6 +263,7 @@ class PhoneAccountFacet(core.Facet):
 
     phoneNumber: Optional[str] = None
 
+
 class PropertiesEnumeratedEffectFacet(core.Facet):
     """
     A properties enumerated effect facet is a grouping of characteristics unique
@@ -241,6 +273,7 @@ class PropertiesEnumeratedEffectFacet(core.Facet):
     """
 
     properties: Optional[str] = None
+
 
 class SQLiteBlobFacet(core.Facet):
     """
@@ -254,6 +287,7 @@ class SQLiteBlobFacet(core.Facet):
     rowCondition: Optional[str] = None
     tableName: Optional[str] = None
 
+
 class TCPConnectionFacet(core.Facet):
     """
     A TCP connection facet is a grouping of characteristics unique to portions
@@ -264,14 +298,6 @@ class TCPConnectionFacet(core.Facet):
     destinationFlags: Optional[str] = None
     sourceFlags: Optional[str] = None
 
-class UNIXFilePermissionsFacet(core.Facet):
-    """
-    A UNIX file permissions facet is a grouping of characteristics unique to the
-    access rights (e.g., view, change, navigate, execute) of a file on a UNIX
-    file system.
-    """
-
-    pass
 
 class UNIXVolumeFacet(core.Facet):
     """
@@ -283,6 +309,7 @@ class UNIXVolumeFacet(core.Facet):
     mountPoint: Optional[str] = None
     options: Optional[str] = None
 
+
 class WindowsAccountFacet(core.Facet):
     """
     A Windows account facet is a grouping of characteristics unique to a user
@@ -290,6 +317,7 @@ class WindowsAccountFacet(core.Facet):
     """
 
     groups: Optional[str] = None
+
 
 class WindowsActiveDirectoryAccountFacet(core.Facet):
     """
@@ -301,6 +329,7 @@ class WindowsActiveDirectoryAccountFacet(core.Facet):
     objectGUID: Optional[str] = None
     activeDirectoryGroups: Optional[str] = None
 
+
 class WindowsRegistryHiveFacet(core.Facet):
     """
     A Windows registry hive facet is a grouping of characteristics unique to a
@@ -311,6 +340,7 @@ class WindowsRegistryHiveFacet(core.Facet):
     """
 
     hiveType: Optional[str] = None
+
 
 class WindowsServiceFacet(core.Facet):
     """
@@ -328,6 +358,7 @@ class WindowsServiceFacet(core.Facet):
     startCommandLine: Optional[str] = None
     startType: Optional[str] = None
     descriptions: Optional[str] = None
+
 
 class X509V3ExtensionsFacet(core.Facet):
     """
@@ -353,6 +384,7 @@ class X509V3ExtensionsFacet(core.Facet):
     subjectDirectoryAttributes: Optional[str] = None
     subjectKeyIdentifier: Optional[str] = None
 
+
 class RecoveredObjectFacet(core.Facet):
     """
     Recoverability status of name, metadata, and content.
@@ -368,6 +400,7 @@ class RecoveredObjectFacet(core.Facet):
     metadataRecoveredStatus: Optional[Any] = None
     contentRecoveredStatus: Optional[Any] = None
 
+
 class WindowsVolumeFacet(core.Facet):
     """
     A Windows volume facet is a grouping of characteristics unique to a single
@@ -380,6 +413,7 @@ class WindowsVolumeFacet(core.Facet):
     windowsVolumeAttributes: list[str] = None
     driveType: Optional[Any] = None
     driveType: Optional[Any] = None
+
 
 class WirelessNetworkConnectionFacet(core.Facet):
     """
@@ -396,88 +430,24 @@ class WirelessNetworkConnectionFacet(core.Facet):
     wirelessNetworkSecurityMode: Optional[Any] = None
     wirelessNetworkSecurityMode: Optional[Any] = None
 
-class AndroidDeviceFacet(core.Facet):
+
+class FilePermissionsFacet(core.Facet):
     """
-    An Android device facet is a grouping of characteristics unique to an
-    Android device. [based on
-    https://en.wikipedia.org/wiki/Android_(operating_system)]
+    A file permissions facet is a grouping of characteristics unique to the
+    access rights (e.g., view, change, navigate, execute) of a file on a file
+    system.
     """
 
-    isADBRootEnabled: Optional[bool] = None
-    isSURootEnabled: Optional[bool] = None
-    androidID: Optional[str] = None
-    androidFingerprint: Optional[str] = None
-    androidVersion: Optional[str] = None
+    owner: Optional[core.UcoObject] = None
 
-class DigitalAccountFacet(core.Facet):
+
+class Observable(core.UcoObject):
     """
-    A digital account facet is a grouping of characteristics unique to an
-    arrangement with an entity to enable and control the provision of some
-    capability or service within the digital domain.
+    An observable is a characterizable item or action within the digital domain.
     """
 
-    isDisabled: Optional[bool] = None
-    firstLoginTime: Optional[str] = None
-    lastLoginTime: Optional[str] = None
-    displayName: Optional[str] = None
-    accountLogin: Optional[str] = None
+    pass
 
-class DomainNameFacet(core.Facet):
-    """
-    A domain name facet is a grouping of characteristics unique to an
-    identification string that defines a realm of administrative autonomy,
-    authority or control within the Internet. [based on
-    https://en.wikipedia.org/wiki/Domain_name]
-    """
-
-    isTLD: Optional[bool] = None
-    value: Optional[str] = None
-
-class MutexFacet(core.Facet):
-    """
-    A mutex facet is a grouping of characteristics unique to a mechanism that
-    enforces limits on access to a resource when there are many threads of
-    execution. A mutex is designed to enforce a mutual exclusion concurrency
-    control policy, and with a variety of possible methods there exists multiple
-    unique implementations for different applications. [based on
-    https://en.wikipedia.org/wiki/Lock_(computer_science)]
-    """
-
-    isNamed: Optional[bool] = None
-    mutexName: Optional[str] = None
-
-class SMSMessageFacet(core.Facet):
-    """
-    A SMS message facet is a grouping of characteristics unique to a message
-    conformant to the short message service (SMS) communication protocol
-    standards.
-    """
-
-    isRead: Optional[bool] = None
-
-class TableFieldFacet(core.Facet):
-    """
-    A database record facet contains properties associated with a specific table
-    record value from a database.
-    """
-
-    recordFieldIsNull: Optional[bool] = None
-    recordFieldName: Optional[str] = None
-    tableName: Optional[str] = None
-    tableSchema: Optional[str] = None
-    recordFieldValue: Optional[Any] = None
-    recordRowID: Optional[Any] = None
-
-class UserAccountFacet(core.Facet):
-    """
-    A user account facet is a grouping of characteristics unique to an account
-    controlling a user's access to a network, system, or platform.
-    """
-
-    canEscalatePrivs: Optional[bool] = None
-    isPrivileged: Optional[bool] = None
-    isServiceAccount: Optional[bool] = None
-    homeDirectory: Optional[str] = None
 
 class AccountFacet(core.Facet):
     """
@@ -497,21 +467,96 @@ class AccountFacet(core.Facet):
     accountType: Optional[Any] = None
     accountType: Optional[Any] = None
 
-class FilePermissionsFacet(core.Facet):
+
+class AndroidDeviceFacet(core.Facet):
     """
-    A file permissions facet is a grouping of characteristics unique to the
-    access rights (e.g., view, change, navigate, execute) of a file on a file
-    system.
+    An Android device facet is a grouping of characteristics unique to an
+    Android device. [based on
+    https://en.wikipedia.org/wiki/Android_(operating_system)]
     """
 
-    owner: Optional[core.UcoObject] = None
+    isADBRootEnabled: Optional[bool] = None
+    isSURootEnabled: Optional[bool] = None
+    androidID: Optional[str] = None
+    androidFingerprint: Optional[str] = None
+    androidVersion: Optional[str] = None
 
-class Observable(core.UcoObject):
+
+class DigitalAccountFacet(core.Facet):
     """
-    An observable is a characterizable item or action within the digital domain.
+    A digital account facet is a grouping of characteristics unique to an
+    arrangement with an entity to enable and control the provision of some
+    capability or service within the digital domain.
     """
 
-    pass
+    isDisabled: Optional[bool] = None
+    firstLoginTime: Optional[str] = None
+    lastLoginTime: Optional[str] = None
+    displayName: Optional[str] = None
+    accountLogin: Optional[str] = None
+
+
+class DomainNameFacet(core.Facet):
+    """
+    A domain name facet is a grouping of characteristics unique to an
+    identification string that defines a realm of administrative autonomy,
+    authority or control within the Internet. [based on
+    https://en.wikipedia.org/wiki/Domain_name]
+    """
+
+    isTLD: Optional[bool] = None
+    value: Optional[str] = None
+
+
+class MutexFacet(core.Facet):
+    """
+    A mutex facet is a grouping of characteristics unique to a mechanism that
+    enforces limits on access to a resource when there are many threads of
+    execution. A mutex is designed to enforce a mutual exclusion concurrency
+    control policy, and with a variety of possible methods there exists multiple
+    unique implementations for different applications. [based on
+    https://en.wikipedia.org/wiki/Lock_(computer_science)]
+    """
+
+    isNamed: Optional[bool] = None
+    mutexName: Optional[str] = None
+
+
+class SMSMessageFacet(core.Facet):
+    """
+    A SMS message facet is a grouping of characteristics unique to a message
+    conformant to the short message service (SMS) communication protocol
+    standards.
+    """
+
+    isRead: Optional[bool] = None
+
+
+class TableFieldFacet(core.Facet):
+    """
+    A database record facet contains properties associated with a specific table
+    record value from a database.
+    """
+
+    recordFieldIsNull: Optional[bool] = None
+    recordFieldName: Optional[str] = None
+    tableName: Optional[str] = None
+    tableSchema: Optional[str] = None
+    recordFieldValue: Optional[Any] = None
+    recordRowID: Optional[Any] = None
+
+
+class UserAccountFacet(core.Facet):
+    """
+    A user account facet is a grouping of characteristics unique to an account
+    controlling a user's access to a network, system, or platform.
+    """
+
+    canEscalatePrivs: Optional[bool] = None
+    isPrivileged: Optional[bool] = None
+    isServiceAccount: Optional[bool] = None
+    homeDirectory: Optional[str] = None
+
 
 class AlternateDataStreamFacet(core.Facet):
     """
@@ -525,6 +570,7 @@ class AlternateDataStreamFacet(core.Facet):
     size: Optional[int] = None
     name: Optional[str] = None
 
+
 class AudioFacet(core.Facet):
     """
     An audio facet is a grouping of characteristics unique to a digital
@@ -535,6 +581,7 @@ class AudioFacet(core.Facet):
     duration: Optional[int] = None
     audioType: Optional[str] = None
     format: Optional[str] = None
+
 
 class AutonomousSystemFacet(core.Facet):
     """
@@ -552,6 +599,7 @@ class AutonomousSystemFacet(core.Facet):
     asHandle: Optional[str] = None
     regionalInternetRegistry: Optional[Any] = None
 
+
 class DataRangeFacet(core.Facet):
     """
     A data range facet is a grouping of characteristics unique to a particular
@@ -561,6 +609,7 @@ class DataRangeFacet(core.Facet):
     rangeOffset: Optional[int] = None
     rangeSize: Optional[int] = None
     rangeOffsetType: Optional[str] = None
+
 
 class DiskPartitionFacet(core.Facet):
     """
@@ -578,6 +627,7 @@ class DiskPartitionFacet(core.Facet):
     mountPoint: Optional[str] = None
     partitionID: Optional[str] = None
 
+
 class ExtInodeFacet(core.Facet):
     """
     An extInode facet is a grouping of characteristics unique to a file system
@@ -594,6 +644,7 @@ class ExtInodeFacet(core.Facet):
     extPermissions: Optional[int] = None
     extSGID: Optional[int] = None
     extSUID: Optional[int] = None
+
 
 class FileFacet(core.Facet):
     """
@@ -616,6 +667,7 @@ class FileFacet(core.Facet):
     fileName: Optional[str] = None
     filePath: Optional[str] = None
 
+
 class FileSystemFacet(core.Facet):
     """
     A file system facet is a grouping of characteristics unique to the process
@@ -626,6 +678,7 @@ class FileSystemFacet(core.Facet):
     clusterSize: Optional[int] = None
     fileSystemType: Optional[str] = None
 
+
 class FragmentFacet(core.Facet):
     """
     A fragment facet is a grouping of characteristics unique to an individual
@@ -634,6 +687,7 @@ class FragmentFacet(core.Facet):
 
     fragmentIndex: Optional[int] = None
     totalFragments: Optional[int] = None
+
 
 class MemoryFacet(core.Facet):
     """
@@ -652,6 +706,7 @@ class MemoryFacet(core.Facet):
     blockType: Optional[str] = None
     blockType: Optional[Any] = None
     blockType: Optional[Any] = None
+
 
 class MftRecordFacet(core.Facet):
     """
@@ -675,6 +730,7 @@ class MftRecordFacet(core.Facet):
     ntfsOwnerID: Optional[str] = None
     ntfsOwnerSID: Optional[str] = None
 
+
 class MobileDeviceFacet(core.Facet):
     """
     A mobile device facet is a grouping of characteristics unique to a portable
@@ -691,6 +747,7 @@ class MobileDeviceFacet(core.Facet):
     network: Optional[str] = None
     IMEI: Optional[str] = None
 
+
 class StorageMediumFacet(core.Facet):
     """
     A storage medium facet is a grouping of characteristics unique to a the
@@ -699,6 +756,7 @@ class StorageMediumFacet(core.Facet):
     """
 
     totalStorageCapacityInBytes: Optional[int] = None
+
 
 class UNIXAccountFacet(core.Facet):
     """
@@ -709,6 +767,7 @@ class UNIXAccountFacet(core.Facet):
     gid: Optional[int] = None
     shell: Optional[str] = None
 
+
 class UNIXProcessFacet(core.Facet):
     """
     A UNIX process facet is a grouping of characteristics unique to an instance
@@ -717,6 +776,7 @@ class UNIXProcessFacet(core.Facet):
 
     openFileDescriptor: Optional[int] = None
     ruid: Optional[int] = None
+
 
 class VolumeFacet(core.Facet):
     """
@@ -727,6 +787,7 @@ class VolumeFacet(core.Facet):
 
     sectorSize: Optional[int] = None
     volumeID: Optional[str] = None
+
 
 class WindowsThreadFacet(core.Facet):
     """
@@ -745,6 +806,7 @@ class WindowsThreadFacet(core.Facet):
     securityAttributes: Optional[str] = None
     creationFlags: Optional[str] = None
 
+
 class AntennaFacet(core.Facet):
     """
     An antenna alignment facet contains the metadata surrounding the cell
@@ -758,6 +820,7 @@ class AntennaFacet(core.Facet):
     signalStrength: Optional[float] = None
     skew: Optional[float] = None
 
+
 class CompressedStreamFacet(core.Facet):
     """
     A compressed stream facet is a grouping of characteristics unique to the
@@ -766,6 +829,7 @@ class CompressedStreamFacet(core.Facet):
 
     compressionRatio: Optional[float] = None
     compressionMethod: Optional[str] = None
+
 
 class ApplicationVersion(core.UcoInherentCharacterizationThing):
     """
@@ -777,6 +841,7 @@ class ApplicationVersion(core.UcoInherentCharacterizationThing):
     uninstallDate: Optional[str] = None
     version: Optional[str] = None
 
+
 class EnvironmentVariable(core.UcoInherentCharacterizationThing):
     """
     An environment variable is a grouping of characteristics unique to a
@@ -786,6 +851,7 @@ class EnvironmentVariable(core.UcoInherentCharacterizationThing):
 
     name: Optional[str] = None
     value: Optional[str] = None
+
 
 class ExtractedString(core.UcoInherentCharacterizationThing):
     """
@@ -799,6 +865,7 @@ class ExtractedString(core.UcoInherentCharacterizationThing):
     englishTranslation: Optional[str] = None
     language: Optional[str] = None
     stringValue: Optional[str] = None
+
 
 class GlobalFlagType(core.UcoInherentCharacterizationThing):
     """
@@ -814,6 +881,7 @@ class GlobalFlagType(core.UcoInherentCharacterizationThing):
     destination: Optional[str] = None
     symbolicName: Optional[str] = None
 
+
 class IComHandlerActionType(core.UcoInherentCharacterizationThing):
     """
     An IComHandler action type is a grouping of characteristics unique to a
@@ -825,6 +893,7 @@ class IComHandlerActionType(core.UcoInherentCharacterizationThing):
 
     comClassID: Optional[str] = None
     comData: Optional[str] = None
+
 
 class IExecActionType(core.UcoInherentCharacterizationThing):
     """
@@ -839,6 +908,7 @@ class IExecActionType(core.UcoInherentCharacterizationThing):
     execProgramPath: Optional[str] = None
     execWorkingDirectory: Optional[str] = None
 
+
 class IShowMessageActionType(core.UcoInherentCharacterizationThing):
     """
     An IShow message action type is a grouping of characteristics unique to an
@@ -848,6 +918,7 @@ class IShowMessageActionType(core.UcoInherentCharacterizationThing):
 
     showMessageBody: Optional[str] = None
     showMessageTitle: Optional[str] = None
+
 
 class TriggerType(core.UcoInherentCharacterizationThing):
     """
@@ -870,6 +941,7 @@ class TriggerType(core.UcoInherentCharacterizationThing):
     triggerFrequency: Optional[Any] = None
     triggerType: Optional[Any] = None
 
+
 class WindowsPEFileHeader(core.UcoInherentCharacterizationThing):
     """
     A Windows PE file header is a grouping of characteristics unique to the
@@ -878,6 +950,7 @@ class WindowsPEFileHeader(core.UcoInherentCharacterizationThing):
     """
 
     timeDateStamp: Optional[str] = None
+
 
 class WindowsPEOptionalHeader(core.UcoInherentCharacterizationThing):
     """
@@ -916,6 +989,7 @@ class WindowsPEOptionalHeader(core.UcoInherentCharacterizationThing):
     minorSubsystemVersion: Optional[str] = None
     subsystem: Optional[str] = None
 
+
 class WindowsPESection(core.UcoInherentCharacterizationThing):
     """
     A Windows PE section is a grouping of characteristics unique to a specific
@@ -930,6 +1004,7 @@ class WindowsPESection(core.UcoInherentCharacterizationThing):
     size: Optional[int] = None
     name: Optional[str] = None
 
+
 class WindowsRegistryValue(core.UcoInherentCharacterizationThing):
     """
     A Windows registry value is a grouping of characteristics unique to a
@@ -942,6 +1017,19 @@ class WindowsRegistryValue(core.UcoInherentCharacterizationThing):
     name: Optional[str] = None
     data: Optional[str] = None
     dataType: Optional[str] = None
+
+
+class ContactAddress(core.UcoInherentCharacterizationThing):
+    """
+    A contact address is a grouping of characteristics unique to a geolocation
+    address of a contact entity.
+    """
+
+    geolocationAddress: Optional[location.Location] = None
+    contactAddressScope: Optional[str] = None
+    contactAddressScope: Optional[Any] = None
+    contactAddressScope: Optional[Any] = None
+
 
 class DeviceFacet(core.Facet):
     """
@@ -956,6 +1044,7 @@ class DeviceFacet(core.Facet):
     model: Optional[str] = None
     serialNumber: Optional[str] = None
 
+
 class DigitalSignatureInfoFacet(core.Facet):
     """
     A digital signature info facet is a grouping of characteristics unique to a
@@ -968,6 +1057,7 @@ class DigitalSignatureInfoFacet(core.Facet):
     signatureExists: Optional[bool] = None
     signatureVerified: Optional[bool] = None
     signatureDescription: Optional[str] = None
+
 
 class SIMCardFacet(core.Facet):
     """
@@ -988,6 +1078,7 @@ class SIMCardFacet(core.Facet):
     SIMForm: Optional[str] = None
     SIMType: Optional[str] = None
 
+
 class SoftwareFacet(core.Facet):
     """
     A software facet is a grouping of characteristics unique to a software
@@ -1002,16 +1093,6 @@ class SoftwareFacet(core.Facet):
     swid: Optional[str] = None
     version: Optional[str] = None
 
-class ContactAddress(core.UcoInherentCharacterizationThing):
-    """
-    A contact address is a grouping of characteristics unique to a geolocation
-    address of a contact entity.
-    """
-
-    geolocationAddress: Optional[location.Location] = None
-    contactAddressScope: Optional[str] = None
-    contactAddressScope: Optional[Any] = None
-    contactAddressScope: Optional[Any] = None
 
 class EXIFFacet(core.Facet):
     """
@@ -1024,6 +1105,7 @@ class EXIFFacet(core.Facet):
     """
 
     exifData: Optional[types.ControlledDictionary] = None
+
 
 class PDFFileFacet(core.Facet):
     """
@@ -1038,6 +1120,7 @@ class PDFFileFacet(core.Facet):
     pdfId1: Optional[str] = None
     version: Optional[str] = None
     pdfId0: Optional[str] = None
+
 
 class OperatingSystemFacet(core.Facet):
     """
@@ -1055,6 +1138,7 @@ class OperatingSystemFacet(core.Facet):
     manufacturer: Optional[Any] = None
     version: Optional[Any] = None
 
+
 class WindowsProcessFacet(core.Facet):
     """
     A Windows process facet is a grouping of characteristics unique to a program
@@ -1068,6 +1152,7 @@ class WindowsProcessFacet(core.Facet):
     priority: Optional[str] = None
     windowTitle: Optional[str] = None
 
+
 class ObservableAction(action.Action):
     """
     An observable action is a grouping of characteristics unique to something
@@ -1076,12 +1161,14 @@ class ObservableAction(action.Action):
 
     pass
 
+
 class Observation(action.Action):
     """
     An observation is a temporal perception of an observable.
     """
 
     name: str
+
 
 class ObservableObject(core.Item):
     """
@@ -1091,6 +1178,7 @@ class ObservableObject(core.Item):
 
     hasChanged: Optional[bool] = None
     state: Optional[str] = None
+
 
 class PropertyReadEffectFacet(DefinedEffectFacet):
     """
@@ -1103,6 +1191,7 @@ class PropertyReadEffectFacet(DefinedEffectFacet):
     propertyName: Optional[str] = None
     value: Optional[str] = None
 
+
 class SendControlCodeEffectFacet(DefinedEffectFacet):
     """
     A send control code effect facet is a grouping of characteristics unique to
@@ -1114,6 +1203,7 @@ class SendControlCodeEffectFacet(DefinedEffectFacet):
 
     controlCode: Optional[str] = None
 
+
 class ValuesEnumeratedEffectFacet(DefinedEffectFacet):
     """
     A values enumerated effect facet is a grouping of characteristics unique to
@@ -1123,6 +1213,7 @@ class ValuesEnumeratedEffectFacet(DefinedEffectFacet):
     """
 
     values: Optional[str] = None
+
 
 class EmailAddressFacet(DigitalAddressFacet):
     """
@@ -1134,6 +1225,7 @@ class EmailAddressFacet(DigitalAddressFacet):
 
     pass
 
+
 class IPAddressFacet(DigitalAddressFacet):
     """
     An IP address facet is a grouping of characteristics unique to an Internet
@@ -1144,6 +1236,7 @@ class IPAddressFacet(DigitalAddressFacet):
 
     pass
 
+
 class InstantMessagingAddressFacet(DigitalAddressFacet):
     """
     An instant messaging address facet is a grouping of characteristics unique
@@ -1152,6 +1245,7 @@ class InstantMessagingAddressFacet(DigitalAddressFacet):
     """
 
     pass
+
 
 class MACAddressFacet(DigitalAddressFacet):
     """
@@ -1163,6 +1257,7 @@ class MACAddressFacet(DigitalAddressFacet):
 
     pass
 
+
 class SIPAddressFacet(DigitalAddressFacet):
     """
     A SIP address facet is a grouping of characteristics unique to a Session
@@ -1172,6 +1267,7 @@ class SIPAddressFacet(DigitalAddressFacet):
     """
 
     pass
+
 
 class X509CertificateFacet(core.Facet):
     """
@@ -1197,6 +1293,7 @@ class X509CertificateFacet(core.Facet):
     subjectPublicKeyModulus: Optional[str] = None
     version: Optional[str] = None
 
+
 class ObservablePattern(Observable):
     """
     An observable pattern is a grouping of characteristics unique to a logical
@@ -1204,6 +1301,7 @@ class ObservablePattern(Observable):
     """
 
     pass
+
 
 class ObservableRelationship(core.Relationship):
     """
@@ -1214,6 +1312,7 @@ class ObservableRelationship(core.Relationship):
     source: Optional[Observable] = None
     target: Optional[Observable] = None
 
+
 class ExtractedStringsFacet(core.Facet):
     """
     An extracted strings facet is a grouping of characteristics unique to one or
@@ -1221,6 +1320,7 @@ class ExtractedStringsFacet(core.Facet):
     """
 
     strings: Optional[ExtractedString] = None
+
 
 class WindowsPEBinaryFileFacet(core.Facet):
     """
@@ -1241,6 +1341,7 @@ class WindowsPEBinaryFileFacet(core.Facet):
     machine: Optional[str] = None
     characteristics: Optional[str] = None
 
+
 class API(ObservableObject):
     """
     An API (application programming interface) is a computing interface that
@@ -1252,6 +1353,7 @@ class API(ObservableObject):
 
     pass
 
+
 class ARPCache(ObservableObject):
     """
     An ARP cache is a collection of Address Resolution Protocol (ARP) entries
@@ -1261,6 +1363,7 @@ class ARPCache(ObservableObject):
     """
 
     pass
+
 
 class ARPCacheEntry(ObservableObject):
     """
@@ -1272,6 +1375,7 @@ class ARPCacheEntry(ObservableObject):
 
     pass
 
+
 class Account(ObservableObject):
     """
     An account is an arrangement with an entity to enable and control the
@@ -1279,6 +1383,7 @@ class Account(ObservableObject):
     """
 
     pass
+
 
 class Address(ObservableObject):
     """
@@ -1288,12 +1393,14 @@ class Address(ObservableObject):
 
     pass
 
+
 class Application(ObservableObject):
     """
     An application is a particular software program designed for end users.
     """
 
     pass
+
 
 class ApplicationAccountFacet(core.Facet):
     """
@@ -1302,6 +1409,7 @@ class ApplicationAccountFacet(core.Facet):
     """
 
     application: Optional[ObservableObject] = None
+
 
 class ApplicationFacet(core.Facet):
     """
@@ -1315,12 +1423,14 @@ class ApplicationFacet(core.Facet):
     applicationIdentifier: Optional[str] = None
     version: Optional[str] = None
 
+
 class Audio(ObservableObject):
     """
     Audio is a digital representation of sound.
     """
 
     pass
+
 
 class AutonomousSystem(ObservableObject):
     """
@@ -1333,6 +1443,7 @@ class AutonomousSystem(ObservableObject):
 
     pass
 
+
 class BotConfiguration(ObservableObject):
     """
     A bot configuration is a set of contextual settings for a software
@@ -1342,6 +1453,7 @@ class BotConfiguration(ObservableObject):
 
     pass
 
+
 class BrowserBookmark(ObservableObject):
     """
     A browser bookmark is a saved shortcut that directs a WWW (World Wide Web)
@@ -1350,6 +1462,7 @@ class BrowserBookmark(ObservableObject):
     """
 
     pass
+
 
 class BrowserBookmarkFacet(core.Facet):
     """
@@ -1367,6 +1480,7 @@ class BrowserBookmarkFacet(core.Facet):
     visitCount: Optional[int] = None
     bookmarkPath: Optional[str] = None
 
+
 class BrowserCookie(ObservableObject):
     """
     A browser cookie is a piece of of data sent from a website and stored on the
@@ -1375,6 +1489,7 @@ class BrowserCookie(ObservableObject):
     """
 
     pass
+
 
 class BrowserCookieFacet(core.Facet):
     """
@@ -1393,12 +1508,14 @@ class BrowserCookieFacet(core.Facet):
     cookieName: Optional[str] = None
     cookiePath: Optional[str] = None
 
+
 class Calendar(ObservableObject):
     """
     A calendar is a collection of appointments, meetings, and events.
     """
 
     pass
+
 
 class CalendarEntry(ObservableObject):
     """
@@ -1407,6 +1524,7 @@ class CalendarEntry(ObservableObject):
     """
 
     pass
+
 
 class CalendarEntryFacet(core.Facet):
     """
@@ -1431,6 +1549,7 @@ class CalendarEntryFacet(core.Facet):
     recurrence: Optional[str] = None
     subject: Optional[str] = None
 
+
 class CalendarFacet(core.Facet):
     """
     A calendar facet is a grouping of characteristics unique to a collection of
@@ -1440,6 +1559,7 @@ class CalendarFacet(core.Facet):
     owner: Optional[core.UcoObject] = None
     application: Optional[ObservableObject] = None
 
+
 class Call(ObservableObject):
     """
     A call is a connection as part of a realtime cyber communication between one
@@ -1447,6 +1567,7 @@ class Call(ObservableObject):
     """
 
     pass
+
 
 class CallFacet(core.Facet):
     """
@@ -1463,13 +1584,16 @@ class CallFacet(core.Facet):
     duration: Optional[int] = None
     callType: Optional[str] = None
 
+
 class CapturedTelecommunicationsInformation(ObservableObject):
 
     pass
 
+
 class CellSite(ObservableObject):
 
     pass
+
 
 class Code(ObservableObject):
     """
@@ -1480,6 +1604,7 @@ class Code(ObservableObject):
 
     pass
 
+
 class ComputerSpecification(ObservableObject):
     """
     A computer specification is the hardware and software of a programmable
@@ -1488,6 +1613,7 @@ class ComputerSpecification(ObservableObject):
     """
 
     pass
+
 
 class ComputerSpecificationFacet(core.Facet):
     """
@@ -1518,6 +1644,7 @@ class ComputerSpecificationFacet(core.Facet):
     timezoneStandard: Optional[str] = None
     uptime: Optional[str] = None
 
+
 class Contact(ObservableObject):
     """
     A contact is a set of identification and communication related details for a
@@ -1525,6 +1652,7 @@ class Contact(ObservableObject):
     """
 
     pass
+
 
 class ContactEmail(core.UcoInherentCharacterizationThing):
     """
@@ -1537,6 +1665,7 @@ class ContactEmail(core.UcoInherentCharacterizationThing):
     contactEmailScope: Optional[Any] = None
     contactEmailScope: Optional[Any] = None
 
+
 class ContactList(ObservableObject):
     """
     A contact list is a set of multiple individual contacts such as that found
@@ -1544,6 +1673,7 @@ class ContactList(ObservableObject):
     """
 
     pass
+
 
 class ContactListFacet(core.Facet):
     """
@@ -1554,6 +1684,7 @@ class ContactListFacet(core.Facet):
     sourceApplication: Optional[ObservableObject] = None
     contact: Optional[ObservableObject] = None
 
+
 class ContactMessaging(core.UcoInherentCharacterizationThing):
     """
     A contact messaging is a grouping of characteristics unique to details for
@@ -1562,6 +1693,7 @@ class ContactMessaging(core.UcoInherentCharacterizationThing):
 
     contactMessagingPlatform: Optional[ObservableObject] = None
     messagingAddress: Optional[ObservableObject] = None
+
 
 class ContactPhone(core.UcoInherentCharacterizationThing):
     """
@@ -1574,6 +1706,7 @@ class ContactPhone(core.UcoInherentCharacterizationThing):
     contactPhoneScope: Optional[Any] = None
     contactPhoneScope: Optional[Any] = None
 
+
 class ContactProfile(core.UcoInherentCharacterizationThing):
     """
     A contact profile is a grouping of characteristics unique to details for
@@ -1582,6 +1715,7 @@ class ContactProfile(core.UcoInherentCharacterizationThing):
 
     contactProfilePlatform: Optional[ObservableObject] = None
     profile: Optional[ObservableObject] = None
+
 
 class ContactSIP(core.UcoInherentCharacterizationThing):
     """
@@ -1594,6 +1728,7 @@ class ContactSIP(core.UcoInherentCharacterizationThing):
     contactSIPScope: Optional[Any] = None
     contactSIPScope: Optional[Any] = None
 
+
 class ContactURL(core.UcoInherentCharacterizationThing):
     """
     A contact URL is a grouping of characteristics unique to details for
@@ -1605,12 +1740,14 @@ class ContactURL(core.UcoInherentCharacterizationThing):
     contactURLScope: Optional[Any] = None
     contactURLScope: Optional[Any] = None
 
+
 class ContentData(ObservableObject):
     """
     Content data is a block of digital data.
     """
 
     pass
+
 
 class ContentDataFacet(core.Facet):
     """
@@ -1631,6 +1768,7 @@ class ContentDataFacet(core.Facet):
     byteOrder: Optional[Any] = None
     byteOrder: Optional[Any] = None
 
+
 class CookieHistory(ObservableObject):
     """
     A cookie history is the stored web cookie history for a particular web
@@ -1639,6 +1777,7 @@ class CookieHistory(ObservableObject):
 
     pass
 
+
 class Credential(ObservableObject):
     """
     A credential is a single specific login and password combination for
@@ -1646,6 +1785,7 @@ class Credential(ObservableObject):
     """
 
     pass
+
 
 class CredentialDump(ObservableObject):
     """
@@ -1656,6 +1796,7 @@ class CredentialDump(ObservableObject):
 
     pass
 
+
 class DNSCache(ObservableObject):
     """
     An DNS cache is a temporary locally stored collection of previous Domain
@@ -1664,6 +1805,7 @@ class DNSCache(ObservableObject):
     """
 
     pass
+
 
 class DNSRecord(ObservableObject):
     """
@@ -1674,6 +1816,7 @@ class DNSRecord(ObservableObject):
 
     pass
 
+
 class Device(ObservableObject):
     """
     A device is a piece of equipment or a mechanism designed to serve a special
@@ -1683,6 +1826,7 @@ class Device(ObservableObject):
 
     pass
 
+
 class DigitalSignatureInfo(ObservableObject):
     """
     A digital signature info is a value calculated via a mathematical scheme for
@@ -1690,6 +1834,7 @@ class DigitalSignatureInfo(ObservableObject):
     """
 
     pass
+
 
 class DiskFacet(core.Facet):
     """
@@ -1703,6 +1848,7 @@ class DiskFacet(core.Facet):
     freeSpace: Optional[int] = None
     diskType: Optional[str] = None
 
+
 class DiskPartition(ObservableObject):
     """
     A disk partition is a particular managed region on a storage mechanism where
@@ -1713,6 +1859,7 @@ class DiskPartition(ObservableObject):
 
     pass
 
+
 class DomainName(ObservableObject):
     """
     A domain name is an identification string that defines a realm of
@@ -1721,6 +1868,7 @@ class DomainName(ObservableObject):
     """
 
     pass
+
 
 class EmailAccountFacet(core.Facet):
     """
@@ -1731,12 +1879,14 @@ class EmailAccountFacet(core.Facet):
 
     emailAddress: Optional[ObservableObject] = None
 
+
 class EventLog(ObservableObject):
     """
     An event log is a collection of event records.
     """
 
     pass
+
 
 class EventRecord(ObservableObject):
     """
@@ -1745,6 +1895,7 @@ class EventRecord(ObservableObject):
     """
 
     pass
+
 
 class EventRecordFacet(core.Facet):
     """
@@ -1766,6 +1917,7 @@ class EventRecordFacet(core.Facet):
     eventRecordText: Optional[str] = None
     eventType: Optional[str] = None
 
+
 class FileSystem(ObservableObject):
     """
     A file system is the process that manages how and where data on a storage
@@ -1775,6 +1927,7 @@ class FileSystem(ObservableObject):
 
     pass
 
+
 class FileSystemObject(ObservableObject):
     """
     A file system object is an informational object represented and managed
@@ -1782,6 +1935,7 @@ class FileSystemObject(ObservableObject):
     """
 
     pass
+
 
 class GUI(ObservableObject):
     """
@@ -1794,6 +1948,7 @@ class GUI(ObservableObject):
 
     pass
 
+
 class GenericObservableObject(ObservableObject):
     """
     A generic observable object is an article or unit within the digital domain.
@@ -1801,12 +1956,14 @@ class GenericObservableObject(ObservableObject):
 
     pass
 
+
 class GeoLocationEntry(ObservableObject):
     """
     A geolocation entry is a single application-specific geolocation entry.
     """
 
     pass
+
 
 class GeoLocationEntryFacet(core.Facet):
     """
@@ -1818,6 +1975,7 @@ class GeoLocationEntryFacet(core.Facet):
     application: Optional[ObservableObject] = None
     observableCreatedTime: Optional[str] = None
 
+
 class GeoLocationLog(ObservableObject):
     """
     A geolocation log is a record containing geolocation tracks and/or
@@ -1825,6 +1983,7 @@ class GeoLocationLog(ObservableObject):
     """
 
     pass
+
 
 class GeoLocationLogFacet(core.Facet):
     """
@@ -1835,6 +1994,7 @@ class GeoLocationLogFacet(core.Facet):
     application: Optional[ObservableObject] = None
     observableCreatedTime: Optional[str] = None
 
+
 class GeoLocationTrack(ObservableObject):
     """
     A geolocation track is a set of contiguous geolocation entries representing
@@ -1842,6 +2002,7 @@ class GeoLocationTrack(ObservableObject):
     """
 
     pass
+
 
 class GeoLocationTrackFacet(core.Facet):
     """
@@ -1853,6 +2014,7 @@ class GeoLocationTrackFacet(core.Facet):
     geoLocationEntry: Optional[ObservableObject] = None
     endTime: Optional[str] = None
     startTime: Optional[str] = None
+
 
 class HTTPConnectionFacet(core.Facet):
     """
@@ -1868,6 +2030,7 @@ class HTTPConnectionFacet(core.Facet):
     requestValue: Optional[str] = None
     requestVersion: Optional[str] = None
 
+
 class Hostname(ObservableObject):
     """
     A hostname is a label that is assigned to a device connected to a computer
@@ -1881,6 +2044,7 @@ class Hostname(ObservableObject):
 
     pass
 
+
 class IPNetmask(ObservableObject):
     """
     An IP netmask is a 32-bit 'mask' used to divide an IP address into subnets
@@ -1889,12 +2053,14 @@ class IPNetmask(ObservableObject):
 
     pass
 
+
 class Image(ObservableObject):
     """
     An image is a complete copy of a hard disk, memory, or other digital media.
     """
 
     pass
+
 
 class Library(ObservableObject):
     """
@@ -1905,6 +2071,7 @@ class Library(ObservableObject):
 
     pass
 
+
 class Memory(ObservableObject):
     """
     Memory is a particular region of temporary information storage (e.g., RAM
@@ -1912,6 +2079,7 @@ class Memory(ObservableObject):
     """
 
     pass
+
 
 class Message(ObservableObject):
     """
@@ -1921,6 +2089,7 @@ class Message(ObservableObject):
     """
 
     pass
+
 
 class MessageFacet(core.Facet):
     """
@@ -1939,6 +2108,7 @@ class MessageFacet(core.Facet):
     messageType: Optional[str] = None
     sessionID: Optional[str] = None
 
+
 class MessageThread(ObservableObject):
     """
     A message thread is a running commentary of electronic messages pertaining
@@ -1946,6 +2116,7 @@ class MessageThread(ObservableObject):
     """
 
     pass
+
 
 class MimePartType(core.UcoInherentCharacterizationThing):
     """
@@ -1958,6 +2129,7 @@ class MimePartType(core.UcoInherentCharacterizationThing):
     contentDisposition: Optional[str] = None
     contentType: Optional[str] = None
 
+
 class Mutex(ObservableObject):
     """
     A mutex is a mechanism that enforces limits on access to a resource when
@@ -1969,6 +2141,7 @@ class Mutex(ObservableObject):
 
     pass
 
+
 class NetworkConnection(ObservableObject):
     """
     A network connection is a connection (completed or attempted) across a
@@ -1977,6 +2150,7 @@ class NetworkConnection(ObservableObject):
     """
 
     pass
+
 
 class NetworkConnectionFacet(core.Facet):
     """
@@ -1995,6 +2169,7 @@ class NetworkConnectionFacet(core.Facet):
     destinationPort: Optional[int] = None
     sourcePort: Optional[int] = None
 
+
 class NetworkFlow(ObservableObject):
     """
     A network flow is a sequence of data transiting one or more digital network
@@ -2003,6 +2178,7 @@ class NetworkFlow(ObservableObject):
     """
 
     pass
+
 
 class NetworkFlowFacet(core.Facet):
     """
@@ -2020,6 +2196,7 @@ class NetworkFlowFacet(core.Facet):
     srcBytes: Optional[int] = None
     srcPackets: Optional[int] = None
 
+
 class NetworkInterface(ObservableObject):
     """
     A network interface is a software or hardware interface between two pieces
@@ -2027,6 +2204,7 @@ class NetworkInterface(ObservableObject):
     """
 
     pass
+
 
 class NetworkInterfaceFacet(core.Facet):
     """
@@ -2043,6 +2221,7 @@ class NetworkInterfaceFacet(core.Facet):
     dhcpLeaseObtained: Optional[str] = None
     adapterName: Optional[str] = None
 
+
 class NetworkProtocol(ObservableObject):
     """
     A network protocol is an established set of structured rules that determine
@@ -2055,6 +2234,7 @@ class NetworkProtocol(ObservableObject):
 
     pass
 
+
 class NetworkRoute(ObservableObject):
     """
     A network route is a specific path (of specific network nodes, connections
@@ -2064,6 +2244,7 @@ class NetworkRoute(ObservableObject):
 
     pass
 
+
 class NetworkSubnet(ObservableObject):
     """
     A network subnet is a logical subdivision of an IP network. [based on
@@ -2072,12 +2253,14 @@ class NetworkSubnet(ObservableObject):
 
     pass
 
+
 class Note(ObservableObject):
     """
     A note is a brief textual record.
     """
 
     pass
+
 
 class NoteFacet(core.Facet):
     """
@@ -2090,6 +2273,7 @@ class NoteFacet(core.Facet):
     observableCreatedTime: Optional[str] = None
     text: Optional[str] = None
 
+
 class OnlineService(ObservableObject):
     """
     An online service is a particular provision mechanism of information access,
@@ -2097,6 +2281,7 @@ class OnlineService(ObservableObject):
     """
 
     pass
+
 
 class OnlineServiceFacet(core.Facet):
     """
@@ -2108,6 +2293,7 @@ class OnlineServiceFacet(core.Facet):
     location_: Optional[location.Location] = None
     inetLocation: Optional[ObservableObject] = None
     name: Optional[str] = None
+
 
 class PaymentCard(ObservableObject):
     """
@@ -2121,6 +2307,7 @@ class PaymentCard(ObservableObject):
 
     pass
 
+
 class Pipe(ObservableObject):
     """
     A pipe is a mechanism for one-way inter-process communication using message
@@ -2133,6 +2320,7 @@ class Pipe(ObservableObject):
 
     pass
 
+
 class Process(ObservableObject):
     """
     A process is an instance of a computer program executed on an operating
@@ -2140,6 +2328,7 @@ class Process(ObservableObject):
     """
 
     pass
+
 
 class ProcessFacet(core.Facet):
     """
@@ -2160,6 +2349,7 @@ class ProcessFacet(core.Facet):
     status: Optional[str] = None
     arguments: Optional[str] = None
 
+
 class ProcessThread(ObservableObject):
     """
     A process thread is the smallest sequence of programmed instructions that
@@ -2175,6 +2365,7 @@ class ProcessThread(ObservableObject):
 
     pass
 
+
 class Profile(ObservableObject):
     """
     A profile is an explicit digital representation of identity and
@@ -2184,6 +2375,7 @@ class Profile(ObservableObject):
     """
 
     pass
+
 
 class RasterPictureFacet(core.Facet):
     """
@@ -2198,12 +2390,14 @@ class RasterPictureFacet(core.Facet):
     imageCompressionMethod: Optional[str] = None
     pictureType: Optional[str] = None
 
+
 class RecoveredObject(ObservableObject):
     """
     An observable object that was the result of a recovery operation.
     """
 
     pass
+
 
 class SQLiteBlob(ObservableObject):
     """
@@ -2212,6 +2406,7 @@ class SQLiteBlob(ObservableObject):
     """
 
     pass
+
 
 class Semaphore(ObservableObject):
     """
@@ -2223,6 +2418,7 @@ class Semaphore(ObservableObject):
 
     pass
 
+
 class ShopListing(ObservableObject):
     """
     A shop listing is a listing of offered products on an online
@@ -2230,6 +2426,7 @@ class ShopListing(ObservableObject):
     """
 
     pass
+
 
 class Software(ObservableObject):
     """
@@ -2239,6 +2436,7 @@ class Software(ObservableObject):
     """
 
     pass
+
 
 class StateChangeEffectFacet(DefinedEffectFacet):
     """
@@ -2250,6 +2448,7 @@ class StateChangeEffectFacet(DefinedEffectFacet):
     newObject: Optional[ObservableObject] = None
     oldObject: Optional[ObservableObject] = None
 
+
 class SymbolicLinkFacet(core.Facet):
     """
     A symbolic link facet is a grouping of characteristics unique to a file that
@@ -2260,6 +2459,7 @@ class SymbolicLinkFacet(core.Facet):
 
     targetFile: Optional[ObservableObject] = None
 
+
 class TableField(ObservableObject):
     """
     A database table field and its associated value contained within a
@@ -2267,6 +2467,7 @@ class TableField(ObservableObject):
     """
 
     pass
+
 
 class TaskActionType(core.UcoInherentCharacterizationThing):
     """
@@ -2282,6 +2483,7 @@ class TaskActionType(core.UcoInherentCharacterizationThing):
     actionType: Optional[str] = None
     actionType: Optional[Any] = None
     actionType: Optional[Any] = None
+
 
 class TwitterProfileFacet(core.Facet):
     """
@@ -2308,6 +2510,7 @@ class TwitterProfileFacet(core.Facet):
     twitterId: Optional[str] = None
     userLocationString: Optional[str] = None
 
+
 class URL(ObservableObject):
     """
     A URL is a uniform resource locator (URL) acting as a resolvable address to
@@ -2315,6 +2518,7 @@ class URL(ObservableObject):
     """
 
     pass
+
 
 class URLFacet(core.Facet):
     """
@@ -2333,6 +2537,7 @@ class URLFacet(core.Facet):
     scheme: Optional[str] = None
     userName: Optional[str] = None
 
+
 class URLHistory(ObservableObject):
     """
     A URL history characterizes the stored URL history for a particular web
@@ -2340,6 +2545,7 @@ class URLHistory(ObservableObject):
     """
 
     pass
+
 
 class URLHistoryEntry(core.UcoInherentCharacterizationThing):
     """
@@ -2359,6 +2565,7 @@ class URLHistoryEntry(core.UcoInherentCharacterizationThing):
     pageTitle: Optional[str] = None
     keywordSearchTerm: Optional[str] = None
 
+
 class URLVisit(ObservableObject):
     """
     A URL visit characterizes the properties of a visit of a URL within a
@@ -2366,6 +2573,7 @@ class URLVisit(ObservableObject):
     """
 
     pass
+
 
 class URLVisitFacet(core.Facet):
     """
@@ -2382,6 +2590,7 @@ class URLVisitFacet(core.Facet):
     urlTransitionType: Optional[Any] = None
     urlTransitionType: Optional[Any] = None
 
+
 class UserSession(ObservableObject):
     """
     A user session is a temporary and interactive information interchange
@@ -2391,6 +2600,7 @@ class UserSession(ObservableObject):
     """
 
     pass
+
 
 class UserSessionFacet(core.Facet):
     """
@@ -2406,6 +2616,7 @@ class UserSessionFacet(core.Facet):
     effectiveGroup: Optional[str] = None
     effectiveGroupID: Optional[str] = None
 
+
 class Volume(ObservableObject):
     """
     A volume is a single accessible storage area (volume) with a single file
@@ -2413,6 +2624,7 @@ class Volume(ObservableObject):
     """
 
     pass
+
 
 class WebPage(ObservableObject):
     """
@@ -2424,6 +2636,7 @@ class WebPage(ObservableObject):
 
     pass
 
+
 class WhoIs(ObservableObject):
     """
     WhoIs is a response record conformant to the WHOIS protocol standard (RFC
@@ -2431,6 +2644,7 @@ class WhoIs(ObservableObject):
     """
 
     pass
+
 
 class WhoisRegistrarInfoType(core.UcoInherentCharacterizationThing):
     """
@@ -2449,6 +2663,7 @@ class WhoisRegistrarInfoType(core.UcoInherentCharacterizationThing):
     registrarID: Optional[str] = None
     registrarName: Optional[str] = None
 
+
 class Wiki(ObservableObject):
     """
     A wiki is an online hypertext publication collaboratively edited and managed
@@ -2461,6 +2676,7 @@ class Wiki(ObservableObject):
 
     pass
 
+
 class WikiArticle(ObservableObject):
     """
     A wiki article is one or more pages in a wiki focused on characterizing a
@@ -2468,6 +2684,7 @@ class WikiArticle(ObservableObject):
     """
 
     pass
+
 
 class WindowsComputerSpecification(ObservableObject):
     """
@@ -2478,6 +2695,7 @@ class WindowsComputerSpecification(ObservableObject):
     """
 
     pass
+
 
 class WindowsComputerSpecificationFacet(core.Facet):
     """
@@ -2501,6 +2719,7 @@ class WindowsComputerSpecificationFacet(core.Facet):
     netBIOSName: Optional[str] = None
     domain: Optional[str] = None
 
+
 class WindowsCriticalSection(ObservableObject):
     """
     A Windows critical section is a Windows object that provides synchronization
@@ -2519,6 +2738,7 @@ class WindowsCriticalSection(ObservableObject):
 
     pass
 
+
 class WindowsEvent(ObservableObject):
     """
     A Windows event is a notification record of an occurance of interest
@@ -2526,6 +2746,7 @@ class WindowsEvent(ObservableObject):
     """
 
     pass
+
 
 class WindowsFilemapping(ObservableObject):
     """
@@ -2547,6 +2768,7 @@ class WindowsFilemapping(ObservableObject):
 
     pass
 
+
 class WindowsHandle(ObservableObject):
     """
     A Windows handle is an abstract reference to a resource within the Windows
@@ -2556,6 +2778,7 @@ class WindowsHandle(ObservableObject):
     """
 
     pass
+
 
 class WindowsHook(ObservableObject):
     """
@@ -2568,6 +2791,7 @@ class WindowsHook(ObservableObject):
     """
 
     pass
+
 
 class WindowsMailslot(ObservableObject):
     """
@@ -2582,6 +2806,7 @@ class WindowsMailslot(ObservableObject):
 
     pass
 
+
 class WindowsNetworkShare(ObservableObject):
     """
     A Windows network share is a Windows computer resource made available from
@@ -2594,6 +2819,7 @@ class WindowsNetworkShare(ObservableObject):
 
     pass
 
+
 class WindowsPrefetch(ObservableObject):
     """
     The Windows prefetch contains entries in a Windows prefetch file (used to
@@ -2601,6 +2827,7 @@ class WindowsPrefetch(ObservableObject):
     """
 
     pass
+
 
 class WindowsPrefetchFacet(core.Facet):
     """
@@ -2618,6 +2845,7 @@ class WindowsPrefetchFacet(core.Facet):
     applicationFileName: Optional[str] = None
     prefetchHash: Optional[str] = None
 
+
 class WindowsRegistryHive(ObservableObject):
     """
     The Windows registry hive is a particular logical group of keys, subkeys,
@@ -2629,6 +2857,7 @@ class WindowsRegistryHive(ObservableObject):
 
     pass
 
+
 class WindowsRegistryKey(ObservableObject):
     """
     A Windows registry key is a particular key within a Windows registry (a
@@ -2638,6 +2867,7 @@ class WindowsRegistryKey(ObservableObject):
     """
 
     pass
+
 
 class WindowsRegistryKeyFacet(core.Facet):
     """
@@ -2654,6 +2884,7 @@ class WindowsRegistryKeyFacet(core.Facet):
     numberOfSubkeys: Optional[int] = None
     key: Optional[str] = None
 
+
 class WindowsService(ObservableObject):
     """
     A Windows service is a specific Windows service (a computer program that
@@ -2663,6 +2894,7 @@ class WindowsService(ObservableObject):
     """
 
     pass
+
 
 class WindowsSystemRestore(ObservableObject):
     """
@@ -2675,6 +2907,7 @@ class WindowsSystemRestore(ObservableObject):
 
     pass
 
+
 class WindowsTask(ObservableObject):
     """
     A Windows task is a process that is scheduled to execute on a Windows
@@ -2683,6 +2916,7 @@ class WindowsTask(ObservableObject):
     """
 
     pass
+
 
 class WindowsWaitableTime(ObservableObject):
     """
@@ -2696,6 +2930,7 @@ class WindowsWaitableTime(ObservableObject):
 
     pass
 
+
 class X509Certificate(ObservableObject):
     """
     A X.509 certificate is a public key digital identity certificate conformant
@@ -2704,6 +2939,7 @@ class X509Certificate(ObservableObject):
 
     pass
 
+
 class X509V3Certificate(ObservableObject):
     """
     An X.509 v3 certificate is a public key digital identity certificate
@@ -2711,6 +2947,7 @@ class X509V3Certificate(ObservableObject):
     """
 
     pass
+
 
 class IPv4AddressFacet(IPAddressFacet):
     """
@@ -2722,6 +2959,7 @@ class IPv4AddressFacet(IPAddressFacet):
 
     pass
 
+
 class IPv6AddressFacet(IPAddressFacet):
     """
     An IPv6 (Internet Protocol version 6) address facet is a grouping of
@@ -2731,6 +2969,7 @@ class IPv6AddressFacet(IPAddressFacet):
     """
 
     pass
+
 
 class BluetoothAddressFacet(MACAddressFacet):
     """
@@ -2742,6 +2981,7 @@ class BluetoothAddressFacet(MACAddressFacet):
 
     pass
 
+
 class WifiAddressFacet(MACAddressFacet):
     """
     A Wi-Fi address facet is a grouping of characteristics unique to a media
@@ -2752,6 +2992,7 @@ class WifiAddressFacet(MACAddressFacet):
 
     pass
 
+
 class DigitalAccount(Account):
     """
     A digital account is an arrangement with an entity to enable and control the
@@ -2759,6 +3000,7 @@ class DigitalAccount(Account):
     """
 
     pass
+
 
 class DigitalAddress(Address):
     """
@@ -2768,6 +3010,7 @@ class DigitalAddress(Address):
 
     pass
 
+
 class SocketAddress(Address):
     """
     A socket address (combining and IP address and a port number) is a composite
@@ -2776,6 +3019,7 @@ class SocketAddress(Address):
     """
 
     pass
+
 
 class CapturedTelecommunicationsInformationFacet(core.Facet):
     """
@@ -2787,6 +3031,7 @@ class CapturedTelecommunicationsInformationFacet(core.Facet):
     endTime: Optional[str] = None
     startTime: Optional[str] = None
     interceptedCallState: Optional[str] = None
+
 
 class ContactAffiliation(core.UcoInherentCharacterizationThing):
     """
@@ -2803,6 +3048,7 @@ class ContactAffiliation(core.UcoInherentCharacterizationThing):
     contactURL: Optional[ContactURL] = None
     organizationDepartment: Optional[str] = None
     organizationPosition: Optional[str] = None
+
 
 class ProfileFacet(core.Facet):
     """
@@ -2826,6 +3072,7 @@ class ProfileFacet(core.Facet):
     displayName: Optional[str] = None
     profileLanguage: Optional[str] = None
 
+
 class Adaptor(Device):
     """
     An adaptor is a device that physically converts the pin outputs but does not
@@ -2833,6 +3080,7 @@ class Adaptor(Device):
     """
 
     pass
+
 
 class AndroidDevice(Device):
     """
@@ -2842,6 +3090,7 @@ class AndroidDevice(Device):
 
     pass
 
+
 class AppleDevice(Device):
     """
     An apple device is a smart device that applies either the MacOS or iOS
@@ -2849,6 +3098,7 @@ class AppleDevice(Device):
     """
 
     pass
+
 
 class Appliance(Device):
     """
@@ -2858,6 +3108,7 @@ class Appliance(Device):
     """
 
     pass
+
 
 class Computer(Device):
     """
@@ -2869,6 +3120,7 @@ class Computer(Device):
 
     pass
 
+
 class DigitalCamera(Device):
     """
     A digital camera is a camera that captures photographs in digital memory as
@@ -2876,6 +3128,7 @@ class DigitalCamera(Device):
     """
 
     pass
+
 
 class EmbeddedDevice(Device):
     """
@@ -2887,6 +3140,7 @@ class EmbeddedDevice(Device):
 
     pass
 
+
 class GamingConsole(Device):
     """
     A gaming console (video game console or game console) is an electronic
@@ -2896,6 +3150,7 @@ class GamingConsole(Device):
 
     pass
 
+
 class MobileDevice(Device):
     """
     A mobile device is a portable computing device. [based on
@@ -2904,6 +3159,7 @@ class MobileDevice(Device):
 
     pass
 
+
 class ProtocolConverter(Device):
     """
     A protocol converter is a device that converts from one protocol to another
@@ -2911,6 +3167,7 @@ class ProtocolConverter(Device):
     """
 
     pass
+
 
 class SIMCard(Device):
     """
@@ -2922,6 +3179,7 @@ class SIMCard(Device):
 
     pass
 
+
 class SmartDevice(Device):
     """
     A smart device is a microprocessor IoT device that is expected to be
@@ -2929,6 +3187,7 @@ class SmartDevice(Device):
     """
 
     pass
+
 
 class StorageMedium(Device):
     """
@@ -2940,6 +3199,7 @@ class StorageMedium(Device):
 
     pass
 
+
 class WriteBlocker(Device):
     """
     A write blocker is a device that allows read-only access to storage mediums
@@ -2949,6 +3209,7 @@ class WriteBlocker(Device):
 
     pass
 
+
 class AlternateDataStream(FileSystemObject):
     """
     An alternate data stream is data content stored within an NTFS file that is
@@ -2957,6 +3218,7 @@ class AlternateDataStream(FileSystemObject):
     """
 
     pass
+
 
 class BlockDeviceNode(FileSystemObject):
     """
@@ -2968,6 +3230,7 @@ class BlockDeviceNode(FileSystemObject):
     """
 
     pass
+
 
 class CharacterDeviceNode(FileSystemObject):
     """
@@ -2981,6 +3244,7 @@ class CharacterDeviceNode(FileSystemObject):
 
     pass
 
+
 class Directory(FileSystemObject):
     """
     A directory is a file system cataloging structure which contains references
@@ -2993,6 +3257,7 @@ class Directory(FileSystemObject):
 
     pass
 
+
 class File(FileSystemObject):
     """
     A file is a computer resource for recording data discretely on a computer
@@ -3000,6 +3265,7 @@ class File(FileSystemObject):
     """
 
     pass
+
 
 class Junction(FileSystemObject):
     """
@@ -3013,6 +3279,7 @@ class Junction(FileSystemObject):
 
     pass
 
+
 class NamedPipe(FileSystemObject):
     """
     A named pipe is a mechanism for FIFO (first-in-first-out) inter-process
@@ -3023,6 +3290,7 @@ class NamedPipe(FileSystemObject):
     """
 
     pass
+
 
 class ReparsePoint(FileSystemObject):
     """
@@ -3039,6 +3307,7 @@ class ReparsePoint(FileSystemObject):
 
     pass
 
+
 class Snapshot(FileSystemObject):
     """
     A snapshot is a file system object representing a snapshot of the contents
@@ -3046,6 +3315,7 @@ class Snapshot(FileSystemObject):
     """
 
     pass
+
 
 class Socket(FileSystemObject):
     """
@@ -3059,6 +3329,7 @@ class Socket(FileSystemObject):
 
     pass
 
+
 class SymbolicLink(FileSystemObject):
     """
     A symbolic link is a file that contains a reference to another file or
@@ -3067,6 +3338,7 @@ class SymbolicLink(FileSystemObject):
     """
 
     pass
+
 
 class EmailMessage(Message):
     """
@@ -3077,6 +3349,7 @@ class EmailMessage(Message):
 
     pass
 
+
 class ForumPost(Message):
     """
     A forum post is message submitted by a user account to an online forum where
@@ -3085,6 +3358,7 @@ class ForumPost(Message):
     """
 
     pass
+
 
 class ForumPrivateMessage(Message):
     """
@@ -3096,19 +3370,21 @@ class ForumPrivateMessage(Message):
 
     pass
 
+
 class MessageThreadFacet(core.Facet):
     """
     A message thread facet is a grouping of characteristics unique to a running
     commentary of electronic messages pertaining to one topic or question.
     """
 
-    nfa295f7f7f4f4c97b2ddbf950300407fb463: Optional[Message] = None
-    nfa295f7f7f4f4c97b2ddbf950300407fb467: Optional[Message] = None
-    nfa295f7f7f4f4c97b2ddbf950300407fb471: Optional[Message] = None
-    nfa295f7f7f4f4c97b2ddbf950300407fb475: Optional[Message] = None
+    nb8058c61738e4f7688107d6cb6194024b463: Optional[Message] = None
+    nb8058c61738e4f7688107d6cb6194024b467: Optional[Message] = None
+    nb8058c61738e4f7688107d6cb6194024b471: Optional[Message] = None
+    nb8058c61738e4f7688107d6cb6194024b475: Optional[Message] = None
     participant: Optional[ObservableObject] = None
     messageThread: Optional[types.Thread] = None
     visibility: Optional[bool] = None
+
 
 class Post(Message):
     """
@@ -3118,6 +3394,7 @@ class Post(Message):
 
     pass
 
+
 class SMSMessage(Message):
     """
     An SMS message is a message conformant to the short message service (SMS)
@@ -3126,6 +3403,7 @@ class SMSMessage(Message):
 
     pass
 
+
 class Tweet(Message):
     """
     A tweet is message submitted by a Twitter user account to the Twitter
@@ -3133,6 +3411,7 @@ class Tweet(Message):
     """
 
     pass
+
 
 class EmailMessageFacet(core.Facet):
     """
@@ -3171,6 +3450,7 @@ class EmailMessageFacet(core.Facet):
     labels: Optional[str] = None
     receivedLines: Optional[str] = None
 
+
 class HTTPConnection(NetworkConnection):
     """
     An HTTP connection is network connection that is conformant to the Hypertext
@@ -3178,6 +3458,7 @@ class HTTPConnection(NetworkConnection):
     """
 
     pass
+
 
 class ICMPConnection(NetworkConnection):
     """
@@ -3187,12 +3468,14 @@ class ICMPConnection(NetworkConnection):
 
     pass
 
+
 class TCPConnection(NetworkConnection):
     """
     A TCP connection is a network connection that is conformant to the Transfer
     """
 
     pass
+
 
 class WirelessNetworkConnection(NetworkConnection):
     """
@@ -3204,6 +3487,7 @@ class WirelessNetworkConnection(NetworkConnection):
 
     pass
 
+
 class UNIXProcess(Process):
     """
     A UNIX process is an instance of a computer program executed on a UNIX
@@ -3212,6 +3496,7 @@ class UNIXProcess(Process):
 
     pass
 
+
 class WindowsProcess(Process):
     """
     A Windows process is a program running on a Windows operating system.
@@ -3219,12 +3504,14 @@ class WindowsProcess(Process):
 
     pass
 
+
 class WindowsThread(ProcessThread):
     """
     A Windows thread is a single thread of execution within a Windows process.
     """
 
     pass
+
 
 class ConfiguredSoftware(Software):
     """
@@ -3235,6 +3522,7 @@ class ConfiguredSoftware(Software):
     usesConfiguration: Optional[configuration.Configuration] = None
     isConfigurationOf: Optional[Software] = None
 
+
 class OperatingSystem(Software):
     """
     An operating system is the software that manages computer hardware, software
@@ -3243,6 +3531,7 @@ class OperatingSystem(Software):
     """
 
     pass
+
 
 class WindowsTaskFacet(core.Facet):
     """
@@ -3279,6 +3568,7 @@ class WindowsTaskFacet(core.Facet):
     status: Optional[Any] = None
     flags: Optional[Any] = None
 
+
 class URLHistoryFacet(core.Facet):
     """
     A URL history facet is a grouping of characteristics unique to the stored
@@ -3287,6 +3577,7 @@ class URLHistoryFacet(core.Facet):
 
     browserInformation: Optional[ObservableObject] = None
     urlHistoryEntry: Optional[URLHistoryEntry] = None
+
 
 class WhoIsFacet(core.Facet):
     """
@@ -3317,6 +3608,7 @@ class WhoIsFacet(core.Facet):
     status: Optional[Any] = None
     status: Optional[Any] = None
 
+
 class ApplicationAccount(DigitalAccount):
     """
     An application account is an account within a particular software program
@@ -3325,6 +3617,7 @@ class ApplicationAccount(DigitalAccount):
 
     pass
 
+
 class EmailAccount(DigitalAccount):
     """
     An email account is an arrangement with an entity to enable and control the
@@ -3332,6 +3625,7 @@ class EmailAccount(DigitalAccount):
     """
 
     pass
+
 
 class MobileAccount(DigitalAccount):
     """
@@ -3342,6 +3636,7 @@ class MobileAccount(DigitalAccount):
 
     pass
 
+
 class PhoneAccount(DigitalAccount):
     """
     A phone account is an arrangement with an entity to enable and control the
@@ -3350,12 +3645,14 @@ class PhoneAccount(DigitalAccount):
 
     pass
 
+
 class UNIXAccount(DigitalAccount):
     """
     A UNIX account is an account on a UNIX operating system.
     """
 
     pass
+
 
 class UserAccount(DigitalAccount):
     """
@@ -3365,12 +3662,14 @@ class UserAccount(DigitalAccount):
 
     pass
 
+
 class WindowsAccount(DigitalAccount):
     """
     A Windows account is a user account on a Windows operating system.
     """
 
     pass
+
 
 class WindowsActiveDirectoryAccount(DigitalAccount):
     """
@@ -3379,6 +3678,7 @@ class WindowsActiveDirectoryAccount(DigitalAccount):
     """
 
     pass
+
 
 class EmailAddress(DigitalAddress):
     """
@@ -3389,6 +3689,7 @@ class EmailAddress(DigitalAddress):
 
     pass
 
+
 class IPAddress(DigitalAddress):
     """
     An IP address is an Internet Protocol (IP) standards conformant identifier
@@ -3398,9 +3699,11 @@ class IPAddress(DigitalAddress):
 
     pass
 
+
 class InstantMessagingAddress(DigitalAddress):
 
     pass
+
 
 class MACAddress(DigitalAddress):
     """
@@ -3411,6 +3714,7 @@ class MACAddress(DigitalAddress):
 
     pass
 
+
 class SIPAddress(DigitalAddress):
     """
     A SIP address is an identifier for Session Initiation Protocol (SIP)
@@ -3418,6 +3722,7 @@ class SIPAddress(DigitalAddress):
     """
 
     pass
+
 
 class ContactFacet(core.Facet):
     """
@@ -3449,6 +3754,7 @@ class ContactFacet(core.Facet):
     contactNote: Optional[str] = None
     nickname: Optional[str] = None
 
+
 class AndroidPhone(AndroidDevice):
     """
     An android phone is a smart phone that applies the Android mobile operating
@@ -3457,12 +3763,14 @@ class AndroidPhone(AndroidDevice):
 
     pass
 
+
 class IPhone(AppleDevice):
     """
     An iPhone is a smart phone that applies the iOS mobile operating system.
     """
 
     pass
+
 
 class NetworkAppliance(Appliance):
     """
@@ -3472,6 +3780,7 @@ class NetworkAppliance(Appliance):
 
     pass
 
+
 class SecurityAppliance(Appliance):
     """
     A security appliance is a purpose-built computer with software or firmware
@@ -3480,6 +3789,7 @@ class SecurityAppliance(Appliance):
     """
 
     pass
+
 
 class Laptop(Computer):
     """
@@ -3493,6 +3803,7 @@ class Laptop(Computer):
 
     pass
 
+
 class Server(Computer):
     """
     A server is a server rack-mount based computer, minicomputer, supercomputer,
@@ -3500,6 +3811,7 @@ class Server(Computer):
     """
 
     pass
+
 
 class SmartPhone(Computer):
     """
@@ -3510,6 +3822,7 @@ class SmartPhone(Computer):
 
     pass
 
+
 class Tablet(Computer):
     """
     A tablet is a mobile computer that is primarily operated by touching the
@@ -3517,6 +3830,7 @@ class Tablet(Computer):
     """
 
     pass
+
 
 class Drone(MobileDevice):
     """
@@ -3526,6 +3840,7 @@ class Drone(MobileDevice):
     """
 
     pass
+
 
 class MobilePhone(MobileDevice):
     """
@@ -3537,6 +3852,7 @@ class MobilePhone(MobileDevice):
 
     pass
 
+
 class WearableDevice(SmartDevice):
     """
     A wearable device is an electronic device that is designed to be worn on a
@@ -3544,6 +3860,7 @@ class WearableDevice(SmartDevice):
     """
 
     pass
+
 
 class Disk(StorageMedium):
     """
@@ -3553,6 +3870,7 @@ class Disk(StorageMedium):
     """
 
     pass
+
 
 class NTFSFileFacet(core.Facet):
     """
@@ -3564,6 +3882,7 @@ class NTFSFileFacet(core.Facet):
     entryID: Optional[int] = None
     sid: Optional[str] = None
 
+
 class ArchiveFile(File):
     """
     An archive file is a file that is composed of one or more computer files
@@ -3572,12 +3891,14 @@ class ArchiveFile(File):
 
     pass
 
+
 class NTFSFile(File):
     """
     An NTFS file is a New Technology File System (NTFS) file.
     """
 
     pass
+
 
 class PDFFile(File):
     """
@@ -3586,12 +3907,14 @@ class PDFFile(File):
 
     pass
 
+
 class RasterPicture(File):
     """
     A raster picture is a raster (or bitmap) image.
     """
 
     pass
+
 
 class UNIXFile(File):
     """
@@ -3600,12 +3923,14 @@ class UNIXFile(File):
 
     pass
 
+
 class WindowsPEBinaryFile(File):
     """
     A Windows PE binary file is a Windows portable executable (PE) file.
     """
 
     pass
+
 
 class IPv4Address(IPAddress):
     """
@@ -3616,6 +3941,7 @@ class IPv4Address(IPAddress):
 
     pass
 
+
 class IPv6Address(IPAddress):
     """
     An IPv6 (Internet Protocol version 6) address is an IPv6 standards
@@ -3624,6 +3950,7 @@ class IPv6Address(IPAddress):
     """
 
     pass
+
 
 class BluetoothAddress(MACAddress):
     """
@@ -3634,6 +3961,7 @@ class BluetoothAddress(MACAddress):
 
     pass
 
+
 class WifiAddress(MACAddress):
     """
     A Wi-Fi address is a media access control (MAC) standards-conformant
@@ -3643,6 +3971,7 @@ class WifiAddress(MACAddress):
     """
 
     pass
+
 
 class WhoisContactFacet(ContactFacet):
     """
@@ -3656,6 +3985,7 @@ class WhoisContactFacet(ContactFacet):
     whoisContactType: Optional[Any] = None
     whoisContactType: Optional[Any] = None
 
+
 class BlackberryPhone(SmartPhone):
     """
     A blackberry phone is a smart phone that applies the Blackberry OS mobile
@@ -3664,4 +3994,3 @@ class BlackberryPhone(SmartPhone):
     """
 
     pass
-

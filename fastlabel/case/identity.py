@@ -1,13 +1,13 @@
-
 """
 Auto-generated classes from the SHACL graph in identity.ttl.
 
 This file was generated using the `case_models.py` script.
 """
 
-from fastlabel.case import (core, location)
-from typing import Any, Optional
 from enum import Enum
+from typing import Any, Optional
+
+from fastlabel.case import core, location
 
 
 class Identity(core.IdentityAbstraction):
@@ -18,6 +18,7 @@ class Identity(core.IdentityAbstraction):
 
     pass
 
+
 class IdentityFacet(core.Facet):
     """
     An identity facet is a grouping of characteristics unique to a particular
@@ -25,6 +26,7 @@ class IdentityFacet(core.Facet):
     """
 
     pass
+
 
 class Organization(Identity):
     """
@@ -36,6 +38,7 @@ class Organization(Identity):
 
     pass
 
+
 class Person(Identity):
     """
     A person is a grouping of identifying characteristics unique to a human
@@ -44,6 +47,7 @@ class Person(Identity):
     """
 
     pass
+
 
 class AddressFacet(IdentityFacet):
     """
@@ -54,6 +58,7 @@ class AddressFacet(IdentityFacet):
 
     address: Optional[location.Location] = None
 
+
 class AffiliationFacet(IdentityFacet):
     """
     An affiliation is a grouping of characteristics unique to the established
@@ -61,6 +66,7 @@ class AffiliationFacet(IdentityFacet):
     """
 
     pass
+
 
 class BirthInformationFacet(IdentityFacet):
     """
@@ -70,6 +76,7 @@ class BirthInformationFacet(IdentityFacet):
 
     birthdate: Optional[str] = None
 
+
 class CountryOfResidenceFacet(IdentityFacet):
     """
     Country of residence is a grouping of characteristics unique to information
@@ -77,6 +84,7 @@ class CountryOfResidenceFacet(IdentityFacet):
     """
 
     pass
+
 
 class EventsFacet(IdentityFacet):
     """
@@ -86,6 +94,7 @@ class EventsFacet(IdentityFacet):
 
     pass
 
+
 class IdentifierFacet(IdentityFacet):
     """
     Identifier is a grouping of characteristics unique to information that
@@ -93,6 +102,7 @@ class IdentifierFacet(IdentityFacet):
     """
 
     pass
+
 
 class LanguagesFacet(IdentityFacet):
     """
@@ -103,6 +113,7 @@ class LanguagesFacet(IdentityFacet):
 
     pass
 
+
 class NationalityFacet(IdentityFacet):
     """
     Nationality is a grouping of characteristics unique to the condition of an
@@ -110,6 +121,7 @@ class NationalityFacet(IdentityFacet):
     """
 
     pass
+
 
 class OccupationFacet(IdentityFacet):
     """
@@ -119,6 +131,7 @@ class OccupationFacet(IdentityFacet):
 
     pass
 
+
 class OrganizationDetailsFacet(IdentityFacet):
     """
     Organization details is a grouping of characteristics unique to an identity
@@ -126,6 +139,7 @@ class OrganizationDetailsFacet(IdentityFacet):
     """
 
     pass
+
 
 class PersonalDetailsFacet(IdentityFacet):
     """
@@ -135,6 +149,7 @@ class PersonalDetailsFacet(IdentityFacet):
 
     pass
 
+
 class PhysicalInfoFacet(IdentityFacet):
     """
     Physical info is a grouping of characteristics unique to the outwardly
@@ -142,6 +157,7 @@ class PhysicalInfoFacet(IdentityFacet):
     """
 
     pass
+
 
 class QualificationFacet(IdentityFacet):
     """
@@ -152,12 +168,14 @@ class QualificationFacet(IdentityFacet):
 
     pass
 
+
 class RelatedIdentityFacet(IdentityFacet):
     """
     <Needs fleshed out from CIQ>
     """
 
     pass
+
 
 class SimpleNameFacet(IdentityFacet):
     """
@@ -170,6 +188,7 @@ class SimpleNameFacet(IdentityFacet):
     honorificPrefix: Optional[str] = None
     honorificSuffix: Optional[str] = None
 
+
 class VisaFacet(IdentityFacet):
     """
     Visa is a grouping of characteristics unique to information related to a
@@ -178,4 +197,3 @@ class VisaFacet(IdentityFacet):
     """
 
     pass
-

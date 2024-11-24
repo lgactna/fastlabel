@@ -1,13 +1,13 @@
-
 """
 Auto-generated classes from the SHACL graph in analysis.ttl.
 
 This file was generated using the `case_models.py` script.
 """
 
-from fastlabel.case import (action, core)
-from typing import Any, Optional
 from enum import Enum
+from typing import Any, Optional
+
+from fastlabel.case import action, core
 
 
 class Analysis(action.Action):
@@ -18,6 +18,7 @@ class Analysis(action.Action):
 
     pass
 
+
 class AnalyticResultFacet(core.Facet):
     """
     An analytic result facet is a grouping of characteristics unique to the
@@ -25,6 +26,7 @@ class AnalyticResultFacet(core.Facet):
     """
 
     pass
+
 
 class ArtifactClassification(core.UcoInherentCharacterizationThing):
     """
@@ -35,6 +37,7 @@ class ArtifactClassification(core.UcoInherentCharacterizationThing):
     classificationConfidence: Optional[float] = None
     class_: str
 
+
 class AnalyticResult(core.Assertion):
     """
     An analytic result is a characterization of the understanding resulting from
@@ -44,6 +47,7 @@ class AnalyticResult(core.Assertion):
     originatingAnalysis: Optional[Analysis] = None
     resultContent: Optional[core.UcoObject] = None
 
+
 class ArtifactClassificationResultFacet(AnalyticResultFacet):
     """
     An artifact classification result facet is a grouping of characteristics
@@ -51,4 +55,3 @@ class ArtifactClassificationResultFacet(AnalyticResultFacet):
     """
 
     classification: Optional[ArtifactClassification] = None
-

@@ -1,13 +1,13 @@
-
 """
 Auto-generated classes from the SHACL graph in role.ttl.
 
 This file was generated using the `case_models.py` script.
 """
 
-from fastlabel.case import (core)
-from typing import Any, Optional
 from enum import Enum
+from typing import Any, Optional
+
+from fastlabel.case import core
 
 
 class Role(core.UcoObject):
@@ -17,12 +17,14 @@ class Role(core.UcoObject):
 
     pass
 
+
 class BenevolentRole(Role):
     """
     A benevolent role is a role with positive and/or beneficial intent.
     """
 
     pass
+
 
 class MaliciousRole(Role):
     """
@@ -31,10 +33,10 @@ class MaliciousRole(Role):
 
     pass
 
+
 class NeutralRole(Role):
     """
     A neutral role is a role with impartial intent.
     """
 
     pass
-

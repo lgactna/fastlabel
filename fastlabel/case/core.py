@@ -1,18 +1,19 @@
-
 """
 Auto-generated classes from the SHACL graph in core.ttl.
 
 This file was generated using the `case_models.py` script.
 """
 
-from fastlabel.case import (owl, types)
-from typing import Any, Optional
 from enum import Enum
+from typing import Any, Optional
+
+from fastlabel.case import owl, types
+
 
 class ObjectStatusVocab(str, Enum):
-    DRAFT = 'Draft'
-    FINAL = 'Final'
-    DEPRECATED = 'Deprecated'
+    DRAFT = "Draft"
+    FINAL = "Final"
+    DEPRECATED = "Deprecated"
 
 
 class UcoThing(owl.Thing):
@@ -22,6 +23,7 @@ class UcoThing(owl.Thing):
 
     pass
 
+
 class UcoInherentCharacterizationThing(UcoThing):
     """
     A UCO inherent characterization thing is a grouping of characteristics
@@ -29,6 +31,7 @@ class UcoInherentCharacterizationThing(UcoThing):
     """
 
     pass
+
 
 class ExternalReference(UcoInherentCharacterizationThing):
     """
@@ -39,6 +42,7 @@ class ExternalReference(UcoInherentCharacterizationThing):
     definingContext: Optional[str] = None
     externalIdentifier: Optional[str] = None
 
+
 class Facet(UcoInherentCharacterizationThing):
     """
     A facet is a grouping of characteristics singularly unique to a particular
@@ -47,6 +51,7 @@ class Facet(UcoInherentCharacterizationThing):
 
     pass
 
+
 class ConfidenceFacet(Facet):
     """
     A confidence is a grouping of characteristics unique to an asserted level of
@@ -54,6 +59,7 @@ class ConfidenceFacet(Facet):
     """
 
     confidence: int
+
 
 class UcoObject(UcoThing):
     """
@@ -75,12 +81,14 @@ class UcoObject(UcoThing):
     tag: Optional[str] = None
     objectStatus: Optional[str] = None
 
+
 class Assertion(UcoObject):
     """
     An assertion is a statement declared to be true.
     """
 
     statement: Optional[str] = None
+
 
 class AttributedName(UcoObject):
     """
@@ -90,12 +98,14 @@ class AttributedName(UcoObject):
 
     namingAuthority: Optional[str] = None
 
+
 class Compilation(UcoObject):
     """
     A compilation is a grouping of things.
     """
 
     pass
+
 
 class ControlledVocabulary(UcoObject):
     """
@@ -105,6 +115,7 @@ class ControlledVocabulary(UcoObject):
     constrainingVocabularyReference: Optional[str] = None
     value: str
     constrainingVocabularyName: Optional[str] = None
+
 
 class Event(UcoObject):
     """
@@ -118,6 +129,7 @@ class Event(UcoObject):
     startTime: Optional[str] = None
     eventType: Optional[str] = None
 
+
 class IdentityAbstraction(UcoObject):
     """
     An identity abstraction is a grouping of identifying characteristics unique
@@ -128,12 +140,14 @@ class IdentityAbstraction(UcoObject):
 
     pass
 
+
 class Item(UcoObject):
     """
     An item is a distinct article or unit.
     """
 
     pass
+
 
 class MarkingDefinitionAbstraction(UcoObject):
     """
@@ -147,6 +161,7 @@ class MarkingDefinitionAbstraction(UcoObject):
 
     pass
 
+
 class ModusOperandi(UcoObject):
     """
     A modus operandi is a particular method of operation (how a particular
@@ -154,6 +169,7 @@ class ModusOperandi(UcoObject):
     """
 
     pass
+
 
 class Relationship(UcoObject):
     """
@@ -168,12 +184,14 @@ class Relationship(UcoObject):
     startTime: Optional[str] = None
     kindOfRelationship: Optional[str] = None
 
+
 class Annotation(Assertion):
     """
     An annotation is an assertion made in relation to one or more objects.
     """
 
     object: UcoObject
+
 
 class ContextualCompilation(Compilation):
     """
@@ -184,12 +202,14 @@ class ContextualCompilation(Compilation):
 
     object: Optional[UcoObject] = None
 
+
 class EnclosingCompilation(Compilation):
     """
     An enclosing compilation is a container for a grouping of things.
     """
 
     object: UcoObject
+
 
 class Grouping(ContextualCompilation):
     """
@@ -198,6 +218,7 @@ class Grouping(ContextualCompilation):
 
     context: Optional[str] = None
 
+
 class Bundle(EnclosingCompilation):
     """
     A bundle is a container for a grouping of UCO content with no presumption of
@@ -205,4 +226,3 @@ class Bundle(EnclosingCompilation):
     """
 
     pass
-

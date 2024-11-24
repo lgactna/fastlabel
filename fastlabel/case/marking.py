@@ -1,13 +1,13 @@
-
 """
 Auto-generated classes from the SHACL graph in marking.ttl.
 
 This file was generated using the `case_models.py` script.
 """
 
-from fastlabel.case import (core)
-from typing import Any, Optional
 from enum import Enum
+from typing import Any, Optional
+
+from fastlabel.case import core
 
 
 class MarkingModel(core.UcoInherentCharacterizationThing):
@@ -18,6 +18,7 @@ class MarkingModel(core.UcoInherentCharacterizationThing):
     """
 
     pass
+
 
 class LicenseMarking(MarkingModel):
     """
@@ -30,6 +31,7 @@ class LicenseMarking(MarkingModel):
     definitionType: Optional[str] = None
     license: str
 
+
 class MarkingDefinition(core.MarkingDefinitionAbstraction):
     """
     A marking definition is a grouping of characteristics unique to the
@@ -39,6 +41,7 @@ class MarkingDefinition(core.MarkingDefinitionAbstraction):
 
     definition: Optional[MarkingModel] = None
     definitionType: str
+
 
 class ReleaseToMarking(MarkingModel):
     """
@@ -54,6 +57,7 @@ class ReleaseToMarking(MarkingModel):
     definitionType: Optional[str] = None
     authorizedIdentities: str
 
+
 class StatementMarking(MarkingModel):
     """
     A statement marking is a grouping of characteristics unique to the
@@ -67,6 +71,7 @@ class StatementMarking(MarkingModel):
 
     definitionType: Optional[str] = None
     statement: str
+
 
 class TermsOfUseMarking(MarkingModel):
     """
@@ -82,6 +87,7 @@ class TermsOfUseMarking(MarkingModel):
     definitionType: Optional[str] = None
     termsOfUse: str
 
+
 class GranularMarking(core.UcoInherentCharacterizationThing):
     """
     A granular marking is a grouping of characteristics unique to specification
@@ -92,4 +98,3 @@ class GranularMarking(core.UcoInherentCharacterizationThing):
 
     marking_: Optional[MarkingDefinition] = None
     contentSelectors: Optional[str] = None
-

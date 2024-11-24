@@ -1,13 +1,13 @@
-
 """
 Auto-generated classes from the SHACL graph in types.ttl.
 
 This file was generated using the `case_models.py` script.
 """
 
-from fastlabel.case import (co, core)
-from typing import Any, Optional
 from enum import Enum
+from typing import Any, Optional
+
+from fastlabel.case import co, core
 
 
 class DictionaryEntry(core.UcoInherentCharacterizationThing):
@@ -17,6 +17,7 @@ class DictionaryEntry(core.UcoInherentCharacterizationThing):
 
     key: str
     value: str
+
 
 class Hash(core.UcoInherentCharacterizationThing):
     """
@@ -32,12 +33,14 @@ class Hash(core.UcoInherentCharacterizationThing):
     hashMethod: Any
     hashMethod: Optional[Any] = None
 
+
 class ThreadItem(co.Item):
     """
     A ThreadItem is a member of a thread.
     """
 
     itemContent: Optional[core.UcoObject] = None
+
 
 class ControlledDictionaryEntry(DictionaryEntry):
     """
@@ -46,6 +49,7 @@ class ControlledDictionaryEntry(DictionaryEntry):
     """
 
     pass
+
 
 class Dictionary(core.UcoInherentCharacterizationThing):
     """
@@ -60,6 +64,7 @@ class Dictionary(core.UcoInherentCharacterizationThing):
 
     entry: Optional[DictionaryEntry] = None
 
+
 class Thread(co.Bag):
     """
     A semi-ordered array of items, that can be present in multiple copies.
@@ -70,6 +75,7 @@ class Thread(co.Bag):
 
     item: Optional[ThreadItem] = None
 
+
 class ControlledDictionary(Dictionary):
     """
     A controlled dictionary is a list of (term/key, value) pairs where each
@@ -79,9 +85,11 @@ class ControlledDictionary(Dictionary):
 
     entry: Optional[ControlledDictionaryEntry] = None
 
+
 class ImproperDictionary(Dictionary):
 
     repeatsKey: Optional[str] = None
+
 
 class ProperDictionary(Dictionary):
     """
@@ -90,4 +98,3 @@ class ProperDictionary(Dictionary):
     """
 
     pass
-
