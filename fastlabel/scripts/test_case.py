@@ -21,13 +21,10 @@ disk_facet = observable.FileFacet(
 # we have to edit the .ttl or change the logic used to determine iterable vs. scalar
 obj = observable.Image(hasFacet=disk_facet)
 
-# TODO: handle @type generation for non-standard JSON fields -- we can add/modify
-#       methods in our XMLSchema classes, or write a custom handler function, etc...
-
 # https://docs.pydantic.dev/latest/concepts/serialization/#serializing-with-duck-typing
 # Normally models are dumped recursively, but fields present in a subclass and not
 # in a parent class are not dumped by default. serialize_as_any must be passed.
-# pprint(obj.model_dump(serialize_as_any=True))
+pprint(obj.model_dump(serialize_as_any=True))
 
 application_version = observable.ApplicationVersion(
     version="1.0",
