@@ -10,6 +10,15 @@ from typing import Any, Optional
 from enum import Enum
 
 
+class LibraryType(core.UcoInherentCharacterizationThing):
+    """
+    A library type is a grouping of characteristics unique to a collection of
+    resources incorporated into the build of a software.
+    """
+
+    libraryName: Optional[str] = None
+    libraryVersion: Optional[str] = None
+
 class BuildUtilityType(core.UcoInherentCharacterizationThing):
     """
     A build utility type characterizes the tool used to convert from source code
@@ -34,15 +43,6 @@ class CompilerType(core.UcoInherentCharacterizationThing):
     compilerInformalDescription: Optional[str] = None
     cpeid: Optional[str] = None
     swid: Optional[str] = None
-
-class LibraryType(core.UcoInherentCharacterizationThing):
-    """
-    A library type is a grouping of characteristics unique to a collection of
-    resources incorporated into the build of a software.
-    """
-
-    libraryName: Optional[str] = None
-    libraryVersion: Optional[str] = None
 
 class Tool(core.UcoObject):
     """
@@ -84,6 +84,15 @@ class AnalyticTool(Tool):
 
     pass
 
+class ConfiguredTool(Tool):
+    """
+    A ConfiguredTool is a Tool that is known to be configured to run in a more
+    specified manner than some unconfigured or less-configured Tool.
+    """
+
+    usesConfiguration: Optional[configuration.Configuration] = None
+    isConfigurationOf: Optional[Tool] = None
+
 class MaliciousTool(Tool):
     """
     A malicious tool is an artifact of hardware and/or software utilized to
@@ -99,15 +108,6 @@ class DefensiveTool(Tool):
     """
 
     pass
-
-class ConfiguredTool(Tool):
-    """
-    A ConfiguredTool is a Tool that is known to be configured to run in a more
-    specified manner than some unconfigured or less-configured Tool.
-    """
-
-    usesConfiguration: Optional[configuration.Configuration] = None
-    isConfigurationOf: Optional[Tool] = None
 
 class BuildFacet(core.Facet):
     """

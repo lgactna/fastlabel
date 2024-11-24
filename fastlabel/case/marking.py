@@ -19,17 +19,6 @@ class MarkingModel(core.UcoInherentCharacterizationThing):
 
     pass
 
-class LicenseMarking(MarkingModel):
-    """
-    A license marking is a grouping of characteristics unique to the expression
-    of data marking definitions (restrictions, permissions, and other guidance
-    for how data can be used and shared) to convey details of license
-    restrictions that apply to the data.
-    """
-
-    definitionType: Optional[str] = None
-    license: str
-
 class StatementMarking(MarkingModel):
     """
     A statement marking is a grouping of characteristics unique to the
@@ -43,6 +32,31 @@ class StatementMarking(MarkingModel):
 
     definitionType: Optional[str] = None
     statement: str
+
+class ReleaseToMarking(MarkingModel):
+    """
+    A release-to marking is a grouping of characteristics unique to the
+    expression of data marking definitions (restrictions, permissions, and other
+    guidance for how data can be used and shared) to convey details of
+    authorized persons and/or organizations to which to the associated content
+    may be released. The existence of the Release-To marking restricts access to
+    ONLY those identities explicitly listed, regardless of whether another data
+    marking exists that allows sharing with other members of the community.
+    """
+
+    definitionType: Optional[str] = None
+    authorizedIdentities: str
+
+class LicenseMarking(MarkingModel):
+    """
+    A license marking is a grouping of characteristics unique to the expression
+    of data marking definitions (restrictions, permissions, and other guidance
+    for how data can be used and shared) to convey details of license
+    restrictions that apply to the data.
+    """
+
+    definitionType: Optional[str] = None
+    license: str
 
 class MarkingDefinition(core.MarkingDefinitionAbstraction):
     """
@@ -68,20 +82,6 @@ class TermsOfUseMarking(MarkingModel):
     definitionType: Optional[str] = None
     termsOfUse: str
 
-class ReleaseToMarking(MarkingModel):
-    """
-    A release-to marking is a grouping of characteristics unique to the
-    expression of data marking definitions (restrictions, permissions, and other
-    guidance for how data can be used and shared) to convey details of
-    authorized persons and/or organizations to which to the associated content
-    may be released. The existence of the Release-To marking restricts access to
-    ONLY those identities explicitly listed, regardless of whether another data
-    marking exists that allows sharing with other members of the community.
-    """
-
-    definitionType: Optional[str] = None
-    authorizedIdentities: str
-
 class GranularMarking(core.UcoInherentCharacterizationThing):
     """
     A granular marking is a grouping of characteristics unique to specification
@@ -90,6 +90,6 @@ class GranularMarking(core.UcoInherentCharacterizationThing):
     particular UCO object.
     """
 
-    marking: Optional[MarkingDefinition] = None
+    marking_: Optional[MarkingDefinition] = None
     contentSelectors: Optional[str] = None
 

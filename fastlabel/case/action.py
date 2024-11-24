@@ -5,40 +5,10 @@ Auto-generated classes from the SHACL graph in action.ttl.
 This file was generated using the `case_models.py` script.
 """
 
-from fastlabel.case import (core, location)
+from fastlabel.case import (location, core)
 from typing import Any, Optional
 from enum import Enum
 
-
-class Action(core.UcoObject):
-    """
-    An action is something that may be done or performed.
-    """
-
-    subaction: Optional["Action"] = None
-    environment: Optional[core.UcoObject] = None
-    performer: Optional[core.UcoObject] = None
-    error: Optional[core.UcoObject] = None
-    instrument: Optional[core.UcoObject] = None
-    object: Optional[core.UcoObject] = None
-    participant: Optional[core.UcoObject] = None
-    result: Optional[core.UcoObject] = None
-    location: Optional[location.Location] = None
-    endTime: Optional[str] = None
-    startTime: Optional[str] = None
-    actionCount: Optional[int] = None
-    actionStatus: Optional[str] = None
-    actionStatus: Optional[Any] = None
-    actionStatus: Optional[Any] = None
-
-class ActionArgumentFacet(core.Facet):
-    """
-    An action argument facet is a grouping of characteristics unique to a single
-    parameter of an action.
-    """
-
-    argumentName: str
-    value: str
 
 class ActionEstimationFacet(core.Facet):
     """
@@ -51,6 +21,15 @@ class ActionEstimationFacet(core.Facet):
     estimatedEfficacy: Optional[str] = None
     estimatedImpact: Optional[str] = None
     objective: Optional[str] = None
+
+class ActionArgumentFacet(core.Facet):
+    """
+    An action argument facet is a grouping of characteristics unique to a single
+    parameter of an action.
+    """
+
+    argumentName: str
+    value: str
 
 class ActionFrequencyFacet(core.Facet):
     """
@@ -65,13 +44,34 @@ class ActionFrequencyFacet(core.Facet):
     trend: Any
     trend: Optional[Any] = None
 
+class Action(core.UcoObject):
+    """
+    An action is something that may be done or performed.
+    """
+
+    subaction: Optional["Action"] = None
+    environment: Optional[core.UcoObject] = None
+    performer: Optional[core.UcoObject] = None
+    error: Optional[core.UcoObject] = None
+    instrument: Optional[core.UcoObject] = None
+    object: Optional[core.UcoObject] = None
+    participant: Optional[core.UcoObject] = None
+    result: Optional[core.UcoObject] = None
+    location_: Optional[location.Location] = None
+    endTime: Optional[str] = None
+    startTime: Optional[str] = None
+    actionCount: Optional[int] = None
+    actionStatus: Optional[str] = None
+    actionStatus: Optional[Any] = None
+    actionStatus: Optional[Any] = None
+
 class ArrayOfAction(core.UcoInherentCharacterizationThing):
     """
     An array of action is an ordered list of references to things that may be
     done or performed.
     """
 
-    action: Action
+    action_: Action
 
 class ActionPattern(Action):
     """

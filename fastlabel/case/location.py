@@ -10,18 +10,16 @@ from typing import Any, Optional
 from enum import Enum
 
 
-class SimpleAddressFacet(core.Facet):
+class LatLongCoordinatesFacet(core.Facet):
     """
-    A simple address facet is a grouping of characteristics unique to a
-    geolocation expressed as an administrative address.
+    A lat long coordinates facet is a grouping of characteristics unique to the
+    expression of a geolocation as the intersection of specific latitude,
+    longitude, and altitude values.
     """
 
-    addressType: Optional[str] = None
-    country: Optional[str] = None
-    locality: Optional[str] = None
-    postalCode: Optional[str] = None
-    region: Optional[str] = None
-    street: Optional[str] = None
+    altitude: Optional[float] = None
+    latitude: Optional[float] = None
+    longitude: Optional[float] = None
 
 class GPSCoordinatesFacet(core.Facet):
     """
@@ -36,16 +34,18 @@ class GPSCoordinatesFacet(core.Facet):
     tdop: Optional[float] = None
     vdop: Optional[float] = None
 
-class LatLongCoordinatesFacet(core.Facet):
+class SimpleAddressFacet(core.Facet):
     """
-    A lat long coordinates facet is a grouping of characteristics unique to the
-    expression of a geolocation as the intersection of specific latitude,
-    longitude, and altitude values.
+    A simple address facet is a grouping of characteristics unique to a
+    geolocation expressed as an administrative address.
     """
 
-    altitude: Optional[float] = None
-    latitude: Optional[float] = None
-    longitude: Optional[float] = None
+    addressType: Optional[str] = None
+    country: Optional[str] = None
+    locality: Optional[str] = None
+    postalCode: Optional[str] = None
+    region: Optional[str] = None
+    street: Optional[str] = None
 
 class Location(core.UcoObject):
     """

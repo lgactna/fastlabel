@@ -30,14 +30,6 @@ class UcoInherentCharacterizationThing(UcoThing):
 
     pass
 
-class Facet(UcoInherentCharacterizationThing):
-    """
-    A facet is a grouping of characteristics singularly unique to a particular
-    inherent aspect of a UCO domain object.
-    """
-
-    pass
-
 class ExternalReference(UcoInherentCharacterizationThing):
     """
     Characteristics of a reference to a resource outside of the UCO.
@@ -47,13 +39,13 @@ class ExternalReference(UcoInherentCharacterizationThing):
     definingContext: Optional[str] = None
     externalIdentifier: Optional[str] = None
 
-class ConfidenceFacet(Facet):
+class Facet(UcoInherentCharacterizationThing):
     """
-    A confidence is a grouping of characteristics unique to an asserted level of
-    certainty in the accuracy of some information.
+    A facet is a grouping of characteristics singularly unique to a particular
+    inherent aspect of a UCO domain object.
     """
 
-    confidence: int
+    pass
 
 class UcoObject(UcoThing):
     """
@@ -75,6 +67,29 @@ class UcoObject(UcoThing):
     tag: Optional[str] = None
     objectStatus: Optional[str] = None
 
+class ConfidenceFacet(Facet):
+    """
+    A confidence is a grouping of characteristics unique to an asserted level of
+    certainty in the accuracy of some information.
+    """
+
+    confidence: int
+
+class Item(UcoObject):
+    """
+    An item is a distinct article or unit.
+    """
+
+    pass
+
+class AttributedName(UcoObject):
+    """
+    An attributed name is a name of an entity issued by some attributed naming
+    authority.
+    """
+
+    namingAuthority: Optional[str] = None
+
 class Relationship(UcoObject):
     """
     A relationship is a grouping of characteristics unique to an assertion that
@@ -88,44 +103,13 @@ class Relationship(UcoObject):
     startTime: Optional[str] = None
     kindOfRelationship: Optional[str] = None
 
-class Event(UcoObject):
+class ModusOperandi(UcoObject):
     """
-    An Event is a noteworthy occurrence (something that happens or might
-    happen).
-    """
-
-    eventContext: Optional[UcoObject] = None
-    eventAttribute: Optional[types.Dictionary] = None
-    endTime: Optional[str] = None
-    startTime: Optional[str] = None
-    eventType: Optional[str] = None
-
-class Item(UcoObject):
-    """
-    An item is a distinct article or unit.
+    A modus operandi is a particular method of operation (how a particular
+    entity behaves or the resources they use).
     """
 
     pass
-
-class MarkingDefinitionAbstraction(UcoObject):
-    """
-    A marking definition abstraction is a grouping of characteristics unique to
-    the expression of a specific data marking conveying restrictions,
-    permissions, and other guidance for how marked data can be used and shared.
-    This class is an ontological structural abstraction for this concept.
-    Implementations of this concept should utilize the marking:MarkingDefinition
-    class.
-    """
-
-    pass
-
-class AttributedName(UcoObject):
-    """
-    An attributed name is a name of an entity issued by some attributed naming
-    authority.
-    """
-
-    namingAuthority: Optional[str] = None
 
 class Assertion(UcoObject):
     """
@@ -134,13 +118,14 @@ class Assertion(UcoObject):
 
     statement: Optional[str] = None
 
-class ModusOperandi(UcoObject):
+class ControlledVocabulary(UcoObject):
     """
-    A modus operandi is a particular method of operation (how a particular
-    entity behaves or the resources they use).
+    A controlled vocabulary is an explicitly constrained set of string values.
     """
 
-    pass
+    constrainingVocabularyReference: Optional[str] = None
+    value: str
+    constrainingVocabularyName: Optional[str] = None
 
 class Compilation(UcoObject):
     """
@@ -159,25 +144,33 @@ class IdentityAbstraction(UcoObject):
 
     pass
 
-class ControlledVocabulary(UcoObject):
+class Event(UcoObject):
     """
-    A controlled vocabulary is an explicitly constrained set of string values.
+    An Event is a noteworthy occurrence (something that happens or might
+    happen).
     """
 
-    constrainingVocabularyReference: Optional[str] = None
-    value: str
-    constrainingVocabularyName: Optional[str] = None
+    eventContext: Optional[UcoObject] = None
+    eventAttribute: Optional[types.Dictionary] = None
+    endTime: Optional[str] = None
+    startTime: Optional[str] = None
+    eventType: Optional[str] = None
+
+class MarkingDefinitionAbstraction(UcoObject):
+    """
+    A marking definition abstraction is a grouping of characteristics unique to
+    the expression of a specific data marking conveying restrictions,
+    permissions, and other guidance for how marked data can be used and shared.
+    This class is an ontological structural abstraction for this concept.
+    Implementations of this concept should utilize the marking:MarkingDefinition
+    class.
+    """
+
+    pass
 
 class Annotation(Assertion):
     """
     An annotation is an assertion made in relation to one or more objects.
-    """
-
-    object: UcoObject
-
-class EnclosingCompilation(Compilation):
-    """
-    An enclosing compilation is a container for a grouping of things.
     """
 
     object: UcoObject
@@ -191,13 +184,12 @@ class ContextualCompilation(Compilation):
 
     object: Optional[UcoObject] = None
 
-class Bundle(EnclosingCompilation):
+class EnclosingCompilation(Compilation):
     """
-    A bundle is a container for a grouping of UCO content with no presumption of
-    shared context.
+    An enclosing compilation is a container for a grouping of things.
     """
 
-    pass
+    object: UcoObject
 
 class Grouping(ContextualCompilation):
     """
@@ -205,4 +197,12 @@ class Grouping(ContextualCompilation):
     """
 
     context: Optional[str] = None
+
+class Bundle(EnclosingCompilation):
+    """
+    A bundle is a container for a grouping of UCO content with no presumption of
+    shared context.
+    """
+
+    pass
 

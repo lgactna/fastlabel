@@ -188,6 +188,13 @@ class Property(BaseModel):
         field_name = self.field_name
         if keyword.iskeyword(self.field_name):
             field_name += "_"
+            
+        # Alternatively, if the field name is exactly that of its corresponding
+        # class, append an underscore
+        # TODO: this is hacky, a robust solution would require knowledge of all
+        #       the types in use in a single class
+        if self.field_name in self.python_type:
+            field_name += "_"
 
         result = f"    {field_name}: {self.generate_type_annotation(containing_class)}"
 

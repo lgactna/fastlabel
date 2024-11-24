@@ -5,7 +5,7 @@ Auto-generated classes from the SHACL graph in types.ttl.
 This file was generated using the `case_models.py` script.
 """
 
-from fastlabel.case import (core, co)
+from fastlabel.case import (co, core)
 from typing import Any, Optional
 from enum import Enum
 
@@ -70,6 +70,15 @@ class Thread(co.Bag):
 
     item: Optional[ThreadItem] = None
 
+class ControlledDictionary(Dictionary):
+    """
+    A controlled dictionary is a list of (term/key, value) pairs where each
+    term/key exists no more than once and is constrained to an explicitly
+    defined set of values.
+    """
+
+    entry: Optional[ControlledDictionaryEntry] = None
+
 class ImproperDictionary(Dictionary):
 
     repeatsKey: Optional[str] = None
@@ -81,13 +90,4 @@ class ProperDictionary(Dictionary):
     """
 
     pass
-
-class ControlledDictionary(Dictionary):
-    """
-    A controlled dictionary is a list of (term/key, value) pairs where each
-    term/key exists no more than once and is constrained to an explicitly
-    defined set of values.
-    """
-
-    entry: Optional[ControlledDictionaryEntry] = None
 
