@@ -9,7 +9,7 @@ from typing import Optional
 
 from pydantic import AwareDatetime
 
-from fastlabel.uco import XMLSchema, owl, types
+from fastlabel.uco import XMLSchema, owl
 
 
 class ObjectStatusVocab(str, Enum):
@@ -118,7 +118,7 @@ class Event(UcoObject):
     """
 
     eventContext: Optional[UcoObject] = None
-    eventAttribute: Optional[types.Dictionary] = None
+    eventAttribute: Optional[dict] = None
     endTime: Optional[AwareDatetime] = None
     startTime: Optional[AwareDatetime] = None
     eventType: Optional[str] = None
