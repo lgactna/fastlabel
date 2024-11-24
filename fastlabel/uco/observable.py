@@ -547,8 +547,6 @@ class ExtInodeFacet(core.Facet):
     extSUID: Optional[int] = None
 
 
-from pydantic import Field
-
 class FileFacet(core.Facet):
     """
     A file facet is a grouping of characteristics unique to the storage of a
@@ -563,7 +561,7 @@ class FileFacet(core.Facet):
     accessedTime: Optional[AwareDatetime] = None
     metadataChangeTime: Optional[AwareDatetime] = None
     modifiedTime: Optional[AwareDatetime] = None
-    observableCreatedTime: Optional[AwareDatetime] = Field(default=None, prefix="uco-core:observableCreatedTime")
+    observableCreatedTime: Optional[AwareDatetime] = None
     sizeInBytes: Optional[int] = None
     allocationStatus: Optional[str] = None
     extension: Optional[str] = None

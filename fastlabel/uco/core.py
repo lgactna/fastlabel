@@ -5,7 +5,7 @@ This file was generated using the `case_models.py` script.
 """
 
 from enum import Enum
-from typing import Optional
+from typing import Any, Optional
 
 from pydantic import AwareDatetime
 
@@ -118,7 +118,7 @@ class Event(UcoObject):
     """
 
     eventContext: Optional[UcoObject] = None
-    eventAttribute: Optional[dict] = None
+    eventAttribute: Optional[dict[str, Any]] = None
     endTime: Optional[AwareDatetime] = None
     startTime: Optional[AwareDatetime] = None
     eventType: Optional[str] = None

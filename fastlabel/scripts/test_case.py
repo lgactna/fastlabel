@@ -13,17 +13,14 @@ disk_facet = observable.FileFacet(
     fileName="AsgardPD-2019033001-01.dd",
     filePath="C:/evidence/AsgardPD-2019033001-01.dd",
     isDirectory=False,
-    sizeInBytes=160080500
+    sizeInBytes=160080500,
 )
 
 # TODO: apparently hasFacet is an iterable?? looks like there is some work to be
 # done here... i don't know when things should be considered lists or not, either
 # we have to edit the .ttl or change the logic used to determine iterable vs. scalar
-obj = observable.Image(
-    hasFacet=disk_facet
-)
+obj = observable.Image(hasFacet=disk_facet)
 
-# TODO: handle @id generation
 # TODO: handle @type generation for non-standard JSON fields -- we can add/modify
 #       methods in our XMLSchema classes, or write a custom handler function, etc...
 
