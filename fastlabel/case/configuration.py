@@ -1,12 +1,13 @@
+
 """
 Auto-generated classes from the SHACL graph in configuration.ttl.
 
 This file was generated using the `case_models.py` script.
 """
 
+from fastlabel.case import (core)
 from typing import Any, Optional
-
-from fastlabel.case import core
+from enum import Enum
 
 
 class ConfigurationEntry(core.UcoInherentCharacterizationThing):
@@ -22,7 +23,6 @@ class ConfigurationEntry(core.UcoInherentCharacterizationThing):
     itemType: Optional[str] = None
     itemValue: Optional[str] = None
 
-
 class Dependency(core.UcoInherentCharacterizationThing):
     """
     A dependency is a grouping of characteristics unique to something that a
@@ -31,7 +31,6 @@ class Dependency(core.UcoInherentCharacterizationThing):
 
     dependencyDescription: Optional[str] = None
     dependencyType: Optional[str] = None
-
 
 class Configuration(core.UcoObject):
     """
@@ -43,3 +42,4 @@ class Configuration(core.UcoObject):
     configurationEntry: Optional[ConfigurationEntry] = None
     dependencies: Optional[Dependency] = None
     usageContextAssumptions: Optional[str] = None
+

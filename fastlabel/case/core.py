@@ -1,12 +1,18 @@
+
 """
 Auto-generated classes from the SHACL graph in core.ttl.
 
 This file was generated using the `case_models.py` script.
 """
 
+from fastlabel.case import (owl, types)
 from typing import Any, Optional
+from enum import Enum
 
-from fastlabel.case import owl, types
+class ObjectStatusVocab(str, Enum):
+    DRAFT = 'Draft'
+    FINAL = 'Final'
+    DEPRECATED = 'Deprecated'
 
 
 class UcoThing(owl.Thing):
@@ -16,7 +22,6 @@ class UcoThing(owl.Thing):
 
     pass
 
-
 class UcoInherentCharacterizationThing(UcoThing):
     """
     A UCO inherent characterization thing is a grouping of characteristics
@@ -25,7 +30,6 @@ class UcoInherentCharacterizationThing(UcoThing):
 
     pass
 
-
 class Facet(UcoInherentCharacterizationThing):
     """
     A facet is a grouping of characteristics singularly unique to a particular
@@ -33,7 +37,6 @@ class Facet(UcoInherentCharacterizationThing):
     """
 
     pass
-
 
 class ExternalReference(UcoInherentCharacterizationThing):
     """
@@ -44,7 +47,6 @@ class ExternalReference(UcoInherentCharacterizationThing):
     definingContext: Optional[str] = None
     externalIdentifier: Optional[str] = None
 
-
 class ConfidenceFacet(Facet):
     """
     A confidence is a grouping of characteristics unique to an asserted level of
@@ -52,7 +54,6 @@ class ConfidenceFacet(Facet):
     """
 
     confidence: int
-
 
 class UcoObject(UcoThing):
     """
@@ -74,16 +75,6 @@ class UcoObject(UcoThing):
     tag: Optional[str] = None
     objectStatus: Optional[str] = None
 
-
-class AttributedName(UcoObject):
-    """
-    An attributed name is a name of an entity issued by some attributed naming
-    authority.
-    """
-
-    namingAuthority: Optional[str] = None
-
-
 class Relationship(UcoObject):
     """
     A relationship is a grouping of characteristics unique to an assertion that
@@ -97,6 +88,17 @@ class Relationship(UcoObject):
     startTime: Optional[str] = None
     kindOfRelationship: Optional[str] = None
 
+class Event(UcoObject):
+    """
+    An Event is a noteworthy occurrence (something that happens or might
+    happen).
+    """
+
+    eventContext: Optional[UcoObject] = None
+    eventAttribute: Optional[types.Dictionary] = None
+    endTime: Optional[str] = None
+    startTime: Optional[str] = None
+    eventType: Optional[str] = None
 
 class Item(UcoObject):
     """
@@ -104,7 +106,6 @@ class Item(UcoObject):
     """
 
     pass
-
 
 class MarkingDefinitionAbstraction(UcoObject):
     """
@@ -118,6 +119,20 @@ class MarkingDefinitionAbstraction(UcoObject):
 
     pass
 
+class AttributedName(UcoObject):
+    """
+    An attributed name is a name of an entity issued by some attributed naming
+    authority.
+    """
+
+    namingAuthority: Optional[str] = None
+
+class Assertion(UcoObject):
+    """
+    An assertion is a statement declared to be true.
+    """
+
+    statement: Optional[str] = None
 
 class ModusOperandi(UcoObject):
     """
@@ -127,32 +142,12 @@ class ModusOperandi(UcoObject):
 
     pass
 
-
-class ControlledVocabulary(UcoObject):
-    """
-    A controlled vocabulary is an explicitly constrained set of string values.
-    """
-
-    constrainingVocabularyReference: Optional[str] = None
-    value: str
-    constrainingVocabularyName: Optional[str] = None
-
-
-class Assertion(UcoObject):
-    """
-    An assertion is a statement declared to be true.
-    """
-
-    statement: Optional[str] = None
-
-
 class Compilation(UcoObject):
     """
     A compilation is a grouping of things.
     """
 
     pass
-
 
 class IdentityAbstraction(UcoObject):
     """
@@ -164,19 +159,14 @@ class IdentityAbstraction(UcoObject):
 
     pass
 
-
-class Event(UcoObject):
+class ControlledVocabulary(UcoObject):
     """
-    An Event is a noteworthy occurrence (something that happens or might
-    happen).
+    A controlled vocabulary is an explicitly constrained set of string values.
     """
 
-    eventContext: Optional[UcoObject] = None
-    eventAttribute: Optional[types.Dictionary] = None
-    endTime: Optional[str] = None
-    startTime: Optional[str] = None
-    eventType: Optional[str] = None
-
+    constrainingVocabularyReference: Optional[str] = None
+    value: str
+    constrainingVocabularyName: Optional[str] = None
 
 class Annotation(Assertion):
     """
@@ -185,14 +175,12 @@ class Annotation(Assertion):
 
     object: UcoObject
 
-
 class EnclosingCompilation(Compilation):
     """
     An enclosing compilation is a container for a grouping of things.
     """
 
     object: UcoObject
-
 
 class ContextualCompilation(Compilation):
     """
@@ -203,7 +191,6 @@ class ContextualCompilation(Compilation):
 
     object: Optional[UcoObject] = None
 
-
 class Bundle(EnclosingCompilation):
     """
     A bundle is a container for a grouping of UCO content with no presumption of
@@ -212,10 +199,10 @@ class Bundle(EnclosingCompilation):
 
     pass
 
-
 class Grouping(ContextualCompilation):
     """
     A grouping is a compilation of referenced UCO content with a shared context.
     """
 
     context: Optional[str] = None
+

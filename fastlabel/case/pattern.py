@@ -1,12 +1,13 @@
+
 """
 Auto-generated classes from the SHACL graph in pattern.ttl.
 
 This file was generated using the `case_models.py` script.
 """
 
+from fastlabel.case import (core)
 from typing import Any, Optional
-
-from fastlabel.case import core
+from enum import Enum
 
 
 class Pattern(core.UcoObject):
@@ -17,7 +18,6 @@ class Pattern(core.UcoObject):
 
     pass
 
-
 class PatternExpression(core.UcoInherentCharacterizationThing):
     """
     A pattern expression is a grouping of characteristics unique to an explicit
@@ -27,7 +27,6 @@ class PatternExpression(core.UcoInherentCharacterizationThing):
 
     pass
 
-
 class LogicalPattern(Pattern):
     """
     A logical pattern is a grouping of characteristics unique to an
@@ -36,3 +35,4 @@ class LogicalPattern(Pattern):
     """
 
     patternExpression: Optional[str] = None
+

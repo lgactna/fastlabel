@@ -15,6 +15,8 @@ from typing import Any, Optional
 from pydantic import BaseModel
 from rdflib import RDF, RDFS, Graph, Literal, Namespace, URIRef
 
+from fastlabel.scripts.util import generate_docstring
+
 # Define standard namespaces
 SH = Namespace("http://www.w3.org/ns/shacl#")
 XSD = Namespace("http://www.w3.org/2001/XMLSchema#")
@@ -253,36 +255,6 @@ class UCOModel(BaseModel):
             namespace=namespace,
         )
 
-    def generate_docstring(self, width: int = 76) -> str:
-        """
-        Break the comment into a multi-line docstring, capped at 80 characters
-        per line (including 4 spaces of indentation).
-        """
-        if not self.comment:
-            return ""
-
-        words = self.comment.split()
-        lines = []
-        current_line = ""
-        for word in words:
-            if len(current_line) + len(word) + 1 > width:
-                lines.append(current_line)
-                current_line = word
-            else:
-                if current_line:
-                    current_line += " " + word
-                else:
-                    current_line = word
-        if current_line:
-            lines.append(current_line)
-
-        # Indent the docstring correctly
-        docstring = '    """\n'
-        for line in lines:
-            docstring += f"    {line}\n"
-        docstring += '    """\n'
-        return docstring
-
     def to_pydantic_model(self) -> str:
         """
         Convert this UCO model to a Pydantic model.
@@ -300,7 +272,7 @@ class UCOModel(BaseModel):
             superclass = self.superclass.replace(f"{self.namespace}.", "")
 
         class_def = f"class {class_name}({superclass}):"
-        docstring = self.generate_docstring()
+        docstring = generate_docstring(self.comment)
         result += class_def + "\n" + docstring + "\n"
 
         # Add properties
@@ -324,6 +296,80 @@ class UCOModel(BaseModel):
         dependencies.discard(self.class_name)
         return dependencies
 
+class VocabularyModel(BaseModel):
+    # Qualified class name, e.g. `vocabulary.TriggerTypeVocab`
+    class_name: str
+
+    # The rdfs:comment for this enum, if any
+    comment: Optional[str] = None
+
+    # List of members for this enum, a 2-tuple of member name and value
+    members: list[tuple[str, str]] = []
+
+    # This will determine if the superclass causes an import statement
+    # or not. That is, if the superclass is in the same file, we don't
+    # need to import it. If it's in another file, we do.
+    #
+    # In general, this should be the name of the source turtle file (excluding
+    # the .ttl extension).
+    namespace: str
+    
+    @classmethod
+    def from_datatype(cls, datatype: Any, g: Graph, namespace: str) -> "VocabularyModel":
+        enum_name = get_local_name(datatype)
+        
+        # Get rdfs:comment for docstring
+        comment = None
+        for c in g.objects(datatype, RDFS_NS.comment):
+            if isinstance(c, Literal):
+                comment = str(c)
+                break
+        
+        # Get the owl:equivalentClass and owl:oneOf list
+        members = []
+        eq_class = g.value(subject=datatype, predicate=OWL.equivalentClass)
+        if eq_class:
+            one_of = g.value(subject=eq_class, predicate=OWL.oneOf)
+            if one_of:
+                # Extract items from the RDF list
+                items = list(g.items(one_of))
+                for item in items:
+                    # Get the string value of each item
+                    value = str(item)
+                    # Create a valid Python identifier for the enum member
+                    member_name = re.sub(r'\W|^(?=\d)', '_', value).upper()
+                    members.append((member_name, value))
+        
+        return VocabularyModel(
+            class_name=enum_name,
+            comment=comment,
+            members=members,
+            namespace=namespace,
+        )
+        
+    def to_enum(self) -> str:
+        """
+        Convert this datatype to a string enumeration.
+        """
+        result = ""
+
+        # If this has no members, return an empty string
+        if not self.members:
+            return result
+
+        # Convert qualified name to local name
+        class_name = self.class_name.split(".")[-1]
+                
+        class_def = f"class {class_name}(str, Enum):"
+        docstring = generate_docstring(self.comment)
+        result += class_def + "\n" + docstring
+        
+        # Add members
+        for member_name, value in self.members:
+            result += f"    {member_name} = '{value}'\n"
+        
+        return result + "\n"
+        
 
 def generate_import_list(dependency_graph: dict[str, set[str]], namespace: str) -> str:
     """
@@ -354,18 +400,27 @@ def generate_import_list(dependency_graph: dict[str, set[str]], namespace: str) 
     # Generate import statements
     # note: we used to import individual objects, now we just use the qualified name
     imports = ""
-    for namespace, _ in grouped_dependencies.items():
-        imports += f"from fastlabel.case import {namespace}\n"
+    
+    if grouped_dependencies:
+        imports += f"from fastlabel.case import ({', '.join(grouped_dependencies.keys())})\n"
+    # for namespace, _ in grouped_dependencies.items():
+    #     imports += f"from fastlabel.case import {namespace}\n"
 
     # Always import Any and Optional -- these can be removed manually if not needed
     imports += "from typing import Any, Optional\n"
+    
+    # Always import Enum -- these can be removed manually if not needed
+    imports += "from enum import Enum\n"
 
     return imports
 
 
-def generate_classes_from_graph(g: Graph, namespace: str) -> str:
+def generate_classes_from_graph(g: Graph, namespace: str) -> tuple[str, str]:
     """
     Generate Python classes from a SHACL graph.
+    
+    The return value is a 2-tuple, where the first element is the import list
+    and the second element is the generated Python code for each class.
     """
     # Get all classes that are sh:NodeShape and owl:Class
     classes = set()
@@ -400,10 +455,17 @@ def generate_classes_from_graph(g: Graph, namespace: str) -> str:
         output += model.to_pydantic_model() + "\n"
 
     imports = generate_import_list(dependency_graph, namespace)
-    output = imports + "\n" + output
 
-    return output
+    return imports, output
 
+
+def generate_enums_from_datatypes(graph):
+    enum_definitions = ""
+    # Find all nodes of type rdfs:Datatype
+    for datatype in graph.subjects(RDF.type, RDFS_NS.Datatype):
+        model = VocabularyModel.from_datatype(datatype, graph, namespace)
+        enum_definitions += model.to_enum()
+    return enum_definitions
 
 if __name__ == "__main__":
     # Recursively search for all .ttl files in the /case_artifacts directory
@@ -417,8 +479,10 @@ if __name__ == "__main__":
         # Load the RDF graph for this file
         g = Graph()
         g.parse(artifact_file, format="turtle")
+        
+        vocabularies = generate_enums_from_datatypes(g)
 
-        class_file = generate_classes_from_graph(g, namespace)
+        imports, class_defs = generate_classes_from_graph(g, namespace)
         docstring = dedent(
             f'''
             """
@@ -429,7 +493,7 @@ if __name__ == "__main__":
             '''  # noqa: W293
         )
 
-        class_file = docstring + "\n" + class_file
+        class_file = docstring + "\n" + imports + "\n" + vocabularies + "\n" + class_defs
 
         # Write file based on the artifact file name
         target_file = get_target_dir() / f"{namespace}.py"
