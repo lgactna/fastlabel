@@ -9,6 +9,20 @@ from typing import Any, Optional
 from fastlabel.case import core
 
 
+class SimpleAddressFacet(core.Facet):
+    """
+    A simple address facet is a grouping of characteristics unique to a
+    geolocation expressed as an administrative address.
+    """
+
+    addressType: Optional[str] = None
+    country: Optional[str] = None
+    locality: Optional[str] = None
+    postalCode: Optional[str] = None
+    region: Optional[str] = None
+    street: Optional[str] = None
+
+
 class LatLongCoordinatesFacet(core.Facet):
     """
     A lat long coordinates facet is a grouping of characteristics unique to the
@@ -33,20 +47,6 @@ class GPSCoordinatesFacet(core.Facet):
     pdop: Optional[float] = None
     tdop: Optional[float] = None
     vdop: Optional[float] = None
-
-
-class SimpleAddressFacet(core.Facet):
-    """
-    A simple address facet is a grouping of characteristics unique to a
-    geolocation expressed as an administrative address.
-    """
-
-    addressType: Optional[str] = None
-    country: Optional[str] = None
-    locality: Optional[str] = None
-    postalCode: Optional[str] = None
-    region: Optional[str] = None
-    street: Optional[str] = None
 
 
 class Location(core.UcoObject):

@@ -9,6 +9,19 @@ from typing import Any, Optional
 from fastlabel.case import configuration, core, identity
 
 
+class Tool(core.UcoObject):
+    """
+    A tool is an element of hardware and/or software utilized to carry out a
+    particular function.
+    """
+
+    creator: Optional[identity.Identity] = None
+    references: Optional[str] = None
+    servicePack: Optional[str] = None
+    toolType: Optional[str] = None
+    version: Optional[str] = None
+
+
 class CompilerType(core.UcoInherentCharacterizationThing):
     """
     A compiler type is a grouping of characteristics unique to a specific
@@ -25,16 +38,6 @@ class CompilerType(core.UcoInherentCharacterizationThing):
     swid: Optional[str] = None
 
 
-class LibraryType(core.UcoInherentCharacterizationThing):
-    """
-    A library type is a grouping of characteristics unique to a collection of
-    resources incorporated into the build of a software.
-    """
-
-    libraryName: Optional[str] = None
-    libraryVersion: Optional[str] = None
-
-
 class BuildUtilityType(core.UcoInherentCharacterizationThing):
     """
     A build utility type characterizes the tool used to convert from source code
@@ -46,43 +49,29 @@ class BuildUtilityType(core.UcoInherentCharacterizationThing):
     swid: Optional[str] = None
 
 
-class Tool(core.UcoObject):
+class LibraryType(core.UcoInherentCharacterizationThing):
     """
-    A tool is an element of hardware and/or software utilized to carry out a
-    particular function.
-    """
-
-    creator: Optional[identity.Identity] = None
-    references: Optional[str] = None
-    servicePack: Optional[str] = None
-    toolType: Optional[str] = None
-    version: Optional[str] = None
-
-
-class BuildInformationType(core.UcoInherentCharacterizationThing):
-    """
-    A build information type is a grouping of characteristics that describe how
-    a particular version of software was converted from source code to
-    executable code.
+    A library type is a grouping of characteristics unique to a collection of
+    resources incorporated into the build of a software.
     """
 
-    buildConfiguration: Optional[configuration.Configuration] = None
-    buildUtility: Optional[BuildUtilityType] = None
-    compilers: Optional[CompilerType] = None
-    libraries: Optional[LibraryType] = None
-    compilationDate: Optional[str] = None
-    buildID: Optional[str] = None
-    buildLabel: Optional[str] = None
-    buildOutputLog: Optional[str] = None
-    buildProject: Optional[str] = None
-    buildScript: Optional[str] = None
-    buildVersion: Optional[str] = None
+    libraryName: Optional[str] = None
+    libraryVersion: Optional[str] = None
 
 
 class MaliciousTool(Tool):
     """
     A malicious tool is an artifact of hardware and/or software utilized to
     accomplish a malevolent task or purpose.
+    """
+
+    pass
+
+
+class DefensiveTool(Tool):
+    """
+    A defensive tool is an artifact of hardware and/or software utilized to
+    accomplish a task or purpose of guarding.
     """
 
     pass
@@ -108,13 +97,24 @@ class AnalyticTool(Tool):
     pass
 
 
-class DefensiveTool(Tool):
+class BuildInformationType(core.UcoInherentCharacterizationThing):
     """
-    A defensive tool is an artifact of hardware and/or software utilized to
-    accomplish a task or purpose of guarding.
+    A build information type is a grouping of characteristics that describe how
+    a particular version of software was converted from source code to
+    executable code.
     """
 
-    pass
+    buildConfiguration: Optional[configuration.Configuration] = None
+    buildUtility: Optional[BuildUtilityType] = None
+    compilers: Optional[CompilerType] = None
+    libraries: Optional[LibraryType] = None
+    compilationDate: Optional[str] = None
+    buildID: Optional[str] = None
+    buildLabel: Optional[str] = None
+    buildOutputLog: Optional[str] = None
+    buildProject: Optional[str] = None
+    buildScript: Optional[str] = None
+    buildVersion: Optional[str] = None
 
 
 class BuildFacet(core.Facet):

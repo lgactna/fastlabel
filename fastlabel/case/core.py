@@ -26,6 +26,15 @@ class UcoInherentCharacterizationThing(UcoThing):
     pass
 
 
+class Facet(UcoInherentCharacterizationThing):
+    """
+    A facet is a grouping of characteristics singularly unique to a particular
+    inherent aspect of a UCO domain object.
+    """
+
+    pass
+
+
 class ExternalReference(UcoInherentCharacterizationThing):
     """
     Characteristics of a reference to a resource outside of the UCO.
@@ -36,13 +45,13 @@ class ExternalReference(UcoInherentCharacterizationThing):
     externalIdentifier: Optional[str] = None
 
 
-class Facet(UcoInherentCharacterizationThing):
+class ConfidenceFacet(Facet):
     """
-    A facet is a grouping of characteristics singularly unique to a particular
-    inherent aspect of a UCO domain object.
+    A confidence is a grouping of characteristics unique to an asserted level of
+    certainty in the accuracy of some information.
     """
 
-    pass
+    confidence: int
 
 
 class UcoObject(UcoThing):
@@ -63,34 +72,7 @@ class UcoObject(UcoThing):
     specVersion: Optional[str] = None
     description: Optional[str] = None
     tag: Optional[str] = None
-
-
-class ConfidenceFacet(Facet):
-    """
-    A confidence is a grouping of characteristics unique to an asserted level of
-    certainty in the accuracy of some information.
-    """
-
-    confidence: int
-
-
-class IdentityAbstraction(UcoObject):
-    """
-    An identity abstraction is a grouping of identifying characteristics unique
-    to an individual or organization. This class is an ontological structural
-    abstraction for this concept. Implementations of this concept should utilize
-    the identity:Identity class.
-    """
-
-    pass
-
-
-class Compilation(UcoObject):
-    """
-    A compilation is a grouping of things.
-    """
-
-    pass
+    objectStatus: Optional[str] = None
 
 
 class AttributedName(UcoObject):
@@ -100,40 +82,6 @@ class AttributedName(UcoObject):
     """
 
     namingAuthority: Optional[str] = None
-
-
-class MarkingDefinitionAbstraction(UcoObject):
-    """
-    A marking definition abstraction is a grouping of characteristics unique to
-    the expression of a specific data marking conveying restrictions,
-    permissions, and other guidance for how marked data can be used and shared.
-    This class is an ontological structural abstraction for this concept.
-    Implementations of this concept should utilize the marking:MarkingDefinition
-    class.
-    """
-
-    pass
-
-
-class Assertion(UcoObject):
-    """
-    An assertion is a statement declared to be true.
-    """
-
-    statement: Optional[str] = None
-
-
-class Event(UcoObject):
-    """
-    An Event is a noteworthy occurrence (something that happens or might
-    happen).
-    """
-
-    eventContext: Optional[UcoObject] = None
-    eventAttribute: Optional[types.Dictionary] = None
-    endTime: Optional[str] = None
-    startTime: Optional[str] = None
-    eventType: Optional[str] = None
 
 
 class Relationship(UcoObject):
@@ -150,18 +98,31 @@ class Relationship(UcoObject):
     kindOfRelationship: Optional[str] = None
 
 
-class ModusOperandi(UcoObject):
+class Item(UcoObject):
     """
-    A modus operandi is a particular method of operation (how a particular
-    entity behaves or the resources they use).
+    An item is a distinct article or unit.
     """
 
     pass
 
 
-class Item(UcoObject):
+class MarkingDefinitionAbstraction(UcoObject):
     """
-    An item is a distinct article or unit.
+    A marking definition abstraction is a grouping of characteristics unique to
+    the expression of a specific data marking conveying restrictions,
+    permissions, and other guidance for how marked data can be used and shared.
+    This class is an ontological structural abstraction for this concept.
+    Implementations of this concept should utilize the marking:MarkingDefinition
+    class.
+    """
+
+    pass
+
+
+class ModusOperandi(UcoObject):
+    """
+    A modus operandi is a particular method of operation (how a particular
+    entity behaves or the resources they use).
     """
 
     pass
@@ -175,6 +136,54 @@ class ControlledVocabulary(UcoObject):
     constrainingVocabularyReference: Optional[str] = None
     value: str
     constrainingVocabularyName: Optional[str] = None
+
+
+class Assertion(UcoObject):
+    """
+    An assertion is a statement declared to be true.
+    """
+
+    statement: Optional[str] = None
+
+
+class Compilation(UcoObject):
+    """
+    A compilation is a grouping of things.
+    """
+
+    pass
+
+
+class IdentityAbstraction(UcoObject):
+    """
+    An identity abstraction is a grouping of identifying characteristics unique
+    to an individual or organization. This class is an ontological structural
+    abstraction for this concept. Implementations of this concept should utilize
+    the identity:Identity class.
+    """
+
+    pass
+
+
+class Event(UcoObject):
+    """
+    An Event is a noteworthy occurrence (something that happens or might
+    happen).
+    """
+
+    eventContext: Optional[UcoObject] = None
+    eventAttribute: Optional[types.Dictionary] = None
+    endTime: Optional[str] = None
+    startTime: Optional[str] = None
+    eventType: Optional[str] = None
+
+
+class Annotation(Assertion):
+    """
+    An annotation is an assertion made in relation to one or more objects.
+    """
+
+    object: UcoObject
 
 
 class EnclosingCompilation(Compilation):
@@ -192,15 +201,7 @@ class ContextualCompilation(Compilation):
     associated with a given person).
     """
 
-    object: UcoObject
-
-
-class Annotation(Assertion):
-    """
-    An annotation is an assertion made in relation to one or more objects.
-    """
-
-    object: UcoObject
+    object: Optional[UcoObject] = None
 
 
 class Bundle(EnclosingCompilation):
