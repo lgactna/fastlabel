@@ -19,7 +19,7 @@ from typing import Any, Optional
 from pydantic import BaseModel
 from rdflib import RDF, RDFS, BNode, Graph, Literal, Namespace, URIRef
 
-from fastlabel.scripts.util import generate_docstring
+from fastlabel.scripts._util import generate_docstring
 
 # Define standard namespaces
 SH = Namespace("http://www.w3.org/ns/shacl#")
