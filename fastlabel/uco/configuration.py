@@ -4,8 +4,6 @@ Auto-generated classes from the SHACL graph in configuration.ttl.
 This file was generated using the `case_models.py` script.
 """
 
-from typing import Optional
-
 from fastlabel.uco import core
 
 
@@ -16,11 +14,11 @@ class ConfigurationEntry(core.UcoInherentCharacterizationThing):
     software, or other cyber object.
     """
 
-    itemObject: Optional[core.UcoObject] = None
-    itemDescription: Optional[str] = None
-    itemName: Optional[str] = None
-    itemType: Optional[str] = None
-    itemValue: Optional[str] = None
+    itemObject: core.UcoObject | list[core.UcoObject] | None = []
+    itemDescription: str | None = None
+    itemName: str | None = None
+    itemType: str | None = None
+    itemValue: str | list[str] | None = []
 
 
 class Dependency(core.UcoInherentCharacterizationThing):
@@ -29,8 +27,8 @@ class Dependency(core.UcoInherentCharacterizationThing):
     tool or other software relies on to function as intended.
     """
 
-    dependencyDescription: Optional[str] = None
-    dependencyType: Optional[str] = None
+    dependencyDescription: str | None = None
+    dependencyType: str | None = None
 
 
 class Configuration(core.UcoObject):
@@ -40,6 +38,6 @@ class Configuration(core.UcoObject):
     or other cyber object.
     """
 
-    configurationEntry: Optional[ConfigurationEntry] = None
-    dependencies: Optional[Dependency] = None
-    usageContextAssumptions: Optional[str] = None
+    configurationEntry: ConfigurationEntry | list[ConfigurationEntry] | None = []
+    dependencies: Dependency | list[Dependency] | None = []
+    usageContextAssumptions: str | list[str] | None = []

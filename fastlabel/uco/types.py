@@ -4,10 +4,6 @@ Auto-generated classes from the SHACL graph in types.ttl.
 This file was generated using the `case_models.py` script.
 """
 
-from typing import Optional
-
-from pydantic import Field
-
 from fastlabel.uco import XMLSchema, co, core, vocabulary
 
 
@@ -30,7 +26,7 @@ class Hash(core.UcoInherentCharacterizationThing):
     """
 
     hashValue: XMLSchema.xsd_hexBinary
-    hashMethod: Optional[vocabulary.HashNameVocab] = None
+    hashMethod: vocabulary.HashNameVocab | list[vocabulary.HashNameVocab] | None = []
 
 
 class ThreadItem(co.Item):
@@ -38,7 +34,7 @@ class ThreadItem(co.Item):
     A ThreadItem is a member of a thread.
     """
 
-    itemContent: Optional[core.UcoObject] = None
+    itemContent: core.UcoObject | list[core.UcoObject] | None = []
 
 
 class ControlledDictionaryEntry(DictionaryEntry):
@@ -59,9 +55,7 @@ class Dictionary(core.UcoInherentCharacterizationThing):
     types:ImproperDictionary should be used instead of types:Dictionary.
     """
 
-    entry: Optional[DictionaryEntry] = Field(
-        default=None, json_schema_extra={"IRI": True}
-    )
+    entry: DictionaryEntry | list[DictionaryEntry] | None = []
 
 
 class Thread(co.Bag):
@@ -72,7 +66,7 @@ class Thread(co.Bag):
     two or more direct successors, and two or more direct predecessors.
     """
 
-    item: Optional[ThreadItem] = None
+    item: ThreadItem | list[ThreadItem] | None = []
 
 
 class ControlledDictionary(Dictionary):
@@ -82,12 +76,12 @@ class ControlledDictionary(Dictionary):
     defined set of values.
     """
 
-    entry: Optional[ControlledDictionaryEntry] = None
+    entry: ControlledDictionaryEntry | list[ControlledDictionaryEntry] | None = []
 
 
 class ImproperDictionary(Dictionary):
 
-    repeatsKey: Optional[str] = None
+    repeatsKey: str | list[str] | None = []
 
 
 class ProperDictionary(Dictionary):

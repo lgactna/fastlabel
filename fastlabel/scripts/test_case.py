@@ -19,13 +19,15 @@ disk_facet = observable.FileFacet(
 # TODO: apparently hasFacet is an iterable?? looks like there is some work to be
 # done here... i don't know when things should be considered lists or not, either
 # we have to edit the .ttl or change the logic used to determine iterable vs. scalar
-obj = observable.Image(hasFacet=disk_facet)
+obj = observable.Image(hasFacet=[disk_facet])
 
 # https://docs.pydantic.dev/latest/concepts/serialization/#serializing-with-duck-typing
 # Normally models are dumped recursively, but fields present in a subclass and not
 # in a parent class are not dumped by default. serialize_as_any must be passed.
 pprint(obj.model_dump(serialize_as_any=True))
 
+
+# TODO: honestly i don't know how IRIs work anymore lmao
 application_version = observable.ApplicationVersion(
     version="1.0",
 )

@@ -98,6 +98,8 @@ class Thing(BaseModel):
             # Always exclude unset fields and those considered internal
             if value is None:
                 continue
+            if isinstance(value, list) and len(value) == 0:
+                continue
             if field in ["prefix_iri", "prefix_label", "internal_id"]:
                 continue
 

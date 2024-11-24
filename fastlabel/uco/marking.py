@@ -4,10 +4,6 @@ Auto-generated classes from the SHACL graph in marking.ttl.
 This file was generated using the `case_models.py` script.
 """
 
-from typing import Optional
-
-from pydantic import Field
-
 from fastlabel.uco import core
 
 
@@ -27,7 +23,7 @@ class LicenseMarking(MarkingModel):
     restrictions that apply to the data.
     """
 
-    definitionType: Optional[str] = None
+    definitionType: str | list[str] | None = []
     license: str
 
 
@@ -38,9 +34,7 @@ class MarkingDefinition(core.MarkingDefinitionAbstraction):
     and other guidance for how marked data can be used and shared.
     """
 
-    definition: Optional[MarkingModel] = Field(
-        default=None, json_schema_extra={"IRI": True}
-    )
+    definition: MarkingModel | list[MarkingModel] | None = []
     definitionType: str
 
 
@@ -55,8 +49,8 @@ class ReleaseToMarking(MarkingModel):
     marking exists that allows sharing with other members of the community.
     """
 
-    definitionType: Optional[str] = None
-    authorizedIdentities: str
+    definitionType: str | list[str] | None = []
+    authorizedIdentities: str | list[str] = []
 
 
 class StatementMarking(MarkingModel):
@@ -70,7 +64,7 @@ class StatementMarking(MarkingModel):
     copyright information, such as 'Copyright 2014 Acme Inc.'.
     """
 
-    definitionType: Optional[str] = None
+    definitionType: str | list[str] | None = []
     statement: str
 
 
@@ -85,7 +79,7 @@ class TermsOfUseMarking(MarkingModel):
     such as 'Acme Inc. is not responsible for the content of this file'.
     """
 
-    definitionType: Optional[str] = None
+    definitionType: str | list[str] | None = []
     termsOfUse: str
 
 
@@ -97,7 +91,5 @@ class GranularMarking(core.UcoInherentCharacterizationThing):
     particular UCO object.
     """
 
-    marking_: Optional[MarkingDefinition] = Field(
-        default=None, json_schema_extra={"IRI": True}
-    )
-    contentSelectors: Optional[str] = None
+    marking_: MarkingDefinition | list[MarkingDefinition] | None = []
+    contentSelectors: str | list[str] | None = []

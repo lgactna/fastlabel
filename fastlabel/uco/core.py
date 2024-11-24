@@ -5,7 +5,7 @@ This file was generated using the `case_models.py` script.
 """
 
 from enum import Enum
-from typing import Any, Optional
+from typing import Any
 
 from pydantic import AwareDatetime, Field
 
@@ -36,9 +36,9 @@ class ExternalReference(UcoInherentCharacterizationThing):
     Characteristics of a reference to a resource outside of the UCO.
     """
 
-    referenceURL: Optional[XMLSchema.xsd_anyURI] = None
-    definingContext: Optional[str] = None
-    externalIdentifier: Optional[str] = None
+    referenceURL: XMLSchema.xsd_anyURI | None = None
+    definingContext: str | None = None
+    externalIdentifier: str | None = None
 
 
 class Facet(UcoInherentCharacterizationThing):
@@ -67,17 +67,15 @@ class UcoObject(UcoThing):
     all explicit and inter-relatable content objects.
     """
 
-    externalReference: Optional[ExternalReference] = Field(
-        default=None, json_schema_extra={"IRI": True}
-    )
-    hasFacet: Optional[Facet] = Field(default=None, json_schema_extra={"IRI": True})
-    objectCreatedTime: Optional[AwareDatetime] = None
-    modifiedTime: Optional[AwareDatetime] = None
-    name: Optional[str] = None
-    specVersion: Optional[str] = None
-    description: Optional[str] = None
-    tag: Optional[str] = None
-    objectStatus: Optional[ObjectStatusVocab] = None
+    externalReference: ExternalReference | list[ExternalReference] | None = []
+    hasFacet: Facet | list[Facet] | None = []
+    objectCreatedTime: AwareDatetime | None = None
+    modifiedTime: AwareDatetime | list[AwareDatetime] | None = []
+    name: str | None = None
+    specVersion: str | None = None
+    description: str | list[str] | None = []
+    tag: str | list[str] | None = []
+    objectStatus: ObjectStatusVocab | None = None
 
 
 class Assertion(UcoObject):
@@ -85,7 +83,7 @@ class Assertion(UcoObject):
     An assertion is a statement declared to be true.
     """
 
-    statement: Optional[str] = None
+    statement: str | list[str] | None = []
 
 
 class AttributedName(UcoObject):
@@ -94,7 +92,7 @@ class AttributedName(UcoObject):
     authority.
     """
 
-    namingAuthority: Optional[str] = None
+    namingAuthority: str | None = None
 
 
 class Compilation(UcoObject):
@@ -108,9 +106,9 @@ class ControlledVocabulary(UcoObject):
     A controlled vocabulary is an explicitly constrained set of string values.
     """
 
-    constrainingVocabularyReference: Optional[XMLSchema.xsd_anyURI] = None
+    constrainingVocabularyReference: XMLSchema.xsd_anyURI | None = None
     value: str
-    constrainingVocabularyName: Optional[str] = None
+    constrainingVocabularyName: str | None = None
 
 
 class Event(UcoObject):
@@ -119,15 +117,11 @@ class Event(UcoObject):
     happen).
     """
 
-    eventContext: Optional[UcoObject] = Field(
-        default=None, json_schema_extra={"IRI": True}
-    )
-    eventAttribute: Optional[dict[str, Any]] = Field(
-        default=None, json_schema_extra={"IRI": True}
-    )
-    endTime: Optional[AwareDatetime] = None
-    startTime: Optional[AwareDatetime] = None
-    eventType: Optional[str] = None
+    eventContext: UcoObject | list[UcoObject] | None = []
+    eventAttribute: dict[str, Any] | list[dict[str, Any]] | None = []
+    endTime: AwareDatetime | list[AwareDatetime] | None = []
+    startTime: AwareDatetime | list[AwareDatetime] | None = []
+    eventType: str | list[str] | None = []
 
 
 class IdentityAbstraction(UcoObject):
@@ -170,11 +164,11 @@ class Relationship(UcoObject):
     """
 
     target: UcoObject = Field(json_schema_extra={"IRI": True})
-    source: UcoObject = Field(json_schema_extra={"IRI": True})
+    source: UcoObject | list[UcoObject] = []
     isDirectional: bool
-    endTime: Optional[AwareDatetime] = None
-    startTime: Optional[AwareDatetime] = None
-    kindOfRelationship: Optional[str] = None
+    endTime: AwareDatetime | list[AwareDatetime] | None = []
+    startTime: AwareDatetime | list[AwareDatetime] | None = []
+    kindOfRelationship: str | None = None
 
 
 class Annotation(Assertion):
@@ -182,7 +176,7 @@ class Annotation(Assertion):
     An annotation is an assertion made in relation to one or more objects.
     """
 
-    object: UcoObject = Field(json_schema_extra={"IRI": True})
+    object: UcoObject | list[UcoObject] = []
 
 
 class ContextualCompilation(Compilation):
@@ -192,7 +186,7 @@ class ContextualCompilation(Compilation):
     associated with a given person).
     """
 
-    object: Optional[UcoObject] = Field(default=None, json_schema_extra={"IRI": True})
+    object: UcoObject | list[UcoObject] | None = []
 
 
 class EnclosingCompilation(Compilation):
@@ -200,7 +194,7 @@ class EnclosingCompilation(Compilation):
     An enclosing compilation is a container for a grouping of things.
     """
 
-    object: UcoObject = Field(json_schema_extra={"IRI": True})
+    object: UcoObject | list[UcoObject] = []
 
 
 class Grouping(ContextualCompilation):
@@ -208,7 +202,7 @@ class Grouping(ContextualCompilation):
     A grouping is a compilation of referenced UCO content with a shared context.
     """
 
-    context: Optional[str] = None
+    context: str | list[str] | None = []
 
 
 class Bundle(EnclosingCompilation):
