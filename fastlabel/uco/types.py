@@ -27,7 +27,7 @@ class Hash(core.UcoInherentCharacterizationThing):
     [based on https://en.wikipedia.org/wiki/Cryptographic_hash_function]
     """
 
-    hashValue: XMLSchema.hexBinary
+    hashValue: XMLSchema.xsd_hexBinary
     hashMethod: Optional[vocabulary.HashNameVocab] = None
 
 
