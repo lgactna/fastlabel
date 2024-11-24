@@ -1,11 +1,51 @@
-
 """
 Auto-generated classes from the SHACL graph in core.ttl.
 
 This file was generated using the `case_models.py` script.
 """
 
-class UcoObject(core.UcoThing):
+from typing import Any, Optional
+
+from fastlabel.case import owl, types
+
+
+class UcoThing(owl.Thing):
+    """
+    UcoThing is the top-level class within UCO.
+    """
+
+    pass
+
+
+class UcoInherentCharacterizationThing(UcoThing):
+    """
+    A UCO inherent characterization thing is a grouping of characteristics
+    unique to a particular inherent aspect of a UCO domain object.
+    """
+
+    pass
+
+
+class ExternalReference(UcoInherentCharacterizationThing):
+    """
+    Characteristics of a reference to a resource outside of the UCO.
+    """
+
+    referenceURL: Optional[str] = None
+    definingContext: Optional[str] = None
+    externalIdentifier: Optional[str] = None
+
+
+class Facet(UcoInherentCharacterizationThing):
+    """
+    A facet is a grouping of characteristics singularly unique to a particular
+    inherent aspect of a UCO domain object.
+    """
+
+    pass
+
+
+class UcoObject(UcoThing):
     """
     A UCO object is a representation of a fundamental concept either directly
     inherent to the cyber domain or indirectly related to the cyber domain and
@@ -17,8 +57,6 @@ class UcoObject(core.UcoThing):
 
     externalReference: Optional[ExternalReference] = None
     hasFacet: Optional[Facet] = None
-    createdBy: Optional[IdentityAbstraction] = None
-    objectMarking: Optional[MarkingDefinitionAbstraction] = None
     objectCreatedTime: Optional[str] = None
     modifiedTime: Optional[str] = None
     name: Optional[str] = None
@@ -26,7 +64,8 @@ class UcoObject(core.UcoThing):
     description: Optional[str] = None
     tag: Optional[str] = None
 
-class ConfidenceFacet(core.Facet):
+
+class ConfidenceFacet(Facet):
     """
     A confidence is a grouping of characteristics unique to an asserted level of
     certainty in the accuracy of some information.
@@ -34,7 +73,36 @@ class ConfidenceFacet(core.Facet):
 
     confidence: int
 
-class MarkingDefinitionAbstraction(core.UcoObject):
+
+class IdentityAbstraction(UcoObject):
+    """
+    An identity abstraction is a grouping of identifying characteristics unique
+    to an individual or organization. This class is an ontological structural
+    abstraction for this concept. Implementations of this concept should utilize
+    the identity:Identity class.
+    """
+
+    pass
+
+
+class Compilation(UcoObject):
+    """
+    A compilation is a grouping of things.
+    """
+
+    pass
+
+
+class AttributedName(UcoObject):
+    """
+    An attributed name is a name of an entity issued by some attributed naming
+    authority.
+    """
+
+    namingAuthority: Optional[str] = None
+
+
+class MarkingDefinitionAbstraction(UcoObject):
     """
     A marking definition abstraction is a grouping of characteristics unique to
     the expression of a specific data marking conveying restrictions,
@@ -44,65 +112,31 @@ class MarkingDefinitionAbstraction(core.UcoObject):
     class.
     """
 
-
-class Annotation(core.Assertion):
-    """
-    An annotation is an assertion made in relation to one or more objects.
-    """
-
-    object: UcoObject
-
-class UcoInherentCharacterizationThing(core.UcoThing):
-    """
-    A UCO inherent characterization thing is a grouping of characteristics
-    unique to a particular inherent aspect of a UCO domain object.
-    """
+    pass
 
 
-class Assertion(core.UcoObject):
+class Assertion(UcoObject):
     """
     An assertion is a statement declared to be true.
     """
 
     statement: Optional[str] = None
 
-class Event(core.UcoObject):
+
+class Event(UcoObject):
     """
     An Event is a noteworthy occurrence (something that happens or might
     happen).
     """
 
     eventContext: Optional[UcoObject] = None
-    eventAttribute: Optional[Dictionary] = None
+    eventAttribute: Optional[types.Dictionary] = None
     endTime: Optional[str] = None
     startTime: Optional[str] = None
     eventType: Optional[str] = None
 
-class UcoThing(owl.Thing):
-    """
-    UcoThing is the top-level class within UCO.
-    """
 
-
-class IdentityAbstraction(core.UcoObject):
-    """
-    An identity abstraction is a grouping of identifying characteristics unique
-    to an individual or organization. This class is an ontological structural
-    abstraction for this concept. Implementations of this concept should utilize
-    the identity:Identity class.
-    """
-
-
-class ControlledVocabulary(core.UcoObject):
-    """
-    A controlled vocabulary is an explicitly constrained set of string values.
-    """
-
-    constrainingVocabularyReference: Optional[str] = None
-    value: str
-    constrainingVocabularyName: Optional[str] = None
-
-class Relationship(core.UcoObject):
+class Relationship(UcoObject):
     """
     A relationship is a grouping of characteristics unique to an assertion that
     one or more objects are related to another object in some way.
@@ -115,7 +149,43 @@ class Relationship(core.UcoObject):
     startTime: Optional[str] = None
     kindOfRelationship: Optional[str] = None
 
-class ContextualCompilation(core.Compilation):
+
+class ModusOperandi(UcoObject):
+    """
+    A modus operandi is a particular method of operation (how a particular
+    entity behaves or the resources they use).
+    """
+
+    pass
+
+
+class Item(UcoObject):
+    """
+    An item is a distinct article or unit.
+    """
+
+    pass
+
+
+class ControlledVocabulary(UcoObject):
+    """
+    A controlled vocabulary is an explicitly constrained set of string values.
+    """
+
+    constrainingVocabularyReference: Optional[str] = None
+    value: str
+    constrainingVocabularyName: Optional[str] = None
+
+
+class EnclosingCompilation(Compilation):
+    """
+    An enclosing compilation is a container for a grouping of things.
+    """
+
+    object: UcoObject
+
+
+class ContextualCompilation(Compilation):
     """
     A contextual compilation is a grouping of things sharing some context (e.g.,
     a set of network connections observed on a given day, all accounts
@@ -124,67 +194,27 @@ class ContextualCompilation(core.Compilation):
 
     object: UcoObject
 
-class Item(core.UcoObject):
-    """
-    An item is a distinct article or unit.
-    """
 
-
-class ExternalReference(core.UcoInherentCharacterizationThing):
+class Annotation(Assertion):
     """
-    Characteristics of a reference to a resource outside of the UCO.
-    """
-
-    referenceURL: Optional[str] = None
-    definingContext: Optional[str] = None
-    externalIdentifier: Optional[str] = None
-
-class EnclosingCompilation(core.Compilation):
-    """
-    An enclosing compilation is a container for a grouping of things.
+    An annotation is an assertion made in relation to one or more objects.
     """
 
     object: UcoObject
 
-class Bundle(core.EnclosingCompilation):
+
+class Bundle(EnclosingCompilation):
     """
     A bundle is a container for a grouping of UCO content with no presumption of
     shared context.
     """
 
-
-class Facet(core.UcoInherentCharacterizationThing):
-    """
-    A facet is a grouping of characteristics singularly unique to a particular
-    inherent aspect of a UCO domain object.
-    """
+    pass
 
 
-class ModusOperandi(core.UcoObject):
-    """
-    A modus operandi is a particular method of operation (how a particular
-    entity behaves or the resources they use).
-    """
-
-
-class AttributedName(core.UcoObject):
-    """
-    An attributed name is a name of an entity issued by some attributed naming
-    authority.
-    """
-
-    namingAuthority: Optional[str] = None
-
-class Grouping(core.ContextualCompilation):
+class Grouping(ContextualCompilation):
     """
     A grouping is a compilation of referenced UCO content with a shared context.
     """
 
     context: Optional[str] = None
-
-class Compilation(core.UcoObject):
-    """
-    A compilation is a grouping of things.
-    """
-
-

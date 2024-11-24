@@ -398,17 +398,18 @@ core:UcoObject
 			sh:nodeKind sh:IRI ;
 			sh:path core:hasFacet ;
 		] ,
-		[
-			sh:class core:IdentityAbstraction ;
-			sh:maxCount "1"^^xsd:integer ;
-			sh:nodeKind sh:IRI ;
-			sh:path core:createdBy ;
-		] ,
-		[
-			sh:class core:MarkingDefinitionAbstraction ;
-			sh:nodeKind sh:IRI ;
-			sh:path core:objectMarking ;
-		] ,
+		# These create circular dependencies and cannot be supported.
+		# [
+		# 	sh:class core:IdentityAbstraction ;
+		# 	sh:maxCount "1"^^xsd:integer ;
+		# 	sh:nodeKind sh:IRI ;
+		# 	sh:path core:createdBy ;
+		# ] ,
+		# [
+		# 	sh:class core:MarkingDefinitionAbstraction ;
+		# 	sh:nodeKind sh:IRI ;
+		# 	sh:path core:objectMarking ;
+		# ] ,
 		[
 			sh:datatype xsd:dateTime ;
 			sh:maxCount "1"^^xsd:integer ;

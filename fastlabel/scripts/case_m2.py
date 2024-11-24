@@ -84,7 +84,7 @@ def generate_classes_from_graph(g: Graph) -> str:
     for vocab_name, members in vocabularies.items():
         enum_definitions += f"class {vocab_name}(str, Enum):\n"
         for member in members:
-            enum_member_name = re.sub(r'\W|^(?=\d)', '_', member).upper()
+            enum_member_name = re.sub(r"\W|^(?=\d)", "_", member).upper()
             enum_definitions += f"    {enum_member_name} = '{member}'\n"
         enum_definitions += "\n"
 
@@ -93,7 +93,7 @@ def generate_classes_from_graph(g: Graph) -> str:
         class_name = get_local_name(cls)
         # Get superclass (if any)
         superclasses = [get_local_name(o) for o in g.objects(cls, RDFS.subClassOf)]
-        superclass = superclasses[0] if superclasses else 'BaseModel'
+        superclass = superclasses[0] if superclasses else "BaseModel"
 
         # Get rdfs:comment for docstring
         comment = None
@@ -122,7 +122,7 @@ def generate_classes_from_graph(g: Graph) -> str:
             validation_messages = []
 
             # Handle sh:or constraints
-            or_list = g.value(prop_list, SH['or'])
+            or_list = g.value(prop_list, SH["or"])
             if or_list:
                 # If there is an sh:or constraint
                 for or_constraint in g.items(or_list):
@@ -181,6 +181,7 @@ def generate_classes_from_graph(g: Graph) -> str:
     output = enum_definitions + "\n" + class_definitions
     return output
 
+
 def process_constraint(g: Graph, constraint_node, vocabularies):
     # Handle datatype
     datatype = g.value(constraint_node, SH.datatype)
@@ -193,16 +194,17 @@ def process_constraint(g: Graph, constraint_node, vocabularies):
             if vocab_name in vocabularies:
                 python_type = vocab_name
             else:
-                python_type = 'str'
+                python_type = "str"
     else:
         # Handle sh:class
-        prop_class = g.value(constraint_node, SH['class'])
+        prop_class = g.value(constraint_node, SH["class"])
         if prop_class:
             python_type = get_local_name(prop_class)
         else:
-            python_type = 'Any'
+            python_type = "Any"
 
     return python_type
+
 
 if __name__ == "__main__":
     for artifact_file in get_artifacts_dir().glob("*/*.ttl"):

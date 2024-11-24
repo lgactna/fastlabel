@@ -1,9 +1,13 @@
-
 """
 Auto-generated classes from the SHACL graph in location.ttl.
 
 This file was generated using the `case_models.py` script.
 """
+
+from typing import Any, Optional
+
+from fastlabel.case import core
+
 
 class LatLongCoordinatesFacet(core.Facet):
     """
@@ -15,6 +19,7 @@ class LatLongCoordinatesFacet(core.Facet):
     altitude: Optional[float] = None
     latitude: Optional[float] = None
     longitude: Optional[float] = None
+
 
 class GPSCoordinatesFacet(core.Facet):
     """
@@ -28,11 +33,6 @@ class GPSCoordinatesFacet(core.Facet):
     pdop: Optional[float] = None
     tdop: Optional[float] = None
     vdop: Optional[float] = None
-
-class Location(core.UcoObject):
-    """
-    A location is a geospatial place, site, or position.
-    """
 
 
 class SimpleAddressFacet(core.Facet):
@@ -48,3 +48,10 @@ class SimpleAddressFacet(core.Facet):
     region: Optional[str] = None
     street: Optional[str] = None
 
+
+class Location(core.UcoObject):
+    """
+    A location is a geospatial place, site, or position.
+    """
+
+    pass
