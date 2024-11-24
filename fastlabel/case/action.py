@@ -4,9 +4,9 @@ Auto-generated classes from the SHACL graph in action.ttl.
 This file was generated using the `case_models.py` script.
 """
 
-from typing import Any, Optional
+from typing import Optional
 
-from fastlabel.case import core, location
+from fastlabel.case import core, location, vocabulary
 
 
 class Action(core.UcoObject):
@@ -26,9 +26,7 @@ class Action(core.UcoObject):
     endTime: Optional[str] = None
     startTime: Optional[str] = None
     actionCount: Optional[int] = None
-    actionStatus: Optional[str] = None
-    actionStatus: Optional[Any] = None
-    actionStatus: Optional[Any] = None
+    actionStatus: Optional[vocabulary.ActionStatusTypeVocab] = None
 
 
 class ActionArgumentFacet(core.Facet):
@@ -63,9 +61,7 @@ class ActionFrequencyFacet(core.Facet):
     rate: float
     scale: str
     units: str
-    trend: Optional[str] = None
-    trend: Any
-    trend: Optional[Any] = None
+    trend: Optional[vocabulary.TrendVocab] = None
 
 
 class ActionPattern(Action):
@@ -95,4 +91,3 @@ class ActionLifecycle(ActionPattern):
     endTime: Optional[str] = None
     startTime: Optional[str] = None
     actionCount: Optional[int] = None
-    actionStatus: Optional[Any] = None

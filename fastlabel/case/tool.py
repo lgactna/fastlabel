@@ -6,7 +6,7 @@ This file was generated using the `case_models.py` script.
 
 from typing import Optional
 
-from fastlabel.case import configuration, core, identity
+from fastlabel.case import XMLSchema, configuration, core, identity
 
 
 class BuildUtilityType(core.UcoInherentCharacterizationThing):
@@ -53,7 +53,7 @@ class Tool(core.UcoObject):
     """
 
     creator: Optional[identity.Identity] = None
-    references: Optional[str] = None
+    references: Optional[XMLSchema.anyURI] = None
     servicePack: Optional[str] = None
     toolType: Optional[str] = None
     version: Optional[str] = None

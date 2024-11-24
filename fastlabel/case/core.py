@@ -7,7 +7,7 @@ This file was generated using the `case_models.py` script.
 from enum import Enum
 from typing import Optional
 
-from fastlabel.case import owl, types
+from fastlabel.case import XMLSchema, owl, types
 
 
 class ObjectStatusVocab(str, Enum):
@@ -34,7 +34,7 @@ class ExternalReference(UcoInherentCharacterizationThing):
     Characteristics of a reference to a resource outside of the UCO.
     """
 
-    referenceURL: Optional[str] = None
+    referenceURL: Optional[XMLSchema.anyURI] = None
     definingContext: Optional[str] = None
     externalIdentifier: Optional[str] = None
 
@@ -73,7 +73,7 @@ class UcoObject(UcoThing):
     specVersion: Optional[str] = None
     description: Optional[str] = None
     tag: Optional[str] = None
-    objectStatus: Optional[str] = None
+    objectStatus: Optional[ObjectStatusVocab] = None
 
 
 class Assertion(UcoObject):
@@ -104,7 +104,7 @@ class ControlledVocabulary(UcoObject):
     A controlled vocabulary is an explicitly constrained set of string values.
     """
 
-    constrainingVocabularyReference: Optional[str] = None
+    constrainingVocabularyReference: Optional[XMLSchema.anyURI] = None
     value: str
     constrainingVocabularyName: Optional[str] = None
 
