@@ -1,4 +1,4 @@
-def generate_docstring(comment: str, width: int = 76) -> str:
+def generate_docstring(comment: str | None, width: int = 76) -> str:
     """
     Break the comment into a multi-line docstring, capped at 80 characters
     per line (including 4 spaces of indentation).

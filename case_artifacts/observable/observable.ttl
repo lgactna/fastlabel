@@ -5062,10 +5062,15 @@ observable:ObservableRelationship
 	sh:property
 		[
 			sh:class observable:Observable ;
+			sh:maxCount "1"^^xsd:integer ;
+			sh:minCount "1"^^xsd:integer ;
 			sh:path core:source ;
+			
 		] ,
 		[
 			sh:class observable:Observable ;
+			sh:maxCount "1"^^xsd:integer ;
+			sh:minCount "1"^^xsd:integer ;
 			sh:path core:target ;
 		]
 		;
