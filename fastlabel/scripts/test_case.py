@@ -26,6 +26,13 @@ pprint(obj.model_dump(serialize_as_any=True))
 application_version = observable.ApplicationVersion(
     version="1.0",
 )
+
+# The unknowability of knowing if something should be a reference or not means
+# that I've decided to support both patterns. If you want something to be a reference,
+# you can call the ref() method to get a copy of the object marked as a reference.
+#
+# At that point, you can work on either object, since the only thing that matters
+# is the @id field, which is the same for both objects.
 application_facet = observable.ApplicationFacet(
     installedVersionHistory=[application_version.ref(), application_version]
 )
