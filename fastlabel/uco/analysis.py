@@ -6,6 +6,8 @@ This file was generated using the `case_models.py` script.
 
 from typing import Optional
 
+from pydantic import Field
+
 from fastlabel.uco import action, core
 
 
@@ -39,8 +41,12 @@ class AnalyticResult(core.Assertion):
     an analysis action.
     """
 
-    originatingAnalysis: Optional[Analysis] = None
-    resultContent: Optional[core.UcoObject] = None
+    originatingAnalysis: Optional[Analysis] = Field(
+        default=None, json_schema_extra={"IRI": True}
+    )
+    resultContent: Optional[core.UcoObject] = Field(
+        default=None, json_schema_extra={"IRI": True}
+    )
 
 
 class ArtifactClassificationResultFacet(AnalyticResultFacet):
@@ -49,4 +55,6 @@ class ArtifactClassificationResultFacet(AnalyticResultFacet):
     unique to the results of an artifact classification analysis action.
     """
 
-    classification: Optional[ArtifactClassification] = None
+    classification: Optional[ArtifactClassification] = Field(
+        default=None, json_schema_extra={"IRI": True}
+    )

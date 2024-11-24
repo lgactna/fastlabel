@@ -27,4 +27,12 @@ obj = observable.Image(hasFacet=disk_facet)
 # https://docs.pydantic.dev/latest/concepts/serialization/#serializing-with-duck-typing
 # Normally models are dumped recursively, but fields present in a subclass and not
 # in a parent class are not dumped by default. serialize_as_any must be passed.
-pprint(obj.model_dump(serialize_as_any=True))
+# pprint(obj.model_dump(serialize_as_any=True))
+
+application_version = observable.ApplicationVersion(
+    version="1.0",
+)
+application_facet = observable.ApplicationFacet(
+    installedVersionHistory=application_version
+)
+pprint(application_facet.model_dump(serialize_as_any=True))

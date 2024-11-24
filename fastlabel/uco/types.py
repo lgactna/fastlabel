@@ -6,6 +6,8 @@ This file was generated using the `case_models.py` script.
 
 from typing import Optional
 
+from pydantic import Field
+
 from fastlabel.uco import XMLSchema, co, core, vocabulary
 
 
@@ -57,7 +59,9 @@ class Dictionary(core.UcoInherentCharacterizationThing):
     types:ImproperDictionary should be used instead of types:Dictionary.
     """
 
-    entry: Optional[DictionaryEntry] = None
+    entry: Optional[DictionaryEntry] = Field(
+        default=None, json_schema_extra={"IRI": True}
+    )
 
 
 class Thread(co.Bag):

@@ -17,13 +17,15 @@ def get_full_qualname(type: Type[Any]) -> str:
     """
     return ".".join([type.__module__, type.__name__])
 
+
 def get_class_as_jsonld(type: Type[Any]) -> str:
     """
     Get the fully qualified class name of a provided class, but in the format
     that JSON-LD expects.
     """
     module, lib = type.__module__.split(".")[-2:]
-    return f"{module}-{lib}:{type.__name__}" 
+    return f"{module}-{lib}:{type.__name__}"
+
 
 def get_field_names(cls: Type[Any]) -> dict[str, str]:
     """
@@ -88,7 +90,7 @@ class Thing(BaseModel):
         field_mapping = get_field_names(type(self))
 
         # Add each field to the dictionary
-        for field in self.model_fields:
+        for field, field_info in self.model_fields.items():
             # Get the value of the field
             value = getattr(self, field)
 
@@ -104,6 +106,11 @@ class Thing(BaseModel):
 
             # Get the corresponding field name in the JSON-LD mapping
             field_name = field_mapping[field]
+            
+            if "IRI" in field_info.json_schema_extra:
+                # This field is an IRI, so we should only include the @id and move on
+                result[field_name] = {"@id": value.computed_id}
+                continue
 
             if isinstance(value, BaseModel):
                 result[field_name] = value.model_dump()

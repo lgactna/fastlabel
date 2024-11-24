@@ -6,7 +6,7 @@ This file was generated using the `case_models.py` script.
 
 from typing import Optional
 
-from pydantic import AwareDatetime
+from pydantic import AwareDatetime, Field
 
 from fastlabel.uco import XMLSchema, configuration, core, identity
 
@@ -54,7 +54,9 @@ class Tool(core.UcoObject):
     particular function.
     """
 
-    creator: Optional[identity.Identity] = None
+    creator: Optional[identity.Identity] = Field(
+        default=None, json_schema_extra={"IRI": True}
+    )
     references: Optional[XMLSchema.xsd_anyURI] = None
     servicePack: Optional[str] = None
     toolType: Optional[str] = None
@@ -68,10 +70,18 @@ class BuildInformationType(core.UcoInherentCharacterizationThing):
     executable code.
     """
 
-    buildConfiguration: Optional[configuration.Configuration] = None
-    buildUtility: Optional[BuildUtilityType] = None
-    compilers: Optional[CompilerType] = None
-    libraries: Optional[LibraryType] = None
+    buildConfiguration: Optional[configuration.Configuration] = Field(
+        default=None, json_schema_extra={"IRI": True}
+    )
+    buildUtility: Optional[BuildUtilityType] = Field(
+        default=None, json_schema_extra={"IRI": True}
+    )
+    compilers: Optional[CompilerType] = Field(
+        default=None, json_schema_extra={"IRI": True}
+    )
+    libraries: Optional[LibraryType] = Field(
+        default=None, json_schema_extra={"IRI": True}
+    )
     compilationDate: Optional[AwareDatetime] = None
     buildID: Optional[str] = None
     buildLabel: Optional[str] = None
@@ -119,4 +129,6 @@ class BuildFacet(core.Facet):
     version of a software.
     """
 
-    buildInformation: Optional[BuildInformationType] = None
+    buildInformation: Optional[BuildInformationType] = Field(
+        default=None, json_schema_extra={"IRI": True}
+    )
