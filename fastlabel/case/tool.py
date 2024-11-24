@@ -1,26 +1,24 @@
+
 """
 Auto-generated classes from the SHACL graph in tool.ttl.
 
 This file was generated using the `case_models.py` script.
 """
 
+from fastlabel.case import (core, configuration, identity)
 from typing import Any, Optional
+from enum import Enum
 
-from fastlabel.case import configuration, core, identity
 
-
-class Tool(core.UcoObject):
+class BuildUtilityType(core.UcoInherentCharacterizationThing):
     """
-    A tool is an element of hardware and/or software utilized to carry out a
-    particular function.
+    A build utility type characterizes the tool used to convert from source code
+    to executable code for a particular version of software.
     """
 
-    creator: Optional[identity.Identity] = None
-    references: Optional[str] = None
-    servicePack: Optional[str] = None
-    toolType: Optional[str] = None
-    version: Optional[str] = None
-
+    buildUtilityName: Optional[str] = None
+    cpeid: Optional[str] = None
+    swid: Optional[str] = None
 
 class CompilerType(core.UcoInherentCharacterizationThing):
     """
@@ -37,18 +35,6 @@ class CompilerType(core.UcoInherentCharacterizationThing):
     cpeid: Optional[str] = None
     swid: Optional[str] = None
 
-
-class BuildUtilityType(core.UcoInherentCharacterizationThing):
-    """
-    A build utility type characterizes the tool used to convert from source code
-    to executable code for a particular version of software.
-    """
-
-    buildUtilityName: Optional[str] = None
-    cpeid: Optional[str] = None
-    swid: Optional[str] = None
-
-
 class LibraryType(core.UcoInherentCharacterizationThing):
     """
     A library type is a grouping of characteristics unique to a collection of
@@ -58,44 +44,17 @@ class LibraryType(core.UcoInherentCharacterizationThing):
     libraryName: Optional[str] = None
     libraryVersion: Optional[str] = None
 
-
-class MaliciousTool(Tool):
+class Tool(core.UcoObject):
     """
-    A malicious tool is an artifact of hardware and/or software utilized to
-    accomplish a malevolent task or purpose.
-    """
-
-    pass
-
-
-class DefensiveTool(Tool):
-    """
-    A defensive tool is an artifact of hardware and/or software utilized to
-    accomplish a task or purpose of guarding.
+    A tool is an element of hardware and/or software utilized to carry out a
+    particular function.
     """
 
-    pass
-
-
-class ConfiguredTool(Tool):
-    """
-    A ConfiguredTool is a Tool that is known to be configured to run in a more
-    specified manner than some unconfigured or less-configured Tool.
-    """
-
-    usesConfiguration: Optional[configuration.Configuration] = None
-    isConfigurationOf: Optional[Tool] = None
-
-
-class AnalyticTool(Tool):
-    """
-    An analytic tool is an artifact of hardware and/or software utilized to
-    accomplish a task or purpose of explanation, interpretation or logical
-    reasoning.
-    """
-
-    pass
-
+    creator: Optional[identity.Identity] = None
+    references: Optional[str] = None
+    servicePack: Optional[str] = None
+    toolType: Optional[str] = None
+    version: Optional[str] = None
 
 class BuildInformationType(core.UcoInherentCharacterizationThing):
     """
@@ -116,6 +75,39 @@ class BuildInformationType(core.UcoInherentCharacterizationThing):
     buildScript: Optional[str] = None
     buildVersion: Optional[str] = None
 
+class AnalyticTool(Tool):
+    """
+    An analytic tool is an artifact of hardware and/or software utilized to
+    accomplish a task or purpose of explanation, interpretation or logical
+    reasoning.
+    """
+
+    pass
+
+class MaliciousTool(Tool):
+    """
+    A malicious tool is an artifact of hardware and/or software utilized to
+    accomplish a malevolent task or purpose.
+    """
+
+    pass
+
+class DefensiveTool(Tool):
+    """
+    A defensive tool is an artifact of hardware and/or software utilized to
+    accomplish a task or purpose of guarding.
+    """
+
+    pass
+
+class ConfiguredTool(Tool):
+    """
+    A ConfiguredTool is a Tool that is known to be configured to run in a more
+    specified manner than some unconfigured or less-configured Tool.
+    """
+
+    usesConfiguration: Optional[configuration.Configuration] = None
+    isConfigurationOf: Optional[Tool] = None
 
 class BuildFacet(core.Facet):
     """
@@ -124,3 +116,4 @@ class BuildFacet(core.Facet):
     """
 
     buildInformation: Optional[BuildInformationType] = None
+

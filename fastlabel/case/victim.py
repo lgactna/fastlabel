@@ -1,12 +1,13 @@
+
 """
 Auto-generated classes from the SHACL graph in victim.ttl.
 
 This file was generated using the `case_models.py` script.
 """
 
+from fastlabel.case import (role)
 from typing import Any, Optional
-
-from fastlabel.case import role
+from enum import Enum
 
 
 class Victim(role.NeutralRole):
@@ -17,7 +18,6 @@ class Victim(role.NeutralRole):
 
     pass
 
-
 class VictimTargeting(Victim):
     """
     A victim targeting is a grouping of characteristics unique to people or
@@ -25,3 +25,4 @@ class VictimTargeting(Victim):
     """
 
     pass
+

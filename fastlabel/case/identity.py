@@ -1,21 +1,13 @@
+
 """
 Auto-generated classes from the SHACL graph in identity.ttl.
 
 This file was generated using the `case_models.py` script.
 """
 
+from fastlabel.case import (location, core)
 from typing import Any, Optional
-
-from fastlabel.case import core, location
-
-
-class Identity(core.IdentityAbstraction):
-    """
-    An identity is a grouping of identifying characteristics unique to an
-    individual or organization.
-    """
-
-    pass
+from enum import Enum
 
 
 class IdentityFacet(core.Facet):
@@ -26,45 +18,13 @@ class IdentityFacet(core.Facet):
 
     pass
 
-
-class Person(Identity):
+class Identity(core.IdentityAbstraction):
     """
-    A person is a grouping of identifying characteristics unique to a human
-    being regarded as an individual. [based on
-    https://www.lexico.com/en/definition/person]
+    An identity is a grouping of identifying characteristics unique to an
+    individual or organization.
     """
 
     pass
-
-
-class Organization(Identity):
-    """
-    An organization is a grouping of identifying characteristics unique to a
-    group of people who work together in an organized way for a shared purpose.
-    [based on
-    https://dictionary.cambridge.org/us/dictionary/english/organization]
-    """
-
-    pass
-
-
-class OccupationFacet(IdentityFacet):
-    """
-    Occupation is a grouping of characteristics unique to the job or profession
-    of an entity.
-    """
-
-    pass
-
-
-class CountryOfResidenceFacet(IdentityFacet):
-    """
-    Country of residence is a grouping of characteristics unique to information
-    related to the country, or countries, where an entity resides.
-    """
-
-    pass
-
 
 class AffiliationFacet(IdentityFacet):
     """
@@ -74,34 +34,14 @@ class AffiliationFacet(IdentityFacet):
 
     pass
 
-
-class VisaFacet(IdentityFacet):
+class LanguagesFacet(IdentityFacet):
     """
-    Visa is a grouping of characteristics unique to information related to a
-    person's ability to enter, leave, or stay for a specified period of time in
-    a country.
-    """
-
-    pass
-
-
-class IdentifierFacet(IdentityFacet):
-    """
-    Identifier is a grouping of characteristics unique to information that
-    uniquely and specifically identities an entity.
+    Languages is a grouping of characteristics unique to specific syntactically
+    and grammatically standardized forms of communication (human or computer) in
+    which an entity has proficiency (comprehends, speaks, reads, or writes).
     """
 
     pass
-
-
-class PersonalDetailsFacet(IdentityFacet):
-    """
-    Personal details is a grouping of characteristics unique to an identity
-    representing an individual person.
-    """
-
-    pass
-
 
 class SimpleNameFacet(IdentityFacet):
     """
@@ -114,62 +54,22 @@ class SimpleNameFacet(IdentityFacet):
     honorificPrefix: Optional[str] = None
     honorificSuffix: Optional[str] = None
 
-
-class BirthInformationFacet(IdentityFacet):
+class PhysicalInfoFacet(IdentityFacet):
     """
-    Birth information is a grouping of characteristics unique to information
-    pertaining to the birth of an entity.
-    """
-
-    birthdate: Optional[str] = None
-
-
-class LanguagesFacet(IdentityFacet):
-    """
-    Languages is a grouping of characteristics unique to specific syntactically
-    and grammatically standardized forms of communication (human or computer) in
-    which an entity has proficiency (comprehends, speaks, reads, or writes).
+    Physical info is a grouping of characteristics unique to the outwardly
+    observable nature of an individual person.
     """
 
     pass
 
-
-class NationalityFacet(IdentityFacet):
+class VisaFacet(IdentityFacet):
     """
-    Nationality is a grouping of characteristics unique to the condition of an
-    entity belonging to a particular nation.
-    """
-
-    pass
-
-
-class EventsFacet(IdentityFacet):
-    """
-    Events is a grouping of characteristics unique to information related to
-    specific relevant things that happen in the lifetime of an entity.
+    Visa is a grouping of characteristics unique to information related to a
+    person's ability to enter, leave, or stay for a specified period of time in
+    a country.
     """
 
     pass
-
-
-class OrganizationDetailsFacet(IdentityFacet):
-    """
-    Organization details is a grouping of characteristics unique to an identity
-    representing an administrative and functional structure.
-    """
-
-    pass
-
-
-class QualificationFacet(IdentityFacet):
-    """
-    Qualification is a grouping of characteristics unique to particular skills,
-    capabilities or their related achievements (educational, professional, etc.)
-    of an entity.
-    """
-
-    pass
-
 
 class AddressFacet(IdentityFacet):
     """
@@ -180,15 +80,70 @@ class AddressFacet(IdentityFacet):
 
     address: Optional[location.Location] = None
 
-
-class PhysicalInfoFacet(IdentityFacet):
+class QualificationFacet(IdentityFacet):
     """
-    Physical info is a grouping of characteristics unique to the outwardly
-    observable nature of an individual person.
+    Qualification is a grouping of characteristics unique to particular skills,
+    capabilities or their related achievements (educational, professional, etc.)
+    of an entity.
     """
 
     pass
 
+class EventsFacet(IdentityFacet):
+    """
+    Events is a grouping of characteristics unique to information related to
+    specific relevant things that happen in the lifetime of an entity.
+    """
+
+    pass
+
+class OrganizationDetailsFacet(IdentityFacet):
+    """
+    Organization details is a grouping of characteristics unique to an identity
+    representing an administrative and functional structure.
+    """
+
+    pass
+
+class OccupationFacet(IdentityFacet):
+    """
+    Occupation is a grouping of characteristics unique to the job or profession
+    of an entity.
+    """
+
+    pass
+
+class PersonalDetailsFacet(IdentityFacet):
+    """
+    Personal details is a grouping of characteristics unique to an identity
+    representing an individual person.
+    """
+
+    pass
+
+class BirthInformationFacet(IdentityFacet):
+    """
+    Birth information is a grouping of characteristics unique to information
+    pertaining to the birth of an entity.
+    """
+
+    birthdate: Optional[str] = None
+
+class IdentifierFacet(IdentityFacet):
+    """
+    Identifier is a grouping of characteristics unique to information that
+    uniquely and specifically identities an entity.
+    """
+
+    pass
+
+class CountryOfResidenceFacet(IdentityFacet):
+    """
+    Country of residence is a grouping of characteristics unique to information
+    related to the country, or countries, where an entity resides.
+    """
+
+    pass
 
 class RelatedIdentityFacet(IdentityFacet):
     """
@@ -196,3 +151,31 @@ class RelatedIdentityFacet(IdentityFacet):
     """
 
     pass
+
+class NationalityFacet(IdentityFacet):
+    """
+    Nationality is a grouping of characteristics unique to the condition of an
+    entity belonging to a particular nation.
+    """
+
+    pass
+
+class Person(Identity):
+    """
+    A person is a grouping of identifying characteristics unique to a human
+    being regarded as an individual. [based on
+    https://www.lexico.com/en/definition/person]
+    """
+
+    pass
+
+class Organization(Identity):
+    """
+    An organization is a grouping of identifying characteristics unique to a
+    group of people who work together in an organized way for a shared purpose.
+    [based on
+    https://dictionary.cambridge.org/us/dictionary/english/organization]
+    """
+
+    pass
+

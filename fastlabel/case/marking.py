@@ -1,12 +1,13 @@
+
 """
 Auto-generated classes from the SHACL graph in marking.ttl.
 
 This file was generated using the `case_models.py` script.
 """
 
+from fastlabel.case import (core)
 from typing import Any, Optional
-
-from fastlabel.case import core
+from enum import Enum
 
 
 class MarkingModel(core.UcoInherentCharacterizationThing):
@@ -18,17 +19,16 @@ class MarkingModel(core.UcoInherentCharacterizationThing):
 
     pass
 
-
-class MarkingDefinition(core.MarkingDefinitionAbstraction):
+class LicenseMarking(MarkingModel):
     """
-    A marking definition is a grouping of characteristics unique to the
-    expression of a specific data marking conveying restrictions, permissions,
-    and other guidance for how marked data can be used and shared.
+    A license marking is a grouping of characteristics unique to the expression
+    of data marking definitions (restrictions, permissions, and other guidance
+    for how data can be used and shared) to convey details of license
+    restrictions that apply to the data.
     """
 
-    definition: Optional[MarkingModel] = None
-    definitionType: str
-
+    definitionType: Optional[str] = None
+    license: str
 
 class StatementMarking(MarkingModel):
     """
@@ -44,6 +44,15 @@ class StatementMarking(MarkingModel):
     definitionType: Optional[str] = None
     statement: str
 
+class MarkingDefinition(core.MarkingDefinitionAbstraction):
+    """
+    A marking definition is a grouping of characteristics unique to the
+    expression of a specific data marking conveying restrictions, permissions,
+    and other guidance for how marked data can be used and shared.
+    """
+
+    definition: Optional[MarkingModel] = None
+    definitionType: str
 
 class TermsOfUseMarking(MarkingModel):
     """
@@ -59,19 +68,6 @@ class TermsOfUseMarking(MarkingModel):
     definitionType: Optional[str] = None
     termsOfUse: str
 
-
-class LicenseMarking(MarkingModel):
-    """
-    A license marking is a grouping of characteristics unique to the expression
-    of data marking definitions (restrictions, permissions, and other guidance
-    for how data can be used and shared) to convey details of license
-    restrictions that apply to the data.
-    """
-
-    definitionType: Optional[str] = None
-    license: str
-
-
 class ReleaseToMarking(MarkingModel):
     """
     A release-to marking is a grouping of characteristics unique to the
@@ -86,7 +82,6 @@ class ReleaseToMarking(MarkingModel):
     definitionType: Optional[str] = None
     authorizedIdentities: str
 
-
 class GranularMarking(core.UcoInherentCharacterizationThing):
     """
     A granular marking is a grouping of characteristics unique to specification
@@ -97,3 +92,4 @@ class GranularMarking(core.UcoInherentCharacterizationThing):
 
     marking: Optional[MarkingDefinition] = None
     contentSelectors: Optional[str] = None
+

@@ -1,20 +1,13 @@
+
 """
 Auto-generated classes from the SHACL graph in types.ttl.
 
 This file was generated using the `case_models.py` script.
 """
 
+from fastlabel.case import (core, co)
 from typing import Any, Optional
-
-from fastlabel.case import co, core
-
-
-class ThreadItem(co.Item):
-    """
-    A ThreadItem is a member of a thread.
-    """
-
-    itemContent: Optional[core.UcoObject] = None
+from enum import Enum
 
 
 class DictionaryEntry(core.UcoInherentCharacterizationThing):
@@ -25,6 +18,12 @@ class DictionaryEntry(core.UcoInherentCharacterizationThing):
     key: str
     value: str
 
+class ThreadItem(co.Item):
+    """
+    A ThreadItem is a member of a thread.
+    """
+
+    itemContent: Optional[core.UcoObject] = None
 
 class Hash(core.UcoInherentCharacterizationThing):
     """
@@ -40,18 +39,6 @@ class Hash(core.UcoInherentCharacterizationThing):
     hashMethod: Any
     hashMethod: Optional[Any] = None
 
-
-class Thread(co.Bag):
-    """
-    A semi-ordered array of items, that can be present in multiple copies.
-    Implemetation of a UCO Thread is similar to a Collections Ontology List,
-    except a Thread may fork and merge - that is, one of its members may have
-    two or more direct successors, and two or more direct predecessors.
-    """
-
-    item: Optional[ThreadItem] = None
-
-
 class ControlledDictionaryEntry(DictionaryEntry):
     """
     A controlled dictionary entry is a single (term/key, value) pair where the
@@ -59,7 +46,6 @@ class ControlledDictionaryEntry(DictionaryEntry):
     """
 
     pass
-
 
 class Dictionary(core.UcoInherentCharacterizationThing):
     """
@@ -74,11 +60,19 @@ class Dictionary(core.UcoInherentCharacterizationThing):
 
     entry: Optional[DictionaryEntry] = None
 
+class Thread(co.Bag):
+    """
+    A semi-ordered array of items, that can be present in multiple copies.
+    Implemetation of a UCO Thread is similar to a Collections Ontology List,
+    except a Thread may fork and merge - that is, one of its members may have
+    two or more direct successors, and two or more direct predecessors.
+    """
+
+    item: Optional[ThreadItem] = None
 
 class ImproperDictionary(Dictionary):
 
     repeatsKey: Optional[str] = None
-
 
 class ProperDictionary(Dictionary):
     """
@@ -88,7 +82,6 @@ class ProperDictionary(Dictionary):
 
     pass
 
-
 class ControlledDictionary(Dictionary):
     """
     A controlled dictionary is a list of (term/key, value) pairs where each
@@ -97,3 +90,4 @@ class ControlledDictionary(Dictionary):
     """
 
     entry: Optional[ControlledDictionaryEntry] = None
+

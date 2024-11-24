@@ -1,12 +1,13 @@
+
 """
 Auto-generated classes from the SHACL graph in location.ttl.
 
 This file was generated using the `case_models.py` script.
 """
 
+from fastlabel.case import (core)
 from typing import Any, Optional
-
-from fastlabel.case import core
+from enum import Enum
 
 
 class SimpleAddressFacet(core.Facet):
@@ -22,19 +23,6 @@ class SimpleAddressFacet(core.Facet):
     region: Optional[str] = None
     street: Optional[str] = None
 
-
-class LatLongCoordinatesFacet(core.Facet):
-    """
-    A lat long coordinates facet is a grouping of characteristics unique to the
-    expression of a geolocation as the intersection of specific latitude,
-    longitude, and altitude values.
-    """
-
-    altitude: Optional[float] = None
-    latitude: Optional[float] = None
-    longitude: Optional[float] = None
-
-
 class GPSCoordinatesFacet(core.Facet):
     """
     A GPS coordinates facet is a grouping of characteristics unique to the
@@ -48,6 +36,16 @@ class GPSCoordinatesFacet(core.Facet):
     tdop: Optional[float] = None
     vdop: Optional[float] = None
 
+class LatLongCoordinatesFacet(core.Facet):
+    """
+    A lat long coordinates facet is a grouping of characteristics unique to the
+    expression of a geolocation as the intersection of specific latitude,
+    longitude, and altitude values.
+    """
+
+    altitude: Optional[float] = None
+    latitude: Optional[float] = None
+    longitude: Optional[float] = None
 
 class Location(core.UcoObject):
     """
@@ -55,3 +53,4 @@ class Location(core.UcoObject):
     """
 
     pass
+

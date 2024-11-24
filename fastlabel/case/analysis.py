@@ -1,22 +1,13 @@
+
 """
 Auto-generated classes from the SHACL graph in analysis.ttl.
 
 This file was generated using the `case_models.py` script.
 """
 
+from fastlabel.case import (core, action)
 from typing import Any, Optional
-
-from fastlabel.case import action, core
-
-
-class ArtifactClassification(core.UcoInherentCharacterizationThing):
-    """
-    An artifact classification is a single specific assertion that a particular
-    class of a classification taxonomy applies to something.
-    """
-
-    classificationConfidence: Optional[float] = None
-    class_: str
+from enum import Enum
 
 
 class AnalyticResultFacet(core.Facet):
@@ -27,6 +18,14 @@ class AnalyticResultFacet(core.Facet):
 
     pass
 
+class ArtifactClassification(core.UcoInherentCharacterizationThing):
+    """
+    An artifact classification is a single specific assertion that a particular
+    class of a classification taxonomy applies to something.
+    """
+
+    classificationConfidence: Optional[float] = None
+    class_: str
 
 class Analysis(action.Action):
     """
@@ -36,7 +35,6 @@ class Analysis(action.Action):
 
     pass
 
-
 class ArtifactClassificationResultFacet(AnalyticResultFacet):
     """
     An artifact classification result facet is a grouping of characteristics
@@ -44,7 +42,6 @@ class ArtifactClassificationResultFacet(AnalyticResultFacet):
     """
 
     classification: Optional[ArtifactClassification] = None
-
 
 class AnalyticResult(core.Assertion):
     """
@@ -54,3 +51,4 @@ class AnalyticResult(core.Assertion):
 
     originatingAnalysis: Optional[Analysis] = None
     resultContent: Optional[core.UcoObject] = None
+
