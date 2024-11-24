@@ -2,6 +2,13 @@
 Generate models for the CASE library.
 
 Code generated with Copilot using the o1-preview model.
+
+---
+List of manual fixes:
+- The vocabulary in `fastlabel.case.investigation` should come from fastlabel.case,
+  not `fastlabel.uco`
+- eventAttribute in fastlabel.uco.core should be a Optional[dict[str, Any]], 
+  which means you should also remove the import to fastlabel.uco.types
 """
 
 import keyword
@@ -90,6 +97,10 @@ class Property(BaseModel):
     # Based on cardinality, is this a list?
     is_list: bool
 
+    # Is this property an IRI (and therefore should have its ID on serialization,
+    # not the full object?)
+    is_iri: bool
+
     # This will determine if `python_type` is considered an external import or not.
     # For example, if the type is `observable.ObservableObject`, and the namespace
     # is NOT `observable`, then it's an external import and will be typed as
@@ -144,11 +155,18 @@ class Property(BaseModel):
         if max_count and int(max_count.toPython()) != 1:
             is_list = True
 
+        # Handle IRI
+        is_iri = False
+        node_kind = g.value(prop_list, SH.nodeKind)
+        if node_kind and node_kind == SH.IRI:
+            is_iri = True
+
         return cls(
             field_name=field_name,
             python_type=python_type,
             is_required=is_required,
             is_list=is_list,
+            is_iri=is_iri,
             namespace=namespace,
         )
 
@@ -216,8 +234,18 @@ class Property(BaseModel):
         result = f"    {field_name}: {self.generate_type_annotation(containing_class)}"
 
         # Decide on the default value
+        # TODO: compatibility with IRI type fields?
+        #
+        # maybe the strat is to treat EVERYTHING as a list unless cardinality is
+        # specified, and if the number of items is exactly one, treat it as a scalar
+        # when serialization is done
         if self.is_list:
             result += " = []"
+        elif self.is_iri:
+            if self.is_required:
+                result += " = Field(json_schema_extra={'IRI': True})"
+            else:
+                result += " = Field(default=None, json_schema_extra={'IRI': True})"
         elif not self.is_required:
             result += " = None"
 
@@ -443,7 +471,7 @@ def generate_import_list(dependency_graph: dict[str, set[str]], namespace: str) 
     # Always import these, which can be removed if needed
     imports += "from typing import Any, Optional\n"
     imports += "from enum import Enum\n"
-    imports += "from pydantic import AwareDatetime\n"
+    imports += "from pydantic import AwareDatetime, Field\n"
 
     return imports
 

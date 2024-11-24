@@ -6,6 +6,8 @@ This file was generated using the `case_models.py` script.
 
 from typing import Optional
 
+from pydantic import Field
+
 from fastlabel.uco import core
 
 
@@ -36,7 +38,9 @@ class MarkingDefinition(core.MarkingDefinitionAbstraction):
     and other guidance for how marked data can be used and shared.
     """
 
-    definition: Optional[MarkingModel] = None
+    definition: Optional[MarkingModel] = Field(
+        default=None, json_schema_extra={"IRI": True}
+    )
     definitionType: str
 
 
@@ -93,5 +97,7 @@ class GranularMarking(core.UcoInherentCharacterizationThing):
     particular UCO object.
     """
 
-    marking_: Optional[MarkingDefinition] = None
+    marking_: Optional[MarkingDefinition] = Field(
+        default=None, json_schema_extra={"IRI": True}
+    )
     contentSelectors: Optional[str] = None

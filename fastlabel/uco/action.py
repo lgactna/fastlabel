@@ -6,7 +6,7 @@ This file was generated using the `case_models.py` script.
 
 from typing import Optional
 
-from pydantic import AwareDatetime
+from pydantic import AwareDatetime, Field
 
 from fastlabel.uco import core, location, vocabulary
 
@@ -16,15 +16,31 @@ class Action(core.UcoObject):
     An action is something that may be done or performed.
     """
 
-    subaction: Optional["Action"] = None
-    environment: Optional[core.UcoObject] = None
-    performer: Optional[core.UcoObject] = None
-    error: Optional[core.UcoObject] = None
-    instrument: Optional[core.UcoObject] = None
-    object: Optional[core.UcoObject] = None
-    participant: Optional[core.UcoObject] = None
-    result: Optional[core.UcoObject] = None
-    location_: Optional[location.Location] = None
+    subaction: Optional["Action"] = Field(default=None, json_schema_extra={"IRI": True})
+    environment: Optional[core.UcoObject] = Field(
+        default=None, json_schema_extra={"IRI": True}
+    )
+    performer: Optional[core.UcoObject] = Field(
+        default=None, json_schema_extra={"IRI": True}
+    )
+    error: Optional[core.UcoObject] = Field(
+        default=None, json_schema_extra={"IRI": True}
+    )
+    instrument: Optional[core.UcoObject] = Field(
+        default=None, json_schema_extra={"IRI": True}
+    )
+    object: Optional[core.UcoObject] = Field(
+        default=None, json_schema_extra={"IRI": True}
+    )
+    participant: Optional[core.UcoObject] = Field(
+        default=None, json_schema_extra={"IRI": True}
+    )
+    result: Optional[core.UcoObject] = Field(
+        default=None, json_schema_extra={"IRI": True}
+    )
+    location_: Optional[location.Location] = Field(
+        default=None, json_schema_extra={"IRI": True}
+    )
     endTime: Optional[AwareDatetime] = None
     startTime: Optional[AwareDatetime] = None
     actionCount: Optional[int] = None
@@ -79,7 +95,7 @@ class ArrayOfAction(core.UcoInherentCharacterizationThing):
     done or performed.
     """
 
-    action_: Action
+    action_: Action = Field(json_schema_extra={"IRI": True})
 
 
 class ActionLifecycle(ActionPattern):
@@ -88,8 +104,10 @@ class ActionLifecycle(ActionPattern):
     multiple actions or subordinate action lifecycles.
     """
 
-    phase: ArrayOfAction
-    error: Optional[core.UcoObject] = None
+    phase: ArrayOfAction = Field(json_schema_extra={"IRI": True})
+    error: Optional[core.UcoObject] = Field(
+        default=None, json_schema_extra={"IRI": True}
+    )
     endTime: Optional[AwareDatetime] = None
     startTime: Optional[AwareDatetime] = None
     actionCount: Optional[int] = None

@@ -6,7 +6,7 @@ This file was generated using the `case_models.py` script.
 
 from typing import Optional
 
-from pydantic import AwareDatetime
+from pydantic import AwareDatetime, Field
 
 from fastlabel.uco import core, location
 
@@ -49,7 +49,9 @@ class AddressFacet(IdentityFacet):
     identity.
     """
 
-    address: Optional[location.Location] = None
+    address: Optional[location.Location] = Field(
+        default=None, json_schema_extra={"IRI": True}
+    )
 
 
 class AffiliationFacet(IdentityFacet):

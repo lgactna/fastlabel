@@ -7,7 +7,7 @@ This file was generated using the `case_models.py` script.
 from enum import Enum
 from typing import Any, Optional
 
-from pydantic import AwareDatetime
+from pydantic import AwareDatetime, Field
 
 from fastlabel.uco import XMLSchema, owl
 
@@ -67,8 +67,10 @@ class UcoObject(UcoThing):
     all explicit and inter-relatable content objects.
     """
 
-    externalReference: Optional[ExternalReference] = None
-    hasFacet: Optional[Facet] = None
+    externalReference: Optional[ExternalReference] = Field(
+        default=None, json_schema_extra={"IRI": True}
+    )
+    hasFacet: Optional[Facet] = Field(default=None, json_schema_extra={"IRI": True})
     objectCreatedTime: Optional[AwareDatetime] = None
     modifiedTime: Optional[AwareDatetime] = None
     name: Optional[str] = None
@@ -117,8 +119,12 @@ class Event(UcoObject):
     happen).
     """
 
-    eventContext: Optional[UcoObject] = None
-    eventAttribute: Optional[dict[str, Any]] = None
+    eventContext: Optional[UcoObject] = Field(
+        default=None, json_schema_extra={"IRI": True}
+    )
+    eventAttribute: Optional[dict[str, Any]] = Field(
+        default=None, json_schema_extra={"IRI": True}
+    )
     endTime: Optional[AwareDatetime] = None
     startTime: Optional[AwareDatetime] = None
     eventType: Optional[str] = None
@@ -163,8 +169,8 @@ class Relationship(UcoObject):
     one or more objects are related to another object in some way.
     """
 
-    target: UcoObject
-    source: UcoObject
+    target: UcoObject = Field(json_schema_extra={"IRI": True})
+    source: UcoObject = Field(json_schema_extra={"IRI": True})
     isDirectional: bool
     endTime: Optional[AwareDatetime] = None
     startTime: Optional[AwareDatetime] = None
@@ -176,7 +182,7 @@ class Annotation(Assertion):
     An annotation is an assertion made in relation to one or more objects.
     """
 
-    object: UcoObject
+    object: UcoObject = Field(json_schema_extra={"IRI": True})
 
 
 class ContextualCompilation(Compilation):
@@ -186,7 +192,7 @@ class ContextualCompilation(Compilation):
     associated with a given person).
     """
 
-    object: Optional[UcoObject] = None
+    object: Optional[UcoObject] = Field(default=None, json_schema_extra={"IRI": True})
 
 
 class EnclosingCompilation(Compilation):
@@ -194,7 +200,7 @@ class EnclosingCompilation(Compilation):
     An enclosing compilation is a container for a grouping of things.
     """
 
-    object: UcoObject
+    object: UcoObject = Field(json_schema_extra={"IRI": True})
 
 
 class Grouping(ContextualCompilation):
