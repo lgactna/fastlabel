@@ -5,9 +5,12 @@ Manually-created file that centralizes all the logic for UCO/CASE by hijacking
 
 import datetime
 import uuid
-from typing import Any, Type
+from typing import Any, Type, TypeVar
 
 from pydantic import BaseModel, ConfigDict, Field, computed_field, model_serializer
+
+# Used to denote that Thing.ref() returns the same type.
+T = TypeVar("T", bound="Thing")
 
 
 def get_full_qualname(type: Type[Any]) -> str:
@@ -50,6 +53,7 @@ def get_field_names(cls: Type[Any]) -> dict[str, str]:
                     pass
     return field_origins
 
+
 def dump_scalar(value: Any) -> Any:
     # If the field is a scalar...
     if isinstance(value, Thing):
@@ -58,24 +62,25 @@ def dump_scalar(value: Any) -> Any:
         if value._is_reference:
             return {"@id": value.computed_id}
         return value.model_dump()
-    
+
     if type(value) in (str, int, float, bool, dict):
         # If the field is a basic type, we can just dump it.
         return value
-    
+
     if isinstance(value, datetime.datetime):
         # Dates must be handled specially.
         return {
             "@type": "xsd:dateTime",
             "@value": value.isoformat(timespec="milliseconds"),
         }
-    
+
     # If the field is not a basic type, it must be represented in the
     # `{"@type": "...", "@value": "..."}` format.
     return {
         "@type": get_class_as_jsonld(type(value)),
         "@value": value,
     }
+
 
 class Thing(BaseModel):
     """
@@ -95,10 +100,10 @@ class Thing(BaseModel):
 
     # Internal ID, used to generate @id
     internal_id: uuid.UUID = Field(default_factory=uuid.uuid4)
-    
-    # Whether this object should be serialized as a reference, i.e. only its @id 
+
+    # Whether this object should be serialized as a reference, i.e. only its @id
     # should be printed out. When attaching this object as a reference elsewhere,
-    # you should use the `ref()` method to get a copy of this object marked as a 
+    # you should use the `ref()` method to get a copy of this object marked as a
     # reference.
     _is_reference: bool = False
 
@@ -116,7 +121,7 @@ class Thing(BaseModel):
         # If this object is a reference, only print out the @id and move on.
         if self._is_reference:
             return {"@id": self.computed_id}
-        
+
         result: dict[str, Any] = {}
 
         # Include the @id and @type fields
@@ -127,7 +132,7 @@ class Thing(BaseModel):
         field_mapping = get_field_names(type(self))
 
         # Add each field to the dictionary
-        for field, field_info in self.model_fields.items():
+        for field, _field_info in self.model_fields.items():
             # Get the value of the field
             value = getattr(self, field)
 
@@ -144,19 +149,19 @@ class Thing(BaseModel):
 
             # If the value is a list, we must dump each value individually.
             # Otherwise, just the sole value can be dumped.
-            if isinstance(value, list):                
+            if isinstance(value, list):
                 result[field_name] = [dump_scalar(v) for v in value]
                 continue
             else:
                 result[field_name] = dump_scalar(value)
-            
+
         return result
 
-    def ref(self) -> "Thing":
+    def ref(self: T) -> T:
         """
         Return a copy of this object marked as a "reference". The object
         will be printed out as a reference when serialized.
-        
+
         Note that this is NOT a deep copy. You can think of this as just attaching
         the @id of the object to something else.
         """

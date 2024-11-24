@@ -209,7 +209,7 @@ class Property(BaseModel):
         Convert this property to a Pydantic field definition.
         """
         # Build the field definition
-        
+
         # NOTE: to the best of my knowledge, CASE/UCO does not use default values.
         #       They are not supported by this library.
 
