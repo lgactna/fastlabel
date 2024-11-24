@@ -4,7 +4,6 @@ Auto-generated classes from the SHACL graph in action.ttl.
 This file was generated using the `case_models.py` script.
 """
 
-from enum import Enum
 from typing import Any, Optional
 
 from fastlabel.case import core, location
@@ -74,8 +73,6 @@ class ActionPattern(Action):
     An action pattern is a grouping of characteristics unique to a combination
     of actions forming a consistent or characteristic arrangement.
     """
-
-    pass
 
 
 class ArrayOfAction(core.UcoInherentCharacterizationThing):

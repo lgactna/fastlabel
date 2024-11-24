@@ -4,8 +4,7 @@ Auto-generated classes from the SHACL graph in pattern.ttl.
 This file was generated using the `case_models.py` script.
 """
 
-from enum import Enum
-from typing import Any, Optional
+from typing import Optional
 
 from fastlabel.case import core
 
@@ -16,8 +15,6 @@ class Pattern(core.UcoObject):
     consistent or characteristic arrangement.
     """
 
-    pass
-
 
 class PatternExpression(core.UcoInherentCharacterizationThing):
     """
@@ -25,8 +22,6 @@ class PatternExpression(core.UcoInherentCharacterizationThing):
     logical expression defining a pattern (e.g., regular expression, SQL Select
     expression, etc.).
     """
-
-    pass
 
 
 class LogicalPattern(Pattern):

@@ -110,8 +110,6 @@ class DefinedEffectFacet(core.Facet):
     of an observable action in relation to one or more observable objects.
     """
 
-    pass
-
 
 class NTFSFilePermissionsFacet(core.Facet):
     """
@@ -120,8 +118,6 @@ class NTFSFilePermissionsFacet(core.Facet):
     NTFS (new technology filesystem) file system.
     """
 
-    pass
-
 
 class UNIXFilePermissionsFacet(core.Facet):
     """
@@ -129,8 +125,6 @@ class UNIXFilePermissionsFacet(core.Facet):
     access rights (e.g., view, change, navigate, execute) of a file on a UNIX
     file system.
     """
-
-    pass
 
 
 class AccountAuthenticationFacet(core.Facet):
@@ -445,8 +439,6 @@ class Observable(core.UcoObject):
     """
     An observable is a characterizable item or action within the digital domain.
     """
-
-    pass
 
 
 class AccountFacet(core.Facet):
@@ -1159,8 +1151,6 @@ class ObservableAction(action.Action):
     that may be done or performed within the digital domain.
     """
 
-    pass
-
 
 class Observation(action.Action):
     """
@@ -1223,8 +1213,6 @@ class EmailAddressFacet(DigitalAddressFacet):
     delivered to.
     """
 
-    pass
-
 
 class IPAddressFacet(DigitalAddressFacet):
     """
@@ -1234,8 +1222,6 @@ class IPAddressFacet(DigitalAddressFacet):
     that device.
     """
 
-    pass
-
 
 class InstantMessagingAddressFacet(DigitalAddressFacet):
     """
@@ -1243,8 +1229,6 @@ class InstantMessagingAddressFacet(DigitalAddressFacet):
     to an identifier assigned to enable routing and management of instant
     messaging digital communication.
     """
-
-    pass
 
 
 class MACAddressFacet(DigitalAddressFacet):
@@ -1255,8 +1239,6 @@ class MACAddressFacet(DigitalAddressFacet):
     link layer of a network segment.
     """
 
-    pass
-
 
 class SIPAddressFacet(DigitalAddressFacet):
     """
@@ -1265,8 +1247,6 @@ class SIPAddressFacet(DigitalAddressFacet):
     to enable routing and management of SIP standards conformant communication
     to or from that user loosely coupled from any particular devices.
     """
-
-    pass
 
 
 class X509CertificateFacet(core.Facet):
@@ -1299,8 +1279,6 @@ class ObservablePattern(Observable):
     An observable pattern is a grouping of characteristics unique to a logical
     pattern composed of observable object and observable action properties.
     """
-
-    pass
 
 
 class ObservableRelationship(core.Relationship):
@@ -1351,8 +1329,6 @@ class API(ObservableObject):
     follow, etc. [based on https://en.wikipedia.org/wiki/API]
     """
 
-    pass
-
 
 class ARPCache(ObservableObject):
     """
@@ -1361,8 +1337,6 @@ class ARPCache(ObservableObject):
     address (so the computer can effectively communicate with the IP address).
     [based on https://en.wikipedia.org/wiki/ARP_cache]
     """
-
-    pass
 
 
 class ARPCacheEntry(ObservableObject):
@@ -1373,16 +1347,12 @@ class ARPCacheEntry(ObservableObject):
     https://en.wikipedia.org/wiki/ARP_cache]
     """
 
-    pass
-
 
 class Account(ObservableObject):
     """
     An account is an arrangement with an entity to enable and control the
     provision of some capability or service.
     """
-
-    pass
 
 
 class Address(ObservableObject):
@@ -1391,15 +1361,11 @@ class Address(ObservableObject):
     information.
     """
 
-    pass
-
 
 class Application(ObservableObject):
     """
     An application is a particular software program designed for end users.
     """
-
-    pass
 
 
 class ApplicationAccountFacet(core.Facet):
@@ -1429,8 +1395,6 @@ class Audio(ObservableObject):
     Audio is a digital representation of sound.
     """
 
-    pass
-
 
 class AutonomousSystem(ObservableObject):
     """
@@ -1441,8 +1405,6 @@ class AutonomousSystem(ObservableObject):
     https://en.wikipedia.org/wiki/Autonomous_system_(Internet)]
     """
 
-    pass
-
 
 class BotConfiguration(ObservableObject):
     """
@@ -1451,8 +1413,6 @@ class BotConfiguration(ObservableObject):
     higher rate than would be possible for a human alone.
     """
 
-    pass
-
 
 class BrowserBookmark(ObservableObject):
     """
@@ -1460,8 +1420,6 @@ class BrowserBookmark(ObservableObject):
     browser software program to a particular WWW accessible resource. [based on
     https://techterms.com/definition/bookmark]
     """
-
-    pass
 
 
 class BrowserBookmarkFacet(core.Facet):
@@ -1488,8 +1446,6 @@ class BrowserCookie(ObservableObject):
     on https://en.wikipedia.org/wiki/HTTP_cookie]
     """
 
-    pass
-
 
 class BrowserCookieFacet(core.Facet):
     """
@@ -1514,16 +1470,12 @@ class Calendar(ObservableObject):
     A calendar is a collection of appointments, meetings, and events.
     """
 
-    pass
-
 
 class CalendarEntry(ObservableObject):
     """
     A calendar entry is an appointment, meeting or event within a collection of
     appointments, meetings and events.
     """
-
-    pass
 
 
 class CalendarEntryFacet(core.Facet):
@@ -1566,8 +1518,6 @@ class Call(ObservableObject):
     or more parties.
     """
 
-    pass
-
 
 class CallFacet(core.Facet):
     """
@@ -1602,8 +1552,6 @@ class Code(ObservableObject):
     [based on https://en.wikipedia.org/wiki/Software]
     """
 
-    pass
-
 
 class ComputerSpecification(ObservableObject):
     """
@@ -1611,8 +1559,6 @@ class ComputerSpecification(ObservableObject):
     electronic device that can store, retrieve, and process data. {based on
     merriam-webster.com/dictionary/computer]
     """
-
-    pass
 
 
 class ComputerSpecificationFacet(core.Facet):
@@ -1651,8 +1597,6 @@ class Contact(ObservableObject):
     single entity.
     """
 
-    pass
-
 
 class ContactEmail(core.UcoInherentCharacterizationThing):
     """
@@ -1671,8 +1615,6 @@ class ContactList(ObservableObject):
     A contact list is a set of multiple individual contacts such as that found
     in a digital address book.
     """
-
-    pass
 
 
 class ContactListFacet(core.Facet):
@@ -1746,8 +1688,6 @@ class ContentData(ObservableObject):
     Content data is a block of digital data.
     """
 
-    pass
-
 
 class ContentDataFacet(core.Facet):
     """
@@ -1775,16 +1715,12 @@ class CookieHistory(ObservableObject):
     browser.
     """
 
-    pass
-
 
 class Credential(ObservableObject):
     """
     A credential is a single specific login and password combination for
     authorization of access to a digital account or system.
     """
-
-    pass
 
 
 class CredentialDump(ObservableObject):
@@ -1794,8 +1730,6 @@ class CredentialDump(ObservableObject):
     access to a digital account or system.
     """
 
-    pass
-
 
 class DNSCache(ObservableObject):
     """
@@ -1803,8 +1737,6 @@ class DNSCache(ObservableObject):
     Name System (DNS) query results (created when an domain name is resolved to
     a IP address) for a particular computer.
     """
-
-    pass
 
 
 class DNSRecord(ObservableObject):
@@ -1814,8 +1746,6 @@ class DNSRecord(ObservableObject):
     security, etc.) for a specific Internet domain name.
     """
 
-    pass
-
 
 class Device(ObservableObject):
     """
@@ -1824,16 +1754,12 @@ class Device(ObservableObject):
     https://www.merriam-webster.com/dictionary/device]
     """
 
-    pass
-
 
 class DigitalSignatureInfo(ObservableObject):
     """
     A digital signature info is a value calculated via a mathematical scheme for
     demonstrating the authenticity of an electronic message or document.
     """
-
-    pass
 
 
 class DiskFacet(core.Facet):
@@ -1857,8 +1783,6 @@ class DiskPartition(ObservableObject):
     https://en.wikipedia.org/wiki/Disk_storage]
     """
 
-    pass
-
 
 class DomainName(ObservableObject):
     """
@@ -1866,8 +1790,6 @@ class DomainName(ObservableObject):
     administrative autonomy, authority or control within the Internet. [based on
     https://en.wikipedia.org/wiki/Domain_name]
     """
-
-    pass
 
 
 class EmailAccountFacet(core.Facet):
@@ -1885,16 +1807,12 @@ class EventLog(ObservableObject):
     An event log is a collection of event records.
     """
 
-    pass
-
 
 class EventRecord(ObservableObject):
     """
     An event record is something that happens in a digital context (e.g.,
     operating system events).
     """
-
-    pass
 
 
 class EventRecordFacet(core.Facet):
@@ -1925,16 +1843,12 @@ class FileSystem(ObservableObject):
     https://www.techopedia.com/definition/5510/file-system]
     """
 
-    pass
-
 
 class FileSystemObject(ObservableObject):
     """
     A file system object is an informational object represented and managed
     within a file system.
     """
-
-    pass
 
 
 class GUI(ObservableObject):
@@ -1946,23 +1860,17 @@ class GUI(ObservableObject):
     https://en.wikipedia.org/wiki/Graphical_user_interface]
     """
 
-    pass
-
 
 class GenericObservableObject(ObservableObject):
     """
     A generic observable object is an article or unit within the digital domain.
     """
 
-    pass
-
 
 class GeoLocationEntry(ObservableObject):
     """
     A geolocation entry is a single application-specific geolocation entry.
     """
-
-    pass
 
 
 class GeoLocationEntryFacet(core.Facet):
@@ -1982,8 +1890,6 @@ class GeoLocationLog(ObservableObject):
     geolocation entries.
     """
 
-    pass
-
 
 class GeoLocationLogFacet(core.Facet):
     """
@@ -2000,8 +1906,6 @@ class GeoLocationTrack(ObservableObject):
     A geolocation track is a set of contiguous geolocation entries representing
     a path/track taken.
     """
-
-    pass
 
 
 class GeoLocationTrackFacet(core.Facet):
@@ -2042,8 +1946,6 @@ class Hostname(ObservableObject):
     https://en.wikipedia.org/wiki/Hostname]
     """
 
-    pass
-
 
 class IPNetmask(ObservableObject):
     """
@@ -2051,15 +1953,11 @@ class IPNetmask(ObservableObject):
     and specify the network's available hosts.
     """
 
-    pass
-
 
 class Image(ObservableObject):
     """
     An image is a complete copy of a hard disk, memory, or other digital media.
     """
-
-    pass
 
 
 class Library(ObservableObject):
@@ -2069,16 +1967,12 @@ class Library(ObservableObject):
     https://www.techopedia.com/definition/3828/software-library]
     """
 
-    pass
-
 
 class Memory(ObservableObject):
     """
     Memory is a particular region of temporary information storage (e.g., RAM
     (random access memory), ROM (read only memory)) on a digital device.
     """
-
-    pass
 
 
 class Message(ObservableObject):
@@ -2087,8 +1981,6 @@ class Message(ObservableObject):
     source for consumption by some recipient or group of recipients. [based on
     https://en.wikipedia.org/wiki/Message]
     """
-
-    pass
 
 
 class MessageFacet(core.Facet):
@@ -2115,8 +2007,6 @@ class MessageThread(ObservableObject):
     to one topic or question.
     """
 
-    pass
-
 
 class MimePartType(core.UcoInherentCharacterizationThing):
     """
@@ -2139,8 +2029,6 @@ class Mutex(ObservableObject):
     [based on https://en.wikipedia.org/wiki/Lock_(computer_science)]
     """
 
-    pass
-
 
 class NetworkConnection(ObservableObject):
     """
@@ -2148,8 +2036,6 @@ class NetworkConnection(ObservableObject):
     digital network (a group of two or more computer systems linked together).
     [based on https://www.webopedia.com/TERM/N/network.html]
     """
-
-    pass
 
 
 class NetworkConnectionFacet(core.Facet):
@@ -2177,8 +2063,6 @@ class NetworkFlow(ObservableObject):
     [based on https://www.webopedia.com/TERM/N/network.html]
     """
 
-    pass
-
 
 class NetworkFlowFacet(core.Facet):
     """
@@ -2202,8 +2086,6 @@ class NetworkInterface(ObservableObject):
     A network interface is a software or hardware interface between two pieces
     of equipment or protocol layers in a computer network.
     """
-
-    pass
 
 
 class NetworkInterfaceFacet(core.Facet):
@@ -2232,8 +2114,6 @@ class NetworkProtocol(ObservableObject):
     https://www.comptia.org/content/guides/what-is-a-network-protocol]
     """
 
-    pass
-
 
 class NetworkRoute(ObservableObject):
     """
@@ -2242,8 +2122,6 @@ class NetworkRoute(ObservableObject):
     networks.
     """
 
-    pass
-
 
 class NetworkSubnet(ObservableObject):
     """
@@ -2251,15 +2129,11 @@ class NetworkSubnet(ObservableObject):
     https://en.wikipedia.org/wiki/Subnetwork]
     """
 
-    pass
-
 
 class Note(ObservableObject):
     """
     A note is a brief textual record.
     """
-
-    pass
 
 
 class NoteFacet(core.Facet):
@@ -2279,8 +2153,6 @@ class OnlineService(ObservableObject):
     An online service is a particular provision mechanism of information access,
     distribution or manipulation over the Internet.
     """
-
-    pass
 
 
 class OnlineServiceFacet(core.Facet):
@@ -2305,8 +2177,6 @@ class PaymentCard(ObservableObject):
     https://en.wikipedia.org/wiki/Payment_card]
     """
 
-    pass
-
 
 class Pipe(ObservableObject):
     """
@@ -2318,16 +2188,12 @@ class Pipe(ObservableObject):
     https://en.wikipedia.org/wiki/Anonymous_pipe]
     """
 
-    pass
-
 
 class Process(ObservableObject):
     """
     A process is an instance of a computer program executed on an operating
     system.
     """
-
-    pass
 
 
 class ProcessFacet(core.Facet):
@@ -2363,8 +2229,6 @@ class ProcessThread(ObservableObject):
     https://en.wikipedia.org/wiki/Thread_(computing)]
     """
 
-    pass
-
 
 class Profile(ObservableObject):
     """
@@ -2373,8 +2237,6 @@ class Profile(ObservableObject):
     online service or application. [based on
     https://en.wikipedia.org/wiki/User_profile]
     """
-
-    pass
 
 
 class RasterPictureFacet(core.Facet):
@@ -2396,16 +2258,12 @@ class RecoveredObject(ObservableObject):
     An observable object that was the result of a recovery operation.
     """
 
-    pass
-
 
 class SQLiteBlob(ObservableObject):
     """
     An SQLite blob is a blob (binary large object) of data within an SQLite
     database. [based on https://en.wikipedia.org/wiki/SQLite]
     """
-
-    pass
 
 
 class Semaphore(ObservableObject):
@@ -2416,16 +2274,12 @@ class Semaphore(ObservableObject):
     https://en.wikipedia.org/wiki/Semaphore_(programming)]
     """
 
-    pass
-
 
 class ShopListing(ObservableObject):
     """
     A shop listing is a listing of offered products on an online
     marketplace/shop.
     """
-
-    pass
 
 
 class Software(ObservableObject):
@@ -2434,8 +2288,6 @@ class Software(ObservableObject):
     instructions that tell the computer how to work. [based on
     https://en.wikipedia.org/wiki/Software]
     """
-
-    pass
 
 
 class StateChangeEffectFacet(DefinedEffectFacet):
@@ -2465,8 +2317,6 @@ class TableField(ObservableObject):
     A database table field and its associated value contained within a
     relational database.
     """
-
-    pass
 
 
 class TaskActionType(core.UcoInherentCharacterizationThing):
@@ -2517,8 +2367,6 @@ class URL(ObservableObject):
     a particular WWW (World Wide Web) accessible resource.
     """
 
-    pass
-
 
 class URLFacet(core.Facet):
     """
@@ -2543,8 +2391,6 @@ class URLHistory(ObservableObject):
     A URL history characterizes the stored URL history for a particular web
     browser
     """
-
-    pass
 
 
 class URLHistoryEntry(core.UcoInherentCharacterizationThing):
@@ -2572,8 +2418,6 @@ class URLVisit(ObservableObject):
     particular browser.
     """
 
-    pass
-
 
 class URLVisitFacet(core.Facet):
     """
@@ -2599,8 +2443,6 @@ class UserSession(ObservableObject):
     https://en.wikipedia.org/wiki/Session_(computer_science)]
     """
 
-    pass
-
 
 class UserSessionFacet(core.Facet):
     """
@@ -2623,8 +2465,6 @@ class Volume(ObservableObject):
     system. [based on https://en.wikipedia.org/wiki/Volume_(computing)]
     """
 
-    pass
-
 
 class WebPage(ObservableObject):
     """
@@ -2634,16 +2474,12 @@ class WebPage(ObservableObject):
     https://en.wikipedia.org/wiki/Web_page]
     """
 
-    pass
-
 
 class WhoIs(ObservableObject):
     """
     WhoIs is a response record conformant to the WHOIS protocol standard (RFC
     3912). [based on https://en.wikipedia.org/wiki/WHOIS]
     """
-
-    pass
 
 
 class WhoisRegistrarInfoType(core.UcoInherentCharacterizationThing):
@@ -2674,16 +2510,12 @@ class Wiki(ObservableObject):
     https://en.wikipedia.org/wiki/Wiki]
     """
 
-    pass
-
 
 class WikiArticle(ObservableObject):
     """
     A wiki article is one or more pages in a wiki focused on characterizing a
     particular topic.
     """
-
-    pass
 
 
 class WindowsComputerSpecification(ObservableObject):
@@ -2693,8 +2525,6 @@ class WindowsComputerSpecification(ObservableObject):
     running a Microsoft Windows operating system. [based on
     merriam-webster.com/dictionary/computer]
     """
-
-    pass
 
 
 class WindowsComputerSpecificationFacet(core.Facet):
@@ -2736,16 +2566,12 @@ class WindowsCriticalSection(ObservableObject):
     https://docs.microsoft.com/en-us/windows/win32/sync/critical-section-objects]
     """
 
-    pass
-
 
 class WindowsEvent(ObservableObject):
     """
     A Windows event is a notification record of an occurance of interest
     (system, security, application, etc.) on a Windows operating system.
     """
-
-    pass
 
 
 class WindowsFilemapping(ObservableObject):
@@ -2766,8 +2592,6 @@ class WindowsFilemapping(ObservableObject):
     https://docs.microsoft.com/en-us/windows/win32/memory/file-mapping]
     """
 
-    pass
-
 
 class WindowsHandle(ObservableObject):
     """
@@ -2776,8 +2600,6 @@ class WindowsHandle(ObservableObject):
     the mechanism by which applications interact with such resources in the
     Windows operating system.
     """
-
-    pass
 
 
 class WindowsHook(ObservableObject):
@@ -2789,8 +2611,6 @@ class WindowsHook(ObservableObject):
     modify or discard the event. [based on
     https://docs.microsoft.com/en-us/windows/win32/winmsg/about-hooks]
     """
-
-    pass
 
 
 class WindowsMailslot(ObservableObject):
@@ -2804,8 +2624,6 @@ class WindowsMailslot(ObservableObject):
     https://docs.microsoft.com/en-us/windows/win32/ipc/about-mailslots]
     """
 
-    pass
-
 
 class WindowsNetworkShare(ObservableObject):
     """
@@ -2817,16 +2635,12 @@ class WindowsNetworkShare(ObservableObject):
     network. [based on https://en.wikipedia.org/wiki/Shared_resource]
     """
 
-    pass
-
 
 class WindowsPrefetch(ObservableObject):
     """
     The Windows prefetch contains entries in a Windows prefetch file (used to
     speed up application startup starting with Windows XP).
     """
-
-    pass
 
 
 class WindowsPrefetchFacet(core.Facet):
@@ -2855,8 +2669,6 @@ class WindowsRegistryHive(ObservableObject):
     https://en.wikipedia.org/wiki/Windows_Registry]
     """
 
-    pass
-
 
 class WindowsRegistryKey(ObservableObject):
     """
@@ -2865,8 +2677,6 @@ class WindowsRegistryKey(ObservableObject):
     Windows operating system and for applications that opt to use the registry).
     [based on https://en.wikipedia.org/wiki/Windows_Registry]
     """
-
-    pass
 
 
 class WindowsRegistryKeyFacet(core.Facet):
@@ -2893,8 +2703,6 @@ class WindowsService(ObservableObject):
     https://en.wikipedia.org/wiki/Windows_service]
     """
 
-    pass
-
 
 class WindowsSystemRestore(ObservableObject):
     """
@@ -2905,8 +2713,6 @@ class WindowsSystemRestore(ObservableObject):
     problems. [based on https://en.wikipedia.org/wiki/System_Restore]
     """
 
-    pass
-
 
 class WindowsTask(ObservableObject):
     """
@@ -2914,8 +2720,6 @@ class WindowsTask(ObservableObject):
     operating system by the Windows Task Scheduler. [based on
     http://msdn.microsoft.com/en-us/library/windows/desktop/aa381311(v=vs.85).aspx]
     """
-
-    pass
 
 
 class WindowsWaitableTime(ObservableObject):
@@ -2928,8 +2732,6 @@ class WindowsWaitableTime(ObservableObject):
     https://docs.microsoft.com/en-us/windows/win32/sync/waitable-timer-objects]
     """
 
-    pass
-
 
 class X509Certificate(ObservableObject):
     """
@@ -2937,16 +2739,12 @@ class X509Certificate(ObservableObject):
     to the X.509 PKI (Public Key Infrastructure) standard.
     """
 
-    pass
-
 
 class X509V3Certificate(ObservableObject):
     """
     An X.509 v3 certificate is a public key digital identity certificate
     conformant to the X.509 v3 PKI (Public Key Infrastructure) standard.
     """
-
-    pass
 
 
 class IPv4AddressFacet(IPAddressFacet):
@@ -2957,8 +2755,6 @@ class IPv4AddressFacet(IPAddressFacet):
     communication to or from that device.
     """
 
-    pass
-
 
 class IPv6AddressFacet(IPAddressFacet):
     """
@@ -2967,8 +2763,6 @@ class IPv6AddressFacet(IPAddressFacet):
     to a device to enable routing and management of IPv6 standards conformant
     communication to or from that device.
     """
-
-    pass
 
 
 class BluetoothAddressFacet(MACAddressFacet):
@@ -2979,8 +2773,6 @@ class BluetoothAddressFacet(MACAddressFacet):
     communication to or from that device.
     """
 
-    pass
-
 
 class WifiAddressFacet(MACAddressFacet):
     """
@@ -2990,16 +2782,12 @@ class WifiAddressFacet(MACAddressFacet):
     standards-conformant communications to and from that device.
     """
 
-    pass
-
 
 class DigitalAccount(Account):
     """
     A digital account is an arrangement with an entity to enable and control the
     provision of some capability or service within the digital domain.
     """
-
-    pass
 
 
 class DigitalAddress(Address):
@@ -3008,8 +2796,6 @@ class DigitalAddress(Address):
     of digital communication.
     """
 
-    pass
-
 
 class SocketAddress(Address):
     """
@@ -3017,8 +2803,6 @@ class SocketAddress(Address):
     identifier for a network socket endpoint supporting internet protocol
     communications.
     """
-
-    pass
 
 
 class CapturedTelecommunicationsInformationFacet(core.Facet):
@@ -3079,16 +2863,12 @@ class Adaptor(Device):
     alter the underlying protocol (e.g. uSD to SD, CF to ATA, etc.)
     """
 
-    pass
-
 
 class AndroidDevice(Device):
     """
     An Android device is a device running the Android operating system. [based
     on https://en.wikipedia.org/wiki/Android_(operating_system)]
     """
-
-    pass
 
 
 class AppleDevice(Device):
@@ -3097,8 +2877,6 @@ class AppleDevice(Device):
     operating system.
     """
 
-    pass
-
 
 class Appliance(Device):
     """
@@ -3106,8 +2884,6 @@ class Appliance(Device):
     designed to provide a specific computing capability or resource. [based on
     https://en.wikipedia.org/wiki/Computer_appliance]
     """
-
-    pass
 
 
 class Computer(Device):
@@ -3118,16 +2894,12 @@ class Computer(Device):
     Press, 2022.]
     """
 
-    pass
-
 
 class DigitalCamera(Device):
     """
     A digital camera is a camera that captures photographs in digital memory as
     opposed to capturing images on photographic film.
     """
-
-    pass
 
 
 class EmbeddedDevice(Device):
@@ -3138,8 +2910,6 @@ class EmbeddedDevice(Device):
     machine, door access logger, card scanner, etc.
     """
 
-    pass
-
 
 class GamingConsole(Device):
     """
@@ -3148,8 +2918,6 @@ class GamingConsole(Device):
     the primary purpose of playing video games.
     """
 
-    pass
-
 
 class MobileDevice(Device):
     """
@@ -3157,16 +2925,12 @@ class MobileDevice(Device):
     https://www.lexico.com.definition/mobile_device]
     """
 
-    pass
-
 
 class ProtocolConverter(Device):
     """
     A protocol converter is a device that converts from one protocol to another
     (e.g. SD to USB, SATA to USB, etc.
     """
-
-    pass
 
 
 class SIMCard(Device):
@@ -3177,16 +2941,12 @@ class SIMCard(Device):
     mobile telephony. [based on https://en.wikipedia.org/wiki/SIM_card]
     """
 
-    pass
-
 
 class SmartDevice(Device):
     """
     A smart device is a microprocessor IoT device that is expected to be
     connected directly to cloud-based networks or via smartphone
     """
-
-    pass
 
 
 class StorageMedium(Device):
@@ -3197,8 +2957,6 @@ class StorageMedium(Device):
     Optical, Memory_Card, Tape, etc
     """
 
-    pass
-
 
 class WriteBlocker(Device):
     """
@@ -3207,8 +2965,6 @@ class WriteBlocker(Device):
     include Tableau, Cellibrite, Talon, etc.
     """
 
-    pass
-
 
 class AlternateDataStream(FileSystemObject):
     """
@@ -3216,8 +2972,6 @@ class AlternateDataStream(FileSystemObject):
     independent of the standard content stream of the file and is hidden from
     access by default NTFS file viewing mechanisms.
     """
-
-    pass
 
 
 class BlockDeviceNode(FileSystemObject):
@@ -3228,8 +2982,6 @@ class BlockDeviceNode(FileSystemObject):
     devices and to direct operations on the files to the appropriate device
     drivers. [based on https://en.wikipedia.org/wiki/Unix_file_types]
     """
-
-    pass
 
 
 class CharacterDeviceNode(FileSystemObject):
@@ -3242,8 +2994,6 @@ class CharacterDeviceNode(FileSystemObject):
     https://en.wikipedia.org/wiki/Unix_file_types]
     """
 
-    pass
-
 
 class Directory(FileSystemObject):
     """
@@ -3255,16 +3005,12 @@ class Directory(FileSystemObject):
     https://en.wikipedia.org/wiki/Directory_(computing)]
     """
 
-    pass
-
 
 class File(FileSystemObject):
     """
     A file is a computer resource for recording data discretely on a computer
     storage device.
     """
-
-    pass
 
 
 class Junction(FileSystemObject):
@@ -3277,8 +3023,6 @@ class Junction(FileSystemObject):
     https://jp-andre.pagesperso-orange.fr/junctions.html]
     """
 
-    pass
-
 
 class NamedPipe(FileSystemObject):
     """
@@ -3288,8 +3032,6 @@ class NamedPipe(FileSystemObject):
     exists beyond the lifespan of any process interacting with it (unlike simple
     anonymous pipes). [based on https://en.wikipedia.org/wiki/Named_pipe]
     """
-
-    pass
 
 
 class ReparsePoint(FileSystemObject):
@@ -3305,16 +3047,12 @@ class ReparsePoint(FileSystemObject):
     https://en.wikipedia.org/wiki/NTFS_reparse_point]
     """
 
-    pass
-
 
 class Snapshot(FileSystemObject):
     """
     A snapshot is a file system object representing a snapshot of the contents
     of a part of a file system at a point in time.
     """
-
-    pass
 
 
 class Socket(FileSystemObject):
@@ -3327,8 +3065,6 @@ class Socket(FileSystemObject):
     [based on https://en.wikipedia.org/wiki/Unix_file_types]
     """
 
-    pass
-
 
 class SymbolicLink(FileSystemObject):
     """
@@ -3336,8 +3072,6 @@ class SymbolicLink(FileSystemObject):
     directory in the form of an absolute or relative path and that affects
     pathname resolution. [based on https://en.wikipedia.org/wiki/Symbolic_link]
     """
-
-    pass
 
 
 class EmailMessage(Message):
@@ -3347,8 +3081,6 @@ class EmailMessage(Message):
     5322 and related RFCs.
     """
 
-    pass
-
 
 class ForumPost(Message):
     """
@@ -3356,8 +3088,6 @@ class ForumPost(Message):
     the message content (and typically metadata including who posted it and
     when) is viewable by any party with viewing permissions on the forum.
     """
-
-    pass
 
 
 class ForumPrivateMessage(Message):
@@ -3367,8 +3097,6 @@ class ForumPrivateMessage(Message):
     an online form where transmission is managed by the online forum platform
     and the message is only viewable by the parties directly involved.
     """
-
-    pass
 
 
 class MessageThreadFacet(core.Facet):
@@ -3392,8 +3120,6 @@ class Post(Message):
     blog, etc.).
     """
 
-    pass
-
 
 class SMSMessage(Message):
     """
@@ -3401,16 +3127,12 @@ class SMSMessage(Message):
     communication protocol standards.
     """
 
-    pass
-
 
 class Tweet(Message):
     """
     A tweet is message submitted by a Twitter user account to the Twitter
     microblogging platform.
     """
-
-    pass
 
 
 class EmailMessageFacet(core.Facet):
@@ -3457,8 +3179,6 @@ class HTTPConnection(NetworkConnection):
     Transfer Protocol (HTTP) standard.
     """
 
-    pass
-
 
 class ICMPConnection(NetworkConnection):
     """
@@ -3466,15 +3186,11 @@ class ICMPConnection(NetworkConnection):
     Internet Control Message Protocol (ICMP) standard.
     """
 
-    pass
-
 
 class TCPConnection(NetworkConnection):
     """
     A TCP connection is a network connection that is conformant to the Transfer
     """
-
-    pass
 
 
 class WirelessNetworkConnection(NetworkConnection):
@@ -3485,8 +3201,6 @@ class WirelessNetworkConnection(NetworkConnection):
     https://www.webopedia.com/TERM/N/network.html]
     """
 
-    pass
-
 
 class UNIXProcess(Process):
     """
@@ -3494,23 +3208,17 @@ class UNIXProcess(Process):
     operating system.
     """
 
-    pass
-
 
 class WindowsProcess(Process):
     """
     A Windows process is a program running on a Windows operating system.
     """
 
-    pass
-
 
 class WindowsThread(ProcessThread):
     """
     A Windows thread is a single thread of execution within a Windows process.
     """
-
-    pass
 
 
 class ConfiguredSoftware(Software):
@@ -3529,8 +3237,6 @@ class OperatingSystem(Software):
     resources, and provides common services for computer programs. [based on
     https://en.wikipedia.org/wiki/Operating_system]
     """
-
-    pass
 
 
 class WindowsTaskFacet(core.Facet):
@@ -3615,16 +3321,12 @@ class ApplicationAccount(DigitalAccount):
     designed for end users.
     """
 
-    pass
-
 
 class EmailAccount(DigitalAccount):
     """
     An email account is an arrangement with an entity to enable and control the
     provision of electronic mail (email) capabilities or services.
     """
-
-    pass
 
 
 class MobileAccount(DigitalAccount):
@@ -3634,8 +3336,6 @@ class MobileAccount(DigitalAccount):
     [based on https://www.lexico.com/definition/mobile_device]
     """
 
-    pass
-
 
 class PhoneAccount(DigitalAccount):
     """
@@ -3643,15 +3343,11 @@ class PhoneAccount(DigitalAccount):
     provision of a telephony capability or service.
     """
 
-    pass
-
 
 class UNIXAccount(DigitalAccount):
     """
     A UNIX account is an account on a UNIX operating system.
     """
-
-    pass
 
 
 class UserAccount(DigitalAccount):
@@ -3660,15 +3356,11 @@ class UserAccount(DigitalAccount):
     system or platform.
     """
 
-    pass
-
 
 class WindowsAccount(DigitalAccount):
     """
     A Windows account is a user account on a Windows operating system.
     """
-
-    pass
 
 
 class WindowsActiveDirectoryAccount(DigitalAccount):
@@ -3676,8 +3368,6 @@ class WindowsActiveDirectoryAccount(DigitalAccount):
     A Windows Active Directory account is an account managed by directory-based
     identity-related services of a Windows operating system.
     """
-
-    pass
 
 
 class EmailAddress(DigitalAddress):
@@ -3687,8 +3377,6 @@ class EmailAddress(DigitalAddress):
     (SMTP)) are sent from and delivered to.
     """
 
-    pass
-
 
 class IPAddress(DigitalAddress):
     """
@@ -3696,8 +3384,6 @@ class IPAddress(DigitalAddress):
     assigned to a device to enable routing and management of IP standards
     conformant communication to or from that device.
     """
-
-    pass
 
 
 class InstantMessagingAddress(DigitalAddress):
@@ -3712,16 +3398,12 @@ class MACAddress(DigitalAddress):
     communications at the data link layer of a network segment.
     """
 
-    pass
-
 
 class SIPAddress(DigitalAddress):
     """
     A SIP address is an identifier for Session Initiation Protocol (SIP)
     communication.
     """
-
-    pass
 
 
 class ContactFacet(core.Facet):
@@ -3761,15 +3443,11 @@ class AndroidPhone(AndroidDevice):
     system.
     """
 
-    pass
-
 
 class IPhone(AppleDevice):
     """
     An iPhone is a smart phone that applies the iOS mobile operating system.
     """
-
-    pass
 
 
 class NetworkAppliance(Appliance):
@@ -3778,8 +3456,6 @@ class NetworkAppliance(Appliance):
     that is designed to provide a specific network management function.
     """
 
-    pass
-
 
 class SecurityAppliance(Appliance):
     """
@@ -3787,8 +3463,6 @@ class SecurityAppliance(Appliance):
     that is designed to provide a specific security function to protect computer
     networks.
     """
-
-    pass
 
 
 class Laptop(Computer):
@@ -3801,16 +3475,12 @@ class Laptop(Computer):
     laptop mode. (Devices categorized by their manufacturer as a Laptop)
     """
 
-    pass
-
 
 class Server(Computer):
     """
     A server is a server rack-mount based computer, minicomputer, supercomputer,
     etc.
     """
-
-    pass
 
 
 class SmartPhone(Computer):
@@ -3820,16 +3490,12 @@ class SmartPhone(Computer):
     Huawei, Blackberry. (Inferred by model and OperatingSystemFacet)
     """
 
-    pass
-
 
 class Tablet(Computer):
     """
     A tablet is a mobile computer that is primarily operated by touching the
     screen. (Devices categorized by their manufacturer as a Tablet)
     """
-
-    pass
 
 
 class Drone(MobileDevice):
@@ -3838,8 +3504,6 @@ class Drone(MobileDevice):
     pilot, crew, or passengers that typically involve a ground-based controller
     and a system for communications with the UAV.
     """
-
-    pass
 
 
 class MobilePhone(MobileDevice):
@@ -3850,16 +3514,12 @@ class MobilePhone(MobileDevice):
     simple and smart and satellite ones all together.
     """
 
-    pass
-
 
 class WearableDevice(SmartDevice):
     """
     A wearable device is an electronic device that is designed to be worn on a
     person's body.
     """
-
-    pass
 
 
 class Disk(StorageMedium):
@@ -3868,8 +3528,6 @@ class Disk(StorageMedium):
     magnetic, optical, or mechanical changes to a surface layer of one or more
     rotating disks.
     """
-
-    pass
 
 
 class NTFSFileFacet(core.Facet):
@@ -3889,15 +3547,11 @@ class ArchiveFile(File):
     along with metadata.
     """
 
-    pass
-
 
 class NTFSFile(File):
     """
     An NTFS file is a New Technology File System (NTFS) file.
     """
-
-    pass
 
 
 class PDFFile(File):
@@ -3905,15 +3559,11 @@ class PDFFile(File):
     A PDF file is a Portable Document Format (PDF) file.
     """
 
-    pass
-
 
 class RasterPicture(File):
     """
     A raster picture is a raster (or bitmap) image.
     """
-
-    pass
 
 
 class UNIXFile(File):
@@ -3921,15 +3571,11 @@ class UNIXFile(File):
     A UNIX file is a file pertaining to the UNIX operating system.
     """
 
-    pass
-
 
 class WindowsPEBinaryFile(File):
     """
     A Windows PE binary file is a Windows portable executable (PE) file.
     """
-
-    pass
 
 
 class IPv4Address(IPAddress):
@@ -3939,8 +3585,6 @@ class IPv4Address(IPAddress):
     of IPv4 standards conformant communication to or from that device.
     """
 
-    pass
-
 
 class IPv6Address(IPAddress):
     """
@@ -3948,8 +3592,6 @@ class IPv6Address(IPAddress):
     conformant identifier assigned to a device to enable routing and management
     of IPv6 standards conformant communication to or from that device.
     """
-
-    pass
 
 
 class BluetoothAddress(MACAddress):
@@ -3959,8 +3601,6 @@ class BluetoothAddress(MACAddress):
     standards conformant communication to or from that device.
     """
 
-    pass
-
 
 class WifiAddress(MACAddress):
     """
@@ -3969,8 +3609,6 @@ class WifiAddress(MACAddress):
     management of IEEE 802.11 standards-conformant communications to and from
     that device.
     """
-
-    pass
 
 
 class WhoisContactFacet(ContactFacet):
@@ -3992,5 +3630,3 @@ class BlackberryPhone(SmartPhone):
     operating system. (Blackberry 10 re-introduces Blackberry OS, prior to that
     the OS was Android.)
     """
-
-    pass

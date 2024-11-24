@@ -5,7 +5,7 @@ This file was generated using the `case_models.py` script.
 """
 
 from enum import Enum
-from typing import Any, Optional
+from typing import Optional
 
 from fastlabel.case import owl, types
 
@@ -21,16 +21,12 @@ class UcoThing(owl.Thing):
     UcoThing is the top-level class within UCO.
     """
 
-    pass
-
 
 class UcoInherentCharacterizationThing(UcoThing):
     """
     A UCO inherent characterization thing is a grouping of characteristics
     unique to a particular inherent aspect of a UCO domain object.
     """
-
-    pass
 
 
 class ExternalReference(UcoInherentCharacterizationThing):
@@ -48,8 +44,6 @@ class Facet(UcoInherentCharacterizationThing):
     A facet is a grouping of characteristics singularly unique to a particular
     inherent aspect of a UCO domain object.
     """
-
-    pass
 
 
 class ConfidenceFacet(Facet):
@@ -104,8 +98,6 @@ class Compilation(UcoObject):
     A compilation is a grouping of things.
     """
 
-    pass
-
 
 class ControlledVocabulary(UcoObject):
     """
@@ -138,15 +130,11 @@ class IdentityAbstraction(UcoObject):
     the identity:Identity class.
     """
 
-    pass
-
 
 class Item(UcoObject):
     """
     An item is a distinct article or unit.
     """
-
-    pass
 
 
 class MarkingDefinitionAbstraction(UcoObject):
@@ -159,16 +147,12 @@ class MarkingDefinitionAbstraction(UcoObject):
     class.
     """
 
-    pass
-
 
 class ModusOperandi(UcoObject):
     """
     A modus operandi is a particular method of operation (how a particular
     entity behaves or the resources they use).
     """
-
-    pass
 
 
 class Relationship(UcoObject):
@@ -224,5 +208,3 @@ class Bundle(EnclosingCompilation):
     A bundle is a container for a grouping of UCO content with no presumption of
     shared context.
     """
-
-    pass

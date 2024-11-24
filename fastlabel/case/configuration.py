@@ -4,8 +4,7 @@ Auto-generated classes from the SHACL graph in configuration.ttl.
 This file was generated using the `case_models.py` script.
 """
 
-from enum import Enum
-from typing import Any, Optional
+from typing import Optional
 
 from fastlabel.case import core
 
