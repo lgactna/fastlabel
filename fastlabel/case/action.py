@@ -1,38 +1,13 @@
-
 """
 Auto-generated classes from the SHACL graph in action.ttl.
 
 This file was generated using the `case_models.py` script.
 """
 
-class ArrayOfAction(core.UcoInherentCharacterizationThing):
-    """
-    An array of action is an ordered list of references to things that may be
-    done or performed.
-    """
+from typing import Any, Optional
 
-    action: Action
+from fastlabel.case import core, location
 
-class Action(core.UcoObject):
-    """
-    An action is something that may be done or performed.
-    """
-
-    subaction: Optional[Action] = None
-    environment: Optional[UcoObject] = None
-    performer: Optional[UcoObject] = None
-    error: Optional[UcoObject] = None
-    instrument: Optional[UcoObject] = None
-    object: Optional[UcoObject] = None
-    participant: Optional[UcoObject] = None
-    result: Optional[UcoObject] = None
-    location: Optional[Location] = None
-    endTime: Optional[str] = None
-    startTime: Optional[str] = None
-    actionCount: Optional[int] = None
-    actionStatus: Optional[str] = None
-    actionStatus: Optional[Any] = None
-    actionStatus: Optional[Any] = None
 
 class ActionEstimationFacet(core.Facet):
     """
@@ -46,25 +21,6 @@ class ActionEstimationFacet(core.Facet):
     estimatedImpact: Optional[str] = None
     objective: Optional[str] = None
 
-class ActionPattern(action.Action):
-    """
-    An action pattern is a grouping of characteristics unique to a combination
-    of actions forming a consistent or characteristic arrangement.
-    """
-
-
-class ActionLifecycle(action.Action):
-    """
-    An action lifecycle is an action pattern consisting of an ordered set of
-    multiple actions or subordinate action lifecycles.
-    """
-
-    phase: ArrayOfAction
-    error: Optional[UcoObject] = None
-    endTime: Optional[str] = None
-    startTime: Optional[str] = None
-    actionCount: Optional[int] = None
-    actionStatus: Optional[Any] = None
 
 class ActionArgumentFacet(core.Facet):
     """
@@ -74,6 +30,7 @@ class ActionArgumentFacet(core.Facet):
 
     argumentName: str
     value: str
+
 
 class ActionFrequencyFacet(core.Facet):
     """
@@ -88,3 +45,56 @@ class ActionFrequencyFacet(core.Facet):
     trend: Any
     trend: Optional[Any] = None
 
+
+class Action(core.UcoObject):
+    """
+    An action is something that may be done or performed.
+    """
+
+    subaction: Optional["Action"] = None
+    environment: Optional[core.UcoObject] = None
+    performer: Optional[core.UcoObject] = None
+    error: Optional[core.UcoObject] = None
+    instrument: Optional[core.UcoObject] = None
+    object: Optional[core.UcoObject] = None
+    participant: Optional[core.UcoObject] = None
+    result: Optional[core.UcoObject] = None
+    location: Optional[location.Location] = None
+    endTime: Optional[str] = None
+    startTime: Optional[str] = None
+    actionCount: Optional[int] = None
+    actionStatus: Optional[str] = None
+    actionStatus: Optional[Any] = None
+    actionStatus: Optional[Any] = None
+
+
+class ActionPattern(Action):
+    """
+    An action pattern is a grouping of characteristics unique to a combination
+    of actions forming a consistent or characteristic arrangement.
+    """
+
+    pass
+
+
+class ArrayOfAction(core.UcoInherentCharacterizationThing):
+    """
+    An array of action is an ordered list of references to things that may be
+    done or performed.
+    """
+
+    action: Action
+
+
+class ActionLifecycle(Action):
+    """
+    An action lifecycle is an action pattern consisting of an ordered set of
+    multiple actions or subordinate action lifecycles.
+    """
+
+    phase: ArrayOfAction
+    error: Optional[core.UcoObject] = None
+    endTime: Optional[str] = None
+    startTime: Optional[str] = None
+    actionCount: Optional[int] = None
+    actionStatus: Optional[Any] = None

@@ -1,15 +1,12 @@
-
 """
 Auto-generated classes from the SHACL graph in types.ttl.
 
 This file was generated using the `case_models.py` script.
 """
 
-class ControlledDictionaryEntry(types.DictionaryEntry):
-    """
-    A controlled dictionary entry is a single (term/key, value) pair where the
-    term/key is constrained to an explicitly defined set of values.
-    """
+from typing import Any, Optional
+
+from fastlabel.case import co, core
 
 
 class Hash(core.UcoInherentCharacterizationThing):
@@ -26,6 +23,42 @@ class Hash(core.UcoInherentCharacterizationThing):
     hashMethod: Any
     hashMethod: Optional[Any] = None
 
+
+class DictionaryEntry(core.UcoInherentCharacterizationThing):
+    """
+    A dictionary entry is a single (term/key, value) pair.
+    """
+
+    key: str
+    value: str
+
+
+class ThreadItem(co.Item):
+    """
+    A ThreadItem is a member of a thread.
+    """
+
+    itemContent: Optional[core.UcoObject] = None
+
+
+class Dictionary(core.UcoInherentCharacterizationThing):
+    """
+    A dictionary is list of (term/key, value) pairs with each term/key existing
+    no more than once.
+    """
+
+    entry: DictionaryEntry
+
+
+class ControlledDictionaryEntry(DictionaryEntry):
+    """
+    A controlled dictionary entry is a single (term/key, value) pair where the
+    term/key is constrained to an explicitly defined set of values.
+    """
+
+    pass
+
+
 class Thread(co.Bag):
     """
     A semi-ordered array of items, that can be present in multiple copies.
@@ -36,15 +69,8 @@ class Thread(co.Bag):
 
     item: Optional[ThreadItem] = None
 
-class Dictionary(core.UcoInherentCharacterizationThing):
-    """
-    A dictionary is list of (term/key, value) pairs with each term/key existing
-    no more than once.
-    """
 
-    entry: DictionaryEntry
-
-class ControlledDictionary(types.Dictionary):
+class ControlledDictionary(Dictionary):
     """
     A controlled dictionary is a list of (term/key, value) pairs where each
     term/key exists no more than once and is constrained to an explicitly
@@ -52,19 +78,3 @@ class ControlledDictionary(types.Dictionary):
     """
 
     entry: Optional[ControlledDictionaryEntry] = None
-
-class DictionaryEntry(core.UcoInherentCharacterizationThing):
-    """
-    A dictionary entry is a single (term/key, value) pair.
-    """
-
-    key: str
-    value: str
-
-class ThreadItem(co.Item):
-    """
-    A ThreadItem is a member of a thread.
-    """
-
-    itemContent: Optional[UcoObject] = None
-

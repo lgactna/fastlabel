@@ -1,32 +1,61 @@
-
 """
 Auto-generated classes from the SHACL graph in identity.ttl.
 
 This file was generated using the `case_models.py` script.
 """
 
-class EventsFacet(identity.IdentityFacet):
-    """
-    Events is a grouping of characteristics unique to information related to
-    specific relevant things that happen in the lifetime of an entity.
-    """
+from typing import Any, Optional
+
+from fastlabel.case import core, location
 
 
-class PersonalDetailsFacet(identity.IdentityFacet):
+class IdentityFacet(core.Facet):
     """
-    Personal details is a grouping of characteristics unique to an identity
-    representing an individual person.
-    """
-
-
-class PhysicalInfoFacet(identity.IdentityFacet):
-    """
-    Physical info is a grouping of characteristics unique to the outwardly
-    observable nature of an individual person.
+    An identity facet is a grouping of characteristics unique to a particular
+    aspect of an identity.
     """
 
+    pass
 
-class SimpleNameFacet(identity.IdentityFacet):
+
+class Identity(core.IdentityAbstraction):
+    """
+    An identity is a grouping of identifying characteristics unique to an
+    individual or organization.
+    """
+
+    pass
+
+
+class OrganizationDetailsFacet(IdentityFacet):
+    """
+    Organization details is a grouping of characteristics unique to an identity
+    representing an administrative and functional structure.
+    """
+
+    pass
+
+
+class AddressFacet(IdentityFacet):
+    """
+    An address facet is a grouping of characteristics unique to an
+    administrative identifier for a geolocation associated with a specific
+    identity.
+    """
+
+    address: Optional[location.Location] = None
+
+
+class IdentifierFacet(IdentityFacet):
+    """
+    Identifier is a grouping of characteristics unique to information that
+    uniquely and specifically identities an entity.
+    """
+
+    pass
+
+
+class SimpleNameFacet(IdentityFacet):
     """
     A simple name facet is a grouping of characteristics unique to the personal
     name (e.g., Dr. John Smith Jr.) held by an identity.
@@ -37,95 +66,18 @@ class SimpleNameFacet(identity.IdentityFacet):
     honorificPrefix: Optional[str] = None
     honorificSuffix: Optional[str] = None
 
-class IdentityFacet(core.Facet):
-    """
-    An identity facet is a grouping of characteristics unique to a particular
-    aspect of an identity.
-    """
 
-
-class AffiliationFacet(identity.IdentityFacet):
+class VisaFacet(IdentityFacet):
     """
-    An affiliation is a grouping of characteristics unique to the established
-    affiliations of an entity.
+    Visa is a grouping of characteristics unique to information related to a
+    person's ability to enter, leave, or stay for a specified period of time in
+    a country.
     """
 
-
-class IdentifierFacet(identity.IdentityFacet):
-    """
-    Identifier is a grouping of characteristics unique to information that
-    uniquely and specifically identities an entity.
-    """
+    pass
 
 
-class AddressFacet(identity.IdentityFacet):
-    """
-    An address facet is a grouping of characteristics unique to an
-    administrative identifier for a geolocation associated with a specific
-    identity.
-    """
-
-    address: Optional[Location] = None
-
-class LanguagesFacet(identity.IdentityFacet):
-    """
-    Languages is a grouping of characteristics unique to specific syntactically
-    and grammatically standardized forms of communication (human or computer) in
-    which an entity has proficiency (comprehends, speaks, reads, or writes).
-    """
-
-
-class QualificationFacet(identity.IdentityFacet):
-    """
-    Qualification is a grouping of characteristics unique to particular skills,
-    capabilities or their related achievements (educational, professional, etc.)
-    of an entity.
-    """
-
-
-class Person(identity.Identity):
-    """
-    A person is a grouping of identifying characteristics unique to a human
-    being regarded as an individual. [based on
-    https://www.lexico.com/en/definition/person]
-    """
-
-
-class RelatedIdentityFacet(identity.IdentityFacet):
-    """
-    <Needs fleshed out from CIQ>
-    """
-
-
-class Identity(core.IdentityAbstraction):
-    """
-    An identity is a grouping of identifying characteristics unique to an
-    individual or organization.
-    """
-
-
-class CountryOfResidenceFacet(identity.IdentityFacet):
-    """
-    Country of residence is a grouping of characteristics unique to information
-    related to the country, or countries, where an entity resides.
-    """
-
-
-class NationalityFacet(identity.IdentityFacet):
-    """
-    Nationality is a grouping of characteristics unique to the condition of an
-    entity belonging to a particular nation.
-    """
-
-
-class OccupationFacet(identity.IdentityFacet):
-    """
-    Occupation is a grouping of characteristics unique to the job or profession
-    of an entity.
-    """
-
-
-class BirthInformationFacet(identity.IdentityFacet):
+class BirthInformationFacet(IdentityFacet):
     """
     Birth information is a grouping of characteristics unique to information
     pertaining to the birth of an entity.
@@ -133,7 +85,99 @@ class BirthInformationFacet(identity.IdentityFacet):
 
     birthdate: Optional[str] = None
 
-class Organization(identity.Identity):
+
+class EventsFacet(IdentityFacet):
+    """
+    Events is a grouping of characteristics unique to information related to
+    specific relevant things that happen in the lifetime of an entity.
+    """
+
+    pass
+
+
+class NationalityFacet(IdentityFacet):
+    """
+    Nationality is a grouping of characteristics unique to the condition of an
+    entity belonging to a particular nation.
+    """
+
+    pass
+
+
+class CountryOfResidenceFacet(IdentityFacet):
+    """
+    Country of residence is a grouping of characteristics unique to information
+    related to the country, or countries, where an entity resides.
+    """
+
+    pass
+
+
+class PhysicalInfoFacet(IdentityFacet):
+    """
+    Physical info is a grouping of characteristics unique to the outwardly
+    observable nature of an individual person.
+    """
+
+    pass
+
+
+class QualificationFacet(IdentityFacet):
+    """
+    Qualification is a grouping of characteristics unique to particular skills,
+    capabilities or their related achievements (educational, professional, etc.)
+    of an entity.
+    """
+
+    pass
+
+
+class LanguagesFacet(IdentityFacet):
+    """
+    Languages is a grouping of characteristics unique to specific syntactically
+    and grammatically standardized forms of communication (human or computer) in
+    which an entity has proficiency (comprehends, speaks, reads, or writes).
+    """
+
+    pass
+
+
+class RelatedIdentityFacet(IdentityFacet):
+    """
+    <Needs fleshed out from CIQ>
+    """
+
+    pass
+
+
+class PersonalDetailsFacet(IdentityFacet):
+    """
+    Personal details is a grouping of characteristics unique to an identity
+    representing an individual person.
+    """
+
+    pass
+
+
+class AffiliationFacet(IdentityFacet):
+    """
+    An affiliation is a grouping of characteristics unique to the established
+    affiliations of an entity.
+    """
+
+    pass
+
+
+class OccupationFacet(IdentityFacet):
+    """
+    Occupation is a grouping of characteristics unique to the job or profession
+    of an entity.
+    """
+
+    pass
+
+
+class Organization(Identity):
     """
     An organization is a grouping of identifying characteristics unique to a
     group of people who work together in an organized way for a shared purpose.
@@ -141,19 +185,14 @@ class Organization(identity.Identity):
     https://dictionary.cambridge.org/us/dictionary/english/organization]
     """
 
-
-class VisaFacet(identity.IdentityFacet):
-    """
-    Visa is a grouping of characteristics unique to information related to a
-    person's ability to enter, leave, or stay for a specified period of time in
-    a country.
-    """
+    pass
 
 
-class OrganizationDetailsFacet(identity.IdentityFacet):
+class Person(Identity):
     """
-    Organization details is a grouping of characteristics unique to an identity
-    representing an administrative and functional structure.
+    A person is a grouping of identifying characteristics unique to a human
+    being regarded as an individual. [based on
+    https://www.lexico.com/en/definition/person]
     """
 
-
+    pass
