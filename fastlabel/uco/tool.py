@@ -6,7 +6,7 @@ This file was generated using the `case_models.py` script.
 
 from typing import Optional
 
-from fastlabel.case import XMLSchema, configuration, core, identity
+from fastlabel.uco import XMLSchema, configuration, core, identity
 
 
 class BuildUtilityType(core.UcoInherentCharacterizationThing):

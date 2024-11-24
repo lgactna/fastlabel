@@ -1,4 +1,8 @@
 """
+Draft that attempts to fix the namespacing issue.
+
+---
+
 Generate models for the CASE library.
 
 Code generated with Copilot using the o1-preview model.
@@ -119,16 +123,16 @@ class Property(BaseModel):
             if datatype in DATATYPE_MAPPING:
                 python_type = DATATYPE_MAPPING[datatype]
             else:
-                # If not, use the URI
-                python_type = get_local_name(datatype, 2)
+                # If not, use the URI (for UCO, this will extract three components)
+                python_type = get_local_name(datatype, 3)
         else:
             # Handle sh:class
             prop_class = g.value(prop_list, SH["class"])
             # print(prop_class)
             if prop_class:
-                # Get the field name, up to two components, so we know what
-                # namespace it's in
-                python_type = get_local_name(prop_class, 2)
+                # Get the field name up to three components, so we know what
+                # namespace and library it's in
+                python_type = get_local_name(prop_class, 3)
             else:
                 # The datatype doesn't exist
                 python_type = UNKNOWN_DATATYPE_VAL
@@ -247,11 +251,11 @@ class UCOModel(BaseModel):
     @classmethod
     def from_owl_class(cls, owl_class: Any, g: Graph, namespace: str) -> "UCOModel":
         # Get the class name, fully qualified
-        class_name = get_local_name(owl_class, 2)
+        class_name = get_local_name(owl_class, 3)
 
         # Get superclass (if any)
         superclasses = [
-            get_local_name(o, 2) for o in g.objects(owl_class, RDFS.subClassOf)
+            get_local_name(o, 3) for o in g.objects(owl_class, RDFS.subClassOf)
         ]
         superclass = superclasses[0] if superclasses else "BaseModel"
 
@@ -419,19 +423,22 @@ def generate_import_list(dependency_graph: dict[str, set[str]], namespace: str) 
     # Group imports by namespace (the first component of the class name)
     grouped_dependencies = defaultdict(set)
     for dep in dependencies:
-        namespace, name = dep.split(".")
-        grouped_dependencies[namespace].add(name)
+        library, fq_name = dep.split(".", 1)
+        grouped_dependencies[library].add(fq_name)
 
     # Generate import statements
-    # NOTE: we used to import individual objects from each namespace, now we just
-    # import the whole namespace -- this is why the code is like this
     imports = ""
 
-    # TODO: right now, there's no consideration whether or not something is in
-    #       CASE or UCO -- this is a problem becase we need to know which library
-    #       to import from. the workaround is to just manually fix what's broken.
+    # TODO: this should be done based on the third component of the dependency...
+    for library, names in grouped_dependencies.items():
+        # Break each namespace into its own import statement
+        namespaces = {name.split(".")[0] for name in names}
+        imports += (
+            f"from fastlabel.{library} import ({', '.join(sorted(namespaces))})\n"
+        )
+
     if grouped_dependencies:
-        imports += f"from fastlabel.uco import ({', '.join(sorted(grouped_dependencies.keys()))})\n"
+        imports += f"from fastlabel.case import ({', '.join(sorted(grouped_dependencies.keys()))})\n"
     # for namespace, _ in grouped_dependencies.items():
     #     imports += f"from fastlabel.case import {namespace}\n"
 

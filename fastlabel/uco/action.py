@@ -6,7 +6,7 @@ This file was generated using the `case_models.py` script.
 
 from typing import Optional
 
-from fastlabel.case import core, location, vocabulary
+from fastlabel.uco import core, location, vocabulary
 
 
 class Action(core.UcoObject):
