@@ -7,7 +7,7 @@ This file was generated using the `case_models.py` script.
 from enum import Enum
 from typing import Optional
 
-from fastlabel.case import (
+from fastlabel.uco import (
     XMLSchema,
     action,
     configuration,
@@ -441,22 +441,6 @@ class UserAccountFacet(core.Facet):
     homeDirectory: Optional[str] = None
 
 
-class FilePermissionsFacet(core.Facet):
-    """
-    A file permissions facet is a grouping of characteristics unique to the
-    access rights (e.g., view, change, navigate, execute) of a file on a file
-    system.
-    """
-
-    owner: Optional[core.UcoObject] = None
-
-
-class Observable(core.UcoObject):
-    """
-    An observable is a characterizable item or action within the digital domain.
-    """
-
-
 class AccountFacet(core.Facet):
     """
     An account facet is a grouping of characteristics unique to an arrangement
@@ -474,17 +458,20 @@ class AccountFacet(core.Facet):
     accountType: Optional[vocabulary.AccountTypeVocab] = None
 
 
-class AlternateDataStreamFacet(core.Facet):
+class FilePermissionsFacet(core.Facet):
     """
-    An alternate data stream facet is a grouping of characteristics unique to
-    data content stored within an NTFS file that is independent of the standard
-    content stream of the file and is hidden from access by default NTFS file
-    viewing mechanisms.
+    A file permissions facet is a grouping of characteristics unique to the
+    access rights (e.g., view, change, navigate, execute) of a file on a file
+    system.
     """
 
-    hashes: Optional[types.Hash] = None
-    size: Optional[int] = None
-    name: Optional[str] = None
+    owner: Optional[core.UcoObject] = None
+
+
+class Observable(core.UcoObject):
+    """
+    An observable is a characterizable item or action within the digital domain.
+    """
 
 
 class AudioFacet(core.Facet):
@@ -667,6 +654,19 @@ class VolumeFacet(core.Facet):
 
     sectorSize: Optional[int] = None
     volumeID: Optional[str] = None
+
+
+class AlternateDataStreamFacet(core.Facet):
+    """
+    An alternate data stream facet is a grouping of characteristics unique to
+    data content stored within an NTFS file that is independent of the standard
+    content stream of the file and is hidden from access by default NTFS file
+    viewing mechanisms.
+    """
+
+    hashes: Optional[types.Hash] = None
+    size: Optional[int] = None
+    name: Optional[str] = None
 
 
 class AndroidDeviceFacet(core.Facet):
@@ -1085,6 +1085,24 @@ class TriggerType(core.UcoInherentCharacterizationThing):
     triggerType: Optional[vocabulary.TriggerTypeVocab] = None
 
 
+class WindowsThreadFacet(core.Facet):
+    """
+    A Windows thread facet is a grouping os characteristics unique to a single
+    thread of execution within a Windows process.
+    """
+
+    observableCreatedTime: Optional[str] = None
+    parameterAddress: Optional[XMLSchema.hexBinary] = None
+    startAddress: Optional[XMLSchema.hexBinary] = None
+    priority: Optional[int] = None
+    stackSize: Optional[int] = None
+    threadID: Optional[int] = None
+    context: Optional[str] = None
+    runningStatus: Optional[str] = None
+    securityAttributes: Optional[str] = None
+    creationFlags: Optional[XMLSchema.unsignedInt] = None
+
+
 class WindowsPEOptionalHeader(core.UcoInherentCharacterizationThing):
     """
     A Windows PE optional header is a grouping of characteristics unique to the
@@ -1121,24 +1139,6 @@ class WindowsPEOptionalHeader(core.UcoInherentCharacterizationThing):
     minorOSVersion: Optional[XMLSchema.unsignedShort] = None
     minorSubsystemVersion: Optional[XMLSchema.unsignedShort] = None
     subsystem: Optional[XMLSchema.unsignedShort] = None
-
-
-class WindowsThreadFacet(core.Facet):
-    """
-    A Windows thread facet is a grouping os characteristics unique to a single
-    thread of execution within a Windows process.
-    """
-
-    observableCreatedTime: Optional[str] = None
-    parameterAddress: Optional[XMLSchema.hexBinary] = None
-    startAddress: Optional[XMLSchema.hexBinary] = None
-    priority: Optional[int] = None
-    stackSize: Optional[int] = None
-    threadID: Optional[int] = None
-    context: Optional[str] = None
-    runningStatus: Optional[str] = None
-    securityAttributes: Optional[str] = None
-    creationFlags: Optional[XMLSchema.unsignedInt] = None
 
 
 class WindowsVolumeFacet(core.Facet):
@@ -3074,10 +3074,10 @@ class MessageThreadFacet(core.Facet):
     commentary of electronic messages pertaining to one topic or question.
     """
 
-    n3cd33877c9fb49cdbb12731429fd5996b463: Optional[Message] = None
-    n3cd33877c9fb49cdbb12731429fd5996b467: Optional[Message] = None
-    n3cd33877c9fb49cdbb12731429fd5996b471: Optional[Message] = None
-    n3cd33877c9fb49cdbb12731429fd5996b475: Optional[Message] = None
+    n6d466bf75c6c44afba6c63345d5305d0b463: Optional[Message] = None
+    n6d466bf75c6c44afba6c63345d5305d0b467: Optional[Message] = None
+    n6d466bf75c6c44afba6c63345d5305d0b471: Optional[Message] = None
+    n6d466bf75c6c44afba6c63345d5305d0b475: Optional[Message] = None
     participant: Optional[ObservableObject] = None
     messageThread: Optional[types.Thread] = None
     visibility: Optional[bool] = None

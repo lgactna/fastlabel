@@ -4,7 +4,7 @@ Auto-generated classes from the SHACL graph in victim.ttl.
 This file was generated using the `case_models.py` script.
 """
 
-from fastlabel.case import role
+from fastlabel.uco import role
 
 
 class Victim(role.NeutralRole):

@@ -6,7 +6,7 @@ This file was generated using the `case_models.py` script.
 
 from typing import Optional
 
-from fastlabel.case import XMLSchema, co, core, vocabulary
+from fastlabel.uco import XMLSchema, co, core, vocabulary
 
 
 class DictionaryEntry(core.UcoInherentCharacterizationThing):

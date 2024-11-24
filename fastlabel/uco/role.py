@@ -4,7 +4,7 @@ Auto-generated classes from the SHACL graph in role.ttl.
 This file was generated using the `case_models.py` script.
 """
 
-from fastlabel.case import core
+from fastlabel.uco import core
 
 
 class Role(core.UcoObject):

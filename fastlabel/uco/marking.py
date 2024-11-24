@@ -6,7 +6,7 @@ This file was generated using the `case_models.py` script.
 
 from typing import Optional
 
-from fastlabel.case import core
+from fastlabel.uco import core
 
 
 class MarkingModel(core.UcoInherentCharacterizationThing):

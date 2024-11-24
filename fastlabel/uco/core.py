@@ -7,7 +7,7 @@ This file was generated using the `case_models.py` script.
 from enum import Enum
 from typing import Optional
 
-from fastlabel.case import XMLSchema, owl, types
+from fastlabel.uco import XMLSchema, owl, types
 
 
 class ObjectStatusVocab(str, Enum):
