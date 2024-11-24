@@ -3,7 +3,6 @@
 # """
 
 import base64
-import binascii
 import re
 from typing import Any, Optional
 
@@ -290,7 +289,7 @@ class xsd_base64Binary:
     def __init__(self, value: str):
         try:
             self.value: bytes = base64.b64decode(value, validate=True)
-        except (ValueError):
+        except ValueError:
             raise ValueError("Invalid xsd:base64Binary value")
 
     def __bytes__(self) -> bytes:
