@@ -4,8 +4,7 @@ Auto-generated classes from the SHACL graph in identity.ttl.
 This file was generated using the `case_models.py` script.
 """
 
-from enum import Enum
-from typing import Any, Optional
+from typing import Optional
 
 from fastlabel.case import core, location
 
@@ -16,16 +15,12 @@ class Identity(core.IdentityAbstraction):
     individual or organization.
     """
 
-    pass
-
 
 class IdentityFacet(core.Facet):
     """
     An identity facet is a grouping of characteristics unique to a particular
     aspect of an identity.
     """
-
-    pass
 
 
 class Organization(Identity):
@@ -36,8 +31,6 @@ class Organization(Identity):
     https://dictionary.cambridge.org/us/dictionary/english/organization]
     """
 
-    pass
-
 
 class Person(Identity):
     """
@@ -45,8 +38,6 @@ class Person(Identity):
     being regarded as an individual. [based on
     https://www.lexico.com/en/definition/person]
     """
-
-    pass
 
 
 class AddressFacet(IdentityFacet):
@@ -65,8 +56,6 @@ class AffiliationFacet(IdentityFacet):
     affiliations of an entity.
     """
 
-    pass
-
 
 class BirthInformationFacet(IdentityFacet):
     """
@@ -83,8 +72,6 @@ class CountryOfResidenceFacet(IdentityFacet):
     related to the country, or countries, where an entity resides.
     """
 
-    pass
-
 
 class EventsFacet(IdentityFacet):
     """
@@ -92,16 +79,12 @@ class EventsFacet(IdentityFacet):
     specific relevant things that happen in the lifetime of an entity.
     """
 
-    pass
-
 
 class IdentifierFacet(IdentityFacet):
     """
     Identifier is a grouping of characteristics unique to information that
     uniquely and specifically identities an entity.
     """
-
-    pass
 
 
 class LanguagesFacet(IdentityFacet):
@@ -111,16 +94,12 @@ class LanguagesFacet(IdentityFacet):
     which an entity has proficiency (comprehends, speaks, reads, or writes).
     """
 
-    pass
-
 
 class NationalityFacet(IdentityFacet):
     """
     Nationality is a grouping of characteristics unique to the condition of an
     entity belonging to a particular nation.
     """
-
-    pass
 
 
 class OccupationFacet(IdentityFacet):
@@ -129,16 +108,12 @@ class OccupationFacet(IdentityFacet):
     of an entity.
     """
 
-    pass
-
 
 class OrganizationDetailsFacet(IdentityFacet):
     """
     Organization details is a grouping of characteristics unique to an identity
     representing an administrative and functional structure.
     """
-
-    pass
 
 
 class PersonalDetailsFacet(IdentityFacet):
@@ -147,16 +122,12 @@ class PersonalDetailsFacet(IdentityFacet):
     representing an individual person.
     """
 
-    pass
-
 
 class PhysicalInfoFacet(IdentityFacet):
     """
     Physical info is a grouping of characteristics unique to the outwardly
     observable nature of an individual person.
     """
-
-    pass
 
 
 class QualificationFacet(IdentityFacet):
@@ -166,15 +137,11 @@ class QualificationFacet(IdentityFacet):
     of an entity.
     """
 
-    pass
-
 
 class RelatedIdentityFacet(IdentityFacet):
     """
     <Needs fleshed out from CIQ>
     """
-
-    pass
 
 
 class SimpleNameFacet(IdentityFacet):
@@ -195,5 +162,3 @@ class VisaFacet(IdentityFacet):
     person's ability to enter, leave, or stay for a specified period of time in
     a country.
     """
-
-    pass

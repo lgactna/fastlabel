@@ -4,7 +4,6 @@ Auto-generated classes from the SHACL graph in types.ttl.
 This file was generated using the `case_models.py` script.
 """
 
-from enum import Enum
 from typing import Any, Optional
 
 from fastlabel.case import co, core
@@ -47,8 +46,6 @@ class ControlledDictionaryEntry(DictionaryEntry):
     A controlled dictionary entry is a single (term/key, value) pair where the
     term/key is constrained to an explicitly defined set of values.
     """
-
-    pass
 
 
 class Dictionary(core.UcoInherentCharacterizationThing):
@@ -96,5 +93,3 @@ class ProperDictionary(Dictionary):
     A proper dictionary is list of (term/key, value) pairs with each term/key
     existing no more than once.
     """
-
-    pass

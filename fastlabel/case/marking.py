@@ -4,8 +4,7 @@ Auto-generated classes from the SHACL graph in marking.ttl.
 This file was generated using the `case_models.py` script.
 """
 
-from enum import Enum
-from typing import Any, Optional
+from typing import Optional
 
 from fastlabel.case import core
 
@@ -16,8 +15,6 @@ class MarkingModel(core.UcoInherentCharacterizationThing):
     a particular form of data marking definitions (restrictions, permissions,
     and other guidance for how data can be used and shared).
     """
-
-    pass
 
 
 class LicenseMarking(MarkingModel):

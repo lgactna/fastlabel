@@ -4,8 +4,7 @@ Auto-generated classes from the SHACL graph in location.ttl.
 This file was generated using the `case_models.py` script.
 """
 
-from enum import Enum
-from typing import Any, Optional
+from typing import Optional
 
 from fastlabel.case import core
 
@@ -40,8 +39,6 @@ class Location(core.UcoObject):
     """
     A location is a geospatial place, site, or position.
     """
-
-    pass
 
 
 class SimpleAddressFacet(core.Facet):

@@ -5,7 +5,6 @@ This file was generated using the `case_models.py` script.
 """
 
 from enum import Enum
-from typing import Any, Optional
 
 
 class AccountTypeVocab(str, Enum):

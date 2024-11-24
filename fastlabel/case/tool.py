@@ -4,8 +4,7 @@ Auto-generated classes from the SHACL graph in tool.ttl.
 This file was generated using the `case_models.py` script.
 """
 
-from enum import Enum
-from typing import Any, Optional
+from typing import Optional
 
 from fastlabel.case import configuration, core, identity
 
@@ -87,8 +86,6 @@ class AnalyticTool(Tool):
     reasoning.
     """
 
-    pass
-
 
 class ConfiguredTool(Tool):
     """
@@ -106,16 +103,12 @@ class DefensiveTool(Tool):
     accomplish a task or purpose of guarding.
     """
 
-    pass
-
 
 class MaliciousTool(Tool):
     """
     A malicious tool is an artifact of hardware and/or software utilized to
     accomplish a malevolent task or purpose.
     """
-
-    pass
 
 
 class BuildFacet(core.Facet):

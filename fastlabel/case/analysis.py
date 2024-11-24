@@ -4,8 +4,7 @@ Auto-generated classes from the SHACL graph in analysis.ttl.
 This file was generated using the `case_models.py` script.
 """
 
-from enum import Enum
-from typing import Any, Optional
+from typing import Optional
 
 from fastlabel.case import action, core
 
@@ -16,16 +15,12 @@ class Analysis(action.Action):
     understand its nature, context or essential features.
     """
 
-    pass
-
 
 class AnalyticResultFacet(core.Facet):
     """
     An analytic result facet is a grouping of characteristics unique to the
     results of an analysis action.
     """
-
-    pass
 
 
 class ArtifactClassification(core.UcoInherentCharacterizationThing):
