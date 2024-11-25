@@ -1,0 +1,846 @@
+{
+  "@id": "kb:ec409823-ee9c-496b-a23a-54c4a63ceeb1",
+  "@type": "uco-core:Bundle",
+  "uco-core:objectCreatedTime": {
+    "@type": "xsd:dateTime",
+    "@value": "2024-04-29T04:38:19.000+00:00"
+  },
+  "uco-core:modifiedTime": {
+    "@type": "xsd:dateTime",
+    "@value": "2024-05-03T04:38:19.000+00:00"
+  },
+  "uco-core:name": "json ld file",
+  "uco-core:specVersion": "UCO/CASE 2.0",
+  "uco-core:description": "An Example Case File",
+  "uco-core:tag": "Artifacts extracted from a mobile phone",
+  "uco-core:createdBy": [
+    {
+      "@id": "kb:1d2fa4a9-02e5-43f9-97a9-37bb3ecf2673",
+      "@type": "uco-identity:Identity",
+      "uco-core:hasFacet": [
+        {
+          "@id": "kb:648a5b1f-cb1b-4287-ba19-d2f68403ebe7",
+          "@type": "uco-identity:SimpleNameFacet",
+          "uco-identity:familyName": "Moss",
+          "uco-identity:givenName": "Maurice"
+        }
+      ]
+    }
+  ],
+  "uco-core:object": [
+    {
+      "@id": "kb:1d2fa4a9-02e5-43f9-97a9-37bb3ecf2673",
+      "@type": "uco-identity:Identity",
+      "uco-core:hasFacet": [
+        {
+          "@id": "kb:648a5b1f-cb1b-4287-ba19-d2f68403ebe7",
+          "@type": "uco-identity:SimpleNameFacet",
+          "uco-identity:familyName": "Moss",
+          "uco-identity:givenName": "Maurice"
+        }
+      ]
+    },
+    {
+      "@id": "kb:b05284cd-4aed-4ca6-8852-035bb21cd40b",
+      "@type": "uco-identity:Organization",
+      "uco-core:name": "Nikon"
+    },
+    {
+      "@id": "kb:7e3590a5-0108-443c-a9b7-955180af1496",
+      "@type": "uco-observable:ObservableObject",
+      "uco-core:hasFacet": [
+        {
+          "@id": "kb:0050c763-293c-4664-bc64-b5c029d57b8c",
+          "@type": "uco-observable:DeviceFacet",
+          "uco-observable:manufacturer": {
+            "@id": "kb:b05284cd-4aed-4ca6-8852-035bb21cd40b",
+            "@type": "uco-identity:Organization",
+            "uco-core:name": "Nikon"
+          },
+          "uco-observable:model": "D750"
+        },
+        {
+          "@id": "kb:0cf84008-cce9-466c-a552-2a2bc5211d7a",
+          "@type": "uco-observable:OperatingSystemFacet",
+          "uco-observable:environmentVariables": {
+            "@id": "kb:ad1e34a4-2762-4baa-9448-83cb9783def2",
+            "@type": "uco-types:Dictionary",
+            "uco-types:entry": [
+              {
+                "@id": "kb:c138c1c9-3ff7-47f1-baf5-2e4153250f82",
+                "@type": "uco-types:DictionaryEntry",
+                "uco-types:key": "path",
+                "uco-types:value": "/opt/local/bin:/opt/local/sbin:/usr/bin:"
+              },
+              {
+                "@id": "kb:1166c18f-7be5-49eb-912e-be3cb9309856",
+                "@type": "uco-types:DictionaryEntry",
+                "uco-types:key": "temp",
+                "uco-types:value": "/tmp:/usr/temp"
+              },
+              {
+                "@id": "kb:970af922-ae09-4c85-9238-cc52177d0532",
+                "@type": "uco-types:DictionaryEntry",
+                "uco-types:key": "systemroot",
+                "uco-types:value": "/root"
+              }
+            ]
+          },
+          "uco-observable:isLimitAdTrackingEnabled": true,
+          "uco-observable:installDate": {
+            "@type": "xsd:dateTime",
+            "@value": "2023-02-19T17:22:09.000+00:00"
+          },
+          "uco-observable:bitness": "64-bit",
+          "uco-observable:advertisingID": "DX4CDXKN"
+        }
+      ]
+    },
+    {
+      "@id": "kb:1dff322c-fe69-4ffe-9cf4-e5b00a51727e",
+      "@type": "uco-observable:ObservableObject",
+      "uco-core:hasFacet": [
+        {
+          "@id": "kb:02439963-6862-4281-8e49-e22281e45ac7",
+          "@type": "uco-observable:FileFacet",
+          "uco-observable:isDirectory": false,
+          "uco-observable:metadataChangeTime": {
+            "@type": "xsd:dateTime",
+            "@value": "2024-04-21T17:16:43.000+00:00"
+          },
+          "uco-observable:modifiedTime": {
+            "@type": "xsd:dateTime",
+            "@value": "2024-04-21T19:06:33.000+00:00"
+          },
+          "uco-observable:observableCreatedTime": {
+            "@type": "xsd:dateTime",
+            "@value": "2024-04-18T19:06:33.000+00:00"
+          },
+          "uco-observable:sizeInBytes": 35002,
+          "uco-observable:allocationStatus": "Contiguous Allocation",
+          "uco-observable:extension": "jpg",
+          "uco-observable:fileName": "IMG_0123.jpg",
+          "uco-observable:filePath": "/sdcard/IMG_0123.jpg"
+        },
+        {
+          "@id": "kb:8ed6663b-0c25-4b1d-be4a-e583730ccda1",
+          "@type": "uco-observable:ContentDataFacet",
+          "uco-observable:hash": {
+            "@id": "kb:4df2efbd-ab79-4f25-8135-26a79c080ea9",
+            "@type": "uco-types:Hash",
+            "uco-types:hashValue": {
+              "@type": "xsd:hexBinary",
+              "@value": "11122273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+            },
+            "uco-types:hashMethod": "SHA256"
+          },
+          "uco-observable:sizeInBytes": 35000,
+          "uco-observable:dataPayload": "<base 64 encoded data of the file>",
+          "uco-observable:magicNumber": "/9j/ww==",
+          "uco-observable:mimeType": "image/jpeg",
+          "uco-observable:byteOrder": "Big-endian"
+        },
+        {
+          "@id": "kb:e0039a87-a286-44f7-ac46-a4a4954e5ede",
+          "@type": "uco-observable:RasterPictureFacet",
+          "uco-observable:bitsPerPixel": 2,
+          "uco-observable:pictureHeight": 12345,
+          "uco-observable:pictureWidth": 12346,
+          "uco-observable:pictureType": "jpg"
+        },
+        {
+          "@id": "kb:69726c36-2183-4d4a-a182-de00ac6941d3",
+          "@type": "uco-observable:EXIFFacet",
+          "uco-observable:exifData": {
+            "@id": "kb:bed2d601-d3c0-445a-b38a-638435fc6506",
+            "@type": "uco-types:ControlledDictionary",
+            "uco-types:entry": [
+              {
+                "@id": "kb:c1c4d7cf-c099-4fc4-9d5b-9fb565684381",
+                "@type": "uco-types:ControlledDictionaryEntry",
+                "uco-types:key": "Make",
+                "uco-types:value": "Canon"
+              },
+              {
+                "@id": "kb:85b24f7b-794c-4f0e-9be5-1a8f27eede8c",
+                "@type": "uco-types:ControlledDictionaryEntry",
+                "uco-types:key": "Model",
+                "uco-types:value": "Powershot"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "@id": "kb:30eebaa8-a15f-4fd7-a1de-274bb856f3ee",
+      "@type": "uco-identity:Organization",
+      "uco-core:name": "Apple"
+    },
+    {
+      "@id": "kb:dd5d518d-347b-4090-9c11-d9ee00483a77",
+      "@type": "case-investigation:InvestigativeAction",
+      "uco-core:hasFacet": [
+        {
+          "@id": "kb:ace87c9e-804d-4b5a-9a6e-2ded2e0033fe",
+          "@type": "uco-observable:DeviceFacet",
+          "uco-observable:manufacturer": {
+            "@id": "kb:30eebaa8-a15f-4fd7-a1de-274bb856f3ee",
+            "@type": "uco-identity:Organization",
+            "uco-core:name": "Apple"
+          },
+          "uco-observable:deviceType": "iPhone",
+          "uco-observable:model": "6XS",
+          "uco-observable:serialNumber": "77"
+        }
+      ],
+      "uco-core:name": "annotated",
+      "uco-action:endTime": {
+        "@type": "xsd:dateTime",
+        "@value": "2024-11-25T02:48:06.028+00:00"
+      },
+      "uco-action:startTime": {
+        "@type": "xsd:dateTime",
+        "@value": "2024-11-25T02:48:06.028+00:00"
+      }
+    },
+    {
+      "@id": "kb:7f9141f5-d904-4c58-881c-05bcd8469577",
+      "@type": "uco-identity:Organization",
+      "uco-core:name": "oneplus"
+    },
+    {
+      "@id": "kb:481b02df-a598-4d04-9656-a0b98489ce8d",
+      "@type": "case-investigation:InvestigativeAction",
+      "uco-core:hasFacet": [
+        {
+          "@id": "kb:8400a68a-3cc6-4755-bdf8-193ca0cc595e",
+          "@type": "uco-observable:DeviceFacet",
+          "uco-observable:manufacturer": {
+            "@id": "kb:7f9141f5-d904-4c58-881c-05bcd8469577",
+            "@type": "uco-identity:Organization",
+            "uco-core:name": "oneplus"
+          },
+          "uco-observable:deviceType": "Android",
+          "uco-observable:model": "8",
+          "uco-observable:serialNumber": "123123"
+        }
+      ],
+      "uco-core:name": "annotated",
+      "uco-action:endTime": {
+        "@type": "xsd:dateTime",
+        "@value": "2024-11-25T02:48:06.028+00:00"
+      },
+      "uco-action:startTime": {
+        "@type": "xsd:dateTime",
+        "@value": "2024-11-25T02:48:06.028+00:00"
+      }
+    },
+    {
+      "@id": "kb:1b448618-1521-4207-b9f4-d943f45a8372",
+      "@type": "uco-observable:ObservableRelationship",
+      "uco-core:hasFacet": [
+        {
+          "@id": "kb:91e8af29-aa06-46fc-ae4a-50375677a2b9",
+          "@type": "uco-observable:PathRelationFacet",
+          "uco-observable:path": "/sdcard/IMG_0123.jpg"
+        }
+      ],
+      "uco-core:target": {
+        "@id": "kb:1dff322c-fe69-4ffe-9cf4-e5b00a51727e",
+        "@type": "uco-observable:ObservableObject",
+        "uco-core:hasFacet": [
+          {
+            "@id": "kb:02439963-6862-4281-8e49-e22281e45ac7",
+            "@type": "uco-observable:FileFacet",
+            "uco-observable:isDirectory": false,
+            "uco-observable:metadataChangeTime": {
+              "@type": "xsd:dateTime",
+              "@value": "2024-04-21T17:16:43.000+00:00"
+            },
+            "uco-observable:modifiedTime": {
+              "@type": "xsd:dateTime",
+              "@value": "2024-04-21T19:06:33.000+00:00"
+            },
+            "uco-observable:observableCreatedTime": {
+              "@type": "xsd:dateTime",
+              "@value": "2024-04-18T19:06:33.000+00:00"
+            },
+            "uco-observable:sizeInBytes": 35002,
+            "uco-observable:allocationStatus": "Contiguous Allocation",
+            "uco-observable:extension": "jpg",
+            "uco-observable:fileName": "IMG_0123.jpg",
+            "uco-observable:filePath": "/sdcard/IMG_0123.jpg"
+          },
+          {
+            "@id": "kb:8ed6663b-0c25-4b1d-be4a-e583730ccda1",
+            "@type": "uco-observable:ContentDataFacet",
+            "uco-observable:hash": {
+              "@id": "kb:4df2efbd-ab79-4f25-8135-26a79c080ea9",
+              "@type": "uco-types:Hash",
+              "uco-types:hashValue": {
+                "@type": "xsd:hexBinary",
+                "@value": "11122273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+              },
+              "uco-types:hashMethod": "SHA256"
+            },
+            "uco-observable:sizeInBytes": 35000,
+            "uco-observable:dataPayload": "<base 64 encoded data of the file>",
+            "uco-observable:magicNumber": "/9j/ww==",
+            "uco-observable:mimeType": "image/jpeg",
+            "uco-observable:byteOrder": "Big-endian"
+          },
+          {
+            "@id": "kb:e0039a87-a286-44f7-ac46-a4a4954e5ede",
+            "@type": "uco-observable:RasterPictureFacet",
+            "uco-observable:bitsPerPixel": 2,
+            "uco-observable:pictureHeight": 12345,
+            "uco-observable:pictureWidth": 12346,
+            "uco-observable:pictureType": "jpg"
+          },
+          {
+            "@id": "kb:69726c36-2183-4d4a-a182-de00ac6941d3",
+            "@type": "uco-observable:EXIFFacet",
+            "uco-observable:exifData": {
+              "@id": "kb:bed2d601-d3c0-445a-b38a-638435fc6506",
+              "@type": "uco-types:ControlledDictionary",
+              "uco-types:entry": [
+                {
+                  "@id": "kb:c1c4d7cf-c099-4fc4-9d5b-9fb565684381",
+                  "@type": "uco-types:ControlledDictionaryEntry",
+                  "uco-types:key": "Make",
+                  "uco-types:value": "Canon"
+                },
+                {
+                  "@id": "kb:85b24f7b-794c-4f0e-9be5-1a8f27eede8c",
+                  "@type": "uco-types:ControlledDictionaryEntry",
+                  "uco-types:key": "Model",
+                  "uco-types:value": "Powershot"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "uco-core:source": {
+        "@id": "kb:7e3590a5-0108-443c-a9b7-955180af1496",
+        "@type": "uco-observable:ObservableObject",
+        "uco-core:hasFacet": [
+          {
+            "@id": "kb:0050c763-293c-4664-bc64-b5c029d57b8c",
+            "@type": "uco-observable:DeviceFacet",
+            "uco-observable:manufacturer": {
+              "@id": "kb:b05284cd-4aed-4ca6-8852-035bb21cd40b",
+              "@type": "uco-identity:Organization",
+              "uco-core:name": "Nikon"
+            },
+            "uco-observable:model": "D750"
+          },
+          {
+            "@id": "kb:0cf84008-cce9-466c-a552-2a2bc5211d7a",
+            "@type": "uco-observable:OperatingSystemFacet",
+            "uco-observable:environmentVariables": {
+              "@id": "kb:ad1e34a4-2762-4baa-9448-83cb9783def2",
+              "@type": "uco-types:Dictionary",
+              "uco-types:entry": [
+                {
+                  "@id": "kb:c138c1c9-3ff7-47f1-baf5-2e4153250f82",
+                  "@type": "uco-types:DictionaryEntry",
+                  "uco-types:key": "path",
+                  "uco-types:value": "/opt/local/bin:/opt/local/sbin:/usr/bin:"
+                },
+                {
+                  "@id": "kb:1166c18f-7be5-49eb-912e-be3cb9309856",
+                  "@type": "uco-types:DictionaryEntry",
+                  "uco-types:key": "temp",
+                  "uco-types:value": "/tmp:/usr/temp"
+                },
+                {
+                  "@id": "kb:970af922-ae09-4c85-9238-cc52177d0532",
+                  "@type": "uco-types:DictionaryEntry",
+                  "uco-types:key": "systemroot",
+                  "uco-types:value": "/root"
+                }
+              ]
+            },
+            "uco-observable:isLimitAdTrackingEnabled": true,
+            "uco-observable:installDate": {
+              "@type": "xsd:dateTime",
+              "@value": "2023-02-19T17:22:09.000+00:00"
+            },
+            "uco-observable:bitness": "64-bit",
+            "uco-observable:advertisingID": "DX4CDXKN"
+          }
+        ]
+      },
+      "uco-core:isDirectional": true,
+      "uco-core:kindOfRelationship": "Contained_Within"
+    },
+    {
+      "@id": "kb:837bdf82-734e-48a9-9f1e-7400008c7432",
+      "@type": "uco-observable:ObservableObject",
+      "uco-core:hasFacet": [
+        {
+          "@id": "kb:bdf1b74f-27be-4a7d-a41d-50c45284f8b9"
+        }
+      ]
+    },
+    {
+      "@id": "kb:9d3686dd-d264-459d-bf5e-07157e6afbc6",
+      "@type": "uco-observable:ObservableObject",
+      "uco-core:hasFacet": [
+        {
+          "@id": "kb:4705653e-c10f-4459-b181-aef12e9106c8",
+          "@type": "uco-observable:EmailAddressFacet",
+          "uco-observable:addressValue": "info@example.com",
+          "uco-observable:displayName": "Example User"
+        }
+      ]
+    },
+    {
+      "@id": "kb:aa049f3e-ae06-47ec-9cae-5e24b15958be",
+      "@type": "uco-observable:ObservableObject",
+      "uco-core:hasFacet": [
+        {
+          "@id": "kb:e152e9a1-082e-46db-b602-f3009956798f"
+        }
+      ]
+    },
+    {
+      "@id": "kb:cbf11d60-735c-47ea-9751-1e5bc0177165",
+      "@type": "uco-observable:ObservableObject",
+      "uco-core:hasFacet": [
+        {
+          "@id": "kb:62c01d61-a3f7-4a6a-9a85-ebce93426ae5",
+          "@type": "uco-observable:EmailAddressFacet",
+          "uco-observable:addressValue": "admin@example.com",
+          "uco-observable:displayName": "Example Admin"
+        }
+      ]
+    },
+    {
+      "@id": "kb:66372867-76e7-493b-814a-f5208fe1396a",
+      "@type": "uco-observable:ObservableObject",
+      "uco-core:hasFacet": [
+        {
+          "@id": "kb:009ef8ff-aff2-484f-bcca-4a670d3486f7",
+          "@type": "uco-observable:EmailMessageFacet",
+          "uco-observable:from_": {
+            "@id": "kb:9d3686dd-d264-459d-bf5e-07157e6afbc6",
+            "@type": "uco-observable:ObservableObject",
+            "uco-core:hasFacet": [
+              {
+                "@id": "kb:4705653e-c10f-4459-b181-aef12e9106c8",
+                "@type": "uco-observable:EmailAddressFacet",
+                "uco-observable:addressValue": "info@example.com",
+                "uco-observable:displayName": "Example User"
+              }
+            ]
+          },
+          "uco-observable:to": [
+            {
+              "@id": "kb:837bdf82-734e-48a9-9f1e-7400008c7432",
+              "@type": "uco-observable:ObservableObject",
+              "uco-core:hasFacet": [
+                {
+                  "@id": "kb:bdf1b74f-27be-4a7d-a41d-50c45284f8b9"
+                }
+              ]
+            },
+            {
+              "@id": "kb:aa049f3e-ae06-47ec-9cae-5e24b15958be",
+              "@type": "uco-observable:ObservableObject",
+              "uco-core:hasFacet": [
+                {
+                  "@id": "kb:e152e9a1-082e-46db-b602-f3009956798f"
+                }
+              ]
+            }
+          ],
+          "uco-observable:receivedTime": {
+            "@type": "xsd:dateTime",
+            "@value": "2024-11-25T02:48:06.029+00:00"
+          },
+          "uco-observable:sentTime": {
+            "@type": "xsd:dateTime",
+            "@value": "2024-11-25T02:48:06.029+00:00"
+          },
+          "uco-observable:body": "Hello fellow bookworms! It's that time again.",
+          "uco-observable:messageID": "<1234567890@example.com>",
+          "uco-observable:subject": "Thoughts on Our Next Book Club Pick?"
+        }
+      ]
+    },
+    {
+      "@id": "kb:ea71196d-2351-40d2-8802-3eae36cd3d06",
+      "@type": "uco-observable:ObservableObject",
+      "uco-core:hasFacet": [
+        {
+          "@id": "kb:bc51589c-2096-4d52-99f7-55c27b9d020c",
+          "@type": "uco-observable:URLFacet",
+          "uco-observable:fullValue": "www.docker.com/howto"
+        }
+      ]
+    },
+    {
+      "@id": "kb:a7434aaf-a4bc-433f-90ea-3198396028bf",
+      "@type": "uco-observable:ObservableObject",
+      "uco-core:hasFacet": [
+        {
+          "@id": "kb:dd622358-6396-4219-8915-139455dbc0c0",
+          "@type": "uco-observable:ApplicationFacet",
+          "uco-observable:applicationIdentifier": "Safari"
+        }
+      ]
+    },
+    {
+      "@id": "kb:d555b994-3e97-4369-ab76-c4a782d7e876",
+      "@type": "uco-observable:ObservableObject",
+      "uco-core:hasFacet": [
+        {
+          "@id": "kb:acf907c9-e30a-421d-b93b-07cd983e5970",
+          "@type": "uco-observable:URLHistoryFacet",
+          "uco-observable:browserInformation": {
+            "@id": "kb:a7434aaf-a4bc-433f-90ea-3198396028bf",
+            "@type": "uco-observable:ObservableObject",
+            "uco-core:hasFacet": [
+              {
+                "@id": "kb:dd622358-6396-4219-8915-139455dbc0c0",
+                "@type": "uco-observable:ApplicationFacet",
+                "uco-observable:applicationIdentifier": "Safari"
+              }
+            ]
+          },
+          "uco-observable:urlHistoryEntry": [
+            {
+              "@id": "kb:329179a7-1290-4bd7-aff3-5f19fbbdd032",
+              "@type": "uco-observable:URLHistoryEntry",
+              "uco-observable:url": {
+                "@id": "kb:ea71196d-2351-40d2-8802-3eae36cd3d06",
+                "@type": "uco-observable:ObservableObject",
+                "uco-core:hasFacet": [
+                  {
+                    "@id": "kb:bc51589c-2096-4d52-99f7-55c27b9d020c",
+                    "@type": "uco-observable:URLFacet",
+                    "uco-observable:fullValue": "www.docker.com/howto"
+                  }
+                ]
+              },
+              "uco-observable:referrerUrl": {
+                "@id": "kb:ea71196d-2351-40d2-8802-3eae36cd3d06",
+                "@type": "uco-observable:ObservableObject",
+                "uco-core:hasFacet": [
+                  {
+                    "@id": "kb:bc51589c-2096-4d52-99f7-55c27b9d020c",
+                    "@type": "uco-observable:URLFacet",
+                    "uco-observable:fullValue": "www.docker.com/howto"
+                  }
+                ]
+              },
+              "uco-observable:expirationTime": {
+                "@type": "xsd:dateTime",
+                "@value": "2024-12-27T22:55:01.000+00:00"
+              },
+              "uco-observable:firstVisit": {
+                "@type": "xsd:dateTime",
+                "@value": "2024-01-02T23:55:01.000+00:00"
+              },
+              "uco-observable:lastVisit": {
+                "@type": "xsd:dateTime",
+                "@value": "2024-02-10T18:55:01.000+00:00"
+              },
+              "uco-observable:visitCount": 18,
+              "uco-observable:manuallyEnteredCount": 10,
+              "uco-observable:browserUserProfile": "Jill",
+              "uco-observable:hostname": "case_test",
+              "uco-observable:pageTitle": "Docker tutorial",
+              "uco-observable:keywordSearchTerm": "docker"
+            },
+            {
+              "@id": "kb:1dc150e4-6bb0-45e1-9d85-f467d0baced1",
+              "@type": "uco-observable:URLHistoryEntry",
+              "uco-observable:url": {
+                "@id": "kb:ea71196d-2351-40d2-8802-3eae36cd3d06",
+                "@type": "uco-observable:ObservableObject",
+                "uco-core:hasFacet": [
+                  {
+                    "@id": "kb:bc51589c-2096-4d52-99f7-55c27b9d020c",
+                    "@type": "uco-observable:URLFacet",
+                    "uco-observable:fullValue": "www.docker.com/howto"
+                  }
+                ]
+              },
+              "uco-observable:referrerUrl": {
+                "@id": "kb:ea71196d-2351-40d2-8802-3eae36cd3d06",
+                "@type": "uco-observable:ObservableObject",
+                "uco-core:hasFacet": [
+                  {
+                    "@id": "kb:bc51589c-2096-4d52-99f7-55c27b9d020c",
+                    "@type": "uco-observable:URLFacet",
+                    "uco-observable:fullValue": "www.docker.com/howto"
+                  }
+                ]
+              },
+              "uco-observable:expirationTime": {
+                "@type": "xsd:dateTime",
+                "@value": "2024-12-27T22:55:01.000+00:00"
+              },
+              "uco-observable:firstVisit": {
+                "@type": "xsd:dateTime",
+                "@value": "2024-01-02T23:55:01.000+00:00"
+              },
+              "uco-observable:lastVisit": {
+                "@type": "xsd:dateTime",
+                "@value": "2024-02-10T18:55:01.000+00:00"
+              },
+              "uco-observable:visitCount": 38,
+              "uco-observable:manuallyEnteredCount": 21,
+              "uco-observable:browserUserProfile": "Tamasin",
+              "uco-observable:hostname": "case_test",
+              "uco-observable:pageTitle": "GitHub actions tutorial",
+              "uco-observable:keywordSearchTerm": "git actions"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "@id": "kb:84c7717d-58a2-461b-93fd-7bcccdf8ab35",
+      "@type": "uco-observable:ObservableObject",
+      "uco-core:hasFacet": [
+        {
+          "@id": "kb:147e9c33-93b8-4350-b00e-abb6eac16685",
+          "@type": "uco-observable:PhoneAccountFacet",
+          "uco-observable:phoneNumber": "123456"
+        }
+      ]
+    },
+    {
+      "@id": "kb:4be471ff-03bd-4ad1-8d33-86d3377aee4a",
+      "@type": "uco-observable:ObservableObject",
+      "uco-core:hasFacet": [
+        {
+          "@id": "kb:65b06221-3f8b-45e3-aa85-ec4866863ce2",
+          "@type": "uco-observable:PhoneAccountFacet",
+          "uco-observable:phoneNumber": "987654"
+        }
+      ]
+    },
+    {
+      "@id": "kb:a14ae460-ee57-4e6c-9926-bd7efe82420c",
+      "@type": "uco-observable:ObservableObject",
+      "uco-core:hasFacet": [
+        {
+          "@id": "kb:06fb1d76-d92e-4a2b-ae6e-10a7bfc89d0d",
+          "@type": "uco-observable:MessageFacet",
+          "uco-observable:application": {
+            "@id": "kb:2db4b240-9702-48be-9ce9-e19cafe635ed",
+            "@type": "uco-observable:ObservableObject",
+            "uco-core:hasFacet": [
+              {
+                "@id": "kb:289d6c40-7758-448a-97cf-0d04bbbf5905",
+                "@type": "uco-observable:ApplicationFacet",
+                "uco-observable:applicationIdentifier": "WhatsApp"
+              }
+            ]
+          },
+          "uco-observable:from_": {
+            "@id": "kb:84c7717d-58a2-461b-93fd-7bcccdf8ab35",
+            "@type": "uco-observable:ObservableObject",
+            "uco-core:hasFacet": [
+              {
+                "@id": "kb:147e9c33-93b8-4350-b00e-abb6eac16685",
+                "@type": "uco-observable:PhoneAccountFacet",
+                "uco-observable:phoneNumber": "123456"
+              }
+            ]
+          },
+          "uco-observable:to": [
+            {
+              "@id": "kb:84c7717d-58a2-461b-93fd-7bcccdf8ab35",
+              "@type": "uco-observable:ObservableObject",
+              "uco-core:hasFacet": [
+                {
+                  "@id": "kb:147e9c33-93b8-4350-b00e-abb6eac16685",
+                  "@type": "uco-observable:PhoneAccountFacet",
+                  "uco-observable:phoneNumber": "123456"
+                }
+              ]
+            },
+            {
+              "@id": "kb:4be471ff-03bd-4ad1-8d33-86d3377aee4a",
+              "@type": "uco-observable:ObservableObject",
+              "uco-core:hasFacet": [
+                {
+                  "@id": "kb:65b06221-3f8b-45e3-aa85-ec4866863ce2",
+                  "@type": "uco-observable:PhoneAccountFacet",
+                  "uco-observable:phoneNumber": "987654"
+                }
+              ]
+            }
+          ],
+          "uco-observable:sentTime": {
+            "@type": "xsd:dateTime",
+            "@value": "2024-11-25T02:48:06.029+00:00"
+          },
+          "uco-observable:messageText": "Are you free this weekend?"
+        }
+      ]
+    },
+    {
+      "@id": "kb:2db4b240-9702-48be-9ce9-e19cafe635ed",
+      "@type": "uco-observable:ObservableObject",
+      "uco-core:hasFacet": [
+        {
+          "@id": "kb:289d6c40-7758-448a-97cf-0d04bbbf5905",
+          "@type": "uco-observable:ApplicationFacet",
+          "uco-observable:applicationIdentifier": "WhatsApp"
+        }
+      ]
+    },
+    {
+      "@id": "kb:7e12a2e9-ddef-4f52-a8bf-8badffed3809",
+      "@type": "uco-identity:Identity",
+      "uco-core:hasFacet": [
+        {
+          "@id": "kb:ef76e8d1-10f7-4cdc-9d5d-a81ec50b51d5",
+          "@type": "uco-identity:SimpleNameFacet",
+          "uco-identity:familyName": "Jones",
+          "uco-identity:givenName": "Davey"
+        },
+        {
+          "@id": "kb:d9f933e2-3ef0-44bf-ae79-ef49bb6c7fec",
+          "@type": "uco-identity:BirthInformationFacet",
+          "uco-identity:birthdate": {
+            "@type": "xsd:dateTime",
+            "@value": "1994-12-03T02:48:06.029+00:00"
+          }
+        }
+      ]
+    },
+    {
+      "@id": "kb:f47f6cfd-49dc-4179-b278-0c08bba50173",
+      "@type": "uco-location:Location",
+      "uco-core:hasFacet": [
+        {
+          "@id": "kb:7cd39ebb-c5dc-4a1f-a9fa-238d0ec059b2",
+          "@type": "uco-location:LatLongCoordinatesFacet",
+          "uco-location:latitude": 61.185055,
+          "uco-location:longitude": 9.468836
+        }
+      ]
+    },
+    {
+      "@id": "kb:55d82e32-05d9-44db-87f1-2720ba1cd069",
+      "@type": "case-investigation:Investigation",
+      "uco-core:name": "Crime A",
+      "uco-core:description": "Inquiry into the transfer of illicit materials and the devices used to do so",
+      "uco-core:object": [
+        {
+          "@id": "kb:1dff322c-fe69-4ffe-9cf4-e5b00a51727e",
+          "@type": "uco-observable:ObservableObject",
+          "uco-core:hasFacet": [
+            {
+              "@id": "kb:02439963-6862-4281-8e49-e22281e45ac7",
+              "@type": "uco-observable:FileFacet",
+              "uco-observable:isDirectory": false,
+              "uco-observable:metadataChangeTime": {
+                "@type": "xsd:dateTime",
+                "@value": "2024-04-21T17:16:43.000+00:00"
+              },
+              "uco-observable:modifiedTime": {
+                "@type": "xsd:dateTime",
+                "@value": "2024-04-21T19:06:33.000+00:00"
+              },
+              "uco-observable:observableCreatedTime": {
+                "@type": "xsd:dateTime",
+                "@value": "2024-04-18T19:06:33.000+00:00"
+              },
+              "uco-observable:sizeInBytes": 35002,
+              "uco-observable:allocationStatus": "Contiguous Allocation",
+              "uco-observable:extension": "jpg",
+              "uco-observable:fileName": "IMG_0123.jpg",
+              "uco-observable:filePath": "/sdcard/IMG_0123.jpg"
+            },
+            {
+              "@id": "kb:8ed6663b-0c25-4b1d-be4a-e583730ccda1",
+              "@type": "uco-observable:ContentDataFacet",
+              "uco-observable:hash": {
+                "@id": "kb:4df2efbd-ab79-4f25-8135-26a79c080ea9",
+                "@type": "uco-types:Hash",
+                "uco-types:hashValue": {
+                  "@type": "xsd:hexBinary",
+                  "@value": "11122273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+                },
+                "uco-types:hashMethod": "SHA256"
+              },
+              "uco-observable:sizeInBytes": 35000,
+              "uco-observable:dataPayload": "<base 64 encoded data of the file>",
+              "uco-observable:magicNumber": "/9j/ww==",
+              "uco-observable:mimeType": "image/jpeg",
+              "uco-observable:byteOrder": "Big-endian"
+            },
+            {
+              "@id": "kb:e0039a87-a286-44f7-ac46-a4a4954e5ede",
+              "@type": "uco-observable:RasterPictureFacet",
+              "uco-observable:bitsPerPixel": 2,
+              "uco-observable:pictureHeight": 12345,
+              "uco-observable:pictureWidth": 12346,
+              "uco-observable:pictureType": "jpg"
+            },
+            {
+              "@id": "kb:69726c36-2183-4d4a-a182-de00ac6941d3",
+              "@type": "uco-observable:EXIFFacet",
+              "uco-observable:exifData": {
+                "@id": "kb:bed2d601-d3c0-445a-b38a-638435fc6506",
+                "@type": "uco-types:ControlledDictionary",
+                "uco-types:entry": [
+                  {
+                    "@id": "kb:c1c4d7cf-c099-4fc4-9d5b-9fb565684381",
+                    "@type": "uco-types:ControlledDictionaryEntry",
+                    "uco-types:key": "Make",
+                    "uco-types:value": "Canon"
+                  },
+                  {
+                    "@id": "kb:85b24f7b-794c-4f0e-9be5-1a8f27eede8c",
+                    "@type": "uco-types:ControlledDictionaryEntry",
+                    "uco-types:key": "Model",
+                    "uco-types:value": "Powershot"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "@id": "kb:dd5d518d-347b-4090-9c11-d9ee00483a77",
+          "@type": "case-investigation:InvestigativeAction",
+          "uco-core:hasFacet": [
+            {
+              "@id": "kb:ace87c9e-804d-4b5a-9a6e-2ded2e0033fe",
+              "@type": "uco-observable:DeviceFacet",
+              "uco-observable:manufacturer": {
+                "@id": "kb:30eebaa8-a15f-4fd7-a1de-274bb856f3ee",
+                "@type": "uco-identity:Organization",
+                "uco-core:name": "Apple"
+              },
+              "uco-observable:deviceType": "iPhone",
+              "uco-observable:model": "6XS",
+              "uco-observable:serialNumber": "77"
+            }
+          ],
+          "uco-core:name": "annotated",
+          "uco-action:endTime": {
+            "@type": "xsd:dateTime",
+            "@value": "2024-11-25T02:48:06.028+00:00"
+          },
+          "uco-action:startTime": {
+            "@type": "xsd:dateTime",
+            "@value": "2024-11-25T02:48:06.028+00:00"
+          }
+        }
+      ],
+      "case-investigation:focus": "Transfer of Illicit Materials"
+    }
+  ]
+}

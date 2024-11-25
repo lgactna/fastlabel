@@ -4,6 +4,10 @@ Auto-generated classes from the SHACL graph in types.ttl.
 This file was generated using the `case_models.py` script.
 """
 
+from typing import Any
+
+from pydantic import model_validator
+
 from fastlabel.uco import XMLSchema, co, core, vocabulary
 
 
@@ -57,6 +61,24 @@ class Dictionary(core.UcoInherentCharacterizationThing):
 
     entry: DictionaryEntry | list[DictionaryEntry] | None = []
 
+    # MANUAL: Support for "real" Python dictionaries.
+    @model_validator(mode="before")
+    @classmethod
+    def handle_dict(cls, data: Any) -> Any:
+        entry_data = data.get("entry")
+
+        if isinstance(entry_data, dict):
+            data["entry"] = [{"key": k, "value": v} for k, v in entry_data.items()]
+
+        return data
+
+
+# All dictionary subclasses are just Dictionary. There is no support for the
+# constrained dictionary types.
+# ControlledDictionary = Dictionary
+# ImproperDictionary = Dictionary
+# ProperDictionary = Dictionary
+
 
 class Thread(co.Bag):
     """
@@ -76,7 +98,8 @@ class ControlledDictionary(Dictionary):
     defined set of values.
     """
 
-    entry: ControlledDictionaryEntry | list[ControlledDictionaryEntry] | None = []
+    # mypy: these types are all compatible with Dictionary
+    entry: ControlledDictionaryEntry | list[ControlledDictionaryEntry] | None = []  # type: ignore[assignment]
 
 
 class ImproperDictionary(Dictionary):

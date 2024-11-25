@@ -196,6 +196,8 @@ class Property(BaseModel):
         if self.python_type == containing_class:
             python_type = f'"{python_type}"'
 
+        # TODO: if a forward declaration is used, a Union must be used, not the
+        # | syntax
         if self.is_list:
             python_type = f"{python_type} | list[{python_type}]"
 

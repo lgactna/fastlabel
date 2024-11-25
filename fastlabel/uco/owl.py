@@ -5,6 +5,7 @@ Manually-created file that centralizes all the logic for UCO/CASE by hijacking
 
 import datetime
 import uuid
+from enum import Enum
 from typing import Any, Type, TypeVar
 
 from pydantic import BaseModel, ConfigDict, Field, computed_field, model_serializer
@@ -28,6 +29,11 @@ def get_class_as_jsonld(type: Type[Any]) -> str:
     that JSON-LD expects.
     """
     module, lib = type.__module__.split(".")[-2:]
+
+    # If this is a member of the uco.XMLSchema library, we perform special handling
+    if module == "uco" and lib == "XMLSchema":
+        return f"xsd:{type.__name__.replace('xsd_', '')}"
+
     return f"{module}-{lib}:{type.__name__}"
 
 
@@ -55,6 +61,10 @@ def get_field_names(cls: Type[Any]) -> dict[str, str]:
 
 
 def dump_scalar(value: Any) -> Any:
+    # If the field is an enum, get the underlying value and work form there
+    if isinstance(value, Enum):
+        value = value.value
+
     # If the field is a scalar...
     if isinstance(value, Thing):
         # If the field is itself a Thing, we must recursively dump it,
@@ -78,7 +88,7 @@ def dump_scalar(value: Any) -> Any:
     # `{"@type": "...", "@value": "..."}` format.
     return {
         "@type": get_class_as_jsonld(type(value)),
-        "@value": value,
+        "@value": str(value),
     }
 
 
@@ -91,7 +101,7 @@ class Thing(BaseModel):
     """
 
     # Raise when unrecognized fields are present.
-    _model_config = ConfigDict(extra="forbid")
+    model_config = ConfigDict(extra="forbid")
 
     # Consistent with UcoThing declared at
     # https://github.com/casework/CASE-Mapping-Python/blob/main/case_mapping/base.py#L23
@@ -141,7 +151,7 @@ class Thing(BaseModel):
                 continue
             if isinstance(value, list) and len(value) == 0:
                 continue
-            if field.startswith("_") or field == "internal_id":
+            if field.startswith("_") or field in ["model_config", "internal_id"]:
                 continue
 
             # Get the corresponding field name in the JSON-LD mapping

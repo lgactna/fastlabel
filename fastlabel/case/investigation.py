@@ -4,6 +4,8 @@ Auto-generated classes from the SHACL graph in investigation.ttl.
 This file was generated using the `case_models.py` script.
 """
 
+from typing import Union
+
 from pydantic import AwareDatetime
 
 from fastlabel.case import vocabulary
@@ -92,7 +94,7 @@ class InvestigativeAction(action.Action):
     other data.
     """
 
-    wasInformedBy: "InvestigativeAction" | list["InvestigativeAction"] | None = []
+    wasInformedBy: Union["InvestigativeAction", list["InvestigativeAction"], None] = []
 
 
 class Investigation(core.ContextualCompilation):

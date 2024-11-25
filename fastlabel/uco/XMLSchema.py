@@ -9,8 +9,6 @@ from typing import Any, Optional
 from pydantic import GetCoreSchemaHandler
 from pydantic_core import core_schema
 
-# Integer types with constraints
-
 
 class xsd_byte(int):
     """Represents xsd:byte (-128 to 127)"""
