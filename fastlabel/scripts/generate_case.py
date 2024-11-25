@@ -530,7 +530,6 @@ def generate_enums_from_datatypes(graph: Graph) -> str:
 
 if __name__ == "__main__":
     # Find all folders in the /case_artifacts directory
-
     case_artifacts_dir = get_artifacts_dir()
 
     # Get all directories/libraries in case_artifacts_dir
@@ -563,7 +562,7 @@ if __name__ == "__main__":
                 """
                 Auto-generated classes from the SHACL graph in {artifact_file.name}.
                 
-                This file was generated using the `case_models.py` script.
+                This file was generated using the `generate_case.py` script.
                 """
                 '''  # noqa: W293
             )

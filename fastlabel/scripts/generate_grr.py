@@ -8,111 +8,18 @@ This effectively replaces ArtifactDefinition from the official artifacts library
 but uses Pydantic for easier (de)serialization.
 """
 
-from enum import Enum
 from pathlib import Path
-from typing import Literal, Optional
+from textwrap import dedent
+from typing import Iterable, Optional
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel
 from ruamel.yaml import YAML
-from typing_extensions import Annotated
 
+from fastlabel.grr._base import ArtifactGroupSource, ArtifactSource, ArtifactSupportedOS
+from fastlabel.scripts._util import generate_docstring
 
-class ArtifactGroupAttributes(BaseModel):
-    names: list[str]
-
-
-class ArtifactGroupSource(BaseModel):
-    type: Literal["ARTIFACT_GROUP"]
-    attributes: ArtifactGroupAttributes
-
-
-class CommandAttributes(BaseModel):
-    args: list[str]
-    cmd: str
-
-
-class CommandSource(BaseModel):
-    type: Literal["COMMAND"]
-    attributes: CommandAttributes
-
-
-class FileAttributes(BaseModel):
-    paths: list[Path]
-    separator: Optional[str] = None
-
-
-class FileSource(BaseModel):
-    type: Literal["FILE"]
-    attributes: FileAttributes
-
-
-class PathAttributes(BaseModel):
-    paths: list[Path]
-    separator: Optional[str] = None
-
-
-class PathSource(BaseModel):
-    type: Literal["PATH"]
-    attributes: PathAttributes
-
-
-class RegistryKeyAttributes(BaseModel):
-    keys: list[str]
-
-
-class RegistryKeySource(BaseModel):
-    type: Literal["REGISTRY_KEY"]
-    attributes: RegistryKeyAttributes
-
-
-class RegistryKeyValuePair(BaseModel):
-    key: str
-    value: str
-
-
-class RegistryValueAttributes(BaseModel):
-    key_value_pairs: list[RegistryKeyValuePair]
-
-
-class RegistryValueSource(BaseModel):
-    type: Literal["REGISTRY_VALUE"]
-    attributes: RegistryValueAttributes
-
-
-class WMIAttributes(BaseModel):
-    base_object: Optional[str] = None
-    query: str
-
-
-class WMISource(BaseModel):
-    type: Literal["WMI"]
-    attributes: WMIAttributes
-
-
-class ArtifactSupportedOS(str, Enum):
-    ANDROID = "Android"
-    DARWIN = "Darwin"
-    IOS = "iOS"
-    LINUX = "Linux"
-    WINDOWS = "Windows"
-    ESXI = "ESXi"
-
-
-# See https://stackoverflow.com/questions/70914419/how-to-get-pydantic-to-discriminate-on-a-field-within-listuniontypea-typeb
-
-ArtifactSource = Annotated[
-    ArtifactGroupSource
-    | CommandSource
-    | FileSource
-    | PathSource
-    | RegistryKeySource
-    | RegistryValueSource
-    | WMISource,
-    Field(discriminator="type"),
-]
-
-# class ArtifactSource(BaseModel):
-#     source: ArtifactGroupSource | CommandSource | FileSource | PathSource | RegistryKeySource | RegistryValueSource | WMISource = Field(discriminator="type")
+# Absolute path to the GRR library
+LIBRARY_PATH = "fastlabel.grr"
 
 
 class ArtifactDefinition(BaseModel):
@@ -132,7 +39,82 @@ class ArtifactDefinition(BaseModel):
     labels: Optional[list[str]] = None
     provides: Optional[list[str]] = None
 
-    # TODO: turn this into its own model
+    def get_required_imports(self, dependency_mapping: dict[str, str]) -> set[str]:
+        """
+        Get all required imports for this artifact definition.
+
+        `dependency_mapping` is a mapping of artifact names to their containing
+        library under `fastlabel.grr`.
+
+        Returns a set of libraries; for example, if `fastlabel.grr.antivirus` and
+        `fastlabel.grr.applications` should be imported, then this returns
+        `{"applications", "antivirus"}`.
+        """
+        result = set()
+        for source in self.sources:
+            if isinstance(source, ArtifactGroupSource):
+                for artifact_name in source.attributes.names:
+                    result.add(dependency_mapping[artifact_name])
+
+        return result
+
+    def resolve_artifact_groups(self, dependency_mapping: dict[str, str]) -> None:
+        """
+        Convert artifacts in artifact groups to absolute import paths.
+
+        For example, an artifact group with WindowsUserRegistryFiles will instead
+        be dumped out as `windows.WindowsUserRegistryFiles`.
+        """
+        for source in self.sources:
+            if isinstance(source, ArtifactGroupSource):
+                source.resolve_artifact_group(dependency_mapping)
+
+    def to_pydantic_model(self, dependency_mapping: dict[str, str]) -> str:
+        """
+        Generate a Pydantic model from this artifact definition.
+
+        Note that artifact groups, which declaree a list of artifacts,
+        do not specify a namespace or libary to expect each artifact type in;
+        instead, it is assumed to all be available in a single namespace.
+
+        To account for this, we must know which module each artifact is in.
+        This should be handled externally; that is, every artifact should be
+        parsed, their final module path known, and then a list of absolute
+        import paths can be done.
+
+        :param dependency_mapping: A mapping of artifact names to their import path
+            (e.g. `{"ApacheAccessLogs": "triage"}`)
+        """
+        output = ""
+
+        # Generate header
+        output += f"class {self.name}(GRRArtifactBase):\n"
+        docstring = self.doc
+        # If there are any URLs, attach them to the docstring
+        if self.urls:
+            docstring += "\n\n"
+            docstring += "Reference URLs:\n"
+            for url in self.urls:
+                docstring += f"    - {url}\n"
+
+        output += generate_docstring(docstring)
+
+        # Get source list (equivalent to the "sources" list in the original YAML)
+        sources_text = artifact.model_dump(
+            mode="json", include={"sources"}, exclude_none=True
+        )["sources"]
+        output += f"    SOURCES = {sources_text}\n"
+
+        # Generate class vars
+        output += (
+            "    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)\n"
+        )
+        output += f"    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = {self.supported_os}\n"
+        output += f"    aliases: ClassVar[Optional[list[str]]] = {self.aliases}\n"
+
+        # TODO: Generate class variables
+
+        return output + "\n"
 
 
 def get_artifacts_dir() -> Path:
@@ -143,25 +125,90 @@ def get_artifacts_dir() -> Path:
     return (Path(__file__).parents[2] / "grr_artifacts").resolve()
 
 
-if __name__ == "__main__":
-    # print(list(get_artifacts_dir().glob("*.yaml")))
+def get_target_dir() -> Path:
+    """
+    Get a resolved path to "/fastlabel/grr".
+    """
+    return (Path(__file__).parents[1] / "grr").resolve()
 
-    # TODO: actually write these in the same manner as generate_case.py
+
+def generate_classes_from_yaml(file: Path) -> list[ArtifactDefinition]:
+    """
+    Generate a list of ArtifactDefinition objects from a YAML file.
+
+    All GRR artifact files are multi-document YAML files.
+
+    Returns a list of ArtifactDefinition objects.
+    """
+    artifacts = []
+    with open(artifact_file, "rt") as fp:
+        yaml = YAML(typ="safe")
+        for doc in yaml.load_all(fp):
+            try:
+                artifacts.append(ArtifactDefinition.model_validate(doc))
+            except Exception as e:
+                print(f"Error validating {doc}")
+                raise e
+    return artifacts
+
+
+def generate_import_list(libraries: Iterable[str]) -> str:
+    """
+    Generate a list of import statements for the given libraries.
+    """
+    output = ""
+
+    # Always import the base class
+    output += f"from {LIBRARY_PATH}._base import GRRArtifactBase, generate_sources\n"
+
+    # Remaining imports
+    output += f"from {LIBRARY_PATH} import ({', '.join(libraries)})\n"
+
+    return output + "\n"
+
+
+if __name__ == "__main__":
+    # Maps artifact names to their containing module path. Note that we don't do
+    # any import validation (e.g. a topological sort).
+    dependency_mapping: dict[str, str] = {}
+    # Maps module paths to a list of artifacts, allowing them to be grouped
+    # as a single file
+    module_groups: dict[str, list[ArtifactDefinition]] = {}
 
     for artifact_file in get_artifacts_dir().glob("*.yaml"):
-        print(f"Validating {artifact_file}")
-        with open(artifact_file, "rt") as fp:
-            yaml = YAML(typ="safe")
-            for d in yaml.load_all(fp):
-                try:
-                    x = ArtifactDefinition.model_validate(d)
-                except Exception as e:
-                    print(f"Error validating {d}")
-                    raise e
+        print(f"Parsing {artifact_file}")
 
-    print("ok")
+        artifacts = generate_classes_from_yaml(artifact_file)
 
-    # with open("./grr_artifacts/antivirus.yaml", "rt") as fp:
-    #     yaml = YAML(typ="safe")
-    #     for d in yaml.load_all(fp):
-    #         x = ArtifactDefinition.model_validate(d)
+        # The module name, relative to `fastlabel.grr`
+        module_name = artifact_file.stem
+
+        module_groups[module_name] = artifacts
+        for artifact in artifacts:
+            dependency_mapping[artifact.name] = module_name
+
+    # Generate the Pydantic models for each module group
+    for group_name, members in module_groups.items():
+        print(f"Generating models for {group_name}")
+
+        class_defs = ""
+        for artifact in members:
+            class_defs += artifact.to_pydantic_model(dependency_mapping) + "\n"
+
+        docstring = dedent(
+            f'''
+            """
+            Auto-generated classes from the YAML declarations in {group_name}.yaml.
+            
+            This file was generated using the `generate_grr.py` script.
+            """
+            '''  # noqa: W293
+        )
+
+        # Collect dependencies
+        dependencies = set()
+        for artifact in members:
+            dependencies.update(artifact.get_required_imports(dependency_mapping))
+        imports = generate_import_list(dependencies)
+
+        class_file = docstring + "\n" + imports + "\n\n" + class_defs
