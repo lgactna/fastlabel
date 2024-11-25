@@ -4,7 +4,7 @@ Auto-generated classes from the SHACL graph in types.ttl.
 This file was generated using the `case_models.py` script.
 """
 
-from typing import Any
+from typing import Any, Type, TypeVar
 
 from pydantic import model_validator
 
@@ -48,6 +48,9 @@ class ControlledDictionaryEntry(DictionaryEntry):
     """
 
 
+T = TypeVar("T", bound="Dictionary")
+
+
 class Dictionary(core.UcoInherentCharacterizationThing):
     """
     A dictionary is list of (term/key, value) pairs with each term/key having an
@@ -61,6 +64,17 @@ class Dictionary(core.UcoInherentCharacterizationThing):
 
     entry: DictionaryEntry | list[DictionaryEntry] | None = []
 
+    @classmethod
+    def from_dict(cls: Type[T], data: dict[str, str]) -> T:
+        """
+        Create a Dictionary instance from a native Python dictionary. Note that
+        the original Python bindings only support mappings of strings to strings.
+
+        While you can use `Dictionary(entry={...})` to make a dictionary, this
+        makes mypy mad.
+        """
+        return cls(entry=[DictionaryEntry(key=k, value=v) for k, v in data.items()])
+
     # MANUAL: Support for "real" Python dictionaries.
     @model_validator(mode="before")
     @classmethod
@@ -71,13 +85,6 @@ class Dictionary(core.UcoInherentCharacterizationThing):
             data["entry"] = [{"key": k, "value": v} for k, v in entry_data.items()]
 
         return data
-
-
-# All dictionary subclasses are just Dictionary. There is no support for the
-# constrained dictionary types.
-# ControlledDictionary = Dictionary
-# ImproperDictionary = Dictionary
-# ProperDictionary = Dictionary
 
 
 class Thread(co.Bag):

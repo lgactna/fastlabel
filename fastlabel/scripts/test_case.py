@@ -3,12 +3,13 @@ Replicate https://caseontology.org/examples/asgard using our bindings as closely
 as possible.
 """
 
+import datetime
 from pprint import pprint
 
 from fastlabel.uco import observable
 
 disk_facet = observable.FileFacet(
-    observableCreatedTime="2019-03-30T22:12:19.32Z",
+    observableCreatedTime=datetime.datetime.now(datetime.UTC),
     extension="dd",
     fileName="AsgardPD-2019033001-01.dd",
     filePath="C:/evidence/AsgardPD-2019033001-01.dd",

@@ -8,6 +8,8 @@ https://github.com/casework/CASE-Mapping-Python/blob/main/example.py
 import json
 from datetime import UTC, datetime, timedelta
 
+from rdflib import Graph
+
 from fastlabel import case, uco
 
 bundle_identity = uco.identity.Identity()
@@ -23,8 +25,11 @@ bundle_modified_time = datetime.strptime(
     "2024-05-02T21:38:19", "%Y-%m-%dT%H:%M:%S"
 ).astimezone(UTC)
 
+# This is an example of where bundle_identity ought to be passed in as a
+# reference. This means that only the @id field is attached to this node,
+# even though this is technically a copy of the "full" object.
 bundle = uco.core.Bundle(
-    createdBy=[bundle_identity],
+    createdBy=[bundle_identity.ref()],
     description="An Example Case File",
     modifiedTime=bundle_modified_time,
     name="json ld file",
@@ -59,7 +64,7 @@ os_facet = uco.observable.OperatingSystemFacet(
     bitness="64-bit",
     installDate=os_date,
     isLimitAdTrackingEnabled=True,
-    environmentVariables=uco.types.Dictionary(entry=os_env_vars),
+    environmentVariables=uco.types.Dictionary.from_dict(os_env_vars),
 )
 
 device_camera.hasFacet.extend([device1, os_facet])
@@ -105,7 +110,9 @@ file_content1 = uco.observable.ContentDataFacet(
     dataPayload="<base 64 encoded data of the file>",
     hash=uco.types.Hash(
         hashMethod=uco.vocabulary.HashNameVocab.SHA256,
-        hashValue="11122273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b",
+        hashValue=uco.XMLSchema.xsd_hexBinary(
+            "11122273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        ),
     ),
 )
 file_raster1 = uco.observable.RasterPictureFacet(
@@ -114,7 +121,7 @@ file_raster1 = uco.observable.RasterPictureFacet(
 
 exif = {"Make": "Canon", "Model": "Powershot"}
 file_exif1 = uco.observable.EXIFFacet(
-    exifData=uco.types.ControlledDictionary(entry=exif)
+    exifData=uco.types.ControlledDictionary.from_dict(exif)
 )
 sd_card.hasFacet.extend([file1, file_content1, file_raster1, file_exif1])
 bundle.object.append(sd_card)
@@ -381,3 +388,12 @@ with open("example.jsonld", "wt+") as f:
     # serializers provided - this is fine, though not great
     data = bundle.model_dump(serialize_as_any=True)
     f.write(json.dumps(data, indent=2))
+
+# Demonstrate that this is a legal JSON-LD file
+g = Graph()
+
+# Parse the local JSON-LD file
+g.parse("example.jsonld", format="json-ld")
+
+# Print the number of triples in the graph
+print(f"Graph has {len(g)} triples.")
