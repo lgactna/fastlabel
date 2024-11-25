@@ -8,7 +8,7 @@ https://github.com/casework/CASE-Mapping-Python/blob/main/example.py
 import json
 from datetime import UTC, datetime, timedelta
 
-from rdflib import Graph
+from rdflib import Graph, Namespace
 
 from fastlabel import case, uco
 
@@ -397,3 +397,16 @@ g.parse("example.jsonld", format="json-ld")
 
 # Print the number of triples in the graph
 print(f"Graph has {len(g)} triples.")
+
+UCO_CORE = Namespace("https://ontology.unifiedcyberontology.org/uco/core/")
+
+# Query the graph to extract all "uco-core:createdBy" entries
+created_by_entries = set()
+for _s, _p, o in g.triples((None, UCO_CORE.createdBy, None)):
+    created_by_entries.add(o)
+
+# Print the extracted "uco-core:createdBy" entries
+for entry in created_by_entries:
+    print("uco-core:createdBy")
+    for s, p, o in g.triples((entry, None, None)):
+        print(f"  {s} {p} {o}")
