@@ -138,6 +138,10 @@ class Thing(BaseModel):
         result["@id"] = self.computed_id
         result["@type"] = get_class_as_jsonld(type(self))
 
+        # If the context is specified, attach it
+        if hasattr(self, "_context"):
+            result["@context"] = self._context
+
         # Mutate all field names according to the *top* class they belong to.
         field_mapping = get_field_names(type(self))
 

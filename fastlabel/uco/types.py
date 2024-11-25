@@ -100,6 +100,9 @@ class ControlledDictionary(Dictionary):
     A controlled dictionary is a list of (term/key, value) pairs where each
     term/key exists no more than once and is constrained to an explicitly
     defined set of values.
+
+    NOTE: This does not actually support the "controlled" part of the dictionary.
+    There are no constraints to the allowed set of values.
     """
 
     # mypy: these types are all compatible with Dictionary
