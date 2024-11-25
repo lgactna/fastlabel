@@ -132,6 +132,8 @@ class ArtifactDefinition(BaseModel):
     labels: Optional[list[str]] = None
     provides: Optional[list[str]] = None
 
+    # TODO: turn this into its own model
+
 
 def get_artifacts_dir() -> Path:
     """
@@ -143,6 +145,8 @@ def get_artifacts_dir() -> Path:
 
 if __name__ == "__main__":
     # print(list(get_artifacts_dir().glob("*.yaml")))
+
+    # TODO: actually write these in the same manner as generate_case.py
 
     for artifact_file in get_artifacts_dir().glob("*.yaml"):
         print(f"Validating {artifact_file}")
