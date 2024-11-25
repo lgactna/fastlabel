@@ -39,6 +39,17 @@ class ArtifactDefinition(BaseModel):
     labels: Optional[list[str]] = None
     provides: Optional[list[str]] = None
 
+    def get_required_artifacts(self) -> set[str]:
+        """
+        Get all required artifacts for this artifact definition.
+        """
+        result = set()
+        for source in self.sources:
+            if isinstance(source, ArtifactGroupSource):
+                result.update(source.attributes.names)
+
+        return result
+
     def get_required_imports(self, dependency_mapping: dict[str, str]) -> set[str]:
         """
         Get all required imports for this artifact definition.
@@ -51,16 +62,15 @@ class ArtifactDefinition(BaseModel):
         `{"applications", "antivirus"}`.
         """
         result = set()
-        for source in self.sources:
-            if isinstance(source, ArtifactGroupSource):
-                for artifact_name in source.attributes.names:
-                    result.add(dependency_mapping[artifact_name])
+        for artifact in self.get_required_artifacts():
+            result.add(dependency_mapping[artifact])
 
         return result
 
     def resolve_artifact_groups(self, dependency_mapping: dict[str, str]) -> None:
         """
-        Convert artifacts in artifact groups to absolute import paths.
+        Convert artifacts in artifact groups to absolute import paths. Returns
+        a copy with these artifacts resolved.
 
         For example, an artifact group with WindowsUserRegistryFiles will instead
         be dumped out as `windows.WindowsUserRegistryFiles`.
@@ -68,6 +78,22 @@ class ArtifactDefinition(BaseModel):
         for source in self.sources:
             if isinstance(source, ArtifactGroupSource):
                 source.resolve_artifact_group(dependency_mapping)
+
+    def generate_artifact_map(
+        self, dependency_mapping: dict[str, str]
+    ) -> dict[str, str]:
+        """
+        Generates the artifact map for this artifact definition. For example, if
+        this depends on WindowsUserRegistryFiles, then this returns
+        `{"WindowsUserRegistryFiles": "windows.WindowsUserRegistryFiles"}.
+        """
+        result = {}
+        for artifact_name in self.get_required_artifacts():
+            result[artifact_name] = (
+                f"{dependency_mapping[artifact_name]}.{artifact_name}"
+            )
+
+        return result
 
     def to_pydantic_model(self, dependency_mapping: dict[str, str]) -> str:
         """
@@ -95,7 +121,7 @@ class ArtifactDefinition(BaseModel):
             docstring += "\n\n"
             docstring += "Reference URLs:\n"
             for url in self.urls:
-                docstring += f"    - {url}\n"
+                docstring += f"{url}\n"
 
         output += generate_docstring(docstring)
 
@@ -105,11 +131,24 @@ class ArtifactDefinition(BaseModel):
         )["sources"]
         output += f"    SOURCES = {sources_text}\n"
 
+        # Generate mappings for any dependencies, allows for direct imports
+        # without needing to resolve them at runtime
+        artifact_map = self.generate_artifact_map(dependency_mapping)
+        artifact_map_items = ",".join([f'"{k}": {v}' for k, v in artifact_map.items()])
+        output += f"    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {{{artifact_map_items}}}\n\n"
+
         # Generate class vars
         output += (
             "    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)\n"
         )
-        output += f"    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = {self.supported_os}\n"
+
+        # Convert supported OS to enum entities
+        supported_os = []
+        if self.supported_os:
+            supported_os = [
+                f"ArtifactSupportedOS.{os.name}" for os in self.supported_os
+            ]
+        output += f"    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [{','.join(supported_os)}]\n"
         output += f"    aliases: ClassVar[Optional[list[str]]] = {self.aliases}\n"
 
         # TODO: Generate class variables
@@ -132,7 +171,7 @@ def get_target_dir() -> Path:
     return (Path(__file__).parents[1] / "grr").resolve()
 
 
-def generate_classes_from_yaml(file: Path) -> list[ArtifactDefinition]:
+def generate_classes_from_yaml(artifact_file: Path) -> list[ArtifactDefinition]:
     """
     Generate a list of ArtifactDefinition objects from a YAML file.
 
@@ -158,11 +197,12 @@ def generate_import_list(libraries: Iterable[str]) -> str:
     """
     output = ""
 
-    # Always import the base class
-    output += f"from {LIBRARY_PATH}._base import GRRArtifactBase, generate_sources\n"
+    output += "from typing import ClassVar, Optional, Type\n"
+    output += f"from {LIBRARY_PATH}._base import ArtifactSource, ArtifactSupportedOS, GRRArtifactBase, generate_sources\n"
 
     # Remaining imports
-    output += f"from {LIBRARY_PATH} import ({', '.join(libraries)})\n"
+    if libraries:
+        output += f"from {LIBRARY_PATH} import ({', '.join(libraries)})\n"
 
     return output + "\n"
 
@@ -189,11 +229,10 @@ if __name__ == "__main__":
 
     # Generate the Pydantic models for each module group
     for group_name, members in module_groups.items():
-        print(f"Generating models for {group_name}")
-
-        class_defs = ""
-        for artifact in members:
-            class_defs += artifact.to_pydantic_model(dependency_mapping) + "\n"
+        target_file = get_target_dir() / f"{group_name}.py"
+        print(
+            f"Generating models for {group_name} -> {target_file.relative_to(get_target_dir())}"
+        )
 
         docstring = dedent(
             f'''
@@ -211,4 +250,11 @@ if __name__ == "__main__":
             dependencies.update(artifact.get_required_imports(dependency_mapping))
         imports = generate_import_list(dependencies)
 
+        class_defs = ""
+        for artifact in members:
+            class_defs += artifact.to_pydantic_model(dependency_mapping) + "\n"
+
         class_file = docstring + "\n" + imports + "\n\n" + class_defs
+
+        with open(target_file, "wt") as fp:
+            fp.write(class_file)

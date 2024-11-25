@@ -4,7 +4,7 @@ The base definitions for the GRR artifacts.
 
 from enum import Enum
 from pathlib import Path
-from typing import Any, ClassVar, Literal, Optional
+from typing import Any, ClassVar, Literal, Optional, Type
 
 from pydantic import BaseModel, Field
 from typing_extensions import Annotated
@@ -150,6 +150,9 @@ class GRRArtifactBase(BaseModel):
 
     # The sources, as a serializable Python list of dictionaries
     SOURCES: ClassVar[list[dict[str, Any]]] = []
+    # If this contains artifact groups, mappings of strings to their actual type
+    # (so it doesn't have to resolved at runtime)
+    ARTIFACT_MAP: ClassVar[dict[str, Type["GRRArtifactBase"]]] = {}
 
     # The serialized sources
     sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
