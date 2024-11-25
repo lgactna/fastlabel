@@ -4,7 +4,7 @@ Auto-generated classes from the SHACL graph in types.ttl.
 This file was generated using the `case_models.py` script.
 """
 
-from typing import Any, Type, TypeVar
+from typing import Any
 
 from pydantic import model_validator
 
@@ -48,9 +48,6 @@ class ControlledDictionaryEntry(DictionaryEntry):
     """
 
 
-T = TypeVar("T", bound="Dictionary")
-
-
 class Dictionary(core.UcoInherentCharacterizationThing):
     """
     A dictionary is list of (term/key, value) pairs with each term/key having an
@@ -65,7 +62,7 @@ class Dictionary(core.UcoInherentCharacterizationThing):
     entry: DictionaryEntry | list[DictionaryEntry] | None = []
 
     @classmethod
-    def from_dict(cls: Type[T], data: dict[str, str]) -> T:
+    def from_dict(cls, data: dict[str, str]) -> "Dictionary":
         """
         Create a Dictionary instance from a native Python dictionary. Note that
         the original Python bindings only support mappings of strings to strings.
@@ -107,6 +104,19 @@ class ControlledDictionary(Dictionary):
 
     # mypy: these types are all compatible with Dictionary
     entry: ControlledDictionaryEntry | list[ControlledDictionaryEntry] | None = []  # type: ignore[assignment]
+
+    @classmethod
+    def from_dict(cls, data: dict[str, str]) -> "ControlledDictionary":
+        """
+        Create a Dictionary instance from a native Python dictionary. Note that
+        the original Python bindings only support mappings of strings to strings.
+
+        While you can use `Dictionary(entry={...})` to make a dictionary, this
+        makes mypy mad.
+        """
+        return cls(
+            entry=[ControlledDictionaryEntry(key=k, value=v) for k, v in data.items()]
+        )
 
 
 class ImproperDictionary(Dictionary):
