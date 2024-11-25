@@ -5,7 +5,7 @@ This file was generated using the `case_models.py` script.
 """
 
 from enum import Enum
-from typing import Any
+from typing import Any, Union
 
 from pydantic import AwareDatetime, Field
 
@@ -76,6 +76,10 @@ class UcoObject(UcoThing):
     description: str | list[str] | None = []
     tag: str | list[str] | None = []
     objectStatus: ObjectStatusVocab | None = None
+
+    # MANUAL: This field was added manually. It was not auto-generated because
+    # the actual definition causes a circular reference.
+    createdBy: Union["UcoObject", list["UcoObject"], None] = []
 
 
 class Assertion(UcoObject):

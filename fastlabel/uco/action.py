@@ -4,7 +4,7 @@ Auto-generated classes from the SHACL graph in action.ttl.
 This file was generated using the `case_models.py` script.
 """
 
-from typing import Type
+from typing import Union
 
 from pydantic import AwareDatetime, Field
 
@@ -16,7 +16,7 @@ class Action(core.UcoObject):
     An action is something that may be done or performed.
     """
 
-    subaction: Type["Action"] | list["Action"] | None = []
+    subaction: Union["Action", list["Action"], None] = []
     environment: core.UcoObject | None = Field(
         default=None, json_schema_extra={"IRI": True}
     )

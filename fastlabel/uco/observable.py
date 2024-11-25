@@ -1385,8 +1385,11 @@ class ObservableRelationship(core.Relationship):
     assertion of an association between two observable objects.
     """
 
-    source: Observable
-    target: Observable
+    # MANUAL: The current Python bindings point this at core.UCOObject,
+    # not Observable (like the RDF suggests). ObservableObject appears
+    # to be more applicable here than the generic UCOObject.
+    source: ObservableObject
+    target: ObservableObject
 
 
 class ExtractedStringsFacet(core.Facet):
