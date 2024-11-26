@@ -162,7 +162,8 @@ class GRRArtifactBase(BaseModel):
 
     # artifact-specific fields should follow (and should not be classvars)
 
-    def process_artifact(self, path: Path) -> None:
+    @classmethod
+    def process_artifact(self, path: Path) -> "GRRArtifactBase":
         """
         Process a provided artifact and assign fields.
 

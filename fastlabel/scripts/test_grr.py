@@ -1,3 +1,5 @@
 from fastlabel.grr import windows
 
-windows.WindowsUserAccessLogging()
+print("x")
+print(windows.WindowsUserAccessLogging.sources)
+print("y")
