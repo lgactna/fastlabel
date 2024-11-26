@@ -1,3 +1,7 @@
+import keyword
+import re
+
+
 def generate_docstring(comment: str | None, width: int = 76) -> str:
     """
     Break the comment into a multi-line docstring, capped at 80 characters
@@ -41,3 +45,22 @@ def generate_docstring(comment: str | None, width: int = 76) -> str:
             docstring += f"    {line}\n"
     docstring += '    """\n'
     return docstring
+
+
+def to_valid_identifier(s: str, remove_underscores: bool = False) -> str:
+    # Remove leading and trailing whitespace
+    s = s.strip()
+    # Replace invalid characters with underscores
+    s = re.sub(r"\W+|^(?=\d)", "_", s)
+
+    # Remove underscores (for things like class definitions)
+    if remove_underscores:
+        s = s.replace("_", "")
+
+    # If it's a reserved keyword, prepend an underscore
+    if keyword.iskeyword(s):
+        s = "_" + s
+    # Ensure the identifier is valid
+    if not s.isidentifier():
+        s = "_" + s
+    return s
