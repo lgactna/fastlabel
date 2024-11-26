@@ -6,7 +6,7 @@ This file was generated using the `generate_grr.py` script.
 
 from typing import ClassVar, Optional, Type
 
-from fastlabel.grr import linux, linux_proc
+from fastlabel.grr import linux_proc
 from fastlabel.grr._base import (
     ArtifactSource,
     ArtifactSupportedOS,
@@ -924,21 +924,16 @@ class LinuxMountCmd(GRRArtifactBase):
     aliases: ClassVar[Optional[list[str]]] = None
 
 
-class LinuxMountInfo(GRRArtifactBase):
+class LinuxProcMounts(GRRArtifactBase):
     """
-    Linux mount options.
+    Current mounted filesystems.
+
+    Reference URLs:
+    https://www.kernel.org/doc/Documentation/filesystems/proc.txt
     """
 
-    SOURCES = [
-        {
-            "type": "ARTIFACT_GROUP",
-            "attributes": {"names": ["LinuxFstab", "LinuxProcMounts"]},
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {
-        "LinuxProcMounts": linux_proc.LinuxProcMounts,
-        "LinuxFstab": linux.LinuxFstab,
-    }
+    SOURCES = [{"type": "FILE", "attributes": {"paths": ["/proc/mounts"]}}]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
 
     sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
     supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
@@ -1044,28 +1039,21 @@ class LinuxPasswdFile(GRRArtifactBase):
     aliases: ClassVar[Optional[list[str]]] = None
 
 
-class LinuxReleaseInfo(GRRArtifactBase):
+class LinuxSystemdOSRelease(GRRArtifactBase):
     """
-    Release information for Linux platforms.
+    Linux systemd /etc/os-release file
+
+    Reference URLs:
+    https://www.freedesktop.org/software/systemd/man/os-release.html
     """
 
     SOURCES = [
         {
-            "type": "ARTIFACT_GROUP",
-            "attributes": {
-                "names": [
-                    "LinuxDistributionRelease",
-                    "LinuxLSBRelease",
-                    "LinuxSystemdOSRelease",
-                ]
-            },
+            "type": "FILE",
+            "attributes": {"paths": ["/etc/os-release", "/usr/lib/os-release"]},
         }
     ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {
-        "LinuxSystemdOSRelease": linux.LinuxSystemdOSRelease,
-        "LinuxDistributionRelease": linux.LinuxDistributionRelease,
-        "LinuxLSBRelease": linux.LinuxLSBRelease,
-    }
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
 
     sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
     supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
@@ -1098,22 +1086,49 @@ class LinuxRsyslogConfigs(GRRArtifactBase):
     aliases: ClassVar[Optional[list[str]]] = None
 
 
-class LinuxScheduleFiles(GRRArtifactBase):
+class LinuxSystemdServices(GRRArtifactBase):
     """
-    All Linux job scheduling files.
+    Linux systemd service unit files
+
+    Reference URLs:
+    https://www.freedesktop.org/software/systemd/man/systemd.unit.html#System%20Unit%20Search%20Path
     """
 
     SOURCES = [
         {
-            "type": "ARTIFACT_GROUP",
-            "attributes": {"names": ["AnacronFiles", "LinuxCronTabs", "LinuxAtJobs"]},
+            "type": "FILE",
+            "attributes": {
+                "paths": [
+                    "/etc/systemd/system.control/*.service",
+                    "/etc/systemd/systemd.attached/*.service",
+                    "/etc/systemd/system/*.service",
+                    "/etc/systemd/user/*.service",
+                    "/lib/systemd/system/*.service",
+                    "/lib/systemd/user/*.service",
+                    "/run/systemd/generator.early/*.service",
+                    "/run/systemd/generator.late/*.service",
+                    "/run/systemd/generator/*.service",
+                    "/run/systemd/system.control/*.service",
+                    "/run/systemd/systemd.attached/*.service",
+                    "/run/systemd/system/*.service",
+                    "/run/systemd/transient/*.service",
+                    "/run/systemd/user/*.service",
+                    "/run/user/*/systemd/generator.early/*.service",
+                    "/run/user/*/systemd/generator.late/*.service",
+                    "/run/user/*/systemd/generator/*.service",
+                    "/run/user/*/systemd/transient/*.service",
+                    "/run/user/*/systemd/user.control/*.service",
+                    "/run/user/*/systemd/user/*.service",
+                    "/usr/lib/systemd/system/*.service",
+                    "/usr/lib/systemd/user/*.service",
+                    "%%users.homedir%%/.config/systemd/user.control/*.service",
+                    "%%users.homedir%%/.config/systemd/user/*.service",
+                    "%%users.homedir%%/.local/share/systemd/user/*.service",
+                ]
+            },
         }
     ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {
-        "LinuxCronTabs": linux.LinuxCronTabs,
-        "AnacronFiles": linux.AnacronFiles,
-        "LinuxAtJobs": linux.LinuxAtJobs,
-    }
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
 
     sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
     supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
@@ -1122,30 +1137,51 @@ class LinuxScheduleFiles(GRRArtifactBase):
     aliases: ClassVar[Optional[list[str]]] = None
 
 
-class LinuxServices(GRRArtifactBase):
+class LinuxSysVInit(GRRArtifactBase):
     """
-    Services running on a Linux system.
+    Services started by sysv-style init scripts.
+
+    Reference URLs: http://savannah.nongnu.org/projects/sysvinit
+    http://docs.oracle.com/cd/E37670_01/E41138/html/ol_svcscripts.html
     """
 
     SOURCES = [
         {
-            "type": "ARTIFACT_GROUP",
+            "type": "FILE",
             "attributes": {
-                "names": [
-                    "LinuxXinetd",
-                    "LinuxLSBInit",
-                    "LinuxSysVInit",
-                    "LinuxSystemdServices",
+                "paths": [
+                    "/etc/rc.local",
+                    "/etc/rc*.d",
+                    "/etc/rc*.d/*",
+                    "/etc/rc.d/rc*.d/*",
+                    "/etc/rc.d/init.d/*",
                 ]
             },
         }
     ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {
-        "LinuxSysVInit": linux.LinuxSysVInit,
-        "LinuxLSBInit": linux.LinuxLSBInit,
-        "LinuxSystemdServices": linux.LinuxSystemdServices,
-        "LinuxXinetd": linux.LinuxXinetd,
-    }
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.LINUX
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class LinuxXinetd(GRRArtifactBase):
+    """
+    Linux xinetd configurations.
+
+    Reference URLs: http://en.wikipedia.org/wiki/Xinetd
+    """
+
+    SOURCES = [
+        {
+            "type": "FILE",
+            "attributes": {"paths": ["/etc/xinetd.conf", "/etc/xinetd.d/**"]},
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
 
     sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
     supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
@@ -1308,80 +1344,6 @@ class LinuxSystemdJournalLogs(GRRArtifactBase):
     aliases: ClassVar[Optional[list[str]]] = None
 
 
-class LinuxSystemdOSRelease(GRRArtifactBase):
-    """
-    Linux systemd /etc/os-release file
-
-    Reference URLs:
-    https://www.freedesktop.org/software/systemd/man/os-release.html
-    """
-
-    SOURCES = [
-        {
-            "type": "FILE",
-            "attributes": {"paths": ["/etc/os-release", "/usr/lib/os-release"]},
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.LINUX
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
-class LinuxSystemdServices(GRRArtifactBase):
-    """
-    Linux systemd service unit files
-
-    Reference URLs:
-    https://www.freedesktop.org/software/systemd/man/systemd.unit.html#System%20Unit%20Search%20Path
-    """
-
-    SOURCES = [
-        {
-            "type": "FILE",
-            "attributes": {
-                "paths": [
-                    "/etc/systemd/system.control/*.service",
-                    "/etc/systemd/systemd.attached/*.service",
-                    "/etc/systemd/system/*.service",
-                    "/etc/systemd/user/*.service",
-                    "/lib/systemd/system/*.service",
-                    "/lib/systemd/user/*.service",
-                    "/run/systemd/generator.early/*.service",
-                    "/run/systemd/generator.late/*.service",
-                    "/run/systemd/generator/*.service",
-                    "/run/systemd/system.control/*.service",
-                    "/run/systemd/systemd.attached/*.service",
-                    "/run/systemd/system/*.service",
-                    "/run/systemd/transient/*.service",
-                    "/run/systemd/user/*.service",
-                    "/run/user/*/systemd/generator.early/*.service",
-                    "/run/user/*/systemd/generator.late/*.service",
-                    "/run/user/*/systemd/generator/*.service",
-                    "/run/user/*/systemd/transient/*.service",
-                    "/run/user/*/systemd/user.control/*.service",
-                    "/run/user/*/systemd/user/*.service",
-                    "/usr/lib/systemd/system/*.service",
-                    "/usr/lib/systemd/user/*.service",
-                    "%%users.homedir%%/.config/systemd/user.control/*.service",
-                    "%%users.homedir%%/.config/systemd/user/*.service",
-                    "%%users.homedir%%/.local/share/systemd/user/*.service",
-                ]
-            },
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.LINUX
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
 class LinuxSystemdTimers(GRRArtifactBase):
     """
     Linux systemd Timer files
@@ -1420,37 +1382,6 @@ class LinuxSystemdTimers(GRRArtifactBase):
                     "%%users.homedir%%/.config/systemd/user.control/*.timer",
                     "%%users.homedir%%/.config/systemd/user/*.timer",
                     "%%users.homedir%%/.local/share/systemd/user/*.timer",
-                ]
-            },
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.LINUX
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
-class LinuxSysVInit(GRRArtifactBase):
-    """
-    Services started by sysv-style init scripts.
-
-    Reference URLs: http://savannah.nongnu.org/projects/sysvinit
-    http://docs.oracle.com/cd/E37670_01/E41138/html/ol_svcscripts.html
-    """
-
-    SOURCES = [
-        {
-            "type": "FILE",
-            "attributes": {
-                "paths": [
-                    "/etc/rc.local",
-                    "/etc/rc*.d",
-                    "/etc/rc*.d/*",
-                    "/etc/rc.d/rc*.d/*",
-                    "/etc/rc.d/init.d/*",
                 ]
             },
         }
@@ -1536,28 +1467,6 @@ class LinuxWtmp(GRRArtifactBase):
     """
 
     SOURCES = [{"type": "FILE", "attributes": {"paths": ["/var/log/wtmp*"]}}]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.LINUX
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
-class LinuxXinetd(GRRArtifactBase):
-    """
-    Linux xinetd configurations.
-
-    Reference URLs: http://en.wikipedia.org/wiki/Xinetd
-    """
-
-    SOURCES = [
-        {
-            "type": "FILE",
-            "attributes": {"paths": ["/etc/xinetd.conf", "/etc/xinetd.d/**"]},
-        }
-    ]
     ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
 
     sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
@@ -2116,6 +2025,115 @@ class ZeitgeistDatabase(GRRArtifactBase):
         }
     ]
     ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.LINUX
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class LinuxScheduleFiles(GRRArtifactBase):
+    """
+    All Linux job scheduling files.
+    """
+
+    SOURCES = [
+        {
+            "type": "ARTIFACT_GROUP",
+            "attributes": {"names": ["AnacronFiles", "LinuxCronTabs", "LinuxAtJobs"]},
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {
+        "LinuxAtJobs": LinuxAtJobs,
+        "LinuxCronTabs": LinuxCronTabs,
+        "AnacronFiles": AnacronFiles,
+    }
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.LINUX
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class LinuxMountInfo(GRRArtifactBase):
+    """
+    Linux mount options.
+    """
+
+    SOURCES = [
+        {
+            "type": "ARTIFACT_GROUP",
+            "attributes": {"names": ["LinuxFstab", "LinuxProcMounts"]},
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {
+        "LinuxProcMounts": linux_proc.LinuxProcMounts,
+        "LinuxFstab": LinuxFstab,
+    }
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.LINUX
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class LinuxReleaseInfo(GRRArtifactBase):
+    """
+    Release information for Linux platforms.
+    """
+
+    SOURCES = [
+        {
+            "type": "ARTIFACT_GROUP",
+            "attributes": {
+                "names": [
+                    "LinuxDistributionRelease",
+                    "LinuxLSBRelease",
+                    "LinuxSystemdOSRelease",
+                ]
+            },
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {
+        "LinuxDistributionRelease": LinuxDistributionRelease,
+        "LinuxSystemdOSRelease": LinuxSystemdOSRelease,
+        "LinuxLSBRelease": LinuxLSBRelease,
+    }
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.LINUX
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class LinuxServices(GRRArtifactBase):
+    """
+    Services running on a Linux system.
+    """
+
+    SOURCES = [
+        {
+            "type": "ARTIFACT_GROUP",
+            "attributes": {
+                "names": [
+                    "LinuxXinetd",
+                    "LinuxLSBInit",
+                    "LinuxSysVInit",
+                    "LinuxSystemdServices",
+                ]
+            },
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {
+        "LinuxLSBInit": LinuxLSBInit,
+        "LinuxSystemdServices": LinuxSystemdServices,
+        "LinuxSysVInit": LinuxSysVInit,
+        "LinuxXinetd": LinuxXinetd,
+    }
 
     sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
     supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [

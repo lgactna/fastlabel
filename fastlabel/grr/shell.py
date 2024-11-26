@@ -6,7 +6,6 @@ This file was generated using the `generate_grr.py` script.
 
 from typing import ClassVar, Optional, Type
 
-from fastlabel.grr import shell
 from fastlabel.grr._base import (
     ArtifactSource,
     ArtifactSupportedOS,
@@ -373,38 +372,61 @@ class RootUserShellHistory(GRRArtifactBase):
     aliases: ClassVar[Optional[list[str]]] = None
 
 
-class ShellConfigurationFile(GRRArtifactBase):
+class ZShellConfigurationFile(GRRArtifactBase):
     """
-    Group of shell configuration files.
+    Z shell (zsh) configuration files.
+
+    Reference URLs: https://en.wikipedia.org/wiki/Z_shell
     """
 
     SOURCES = [
         {
-            "type": "ARTIFACT_GROUP",
+            "type": "FILE",
             "attributes": {
-                "names": [
-                    "BashShellConfigurationFile",
-                    "CShellConfigurationFile",
-                    "FishShellConfigurationFile",
-                    "KornShellConfigurationFile",
-                    "ShellLogoutFile",
-                    "ShellProfileFile",
-                    "TeeShellConfigurationFile",
-                    "ZShellConfigurationFile",
+                "paths": [
+                    "%%users.homedir%%/.zlogin",
+                    "%%users.homedir%%/.zlogout",
+                    "%%users.homedir%%/.zprofile",
+                    "/etc/zshenv",
+                    "/etc/zshrc",
+                    "/etc/zsh/zlogin",
+                    "/etc/zsh/zlogout",
+                    "/etc/zsh/zprofile",
+                    "/etc/zsh/zshenv",
+                    "/etc/zsh/zshrc",
                 ]
             },
-        }
+            "supported_os": ["Darwin", "Linux"],
+        },
+        {
+            "type": "FILE",
+            "attributes": {
+                "paths": [
+                    "/private/etc/zshenv",
+                    "/private/etc/zshrc",
+                    "/private/etc/zsh/zlogin",
+                    "/private/etc/zsh/zlogout",
+                    "/private/etc/zsh/zprofile",
+                    "/private/etc/zsh/zshenv",
+                    "/private/etc/zsh/zshrc",
+                ]
+            },
+            "supported_os": ["Darwin"],
+        },
+        {
+            "type": "FILE",
+            "attributes": {
+                "paths": [
+                    "%%users.localappdata%%\\Packages\\*\\LocalState\\rootfs\\home\\*\\.zlogin",
+                    "%%users.localappdata%%\\Packages\\*\\LocalState\\rootfs\\home\\*\\.zlogout",
+                    "%%users.localappdata%%\\Packages\\*\\LocalState\\rootfs\\home\\*\\.zprofile",
+                ],
+                "separator": "\\",
+            },
+            "supported_os": ["Windows"],
+        },
     ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {
-        "CShellConfigurationFile": shell.CShellConfigurationFile,
-        "FishShellConfigurationFile": shell.FishShellConfigurationFile,
-        "ShellProfileFile": shell.ShellProfileFile,
-        "BashShellConfigurationFile": shell.BashShellConfigurationFile,
-        "TeeShellConfigurationFile": shell.TeeShellConfigurationFile,
-        "KornShellConfigurationFile": shell.KornShellConfigurationFile,
-        "ZShellConfigurationFile": shell.ZShellConfigurationFile,
-        "ShellLogoutFile": shell.ShellLogoutFile,
-    }
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
 
     sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
     supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
@@ -412,48 +434,7 @@ class ShellConfigurationFile(GRRArtifactBase):
         ArtifactSupportedOS.LINUX,
         ArtifactSupportedOS.WINDOWS,
     ]
-    aliases: ClassVar[Optional[list[str]]] = [
-        "AllShellConfigs",
-        "GlobalShellConfigs",
-        "UsersShellConfigs",
-    ]
-
-
-class ShellHistoryFile(GRRArtifactBase):
-    """
-    Group of shell history files.
-    """
-
-    SOURCES = [
-        {
-            "type": "ARTIFACT_GROUP",
-            "attributes": {
-                "names": [
-                    "BashShellHistoryFile",
-                    "BourneShellHistoryFile",
-                    "FishShellHistoryFile",
-                    "ZShellHistoryFile",
-                ]
-            },
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {
-        "BourneShellHistoryFile": shell.BourneShellHistoryFile,
-        "BashShellHistoryFile": shell.BashShellHistoryFile,
-        "ZShellHistoryFile": shell.ZShellHistoryFile,
-        "FishShellHistoryFile": shell.FishShellHistoryFile,
-    }
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.DARWIN,
-        ArtifactSupportedOS.LINUX,
-        ArtifactSupportedOS.WINDOWS,
-    ]
-    aliases: ClassVar[Optional[list[str]]] = [
-        "AllUsersShellHistory",
-        "UserShellHistory",
-    ]
+    aliases: ClassVar[Optional[list[str]]] = None
 
 
 class ShellLogoutFile(GRRArtifactBase):
@@ -562,71 +543,6 @@ class TeeShellConfigurationFile(GRRArtifactBase):
     aliases: ClassVar[Optional[list[str]]] = None
 
 
-class ZShellConfigurationFile(GRRArtifactBase):
-    """
-    Z shell (zsh) configuration files.
-
-    Reference URLs: https://en.wikipedia.org/wiki/Z_shell
-    """
-
-    SOURCES = [
-        {
-            "type": "FILE",
-            "attributes": {
-                "paths": [
-                    "%%users.homedir%%/.zlogin",
-                    "%%users.homedir%%/.zlogout",
-                    "%%users.homedir%%/.zprofile",
-                    "/etc/zshenv",
-                    "/etc/zshrc",
-                    "/etc/zsh/zlogin",
-                    "/etc/zsh/zlogout",
-                    "/etc/zsh/zprofile",
-                    "/etc/zsh/zshenv",
-                    "/etc/zsh/zshrc",
-                ]
-            },
-            "supported_os": ["Darwin", "Linux"],
-        },
-        {
-            "type": "FILE",
-            "attributes": {
-                "paths": [
-                    "/private/etc/zshenv",
-                    "/private/etc/zshrc",
-                    "/private/etc/zsh/zlogin",
-                    "/private/etc/zsh/zlogout",
-                    "/private/etc/zsh/zprofile",
-                    "/private/etc/zsh/zshenv",
-                    "/private/etc/zsh/zshrc",
-                ]
-            },
-            "supported_os": ["Darwin"],
-        },
-        {
-            "type": "FILE",
-            "attributes": {
-                "paths": [
-                    "%%users.localappdata%%\\Packages\\*\\LocalState\\rootfs\\home\\*\\.zlogin",
-                    "%%users.localappdata%%\\Packages\\*\\LocalState\\rootfs\\home\\*\\.zlogout",
-                    "%%users.localappdata%%\\Packages\\*\\LocalState\\rootfs\\home\\*\\.zprofile",
-                ],
-                "separator": "\\",
-            },
-            "supported_os": ["Windows"],
-        },
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.DARWIN,
-        ArtifactSupportedOS.LINUX,
-        ArtifactSupportedOS.WINDOWS,
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
 class ZShellHistoryFile(GRRArtifactBase):
     """
     Z shell (zsh) history files.
@@ -666,3 +582,86 @@ class ZShellHistoryFile(GRRArtifactBase):
         ArtifactSupportedOS.WINDOWS,
     ]
     aliases: ClassVar[Optional[list[str]]] = None
+
+
+class ShellConfigurationFile(GRRArtifactBase):
+    """
+    Group of shell configuration files.
+    """
+
+    SOURCES = [
+        {
+            "type": "ARTIFACT_GROUP",
+            "attributes": {
+                "names": [
+                    "BashShellConfigurationFile",
+                    "CShellConfigurationFile",
+                    "FishShellConfigurationFile",
+                    "KornShellConfigurationFile",
+                    "ShellLogoutFile",
+                    "ShellProfileFile",
+                    "TeeShellConfigurationFile",
+                    "ZShellConfigurationFile",
+                ]
+            },
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {
+        "CShellConfigurationFile": CShellConfigurationFile,
+        "FishShellConfigurationFile": FishShellConfigurationFile,
+        "KornShellConfigurationFile": KornShellConfigurationFile,
+        "ZShellConfigurationFile": ZShellConfigurationFile,
+        "ShellLogoutFile": ShellLogoutFile,
+        "ShellProfileFile": ShellProfileFile,
+        "TeeShellConfigurationFile": TeeShellConfigurationFile,
+        "BashShellConfigurationFile": BashShellConfigurationFile,
+    }
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.DARWIN,
+        ArtifactSupportedOS.LINUX,
+        ArtifactSupportedOS.WINDOWS,
+    ]
+    aliases: ClassVar[Optional[list[str]]] = [
+        "AllShellConfigs",
+        "GlobalShellConfigs",
+        "UsersShellConfigs",
+    ]
+
+
+class ShellHistoryFile(GRRArtifactBase):
+    """
+    Group of shell history files.
+    """
+
+    SOURCES = [
+        {
+            "type": "ARTIFACT_GROUP",
+            "attributes": {
+                "names": [
+                    "BashShellHistoryFile",
+                    "BourneShellHistoryFile",
+                    "FishShellHistoryFile",
+                    "ZShellHistoryFile",
+                ]
+            },
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {
+        "ZShellHistoryFile": ZShellHistoryFile,
+        "BourneShellHistoryFile": BourneShellHistoryFile,
+        "BashShellHistoryFile": BashShellHistoryFile,
+        "FishShellHistoryFile": FishShellHistoryFile,
+    }
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.DARWIN,
+        ArtifactSupportedOS.LINUX,
+        ArtifactSupportedOS.WINDOWS,
+    ]
+    aliases: ClassVar[Optional[list[str]]] = [
+        "AllUsersShellHistory",
+        "UserShellHistory",
+    ]

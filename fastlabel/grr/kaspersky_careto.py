@@ -6,7 +6,6 @@ This file was generated using the `generate_grr.py` script.
 
 from typing import ClassVar, Optional, Type
 
-from fastlabel.grr import kaspersky_careto
 from fastlabel.grr._base import (
     ArtifactSource,
     ArtifactSupportedOS,
@@ -43,9 +42,9 @@ class KasperskyCaretoDarwinFile(GRRArtifactBase):
     aliases: ClassVar[Optional[list[str]]] = ["KasperskyCaretoDarwinFiles"]
 
 
-class KasperskyCaretoIndicators(GRRArtifactBase):
+class KasperskyCaretoWindowsRegistryValue(GRRArtifactBase):
     """
-    Kaspersky Careto indicators of compromise (IOCs).
+    Kaspersky Careto Windows Registry indicators of compromise (IOCs).
 
     Reference URLs:
     https://media.kasperskycontenthub.com/wp-content/uploads/sites/43/2018/03/20133638/unveilingthemask_v1.0.pdf
@@ -53,28 +52,44 @@ class KasperskyCaretoIndicators(GRRArtifactBase):
 
     SOURCES = [
         {
-            "type": "ARTIFACT_GROUP",
+            "type": "REGISTRY_VALUE",
             "attributes": {
-                "names": [
-                    "KasperskyCaretoDarwinFile",
-                    "KasperskyCaretoWindowsFile",
-                    "KasperskyCaretoWindowsRegistryValue",
+                "key_value_pairs": [
+                    {
+                        "key": "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\WindowsUpdate",
+                        "value": "CISCNF4654",
+                    },
+                    {
+                        "key": "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\WindowsUpdate",
+                        "value": "CISCNF0654",
+                    },
+                    {
+                        "key": "HKEY_USERS\\%%users.sid%%\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\WindowsUpdate",
+                        "value": "CISCNF4654",
+                    },
+                    {
+                        "key": "HKEY_USERS\\%%users.sid%%\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\WindowsUpdate",
+                        "value": "CISCNF0654",
+                    },
+                    {
+                        "key": "HKEY_USERS\\%%users.sid%%\\Software\\Classes\\\\CLSID\\{ECD4FC4D-521C-11D0-B792-00A0C90312E1}",
+                        "value": "InprocServer32",
+                    },
+                    {
+                        "key": "HKEY_LOCAL_MACHINE\\Software\\Classes\\CLSID\\{E6BB64BE-0618-4353-9193-0AFE606D6F0C}",
+                        "value": "InprocServer32",
+                    },
                 ]
             },
         }
     ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {
-        "KasperskyCaretoDarwinFile": kaspersky_careto.KasperskyCaretoDarwinFile,
-        "KasperskyCaretoWindowsFile": kaspersky_careto.KasperskyCaretoWindowsFile,
-        "KasperskyCaretoWindowsRegistryValue": kaspersky_careto.KasperskyCaretoWindowsRegistryValue,
-    }
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
 
     sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
     supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.WINDOWS,
-        ArtifactSupportedOS.DARWIN,
+        ArtifactSupportedOS.WINDOWS
     ]
-    aliases: ClassVar[Optional[list[str]]] = None
+    aliases: ClassVar[Optional[list[str]]] = ["KasperskyCaretoWindowsRegKeys"]
 
 
 class KasperskyCaretoWindowsFile(GRRArtifactBase):
@@ -157,9 +172,9 @@ class KasperskyCaretoWindowsFile(GRRArtifactBase):
     aliases: ClassVar[Optional[list[str]]] = ["KasperskyCaretoWindowsFiles"]
 
 
-class KasperskyCaretoWindowsRegistryValue(GRRArtifactBase):
+class KasperskyCaretoIndicators(GRRArtifactBase):
     """
-    Kaspersky Careto Windows Registry indicators of compromise (IOCs).
+    Kaspersky Careto indicators of compromise (IOCs).
 
     Reference URLs:
     https://media.kasperskycontenthub.com/wp-content/uploads/sites/43/2018/03/20133638/unveilingthemask_v1.0.pdf
@@ -167,41 +182,25 @@ class KasperskyCaretoWindowsRegistryValue(GRRArtifactBase):
 
     SOURCES = [
         {
-            "type": "REGISTRY_VALUE",
+            "type": "ARTIFACT_GROUP",
             "attributes": {
-                "key_value_pairs": [
-                    {
-                        "key": "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\WindowsUpdate",
-                        "value": "CISCNF4654",
-                    },
-                    {
-                        "key": "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\WindowsUpdate",
-                        "value": "CISCNF0654",
-                    },
-                    {
-                        "key": "HKEY_USERS\\%%users.sid%%\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\WindowsUpdate",
-                        "value": "CISCNF4654",
-                    },
-                    {
-                        "key": "HKEY_USERS\\%%users.sid%%\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\WindowsUpdate",
-                        "value": "CISCNF0654",
-                    },
-                    {
-                        "key": "HKEY_USERS\\%%users.sid%%\\Software\\Classes\\\\CLSID\\{ECD4FC4D-521C-11D0-B792-00A0C90312E1}",
-                        "value": "InprocServer32",
-                    },
-                    {
-                        "key": "HKEY_LOCAL_MACHINE\\Software\\Classes\\CLSID\\{E6BB64BE-0618-4353-9193-0AFE606D6F0C}",
-                        "value": "InprocServer32",
-                    },
+                "names": [
+                    "KasperskyCaretoDarwinFile",
+                    "KasperskyCaretoWindowsFile",
+                    "KasperskyCaretoWindowsRegistryValue",
                 ]
             },
         }
     ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {
+        "KasperskyCaretoDarwinFile": KasperskyCaretoDarwinFile,
+        "KasperskyCaretoWindowsRegistryValue": KasperskyCaretoWindowsRegistryValue,
+        "KasperskyCaretoWindowsFile": KasperskyCaretoWindowsFile,
+    }
 
     sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
     supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.WINDOWS
+        ArtifactSupportedOS.WINDOWS,
+        ArtifactSupportedOS.DARWIN,
     ]
-    aliases: ClassVar[Optional[list[str]]] = ["KasperskyCaretoWindowsRegKeys"]
+    aliases: ClassVar[Optional[list[str]]] = None

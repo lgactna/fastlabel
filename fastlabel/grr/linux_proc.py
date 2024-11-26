@@ -6,7 +6,6 @@ This file was generated using the `generate_grr.py` script.
 
 from typing import ClassVar, Optional, Type
 
-from fastlabel.grr import linux_proc
 from fastlabel.grr._base import (
     ArtifactSource,
     ArtifactSupportedOS,
@@ -251,48 +250,17 @@ class LinuxProcMounts(GRRArtifactBase):
     aliases: ClassVar[Optional[list[str]]] = None
 
 
-class LinuxProcSysHardeningSettings(GRRArtifactBase):
+class LinuxRestrictedKernelPointerReadPrivileges(GRRArtifactBase):
     """
-    Linux sysctl settings obtained from /proc/sys.
+    Memory address obfuscation settings.
+
+    Reference URLs: https://www.kernel.org/doc/Documentation/sysctl/kernel.txt
     """
 
     SOURCES = [
-        {
-            "type": "ARTIFACT_GROUP",
-            "attributes": {
-                "names": [
-                    "LinuxASLREnabled",
-                    "LinuxIgnoreICMPBroadcasts",
-                    "LinuxKernelBootloader",
-                    "LinuxKernelModuleTaintStatus",
-                    "LinuxKernelModuleRestrictions",
-                    "LinuxNetworkIpForwardingState",
-                    "LinuxNetworkPathFilteringSettings",
-                    "LinuxNetworkRedirectState",
-                    "LinuxRestrictedDmesgReadPrivileges",
-                    "LinuxRestrictedKernelPointerReadPrivileges",
-                    "LinuxSecureSuidCoreDumps",
-                    "LinuxSecureFsLinks",
-                    "LinuxSyncookieState",
-                ]
-            },
-        }
+        {"type": "FILE", "attributes": {"paths": ["/proc/sys/kernel/kptr_restrict"]}}
     ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {
-        "LinuxASLREnabled": linux_proc.LinuxASLREnabled,
-        "LinuxRestrictedDmesgReadPrivileges": linux_proc.LinuxRestrictedDmesgReadPrivileges,
-        "LinuxNetworkIpForwardingState": linux_proc.LinuxNetworkIpForwardingState,
-        "LinuxSyncookieState": linux_proc.LinuxSyncookieState,
-        "LinuxKernelBootloader": linux_proc.LinuxKernelBootloader,
-        "LinuxNetworkPathFilteringSettings": linux_proc.LinuxNetworkPathFilteringSettings,
-        "LinuxSecureFsLinks": linux_proc.LinuxSecureFsLinks,
-        "LinuxKernelModuleRestrictions": linux_proc.LinuxKernelModuleRestrictions,
-        "LinuxNetworkRedirectState": linux_proc.LinuxNetworkRedirectState,
-        "LinuxKernelModuleTaintStatus": linux_proc.LinuxKernelModuleTaintStatus,
-        "LinuxRestrictedKernelPointerReadPrivileges": linux_proc.LinuxRestrictedKernelPointerReadPrivileges,
-        "LinuxSecureSuidCoreDumps": linux_proc.LinuxSecureSuidCoreDumps,
-        "LinuxIgnoreICMPBroadcasts": linux_proc.LinuxIgnoreICMPBroadcasts,
-    }
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
 
     sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
     supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
@@ -310,25 +278,6 @@ class LinuxRestrictedDmesgReadPrivileges(GRRArtifactBase):
 
     SOURCES = [
         {"type": "FILE", "attributes": {"paths": ["/proc/sys/kernel/dmesg_restrict"]}}
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.LINUX
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
-class LinuxRestrictedKernelPointerReadPrivileges(GRRArtifactBase):
-    """
-    Memory address obfuscation settings.
-
-    Reference URLs: https://www.kernel.org/doc/Documentation/sysctl/kernel.txt
-    """
-
-    SOURCES = [
-        {"type": "FILE", "attributes": {"paths": ["/proc/sys/kernel/kptr_restrict"]}}
     ]
     ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
 
@@ -367,25 +316,6 @@ class LinuxSecureFsLinks(GRRArtifactBase):
     aliases: ClassVar[Optional[list[str]]] = None
 
 
-class LinuxSecureSuidCoreDumps(GRRArtifactBase):
-    """
-    Security controls for suid core dumps.
-
-    Reference URLs: https://www.kernel.org/doc/Documentation/sysctl/fs.txt
-    """
-
-    SOURCES = [
-        {"type": "FILE", "attributes": {"paths": ["/proc/sys/fs/suid_dumpable"]}}
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.LINUX
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
 class LinuxSyncookieState(GRRArtifactBase):
     """
     Whether the system uses syncookies.
@@ -396,6 +326,25 @@ class LinuxSyncookieState(GRRArtifactBase):
 
     SOURCES = [
         {"type": "FILE", "attributes": {"paths": ["/proc/sys/net/ipv4/tcp_syncookies"]}}
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.LINUX
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class LinuxSecureSuidCoreDumps(GRRArtifactBase):
+    """
+    Security controls for suid core dumps.
+
+    Reference URLs: https://www.kernel.org/doc/Documentation/sysctl/fs.txt
+    """
+
+    SOURCES = [
+        {"type": "FILE", "attributes": {"paths": ["/proc/sys/fs/suid_dumpable"]}}
     ]
     ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
 
@@ -417,6 +366,56 @@ class LinuxSysctlCmd(GRRArtifactBase):
         {"type": "COMMAND", "attributes": {"args": ["-a"], "cmd": "/sbin/sysctl"}}
     ]
     ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.LINUX
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class LinuxProcSysHardeningSettings(GRRArtifactBase):
+    """
+    Linux sysctl settings obtained from /proc/sys.
+    """
+
+    SOURCES = [
+        {
+            "type": "ARTIFACT_GROUP",
+            "attributes": {
+                "names": [
+                    "LinuxASLREnabled",
+                    "LinuxIgnoreICMPBroadcasts",
+                    "LinuxKernelBootloader",
+                    "LinuxKernelModuleTaintStatus",
+                    "LinuxKernelModuleRestrictions",
+                    "LinuxNetworkIpForwardingState",
+                    "LinuxNetworkPathFilteringSettings",
+                    "LinuxNetworkRedirectState",
+                    "LinuxRestrictedDmesgReadPrivileges",
+                    "LinuxRestrictedKernelPointerReadPrivileges",
+                    "LinuxSecureSuidCoreDumps",
+                    "LinuxSecureFsLinks",
+                    "LinuxSyncookieState",
+                ]
+            },
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {
+        "LinuxRestrictedKernelPointerReadPrivileges": LinuxRestrictedKernelPointerReadPrivileges,
+        "LinuxKernelModuleRestrictions": LinuxKernelModuleRestrictions,
+        "LinuxRestrictedDmesgReadPrivileges": LinuxRestrictedDmesgReadPrivileges,
+        "LinuxNetworkIpForwardingState": LinuxNetworkIpForwardingState,
+        "LinuxNetworkPathFilteringSettings": LinuxNetworkPathFilteringSettings,
+        "LinuxKernelBootloader": LinuxKernelBootloader,
+        "LinuxSecureFsLinks": LinuxSecureFsLinks,
+        "LinuxSyncookieState": LinuxSyncookieState,
+        "LinuxASLREnabled": LinuxASLREnabled,
+        "LinuxKernelModuleTaintStatus": LinuxKernelModuleTaintStatus,
+        "LinuxSecureSuidCoreDumps": LinuxSecureSuidCoreDumps,
+        "LinuxNetworkRedirectState": LinuxNetworkRedirectState,
+        "LinuxIgnoreICMPBroadcasts": LinuxIgnoreICMPBroadcasts,
+    }
 
     sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
     supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [

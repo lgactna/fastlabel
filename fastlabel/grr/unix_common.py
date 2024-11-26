@@ -6,7 +6,6 @@ This file was generated using the `generate_grr.py` script.
 
 from typing import ClassVar, Optional, Type
 
-from fastlabel.grr import unix_common
 from fastlabel.grr._base import (
     ArtifactSource,
     ArtifactSupportedOS,
@@ -241,33 +240,6 @@ class UnixSudoersConfigurationFile(GRRArtifactBase):
     aliases: ClassVar[Optional[list[str]]] = ["UnixSudoersConfiguration"]
 
 
-class UnixUsersGroups(GRRArtifactBase):
-    """
-    Unix users and groups files.
-    """
-
-    SOURCES = [
-        {
-            "type": "ARTIFACT_GROUP",
-            "attributes": {
-                "names": ["UnixGroupsFile", "UnixPasswdFile", "UnixShadowFile"]
-            },
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {
-        "UnixGroupsFile": unix_common.UnixGroupsFile,
-        "UnixPasswdFile": unix_common.UnixPasswdFile,
-        "UnixShadowFile": unix_common.UnixShadowFile,
-    }
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.DARWIN,
-        ArtifactSupportedOS.LINUX,
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
 class UnixUtmpFile(GRRArtifactBase):
     """
     Utmp login record files.
@@ -304,3 +276,30 @@ class UnixUtmpFile(GRRArtifactBase):
         ArtifactSupportedOS.LINUX,
     ]
     aliases: ClassVar[Optional[list[str]]] = ["MacOSUtmpFile"]
+
+
+class UnixUsersGroups(GRRArtifactBase):
+    """
+    Unix users and groups files.
+    """
+
+    SOURCES = [
+        {
+            "type": "ARTIFACT_GROUP",
+            "attributes": {
+                "names": ["UnixGroupsFile", "UnixPasswdFile", "UnixShadowFile"]
+            },
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {
+        "UnixGroupsFile": UnixGroupsFile,
+        "UnixPasswdFile": UnixPasswdFile,
+        "UnixShadowFile": UnixShadowFile,
+    }
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.DARWIN,
+        ArtifactSupportedOS.LINUX,
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None

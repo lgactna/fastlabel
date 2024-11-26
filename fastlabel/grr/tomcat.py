@@ -6,38 +6,12 @@ This file was generated using the `generate_grr.py` script.
 
 from typing import ClassVar, Optional, Type
 
-from fastlabel.grr import tomcat
 from fastlabel.grr._base import (
     ArtifactSource,
     ArtifactSupportedOS,
     GRRArtifactBase,
     generate_sources,
 )
-
-
-class TomcatFiles(GRRArtifactBase):
-    """
-    Tomcat files.
-    """
-
-    SOURCES = [
-        {
-            "type": "ARTIFACT_GROUP",
-            "attributes": {"names": ["TomcatLogFiles", "TomcatPasswordFile"]},
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {
-        "TomcatPasswordFile": tomcat.TomcatPasswordFile,
-        "TomcatLogFiles": tomcat.TomcatLogFiles,
-    }
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.DARWIN,
-        ArtifactSupportedOS.LINUX,
-        ArtifactSupportedOS.WINDOWS,
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
 
 
 class TomcatLogFiles(GRRArtifactBase):
@@ -174,6 +148,31 @@ class TomcatPasswordFile(GRRArtifactBase):
         },
     ]
     ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.DARWIN,
+        ArtifactSupportedOS.LINUX,
+        ArtifactSupportedOS.WINDOWS,
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class TomcatFiles(GRRArtifactBase):
+    """
+    Tomcat files.
+    """
+
+    SOURCES = [
+        {
+            "type": "ARTIFACT_GROUP",
+            "attributes": {"names": ["TomcatLogFiles", "TomcatPasswordFile"]},
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {
+        "TomcatLogFiles": TomcatLogFiles,
+        "TomcatPasswordFile": TomcatPasswordFile,
+    }
 
     sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
     supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [

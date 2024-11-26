@@ -6,41 +6,12 @@ This file was generated using the `generate_grr.py` script.
 
 from typing import ClassVar, Optional, Type
 
-from fastlabel.grr import cloud_services
 from fastlabel.grr._base import (
     ArtifactSource,
     ArtifactSupportedOS,
     GRRArtifactBase,
     generate_sources,
 )
-
-
-class CloudStorageClients(GRRArtifactBase):
-    """
-    Multiple cloud storage client artifacts.
-    """
-
-    SOURCES = [
-        {
-            "type": "ARTIFACT_GROUP",
-            "attributes": {
-                "names": ["DropboxClient", "GoogleDriveClient", "SkyDriveClient"]
-            },
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {
-        "SkyDriveClient": cloud_services.SkyDriveClient,
-        "DropboxClient": cloud_services.DropboxClient,
-        "GoogleDriveClient": cloud_services.GoogleDriveClient,
-    }
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.DARWIN,
-        ArtifactSupportedOS.LINUX,
-        ArtifactSupportedOS.WINDOWS,
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
 
 
 class DropboxClient(GRRArtifactBase):
@@ -164,5 +135,33 @@ class SkyDriveClient(GRRArtifactBase):
     sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
     supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
         ArtifactSupportedOS.WINDOWS
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class CloudStorageClients(GRRArtifactBase):
+    """
+    Multiple cloud storage client artifacts.
+    """
+
+    SOURCES = [
+        {
+            "type": "ARTIFACT_GROUP",
+            "attributes": {
+                "names": ["DropboxClient", "GoogleDriveClient", "SkyDriveClient"]
+            },
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {
+        "DropboxClient": DropboxClient,
+        "GoogleDriveClient": GoogleDriveClient,
+        "SkyDriveClient": SkyDriveClient,
+    }
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.DARWIN,
+        ArtifactSupportedOS.LINUX,
+        ArtifactSupportedOS.WINDOWS,
     ]
     aliases: ClassVar[Optional[list[str]]] = None
