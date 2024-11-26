@@ -9,7 +9,11 @@ from pydantic import BaseModel
 from ruamel.yaml import YAML
 
 from fastlabel.kape.core import KapeExportFormat
-from fastlabel.scripts._util import generate_docstring, to_valid_identifier
+from fastlabel.scripts._util import (
+    generate_docstring,
+    to_valid_identifier,
+    to_valid_pystring,
+)
 
 
 class KapeTargetDefinition(BaseModel):
@@ -27,6 +31,11 @@ class KapeTargetDefinition(BaseModel):
     to build individual classes for each target type so that their logic and attributes
     can be more granular.
     """
+
+    # If set, a suffix to use for the class name.
+    suffix: str = ""
+    # The name of the actual target configuration that contains this target.
+    containing_name: str
 
     # Always required.
     #
@@ -46,11 +55,15 @@ class KapeTargetDefinition(BaseModel):
     max_size: Optional[int] = None
 
     @classmethod
-    def from_tkape_dict(self, tkape_data: dict[str, Any]) -> "KapeTargetDefinition":
+    def from_tkape_dict(
+        self, tkape_data: dict[str, Any], containing_name: str, class_suffix: str = ""
+    ) -> "KapeTargetDefinition":
         """
         Convert .tkape YAML keys to a Python-compatible format.
         """
         return KapeTargetDefinition(
+            suffix=class_suffix,
+            containing_name=containing_name,
             name=tkape_data["Name"],
             category=tkape_data["Category"],
             path=tkape_data["Path"],
@@ -76,8 +89,10 @@ class KapeTargetDefinition(BaseModel):
             output += generate_docstring(self.comment)
 
         # Assign common class variables
-        output += f'    name: ClassVar[str] = "{self.name}"\n'
-        output += f'    base_path: ClassVar[Path] = Path("{self.path}")\n'
+        output += f'    name: ClassVar[str] = "{to_valid_pystring(self.name)}"\n'
+        output += (
+            f'    base_path: ClassVar[Path] = Path("{to_valid_pystring(self.path)}")\n'
+        )
         output += f'    regex: ClassVar[str] = r"{fnmatch.translate(self.file_mask)}"\n'
         output += f"    recursive: ClassVar[bool] = {self.recursive}\n"
         output += "    associated_modules: ClassVar[list[Type[KapeModule]]] = []\n\n"
@@ -89,8 +104,20 @@ class KapeTargetDefinition(BaseModel):
     def get_class_name(self) -> str:
         """
         Get the name of the class that represents this target.
+
+        A mix of the containing name and the target name are used to
+        form a (hopefully) unique class name.
+
+        You may provide a suffix to append to the end of the class name if
+        needed.
         """
-        return to_valid_identifier(self.name, remove_underscores=True)
+        return to_valid_identifier(
+            self.containing_name + self.name + self.suffix, remove_underscores=True
+        )
+
+        # return to_valid_identifier(
+        #     self.containing_name + self.name, remove_underscores=True
+        # )
 
 
 class KapeTargetConfigurationDefinition(BaseModel):
@@ -133,8 +160,8 @@ class KapeTargetConfigurationDefinition(BaseModel):
             id=uuid.UUID(tkape_data["Id"]),
             recreate_directories=tkape_data.get("RecreateDirectories", False),
             targets=[
-                KapeTargetDefinition.from_tkape_dict(target)
-                for target in tkape_data["Targets"]
+                KapeTargetDefinition.from_tkape_dict(target, name, str(idx))
+                for idx, target in enumerate(tkape_data["Targets"])
             ],
         )
 
@@ -321,7 +348,7 @@ def generate_class_file_from_targets(
     # Imports are static, it's up to the user to add any extras as needed
     output += "from pathlib import Path\n"
     output += "from typing import ClassVar, Type\n\n"
-    output += "from fastlabel.kape.core import KapeTarget\n\n"
+    output += "from fastlabel.kape.core import KapeTarget, KapeModule, KapeTargetConfiguration\n\n"
 
     # Generate the target classes
     for target in targets:
@@ -347,16 +374,20 @@ if __name__ == "__main__":
         target_configs.append(target_config)
 
     # Group each target config by category name
-    target_groups = defaultdict(list)
+    target_groups: dict[str, list[KapeTargetConfigurationDefinition]] = defaultdict(list)
     for target in target_configs:
         target_groups[target.targets[0].category].append(target)
 
     # Write each category to a separate file
-    for _category, targets in target_groups.items():
+    for category, targets in target_groups.items():
         output = generate_class_file_from_targets(targets)
-        print(output)
-        # with get_target_dir() / "targets" / f"{to_valid_identifier(category)}.py" as f:
-        #     f.write(output)
+        target_file = (
+            get_target_dir() / "targets" / f"{to_valid_identifier(category.lower())}.py"
+        )
+        print(f"Writing to {target_file.relative_to(get_target_dir())}")
+
+        with open(target_file, "wt+") as fp:
+            fp.write(output)
 
     # # Next, process all of the .mkape files we have
     # mkape_root = get_artifacts_dir() / "modules"
