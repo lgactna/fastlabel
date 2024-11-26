@@ -171,10 +171,10 @@ class ArtifactDefinition(BaseModel):
 
 def get_artifacts_dir() -> Path:
     """
-    Get a resolved path to `/grr_artifacts`.
+    Get a resolved path to `/artifacts/grr`.
     """
     # Go up three directories from this source file
-    return (Path(__file__).parents[2] / "grr_artifacts").resolve()
+    return (Path(__file__).parents[2] / "artifacts" / "grr").resolve()
 
 
 def get_target_dir() -> Path:

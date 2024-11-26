@@ -70,7 +70,7 @@ def get_artifacts_dir() -> Path:
     Get a resolved path to `/case_artifacts`.
     """
     # Go up three directories from this source file
-    return (Path(__file__).parents[2] / "case_artifacts").resolve()
+    return (Path(__file__).parents[2] / "artifacts" / "case").resolve()
 
 
 def get_target_dir() -> Path:
