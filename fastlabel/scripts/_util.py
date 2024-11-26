@@ -13,6 +13,8 @@ def generate_docstring(comment: str | None, width: int = 76) -> str:
     # Replace backslashes with forward slashes to avoid escape sequence issues
     comment = comment.replace("\\", "/")
 
+    # comment = to_valid_pystring(comment)
+
     lines = []
     paragraphs = comment.split("\n\n")  # Split on double line breaks
     for para in paragraphs:
@@ -64,3 +66,22 @@ def to_valid_identifier(s: str, remove_underscores: bool = False) -> str:
     if not s.isidentifier():
         s = "_" + s
     return s
+
+
+def to_valid_pystring(s: str) -> str:
+    """
+    Convert a string to a valid Python string literal.
+    """
+    return s.translate(
+        str.maketrans(
+            {  # type: ignore[arg-type]
+                # "-": r"\-",
+                # "]": r"\]",
+                "\\": r"\\",
+                # "^": r"\^",
+                # "$": r"\$",
+                # "*": r"\*",
+                # ".": r"\.",
+            }
+        )
+    )
