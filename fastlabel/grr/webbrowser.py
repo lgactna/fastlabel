@@ -6,7 +6,6 @@ This file was generated using the `generate_grr.py` script.
 
 from typing import ClassVar, Optional, Type
 
-from fastlabel.grr import webbrowser
 from fastlabel.grr._base import (
     ArtifactSource,
     ArtifactSupportedOS,
@@ -15,98 +14,26 @@ from fastlabel.grr._base import (
 )
 
 
-class BrowserCache(GRRArtifactBase):
+class InternetExplorerCache(GRRArtifactBase):
     """
-    Web browser cache of multiple web browsers.
-    """
+    Microsoft Internet Explorer (MSIE) browser cache.
 
-    SOURCES = [
-        {
-            "type": "ARTIFACT_GROUP",
-            "attributes": {
-                "names": [
-                    "ChromiumBasedBrowsersCache",
-                    "FirefoxCache",
-                    "InternetExplorerCache",
-                    "SafariCacheSQLiteDatabaseFile",
-                ]
-            },
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {
-        "FirefoxCache": webbrowser.FirefoxCache,
-        "ChromiumBasedBrowsersCache": webbrowser.ChromiumBasedBrowsersCache,
-        "InternetExplorerCache": webbrowser.InternetExplorerCache,
-        "SafariCacheSQLiteDatabaseFile": webbrowser.SafariCacheSQLiteDatabaseFile,
-    }
+    * MSIE 4 - 9 Temporary Internet files. * MSIE 10 INetCache files.
 
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.DARWIN,
-        ArtifactSupportedOS.LINUX,
-        ArtifactSupportedOS.WINDOWS,
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
-class BrowserHistory(GRRArtifactBase):
-    """
-    Web browser history of multiple web browsers.
+    Reference URLs: https://forensics.wiki/internet_explorer
     """
 
     SOURCES = [
         {
-            "type": "ARTIFACT_GROUP",
+            "type": "FILE",
             "attributes": {
-                "names": [
-                    "ChromiumBasedBrowsersHistoryDatabaseFile",
-                    "FirefoxHistory",
-                    "FirefoxDownloads",
-                    "InternetExplorerHistory",
-                    "OperaHistoryFile",
-                    "SafariDownloadsPlistFile",
-                    "SafariHistorySQLiteDatabaseFile",
-                    "SafariHistoryPlistFile",
-                ]
-            },
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {
-        "SafariHistorySQLiteDatabaseFile": webbrowser.SafariHistorySQLiteDatabaseFile,
-        "InternetExplorerHistory": webbrowser.InternetExplorerHistory,
-        "SafariHistoryPlistFile": webbrowser.SafariHistoryPlistFile,
-        "OperaHistoryFile": webbrowser.OperaHistoryFile,
-        "ChromiumBasedBrowsersHistoryDatabaseFile": webbrowser.ChromiumBasedBrowsersHistoryDatabaseFile,
-        "SafariDownloadsPlistFile": webbrowser.SafariDownloadsPlistFile,
-        "FirefoxHistory": webbrowser.FirefoxHistory,
-        "FirefoxDownloads": webbrowser.FirefoxDownloads,
-    }
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.DARWIN,
-        ArtifactSupportedOS.LINUX,
-        ArtifactSupportedOS.WINDOWS,
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
-class ChromeExtensionRegistryKeys(GRRArtifactBase):
-    """
-    Chrome extensions installed by writing windows registry keys.
-
-    Reference URLs:
-    https://developer.chrome.com/extensions/external_extensions#registry
-    """
-
-    SOURCES = [
-        {
-            "type": "REGISTRY_KEY",
-            "attributes": {
-                "keys": [
-                    "HKEY_LOCAL_MACHINE\\Software\\Google\\Chrome\\Extensions\\**5",
-                    "HKEY_LOCAL_MACHINE\\Software\\Wow6432Node\\Google\\Chrome\\Extensions\\**5",
-                ]
+                "paths": [
+                    "%%users.localappdata%%\\Microsoft\\Windows\\Temporary Internet Files\\Content.IE5\\*\\*",
+                    "%%users.localappdata%%\\Microsoft\\Windows\\Temporary Internet Files\\Low\\Content.IE5\\*\\*",
+                    "%%users.localappdata%%\\Microsoft\\Windows\\INetCache\\IE\\*\\*",
+                    "%%users.localappdata%%\\Microsoft\\Windows\\INetCache\\Low\\*\\*",
+                ],
+                "separator": "\\",
             },
         }
     ]
@@ -119,86 +46,12 @@ class ChromeExtensionRegistryKeys(GRRArtifactBase):
     aliases: ClassVar[Optional[list[str]]] = None
 
 
-class ChromeFileSystem(GRRArtifactBase):
+class FirefoxCache(GRRArtifactBase):
     """
-    Google Chrome, Beta, Canary and Chromium File System files.
-
-    The File System directory backs Chrome's fileSystem API. Inside this
-    directory are a mixture of the data files saved using the fileSystem API and
-    LevelDB directories that track the logical structure of the virtual file
-    system.
-
-    Reference URLs: https://developer.chrome.com/apps/fileSystem
-    https://developer.mozilla.org/en-US/docs/Web/API/FileSystem
-    https://dfir.blog/deciphering-browser-hieroglyphics-leveldb-filesystem/
-    """
-
-    SOURCES = [
-        {
-            "type": "FILE",
-            "attributes": {
-                "paths": [
-                    "%%users.localappdata%%\\Chromium\\User Data\\*\\File System\\**5",
-                    "%%users.localappdata%%\\Google\\Chrome SxS\\User Data\\*\\File System\\**5",
-                    "%%users.localappdata%%\\Google\\Chrome\\User Data\\*\\File System\\**5",
-                    "%%users.localappdata%%\\Microsoft\\Edge\\User Data\\*\\File System\\**5",
-                ],
-                "separator": "\\",
-            },
-            "supported_os": ["Windows"],
-        },
-        {
-            "type": "FILE",
-            "attributes": {
-                "paths": [
-                    "%%users.homedir%%/.config/google-chrome/*/File System/**5",
-                    "%%users.homedir%%/.config/chromium/*/File System/**5",
-                    "%%users.homedir%%/.config/google-chrome-beta/*/File System/**5",
-                    "%%users.homedir%%/.config/google-chrome-unstable/*/File System/**5",
-                    "%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/File System/**5",
-                    "%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/*/File System/**5",
-                ]
-            },
-            "supported_os": ["Linux"],
-        },
-        {
-            "type": "FILE",
-            "attributes": {
-                "paths": [
-                    "%%users.homedir%%/Library/Application Support/Chromium/*/File System/**5",
-                    "%%users.homedir%%/Library/Application Support/Google/Chrome Beta/*/File System/**5",
-                    "%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/File System/**5",
-                    "%%users.homedir%%/Library/Application Support/Google/Chrome/*/File System/**5",
-                ]
-            },
-            "supported_os": ["Darwin"],
-        },
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.DARWIN,
-        ArtifactSupportedOS.LINUX,
-        ArtifactSupportedOS.WINDOWS,
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
-class ChromeIndexedDB(GRRArtifactBase):
-    """
-    Google Chrome, Beta, Canary and Chromium IndexedDB files.
-
-    The IndexedDB directory contains one directory per origin that uses
-    IndexedDB, named like https_www.example.com_0.indexeddb.leveldb,
-    chrome-extension_app-id-xxx_0.indexeddb.leveldb, or
-    https_www.example.com_0.indexeddb.blob. Inside each of the *.leveldb
-    directories are the files the comprise a LevelDB database, which in turn
-    holds IndexedDB data for that origin. There may be an accompanying .blob
-    directory, which contains a nested folder structure of blobs.
+    Mozilla Firefox browser caches.
 
     Reference URLs:
-    https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API
+    https://artifacts-kb.readthedocs.io/en/latest/sources/webbrowser/FirefoxCache.html
     """
 
     SOURCES = [
@@ -206,76 +59,14 @@ class ChromeIndexedDB(GRRArtifactBase):
             "type": "FILE",
             "attributes": {
                 "paths": [
-                    "%%users.localappdata%%\\Chromium\\User Data\\*\\IndexedDB\\**5",
-                    "%%users.localappdata%%\\Google\\Chrome SxS\\User Data\\*\\IndexedDB\\**5",
-                    "%%users.localappdata%%\\Google\\Chrome\\User Data\\*\\IndexedDB\\**5",
-                    "%%users.localappdata%%\\Microsoft\\Edge\\User Data\\*\\IndexedDB\\**5",
-                ],
-                "separator": "\\",
-            },
-            "supported_os": ["Windows"],
-        },
-        {
-            "type": "FILE",
-            "attributes": {
-                "paths": [
-                    "%%users.homedir%%/.config/google-chrome/*/IndexedDB/**5",
-                    "%%users.homedir%%/.config/chromium/*/IndexedDB/**5",
-                    "%%users.homedir%%/.config/google-chrome-beta/*/IndexedDB/**5",
-                    "%%users.homedir%%/.config/google-chrome-unstable/*/IndexedDB/**5",
-                    "%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/IndexedDB/**5",
-                    "%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/*/IndexedDB/**5",
-                ]
-            },
-            "supported_os": ["Linux"],
-        },
-        {
-            "type": "FILE",
-            "attributes": {
-                "paths": [
-                    "%%users.homedir%%/Library/Application Support/Chromium/*/IndexedDB/**5",
-                    "%%users.homedir%%/Library/Application Support/Google/Chrome Beta/*/IndexedDB/**5",
-                    "%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/IndexedDB/**5",
-                    "%%users.homedir%%/Library/Application Support/Google/Chrome/*/IndexedDB/**5",
-                ]
-            },
-            "supported_os": ["Darwin"],
-        },
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.DARWIN,
-        ArtifactSupportedOS.LINUX,
-        ArtifactSupportedOS.WINDOWS,
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
-class ChromeLocalStorage(GRRArtifactBase):
-    """
-    Google Chrome, Beta, Canary and Chromium Local Storage files.
-
-    Chrome 60 and earlier versions used individual .sqlite files per origin for
-    Local Storage, stored in the Local Storage directory root. In Chrome 61, a
-    leveldb directory was added inside the root Local Storage directory, and new
-    origins saved Local Storage data in a single LevelDB there.
-
-    Existing .sqlite files are kept (not moved to leveldb), so it is possible
-    for a single Chrome profile to use both SQLite and LevelDB for Local
-    Storage.
-    """
-
-    SOURCES = [
-        {
-            "type": "FILE",
-            "attributes": {
-                "paths": [
-                    "%%users.homedir%%/Library/Application Support/Chromium/*/Local Storage/**",
-                    "%%users.homedir%%/Library/Application Support/Google/Chrome Beta/*/Local Storage/**",
-                    "%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Local Storage/**",
-                    "%%users.homedir%%/Library/Application Support/Google/Chrome/*/Local Storage/**",
+                    "%%users.homedir%%/Library/Caches/Firefox/Profiles/*.default/Cache/*",
+                    "%%users.homedir%%/Library/Caches/Firefox/Profiles/*.default/cache2/*",
+                    "%%users.homedir%%/Library/Caches/Firefox/Profiles/*.default/cache2/doomed/*",
+                    "%%users.homedir%%/Library/Caches/Firefox/Profiles/*.default/cache2/entries/*",
+                    "%%users.homedir%%/Library/Caches/Firefox/Profiles/*.default-*/Cache/*",
+                    "%%users.homedir%%/Library/Caches/Firefox/Profiles/*.default-*/cache2/*",
+                    "%%users.homedir%%/Library/Caches/Firefox/Profiles/*.default-*/cache2/doomed/*",
+                    "%%users.homedir%%/Library/Caches/Firefox/Profiles/*.default-*/cache2/entries/*",
                 ]
             },
             "supported_os": ["Darwin"],
@@ -284,12 +75,23 @@ class ChromeLocalStorage(GRRArtifactBase):
             "type": "FILE",
             "attributes": {
                 "paths": [
-                    "%%users.homedir%%/.config/google-chrome/*/Local Storage/**",
-                    "%%users.homedir%%/.config/chromium/*/Local Storage/**",
-                    "%%users.homedir%%/.config/google-chrome-beta/*/Local Storage/**",
-                    "%%users.homedir%%/.config/google-chrome-unstable/*/Local Storage/**",
-                    "%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/Local Storage/**",
-                    "%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/*/Local Storage/**",
+                    "%%users.homedir%%/.mozilla/firefox/*.default/Cache/*",
+                    "%%users.homedir%%/.cache/mozilla/firefox/*.default/Cache/*",
+                    "%%users.homedir%%/.cache/mozilla/firefox/*.default/cache2/*",
+                    "%%users.homedir%%/.cache/mozilla/firefox/*.default/cache2/doomed/*",
+                    "%%users.homedir%%/.cache/mozilla/firefox/*.default/cache2/entries/*",
+                    "%%users.homedir%%/.cache/mozilla/firefox/*.default-*/Cache/*",
+                    "%%users.homedir%%/.cache/mozilla/firefox/*.default-*/cache2/*",
+                    "%%users.homedir%%/.cache/mozilla/firefox/*.default-*/cache2/doomed/*",
+                    "%%users.homedir%%/.cache/mozilla/firefox/*.default-*/cache2/entries/*",
+                    "%%users.homedir%%/snap/firefox/common/.cache/mozilla/firefox/*.default/Cache/*",
+                    "%%users.homedir%%/snap/firefox/common/.cache/mozilla/firefox/*.default/cache2/*",
+                    "%%users.homedir%%/snap/firefox/common/.cache/mozilla/firefox/*.default/cache2/doomed/*",
+                    "%%users.homedir%%/snap/firefox/common/.cache/mozilla/firefox/*.default/cache2/entries/*",
+                    "%%users.homedir%%/snap/firefox/common/.cache/mozilla/firefox/*.default-*/Cache/*",
+                    "%%users.homedir%%/snap/firefox/common/.cache/mozilla/firefox/*.default-*/cache2/*",
+                    "%%users.homedir%%/snap/firefox/common/.cache/mozilla/firefox/*.default-*/cache2/doomed/*",
+                    "%%users.homedir%%/snap/firefox/common/.cache/mozilla/firefox/*.default-*/cache2/entries/*",
                 ]
             },
             "supported_os": ["Linux"],
@@ -298,10 +100,14 @@ class ChromeLocalStorage(GRRArtifactBase):
             "type": "FILE",
             "attributes": {
                 "paths": [
-                    "%%users.localappdata%%\\Chromium\\User Data\\*\\Local Storage\\**",
-                    "%%users.localappdata%%\\Google\\Chrome SxS\\User Data\\*\\Local Storage\\**",
-                    "%%users.localappdata%%\\Google\\Chrome\\User Data\\*\\Local Storage\\**",
-                    "%%users.localappdata%%\\Microsoft\\Edge\\User Data\\*\\Local Storage\\**",
+                    "%%users.localappdata%%\\Mozilla\\Firefox\\Profiles\\*.default\\Cache\\*",
+                    "%%users.localappdata%%\\Mozilla\\Firefox\\Profiles\\*.default\\cache2\\*",
+                    "%%users.localappdata%%\\Mozilla\\Firefox\\Profiles\\*.default\\cache2\\doomed\\*",
+                    "%%users.localappdata%%\\Mozilla\\Firefox\\Profiles\\*.default\\cache2\\entries\\*",
+                    "%%users.localappdata%%\\Mozilla\\Firefox\\Profiles\\*.default-*\\Cache\\*",
+                    "%%users.localappdata%%\\Mozilla\\Firefox\\Profiles\\*.default-*\\cache2\\*",
+                    "%%users.localappdata%%\\Mozilla\\Firefox\\Profiles\\*.default-*\\cache2\\doomed\\*",
+                    "%%users.localappdata%%\\Mozilla\\Firefox\\Profiles\\*.default-*\\cache2\\entries\\*",
                 ],
                 "separator": "\\",
             },
@@ -319,55 +125,11 @@ class ChromeLocalStorage(GRRArtifactBase):
     aliases: ClassVar[Optional[list[str]]] = None
 
 
-class ChromeStorage(GRRArtifactBase):
+class SafariCacheSQLiteDatabaseFile(GRRArtifactBase):
     """
-    Google Chrome, Canary and Chromium browser artifacts for Storage APIs.
+    Safari browser cache (cache.db) SQLite database file.
 
-    Includes Web Storage (sessionStorage for session-only data and localStorage
-    for persistent data), IndexedDB (used for structured data), and FileSystem
-    (object storage in a virtual file system).
-
-    Reference URLs:
-    https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API
-    https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API
-    https://developer.mozilla.org/en-US/docs/Web/API/FileSystem
-    """
-
-    SOURCES = [
-        {
-            "type": "ARTIFACT_GROUP",
-            "attributes": {
-                "names": [
-                    "ChromeLocalStorage",
-                    "ChromeSessionStorage",
-                    "ChromeFileSystem",
-                    "ChromeIndexedDB",
-                ]
-            },
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {
-        "ChromeIndexedDB": webbrowser.ChromeIndexedDB,
-        "ChromeLocalStorage": webbrowser.ChromeLocalStorage,
-        "ChromeFileSystem": webbrowser.ChromeFileSystem,
-        "ChromeSessionStorage": webbrowser.ChromeSessionStorage,
-    }
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.DARWIN,
-        ArtifactSupportedOS.LINUX,
-        ArtifactSupportedOS.WINDOWS,
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
-class ChromePlatformNotifications(GRRArtifactBase):
-    """
-    Google Chrome Platform Notifications LevelDB.
-
-    The Platform Notifications directory contains the files that comprise a
-    LevelDB database, which in turn holds platform notification data.
+    Reference URLs: https://forensics.wiki/apple_safari
     """
 
     SOURCES = [
@@ -375,7 +137,10 @@ class ChromePlatformNotifications(GRRArtifactBase):
             "type": "FILE",
             "attributes": {
                 "paths": [
-                    "%%users.homedir%%/Library/Application Support/Google/Chrome/*/Platform Notifications/*"
+                    "%%users.homedir%%/Library/Caches/com.apple.Safari/Cache.db",
+                    "%%users.homedir%%/Library/Caches/com.apple.Safari/Cache.db-wal",
+                    "%%users.homedir%%/Library/Containers/com.apple.Safari/Data/Library/Caches/com.apple.Safari/Cache.db",
+                    "%%users.homedir%%/Library/Containers/com.apple.Safari/Data/Library/Caches/com.apple.Safari/Cache.db-wal",
                 ]
             },
             "supported_os": ["Darwin"],
@@ -383,18 +148,7 @@ class ChromePlatformNotifications(GRRArtifactBase):
         {
             "type": "FILE",
             "attributes": {
-                "paths": [
-                    "%%users.homedir%%/.config/google-chrome/*/Platform Notifications/*"
-                ]
-            },
-            "supported_os": ["Linux"],
-        },
-        {
-            "type": "FILE",
-            "attributes": {
-                "paths": [
-                    "%%users.localappdata%%\\Google\\Chrome\\User Data\\*\\Platform Notifications\\*"
-                ],
+                "paths": ["%%users.localappdata%%\\Apple Computer\\Safari\\cache.db"],
                 "separator": "\\",
             },
             "supported_os": ["Windows"],
@@ -405,172 +159,9 @@ class ChromePlatformNotifications(GRRArtifactBase):
     sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
     supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
         ArtifactSupportedOS.DARWIN,
-        ArtifactSupportedOS.LINUX,
         ArtifactSupportedOS.WINDOWS,
     ]
-    aliases: ClassVar[Optional[list[str]]] = [
-        "ChromeNotifications",
-        "ChromePlatformNotificationsDatabase",
-    ]
-
-
-class ChromePreferences(GRRArtifactBase):
-    """
-    Chrome Preferences file.
-
-    Reference URLs: https://forensics.wiki/google_chrome#configuration
-    """
-
-    SOURCES = [
-        {
-            "type": "FILE",
-            "attributes": {
-                "paths": [
-                    "%%users.homedir%%/Library/Application Support/Chromium/*/Preferences",
-                    "%%users.homedir%%/Library/Application Support/Chromium/*/Secure Preferences",
-                    "%%users.homedir%%/Library/Application Support/Google/Chrome Beta/*/Preferences",
-                    "%%users.homedir%%/Library/Application Support/Google/Chrome Beta/*/Secure Preferences",
-                    "%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Preferences",
-                    "%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Secure Preferences",
-                    "%%users.homedir%%/Library/Application Support/Google/Chrome/*/Preferences",
-                    "%%users.homedir%%/Library/Application Support/Google/Chrome/*/Secure Preferences",
-                ]
-            },
-            "supported_os": ["Darwin"],
-        },
-        {
-            "type": "FILE",
-            "attributes": {
-                "paths": [
-                    "%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/*/Preferences",
-                    "%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/*/Secure Preferences",
-                    "%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/Preferences",
-                    "%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/Secure Preferences",
-                    "%%users.homedir%%/.config/chromium/*/Preferences",
-                    "%%users.homedir%%/.config/chromium/*/Secure Preferences",
-                    "%%users.homedir%%/.config/google-chrome/*/Preferences",
-                    "%%users.homedir%%/.config/google-chrome/*/Secure Preferences",
-                ]
-            },
-            "supported_os": ["Linux"],
-        },
-        {
-            "type": "FILE",
-            "attributes": {
-                "paths": [
-                    "%%users.localappdata%%\\Chromium\\User Data\\*\\Preferences",
-                    "%%users.localappdata%%\\Chromium\\User Data\\*\\Secure Preferences",
-                    "%%users.localappdata%%\\Google\\Chrome SxS\\User Data\\*\\Preferences",
-                    "%%users.localappdata%%\\Google\\Chrome SxS\\User Data\\*\\Secure Preferences",
-                    "%%users.localappdata%%\\Google\\Chrome\\User Data\\*\\Preferences",
-                    "%%users.localappdata%%\\Google\\Chrome\\User Data\\*\\Secure Preferences",
-                    "%%users.localappdata%%\\Microsoft\\Edge\\User Data\\*\\Preferences",
-                ],
-                "separator": "\\",
-            },
-            "supported_os": ["Windows"],
-        },
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.DARWIN,
-        ArtifactSupportedOS.LINUX,
-        ArtifactSupportedOS.WINDOWS,
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
-class ChromeSessionStorage(GRRArtifactBase):
-    """
-    Google Chrome, Beta, Canary and Chromium Sessions and Session Storage files.
-
-    The Sessions directory contains information for restoring tabs and windows
-    from a browsing session.
-
-    The Session Storage directory contains the files that comprise a LevelDB
-    database, which in turn holds the Session Storage data.
-    """
-
-    SOURCES = [
-        {
-            "type": "FILE",
-            "attributes": {
-                "paths": [
-                    "%%users.homedir%%/Library/Application Support/Chromium/*/Session Storage/*",
-                    "%%users.homedir%%/Library/Application Support/Google/Chrome Beta/*/Session Storage/*",
-                    "%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Session Storage/*",
-                    "%%users.homedir%%/Library/Application Support/Google/Chrome/*/Session Storage/*",
-                    "%%users.homedir%%/Library/Application Support/Chromium/*/Sessions/Session_*",
-                    "%%users.homedir%%/Library/Application Support/Chromium/*/Sessions/Tabs_*",
-                    "%%users.homedir%%/Library/Application Support/Google/Chrome/*/Sessions/Session_*",
-                    "%%users.homedir%%/Library/Application Support/Google/Chrome/*/Sessions/Tabs_*",
-                    "%%users.homedir%%/Library/Application Support/Google/Chrome Beta/*/Sessions/Session_*",
-                    "%%users.homedir%%/Library/Application Support/Google/Chrome Beta/*/Sessions/Tabs_*",
-                    "%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Sessions/Session_*",
-                    "%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Sessions/Tabs_*",
-                ]
-            },
-            "supported_os": ["Darwin"],
-        },
-        {
-            "type": "FILE",
-            "attributes": {
-                "paths": [
-                    "%%users.homedir%%/.config/google-chrome/*/Session Storage/*",
-                    "%%users.homedir%%/.config/chromium/*/Session Storage/*",
-                    "%%users.homedir%%/.config/google-chrome-beta/*/Session Storage/*",
-                    "%%users.homedir%%/.config/google-chrome-unstable/*/Session Storage/*",
-                    "%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/Session Storage/*",
-                    "%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/*/Session Storage/*",
-                    "%%users.homedir%%/.config/google-chrome/*/Sessions/Session_*",
-                    "%%users.homedir%%/.config/google-chrome/*/Sessions/Tabs_*",
-                    "%%users.homedir%%/.config/chromium/*/Sessions/Session_*",
-                    "%%users.homedir%%/.config/chromium/*/Sessions/Tabs_*",
-                    "%%users.homedir%%/.config/google-chrome-beta/*/Sessions/Session_*",
-                    "%%users.homedir%%/.config/google-chrome-unstable/*/Sessions/Session_*",
-                    "%%users.homedir%%/.config/google-chrome-beta/*/Sessions/Tabs_*",
-                    "%%users.homedir%%/.config/google-chrome-unstable/*/Sessions/Tabs_*",
-                    "%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/Sessions/Session_*",
-                    "%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/Sessions/Tabs_*",
-                    "%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/*/Sessions/Session_*",
-                    "%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/*/Sessions/Tabs_*",
-                ]
-            },
-            "supported_os": ["Linux"],
-        },
-        {
-            "type": "FILE",
-            "attributes": {
-                "paths": [
-                    "%%users.localappdata%%\\Chromium\\User Data\\*\\Session Storage\\*",
-                    "%%users.localappdata%%\\Google\\Chrome SxS\\User Data\\*\\Session Storage\\*",
-                    "%%users.localappdata%%\\Google\\Chrome\\User Data\\*\\Session Storage\\*",
-                    "%%users.localappdata%%\\Microsoft\\Edge\\User Data\\*\\Session Storage\\*",
-                    "%%users.localappdata%%\\Chromium\\User Data\\*\\Sessions\\Session_*",
-                    "%%users.localappdata%%\\Chromium\\User Data\\*\\Sessions\\Tabs_*",
-                    "%%users.localappdata%%\\Google\\Chrome SxS\\User Data\\*\\Sessions\\Session_*",
-                    "%%users.localappdata%%\\Google\\Chrome SxS\\User Data\\*\\Sessions\\Tabs_*",
-                    "%%users.localappdata%%\\Google\\Chrome\\User Data\\*\\Sessions\\Session_*",
-                    "%%users.localappdata%%\\Google\\Chrome\\User Data\\*\\Sessions\\Tabs_*",
-                    "%%users.localappdata%%\\Microsoft\\Edge\\User Data\\*\\Sessions\\Session_*",
-                    "%%users.localappdata%%\\Microsoft\\Edge\\User Data\\*\\Sessions\\Tabs_*",
-                ],
-                "separator": "\\",
-            },
-            "supported_os": ["Windows"],
-        },
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.DARWIN,
-        ArtifactSupportedOS.LINUX,
-        ArtifactSupportedOS.WINDOWS,
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
+    aliases: ClassVar[Optional[list[str]]] = ["SafariCache"]
 
 
 class ChromiumBasedBrowsersCache(GRRArtifactBase):
@@ -848,6 +439,864 @@ class ChromiumBasedBrowsersCache(GRRArtifactBase):
         "ChromiumCache",
         "EdgeCache",
     ]
+
+
+class SafariHistoryPlistFile(GRRArtifactBase):
+    """
+    Safari browser history (History.plist) property list (plist) file.
+
+    Reference URLs: https://forensics.wiki/apple_safari
+    """
+
+    SOURCES = [
+        {
+            "type": "FILE",
+            "attributes": {"paths": ["%%users.homedir%%/Library/Safari/History.plist"]},
+            "supported_os": ["Darwin"],
+        },
+        {
+            "type": "FILE",
+            "attributes": {
+                "paths": [
+                    "%%users.localappdata%%\\Apple Computer\\Safari\\History.plist",
+                    "%%users.appdata%%\\Apple Computer\\Safari\\History.plist",
+                ],
+                "separator": "\\",
+            },
+            "supported_os": ["Windows"],
+        },
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.DARWIN,
+        ArtifactSupportedOS.WINDOWS,
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class SafariDownloadsPlistFile(GRRArtifactBase):
+    """
+    Safari downloads history (Downloads.plist) property list (plist) file.
+
+    Reference URLs: https://forensics.wiki/apple_safari/
+    """
+
+    SOURCES = [
+        {
+            "type": "FILE",
+            "attributes": {
+                "paths": ["%%users.homedir%%/Library/Safari/Downloads.plist"]
+            },
+            "supported_os": ["Darwin"],
+        },
+        {
+            "type": "FILE",
+            "attributes": {
+                "paths": [
+                    "%%users.localappdata%%\\Apple Computer\\Safari\\Downloads.plist",
+                    "%%users.appdata%%\\Apple Computer\\Safari\\Downloads.plist",
+                ],
+                "separator": "\\",
+            },
+            "supported_os": ["Windows"],
+        },
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.DARWIN,
+        ArtifactSupportedOS.WINDOWS,
+    ]
+    aliases: ClassVar[Optional[list[str]]] = ["SafariDownloads"]
+
+
+class OperaHistoryFile(GRRArtifactBase):
+    """
+    Opera browser history (global_history.dat) file.
+
+    Reference URLs: https://forensics.wiki/opera
+    """
+
+    SOURCES = [
+        {
+            "type": "FILE",
+            "attributes": {
+                "paths": ["%%users.homedir%%/Library/Opera/global_history.dat"]
+            },
+            "supported_os": ["Darwin"],
+        },
+        {
+            "type": "FILE",
+            "attributes": {"paths": ["%%users.homedir%%/.opera/global_history.dat"]},
+            "supported_os": ["Linux"],
+        },
+        {
+            "type": "FILE",
+            "attributes": {
+                "paths": [
+                    "%%users.appdata%%\\Opera\\Opera\\global_history.dat",
+                    "%%users.appdata%%\\Opera Software\\Opera Stable\\History",
+                    "%%users.appdata%%\\Opera Software\\Opera Stable\\History-journal",
+                ],
+                "separator": "\\",
+            },
+            "supported_os": ["Windows"],
+        },
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.DARWIN,
+        ArtifactSupportedOS.LINUX,
+        ArtifactSupportedOS.WINDOWS,
+    ]
+    aliases: ClassVar[Optional[list[str]]] = ["OperaHistory"]
+
+
+class SafariHistorySQLiteDatabaseFile(GRRArtifactBase):
+    """
+    Safari browser history SQLite database file.
+
+    Reference URLs: https://forensics.wiki/apple_safari
+    """
+
+    SOURCES = [
+        {
+            "type": "FILE",
+            "attributes": {
+                "paths": [
+                    "%%users.homedir%%/Library/Safari/History.db",
+                    "%%users.homedir%%/Library/Safari/History.db-wal",
+                ]
+            },
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.DARWIN
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class ChromiumBasedBrowsersHistoryDatabaseFile(GRRArtifactBase):
+    """
+    Browsing history database file for multiple Chromium-based browsers, such as
+    Google Chrome, Brave, Chromium, Yandex, Opera, Edge, EdgeBeta.
+
+    Reference URLs: https://forensics.wiki/google_chrome
+    https://forensics.wiki/google_chrome#chromium-based-browsers
+    """
+
+    SOURCES = [
+        {
+            "type": "FILE",
+            "attributes": {
+                "paths": [
+                    "%%users.homedir%%/Library/Application Support/BraveSoftware/Brave-Browser/*/Archived History",
+                    "%%users.homedir%%/Library/Application Support/BraveSoftware/Brave-Browser/*/Archived History-journal",
+                    "%%users.homedir%%/Library/Application Support/BraveSoftware/Brave-Browser/*/History",
+                    "%%users.homedir%%/Library/Application Support/BraveSoftware/Brave-Browser/*/History-journal",
+                    "%%users.homedir%%/Library/Application Support/Chromium/*/Archived History",
+                    "%%users.homedir%%/Library/Application Support/Chromium/*/Archived History-journal",
+                    "%%users.homedir%%/Library/Application Support/Chromium/*/History",
+                    "%%users.homedir%%/Library/Application Support/Chromium/*/History-journal",
+                    "%%users.homedir%%/Library/Application Support/Google/Chrome Beta/*/Archived History",
+                    "%%users.homedir%%/Library/Application Support/Google/Chrome Beta/*/Archived History-journal",
+                    "%%users.homedir%%/Library/Application Support/Google/Chrome Beta/*/History",
+                    "%%users.homedir%%/Library/Application Support/Google/Chrome Beta/*/History-journal",
+                    "%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Archived History",
+                    "%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Archived History-journal",
+                    "%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/History",
+                    "%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/History-journal",
+                    "%%users.homedir%%/Library/Application Support/Google/Chrome/*/Archived History",
+                    "%%users.homedir%%/Library/Application Support/Google/Chrome/*/Archived History-journal",
+                    "%%users.homedir%%/Library/Application Support/Google/Chrome/*/History",
+                    "%%users.homedir%%/Library/Application Support/Google/Chrome/*/History-journal",
+                    "%%users.homedir%%/Library/Application Support/Microsoft Edge Beta/*/Archived History",
+                    "%%users.homedir%%/Library/Application Support/Microsoft Edge Beta/*/Archived History-journal",
+                    "%%users.homedir%%/Library/Application Support/Microsoft Edge Beta/*/History",
+                    "%%users.homedir%%/Library/Application Support/Microsoft Edge Beta/*/History-journal",
+                    "%%users.homedir%%/Library/Application Support/Microsoft Edge/*/Archived History",
+                    "%%users.homedir%%/Library/Application Support/Microsoft Edge/*/Archived History-journal",
+                    "%%users.homedir%%/Library/Application Support/Microsoft Edge/*/History",
+                    "%%users.homedir%%/Library/Application Support/Microsoft Edge/*/History-journal",
+                    "%%users.homedir%%/Library/Application Support/Yandex/YandexBrowser/*/Archived History",
+                    "%%users.homedir%%/Library/Application Support/Yandex/YandexBrowser/*/Archived History-journal",
+                    "%%users.homedir%%/Library/Application Support/Yandex/YandexBrowser/*/History",
+                    "%%users.homedir%%/Library/Application Support/Yandex/YandexBrowser/*/History-journal",
+                    "%%users.homedir%%/Library/Application Support/com.operasoftware.Opera/*/Archived History",
+                    "%%users.homedir%%/Library/Application Support/com.operasoftware.Opera/*/Archived History-journal",
+                    "%%users.homedir%%/Library/Application Support/com.operasoftware.Opera/*/History",
+                    "%%users.homedir%%/Library/Application Support/com.operasoftware.Opera/*/History-journal",
+                ]
+            },
+            "supported_os": ["Darwin"],
+        },
+        {
+            "type": "FILE",
+            "attributes": {
+                "paths": [
+                    "%%users.homedir%%/.config/BraveSoftware/Brave-Browser/*/Archived History",
+                    "%%users.homedir%%/.config/BraveSoftware/Brave-Browser/*/Archived History-journal",
+                    "%%users.homedir%%/.config/BraveSoftware/Brave-Browser/*/History",
+                    "%%users.homedir%%/.config/BraveSoftware/Brave-Browser/*/History-journal",
+                    "%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/*/Archived History",
+                    "%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/*/Archived History-journal",
+                    "%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/*/History",
+                    "%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/*/History-journal",
+                    "%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/Archived History",
+                    "%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/Archived History-journal",
+                    "%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/History",
+                    "%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/History-journal",
+                    "%%users.homedir%%/.config/chromium/*/Archived History",
+                    "%%users.homedir%%/.config/chromium/*/Archived History-journal",
+                    "%%users.homedir%%/.config/chromium/*/History",
+                    "%%users.homedir%%/.config/chromium/*/History-journal",
+                    "%%users.homedir%%/.config/google-chrome-beta/*/Archived History",
+                    "%%users.homedir%%/.config/google-chrome-beta/*/Archived History-journal",
+                    "%%users.homedir%%/.config/google-chrome-beta/*/History",
+                    "%%users.homedir%%/.config/google-chrome-beta/*/History-journal",
+                    "%%users.homedir%%/.config/google-chrome-unstable/*/Archived History",
+                    "%%users.homedir%%/.config/google-chrome-unstable/*/Archived History-journal",
+                    "%%users.homedir%%/.config/google-chrome-unstable/*/History",
+                    "%%users.homedir%%/.config/google-chrome-unstable/*/History-journal",
+                    "%%users.homedir%%/.config/google-chrome/*/Archived History",
+                    "%%users.homedir%%/.config/google-chrome/*/Archived History-journal",
+                    "%%users.homedir%%/.config/google-chrome/*/History",
+                    "%%users.homedir%%/.config/google-chrome/*/History-journal",
+                    "%%users.homedir%%/.config/microsoft-edge/*/Archived History",
+                    "%%users.homedir%%/.config/microsoft-edge/*/Archived History-journal",
+                    "%%users.homedir%%/.config/microsoft-edge/*/History",
+                    "%%users.homedir%%/.config/microsoft-edge/*/History-journal",
+                    "%%users.homedir%%/.config/opera/*/Archived History",
+                    "%%users.homedir%%/.config/opera/*/Archived History-journal",
+                    "%%users.homedir%%/.config/opera/*/History",
+                    "%%users.homedir%%/.config/opera/*/History-journal",
+                    "%%users.homedir%%/.config/yandex-browser-beta/*/Archived History",
+                    "%%users.homedir%%/.config/yandex-browser-beta/*/Archived History-journal",
+                    "%%users.homedir%%/.config/yandex-browser-beta/*/History",
+                    "%%users.homedir%%/.config/yandex-browser-beta/*/History-journal",
+                    "%%users.homedir%%/snap/chromium/common/chromium/*/Archived History",
+                    "%%users.homedir%%/snap/chromium/common/chromium/*/Archived History-journal",
+                    "%%users.homedir%%/snap/chromium/common/chromium/*/History",
+                    "%%users.homedir%%/snap/chromium/common/chromium/*/History-journal",
+                ]
+            },
+            "supported_os": ["Linux"],
+        },
+        {
+            "type": "FILE",
+            "attributes": {
+                "paths": [
+                    "%%users.appdata%%\\Brave\\*\\Archived History",
+                    "%%users.appdata%%\\Brave\\*\\Archived History-journal",
+                    "%%users.appdata%%\\Brave\\*\\History",
+                    "%%users.appdata%%\\Brave\\*\\History-journal",
+                    "%%users.appdata%%\\BraveSoftware\\Brave-Browser\\User Data\\*\\History",
+                    "%%users.appdata%%\\BraveSoftware\\Brave-Browser\\User Data\\*\\History-journal",
+                    "%%users.appdata%%\\Opera Software\\Opera Stable\\*\\Archived History",
+                    "%%users.appdata%%\\Opera Software\\Opera Stable\\*\\Archived History-journal",
+                    "%%users.appdata%%\\Opera Software\\Opera Stable\\*\\History",
+                    "%%users.appdata%%\\Opera Software\\Opera Stable\\*\\History-journal",
+                    "%%users.localappdata%%\\Chromium\\*\\Archived History",
+                    "%%users.localappdata%%\\Chromium\\*\\Archived History-journal",
+                    "%%users.localappdata%%\\Chromium\\*\\History",
+                    "%%users.localappdata%%\\Chromium\\*\\History-journal",
+                    "%%users.localappdata%%\\Chromium\\User Data\\*\\Archived History",
+                    "%%users.localappdata%%\\Chromium\\User Data\\*\\Archived History-journal",
+                    "%%users.localappdata%%\\Chromium\\User Data\\*\\History",
+                    "%%users.localappdata%%\\Chromium\\User Data\\*\\History-journal",
+                    "%%users.localappdata%%\\Google\\Chrome SxS\\User Data\\*\\Archived History",
+                    "%%users.localappdata%%\\Google\\Chrome SxS\\User Data\\*\\Archived History-journal",
+                    "%%users.localappdata%%\\Google\\Chrome SxS\\User Data\\*\\History",
+                    "%%users.localappdata%%\\Google\\Chrome SxS\\User Data\\*\\History-journal",
+                    "%%users.localappdata%%\\Google\\Chrome\\User Data\\*\\Archived History",
+                    "%%users.localappdata%%\\Google\\Chrome\\User Data\\*\\Archived History-journal",
+                    "%%users.localappdata%%\\Google\\Chrome\\User Data\\*\\History",
+                    "%%users.localappdata%%\\Google\\Chrome\\User Data\\*\\History-journal",
+                    "%%users.localappdata%%\\Microsoft\\Edge Beta\\User Data\\*\\Archived History",
+                    "%%users.localappdata%%\\Microsoft\\Edge Beta\\User Data\\*\\Archived History-journal",
+                    "%%users.localappdata%%\\Microsoft\\Edge Beta\\User Data\\*\\History",
+                    "%%users.localappdata%%\\Microsoft\\Edge Beta\\User Data\\*\\History-journal",
+                    "%%users.localappdata%%\\Microsoft\\Edge\\User Data\\*\\Archived History",
+                    "%%users.localappdata%%\\Microsoft\\Edge\\User Data\\*\\Archived History-journal",
+                    "%%users.localappdata%%\\Microsoft\\Edge\\User Data\\*\\History",
+                    "%%users.localappdata%%\\Microsoft\\Edge\\User Data\\*\\History-journal",
+                    "%%users.localappdata%%\\Yandex\\YandexBrowser\\User Data\\*\\Archived History",
+                    "%%users.localappdata%%\\Yandex\\YandexBrowser\\User Data\\*\\Archived History-journal",
+                    "%%users.localappdata%%\\Yandex\\YandexBrowser\\User Data\\*\\History",
+                    "%%users.localappdata%%\\Yandex\\YandexBrowser\\User Data\\*\\History-journal",
+                ],
+                "separator": "\\",
+            },
+            "supported_os": ["Windows"],
+        },
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.DARWIN,
+        ArtifactSupportedOS.LINUX,
+        ArtifactSupportedOS.WINDOWS,
+    ]
+    aliases: ClassVar[Optional[list[str]]] = [
+        "ChromeHistory",
+        "ChromiumBasedBrowsersHistory",
+    ]
+
+
+class FirefoxHistory(GRRArtifactBase):
+    """
+    Firefox browser history (places.sqlite).
+
+    Reference URLs: https://forensics.wiki/mozilla_firefox
+    """
+
+    SOURCES = [
+        {
+            "type": "FILE",
+            "attributes": {
+                "paths": [
+                    "%%users.homedir%%/Library/Application Support/Firefox/Profiles/*/places.sqlite",
+                    "%%users.homedir%%/Library/Application Support/Firefox/Profiles/*/places.sqlite-wal",
+                ]
+            },
+            "supported_os": ["Darwin"],
+        },
+        {
+            "type": "FILE",
+            "attributes": {
+                "paths": [
+                    "%%users.homedir%%/.mozilla/firefox/*/places.sqlite",
+                    "%%users.homedir%%/.mozilla/firefox/*/places.sqlite-wal",
+                    "%%users.homedir%%/snap/firefox/common/.mozilla/firefox/*/places.sqlite",
+                    "%%users.homedir%%/snap/firefox/common/.mozilla/firefox/*/places.sqlite-wal",
+                ]
+            },
+            "supported_os": ["Linux"],
+        },
+        {
+            "type": "FILE",
+            "attributes": {
+                "paths": [
+                    "%%users.localappdata%%\\Mozilla\\Firefox\\Profiles\\*\\places.sqlite",
+                    "%%users.localappdata%%\\Mozilla\\Firefox\\Profiles\\*\\places.sqlite-wal",
+                    "%%users.appdata%%\\Mozilla\\Firefox\\Profiles\\*\\places.sqlite",
+                    "%%users.localappdata%%\\Mozilla\\Firefox\\Profiles\\*\\places.sqlite-wal",
+                ],
+                "separator": "\\",
+            },
+            "supported_os": ["Windows"],
+        },
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.DARWIN,
+        ArtifactSupportedOS.LINUX,
+        ArtifactSupportedOS.WINDOWS,
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class FirefoxDownloads(GRRArtifactBase):
+    """
+    Firefox browser downloads (downloads.sqlite).
+
+    Reference URLs: https://forensics.wiki/mozilla_firefox
+    """
+
+    SOURCES = [
+        {
+            "type": "FILE",
+            "attributes": {
+                "paths": [
+                    "%%users.homedir%%/Library/Application Support/Firefox/Profiles/*/downloads.sqlite",
+                    "%%users.homedir%%/Library/Application Support/Firefox/Profiles/*/downloads.sqlite-wal",
+                ]
+            },
+            "supported_os": ["Darwin"],
+        },
+        {
+            "type": "FILE",
+            "attributes": {
+                "paths": [
+                    "%%users.homedir%%/.mozilla/firefox/*/downloads.sqlite",
+                    "%%users.homedir%%/.mozilla/firefox/*/downloads.sqlite-wal",
+                ]
+            },
+            "supported_os": ["Linux"],
+        },
+        {
+            "type": "FILE",
+            "attributes": {
+                "paths": [
+                    "%%users.localappdata%%\\Mozilla\\Firefox\\Profiles\\*\\downloads.sqlite",
+                    "%%users.localappdata%%\\Mozilla\\Firefox\\Profiles\\*\\downloads.sqlite-wal",
+                    "%%users.appdata%%\\Mozilla\\Firefox\\Profiles\\*\\downloads.sqlite",
+                    "%%users.localappdata%%\\Mozilla\\Firefox\\Profiles\\*\\downloads.sqlite-wal",
+                ],
+                "separator": "\\",
+            },
+            "supported_os": ["Windows"],
+        },
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.DARWIN,
+        ArtifactSupportedOS.LINUX,
+        ArtifactSupportedOS.WINDOWS,
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class ChromeExtensionRegistryKeys(GRRArtifactBase):
+    """
+    Chrome extensions installed by writing windows registry keys.
+
+    Reference URLs:
+    https://developer.chrome.com/extensions/external_extensions#registry
+    """
+
+    SOURCES = [
+        {
+            "type": "REGISTRY_KEY",
+            "attributes": {
+                "keys": [
+                    "HKEY_LOCAL_MACHINE\\Software\\Google\\Chrome\\Extensions\\**5",
+                    "HKEY_LOCAL_MACHINE\\Software\\Wow6432Node\\Google\\Chrome\\Extensions\\**5",
+                ]
+            },
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.WINDOWS
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class ChromeFileSystem(GRRArtifactBase):
+    """
+    Google Chrome, Beta, Canary and Chromium File System files.
+
+    The File System directory backs Chrome's fileSystem API. Inside this
+    directory are a mixture of the data files saved using the fileSystem API and
+    LevelDB directories that track the logical structure of the virtual file
+    system.
+
+    Reference URLs: https://developer.chrome.com/apps/fileSystem
+    https://developer.mozilla.org/en-US/docs/Web/API/FileSystem
+    https://dfir.blog/deciphering-browser-hieroglyphics-leveldb-filesystem/
+    """
+
+    SOURCES = [
+        {
+            "type": "FILE",
+            "attributes": {
+                "paths": [
+                    "%%users.localappdata%%\\Chromium\\User Data\\*\\File System\\**5",
+                    "%%users.localappdata%%\\Google\\Chrome SxS\\User Data\\*\\File System\\**5",
+                    "%%users.localappdata%%\\Google\\Chrome\\User Data\\*\\File System\\**5",
+                    "%%users.localappdata%%\\Microsoft\\Edge\\User Data\\*\\File System\\**5",
+                ],
+                "separator": "\\",
+            },
+            "supported_os": ["Windows"],
+        },
+        {
+            "type": "FILE",
+            "attributes": {
+                "paths": [
+                    "%%users.homedir%%/.config/google-chrome/*/File System/**5",
+                    "%%users.homedir%%/.config/chromium/*/File System/**5",
+                    "%%users.homedir%%/.config/google-chrome-beta/*/File System/**5",
+                    "%%users.homedir%%/.config/google-chrome-unstable/*/File System/**5",
+                    "%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/File System/**5",
+                    "%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/*/File System/**5",
+                ]
+            },
+            "supported_os": ["Linux"],
+        },
+        {
+            "type": "FILE",
+            "attributes": {
+                "paths": [
+                    "%%users.homedir%%/Library/Application Support/Chromium/*/File System/**5",
+                    "%%users.homedir%%/Library/Application Support/Google/Chrome Beta/*/File System/**5",
+                    "%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/File System/**5",
+                    "%%users.homedir%%/Library/Application Support/Google/Chrome/*/File System/**5",
+                ]
+            },
+            "supported_os": ["Darwin"],
+        },
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.DARWIN,
+        ArtifactSupportedOS.LINUX,
+        ArtifactSupportedOS.WINDOWS,
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class ChromeIndexedDB(GRRArtifactBase):
+    """
+    Google Chrome, Beta, Canary and Chromium IndexedDB files.
+
+    The IndexedDB directory contains one directory per origin that uses
+    IndexedDB, named like https_www.example.com_0.indexeddb.leveldb,
+    chrome-extension_app-id-xxx_0.indexeddb.leveldb, or
+    https_www.example.com_0.indexeddb.blob. Inside each of the *.leveldb
+    directories are the files the comprise a LevelDB database, which in turn
+    holds IndexedDB data for that origin. There may be an accompanying .blob
+    directory, which contains a nested folder structure of blobs.
+
+    Reference URLs:
+    https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API
+    """
+
+    SOURCES = [
+        {
+            "type": "FILE",
+            "attributes": {
+                "paths": [
+                    "%%users.localappdata%%\\Chromium\\User Data\\*\\IndexedDB\\**5",
+                    "%%users.localappdata%%\\Google\\Chrome SxS\\User Data\\*\\IndexedDB\\**5",
+                    "%%users.localappdata%%\\Google\\Chrome\\User Data\\*\\IndexedDB\\**5",
+                    "%%users.localappdata%%\\Microsoft\\Edge\\User Data\\*\\IndexedDB\\**5",
+                ],
+                "separator": "\\",
+            },
+            "supported_os": ["Windows"],
+        },
+        {
+            "type": "FILE",
+            "attributes": {
+                "paths": [
+                    "%%users.homedir%%/.config/google-chrome/*/IndexedDB/**5",
+                    "%%users.homedir%%/.config/chromium/*/IndexedDB/**5",
+                    "%%users.homedir%%/.config/google-chrome-beta/*/IndexedDB/**5",
+                    "%%users.homedir%%/.config/google-chrome-unstable/*/IndexedDB/**5",
+                    "%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/IndexedDB/**5",
+                    "%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/*/IndexedDB/**5",
+                ]
+            },
+            "supported_os": ["Linux"],
+        },
+        {
+            "type": "FILE",
+            "attributes": {
+                "paths": [
+                    "%%users.homedir%%/Library/Application Support/Chromium/*/IndexedDB/**5",
+                    "%%users.homedir%%/Library/Application Support/Google/Chrome Beta/*/IndexedDB/**5",
+                    "%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/IndexedDB/**5",
+                    "%%users.homedir%%/Library/Application Support/Google/Chrome/*/IndexedDB/**5",
+                ]
+            },
+            "supported_os": ["Darwin"],
+        },
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.DARWIN,
+        ArtifactSupportedOS.LINUX,
+        ArtifactSupportedOS.WINDOWS,
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class ChromeLocalStorage(GRRArtifactBase):
+    """
+    Google Chrome, Beta, Canary and Chromium Local Storage files.
+
+    Chrome 60 and earlier versions used individual .sqlite files per origin for
+    Local Storage, stored in the Local Storage directory root. In Chrome 61, a
+    leveldb directory was added inside the root Local Storage directory, and new
+    origins saved Local Storage data in a single LevelDB there.
+
+    Existing .sqlite files are kept (not moved to leveldb), so it is possible
+    for a single Chrome profile to use both SQLite and LevelDB for Local
+    Storage.
+    """
+
+    SOURCES = [
+        {
+            "type": "FILE",
+            "attributes": {
+                "paths": [
+                    "%%users.homedir%%/Library/Application Support/Chromium/*/Local Storage/**",
+                    "%%users.homedir%%/Library/Application Support/Google/Chrome Beta/*/Local Storage/**",
+                    "%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Local Storage/**",
+                    "%%users.homedir%%/Library/Application Support/Google/Chrome/*/Local Storage/**",
+                ]
+            },
+            "supported_os": ["Darwin"],
+        },
+        {
+            "type": "FILE",
+            "attributes": {
+                "paths": [
+                    "%%users.homedir%%/.config/google-chrome/*/Local Storage/**",
+                    "%%users.homedir%%/.config/chromium/*/Local Storage/**",
+                    "%%users.homedir%%/.config/google-chrome-beta/*/Local Storage/**",
+                    "%%users.homedir%%/.config/google-chrome-unstable/*/Local Storage/**",
+                    "%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/Local Storage/**",
+                    "%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/*/Local Storage/**",
+                ]
+            },
+            "supported_os": ["Linux"],
+        },
+        {
+            "type": "FILE",
+            "attributes": {
+                "paths": [
+                    "%%users.localappdata%%\\Chromium\\User Data\\*\\Local Storage\\**",
+                    "%%users.localappdata%%\\Google\\Chrome SxS\\User Data\\*\\Local Storage\\**",
+                    "%%users.localappdata%%\\Google\\Chrome\\User Data\\*\\Local Storage\\**",
+                    "%%users.localappdata%%\\Microsoft\\Edge\\User Data\\*\\Local Storage\\**",
+                ],
+                "separator": "\\",
+            },
+            "supported_os": ["Windows"],
+        },
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.DARWIN,
+        ArtifactSupportedOS.LINUX,
+        ArtifactSupportedOS.WINDOWS,
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class ChromeSessionStorage(GRRArtifactBase):
+    """
+    Google Chrome, Beta, Canary and Chromium Sessions and Session Storage files.
+
+    The Sessions directory contains information for restoring tabs and windows
+    from a browsing session.
+
+    The Session Storage directory contains the files that comprise a LevelDB
+    database, which in turn holds the Session Storage data.
+    """
+
+    SOURCES = [
+        {
+            "type": "FILE",
+            "attributes": {
+                "paths": [
+                    "%%users.homedir%%/Library/Application Support/Chromium/*/Session Storage/*",
+                    "%%users.homedir%%/Library/Application Support/Google/Chrome Beta/*/Session Storage/*",
+                    "%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Session Storage/*",
+                    "%%users.homedir%%/Library/Application Support/Google/Chrome/*/Session Storage/*",
+                    "%%users.homedir%%/Library/Application Support/Chromium/*/Sessions/Session_*",
+                    "%%users.homedir%%/Library/Application Support/Chromium/*/Sessions/Tabs_*",
+                    "%%users.homedir%%/Library/Application Support/Google/Chrome/*/Sessions/Session_*",
+                    "%%users.homedir%%/Library/Application Support/Google/Chrome/*/Sessions/Tabs_*",
+                    "%%users.homedir%%/Library/Application Support/Google/Chrome Beta/*/Sessions/Session_*",
+                    "%%users.homedir%%/Library/Application Support/Google/Chrome Beta/*/Sessions/Tabs_*",
+                    "%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Sessions/Session_*",
+                    "%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Sessions/Tabs_*",
+                ]
+            },
+            "supported_os": ["Darwin"],
+        },
+        {
+            "type": "FILE",
+            "attributes": {
+                "paths": [
+                    "%%users.homedir%%/.config/google-chrome/*/Session Storage/*",
+                    "%%users.homedir%%/.config/chromium/*/Session Storage/*",
+                    "%%users.homedir%%/.config/google-chrome-beta/*/Session Storage/*",
+                    "%%users.homedir%%/.config/google-chrome-unstable/*/Session Storage/*",
+                    "%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/Session Storage/*",
+                    "%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/*/Session Storage/*",
+                    "%%users.homedir%%/.config/google-chrome/*/Sessions/Session_*",
+                    "%%users.homedir%%/.config/google-chrome/*/Sessions/Tabs_*",
+                    "%%users.homedir%%/.config/chromium/*/Sessions/Session_*",
+                    "%%users.homedir%%/.config/chromium/*/Sessions/Tabs_*",
+                    "%%users.homedir%%/.config/google-chrome-beta/*/Sessions/Session_*",
+                    "%%users.homedir%%/.config/google-chrome-unstable/*/Sessions/Session_*",
+                    "%%users.homedir%%/.config/google-chrome-beta/*/Sessions/Tabs_*",
+                    "%%users.homedir%%/.config/google-chrome-unstable/*/Sessions/Tabs_*",
+                    "%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/Sessions/Session_*",
+                    "%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/Sessions/Tabs_*",
+                    "%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/*/Sessions/Session_*",
+                    "%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/*/Sessions/Tabs_*",
+                ]
+            },
+            "supported_os": ["Linux"],
+        },
+        {
+            "type": "FILE",
+            "attributes": {
+                "paths": [
+                    "%%users.localappdata%%\\Chromium\\User Data\\*\\Session Storage\\*",
+                    "%%users.localappdata%%\\Google\\Chrome SxS\\User Data\\*\\Session Storage\\*",
+                    "%%users.localappdata%%\\Google\\Chrome\\User Data\\*\\Session Storage\\*",
+                    "%%users.localappdata%%\\Microsoft\\Edge\\User Data\\*\\Session Storage\\*",
+                    "%%users.localappdata%%\\Chromium\\User Data\\*\\Sessions\\Session_*",
+                    "%%users.localappdata%%\\Chromium\\User Data\\*\\Sessions\\Tabs_*",
+                    "%%users.localappdata%%\\Google\\Chrome SxS\\User Data\\*\\Sessions\\Session_*",
+                    "%%users.localappdata%%\\Google\\Chrome SxS\\User Data\\*\\Sessions\\Tabs_*",
+                    "%%users.localappdata%%\\Google\\Chrome\\User Data\\*\\Sessions\\Session_*",
+                    "%%users.localappdata%%\\Google\\Chrome\\User Data\\*\\Sessions\\Tabs_*",
+                    "%%users.localappdata%%\\Microsoft\\Edge\\User Data\\*\\Sessions\\Session_*",
+                    "%%users.localappdata%%\\Microsoft\\Edge\\User Data\\*\\Sessions\\Tabs_*",
+                ],
+                "separator": "\\",
+            },
+            "supported_os": ["Windows"],
+        },
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.DARWIN,
+        ArtifactSupportedOS.LINUX,
+        ArtifactSupportedOS.WINDOWS,
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class ChromePlatformNotifications(GRRArtifactBase):
+    """
+    Google Chrome Platform Notifications LevelDB.
+
+    The Platform Notifications directory contains the files that comprise a
+    LevelDB database, which in turn holds platform notification data.
+    """
+
+    SOURCES = [
+        {
+            "type": "FILE",
+            "attributes": {
+                "paths": [
+                    "%%users.homedir%%/Library/Application Support/Google/Chrome/*/Platform Notifications/*"
+                ]
+            },
+            "supported_os": ["Darwin"],
+        },
+        {
+            "type": "FILE",
+            "attributes": {
+                "paths": [
+                    "%%users.homedir%%/.config/google-chrome/*/Platform Notifications/*"
+                ]
+            },
+            "supported_os": ["Linux"],
+        },
+        {
+            "type": "FILE",
+            "attributes": {
+                "paths": [
+                    "%%users.localappdata%%\\Google\\Chrome\\User Data\\*\\Platform Notifications\\*"
+                ],
+                "separator": "\\",
+            },
+            "supported_os": ["Windows"],
+        },
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.DARWIN,
+        ArtifactSupportedOS.LINUX,
+        ArtifactSupportedOS.WINDOWS,
+    ]
+    aliases: ClassVar[Optional[list[str]]] = [
+        "ChromeNotifications",
+        "ChromePlatformNotificationsDatabase",
+    ]
+
+
+class ChromePreferences(GRRArtifactBase):
+    """
+    Chrome Preferences file.
+
+    Reference URLs: https://forensics.wiki/google_chrome#configuration
+    """
+
+    SOURCES = [
+        {
+            "type": "FILE",
+            "attributes": {
+                "paths": [
+                    "%%users.homedir%%/Library/Application Support/Chromium/*/Preferences",
+                    "%%users.homedir%%/Library/Application Support/Chromium/*/Secure Preferences",
+                    "%%users.homedir%%/Library/Application Support/Google/Chrome Beta/*/Preferences",
+                    "%%users.homedir%%/Library/Application Support/Google/Chrome Beta/*/Secure Preferences",
+                    "%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Preferences",
+                    "%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Secure Preferences",
+                    "%%users.homedir%%/Library/Application Support/Google/Chrome/*/Preferences",
+                    "%%users.homedir%%/Library/Application Support/Google/Chrome/*/Secure Preferences",
+                ]
+            },
+            "supported_os": ["Darwin"],
+        },
+        {
+            "type": "FILE",
+            "attributes": {
+                "paths": [
+                    "%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/*/Preferences",
+                    "%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/*/Secure Preferences",
+                    "%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/Preferences",
+                    "%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/Secure Preferences",
+                    "%%users.homedir%%/.config/chromium/*/Preferences",
+                    "%%users.homedir%%/.config/chromium/*/Secure Preferences",
+                    "%%users.homedir%%/.config/google-chrome/*/Preferences",
+                    "%%users.homedir%%/.config/google-chrome/*/Secure Preferences",
+                ]
+            },
+            "supported_os": ["Linux"],
+        },
+        {
+            "type": "FILE",
+            "attributes": {
+                "paths": [
+                    "%%users.localappdata%%\\Chromium\\User Data\\*\\Preferences",
+                    "%%users.localappdata%%\\Chromium\\User Data\\*\\Secure Preferences",
+                    "%%users.localappdata%%\\Google\\Chrome SxS\\User Data\\*\\Preferences",
+                    "%%users.localappdata%%\\Google\\Chrome SxS\\User Data\\*\\Secure Preferences",
+                    "%%users.localappdata%%\\Google\\Chrome\\User Data\\*\\Preferences",
+                    "%%users.localappdata%%\\Google\\Chrome\\User Data\\*\\Secure Preferences",
+                    "%%users.localappdata%%\\Microsoft\\Edge\\User Data\\*\\Preferences",
+                ],
+                "separator": "\\",
+            },
+            "supported_os": ["Windows"],
+        },
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.DARWIN,
+        ArtifactSupportedOS.LINUX,
+        ArtifactSupportedOS.WINDOWS,
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
 
 
 class ChromiumBasedBrowsersCookiesDatabaseFile(GRRArtifactBase):
@@ -1223,174 +1672,6 @@ class ChromiumBasedBrowsersFaviconsDatabaseFile(GRRArtifactBase):
     aliases: ClassVar[Optional[list[str]]] = None
 
 
-class ChromiumBasedBrowsersHistoryDatabaseFile(GRRArtifactBase):
-    """
-    Browsing history database file for multiple Chromium-based browsers, such as
-    Google Chrome, Brave, Chromium, Yandex, Opera, Edge, EdgeBeta.
-
-    Reference URLs: https://forensics.wiki/google_chrome
-    https://forensics.wiki/google_chrome#chromium-based-browsers
-    """
-
-    SOURCES = [
-        {
-            "type": "FILE",
-            "attributes": {
-                "paths": [
-                    "%%users.homedir%%/Library/Application Support/BraveSoftware/Brave-Browser/*/Archived History",
-                    "%%users.homedir%%/Library/Application Support/BraveSoftware/Brave-Browser/*/Archived History-journal",
-                    "%%users.homedir%%/Library/Application Support/BraveSoftware/Brave-Browser/*/History",
-                    "%%users.homedir%%/Library/Application Support/BraveSoftware/Brave-Browser/*/History-journal",
-                    "%%users.homedir%%/Library/Application Support/Chromium/*/Archived History",
-                    "%%users.homedir%%/Library/Application Support/Chromium/*/Archived History-journal",
-                    "%%users.homedir%%/Library/Application Support/Chromium/*/History",
-                    "%%users.homedir%%/Library/Application Support/Chromium/*/History-journal",
-                    "%%users.homedir%%/Library/Application Support/Google/Chrome Beta/*/Archived History",
-                    "%%users.homedir%%/Library/Application Support/Google/Chrome Beta/*/Archived History-journal",
-                    "%%users.homedir%%/Library/Application Support/Google/Chrome Beta/*/History",
-                    "%%users.homedir%%/Library/Application Support/Google/Chrome Beta/*/History-journal",
-                    "%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Archived History",
-                    "%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Archived History-journal",
-                    "%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/History",
-                    "%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/History-journal",
-                    "%%users.homedir%%/Library/Application Support/Google/Chrome/*/Archived History",
-                    "%%users.homedir%%/Library/Application Support/Google/Chrome/*/Archived History-journal",
-                    "%%users.homedir%%/Library/Application Support/Google/Chrome/*/History",
-                    "%%users.homedir%%/Library/Application Support/Google/Chrome/*/History-journal",
-                    "%%users.homedir%%/Library/Application Support/Microsoft Edge Beta/*/Archived History",
-                    "%%users.homedir%%/Library/Application Support/Microsoft Edge Beta/*/Archived History-journal",
-                    "%%users.homedir%%/Library/Application Support/Microsoft Edge Beta/*/History",
-                    "%%users.homedir%%/Library/Application Support/Microsoft Edge Beta/*/History-journal",
-                    "%%users.homedir%%/Library/Application Support/Microsoft Edge/*/Archived History",
-                    "%%users.homedir%%/Library/Application Support/Microsoft Edge/*/Archived History-journal",
-                    "%%users.homedir%%/Library/Application Support/Microsoft Edge/*/History",
-                    "%%users.homedir%%/Library/Application Support/Microsoft Edge/*/History-journal",
-                    "%%users.homedir%%/Library/Application Support/Yandex/YandexBrowser/*/Archived History",
-                    "%%users.homedir%%/Library/Application Support/Yandex/YandexBrowser/*/Archived History-journal",
-                    "%%users.homedir%%/Library/Application Support/Yandex/YandexBrowser/*/History",
-                    "%%users.homedir%%/Library/Application Support/Yandex/YandexBrowser/*/History-journal",
-                    "%%users.homedir%%/Library/Application Support/com.operasoftware.Opera/*/Archived History",
-                    "%%users.homedir%%/Library/Application Support/com.operasoftware.Opera/*/Archived History-journal",
-                    "%%users.homedir%%/Library/Application Support/com.operasoftware.Opera/*/History",
-                    "%%users.homedir%%/Library/Application Support/com.operasoftware.Opera/*/History-journal",
-                ]
-            },
-            "supported_os": ["Darwin"],
-        },
-        {
-            "type": "FILE",
-            "attributes": {
-                "paths": [
-                    "%%users.homedir%%/.config/BraveSoftware/Brave-Browser/*/Archived History",
-                    "%%users.homedir%%/.config/BraveSoftware/Brave-Browser/*/Archived History-journal",
-                    "%%users.homedir%%/.config/BraveSoftware/Brave-Browser/*/History",
-                    "%%users.homedir%%/.config/BraveSoftware/Brave-Browser/*/History-journal",
-                    "%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/*/Archived History",
-                    "%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/*/Archived History-journal",
-                    "%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/*/History",
-                    "%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/*/History-journal",
-                    "%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/Archived History",
-                    "%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/Archived History-journal",
-                    "%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/History",
-                    "%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/History-journal",
-                    "%%users.homedir%%/.config/chromium/*/Archived History",
-                    "%%users.homedir%%/.config/chromium/*/Archived History-journal",
-                    "%%users.homedir%%/.config/chromium/*/History",
-                    "%%users.homedir%%/.config/chromium/*/History-journal",
-                    "%%users.homedir%%/.config/google-chrome-beta/*/Archived History",
-                    "%%users.homedir%%/.config/google-chrome-beta/*/Archived History-journal",
-                    "%%users.homedir%%/.config/google-chrome-beta/*/History",
-                    "%%users.homedir%%/.config/google-chrome-beta/*/History-journal",
-                    "%%users.homedir%%/.config/google-chrome-unstable/*/Archived History",
-                    "%%users.homedir%%/.config/google-chrome-unstable/*/Archived History-journal",
-                    "%%users.homedir%%/.config/google-chrome-unstable/*/History",
-                    "%%users.homedir%%/.config/google-chrome-unstable/*/History-journal",
-                    "%%users.homedir%%/.config/google-chrome/*/Archived History",
-                    "%%users.homedir%%/.config/google-chrome/*/Archived History-journal",
-                    "%%users.homedir%%/.config/google-chrome/*/History",
-                    "%%users.homedir%%/.config/google-chrome/*/History-journal",
-                    "%%users.homedir%%/.config/microsoft-edge/*/Archived History",
-                    "%%users.homedir%%/.config/microsoft-edge/*/Archived History-journal",
-                    "%%users.homedir%%/.config/microsoft-edge/*/History",
-                    "%%users.homedir%%/.config/microsoft-edge/*/History-journal",
-                    "%%users.homedir%%/.config/opera/*/Archived History",
-                    "%%users.homedir%%/.config/opera/*/Archived History-journal",
-                    "%%users.homedir%%/.config/opera/*/History",
-                    "%%users.homedir%%/.config/opera/*/History-journal",
-                    "%%users.homedir%%/.config/yandex-browser-beta/*/Archived History",
-                    "%%users.homedir%%/.config/yandex-browser-beta/*/Archived History-journal",
-                    "%%users.homedir%%/.config/yandex-browser-beta/*/History",
-                    "%%users.homedir%%/.config/yandex-browser-beta/*/History-journal",
-                    "%%users.homedir%%/snap/chromium/common/chromium/*/Archived History",
-                    "%%users.homedir%%/snap/chromium/common/chromium/*/Archived History-journal",
-                    "%%users.homedir%%/snap/chromium/common/chromium/*/History",
-                    "%%users.homedir%%/snap/chromium/common/chromium/*/History-journal",
-                ]
-            },
-            "supported_os": ["Linux"],
-        },
-        {
-            "type": "FILE",
-            "attributes": {
-                "paths": [
-                    "%%users.appdata%%\\Brave\\*\\Archived History",
-                    "%%users.appdata%%\\Brave\\*\\Archived History-journal",
-                    "%%users.appdata%%\\Brave\\*\\History",
-                    "%%users.appdata%%\\Brave\\*\\History-journal",
-                    "%%users.appdata%%\\BraveSoftware\\Brave-Browser\\User Data\\*\\History",
-                    "%%users.appdata%%\\BraveSoftware\\Brave-Browser\\User Data\\*\\History-journal",
-                    "%%users.appdata%%\\Opera Software\\Opera Stable\\*\\Archived History",
-                    "%%users.appdata%%\\Opera Software\\Opera Stable\\*\\Archived History-journal",
-                    "%%users.appdata%%\\Opera Software\\Opera Stable\\*\\History",
-                    "%%users.appdata%%\\Opera Software\\Opera Stable\\*\\History-journal",
-                    "%%users.localappdata%%\\Chromium\\*\\Archived History",
-                    "%%users.localappdata%%\\Chromium\\*\\Archived History-journal",
-                    "%%users.localappdata%%\\Chromium\\*\\History",
-                    "%%users.localappdata%%\\Chromium\\*\\History-journal",
-                    "%%users.localappdata%%\\Chromium\\User Data\\*\\Archived History",
-                    "%%users.localappdata%%\\Chromium\\User Data\\*\\Archived History-journal",
-                    "%%users.localappdata%%\\Chromium\\User Data\\*\\History",
-                    "%%users.localappdata%%\\Chromium\\User Data\\*\\History-journal",
-                    "%%users.localappdata%%\\Google\\Chrome SxS\\User Data\\*\\Archived History",
-                    "%%users.localappdata%%\\Google\\Chrome SxS\\User Data\\*\\Archived History-journal",
-                    "%%users.localappdata%%\\Google\\Chrome SxS\\User Data\\*\\History",
-                    "%%users.localappdata%%\\Google\\Chrome SxS\\User Data\\*\\History-journal",
-                    "%%users.localappdata%%\\Google\\Chrome\\User Data\\*\\Archived History",
-                    "%%users.localappdata%%\\Google\\Chrome\\User Data\\*\\Archived History-journal",
-                    "%%users.localappdata%%\\Google\\Chrome\\User Data\\*\\History",
-                    "%%users.localappdata%%\\Google\\Chrome\\User Data\\*\\History-journal",
-                    "%%users.localappdata%%\\Microsoft\\Edge Beta\\User Data\\*\\Archived History",
-                    "%%users.localappdata%%\\Microsoft\\Edge Beta\\User Data\\*\\Archived History-journal",
-                    "%%users.localappdata%%\\Microsoft\\Edge Beta\\User Data\\*\\History",
-                    "%%users.localappdata%%\\Microsoft\\Edge Beta\\User Data\\*\\History-journal",
-                    "%%users.localappdata%%\\Microsoft\\Edge\\User Data\\*\\Archived History",
-                    "%%users.localappdata%%\\Microsoft\\Edge\\User Data\\*\\Archived History-journal",
-                    "%%users.localappdata%%\\Microsoft\\Edge\\User Data\\*\\History",
-                    "%%users.localappdata%%\\Microsoft\\Edge\\User Data\\*\\History-journal",
-                    "%%users.localappdata%%\\Yandex\\YandexBrowser\\User Data\\*\\Archived History",
-                    "%%users.localappdata%%\\Yandex\\YandexBrowser\\User Data\\*\\Archived History-journal",
-                    "%%users.localappdata%%\\Yandex\\YandexBrowser\\User Data\\*\\History",
-                    "%%users.localappdata%%\\Yandex\\YandexBrowser\\User Data\\*\\History-journal",
-                ],
-                "separator": "\\",
-            },
-            "supported_os": ["Windows"],
-        },
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.DARWIN,
-        ArtifactSupportedOS.LINUX,
-        ArtifactSupportedOS.WINDOWS,
-    ]
-    aliases: ClassVar[Optional[list[str]]] = [
-        "ChromeHistory",
-        "ChromiumBasedBrowsersHistory",
-    ]
-
-
 class ChromiumBasedBrowsersLoginDataDatabaseFile(GRRArtifactBase):
     """
     Login Data database file for multiple Chromium-based browsers, such as
@@ -1611,85 +1892,6 @@ class ChromiumBasedBrowsersWebDataDatabaseFile(GRRArtifactBase):
     aliases: ClassVar[Optional[list[str]]] = None
 
 
-class FirefoxCache(GRRArtifactBase):
-    """
-    Mozilla Firefox browser caches.
-
-    Reference URLs:
-    https://artifacts-kb.readthedocs.io/en/latest/sources/webbrowser/FirefoxCache.html
-    """
-
-    SOURCES = [
-        {
-            "type": "FILE",
-            "attributes": {
-                "paths": [
-                    "%%users.homedir%%/Library/Caches/Firefox/Profiles/*.default/Cache/*",
-                    "%%users.homedir%%/Library/Caches/Firefox/Profiles/*.default/cache2/*",
-                    "%%users.homedir%%/Library/Caches/Firefox/Profiles/*.default/cache2/doomed/*",
-                    "%%users.homedir%%/Library/Caches/Firefox/Profiles/*.default/cache2/entries/*",
-                    "%%users.homedir%%/Library/Caches/Firefox/Profiles/*.default-*/Cache/*",
-                    "%%users.homedir%%/Library/Caches/Firefox/Profiles/*.default-*/cache2/*",
-                    "%%users.homedir%%/Library/Caches/Firefox/Profiles/*.default-*/cache2/doomed/*",
-                    "%%users.homedir%%/Library/Caches/Firefox/Profiles/*.default-*/cache2/entries/*",
-                ]
-            },
-            "supported_os": ["Darwin"],
-        },
-        {
-            "type": "FILE",
-            "attributes": {
-                "paths": [
-                    "%%users.homedir%%/.mozilla/firefox/*.default/Cache/*",
-                    "%%users.homedir%%/.cache/mozilla/firefox/*.default/Cache/*",
-                    "%%users.homedir%%/.cache/mozilla/firefox/*.default/cache2/*",
-                    "%%users.homedir%%/.cache/mozilla/firefox/*.default/cache2/doomed/*",
-                    "%%users.homedir%%/.cache/mozilla/firefox/*.default/cache2/entries/*",
-                    "%%users.homedir%%/.cache/mozilla/firefox/*.default-*/Cache/*",
-                    "%%users.homedir%%/.cache/mozilla/firefox/*.default-*/cache2/*",
-                    "%%users.homedir%%/.cache/mozilla/firefox/*.default-*/cache2/doomed/*",
-                    "%%users.homedir%%/.cache/mozilla/firefox/*.default-*/cache2/entries/*",
-                    "%%users.homedir%%/snap/firefox/common/.cache/mozilla/firefox/*.default/Cache/*",
-                    "%%users.homedir%%/snap/firefox/common/.cache/mozilla/firefox/*.default/cache2/*",
-                    "%%users.homedir%%/snap/firefox/common/.cache/mozilla/firefox/*.default/cache2/doomed/*",
-                    "%%users.homedir%%/snap/firefox/common/.cache/mozilla/firefox/*.default/cache2/entries/*",
-                    "%%users.homedir%%/snap/firefox/common/.cache/mozilla/firefox/*.default-*/Cache/*",
-                    "%%users.homedir%%/snap/firefox/common/.cache/mozilla/firefox/*.default-*/cache2/*",
-                    "%%users.homedir%%/snap/firefox/common/.cache/mozilla/firefox/*.default-*/cache2/doomed/*",
-                    "%%users.homedir%%/snap/firefox/common/.cache/mozilla/firefox/*.default-*/cache2/entries/*",
-                ]
-            },
-            "supported_os": ["Linux"],
-        },
-        {
-            "type": "FILE",
-            "attributes": {
-                "paths": [
-                    "%%users.localappdata%%\\Mozilla\\Firefox\\Profiles\\*.default\\Cache\\*",
-                    "%%users.localappdata%%\\Mozilla\\Firefox\\Profiles\\*.default\\cache2\\*",
-                    "%%users.localappdata%%\\Mozilla\\Firefox\\Profiles\\*.default\\cache2\\doomed\\*",
-                    "%%users.localappdata%%\\Mozilla\\Firefox\\Profiles\\*.default\\cache2\\entries\\*",
-                    "%%users.localappdata%%\\Mozilla\\Firefox\\Profiles\\*.default-*\\Cache\\*",
-                    "%%users.localappdata%%\\Mozilla\\Firefox\\Profiles\\*.default-*\\cache2\\*",
-                    "%%users.localappdata%%\\Mozilla\\Firefox\\Profiles\\*.default-*\\cache2\\doomed\\*",
-                    "%%users.localappdata%%\\Mozilla\\Firefox\\Profiles\\*.default-*\\cache2\\entries\\*",
-                ],
-                "separator": "\\",
-            },
-            "supported_os": ["Windows"],
-        },
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.DARWIN,
-        ArtifactSupportedOS.LINUX,
-        ArtifactSupportedOS.WINDOWS,
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
 class FirefoxCookies(GRRArtifactBase):
     """
     Firefox browser cookies (cookies.sqlite).
@@ -1727,114 +1929,6 @@ class FirefoxCookies(GRRArtifactBase):
                     "%%users.localappdata%%\\Mozilla\\Firefox\\Profiles\\*\\cookies.sqlite-wal",
                     "%%users.appdata%%\\Mozilla\\Firefox\\Profiles\\*\\cookies.sqlite",
                     "%%users.localappdata%%\\Mozilla\\Firefox\\Profiles\\*\\cookies.sqlite-wal",
-                ],
-                "separator": "\\",
-            },
-            "supported_os": ["Windows"],
-        },
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.DARWIN,
-        ArtifactSupportedOS.LINUX,
-        ArtifactSupportedOS.WINDOWS,
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
-class FirefoxDownloads(GRRArtifactBase):
-    """
-    Firefox browser downloads (downloads.sqlite).
-
-    Reference URLs: https://forensics.wiki/mozilla_firefox
-    """
-
-    SOURCES = [
-        {
-            "type": "FILE",
-            "attributes": {
-                "paths": [
-                    "%%users.homedir%%/Library/Application Support/Firefox/Profiles/*/downloads.sqlite",
-                    "%%users.homedir%%/Library/Application Support/Firefox/Profiles/*/downloads.sqlite-wal",
-                ]
-            },
-            "supported_os": ["Darwin"],
-        },
-        {
-            "type": "FILE",
-            "attributes": {
-                "paths": [
-                    "%%users.homedir%%/.mozilla/firefox/*/downloads.sqlite",
-                    "%%users.homedir%%/.mozilla/firefox/*/downloads.sqlite-wal",
-                ]
-            },
-            "supported_os": ["Linux"],
-        },
-        {
-            "type": "FILE",
-            "attributes": {
-                "paths": [
-                    "%%users.localappdata%%\\Mozilla\\Firefox\\Profiles\\*\\downloads.sqlite",
-                    "%%users.localappdata%%\\Mozilla\\Firefox\\Profiles\\*\\downloads.sqlite-wal",
-                    "%%users.appdata%%\\Mozilla\\Firefox\\Profiles\\*\\downloads.sqlite",
-                    "%%users.localappdata%%\\Mozilla\\Firefox\\Profiles\\*\\downloads.sqlite-wal",
-                ],
-                "separator": "\\",
-            },
-            "supported_os": ["Windows"],
-        },
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.DARWIN,
-        ArtifactSupportedOS.LINUX,
-        ArtifactSupportedOS.WINDOWS,
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
-class FirefoxHistory(GRRArtifactBase):
-    """
-    Firefox browser history (places.sqlite).
-
-    Reference URLs: https://forensics.wiki/mozilla_firefox
-    """
-
-    SOURCES = [
-        {
-            "type": "FILE",
-            "attributes": {
-                "paths": [
-                    "%%users.homedir%%/Library/Application Support/Firefox/Profiles/*/places.sqlite",
-                    "%%users.homedir%%/Library/Application Support/Firefox/Profiles/*/places.sqlite-wal",
-                ]
-            },
-            "supported_os": ["Darwin"],
-        },
-        {
-            "type": "FILE",
-            "attributes": {
-                "paths": [
-                    "%%users.homedir%%/.mozilla/firefox/*/places.sqlite",
-                    "%%users.homedir%%/.mozilla/firefox/*/places.sqlite-wal",
-                    "%%users.homedir%%/snap/firefox/common/.mozilla/firefox/*/places.sqlite",
-                    "%%users.homedir%%/snap/firefox/common/.mozilla/firefox/*/places.sqlite-wal",
-                ]
-            },
-            "supported_os": ["Linux"],
-        },
-        {
-            "type": "FILE",
-            "attributes": {
-                "paths": [
-                    "%%users.localappdata%%\\Mozilla\\Firefox\\Profiles\\*\\places.sqlite",
-                    "%%users.localappdata%%\\Mozilla\\Firefox\\Profiles\\*\\places.sqlite-wal",
-                    "%%users.appdata%%\\Mozilla\\Firefox\\Profiles\\*\\places.sqlite",
-                    "%%users.localappdata%%\\Mozilla\\Firefox\\Profiles\\*\\places.sqlite-wal",
                 ],
                 "separator": "\\",
             },
@@ -1940,38 +2034,6 @@ class InternetExplorerBrowserHelperObjects(GRRArtifactBase):
     aliases: ClassVar[Optional[list[str]]] = None
 
 
-class InternetExplorerCache(GRRArtifactBase):
-    """
-    Microsoft Internet Explorer (MSIE) browser cache.
-
-    * MSIE 4 - 9 Temporary Internet files. * MSIE 10 INetCache files.
-
-    Reference URLs: https://forensics.wiki/internet_explorer
-    """
-
-    SOURCES = [
-        {
-            "type": "FILE",
-            "attributes": {
-                "paths": [
-                    "%%users.localappdata%%\\Microsoft\\Windows\\Temporary Internet Files\\Content.IE5\\*\\*",
-                    "%%users.localappdata%%\\Microsoft\\Windows\\Temporary Internet Files\\Low\\Content.IE5\\*\\*",
-                    "%%users.localappdata%%\\Microsoft\\Windows\\INetCache\\IE\\*\\*",
-                    "%%users.localappdata%%\\Microsoft\\Windows\\INetCache\\Low\\*\\*",
-                ],
-                "separator": "\\",
-            },
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.WINDOWS
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
 class InternetExplorerCookies(GRRArtifactBase):
     """
     Microsoft Internet Explorer (MSIE) browser cookies.
@@ -1994,38 +2056,6 @@ class InternetExplorerCookies(GRRArtifactBase):
         }
     ]
     ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.WINDOWS
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
-class InternetExplorerHistory(GRRArtifactBase):
-    """
-    Microsoft Internet Explorer (MSIE) browser history.
-
-    * MSIE 4 - 9 Cache files (index.dat); * MSIE 10 WebCacheV*.dat files.
-
-    Reference URLs: https://forensics.wiki/internet_explorer
-    """
-
-    SOURCES = [
-        {
-            "type": "ARTIFACT_GROUP",
-            "attributes": {
-                "names": [
-                    "InternetExplorerHistoryDatabaseFile",
-                    "InternetExplorerIndexDatFiles",
-                ]
-            },
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {
-        "InternetExplorerIndexDatFiles": webbrowser.InternetExplorerIndexDatFiles,
-        "InternetExplorerHistoryDatabaseFile": webbrowser.InternetExplorerHistoryDatabaseFile,
-    }
 
     sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
     supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
@@ -2341,50 +2371,6 @@ class InternetExplorerTypedURLsKeys(GRRArtifactBase):
     aliases: ClassVar[Optional[list[str]]] = None
 
 
-class OperaHistoryFile(GRRArtifactBase):
-    """
-    Opera browser history (global_history.dat) file.
-
-    Reference URLs: https://forensics.wiki/opera
-    """
-
-    SOURCES = [
-        {
-            "type": "FILE",
-            "attributes": {
-                "paths": ["%%users.homedir%%/Library/Opera/global_history.dat"]
-            },
-            "supported_os": ["Darwin"],
-        },
-        {
-            "type": "FILE",
-            "attributes": {"paths": ["%%users.homedir%%/.opera/global_history.dat"]},
-            "supported_os": ["Linux"],
-        },
-        {
-            "type": "FILE",
-            "attributes": {
-                "paths": [
-                    "%%users.appdata%%\\Opera\\Opera\\global_history.dat",
-                    "%%users.appdata%%\\Opera Software\\Opera Stable\\History",
-                    "%%users.appdata%%\\Opera Software\\Opera Stable\\History-journal",
-                ],
-                "separator": "\\",
-            },
-            "supported_os": ["Windows"],
-        },
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.DARWIN,
-        ArtifactSupportedOS.LINUX,
-        ArtifactSupportedOS.WINDOWS,
-    ]
-    aliases: ClassVar[Optional[list[str]]] = ["OperaHistory"]
-
-
 class SafariAutoFillCorrectionsSQLiteDatabaseFile(GRRArtifactBase):
     """
     Safari browser auto-fill corrections SQLite database file.
@@ -2410,45 +2396,6 @@ class SafariAutoFillCorrectionsSQLiteDatabaseFile(GRRArtifactBase):
         ArtifactSupportedOS.DARWIN
     ]
     aliases: ClassVar[Optional[list[str]]] = None
-
-
-class SafariCacheSQLiteDatabaseFile(GRRArtifactBase):
-    """
-    Safari browser cache (cache.db) SQLite database file.
-
-    Reference URLs: https://forensics.wiki/apple_safari
-    """
-
-    SOURCES = [
-        {
-            "type": "FILE",
-            "attributes": {
-                "paths": [
-                    "%%users.homedir%%/Library/Caches/com.apple.Safari/Cache.db",
-                    "%%users.homedir%%/Library/Caches/com.apple.Safari/Cache.db-wal",
-                    "%%users.homedir%%/Library/Containers/com.apple.Safari/Data/Library/Caches/com.apple.Safari/Cache.db",
-                    "%%users.homedir%%/Library/Containers/com.apple.Safari/Data/Library/Caches/com.apple.Safari/Cache.db-wal",
-                ]
-            },
-            "supported_os": ["Darwin"],
-        },
-        {
-            "type": "FILE",
-            "attributes": {
-                "paths": ["%%users.localappdata%%\\Apple Computer\\Safari\\cache.db"],
-                "separator": "\\",
-            },
-            "supported_os": ["Windows"],
-        },
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.DARWIN,
-        ArtifactSupportedOS.WINDOWS,
-    ]
-    aliases: ClassVar[Optional[list[str]]] = ["SafariCache"]
 
 
 class SafariCloudAutoFillCorrectionsSQLiteDatabaseFile(GRRArtifactBase):
@@ -2505,43 +2452,6 @@ class SafariCookies(GRRArtifactBase):
     aliases: ClassVar[Optional[list[str]]] = None
 
 
-class SafariDownloadsPlistFile(GRRArtifactBase):
-    """
-    Safari downloads history (Downloads.plist) property list (plist) file.
-
-    Reference URLs: https://forensics.wiki/apple_safari/
-    """
-
-    SOURCES = [
-        {
-            "type": "FILE",
-            "attributes": {
-                "paths": ["%%users.homedir%%/Library/Safari/Downloads.plist"]
-            },
-            "supported_os": ["Darwin"],
-        },
-        {
-            "type": "FILE",
-            "attributes": {
-                "paths": [
-                    "%%users.localappdata%%\\Apple Computer\\Safari\\Downloads.plist",
-                    "%%users.appdata%%\\Apple Computer\\Safari\\Downloads.plist",
-                ],
-                "separator": "\\",
-            },
-            "supported_os": ["Windows"],
-        },
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.DARWIN,
-        ArtifactSupportedOS.WINDOWS,
-    ]
-    aliases: ClassVar[Optional[list[str]]] = ["SafariDownloads"]
-
-
 class SafariExtensions(GRRArtifactBase):
     """
     Safari browser extensions.
@@ -2578,96 +2488,6 @@ class SafariFaviconsCacheSQLiteDatabaseFile(GRRArtifactBase):
                 "paths": [
                     "%%users.homedir%%/Library/Safari/Favicon Cache/favicons.db",
                     "%%users.homedir%%/Library/Safari/Favicon Cache/favicons.db-wal",
-                ]
-            },
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.DARWIN
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
-class SafariHistory(GRRArtifactBase):
-    """
-    Safari browser history.
-
-    Reference URLs: https://forensics.wiki/apple_safari
-    """
-
-    SOURCES = [
-        {
-            "type": "ARTIFACT_GROUP",
-            "attributes": {
-                "names": ["SafariHistorySQLiteDatabaseFile", "SafariHistoryPlistFile"]
-            },
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {
-        "SafariHistorySQLiteDatabaseFile": webbrowser.SafariHistorySQLiteDatabaseFile,
-        "SafariHistoryPlistFile": webbrowser.SafariHistoryPlistFile,
-    }
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.DARWIN,
-        ArtifactSupportedOS.WINDOWS,
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
-class SafariHistoryPlistFile(GRRArtifactBase):
-    """
-    Safari browser history (History.plist) property list (plist) file.
-
-    Reference URLs: https://forensics.wiki/apple_safari
-    """
-
-    SOURCES = [
-        {
-            "type": "FILE",
-            "attributes": {"paths": ["%%users.homedir%%/Library/Safari/History.plist"]},
-            "supported_os": ["Darwin"],
-        },
-        {
-            "type": "FILE",
-            "attributes": {
-                "paths": [
-                    "%%users.localappdata%%\\Apple Computer\\Safari\\History.plist",
-                    "%%users.appdata%%\\Apple Computer\\Safari\\History.plist",
-                ],
-                "separator": "\\",
-            },
-            "supported_os": ["Windows"],
-        },
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.DARWIN,
-        ArtifactSupportedOS.WINDOWS,
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
-class SafariHistorySQLiteDatabaseFile(GRRArtifactBase):
-    """
-    Safari browser history SQLite database file.
-
-    Reference URLs: https://forensics.wiki/apple_safari
-    """
-
-    SOURCES = [
-        {
-            "type": "FILE",
-            "attributes": {
-                "paths": [
-                    "%%users.homedir%%/Library/Safari/History.db",
-                    "%%users.homedir%%/Library/Safari/History.db-wal",
                 ]
             },
         }
@@ -2779,5 +2599,184 @@ class WebKitPubSubSQLiteDatabaseFile(GRRArtifactBase):
     sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
     supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
         ArtifactSupportedOS.DARWIN
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class BrowserCache(GRRArtifactBase):
+    """
+    Web browser cache of multiple web browsers.
+    """
+
+    SOURCES = [
+        {
+            "type": "ARTIFACT_GROUP",
+            "attributes": {
+                "names": [
+                    "ChromiumBasedBrowsersCache",
+                    "FirefoxCache",
+                    "InternetExplorerCache",
+                    "SafariCacheSQLiteDatabaseFile",
+                ]
+            },
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {
+        "InternetExplorerCache": InternetExplorerCache,
+        "FirefoxCache": FirefoxCache,
+        "SafariCacheSQLiteDatabaseFile": SafariCacheSQLiteDatabaseFile,
+        "ChromiumBasedBrowsersCache": ChromiumBasedBrowsersCache,
+    }
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.DARWIN,
+        ArtifactSupportedOS.LINUX,
+        ArtifactSupportedOS.WINDOWS,
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class SafariHistory(GRRArtifactBase):
+    """
+    Safari browser history.
+
+    Reference URLs: https://forensics.wiki/apple_safari
+    """
+
+    SOURCES = [
+        {
+            "type": "ARTIFACT_GROUP",
+            "attributes": {
+                "names": ["SafariHistorySQLiteDatabaseFile", "SafariHistoryPlistFile"]
+            },
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {
+        "SafariHistoryPlistFile": SafariHistoryPlistFile,
+        "SafariHistorySQLiteDatabaseFile": SafariHistorySQLiteDatabaseFile,
+    }
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.DARWIN,
+        ArtifactSupportedOS.WINDOWS,
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class ChromeStorage(GRRArtifactBase):
+    """
+    Google Chrome, Canary and Chromium browser artifacts for Storage APIs.
+
+    Includes Web Storage (sessionStorage for session-only data and localStorage
+    for persistent data), IndexedDB (used for structured data), and FileSystem
+    (object storage in a virtual file system).
+
+    Reference URLs:
+    https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API
+    https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API
+    https://developer.mozilla.org/en-US/docs/Web/API/FileSystem
+    """
+
+    SOURCES = [
+        {
+            "type": "ARTIFACT_GROUP",
+            "attributes": {
+                "names": [
+                    "ChromeLocalStorage",
+                    "ChromeSessionStorage",
+                    "ChromeFileSystem",
+                    "ChromeIndexedDB",
+                ]
+            },
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {
+        "ChromeFileSystem": ChromeFileSystem,
+        "ChromeLocalStorage": ChromeLocalStorage,
+        "ChromeSessionStorage": ChromeSessionStorage,
+        "ChromeIndexedDB": ChromeIndexedDB,
+    }
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.DARWIN,
+        ArtifactSupportedOS.LINUX,
+        ArtifactSupportedOS.WINDOWS,
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class InternetExplorerHistory(GRRArtifactBase):
+    """
+    Microsoft Internet Explorer (MSIE) browser history.
+
+    * MSIE 4 - 9 Cache files (index.dat); * MSIE 10 WebCacheV*.dat files.
+
+    Reference URLs: https://forensics.wiki/internet_explorer
+    """
+
+    SOURCES = [
+        {
+            "type": "ARTIFACT_GROUP",
+            "attributes": {
+                "names": [
+                    "InternetExplorerHistoryDatabaseFile",
+                    "InternetExplorerIndexDatFiles",
+                ]
+            },
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {
+        "InternetExplorerHistoryDatabaseFile": InternetExplorerHistoryDatabaseFile,
+        "InternetExplorerIndexDatFiles": InternetExplorerIndexDatFiles,
+    }
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.WINDOWS
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class BrowserHistory(GRRArtifactBase):
+    """
+    Web browser history of multiple web browsers.
+    """
+
+    SOURCES = [
+        {
+            "type": "ARTIFACT_GROUP",
+            "attributes": {
+                "names": [
+                    "ChromiumBasedBrowsersHistoryDatabaseFile",
+                    "FirefoxHistory",
+                    "FirefoxDownloads",
+                    "InternetExplorerHistory",
+                    "OperaHistoryFile",
+                    "SafariDownloadsPlistFile",
+                    "SafariHistorySQLiteDatabaseFile",
+                    "SafariHistoryPlistFile",
+                ]
+            },
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {
+        "SafariHistoryPlistFile": SafariHistoryPlistFile,
+        "SafariDownloadsPlistFile": SafariDownloadsPlistFile,
+        "InternetExplorerHistory": InternetExplorerHistory,
+        "OperaHistoryFile": OperaHistoryFile,
+        "SafariHistorySQLiteDatabaseFile": SafariHistorySQLiteDatabaseFile,
+        "ChromiumBasedBrowsersHistoryDatabaseFile": ChromiumBasedBrowsersHistoryDatabaseFile,
+        "FirefoxHistory": FirefoxHistory,
+        "FirefoxDownloads": FirefoxDownloads,
+    }
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.DARWIN,
+        ArtifactSupportedOS.LINUX,
+        ArtifactSupportedOS.WINDOWS,
     ]
     aliases: ClassVar[Optional[list[str]]] = None

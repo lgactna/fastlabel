@@ -6,7 +6,6 @@ This file was generated using the `generate_grr.py` script.
 
 from typing import ClassVar, Optional, Type
 
-from fastlabel.grr import installed_modules
 from fastlabel.grr._base import (
     ArtifactSource,
     ArtifactSupportedOS,
@@ -135,30 +134,6 @@ class PythonEggInfo(GRRArtifactBase):
     aliases: ClassVar[Optional[list[str]]] = None
 
 
-class PythonModuleInfo(GRRArtifactBase):
-    """
-    Python module installation information.
-    """
-
-    SOURCES = [
-        {
-            "type": "ARTIFACT_GROUP",
-            "attributes": {
-                "names": ["PythonDistInfo", "PythonEggInfo", "PythonWheelInfo"]
-            },
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {
-        "PythonWheelInfo": installed_modules.PythonWheelInfo,
-        "PythonDistInfo": installed_modules.PythonDistInfo,
-        "PythonEggInfo": installed_modules.PythonEggInfo,
-    }
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = []
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
 class PythonWheelInfo(GRRArtifactBase):
     """
     Python module files distributed in the wheel format (currently linux only).
@@ -219,4 +194,28 @@ class RubyGems(GRRArtifactBase):
     supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
         ArtifactSupportedOS.LINUX
     ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class PythonModuleInfo(GRRArtifactBase):
+    """
+    Python module installation information.
+    """
+
+    SOURCES = [
+        {
+            "type": "ARTIFACT_GROUP",
+            "attributes": {
+                "names": ["PythonDistInfo", "PythonEggInfo", "PythonWheelInfo"]
+            },
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {
+        "PythonDistInfo": PythonDistInfo,
+        "PythonWheelInfo": PythonWheelInfo,
+        "PythonEggInfo": PythonEggInfo,
+    }
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = []
     aliases: ClassVar[Optional[list[str]]] = None

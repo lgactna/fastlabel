@@ -8,6 +8,7 @@ This effectively replaces ArtifactDefinition from the official artifacts library
 but uses Pydantic for easier (de)serialization.
 """
 
+from graphlib import TopologicalSorter
 from pathlib import Path
 from textwrap import dedent
 from typing import Iterable, Optional
@@ -33,6 +34,9 @@ class ArtifactDefinition(BaseModel):
     sources: list[ArtifactSource]
     supported_os: Optional[list[ArtifactSupportedOS]] = None
     urls: Optional[list[str]] = None
+
+    # The library this is contained in.
+    namespace: Optional[str] = None
 
     # Deprecated fields. All optional, generally not used.
     conditions: Optional[list[str]] = None
@@ -65,6 +69,10 @@ class ArtifactDefinition(BaseModel):
         for artifact in self.get_required_artifacts():
             result.add(dependency_mapping[artifact])
 
+        # Remove self from dependencies, if it exists
+        if self.namespace:
+            result.discard(self.namespace)
+
         return result
 
     def resolve_artifact_groups(self, dependency_mapping: dict[str, str]) -> None:
@@ -89,9 +97,14 @@ class ArtifactDefinition(BaseModel):
         """
         result = {}
         for artifact_name in self.get_required_artifacts():
-            result[artifact_name] = (
-                f"{dependency_mapping[artifact_name]}.{artifact_name}"
-            )
+            # If the artifact is local to our namespace, it doesn't need to be
+            # absolute
+            library = dependency_mapping[artifact_name]
+
+            if library == self.namespace:
+                result[artifact_name] = artifact_name
+            else:
+                result[artifact_name] = f"{library}.{artifact_name}"
 
         return result
 
@@ -184,7 +197,9 @@ def generate_classes_from_yaml(artifact_file: Path) -> list[ArtifactDefinition]:
         yaml = YAML(typ="safe")
         for doc in yaml.load_all(fp):
             try:
-                artifacts.append(ArtifactDefinition.model_validate(doc))
+                artifact = ArtifactDefinition.model_validate(doc)
+                artifact.namespace = artifact_file.stem
+                artifacts.append(artifact)
             except Exception as e:
                 print(f"Error validating {doc}")
                 raise e
@@ -208,6 +223,8 @@ def generate_import_list(libraries: Iterable[str]) -> str:
 
 
 if __name__ == "__main__":
+    # Map an artifact name to its actual definition.
+    name_mapping: dict[str, ArtifactDefinition] = {}
     # Maps artifact names to their containing module path. Note that we don't do
     # any import validation (e.g. a topological sort).
     dependency_mapping: dict[str, str] = {}
@@ -226,9 +243,13 @@ if __name__ == "__main__":
         module_groups[module_name] = artifacts
         for artifact in artifacts:
             dependency_mapping[artifact.name] = module_name
+            name_mapping[artifact.name] = artifact
 
     # Generate the Pydantic models for each module group
     for group_name, members in module_groups.items():
+        if group_name != "triage":
+            continue
+
         target_file = get_target_dir() / f"{group_name}.py"
         print(
             f"Generating models for {group_name} -> {target_file.relative_to(get_target_dir())}"
@@ -250,8 +271,22 @@ if __name__ == "__main__":
             dependencies.update(artifact.get_required_imports(dependency_mapping))
         imports = generate_import_list(dependencies)
 
+        # Enforce ordering + import order
+        dep_graph = {
+            artifact.name: artifact.get_required_artifacts() for artifact in members
+        }
+        dep_graph = {k: dep_graph[k] for k in sorted(dep_graph)}
+
+        class_order = tuple(TopologicalSorter(dep_graph).static_order())
         class_defs = ""
-        for artifact in members:
+        for class_name in class_order:
+            artifact = name_mapping[class_name]
+
+            # TopologicalSorter includes items that aren't keys of the original
+            # graph, but are values. We don't want to include these.
+            if artifact not in members:
+                continue
+
             class_defs += artifact.to_pydantic_model(dependency_mapping) + "\n"
 
         class_file = docstring + "\n" + imports + "\n\n" + class_defs

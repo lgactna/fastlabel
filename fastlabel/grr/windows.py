@@ -6,7 +6,7 @@ This file was generated using the `generate_grr.py` script.
 
 from typing import ClassVar, Optional, Type
 
-from fastlabel.grr import webbrowser, windows
+from fastlabel.grr import webbrowser
 from fastlabel.grr._base import (
     ArtifactSource,
     ArtifactSupportedOS,
@@ -491,35 +491,6 @@ class WindowsApplicationCompatibilityShimDatabaseMappings(GRRArtifactBase):
         }
     ]
     ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.WINDOWS
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
-class WindowsApplicationCompatibilityShims(GRRArtifactBase):
-    """
-    Windows Application Compatibility Shim Database Files and Application
-    Mappings
-    """
-
-    SOURCES = [
-        {
-            "type": "ARTIFACT_GROUP",
-            "attributes": {
-                "names": [
-                    "WindowsApplicationCompatibilityInstalledShimDatabases",
-                    "WindowsApplicationCompatibilityShimDatabaseMappings",
-                ]
-            },
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {
-        "WindowsApplicationCompatibilityShimDatabaseMappings": windows.WindowsApplicationCompatibilityShimDatabaseMappings,
-        "WindowsApplicationCompatibilityInstalledShimDatabases": windows.WindowsApplicationCompatibilityInstalledShimDatabases,
-    }
 
     sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
     supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
@@ -2229,35 +2200,6 @@ class WindowsEnvironmentVariableProgramFilesX86(GRRArtifactBase):
         ArtifactSupportedOS.WINDOWS
     ]
     aliases: ClassVar[Optional[list[str]]] = ["ProgramFilesx86"]
-
-
-class WindowsEnvironmentVariableSystemDrive(GRRArtifactBase):
-    """
-    The %SystemDrive% environment variable contains the letter of the drive in
-    which the system directory is located, typically "C:".
-
-    This value is not present in the Windows Registry but can be derived from
-    %SystemRoot%.
-
-    Reference URLs:
-    https://artifacts-kb.readthedocs.io/en/latest/sources/windows/EnvironmentVariables.html
-    """
-
-    SOURCES = [
-        {
-            "type": "ARTIFACT_GROUP",
-            "attributes": {"names": ["WindowsEnvironmentVariableSystemRoot"]},
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {
-        "WindowsEnvironmentVariableSystemRoot": windows.WindowsEnvironmentVariableSystemRoot
-    }
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.WINDOWS
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
 
 
 class WindowsEnvironmentVariableSystemRoot(GRRArtifactBase):
@@ -4192,28 +4134,23 @@ class WindowsPendingGPOs(GRRArtifactBase):
     aliases: ClassVar[Optional[list[str]]] = None
 
 
-class WindowsPersistenceMechanisms(GRRArtifactBase):
+class WindowsServices(GRRArtifactBase):
     """
-    Persistence mechanisms in Windows.
+    Windows service and driver configurations.
+
+    Reference URLs:
+    https://artifacts-kb.readthedocs.io/en/latest/sources/windows/ServicesAndDrivers.html
     """
 
     SOURCES = [
         {
-            "type": "ARTIFACT_GROUP",
+            "type": "REGISTRY_KEY",
             "attributes": {
-                "names": [
-                    "WindowsPersistenceRegistryKeys",
-                    "WindowsPowerShellDefaultProfiles",
-                    "WindowsServices",
-                ]
+                "keys": ["HKEY_LOCAL_MACHINE\\System\\CurrentControlSet\\Services\\*"]
             },
         }
     ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {
-        "WindowsServices": windows.WindowsServices,
-        "WindowsPowerShellDefaultProfiles": windows.WindowsPowerShellDefaultProfiles,
-        "WindowsPersistenceRegistryKeys": windows.WindowsPersistenceRegistryKeys,
-    }
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
 
     sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
     supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
@@ -4222,154 +4159,31 @@ class WindowsPersistenceMechanisms(GRRArtifactBase):
     aliases: ClassVar[Optional[list[str]]] = None
 
 
-class WindowsPersistenceRegistryKeys(GRRArtifactBase):
+class WindowsPowerShellDefaultProfiles(GRRArtifactBase):
     """
-    Windows Registry keys used for persistence.
+    Default PowerShell Profile files. These files are executed by default when
+    PowerShell starts up.
+
+    Reference URLs:
+    https://technet.microsoft.com/en-us/magazine/2008.10.windowspowershell.aspx#id0190010
+    http://www.hexacorn.com/blog/2014/08/27/beyond-good-ol-run-key-part-16/
     """
 
     SOURCES = [
         {
-            "type": "ARTIFACT_GROUP",
+            "type": "FILE",
             "attributes": {
-                "names": [
-                    "InternetExplorerBrowserHelperObjects",
-                    "WindowsActiveDesktop",
-                    "WindowsActiveSyncAutoStart",
-                    "WindowsAlternateShell",
-                    "WindowsAppCertDLLs",
-                    "WindowsAppInitDLLs",
-                    "WindowsBootVerificationProgram",
-                    "WindowsCommandProcessorAutoRun",
-                    "WindowsCredentialProviderFilters",
-                    "WindowsCredentialProviders",
-                    "WindowsDebugger",
-                    "WindowsEnvironmentUserLoginScripts",
-                    "WindowsExplorerAutoplayHandlers",
-                    "WindowsFileTypeAutorunAssociations",
-                    "WindowsFontDrivers",
-                    "WindowsIconServiceLib",
-                    "WindowsLSAAuthenticationPackages",
-                    "WindowsLSANotificationPackages",
-                    "WindowsLSASecurityPackages",
-                    "WindowsMSDTCDLLs",
-                    "WindowsMultiMediaDrivers",
-                    "WindowsNetworkShellHelpers",
-                    "WindowsPendingGPOs",
-                    "WindowsPLAPProviders",
-                    "WindowsPrintMonitors",
-                    "WindowsRunGrpConv",
-                    "WindowsRunKeys",
-                    "WindowsRunServices",
-                    "WindowsScreenSaverExecutable",
-                    "WindowsSearchFilterHandlers",
-                    "WindowsSecurityProviders",
-                    "WindowsServiceControlManagerExtension",
-                    "WindowsSessionManagerBootExecute",
-                    "WindowsSessionManagerExecute",
-                    "WindowsSessionManagerS0InitialCommand",
-                    "WindowsSessionManagerSetupExecute",
-                    "WindowsSessionManagerSubSystems",
-                    "WindowsSessionManagerWOWCommandLine",
-                    "WindowsSetupCommandLine",
-                    "WindowsSharedTaskScheduler",
-                    "WindowsShellExecuteHooks",
-                    "WindowsShellExtensions",
-                    "WindowsShellIconOverlayIdentifiers",
-                    "WindowsShellLoadAndRun",
-                    "WindowsShellOpenCommand",
-                    "WindowsShellRunasCommand",
-                    "WindowsShellServiceObjects",
-                    "WindowsStubPaths",
-                    "WindowsSystemPolicyShell",
-                    "WindowsTerminalServerInitialProgram",
-                    "WindowsTerminalServerRunKeys",
-                    "WindowsTerminalServerStartupPrograms",
-                    "WindowsToolPaths",
-                    "WindowsWinlogonAppSetup",
-                    "WindowsWinlogonAvailableShells",
-                    "WindowsWinlogonGinaDLL",
-                    "WindowsWinlogonGPExtensions",
-                    "WindowsWinlogonNotify",
-                    "WindowsWinlogonShell",
-                    "WindowsWinlogonSystem",
-                    "WindowsWinlogonTaskman",
-                    "WindowsWinlogonUiHost",
-                    "WindowsWinlogonUserinit",
-                    "WindowsWinlogonVMApplet",
-                    "WinSock2LayeredServiceProviders",
-                    "WinSock2NamespaceProviders",
-                ]
+                "paths": [
+                    "%%environ_systemroot%%\\system32\\WindowsPowerShell\\v1.0\\profile.ps1",
+                    "%%environ_systemroot%%\\system32\\WindowsPowerShell\\v1.0\\Microsoft.PowerShell_profile.ps1",
+                    "%%users.userprofile%%\\Documents\\WindowsPowerShell\\profile.ps1",
+                    "%%users.userprofile%%\\Documents\\WindowsPowerShell\\Microsoft.PowerShell_profile.ps1",
+                ],
+                "separator": "\\",
             },
         }
     ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {
-        "WindowsShellExtensions": windows.WindowsShellExtensions,
-        "WindowsFontDrivers": windows.WindowsFontDrivers,
-        "WinSock2LayeredServiceProviders": windows.WinSock2LayeredServiceProviders,
-        "WindowsWinlogonShell": windows.WindowsWinlogonShell,
-        "WindowsPendingGPOs": windows.WindowsPendingGPOs,
-        "WindowsWinlogonAppSetup": windows.WindowsWinlogonAppSetup,
-        "WindowsShellOpenCommand": windows.WindowsShellOpenCommand,
-        "WindowsActiveSyncAutoStart": windows.WindowsActiveSyncAutoStart,
-        "WindowsAppInitDLLs": windows.WindowsAppInitDLLs,
-        "WindowsShellRunasCommand": windows.WindowsShellRunasCommand,
-        "WindowsEnvironmentUserLoginScripts": windows.WindowsEnvironmentUserLoginScripts,
-        "WindowsLSASecurityPackages": windows.WindowsLSASecurityPackages,
-        "WindowsSessionManagerWOWCommandLine": windows.WindowsSessionManagerWOWCommandLine,
-        "WindowsSystemPolicyShell": windows.WindowsSystemPolicyShell,
-        "WindowsScreenSaverExecutable": windows.WindowsScreenSaverExecutable,
-        "WindowsFileTypeAutorunAssociations": windows.WindowsFileTypeAutorunAssociations,
-        "WindowsSessionManagerSetupExecute": windows.WindowsSessionManagerSetupExecute,
-        "WindowsAppCertDLLs": windows.WindowsAppCertDLLs,
-        "WindowsNetworkShellHelpers": windows.WindowsNetworkShellHelpers,
-        "WindowsSearchFilterHandlers": windows.WindowsSearchFilterHandlers,
-        "WindowsSessionManagerSubSystems": windows.WindowsSessionManagerSubSystems,
-        "WindowsMultiMediaDrivers": windows.WindowsMultiMediaDrivers,
-        "WindowsShellExecuteHooks": windows.WindowsShellExecuteHooks,
-        "WindowsWinlogonNotify": windows.WindowsWinlogonNotify,
-        "WindowsCredentialProviderFilters": windows.WindowsCredentialProviderFilters,
-        "WindowsLSAAuthenticationPackages": windows.WindowsLSAAuthenticationPackages,
-        "WindowsToolPaths": windows.WindowsToolPaths,
-        "WindowsShellLoadAndRun": windows.WindowsShellLoadAndRun,
-        "WindowsDebugger": windows.WindowsDebugger,
-        "InternetExplorerBrowserHelperObjects": webbrowser.InternetExplorerBrowserHelperObjects,
-        "WindowsMSDTCDLLs": windows.WindowsMSDTCDLLs,
-        "WindowsPLAPProviders": windows.WindowsPLAPProviders,
-        "WindowsSessionManagerBootExecute": windows.WindowsSessionManagerBootExecute,
-        "WindowsWinlogonUiHost": windows.WindowsWinlogonUiHost,
-        "WindowsTerminalServerRunKeys": windows.WindowsTerminalServerRunKeys,
-        "WindowsActiveDesktop": windows.WindowsActiveDesktop,
-        "WindowsWinlogonAvailableShells": windows.WindowsWinlogonAvailableShells,
-        "WindowsAlternateShell": windows.WindowsAlternateShell,
-        "WindowsSharedTaskScheduler": windows.WindowsSharedTaskScheduler,
-        "WindowsShellServiceObjects": windows.WindowsShellServiceObjects,
-        "WindowsSecurityProviders": windows.WindowsSecurityProviders,
-        "WindowsCredentialProviders": windows.WindowsCredentialProviders,
-        "WindowsIconServiceLib": windows.WindowsIconServiceLib,
-        "WindowsCommandProcessorAutoRun": windows.WindowsCommandProcessorAutoRun,
-        "WindowsStubPaths": windows.WindowsStubPaths,
-        "WindowsTerminalServerStartupPrograms": windows.WindowsTerminalServerStartupPrograms,
-        "WindowsWinlogonGinaDLL": windows.WindowsWinlogonGinaDLL,
-        "WindowsWinlogonSystem": windows.WindowsWinlogonSystem,
-        "WindowsWinlogonGPExtensions": windows.WindowsWinlogonGPExtensions,
-        "WindowsRunServices": windows.WindowsRunServices,
-        "WindowsServiceControlManagerExtension": windows.WindowsServiceControlManagerExtension,
-        "WindowsLSANotificationPackages": windows.WindowsLSANotificationPackages,
-        "WindowsWinlogonUserinit": windows.WindowsWinlogonUserinit,
-        "WindowsExplorerAutoplayHandlers": windows.WindowsExplorerAutoplayHandlers,
-        "WindowsSessionManagerS0InitialCommand": windows.WindowsSessionManagerS0InitialCommand,
-        "WindowsTerminalServerInitialProgram": windows.WindowsTerminalServerInitialProgram,
-        "WindowsSessionManagerExecute": windows.WindowsSessionManagerExecute,
-        "WindowsShellIconOverlayIdentifiers": windows.WindowsShellIconOverlayIdentifiers,
-        "WindowsWinlogonTaskman": windows.WindowsWinlogonTaskman,
-        "WindowsRunKeys": windows.WindowsRunKeys,
-        "WindowsWinlogonVMApplet": windows.WindowsWinlogonVMApplet,
-        "WinSock2NamespaceProviders": windows.WinSock2NamespaceProviders,
-        "WindowsSetupCommandLine": windows.WindowsSetupCommandLine,
-        "WindowsBootVerificationProgram": windows.WindowsBootVerificationProgram,
-        "WindowsPrintMonitors": windows.WindowsPrintMonitors,
-        "WindowsRunGrpConv": windows.WindowsRunGrpConv,
-    }
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
 
     sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
     supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
@@ -4393,6 +4207,1606 @@ class WindowsPLAPProviders(GRRArtifactBase):
                 "keys": [
                     "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\Authentication\\PLAP Providers\\*",
                     "HKEY_LOCAL_MACHINE\\Software\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Authentication\\PLAP Providers\\*",
+                ]
+            },
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.WINDOWS
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class WindowsPrintMonitors(GRRArtifactBase):
+    """
+    Windows Print Monitor DLL config.
+
+    Reference URLs:
+    http://gladiator-antivirus.com/forum/index.php?showtopic=24610
+    https://support.microsoft.com/en-us/kb/102966
+    """
+
+    SOURCES = [
+        {
+            "type": "REGISTRY_VALUE",
+            "attributes": {
+                "key_value_pairs": [
+                    {
+                        "key": "HKEY_LOCAL_MACHINE\\System\\CurrentControlSet\\Control\\Print\\Monitors\\*",
+                        "value": "Driver",
+                    }
+                ]
+            },
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.WINDOWS
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class WindowsShellExecuteHooks(GRRArtifactBase):
+    """
+    Shell execution hooks are called when ShellExecuteEx() is called.
+
+    Reference URLs:
+    http://gladiator-antivirus.com/forum/index.php?showtopic=24610
+    http://regenerus.com/malware-common-loadpoints/
+    https://code.google.com/p/regripper/wiki/ASEPs
+    """
+
+    SOURCES = [
+        {
+            "type": "REGISTRY_KEY",
+            "attributes": {
+                "keys": [
+                    "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\ShellExecuteHooks\\*",
+                    "HKEY_LOCAL_MACHINE\\Software\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Explorer\\ShellExecuteHooks\\*",
+                ]
+            },
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.WINDOWS
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class WindowsSessionManagerBootExecute(GRRArtifactBase):
+    """
+    Windows Session Manager BootExecute persistence.
+
+    Reference URLs: https://technet.microsoft.com/en-us/library/cc963230.aspx
+    """
+
+    SOURCES = [
+        {
+            "type": "REGISTRY_VALUE",
+            "attributes": {
+                "key_value_pairs": [
+                    {
+                        "key": "HKEY_LOCAL_MACHINE\\System\\CurrentControlSet\\Control\\Session Manager",
+                        "value": "BootExecute",
+                    }
+                ]
+            },
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.WINDOWS
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class WindowsTerminalServerRunKeys(GRRArtifactBase):
+    """
+    Windows Terminal Server Run keys
+
+    Reference URLs:
+    http://gladiator-antivirus.com/forum/index.php?showtopic=24610
+    """
+
+    SOURCES = [
+        {
+            "type": "REGISTRY_KEY",
+            "attributes": {
+                "keys": [
+                    "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Terminal Server\\Install\\Software\\Microsoft\\Windows\\CurrentVersion\\Runonce\\*",
+                    "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Terminal Server\\Install\\Software\\Microsoft\\Windows\\CurrentVersion\\RunonceEx\\*",
+                    "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Terminal Server\\Install\\Software\\Microsoft\\Windows\\CurrentVersion\\Run\\*",
+                    "HKEY_LOCAL_MACHINE\\Software\\Wow6432Node\\Microsoft\\Windows NT\\CurrentVersion\\Terminal Server\\Install\\Software\\Microsoft\\Windows\\CurrentVersion\\Runonce\\*",
+                    "HKEY_LOCAL_MACHINE\\Software\\Wow6432Node\\Microsoft\\Windows NT\\CurrentVersion\\Terminal Server\\Install\\Software\\Microsoft\\Windows\\CurrentVersion\\RunonceEx\\*",
+                    "HKEY_LOCAL_MACHINE\\Software\\Wow6432Node\\Microsoft\\Windows NT\\CurrentVersion\\Terminal Server\\Install\\Software\\Microsoft\\Windows\\CurrentVersion\\Run\\*",
+                    "HKEY_USERS\\%%users.sid%%\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Terminal Server\\Install\\Software\\Microsoft\\Windows\\CurrentVersion\\Runonce\\*",
+                    "HKEY_USERS\\%%users.sid%%\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Terminal Server\\Install\\Software\\Microsoft\\Windows\\CurrentVersion\\RunonceEx\\*",
+                    "HKEY_USERS\\%%users.sid%%\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Terminal Server\\Install\\Software\\Microsoft\\Windows\\CurrentVersion\\Run\\*",
+                    "HKEY_USERS\\%%users.sid%%\\Software\\Wow6432Node\\Microsoft\\Windows NT\\CurrentVersion\\Terminal Server\\Install\\Software\\Microsoft\\Windows\\CurrentVersion\\Runonce\\*",
+                    "HKEY_USERS\\%%users.sid%%\\Software\\Wow6432Node\\Microsoft\\Windows NT\\CurrentVersion\\Terminal Server\\Install\\Software\\Microsoft\\Windows\\CurrentVersion\\RunonceEx\\*",
+                    "HKEY_USERS\\%%users.sid%%\\Software\\Wow6432Node\\Microsoft\\Windows NT\\CurrentVersion\\Terminal Server\\Install\\Software\\Microsoft\\Windows\\CurrentVersion\\Run\\*",
+                ]
+            },
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.WINDOWS
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class WindowsWinlogonAppSetup(GRRArtifactBase):
+    """
+    Windows Winlogon Appsetup
+
+    Reference URLs: https://technet.microsoft.com/en-us/library/cc939701.aspx
+    """
+
+    SOURCES = [
+        {
+            "type": "REGISTRY_VALUE",
+            "attributes": {
+                "key_value_pairs": [
+                    {
+                        "key": "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon",
+                        "value": "AppSetup",
+                    }
+                ]
+            },
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.WINDOWS
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class WindowsSessionManagerSubSystems(GRRArtifactBase):
+    """
+    Windows Session Manager SubSystems persistence
+
+    Reference URLs: https://technet.microsoft.com/en-us/library/cc976130.aspx
+    http://gladiator-antivirus.com/forum/index.php?showtopic=24610
+    """
+
+    SOURCES = [
+        {
+            "type": "REGISTRY_VALUE",
+            "attributes": {
+                "key_value_pairs": [
+                    {
+                        "key": "HKEY_LOCAL_MACHINE\\System\\CurrentControlSet\\Control\\Session Manager\\SubSystems",
+                        "value": "Windows",
+                    }
+                ]
+            },
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.WINDOWS
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class WindowsRunKeys(GRRArtifactBase):
+    """
+    Windows Run and RunOnce keys.
+
+    Note users.sid will currently only expand to SIDs with profiles on the
+    system, not all SIDs.
+
+    Reference URLs:
+    https://msdn.microsoft.com/en-us/library/windows/desktop/aa376977%28v=vs.85%29.aspx
+    https://support.microsoft.com/en-us/kb/137367
+    http://gladiator-antivirus.com/forum/index.php?showtopic=24610
+    https://technet.microsoft.com/en-us/magazine/ee851671.aspx
+    """
+
+    SOURCES = [
+        {
+            "type": "REGISTRY_KEY",
+            "attributes": {
+                "keys": [
+                    "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Explorer\\Run\\*",
+                    "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\Run\\*",
+                    "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\RunOnce\\*",
+                    "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\RunOnce\\Setup\\*",
+                    "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\RunOnceEx\\*",
+                    "HKEY_LOCAL_MACHINE\\Software\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Run\\*",
+                    "HKEY_LOCAL_MACHINE\\Software\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\RunOnce\\*",
+                    "HKEY_LOCAL_MACHINE\\Software\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\RunOnce\\Setup\\*",
+                    "HKEY_LOCAL_MACHINE\\Software\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\RunOnceEx\\*",
+                    "HKEY_LOCAL_MACHINE\\Software\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Policies\\Explorer\\Run\\*",
+                    "HKEY_USERS\\%%users.sid%%\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Explorer\\Run\\*",
+                    "HKEY_USERS\\%%users.sid%%\\Software\\Microsoft\\Windows\\CurrentVersion\\Run\\*",
+                    "HKEY_USERS\\%%users.sid%%\\Software\\Microsoft\\Windows\\CurrentVersion\\RunOnce\\*",
+                    "HKEY_USERS\\%%users.sid%%\\Software\\Microsoft\\Windows\\CurrentVersion\\RunOnce\\Setup\\*",
+                    "HKEY_USERS\\%%users.sid%%\\Software\\Microsoft\\Windows\\CurrentVersion\\RunOnceEx\\*",
+                    "HKEY_USERS\\%%users.sid%%\\Software\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Policies\\Explorer\\Run\\*",
+                    "HKEY_USERS\\%%users.sid%%\\Software\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Run\\*",
+                    "HKEY_USERS\\%%users.sid%%\\Software\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\RunOnce\\*",
+                    "HKEY_USERS\\%%users.sid%%\\Software\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\RunOnce\\Setup\\*",
+                    "HKEY_USERS\\%%users.sid%%\\Software\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\RunOnceEx\\*",
+                ]
+            },
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.WINDOWS
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class WinSock2NamespaceProviders(GRRArtifactBase):
+    """
+    Used to provide name-resolution services through WinSock2
+
+    Reference URLs:
+    https://www.symantec.com/security_response/writeup.jsp?docid=2012-020609-4221-99&tabid=2
+    http://www.nirsoft.net/utils/winsock_service_providers.html
+    https://msdn.microsoft.com/en-us/library/windows/desktop/ms739923(v=vs.85).aspx
+    https://www.microsoftpressstore.com/articles/article.aspx?p=2762082&seqNum=2
+    """
+
+    SOURCES = [
+        {
+            "type": "REGISTRY_VALUE",
+            "attributes": {
+                "key_value_pairs": [
+                    {
+                        "key": "HKEY_LOCAL_MACHINE\\System\\CurrentControlSet\\Services\\WinSock2\\Parameters\\NameSpace_Catalog5\\Catalog_Entries\\*",
+                        "value": "LibraryPath",
+                    },
+                    {
+                        "key": "HKEY_LOCAL_MACHINE\\System\\CurrentControlSet\\Services\\WinSock2\\Parameters\\NameSpace_Catalog5\\Catalog_Entries64\\*",
+                        "value": "LibraryPath",
+                    },
+                ]
+            },
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.WINDOWS
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class WindowsWinlogonNotify(GRRArtifactBase):
+    """
+    Windows Winlogon Notify DLL names.
+
+    Reference URLs:
+    https://msdn.microsoft.com/en-us/library/windows/desktop/aa379402(v=vs.85).aspx
+    """
+
+    SOURCES = [
+        {
+            "type": "REGISTRY_VALUE",
+            "attributes": {
+                "key_value_pairs": [
+                    {
+                        "key": "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon\\Notify\\*",
+                        "value": "DLLName",
+                    },
+                    {
+                        "key": "HKEY_USERS\\%%users.sid%%\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon\\Notify\\*",
+                        "value": "DLLName",
+                    },
+                ]
+            },
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.WINDOWS
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class WindowsStubPaths(GRRArtifactBase):
+    """
+    Windows StubPath persistence.
+
+    Each time a user logs in, the Active Setup Installed Components in HKLM are
+    compared ot the ones in HKCU, and if any are missing, or if the associated
+    version is less, the program is executed.
+
+    Reference URLs:
+    https://www.microsoftpressstore.com/articles/article.aspx?p=2762082&seqNum=2
+    http://bonemanblog.blogspot.com/2004/12/active-setup-registry-keys-and-their.html
+    """
+
+    SOURCES = [
+        {
+            "type": "REGISTRY_VALUE",
+            "attributes": {
+                "key_value_pairs": [
+                    {
+                        "key": "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Active Setup\\Installed Components\\*",
+                        "value": "StubPath",
+                    },
+                    {
+                        "key": "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Active Setup\\Installed Components\\*",
+                        "value": "Version",
+                    },
+                    {
+                        "key": "HKEY_LOCAL_MACHINE\\Software\\Wow6432Node\\Microsoft\\Active Setup\\Installed Components\\*",
+                        "value": "StubPath",
+                    },
+                    {
+                        "key": "HKEY_LOCAL_MACHINE\\Software\\Wow6432Node\\Microsoft\\Active Setup\\Installed Components\\*",
+                        "value": "Version",
+                    },
+                    {
+                        "key": "HKEY_USERS\\%%users.sid%%\\Software\\Microsoft\\Active Setup\\Installed Components\\*",
+                        "value": "StubPath",
+                    },
+                    {
+                        "key": "HKEY_USERS\\%%users.sid%%\\Software\\Microsoft\\Active Setup\\Installed Components\\*",
+                        "value": "Version",
+                    },
+                    {
+                        "key": "HKEY_USERS\\%%users.sid%%\\Software\\Wow6432Node\\Microsoft\\Active Setup\\Installed Components\\*",
+                        "value": "StubPath",
+                    },
+                    {
+                        "key": "HKEY_USERS\\%%users.sid%%\\Software\\Wow6432Node\\Microsoft\\Active Setup\\Installed Components\\*",
+                        "value": "Version",
+                    },
+                ]
+            },
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.WINDOWS
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class WindowsShellRunasCommand(GRRArtifactBase):
+    """
+    Executed every time an executable or script file type is run as
+    administrator.
+
+    For most file types, the value should be '"%1" %*' or something similar.
+    Example file type subkeys include 'exefile', 'batfile', and 'cmdfile'. These
+    keys can be modified by malware as a way to be periodically executed or to
+    bypass UAC.
+
+    Reference URLs:
+    http://gladiator-antivirus.com/forum/index.php?showtopic=24610
+    https://www.microsoftpressstore.com/articles/article.aspx?p=2762082&seqNum=2
+    https://enigma0x3.net/2017/03/17/fileless-uac-bypass-using-sdclt-exe/
+    """
+
+    SOURCES = [
+        {
+            "type": "REGISTRY_VALUE",
+            "attributes": {
+                "key_value_pairs": [
+                    {
+                        "key": "HKEY_LOCAL_MACHINE\\Software\\Classes\\*\\shell\\runas\\command",
+                        "value": "",
+                    },
+                    {
+                        "key": "HKEY_LOCAL_MACHINE\\Software\\Classes\\*\\shell\\runas\\command",
+                        "value": "IsolatedCommand",
+                    },
+                    {
+                        "key": "HKEY_LOCAL_MACHINE\\Software\\Classes\\Wow6432Node\\*\\shell\\runas\\command",
+                        "value": "",
+                    },
+                    {
+                        "key": "HKEY_LOCAL_MACHINE\\Software\\Classes\\Wow6432Node\\*\\shell\\runas\\command",
+                        "value": "IsolatedCommand",
+                    },
+                    {
+                        "key": "HKEY_USERS\\%%users.sid%%\\Software\\Classes\\*\\shell\\runas\\command",
+                        "value": "",
+                    },
+                    {
+                        "key": "HKEY_USERS\\%%users.sid%%\\Software\\Classes\\*\\shell\\runas\\command",
+                        "value": "IsolatedCommand",
+                    },
+                    {
+                        "key": "HKEY_USERS\\%%users.sid%%\\Software\\Classes\\Wow6432Node\\*\\shell\\runas\\command",
+                        "value": "",
+                    },
+                    {
+                        "key": "HKEY_USERS\\%%users.sid%%\\Software\\Classes\\Wow6432Node\\*\\shell\\runas\\command",
+                        "value": "IsolatedCommand",
+                    },
+                ]
+            },
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.WINDOWS
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class WindowsWinlogonSystem(GRRArtifactBase):
+    """
+    Applications launched by Winlogon in the system context during the system
+    initialisation.
+
+    Reference URLs: https://code.google.com/p/regripper/wiki/ASEPs
+    http://gladiator-antivirus.com/forum/index.php?showtopic=24610
+    http://regenerus.com/malware-common-loadpoints/
+    """
+
+    SOURCES = [
+        {
+            "type": "REGISTRY_VALUE",
+            "attributes": {
+                "key_value_pairs": [
+                    {
+                        "key": "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon",
+                        "value": "System",
+                    },
+                    {
+                        "key": "HKEY_USERS\\%%users.sid%%\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon",
+                        "value": "System",
+                    },
+                ]
+            },
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.WINDOWS
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class WindowsSearchFilterHandlers(GRRArtifactBase):
+    """
+    Windows Search filter handlers configured for file types and applications.
+
+    Windows Search loads DLLs that implement the IFilter interface in order to
+    scan files for text and extract certain types of information. Malware can
+    replace the filter handler for a given file type or CLSID with itself to
+    gain execution when a search operation is performed on that file. Search
+    operations can be performed indirectly in a number of cases; for instance,
+    the .txt, .html, and .rtf filter handlers are invoked when indexing email
+    message bodies.
+
+    The filter handler to use is specified indirectly via a persistent handler.
+    The persistent handler GUID is indicated via the PersistentHandler subkey
+    for a file type or application GUID. The filter handler CLSID is indicated
+    via the PersistentAddinsRegistered/{89BCB740-6119-101A-BCB7-00DD010655AF}
+    subkey under the persistent handler GUID key path. This artifact inspects
+    both of these paths.
+
+    NOTE: Only the HKEY_LOCAL_MACHINE root key needs be checked, because these
+    are the only keys used. SearchFilterHost.exe runs under the SYSTEM account,
+    which does not have access to HKEY_CURRENT_USER.
+
+    Reference URLs:
+    https://docs.microsoft.com/en-us/windows/desktop/search/-search-ifilter-about
+    https://docs.microsoft.com/en-us/windows/desktop/search/-search-ifilter-implementations
+    https://docs.microsoft.com/en-us/windows/desktop/search/-search-ifilter-registering-filters
+    """
+
+    SOURCES = [
+        {
+            "type": "REGISTRY_VALUE",
+            "attributes": {
+                "key_value_pairs": [
+                    {
+                        "key": "HKEY_LOCAL_MACHINE\\Software\\Classes\\*\\PersistentHandler",
+                        "value": "",
+                    },
+                    {
+                        "key": "HKEY_LOCAL_MACHINE\\Software\\Classes\\Wow6432Node\\*\\PersistentHandler",
+                        "value": "",
+                    },
+                    {
+                        "key": "HKEY_LOCAL_MACHINE\\Software\\Classes\\CLSID\\*\\PersistentHandler",
+                        "value": "",
+                    },
+                    {
+                        "key": "HKEY_LOCAL_MACHINE\\Software\\Classes\\Wow6432Node\\CLSID\\*\\PersistentHandler",
+                        "value": "",
+                    },
+                    {
+                        "key": "HKEY_LOCAL_MACHINE\\Software\\Classes\\CLSID\\*\\PersistentAddinsRegistered\\{89BCB740-6119-101A-BCB7-00DD010655AF}",
+                        "value": "",
+                    },
+                    {
+                        "key": "HKEY_LOCAL_MACHINE\\Software\\Classes\\Wow6432Node\\CLSID\\*\\PersistentAddinsRegistered\\{89BCB740-6119-101A-BCB7-00DD010655AF}",
+                        "value": "",
+                    },
+                ]
+            },
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.WINDOWS
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class WindowsRunServices(GRRArtifactBase):
+    """
+    Windows Run Services.
+
+    Reference URLs: https://support.microsoft.com/en-us/kb/179365
+    https://threatvector.cylance.com/en_us/home/windows-registry-persistence-part-2-the-run-keys-and-search-order.html
+    """
+
+    SOURCES = [
+        {
+            "type": "REGISTRY_KEY",
+            "attributes": {
+                "keys": [
+                    "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\RunServicesOnce\\*",
+                    "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\RunServices\\*",
+                    "HKEY_LOCAL_MACHINE\\Software\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\RunServicesOnce\\*",
+                    "HKEY_LOCAL_MACHINE\\Software\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\RunServices\\*",
+                    "HKEY_USERS\\%%users.sid%%\\Software\\Microsoft\\Windows\\CurrentVersion\\RunServicesOnce\\*",
+                    "HKEY_USERS\\%%users.sid%%\\Software\\Microsoft\\Windows\\CurrentVersion\\RunServices\\*",
+                    "HKEY_USERS\\%%users.sid%%\\Software\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\RunServicesOnce\\*",
+                    "HKEY_USERS\\%%users.sid%%\\Software\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\RunServices\\*",
+                ]
+            },
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.WINDOWS
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class WindowsServiceControlManagerExtension(GRRArtifactBase):
+    """
+    Windows service control manager extension
+
+    Reference URLs:
+    http://forum.sysinternals.com/autoruns-and-windows-7_topic19770.html
+    https://support.microsoft.com/en-us/kb/102985
+    http://gladiator-antivirus.com/forum/index.php?showtopic=24610
+    http://www.silentrunners.org/Silent%20Runners.vbs
+    """
+
+    SOURCES = [
+        {
+            "type": "REGISTRY_VALUE",
+            "attributes": {
+                "key_value_pairs": [
+                    {
+                        "key": "HKEY_LOCAL_MACHINE\\System\\CurrentControlSet\\Control",
+                        "value": "ServiceControlManagerExtension",
+                    }
+                ]
+            },
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.WINDOWS
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class WindowsWinlogonGPExtensions(GRRArtifactBase):
+    """
+    Windows Winlogon Group Policy Extensions
+
+    These keys specify DLLs that should be loaded when the group policy engine
+    loads, and can act as a persistence mechanism for malware.
+
+    Reference URLs:
+    https://www.microsoftpressstore.com/articles/article.aspx?p=2762082&seqNum=2
+    """
+
+    SOURCES = [
+        {
+            "type": "REGISTRY_VALUE",
+            "attributes": {
+                "key_value_pairs": [
+                    {
+                        "key": "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon\\GPExtensions\\*",
+                        "value": "",
+                    },
+                    {
+                        "key": "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon\\GPExtensions\\*",
+                        "value": "DllName",
+                    },
+                    {
+                        "key": "HKEY_LOCAL_MACHINE\\Software\\Wow6432Node\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon\\GPExtensions\\*",
+                        "value": "",
+                    },
+                    {
+                        "key": "HKEY_LOCAL_MACHINE\\Software\\Wow6432Node\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon\\GPExtensions\\*",
+                        "value": "DllName",
+                    },
+                ]
+            },
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.WINDOWS
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class WindowsSessionManagerSetupExecute(GRRArtifactBase):
+    """
+    Windows Session Manager SetupExecute persistence
+
+    This entry shouldn't be populated after Windows has been installed
+
+    Reference URLs:
+    https://msdn.microsoft.com/en-us/library/windows/desktop/dd392286%28v=vs.85%29.aspx
+    https://www.microsoftpressstore.com/articles/article.aspx?p=2762082&seqNum=2
+    """
+
+    SOURCES = [
+        {
+            "type": "REGISTRY_VALUE",
+            "attributes": {
+                "key_value_pairs": [
+                    {
+                        "key": "HKEY_LOCAL_MACHINE\\System\\CurrentControlSet\\Control\\Session Manager",
+                        "value": "SetupExecute",
+                    }
+                ]
+            },
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.WINDOWS
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class WindowsShellServiceObjects(GRRArtifactBase):
+    """
+    Windows Shell (explorer.exe) service objects delayed load.
+
+    Reference URLs:
+    http://www.microsoft.com/security/portal/threat/encyclopedia/Entry.aspx?Name=TrojanClicker:Win32/Zirit.X#tab=2
+    """
+
+    SOURCES = [
+        {
+            "type": "REGISTRY_KEY",
+            "attributes": {
+                "keys": [
+                    "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\ShellServiceObjectDelayLoad",
+                    "HKEY_LOCAL_MACHINE\\Software\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\ShellServiceObjectDelayLoad",
+                ]
+            },
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.WINDOWS
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class WindowsIconServiceLib(GRRArtifactBase):
+    """
+    Windows Icon Service Library Name
+
+    The value should default to 'IconCodecService.dll'
+
+    Reference URLs:
+    https://www.microsoftpressstore.com/articles/article.aspx?p=2762082&seqNum=2
+    """
+
+    SOURCES = [
+        {
+            "type": "REGISTRY_VALUE",
+            "attributes": {
+                "key_value_pairs": [
+                    {
+                        "key": "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Windows",
+                        "value": "IconServiceLib",
+                    }
+                ]
+            },
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.WINDOWS
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class WindowsShellExtensions(GRRArtifactBase):
+    """
+    Approved extensions to the Windows Shell (explorer.exe).
+
+    Reference URLs:
+    https://msdn.microsoft.com/en-us/library/windows/desktop/cc144110(v=vs.85).aspx
+    """
+
+    SOURCES = [
+        {
+            "type": "REGISTRY_KEY",
+            "attributes": {
+                "keys": [
+                    "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\Shell Extensions\\Approved",
+                    "HKEY_LOCAL_MACHINE\\Software\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Shell Extensions\\Approved",
+                    "HKEY_USERS\\%%users.sid%%\\Software\\Microsoft\\Windows\\CurrentVersion\\Shell Extensions\\Approved",
+                    "HKEY_USERS\\%%users.sid%%\\Software\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Shell Extensions\\Approved",
+                ]
+            },
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.WINDOWS
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class WindowsWinlogonAvailableShells(GRRArtifactBase):
+    """
+    Windows Server Winlogon Available Shells
+
+    Used to specify an alternate shell application to be launched when logging
+    into Windows Server 2012 and later. Legitimate keys under AvailableShells
+    should just cause cmd.exe or explorer.exe to be executed, whereas malicious
+    programs may create keys that cause malware to be run when a user logs in.
+
+    Reference URLs:
+    https://andymorgan.wordpress.com/2012/03/30/changing-the-default-shell-of-windows-server-8-core/
+    https://www.microsoftpressstore.com/articles/article.aspx?p=2762082&seqNum=2
+    """
+
+    SOURCES = [
+        {
+            "type": "REGISTRY_KEY",
+            "attributes": {
+                "keys": [
+                    "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon\\AlternateShells\\AvailableShells\\*"
+                ]
+            },
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.WINDOWS
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class InternetExplorerBrowserHelperObjects(GRRArtifactBase):
+    """
+    Loaded on Internet Explorer startup
+
+    Reference URLs:
+    http://gladiator-antivirus.com/forum/index.php?showtopic=24610
+    http://regenerus.com/malware-common-loadpoints/
+    https://code.google.com/p/regripper/wiki/ASEPs
+    """
+
+    SOURCES = [
+        {
+            "type": "REGISTRY_KEY",
+            "attributes": {
+                "keys": [
+                    "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Browser Helper Objects\\*",
+                    "HKEY_LOCAL_MACHINE\\Software\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Browser Helper Objects\\*",
+                ]
+            },
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.WINDOWS
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class WindowsSystemPolicyShell(GRRArtifactBase):
+    """
+    Windows System policy replacement shell (custom user interface).
+
+    Reference URLs:
+    https://technet.microsoft.com/en-us/library/cc728472(v=ws.10).aspx
+    """
+
+    SOURCES = [
+        {
+            "type": "REGISTRY_VALUE",
+            "attributes": {
+                "key_value_pairs": [
+                    {
+                        "key": "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\System",
+                        "value": "Shell",
+                    },
+                    {
+                        "key": "HKEY_LOCAL_MACHINE\\Software\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Policies\\System",
+                        "value": "Shell",
+                    },
+                ]
+            },
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.WINDOWS
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class WinSock2LayeredServiceProviders(GRRArtifactBase):
+    """
+    Used to filter TCP/IP traffic through WinSock2.
+
+    Reference URLs:
+    http://gladiator-antivirus.com/forum/index.php?showtopic=24610
+    https://en.wikipedia.org/wiki/Layered_Service_Provider
+    https://www.microsoftpressstore.com/articles/article.aspx?p=2762082&seqNum=2
+    """
+
+    SOURCES = [
+        {
+            "type": "REGISTRY_KEY",
+            "attributes": {
+                "keys": [
+                    "HKEY_LOCAL_MACHINE\\System\\CurrentControlSet\\Services\\WinSock2\\Parameters\\Protocol_Catalog9\\Catalog_Entries\\*",
+                    "HKEY_LOCAL_MACHINE\\System\\CurrentControlSet\\Services\\WinSock2\\Parameters\\Protocol_Catalog9\\Catalog_Entries64\\*",
+                ]
+            },
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.WINDOWS
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class WindowsWinlogonShell(GRRArtifactBase):
+    """
+    Windows shell replacement.
+
+    Reference URLs:
+    https://msdn.microsoft.com/en-us/library/ms838576%28v=winembedded.5%29.aspx
+    """
+
+    SOURCES = [
+        {
+            "type": "REGISTRY_VALUE",
+            "attributes": {
+                "key_value_pairs": [
+                    {
+                        "key": "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon",
+                        "value": "Shell",
+                    },
+                    {
+                        "key": "HKEY_USERS\\%%users.sid%%\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon",
+                        "value": "Shell",
+                    },
+                ]
+            },
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.WINDOWS
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class WindowsWinlogonUserinit(GRRArtifactBase):
+    """
+    Windows Winlogon Userinit replacement.
+
+    Reference URLs: https://technet.microsoft.com/en-us/library/cc939862.aspx
+    """
+
+    SOURCES = [
+        {
+            "type": "REGISTRY_VALUE",
+            "attributes": {
+                "key_value_pairs": [
+                    {
+                        "key": "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon",
+                        "value": "Userinit",
+                    },
+                    {
+                        "key": "HKEY_USERS\\%%users.sid%%\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon",
+                        "value": "Userinit",
+                    },
+                ]
+            },
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.WINDOWS
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class WindowsSetupCommandLine(GRRArtifactBase):
+    """
+    Command line invocation used for custom setup and deployment tasks
+
+    Reference URLs:
+    https://www.microsoftpressstore.com/articles/article.aspx?p=2762082&seqNum=2
+    """
+
+    SOURCES = [
+        {
+            "type": "REGISTRY_VALUE",
+            "attributes": {
+                "key_value_pairs": [
+                    {"key": "HKEY_LOCAL_MACHINE\\System\\Setup", "value": "CmdLine"}
+                ]
+            },
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.WINDOWS
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class WindowsWinlogonVMApplet(GRRArtifactBase):
+    """
+    Windows VMApplet replacement.
+
+    Reference URLs: https://technet.microsoft.com/en-us/library/cc939701.aspx
+    """
+
+    SOURCES = [
+        {
+            "type": "REGISTRY_VALUE",
+            "attributes": {
+                "key_value_pairs": [
+                    {
+                        "key": "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon",
+                        "value": "VMApplet",
+                    },
+                    {
+                        "key": "HKEY_USERS\\%%users.sid%%\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon",
+                        "value": "VMApplet",
+                    },
+                ]
+            },
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.WINDOWS
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class WindowsSecurityProviders(GRRArtifactBase):
+    """
+    Security Providers DLLs
+
+    Reference URLs:
+    http://gladiator-antivirus.com/forum/index.php?showtopic=24610
+    https://github.com/wmark/security-configuration/blob/master/Windows/disable-weak-ciphers-and-enable-TLS1.x.reg
+    """
+
+    SOURCES = [
+        {
+            "type": "REGISTRY_KEY",
+            "attributes": {
+                "keys": [
+                    "HKEY_LOCAL_MACHINE\\System\\CurrentControlSet\\Control\\SecurityProviders\\*"
+                ]
+            },
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.WINDOWS
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class WindowsSessionManagerExecute(GRRArtifactBase):
+    """
+    Windows Session Manager Execute persistence
+
+    This entry shouldn't be populated after Windows has been installed
+
+    Reference URLs: https://technet.microsoft.com/en-us/library/cc976130.aspx
+    https://www.microsoftpressstore.com/articles/article.aspx?p=2762082&seqNum=2
+    """
+
+    SOURCES = [
+        {
+            "type": "REGISTRY_VALUE",
+            "attributes": {
+                "key_value_pairs": [
+                    {
+                        "key": "HKEY_LOCAL_MACHINE\\System\\CurrentControlSet\\Control\\Session Manager",
+                        "value": "Execute",
+                    }
+                ]
+            },
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.WINDOWS
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class WindowsScreenSaverExecutable(GRRArtifactBase):
+    """
+    ScreenSaver Executable
+
+    Reference URLs:
+    http://gladiator-antivirus.com/forum/index.php?showtopic=24610
+    https://technet.microsoft.com/en-us/library/cc737855(v=ws.10).aspx
+    https://technet.microsoft.com/en-us/library/cc957840.aspx
+    """
+
+    SOURCES = [
+        {
+            "type": "REGISTRY_VALUE",
+            "attributes": {
+                "key_value_pairs": [
+                    {
+                        "key": "HKEY_USERS\\%%users.sid%%\\Software\\Policies\\Microsoft\\Windows\\Control Panel\\Desktop",
+                        "value": "scrnsave.exe",
+                    },
+                    {
+                        "key": "HKEY_USERS\\%%users.sid%%\\Control Panel\\Desktop",
+                        "value": "scrnsave.exe",
+                    },
+                ]
+            },
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.WINDOWS
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class WindowsSharedTaskScheduler(GRRArtifactBase):
+    """
+    Runs on windows boot.
+
+    Reference URLs:
+    http://gladiator-antivirus.com/forum/index.php?showtopic=24610
+    http://www.bleepingcomputer.com/tutorials/windows-program-automatic-startup-locations/
+    """
+
+    SOURCES = [
+        {
+            "type": "REGISTRY_KEY",
+            "attributes": {
+                "keys": [
+                    "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\SharedTaskScheduler\\*",
+                    "HKEY_USERS\\%%users.sid%%\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\SharedTaskScheduler\\*",
+                ]
+            },
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.WINDOWS
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class WindowsShellOpenCommand(GRRArtifactBase):
+    """
+    Executed every time this file type is opened. For most file types, the value
+    should be '"%1" %*'.
+
+    Reference URLs:
+    http://gladiator-antivirus.com/forum/index.php?showtopic=24610
+    https://www.microsoftpressstore.com/articles/article.aspx?p=2762082&seqNum=2
+    https://pentestlab.blog/2017/06/09/uac-bypass-sdclt/
+    """
+
+    SOURCES = [
+        {
+            "type": "REGISTRY_VALUE",
+            "attributes": {
+                "key_value_pairs": [
+                    {
+                        "key": "HKEY_LOCAL_MACHINE\\Software\\Classes\\*\\shell\\open\\command",
+                        "value": "",
+                    },
+                    {
+                        "key": "HKEY_LOCAL_MACHINE\\Software\\Classes\\*\\shell\\open\\command",
+                        "value": "IsolatedCommand",
+                    },
+                    {
+                        "key": "HKEY_LOCAL_MACHINE\\Software\\Classes\\Wow6432Node\\*\\shell\\open\\command",
+                        "value": "",
+                    },
+                    {
+                        "key": "HKEY_LOCAL_MACHINE\\Software\\Classes\\Wow6432Node\\*\\shell\\open\\command",
+                        "value": "IsolatedCommand",
+                    },
+                    {
+                        "key": "HKEY_USERS\\%%users.sid%%\\Software\\Classes\\*\\shell\\open\\command",
+                        "value": "",
+                    },
+                    {
+                        "key": "HKEY_USERS\\%%users.sid%%\\Software\\Classes\\*\\shell\\open\\command",
+                        "value": "IsolatedCommand",
+                    },
+                    {
+                        "key": "HKEY_USERS\\%%users.sid%%\\Software\\Classes\\Wow6432Node\\*\\shell\\open\\command",
+                        "value": "",
+                    },
+                    {
+                        "key": "HKEY_USERS\\%%users.sid%%\\Software\\Classes\\Wow6432Node\\*\\shell\\open\\command",
+                        "value": "IsolatedCommand",
+                    },
+                ]
+            },
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.WINDOWS
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class WindowsToolPaths(GRRArtifactBase):
+    """
+    Paths to windows tools such as defrag, chkdsk.
+
+    Reference URLs:
+    http://gladiator-antivirus.com/forum/index.php?showtopic=24610
+    http://www.liutilities.com/products/registrybooster/tweaklibrary/tweaks/11118/
+    """
+
+    SOURCES = [
+        {
+            "type": "REGISTRY_KEY",
+            "attributes": {
+                "keys": [
+                    "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\MyComputer\\BackupPath",
+                    "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\MyComputer\\ChkDskPath",
+                    "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\MyComputer\\cleanuppath",
+                    "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\MyComputer\\DefragPath",
+                ]
+            },
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.WINDOWS
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class WindowsSessionManagerS0InitialCommand(GRRArtifactBase):
+    """
+    Windows Session Manager S0InitialCommand persistence
+
+    This entry shouldn't be populated after Windows has been installed
+
+    Reference URLs:
+    https://msdn.microsoft.com/en-us/library/windows/desktop/dd392286%28v=vs.85%29.aspx
+    https://www.microsoftpressstore.com/articles/article.aspx?p=2762082&seqNum=2
+    """
+
+    SOURCES = [
+        {
+            "type": "REGISTRY_VALUE",
+            "attributes": {
+                "key_value_pairs": [
+                    {
+                        "key": "HKEY_LOCAL_MACHINE\\System\\CurrentControlSet\\Control\\Session Manager",
+                        "value": "S0InitialCommand",
+                    }
+                ]
+            },
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.WINDOWS
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class WindowsWinlogonGinaDLL(GRRArtifactBase):
+    """
+    Windows Gina DLL replacement.
+
+    Reference URLs: https://technet.microsoft.com/en-us/library/cc939701.aspx
+    """
+
+    SOURCES = [
+        {
+            "type": "REGISTRY_VALUE",
+            "attributes": {
+                "key_value_pairs": [
+                    {
+                        "key": "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon",
+                        "value": "GinaDLL",
+                    },
+                    {
+                        "key": "HKEY_USERS\\%%users.sid%%\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon",
+                        "value": "GinaDLL",
+                    },
+                ]
+            },
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.WINDOWS
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class WindowsTerminalServerStartupPrograms(GRRArtifactBase):
+    """
+    Windows Terminal Server Startup Programs
+
+    Reference URLs: http://forum.sysinternals.com/rdpclip_topic4729.html
+    """
+
+    SOURCES = [
+        {
+            "type": "REGISTRY_VALUE",
+            "attributes": {
+                "key_value_pairs": [
+                    {
+                        "key": "HKEY_LOCAL_MACHINE\\System\\CurrentControlSet\\Control\\Terminal Server\\Wds\\rdpwd",
+                        "value": "StartupPrograms",
+                    }
+                ]
+            },
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.WINDOWS
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class WindowsShellLoadAndRun(GRRArtifactBase):
+    """
+    Windows Shell Load and Run values
+
+    Reference URLs: https://support.microsoft.com/en-us/kb/103865
+    """
+
+    SOURCES = [
+        {
+            "type": "REGISTRY_VALUE",
+            "attributes": {
+                "key_value_pairs": [
+                    {
+                        "key": "HKEY_USERS\\%%users.sid%%\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Windows",
+                        "value": "Load",
+                    },
+                    {
+                        "key": "HKEY_USERS\\%%users.sid%%\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Windows",
+                        "value": "Run",
+                    },
+                    {
+                        "key": "HKEY_USERS\\%%users.sid%%\\Software\\Wow6432Node\\Microsoft\\Windows NT\\CurrentVersion\\Windows",
+                        "value": "Load",
+                    },
+                    {
+                        "key": "HKEY_USERS\\%%users.sid%%\\Software\\Wow6432Node\\Microsoft\\Windows NT\\CurrentVersion\\Windows",
+                        "value": "Run",
+                    },
+                ]
+            },
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.WINDOWS
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class WindowsRunGrpConv(GRRArtifactBase):
+    """
+    The Windows RunGrpConv Registry value.
+
+    When this Registry value is non-zero userinit.exe will launch grpconv.exe at
+    user login.
+
+    Reference URLs:
+    http://www.hexacorn.com/blog/2014/06/18/beyond-good-ol-run-key-part-13/
+    http://www.exploit-id.com/local-exploits/windows-xp-sp2-grpconv-exe
+    """
+
+    SOURCES = [
+        {
+            "type": "REGISTRY_VALUE",
+            "attributes": {
+                "key_value_pairs": [
+                    {
+                        "key": "HKEY_USERS\\%%users.sid%%\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon",
+                        "value": "RunGrpConv",
+                    }
+                ]
+            },
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.WINDOWS
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class WindowsWinlogonUiHost(GRRArtifactBase):
+    """
+    Windows Winlogon UI screen application
+
+    Reference URLs:
+    http://gladiator-antivirus.com/forum/index.php?showtopic=24610
+    http://www.bleepingcomputer.com/forums/t/14028/change-the-loginwelcome-screen/
+    """
+
+    SOURCES = [
+        {
+            "type": "REGISTRY_VALUE",
+            "attributes": {
+                "key_value_pairs": [
+                    {
+                        "key": "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon",
+                        "value": "UiHost",
+                    },
+                    {
+                        "key": "HKEY_USERS\\%%users.sid%%\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon",
+                        "value": "UiHost",
+                    },
+                ]
+            },
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.WINDOWS
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class WindowsShellIconOverlayIdentifiers(GRRArtifactBase):
+    """
+    Called to display custom icons.
+
+    Reference URLs:
+    http://gladiator-antivirus.com/forum/index.php?showtopic=24610
+    https://msdn.microsoft.com/en-us/library/windows/desktop/hh127455(v=vs.85).aspx
+    """
+
+    SOURCES = [
+        {
+            "type": "REGISTRY_KEY",
+            "attributes": {
+                "keys": [
+                    "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\ShellIconOverlayIdentifiers\\*",
+                    "HKEY_LOCAL_MACHINE\\Software\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Explorer\\ShellIconOverlayIdentifiers\\*",
+                    "HKEY_USERS\\%%users.sid%%\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\ShellIconOverlayIdentifiers\\*",
+                    "HKEY_USERS\\%%users.sid%%\\Software\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Explorer\\ShellIconOverlayIdentifiers\\*",
+                ]
+            },
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.WINDOWS
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class WindowsTerminalServerInitialProgram(GRRArtifactBase):
+    """
+    Windows Terminal Server Initial Program
+
+    Reference URLs:
+    https://www.microsoftpressstore.com/articles/article.aspx?p=2762082&seqNum=2
+    """
+
+    SOURCES = [
+        {
+            "type": "REGISTRY_VALUE",
+            "attributes": {
+                "key_value_pairs": [
+                    {
+                        "key": "HKEY_LOCAL_MACHINE\\System\\CurrentControlSet\\Control\\Terminal Server\\WinStations\\RDP-Tcp",
+                        "value": "InitialProgram",
+                    },
+                    {
+                        "key": "HKEY_LOCAL_MACHINE\\Software\\Policies\\Microsoft\\Windows NT\\Terminal Services",
+                        "value": "InitialProgram",
+                    },
+                    {
+                        "key": "HKEY_USERS\\%%users.sid%%\\Software\\Policies\\Microsoft\\Windows NT\\Terminal Services",
+                        "value": "InitialProgram",
+                    },
+                    {
+                        "key": "HKEY_LOCAL_MACHINE\\Software\\Wow6432Node\\Policies\\Microsoft\\Windows NT\\Terminal Services",
+                        "value": "InitialProgram",
+                    },
+                    {
+                        "key": "HKEY_USERS\\%%users.sid%%\\Software\\Wow6432Node\\Policies\\Microsoft\\Windows NT\\Terminal Services",
+                        "value": "InitialProgram",
+                    },
+                ]
+            },
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.WINDOWS
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class WindowsWinlogonTaskman(GRRArtifactBase):
+    """
+    Windows Winlogon Taskman replacement.
+
+    Reference URLs: https://technet.microsoft.com/en-us/library/cc939701.aspx
+    """
+
+    SOURCES = [
+        {
+            "type": "REGISTRY_VALUE",
+            "attributes": {
+                "key_value_pairs": [
+                    {
+                        "key": "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon",
+                        "value": "Taskman",
+                    },
+                    {
+                        "key": "HKEY_USERS\\%%users.sid%%\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon",
+                        "value": "Taskman",
+                    },
+                ]
+            },
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.WINDOWS
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class WindowsSessionManagerWOWCommandLine(GRRArtifactBase):
+    """
+    Windows Session Manager Windows-on-Windows (WOW) command line
+
+    Reference URLs: https://support.microsoft.com/en-us/kb/102986
+    """
+
+    SOURCES = [
+        {
+            "type": "REGISTRY_VALUE",
+            "attributes": {
+                "key_value_pairs": [
+                    {
+                        "key": "HKEY_LOCAL_MACHINE\\System\\CurrentControlSet\\Control\\Session Manager\\WOW",
+                        "value": "cmdline",
+                    },
+                    {
+                        "key": "HKEY_LOCAL_MACHINE\\System\\CurrentControlSet\\Control\\Session Manager\\WOW",
+                        "value": "wowcmdline",
+                    },
                 ]
             },
         }
@@ -4453,39 +5867,6 @@ class WindowsPortProxyConfiguration(GRRArtifactBase):
                 "keys": [
                     "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\PortProxy\\*\\*\\*"
                 ]
-            },
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.WINDOWS
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
-class WindowsPowerShellDefaultProfiles(GRRArtifactBase):
-    """
-    Default PowerShell Profile files. These files are executed by default when
-    PowerShell starts up.
-
-    Reference URLs:
-    https://technet.microsoft.com/en-us/magazine/2008.10.windowspowershell.aspx#id0190010
-    http://www.hexacorn.com/blog/2014/08/27/beyond-good-ol-run-key-part-16/
-    """
-
-    SOURCES = [
-        {
-            "type": "FILE",
-            "attributes": {
-                "paths": [
-                    "%%environ_systemroot%%\\system32\\WindowsPowerShell\\v1.0\\profile.ps1",
-                    "%%environ_systemroot%%\\system32\\WindowsPowerShell\\v1.0\\Microsoft.PowerShell_profile.ps1",
-                    "%%users.userprofile%%\\Documents\\WindowsPowerShell\\profile.ps1",
-                    "%%users.userprofile%%\\Documents\\WindowsPowerShell\\Microsoft.PowerShell_profile.ps1",
-                ],
-                "separator": "\\",
             },
         }
     ]
@@ -4608,37 +5989,6 @@ class WindowsPrefetchFiles(GRRArtifactBase):
             "attributes": {
                 "paths": ["%%environ_systemroot%%\\Prefetch\\*.pf"],
                 "separator": "\\",
-            },
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.WINDOWS
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
-class WindowsPrintMonitors(GRRArtifactBase):
-    """
-    Windows Print Monitor DLL config.
-
-    Reference URLs:
-    http://gladiator-antivirus.com/forum/index.php?showtopic=24610
-    https://support.microsoft.com/en-us/kb/102966
-    """
-
-    SOURCES = [
-        {
-            "type": "REGISTRY_VALUE",
-            "attributes": {
-                "key_value_pairs": [
-                    {
-                        "key": "HKEY_LOCAL_MACHINE\\System\\CurrentControlSet\\Control\\Print\\Monitors\\*",
-                        "value": "Driver",
-                    }
-                ]
             },
         }
     ]
@@ -4992,9 +6342,9 @@ class WindowsRegistryCurrentControlSet(GRRArtifactBase):
     aliases: ClassVar[Optional[list[str]]] = ["CurrentControlSet"]
 
 
-class WindowsRegistryFilesAndTransactionLogs(GRRArtifactBase):
+class WindowsUserRegistryFiles(GRRArtifactBase):
     """
-    Windows user and system Registry files and transaction logs.
+    Windows user specific Registry files.
 
     Reference URLs:
     https://artifacts-kb.readthedocs.io/en/latest/sources/windows/RegistryFiles.html
@@ -5002,23 +6352,122 @@ class WindowsRegistryFilesAndTransactionLogs(GRRArtifactBase):
 
     SOURCES = [
         {
-            "type": "ARTIFACT_GROUP",
+            "type": "FILE",
             "attributes": {
-                "names": [
-                    "WindowsSystemRegistryFiles",
-                    "WindowsSystemRegistryTransactionLogFiles",
-                    "WindowsUserRegistryFiles",
-                    "WindowsUserRegistryTransactionLogFiles",
-                ]
+                "paths": [
+                    "%%users.userprofile%%\\NTUSER.DAT",
+                    "%%users.userprofile%%\\NTUSER.MAN",
+                    "%%users.localappdata%%\\Microsoft\\Windows\\UsrClass.dat",
+                ],
+                "separator": "\\",
             },
         }
     ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {
-        "WindowsSystemRegistryTransactionLogFiles": windows.WindowsSystemRegistryTransactionLogFiles,
-        "WindowsUserRegistryTransactionLogFiles": windows.WindowsUserRegistryTransactionLogFiles,
-        "WindowsUserRegistryFiles": windows.WindowsUserRegistryFiles,
-        "WindowsSystemRegistryFiles": windows.WindowsSystemRegistryFiles,
-    }
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.WINDOWS
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class WindowsSystemRegistryTransactionLogFiles(GRRArtifactBase):
+    """
+    Windows system Registry transaction log files.
+
+    Reference URLs:
+    https://artifacts-kb.readthedocs.io/en/latest/sources/windows/RegistryFiles.html
+    """
+
+    SOURCES = [
+        {
+            "type": "FILE",
+            "attributes": {
+                "paths": [
+                    "%%environ_systemroot%%\\System32\\config\\SAM.LOG",
+                    "%%environ_systemroot%%\\System32\\config\\SAM.LOG1",
+                    "%%environ_systemroot%%\\System32\\config\\SAM.LOG2",
+                    "%%environ_systemroot%%\\System32\\config\\SECURITY.LOG",
+                    "%%environ_systemroot%%\\System32\\config\\SECURITY.LOG1",
+                    "%%environ_systemroot%%\\System32\\config\\SECURITY.LOG2",
+                    "%%environ_systemroot%%\\System32\\config\\SOFTWARE.LOG",
+                    "%%environ_systemroot%%\\System32\\config\\SOFTWARE.LOG1",
+                    "%%environ_systemroot%%\\System32\\config\\SOFTWARE.LOG2",
+                    "%%environ_systemroot%%\\System32\\config\\SYSTEM.LOG",
+                    "%%environ_systemroot%%\\System32\\config\\SYSTEM.LOG1",
+                    "%%environ_systemroot%%\\System32\\config\\SYSTEM.LOG2",
+                ],
+                "separator": "\\",
+            },
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.WINDOWS
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class WindowsSystemRegistryFiles(GRRArtifactBase):
+    """
+    Windows system Registry files.
+
+    Reference URLs:
+    https://artifacts-kb.readthedocs.io/en/latest/sources/windows/RegistryFiles.html
+    """
+
+    SOURCES = [
+        {
+            "type": "FILE",
+            "attributes": {
+                "paths": [
+                    "%%environ_systemdrive%%\\System Volume Information\\Syscache.hve",
+                    "%%environ_systemroot%%\\System32\\config\\SAM",
+                    "%%environ_systemroot%%\\System32\\config\\SECURITY",
+                    "%%environ_systemroot%%\\System32\\config\\SOFTWARE",
+                    "%%environ_systemroot%%\\System32\\config\\SYSTEM",
+                ],
+                "separator": "\\",
+            },
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.WINDOWS
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class WindowsUserRegistryTransactionLogFiles(GRRArtifactBase):
+    """
+    Windows user Registry transaction log files.
+
+    Reference URLs:
+    https://artifacts-kb.readthedocs.io/en/latest/sources/windows/RegistryFiles.html
+    """
+
+    SOURCES = [
+        {
+            "type": "FILE",
+            "attributes": {
+                "paths": [
+                    "%%users.userprofile%%\\NTUSER.DAT.LOG",
+                    "%%users.userprofile%%\\NTUSER.DAT.LOG1",
+                    "%%users.userprofile%%\\NTUSER.DAT.LOG2",
+                    "%%users.localappdata%%\\Microsoft\\Windows\\UsrClass.dat.LOG",
+                    "%%users.localappdata%%\\Microsoft\\Windows\\UsrClass.dat.LOG1",
+                    "%%users.localappdata%%\\Microsoft\\Windows\\UsrClass.dat.LOG2",
+                ],
+                "separator": "\\",
+            },
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
 
     sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
     supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
@@ -5153,126 +6602,6 @@ class WindowsRoverAutostartKey(GRRArtifactBase):
     aliases: ClassVar[Optional[list[str]]] = None
 
 
-class WindowsRunGrpConv(GRRArtifactBase):
-    """
-    The Windows RunGrpConv Registry value.
-
-    When this Registry value is non-zero userinit.exe will launch grpconv.exe at
-    user login.
-
-    Reference URLs:
-    http://www.hexacorn.com/blog/2014/06/18/beyond-good-ol-run-key-part-13/
-    http://www.exploit-id.com/local-exploits/windows-xp-sp2-grpconv-exe
-    """
-
-    SOURCES = [
-        {
-            "type": "REGISTRY_VALUE",
-            "attributes": {
-                "key_value_pairs": [
-                    {
-                        "key": "HKEY_USERS\\%%users.sid%%\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon",
-                        "value": "RunGrpConv",
-                    }
-                ]
-            },
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.WINDOWS
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
-class WindowsRunKeys(GRRArtifactBase):
-    """
-    Windows Run and RunOnce keys.
-
-    Note users.sid will currently only expand to SIDs with profiles on the
-    system, not all SIDs.
-
-    Reference URLs:
-    https://msdn.microsoft.com/en-us/library/windows/desktop/aa376977%28v=vs.85%29.aspx
-    https://support.microsoft.com/en-us/kb/137367
-    http://gladiator-antivirus.com/forum/index.php?showtopic=24610
-    https://technet.microsoft.com/en-us/magazine/ee851671.aspx
-    """
-
-    SOURCES = [
-        {
-            "type": "REGISTRY_KEY",
-            "attributes": {
-                "keys": [
-                    "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Explorer\\Run\\*",
-                    "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\Run\\*",
-                    "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\RunOnce\\*",
-                    "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\RunOnce\\Setup\\*",
-                    "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\RunOnceEx\\*",
-                    "HKEY_LOCAL_MACHINE\\Software\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Run\\*",
-                    "HKEY_LOCAL_MACHINE\\Software\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\RunOnce\\*",
-                    "HKEY_LOCAL_MACHINE\\Software\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\RunOnce\\Setup\\*",
-                    "HKEY_LOCAL_MACHINE\\Software\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\RunOnceEx\\*",
-                    "HKEY_LOCAL_MACHINE\\Software\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Policies\\Explorer\\Run\\*",
-                    "HKEY_USERS\\%%users.sid%%\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Explorer\\Run\\*",
-                    "HKEY_USERS\\%%users.sid%%\\Software\\Microsoft\\Windows\\CurrentVersion\\Run\\*",
-                    "HKEY_USERS\\%%users.sid%%\\Software\\Microsoft\\Windows\\CurrentVersion\\RunOnce\\*",
-                    "HKEY_USERS\\%%users.sid%%\\Software\\Microsoft\\Windows\\CurrentVersion\\RunOnce\\Setup\\*",
-                    "HKEY_USERS\\%%users.sid%%\\Software\\Microsoft\\Windows\\CurrentVersion\\RunOnceEx\\*",
-                    "HKEY_USERS\\%%users.sid%%\\Software\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Policies\\Explorer\\Run\\*",
-                    "HKEY_USERS\\%%users.sid%%\\Software\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Run\\*",
-                    "HKEY_USERS\\%%users.sid%%\\Software\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\RunOnce\\*",
-                    "HKEY_USERS\\%%users.sid%%\\Software\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\RunOnce\\Setup\\*",
-                    "HKEY_USERS\\%%users.sid%%\\Software\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\RunOnceEx\\*",
-                ]
-            },
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.WINDOWS
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
-class WindowsRunServices(GRRArtifactBase):
-    """
-    Windows Run Services.
-
-    Reference URLs: https://support.microsoft.com/en-us/kb/179365
-    https://threatvector.cylance.com/en_us/home/windows-registry-persistence-part-2-the-run-keys-and-search-order.html
-    """
-
-    SOURCES = [
-        {
-            "type": "REGISTRY_KEY",
-            "attributes": {
-                "keys": [
-                    "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\RunServicesOnce\\*",
-                    "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\RunServices\\*",
-                    "HKEY_LOCAL_MACHINE\\Software\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\RunServicesOnce\\*",
-                    "HKEY_LOCAL_MACHINE\\Software\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\RunServices\\*",
-                    "HKEY_USERS\\%%users.sid%%\\Software\\Microsoft\\Windows\\CurrentVersion\\RunServicesOnce\\*",
-                    "HKEY_USERS\\%%users.sid%%\\Software\\Microsoft\\Windows\\CurrentVersion\\RunServices\\*",
-                    "HKEY_USERS\\%%users.sid%%\\Software\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\RunServicesOnce\\*",
-                    "HKEY_USERS\\%%users.sid%%\\Software\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\RunServices\\*",
-                ]
-            },
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.WINDOWS
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
 class WindowsScheduledTasks(GRRArtifactBase):
     """
     Windows Scheduled Tasks.
@@ -5290,42 +6619,6 @@ class WindowsScheduledTasks(GRRArtifactBase):
                     "%%environ_systemroot%%\\SysWow64\\Tasks\\**10",
                 ],
                 "separator": "\\",
-            },
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.WINDOWS
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
-class WindowsScreenSaverExecutable(GRRArtifactBase):
-    """
-    ScreenSaver Executable
-
-    Reference URLs:
-    http://gladiator-antivirus.com/forum/index.php?showtopic=24610
-    https://technet.microsoft.com/en-us/library/cc737855(v=ws.10).aspx
-    https://technet.microsoft.com/en-us/library/cc957840.aspx
-    """
-
-    SOURCES = [
-        {
-            "type": "REGISTRY_VALUE",
-            "attributes": {
-                "key_value_pairs": [
-                    {
-                        "key": "HKEY_USERS\\%%users.sid%%\\Software\\Policies\\Microsoft\\Windows\\Control Panel\\Desktop",
-                        "value": "scrnsave.exe",
-                    },
-                    {
-                        "key": "HKEY_USERS\\%%users.sid%%\\Control Panel\\Desktop",
-                        "value": "scrnsave.exe",
-                    },
-                ]
             },
         }
     ]
@@ -5363,77 +6656,6 @@ class WindowsSearchDatabaseFile(GRRArtifactBase):
         ArtifactSupportedOS.WINDOWS
     ]
     aliases: ClassVar[Optional[list[str]]] = ["WindowsSearchDatabase"]
-
-
-class WindowsSearchFilterHandlers(GRRArtifactBase):
-    """
-    Windows Search filter handlers configured for file types and applications.
-
-    Windows Search loads DLLs that implement the IFilter interface in order to
-    scan files for text and extract certain types of information. Malware can
-    replace the filter handler for a given file type or CLSID with itself to
-    gain execution when a search operation is performed on that file. Search
-    operations can be performed indirectly in a number of cases; for instance,
-    the .txt, .html, and .rtf filter handlers are invoked when indexing email
-    message bodies.
-
-    The filter handler to use is specified indirectly via a persistent handler.
-    The persistent handler GUID is indicated via the PersistentHandler subkey
-    for a file type or application GUID. The filter handler CLSID is indicated
-    via the PersistentAddinsRegistered/{89BCB740-6119-101A-BCB7-00DD010655AF}
-    subkey under the persistent handler GUID key path. This artifact inspects
-    both of these paths.
-
-    NOTE: Only the HKEY_LOCAL_MACHINE root key needs be checked, because these
-    are the only keys used. SearchFilterHost.exe runs under the SYSTEM account,
-    which does not have access to HKEY_CURRENT_USER.
-
-    Reference URLs:
-    https://docs.microsoft.com/en-us/windows/desktop/search/-search-ifilter-about
-    https://docs.microsoft.com/en-us/windows/desktop/search/-search-ifilter-implementations
-    https://docs.microsoft.com/en-us/windows/desktop/search/-search-ifilter-registering-filters
-    """
-
-    SOURCES = [
-        {
-            "type": "REGISTRY_VALUE",
-            "attributes": {
-                "key_value_pairs": [
-                    {
-                        "key": "HKEY_LOCAL_MACHINE\\Software\\Classes\\*\\PersistentHandler",
-                        "value": "",
-                    },
-                    {
-                        "key": "HKEY_LOCAL_MACHINE\\Software\\Classes\\Wow6432Node\\*\\PersistentHandler",
-                        "value": "",
-                    },
-                    {
-                        "key": "HKEY_LOCAL_MACHINE\\Software\\Classes\\CLSID\\*\\PersistentHandler",
-                        "value": "",
-                    },
-                    {
-                        "key": "HKEY_LOCAL_MACHINE\\Software\\Classes\\Wow6432Node\\CLSID\\*\\PersistentHandler",
-                        "value": "",
-                    },
-                    {
-                        "key": "HKEY_LOCAL_MACHINE\\Software\\Classes\\CLSID\\*\\PersistentAddinsRegistered\\{89BCB740-6119-101A-BCB7-00DD010655AF}",
-                        "value": "",
-                    },
-                    {
-                        "key": "HKEY_LOCAL_MACHINE\\Software\\Classes\\Wow6432Node\\CLSID\\*\\PersistentAddinsRegistered\\{89BCB740-6119-101A-BCB7-00DD010655AF}",
-                        "value": "",
-                    },
-                ]
-            },
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.WINDOWS
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
 
 
 class WindowsSecurityCenterSettings(GRRArtifactBase):
@@ -5540,34 +6762,6 @@ class WindowsSecurityCenterSettings(GRRArtifactBase):
     aliases: ClassVar[Optional[list[str]]] = None
 
 
-class WindowsSecurityProviders(GRRArtifactBase):
-    """
-    Security Providers DLLs
-
-    Reference URLs:
-    http://gladiator-antivirus.com/forum/index.php?showtopic=24610
-    https://github.com/wmark/security-configuration/blob/master/Windows/disable-weak-ciphers-and-enable-TLS1.x.reg
-    """
-
-    SOURCES = [
-        {
-            "type": "REGISTRY_KEY",
-            "attributes": {
-                "keys": [
-                    "HKEY_LOCAL_MACHINE\\System\\CurrentControlSet\\Control\\SecurityProviders\\*"
-                ]
-            },
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.WINDOWS
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
 class WindowsSecuritySettingsDatabases(GRRArtifactBase):
     """
     Windows security settings databases (secedit.sdb and spsecupd.sdb)
@@ -5582,370 +6776,6 @@ class WindowsSecuritySettingsDatabases(GRRArtifactBase):
                     "%%environ_systemroot%%\\security\\templates\\spsecupd.sdb",
                 ],
                 "separator": "\\",
-            },
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.WINDOWS
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
-class WindowsServiceControlManagerExtension(GRRArtifactBase):
-    """
-    Windows service control manager extension
-
-    Reference URLs:
-    http://forum.sysinternals.com/autoruns-and-windows-7_topic19770.html
-    https://support.microsoft.com/en-us/kb/102985
-    http://gladiator-antivirus.com/forum/index.php?showtopic=24610
-    http://www.silentrunners.org/Silent%20Runners.vbs
-    """
-
-    SOURCES = [
-        {
-            "type": "REGISTRY_VALUE",
-            "attributes": {
-                "key_value_pairs": [
-                    {
-                        "key": "HKEY_LOCAL_MACHINE\\System\\CurrentControlSet\\Control",
-                        "value": "ServiceControlManagerExtension",
-                    }
-                ]
-            },
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.WINDOWS
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
-class WindowsServices(GRRArtifactBase):
-    """
-    Windows service and driver configurations.
-
-    Reference URLs:
-    https://artifacts-kb.readthedocs.io/en/latest/sources/windows/ServicesAndDrivers.html
-    """
-
-    SOURCES = [
-        {
-            "type": "REGISTRY_KEY",
-            "attributes": {
-                "keys": ["HKEY_LOCAL_MACHINE\\System\\CurrentControlSet\\Services\\*"]
-            },
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.WINDOWS
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
-class WindowsSessionManagerBootExecute(GRRArtifactBase):
-    """
-    Windows Session Manager BootExecute persistence.
-
-    Reference URLs: https://technet.microsoft.com/en-us/library/cc963230.aspx
-    """
-
-    SOURCES = [
-        {
-            "type": "REGISTRY_VALUE",
-            "attributes": {
-                "key_value_pairs": [
-                    {
-                        "key": "HKEY_LOCAL_MACHINE\\System\\CurrentControlSet\\Control\\Session Manager",
-                        "value": "BootExecute",
-                    }
-                ]
-            },
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.WINDOWS
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
-class WindowsSessionManagerExecute(GRRArtifactBase):
-    """
-    Windows Session Manager Execute persistence
-
-    This entry shouldn't be populated after Windows has been installed
-
-    Reference URLs: https://technet.microsoft.com/en-us/library/cc976130.aspx
-    https://www.microsoftpressstore.com/articles/article.aspx?p=2762082&seqNum=2
-    """
-
-    SOURCES = [
-        {
-            "type": "REGISTRY_VALUE",
-            "attributes": {
-                "key_value_pairs": [
-                    {
-                        "key": "HKEY_LOCAL_MACHINE\\System\\CurrentControlSet\\Control\\Session Manager",
-                        "value": "Execute",
-                    }
-                ]
-            },
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.WINDOWS
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
-class WindowsSessionManagerS0InitialCommand(GRRArtifactBase):
-    """
-    Windows Session Manager S0InitialCommand persistence
-
-    This entry shouldn't be populated after Windows has been installed
-
-    Reference URLs:
-    https://msdn.microsoft.com/en-us/library/windows/desktop/dd392286%28v=vs.85%29.aspx
-    https://www.microsoftpressstore.com/articles/article.aspx?p=2762082&seqNum=2
-    """
-
-    SOURCES = [
-        {
-            "type": "REGISTRY_VALUE",
-            "attributes": {
-                "key_value_pairs": [
-                    {
-                        "key": "HKEY_LOCAL_MACHINE\\System\\CurrentControlSet\\Control\\Session Manager",
-                        "value": "S0InitialCommand",
-                    }
-                ]
-            },
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.WINDOWS
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
-class WindowsSessionManagerSetupExecute(GRRArtifactBase):
-    """
-    Windows Session Manager SetupExecute persistence
-
-    This entry shouldn't be populated after Windows has been installed
-
-    Reference URLs:
-    https://msdn.microsoft.com/en-us/library/windows/desktop/dd392286%28v=vs.85%29.aspx
-    https://www.microsoftpressstore.com/articles/article.aspx?p=2762082&seqNum=2
-    """
-
-    SOURCES = [
-        {
-            "type": "REGISTRY_VALUE",
-            "attributes": {
-                "key_value_pairs": [
-                    {
-                        "key": "HKEY_LOCAL_MACHINE\\System\\CurrentControlSet\\Control\\Session Manager",
-                        "value": "SetupExecute",
-                    }
-                ]
-            },
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.WINDOWS
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
-class WindowsSessionManagerSubSystems(GRRArtifactBase):
-    """
-    Windows Session Manager SubSystems persistence
-
-    Reference URLs: https://technet.microsoft.com/en-us/library/cc976130.aspx
-    http://gladiator-antivirus.com/forum/index.php?showtopic=24610
-    """
-
-    SOURCES = [
-        {
-            "type": "REGISTRY_VALUE",
-            "attributes": {
-                "key_value_pairs": [
-                    {
-                        "key": "HKEY_LOCAL_MACHINE\\System\\CurrentControlSet\\Control\\Session Manager\\SubSystems",
-                        "value": "Windows",
-                    }
-                ]
-            },
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.WINDOWS
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
-class WindowsSessionManagerWOWCommandLine(GRRArtifactBase):
-    """
-    Windows Session Manager Windows-on-Windows (WOW) command line
-
-    Reference URLs: https://support.microsoft.com/en-us/kb/102986
-    """
-
-    SOURCES = [
-        {
-            "type": "REGISTRY_VALUE",
-            "attributes": {
-                "key_value_pairs": [
-                    {
-                        "key": "HKEY_LOCAL_MACHINE\\System\\CurrentControlSet\\Control\\Session Manager\\WOW",
-                        "value": "cmdline",
-                    },
-                    {
-                        "key": "HKEY_LOCAL_MACHINE\\System\\CurrentControlSet\\Control\\Session Manager\\WOW",
-                        "value": "wowcmdline",
-                    },
-                ]
-            },
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.WINDOWS
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
-class WindowsSetupCommandLine(GRRArtifactBase):
-    """
-    Command line invocation used for custom setup and deployment tasks
-
-    Reference URLs:
-    https://www.microsoftpressstore.com/articles/article.aspx?p=2762082&seqNum=2
-    """
-
-    SOURCES = [
-        {
-            "type": "REGISTRY_VALUE",
-            "attributes": {
-                "key_value_pairs": [
-                    {"key": "HKEY_LOCAL_MACHINE\\System\\Setup", "value": "CmdLine"}
-                ]
-            },
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.WINDOWS
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
-class WindowsSharedTaskScheduler(GRRArtifactBase):
-    """
-    Runs on windows boot.
-
-    Reference URLs:
-    http://gladiator-antivirus.com/forum/index.php?showtopic=24610
-    http://www.bleepingcomputer.com/tutorials/windows-program-automatic-startup-locations/
-    """
-
-    SOURCES = [
-        {
-            "type": "REGISTRY_KEY",
-            "attributes": {
-                "keys": [
-                    "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\SharedTaskScheduler\\*",
-                    "HKEY_USERS\\%%users.sid%%\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\SharedTaskScheduler\\*",
-                ]
-            },
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.WINDOWS
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
-class WindowsShellExecuteHooks(GRRArtifactBase):
-    """
-    Shell execution hooks are called when ShellExecuteEx() is called.
-
-    Reference URLs:
-    http://gladiator-antivirus.com/forum/index.php?showtopic=24610
-    http://regenerus.com/malware-common-loadpoints/
-    https://code.google.com/p/regripper/wiki/ASEPs
-    """
-
-    SOURCES = [
-        {
-            "type": "REGISTRY_KEY",
-            "attributes": {
-                "keys": [
-                    "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\ShellExecuteHooks\\*",
-                    "HKEY_LOCAL_MACHINE\\Software\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Explorer\\ShellExecuteHooks\\*",
-                ]
-            },
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.WINDOWS
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
-class WindowsShellExtensions(GRRArtifactBase):
-    """
-    Approved extensions to the Windows Shell (explorer.exe).
-
-    Reference URLs:
-    https://msdn.microsoft.com/en-us/library/windows/desktop/cc144110(v=vs.85).aspx
-    """
-
-    SOURCES = [
-        {
-            "type": "REGISTRY_KEY",
-            "attributes": {
-                "keys": [
-                    "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\Shell Extensions\\Approved",
-                    "HKEY_LOCAL_MACHINE\\Software\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Shell Extensions\\Approved",
-                    "HKEY_USERS\\%%users.sid%%\\Software\\Microsoft\\Windows\\CurrentVersion\\Shell Extensions\\Approved",
-                    "HKEY_USERS\\%%users.sid%%\\Software\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Shell Extensions\\Approved",
-                ]
             },
         }
     ]
@@ -6013,265 +6843,6 @@ class WindowsShellHandlersRegistryKeys(GRRArtifactBase):
                     "HKEY_USERS\\%%users.sid%%\\Software\\Classes\\Wow6432Node\\Directory\\Background\\ShellEx\\CopyHookHandlers\\*",
                     "HKEY_USERS\\%%users.sid%%\\Software\\Classes\\Wow6432Node\\Directory\\Background\\ShellEx\\DragDropHandlers\\*",
                     "HKEY_USERS\\%%users.sid%%\\Software\\Classes\\Wow6432Node\\Directory\\Background\\ShellEx\\PropertySheetHandlers\\*",
-                ]
-            },
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.WINDOWS
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
-class WindowsShellIconOverlayIdentifiers(GRRArtifactBase):
-    """
-    Called to display custom icons.
-
-    Reference URLs:
-    http://gladiator-antivirus.com/forum/index.php?showtopic=24610
-    https://msdn.microsoft.com/en-us/library/windows/desktop/hh127455(v=vs.85).aspx
-    """
-
-    SOURCES = [
-        {
-            "type": "REGISTRY_KEY",
-            "attributes": {
-                "keys": [
-                    "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\ShellIconOverlayIdentifiers\\*",
-                    "HKEY_LOCAL_MACHINE\\Software\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Explorer\\ShellIconOverlayIdentifiers\\*",
-                    "HKEY_USERS\\%%users.sid%%\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\ShellIconOverlayIdentifiers\\*",
-                    "HKEY_USERS\\%%users.sid%%\\Software\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Explorer\\ShellIconOverlayIdentifiers\\*",
-                ]
-            },
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.WINDOWS
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
-class WindowsShellLoadAndRun(GRRArtifactBase):
-    """
-    Windows Shell Load and Run values
-
-    Reference URLs: https://support.microsoft.com/en-us/kb/103865
-    """
-
-    SOURCES = [
-        {
-            "type": "REGISTRY_VALUE",
-            "attributes": {
-                "key_value_pairs": [
-                    {
-                        "key": "HKEY_USERS\\%%users.sid%%\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Windows",
-                        "value": "Load",
-                    },
-                    {
-                        "key": "HKEY_USERS\\%%users.sid%%\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Windows",
-                        "value": "Run",
-                    },
-                    {
-                        "key": "HKEY_USERS\\%%users.sid%%\\Software\\Wow6432Node\\Microsoft\\Windows NT\\CurrentVersion\\Windows",
-                        "value": "Load",
-                    },
-                    {
-                        "key": "HKEY_USERS\\%%users.sid%%\\Software\\Wow6432Node\\Microsoft\\Windows NT\\CurrentVersion\\Windows",
-                        "value": "Run",
-                    },
-                ]
-            },
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.WINDOWS
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
-class WindowsIconServiceLib(GRRArtifactBase):
-    """
-    Windows Icon Service Library Name
-
-    The value should default to 'IconCodecService.dll'
-
-    Reference URLs:
-    https://www.microsoftpressstore.com/articles/article.aspx?p=2762082&seqNum=2
-    """
-
-    SOURCES = [
-        {
-            "type": "REGISTRY_VALUE",
-            "attributes": {
-                "key_value_pairs": [
-                    {
-                        "key": "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Windows",
-                        "value": "IconServiceLib",
-                    }
-                ]
-            },
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.WINDOWS
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
-class WindowsShellOpenCommand(GRRArtifactBase):
-    """
-    Executed every time this file type is opened. For most file types, the value
-    should be '"%1" %*'.
-
-    Reference URLs:
-    http://gladiator-antivirus.com/forum/index.php?showtopic=24610
-    https://www.microsoftpressstore.com/articles/article.aspx?p=2762082&seqNum=2
-    https://pentestlab.blog/2017/06/09/uac-bypass-sdclt/
-    """
-
-    SOURCES = [
-        {
-            "type": "REGISTRY_VALUE",
-            "attributes": {
-                "key_value_pairs": [
-                    {
-                        "key": "HKEY_LOCAL_MACHINE\\Software\\Classes\\*\\shell\\open\\command",
-                        "value": "",
-                    },
-                    {
-                        "key": "HKEY_LOCAL_MACHINE\\Software\\Classes\\*\\shell\\open\\command",
-                        "value": "IsolatedCommand",
-                    },
-                    {
-                        "key": "HKEY_LOCAL_MACHINE\\Software\\Classes\\Wow6432Node\\*\\shell\\open\\command",
-                        "value": "",
-                    },
-                    {
-                        "key": "HKEY_LOCAL_MACHINE\\Software\\Classes\\Wow6432Node\\*\\shell\\open\\command",
-                        "value": "IsolatedCommand",
-                    },
-                    {
-                        "key": "HKEY_USERS\\%%users.sid%%\\Software\\Classes\\*\\shell\\open\\command",
-                        "value": "",
-                    },
-                    {
-                        "key": "HKEY_USERS\\%%users.sid%%\\Software\\Classes\\*\\shell\\open\\command",
-                        "value": "IsolatedCommand",
-                    },
-                    {
-                        "key": "HKEY_USERS\\%%users.sid%%\\Software\\Classes\\Wow6432Node\\*\\shell\\open\\command",
-                        "value": "",
-                    },
-                    {
-                        "key": "HKEY_USERS\\%%users.sid%%\\Software\\Classes\\Wow6432Node\\*\\shell\\open\\command",
-                        "value": "IsolatedCommand",
-                    },
-                ]
-            },
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.WINDOWS
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
-class WindowsShellRunasCommand(GRRArtifactBase):
-    """
-    Executed every time an executable or script file type is run as
-    administrator.
-
-    For most file types, the value should be '"%1" %*' or something similar.
-    Example file type subkeys include 'exefile', 'batfile', and 'cmdfile'. These
-    keys can be modified by malware as a way to be periodically executed or to
-    bypass UAC.
-
-    Reference URLs:
-    http://gladiator-antivirus.com/forum/index.php?showtopic=24610
-    https://www.microsoftpressstore.com/articles/article.aspx?p=2762082&seqNum=2
-    https://enigma0x3.net/2017/03/17/fileless-uac-bypass-using-sdclt-exe/
-    """
-
-    SOURCES = [
-        {
-            "type": "REGISTRY_VALUE",
-            "attributes": {
-                "key_value_pairs": [
-                    {
-                        "key": "HKEY_LOCAL_MACHINE\\Software\\Classes\\*\\shell\\runas\\command",
-                        "value": "",
-                    },
-                    {
-                        "key": "HKEY_LOCAL_MACHINE\\Software\\Classes\\*\\shell\\runas\\command",
-                        "value": "IsolatedCommand",
-                    },
-                    {
-                        "key": "HKEY_LOCAL_MACHINE\\Software\\Classes\\Wow6432Node\\*\\shell\\runas\\command",
-                        "value": "",
-                    },
-                    {
-                        "key": "HKEY_LOCAL_MACHINE\\Software\\Classes\\Wow6432Node\\*\\shell\\runas\\command",
-                        "value": "IsolatedCommand",
-                    },
-                    {
-                        "key": "HKEY_USERS\\%%users.sid%%\\Software\\Classes\\*\\shell\\runas\\command",
-                        "value": "",
-                    },
-                    {
-                        "key": "HKEY_USERS\\%%users.sid%%\\Software\\Classes\\*\\shell\\runas\\command",
-                        "value": "IsolatedCommand",
-                    },
-                    {
-                        "key": "HKEY_USERS\\%%users.sid%%\\Software\\Classes\\Wow6432Node\\*\\shell\\runas\\command",
-                        "value": "",
-                    },
-                    {
-                        "key": "HKEY_USERS\\%%users.sid%%\\Software\\Classes\\Wow6432Node\\*\\shell\\runas\\command",
-                        "value": "IsolatedCommand",
-                    },
-                ]
-            },
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.WINDOWS
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
-class WindowsShellServiceObjects(GRRArtifactBase):
-    """
-    Windows Shell (explorer.exe) service objects delayed load.
-
-    Reference URLs:
-    http://www.microsoft.com/security/portal/threat/encyclopedia/Entry.aspx?Name=TrojanClicker:Win32/Zirit.X#tab=2
-    """
-
-    SOURCES = [
-        {
-            "type": "REGISTRY_KEY",
-            "attributes": {
-                "keys": [
-                    "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\ShellServiceObjectDelayLoad",
-                    "HKEY_LOCAL_MACHINE\\Software\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\ShellServiceObjectDelayLoad",
                 ]
             },
         }
@@ -6598,69 +7169,6 @@ class WindowsStartupScript(GRRArtifactBase):
     aliases: ClassVar[Optional[list[str]]] = None
 
 
-class WindowsStubPaths(GRRArtifactBase):
-    """
-    Windows StubPath persistence.
-
-    Each time a user logs in, the Active Setup Installed Components in HKLM are
-    compared ot the ones in HKCU, and if any are missing, or if the associated
-    version is less, the program is executed.
-
-    Reference URLs:
-    https://www.microsoftpressstore.com/articles/article.aspx?p=2762082&seqNum=2
-    http://bonemanblog.blogspot.com/2004/12/active-setup-registry-keys-and-their.html
-    """
-
-    SOURCES = [
-        {
-            "type": "REGISTRY_VALUE",
-            "attributes": {
-                "key_value_pairs": [
-                    {
-                        "key": "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Active Setup\\Installed Components\\*",
-                        "value": "StubPath",
-                    },
-                    {
-                        "key": "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Active Setup\\Installed Components\\*",
-                        "value": "Version",
-                    },
-                    {
-                        "key": "HKEY_LOCAL_MACHINE\\Software\\Wow6432Node\\Microsoft\\Active Setup\\Installed Components\\*",
-                        "value": "StubPath",
-                    },
-                    {
-                        "key": "HKEY_LOCAL_MACHINE\\Software\\Wow6432Node\\Microsoft\\Active Setup\\Installed Components\\*",
-                        "value": "Version",
-                    },
-                    {
-                        "key": "HKEY_USERS\\%%users.sid%%\\Software\\Microsoft\\Active Setup\\Installed Components\\*",
-                        "value": "StubPath",
-                    },
-                    {
-                        "key": "HKEY_USERS\\%%users.sid%%\\Software\\Microsoft\\Active Setup\\Installed Components\\*",
-                        "value": "Version",
-                    },
-                    {
-                        "key": "HKEY_USERS\\%%users.sid%%\\Software\\Wow6432Node\\Microsoft\\Active Setup\\Installed Components\\*",
-                        "value": "StubPath",
-                    },
-                    {
-                        "key": "HKEY_USERS\\%%users.sid%%\\Software\\Wow6432Node\\Microsoft\\Active Setup\\Installed Components\\*",
-                        "value": "Version",
-                    },
-                ]
-            },
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.WINDOWS
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
 class WindowsSuperFetchFiles(GRRArtifactBase):
     """
     Windows SuperFetch files.
@@ -6902,40 +7410,6 @@ class WindowsSystemIniFiles(GRRArtifactBase):
     aliases: ClassVar[Optional[list[str]]] = None
 
 
-class WindowsSystemPolicyShell(GRRArtifactBase):
-    """
-    Windows System policy replacement shell (custom user interface).
-
-    Reference URLs:
-    https://technet.microsoft.com/en-us/library/cc728472(v=ws.10).aspx
-    """
-
-    SOURCES = [
-        {
-            "type": "REGISTRY_VALUE",
-            "attributes": {
-                "key_value_pairs": [
-                    {
-                        "key": "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\System",
-                        "value": "Shell",
-                    },
-                    {
-                        "key": "HKEY_LOCAL_MACHINE\\Software\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Policies\\System",
-                        "value": "Shell",
-                    },
-                ]
-            },
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.WINDOWS
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
 class WindowsSystemRegistryFilesBackup(GRRArtifactBase):
     """
     Backup of Windows system Registry files.
@@ -7000,139 +7474,6 @@ class WindowsSystemRegistryTransactionLogFilesBackup(GRRArtifactBase):
         }
     ]
     ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.WINDOWS
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
-class WindowsSystemRegistryFilesAndTransactionLogsBackup(GRRArtifactBase):
-    """
-    Backup of Windows system Registry files and transaction logs.
-
-    Reference URLs:
-    https://artifacts-kb.readthedocs.io/en/latest/sources/windows/RegistryFiles.html
-    """
-
-    SOURCES = [
-        {
-            "type": "ARTIFACT_GROUP",
-            "attributes": {
-                "names": [
-                    "WindowsSystemRegistryFilesBackup",
-                    "WindowsSystemRegistryTransactionLogFilesBackup",
-                ]
-            },
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {
-        "WindowsSystemRegistryFilesBackup": windows.WindowsSystemRegistryFilesBackup,
-        "WindowsSystemRegistryTransactionLogFilesBackup": windows.WindowsSystemRegistryTransactionLogFilesBackup,
-    }
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.WINDOWS
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
-class WindowsSystemRegistryFiles(GRRArtifactBase):
-    """
-    Windows system Registry files.
-
-    Reference URLs:
-    https://artifacts-kb.readthedocs.io/en/latest/sources/windows/RegistryFiles.html
-    """
-
-    SOURCES = [
-        {
-            "type": "FILE",
-            "attributes": {
-                "paths": [
-                    "%%environ_systemdrive%%\\System Volume Information\\Syscache.hve",
-                    "%%environ_systemroot%%\\System32\\config\\SAM",
-                    "%%environ_systemroot%%\\System32\\config\\SECURITY",
-                    "%%environ_systemroot%%\\System32\\config\\SOFTWARE",
-                    "%%environ_systemroot%%\\System32\\config\\SYSTEM",
-                ],
-                "separator": "\\",
-            },
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.WINDOWS
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
-class WindowsSystemRegistryTransactionLogFiles(GRRArtifactBase):
-    """
-    Windows system Registry transaction log files.
-
-    Reference URLs:
-    https://artifacts-kb.readthedocs.io/en/latest/sources/windows/RegistryFiles.html
-    """
-
-    SOURCES = [
-        {
-            "type": "FILE",
-            "attributes": {
-                "paths": [
-                    "%%environ_systemroot%%\\System32\\config\\SAM.LOG",
-                    "%%environ_systemroot%%\\System32\\config\\SAM.LOG1",
-                    "%%environ_systemroot%%\\System32\\config\\SAM.LOG2",
-                    "%%environ_systemroot%%\\System32\\config\\SECURITY.LOG",
-                    "%%environ_systemroot%%\\System32\\config\\SECURITY.LOG1",
-                    "%%environ_systemroot%%\\System32\\config\\SECURITY.LOG2",
-                    "%%environ_systemroot%%\\System32\\config\\SOFTWARE.LOG",
-                    "%%environ_systemroot%%\\System32\\config\\SOFTWARE.LOG1",
-                    "%%environ_systemroot%%\\System32\\config\\SOFTWARE.LOG2",
-                    "%%environ_systemroot%%\\System32\\config\\SYSTEM.LOG",
-                    "%%environ_systemroot%%\\System32\\config\\SYSTEM.LOG1",
-                    "%%environ_systemroot%%\\System32\\config\\SYSTEM.LOG2",
-                ],
-                "separator": "\\",
-            },
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.WINDOWS
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
-class WindowsSystemRegistryFilesAndTransactionLogs(GRRArtifactBase):
-    """
-    Windows system Registry files and transaction logs.
-
-    Reference URLs:
-    https://artifacts-kb.readthedocs.io/en/latest/sources/windows/RegistryFiles.html
-    """
-
-    SOURCES = [
-        {
-            "type": "ARTIFACT_GROUP",
-            "attributes": {
-                "names": [
-                    "WindowsSystemRegistryFiles",
-                    "WindowsSystemRegistryTransactionLogFiles",
-                ]
-            },
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {
-        "WindowsSystemRegistryTransactionLogFiles": windows.WindowsSystemRegistryTransactionLogFiles,
-        "WindowsSystemRegistryFiles": windows.WindowsSystemRegistryFiles,
-    }
 
     sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
     supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
@@ -7227,119 +7568,6 @@ class WindowsTempDirectories(GRRArtifactBase):
     aliases: ClassVar[Optional[list[str]]] = None
 
 
-class WindowsTerminalServerRunKeys(GRRArtifactBase):
-    """
-    Windows Terminal Server Run keys
-
-    Reference URLs:
-    http://gladiator-antivirus.com/forum/index.php?showtopic=24610
-    """
-
-    SOURCES = [
-        {
-            "type": "REGISTRY_KEY",
-            "attributes": {
-                "keys": [
-                    "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Terminal Server\\Install\\Software\\Microsoft\\Windows\\CurrentVersion\\Runonce\\*",
-                    "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Terminal Server\\Install\\Software\\Microsoft\\Windows\\CurrentVersion\\RunonceEx\\*",
-                    "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Terminal Server\\Install\\Software\\Microsoft\\Windows\\CurrentVersion\\Run\\*",
-                    "HKEY_LOCAL_MACHINE\\Software\\Wow6432Node\\Microsoft\\Windows NT\\CurrentVersion\\Terminal Server\\Install\\Software\\Microsoft\\Windows\\CurrentVersion\\Runonce\\*",
-                    "HKEY_LOCAL_MACHINE\\Software\\Wow6432Node\\Microsoft\\Windows NT\\CurrentVersion\\Terminal Server\\Install\\Software\\Microsoft\\Windows\\CurrentVersion\\RunonceEx\\*",
-                    "HKEY_LOCAL_MACHINE\\Software\\Wow6432Node\\Microsoft\\Windows NT\\CurrentVersion\\Terminal Server\\Install\\Software\\Microsoft\\Windows\\CurrentVersion\\Run\\*",
-                    "HKEY_USERS\\%%users.sid%%\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Terminal Server\\Install\\Software\\Microsoft\\Windows\\CurrentVersion\\Runonce\\*",
-                    "HKEY_USERS\\%%users.sid%%\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Terminal Server\\Install\\Software\\Microsoft\\Windows\\CurrentVersion\\RunonceEx\\*",
-                    "HKEY_USERS\\%%users.sid%%\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Terminal Server\\Install\\Software\\Microsoft\\Windows\\CurrentVersion\\Run\\*",
-                    "HKEY_USERS\\%%users.sid%%\\Software\\Wow6432Node\\Microsoft\\Windows NT\\CurrentVersion\\Terminal Server\\Install\\Software\\Microsoft\\Windows\\CurrentVersion\\Runonce\\*",
-                    "HKEY_USERS\\%%users.sid%%\\Software\\Wow6432Node\\Microsoft\\Windows NT\\CurrentVersion\\Terminal Server\\Install\\Software\\Microsoft\\Windows\\CurrentVersion\\RunonceEx\\*",
-                    "HKEY_USERS\\%%users.sid%%\\Software\\Wow6432Node\\Microsoft\\Windows NT\\CurrentVersion\\Terminal Server\\Install\\Software\\Microsoft\\Windows\\CurrentVersion\\Run\\*",
-                ]
-            },
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.WINDOWS
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
-class WindowsTerminalServerStartupPrograms(GRRArtifactBase):
-    """
-    Windows Terminal Server Startup Programs
-
-    Reference URLs: http://forum.sysinternals.com/rdpclip_topic4729.html
-    """
-
-    SOURCES = [
-        {
-            "type": "REGISTRY_VALUE",
-            "attributes": {
-                "key_value_pairs": [
-                    {
-                        "key": "HKEY_LOCAL_MACHINE\\System\\CurrentControlSet\\Control\\Terminal Server\\Wds\\rdpwd",
-                        "value": "StartupPrograms",
-                    }
-                ]
-            },
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.WINDOWS
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
-class WindowsTerminalServerInitialProgram(GRRArtifactBase):
-    """
-    Windows Terminal Server Initial Program
-
-    Reference URLs:
-    https://www.microsoftpressstore.com/articles/article.aspx?p=2762082&seqNum=2
-    """
-
-    SOURCES = [
-        {
-            "type": "REGISTRY_VALUE",
-            "attributes": {
-                "key_value_pairs": [
-                    {
-                        "key": "HKEY_LOCAL_MACHINE\\System\\CurrentControlSet\\Control\\Terminal Server\\WinStations\\RDP-Tcp",
-                        "value": "InitialProgram",
-                    },
-                    {
-                        "key": "HKEY_LOCAL_MACHINE\\Software\\Policies\\Microsoft\\Windows NT\\Terminal Services",
-                        "value": "InitialProgram",
-                    },
-                    {
-                        "key": "HKEY_USERS\\%%users.sid%%\\Software\\Policies\\Microsoft\\Windows NT\\Terminal Services",
-                        "value": "InitialProgram",
-                    },
-                    {
-                        "key": "HKEY_LOCAL_MACHINE\\Software\\Wow6432Node\\Policies\\Microsoft\\Windows NT\\Terminal Services",
-                        "value": "InitialProgram",
-                    },
-                    {
-                        "key": "HKEY_USERS\\%%users.sid%%\\Software\\Wow6432Node\\Policies\\Microsoft\\Windows NT\\Terminal Services",
-                        "value": "InitialProgram",
-                    },
-                ]
-            },
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.WINDOWS
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
 class WindowsThumbcacheDatabaseFiles(GRRArtifactBase):
     """
     Windows thumbcache_*.db files.
@@ -7399,37 +7627,6 @@ class WindowsTimezone(GRRArtifactBase):
         ArtifactSupportedOS.WINDOWS
     ]
     aliases: ClassVar[Optional[list[str]]] = ["WinTimeZone"]
-
-
-class WindowsToolPaths(GRRArtifactBase):
-    """
-    Paths to windows tools such as defrag, chkdsk.
-
-    Reference URLs:
-    http://gladiator-antivirus.com/forum/index.php?showtopic=24610
-    http://www.liutilities.com/products/registrybooster/tweaklibrary/tweaks/11118/
-    """
-
-    SOURCES = [
-        {
-            "type": "REGISTRY_KEY",
-            "attributes": {
-                "keys": [
-                    "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\MyComputer\\BackupPath",
-                    "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\MyComputer\\ChkDskPath",
-                    "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\MyComputer\\cleanuppath",
-                    "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\MyComputer\\DefragPath",
-                ]
-            },
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.WINDOWS
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
 
 
 class WindowsTileDataLayerDatabase(GRRArtifactBase):
@@ -7895,39 +8092,6 @@ class WindowsUserCustomDestinationsJumpLists(GRRArtifactBase):
     aliases: ClassVar[Optional[list[str]]] = None
 
 
-class WindowsUserJumpLists(GRRArtifactBase):
-    """
-    Windows user Jump Lists.
-
-    Reference URLs:
-    https://artifacts-kb.readthedocs.io/en/latest/sources/windows/JumpLists.html
-    """
-
-    SOURCES = [
-        {
-            "type": "ARTIFACT_GROUP",
-            "attributes": {
-                "names": [
-                    "WindowsProgramsCacheJumpLists",
-                    "WindowsUserAutomaticDestinationsJumpLists",
-                    "WindowsUserCustomDestinationsJumpLists",
-                ]
-            },
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {
-        "WindowsProgramsCacheJumpLists": windows.WindowsProgramsCacheJumpLists,
-        "WindowsUserCustomDestinationsJumpLists": windows.WindowsUserCustomDestinationsJumpLists,
-        "WindowsUserAutomaticDestinationsJumpLists": windows.WindowsUserAutomaticDestinationsJumpLists,
-    }
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.WINDOWS
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
 class WindowsUserRecentFiles(GRRArtifactBase):
     """
     Windows user specific recent files.
@@ -7946,100 +8110,6 @@ class WindowsUserRecentFiles(GRRArtifactBase):
         }
     ]
     ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.WINDOWS
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
-class WindowsUserRegistryFiles(GRRArtifactBase):
-    """
-    Windows user specific Registry files.
-
-    Reference URLs:
-    https://artifacts-kb.readthedocs.io/en/latest/sources/windows/RegistryFiles.html
-    """
-
-    SOURCES = [
-        {
-            "type": "FILE",
-            "attributes": {
-                "paths": [
-                    "%%users.userprofile%%\\NTUSER.DAT",
-                    "%%users.userprofile%%\\NTUSER.MAN",
-                    "%%users.localappdata%%\\Microsoft\\Windows\\UsrClass.dat",
-                ],
-                "separator": "\\",
-            },
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.WINDOWS
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
-class WindowsUserRegistryTransactionLogFiles(GRRArtifactBase):
-    """
-    Windows user Registry transaction log files.
-
-    Reference URLs:
-    https://artifacts-kb.readthedocs.io/en/latest/sources/windows/RegistryFiles.html
-    """
-
-    SOURCES = [
-        {
-            "type": "FILE",
-            "attributes": {
-                "paths": [
-                    "%%users.userprofile%%\\NTUSER.DAT.LOG",
-                    "%%users.userprofile%%\\NTUSER.DAT.LOG1",
-                    "%%users.userprofile%%\\NTUSER.DAT.LOG2",
-                    "%%users.localappdata%%\\Microsoft\\Windows\\UsrClass.dat.LOG",
-                    "%%users.localappdata%%\\Microsoft\\Windows\\UsrClass.dat.LOG1",
-                    "%%users.localappdata%%\\Microsoft\\Windows\\UsrClass.dat.LOG2",
-                ],
-                "separator": "\\",
-            },
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.WINDOWS
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
-class WindowsUserRegistryFilesAndTransactionLogs(GRRArtifactBase):
-    """
-    Windows user Registry files and transaction logs.
-
-    Reference URLs:
-    https://artifacts-kb.readthedocs.io/en/latest/sources/windows/RegistryFiles.html
-    """
-
-    SOURCES = [
-        {
-            "type": "ARTIFACT_GROUP",
-            "attributes": {
-                "names": [
-                    "WindowsUserRegistryFiles",
-                    "WindowsUserRegistryTransactionLogFiles",
-                ]
-            },
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {
-        "WindowsUserRegistryTransactionLogFiles": windows.WindowsUserRegistryTransactionLogFiles,
-        "WindowsUserRegistryFiles": windows.WindowsUserRegistryFiles,
-    }
 
     sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
     supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
@@ -8099,310 +8169,6 @@ class WindowsWebCacheStorageQuotaDatabaseFile(GRRArtifactBase):
     aliases: ClassVar[Optional[list[str]]] = None
 
 
-class WindowsWinlogonGinaDLL(GRRArtifactBase):
-    """
-    Windows Gina DLL replacement.
-
-    Reference URLs: https://technet.microsoft.com/en-us/library/cc939701.aspx
-    """
-
-    SOURCES = [
-        {
-            "type": "REGISTRY_VALUE",
-            "attributes": {
-                "key_value_pairs": [
-                    {
-                        "key": "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon",
-                        "value": "GinaDLL",
-                    },
-                    {
-                        "key": "HKEY_USERS\\%%users.sid%%\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon",
-                        "value": "GinaDLL",
-                    },
-                ]
-            },
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.WINDOWS
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
-class WindowsWinlogonNotify(GRRArtifactBase):
-    """
-    Windows Winlogon Notify DLL names.
-
-    Reference URLs:
-    https://msdn.microsoft.com/en-us/library/windows/desktop/aa379402(v=vs.85).aspx
-    """
-
-    SOURCES = [
-        {
-            "type": "REGISTRY_VALUE",
-            "attributes": {
-                "key_value_pairs": [
-                    {
-                        "key": "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon\\Notify\\*",
-                        "value": "DLLName",
-                    },
-                    {
-                        "key": "HKEY_USERS\\%%users.sid%%\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon\\Notify\\*",
-                        "value": "DLLName",
-                    },
-                ]
-            },
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.WINDOWS
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
-class WindowsWinlogonShell(GRRArtifactBase):
-    """
-    Windows shell replacement.
-
-    Reference URLs:
-    https://msdn.microsoft.com/en-us/library/ms838576%28v=winembedded.5%29.aspx
-    """
-
-    SOURCES = [
-        {
-            "type": "REGISTRY_VALUE",
-            "attributes": {
-                "key_value_pairs": [
-                    {
-                        "key": "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon",
-                        "value": "Shell",
-                    },
-                    {
-                        "key": "HKEY_USERS\\%%users.sid%%\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon",
-                        "value": "Shell",
-                    },
-                ]
-            },
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.WINDOWS
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
-class WindowsWinlogonSystem(GRRArtifactBase):
-    """
-    Applications launched by Winlogon in the system context during the system
-    initialisation.
-
-    Reference URLs: https://code.google.com/p/regripper/wiki/ASEPs
-    http://gladiator-antivirus.com/forum/index.php?showtopic=24610
-    http://regenerus.com/malware-common-loadpoints/
-    """
-
-    SOURCES = [
-        {
-            "type": "REGISTRY_VALUE",
-            "attributes": {
-                "key_value_pairs": [
-                    {
-                        "key": "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon",
-                        "value": "System",
-                    },
-                    {
-                        "key": "HKEY_USERS\\%%users.sid%%\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon",
-                        "value": "System",
-                    },
-                ]
-            },
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.WINDOWS
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
-class WindowsWinlogonTaskman(GRRArtifactBase):
-    """
-    Windows Winlogon Taskman replacement.
-
-    Reference URLs: https://technet.microsoft.com/en-us/library/cc939701.aspx
-    """
-
-    SOURCES = [
-        {
-            "type": "REGISTRY_VALUE",
-            "attributes": {
-                "key_value_pairs": [
-                    {
-                        "key": "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon",
-                        "value": "Taskman",
-                    },
-                    {
-                        "key": "HKEY_USERS\\%%users.sid%%\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon",
-                        "value": "Taskman",
-                    },
-                ]
-            },
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.WINDOWS
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
-class WindowsWinlogonUiHost(GRRArtifactBase):
-    """
-    Windows Winlogon UI screen application
-
-    Reference URLs:
-    http://gladiator-antivirus.com/forum/index.php?showtopic=24610
-    http://www.bleepingcomputer.com/forums/t/14028/change-the-loginwelcome-screen/
-    """
-
-    SOURCES = [
-        {
-            "type": "REGISTRY_VALUE",
-            "attributes": {
-                "key_value_pairs": [
-                    {
-                        "key": "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon",
-                        "value": "UiHost",
-                    },
-                    {
-                        "key": "HKEY_USERS\\%%users.sid%%\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon",
-                        "value": "UiHost",
-                    },
-                ]
-            },
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.WINDOWS
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
-class WindowsWinlogonUserinit(GRRArtifactBase):
-    """
-    Windows Winlogon Userinit replacement.
-
-    Reference URLs: https://technet.microsoft.com/en-us/library/cc939862.aspx
-    """
-
-    SOURCES = [
-        {
-            "type": "REGISTRY_VALUE",
-            "attributes": {
-                "key_value_pairs": [
-                    {
-                        "key": "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon",
-                        "value": "Userinit",
-                    },
-                    {
-                        "key": "HKEY_USERS\\%%users.sid%%\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon",
-                        "value": "Userinit",
-                    },
-                ]
-            },
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.WINDOWS
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
-class WindowsWinlogonAvailableShells(GRRArtifactBase):
-    """
-    Windows Server Winlogon Available Shells
-
-    Used to specify an alternate shell application to be launched when logging
-    into Windows Server 2012 and later. Legitimate keys under AvailableShells
-    should just cause cmd.exe or explorer.exe to be executed, whereas malicious
-    programs may create keys that cause malware to be run when a user logs in.
-
-    Reference URLs:
-    https://andymorgan.wordpress.com/2012/03/30/changing-the-default-shell-of-windows-server-8-core/
-    https://www.microsoftpressstore.com/articles/article.aspx?p=2762082&seqNum=2
-    """
-
-    SOURCES = [
-        {
-            "type": "REGISTRY_KEY",
-            "attributes": {
-                "keys": [
-                    "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon\\AlternateShells\\AvailableShells\\*"
-                ]
-            },
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.WINDOWS
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
-class WindowsWinlogonVMApplet(GRRArtifactBase):
-    """
-    Windows VMApplet replacement.
-
-    Reference URLs: https://technet.microsoft.com/en-us/library/cc939701.aspx
-    """
-
-    SOURCES = [
-        {
-            "type": "REGISTRY_VALUE",
-            "attributes": {
-                "key_value_pairs": [
-                    {
-                        "key": "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon",
-                        "value": "VMApplet",
-                    },
-                    {
-                        "key": "HKEY_USERS\\%%users.sid%%\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon",
-                        "value": "VMApplet",
-                    },
-                ]
-            },
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.WINDOWS
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
 class WindowsWinstart(GRRArtifactBase):
     """
     Windows winstart.bat file
@@ -8417,80 +8183,6 @@ class WindowsWinstart(GRRArtifactBase):
                     "%%environ_windir%%\\dosstart.bat",
                 ],
                 "separator": "\\",
-            },
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.WINDOWS
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
-class WindowsWinlogonAppSetup(GRRArtifactBase):
-    """
-    Windows Winlogon Appsetup
-
-    Reference URLs: https://technet.microsoft.com/en-us/library/cc939701.aspx
-    """
-
-    SOURCES = [
-        {
-            "type": "REGISTRY_VALUE",
-            "attributes": {
-                "key_value_pairs": [
-                    {
-                        "key": "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon",
-                        "value": "AppSetup",
-                    }
-                ]
-            },
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.WINDOWS
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
-class WindowsWinlogonGPExtensions(GRRArtifactBase):
-    """
-    Windows Winlogon Group Policy Extensions
-
-    These keys specify DLLs that should be loaded when the group policy engine
-    loads, and can act as a persistence mechanism for malware.
-
-    Reference URLs:
-    https://www.microsoftpressstore.com/articles/article.aspx?p=2762082&seqNum=2
-    """
-
-    SOURCES = [
-        {
-            "type": "REGISTRY_VALUE",
-            "attributes": {
-                "key_value_pairs": [
-                    {
-                        "key": "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon\\GPExtensions\\*",
-                        "value": "",
-                    },
-                    {
-                        "key": "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon\\GPExtensions\\*",
-                        "value": "DllName",
-                    },
-                    {
-                        "key": "HKEY_LOCAL_MACHINE\\Software\\Wow6432Node\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon\\GPExtensions\\*",
-                        "value": "",
-                    },
-                    {
-                        "key": "HKEY_LOCAL_MACHINE\\Software\\Wow6432Node\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon\\GPExtensions\\*",
-                        "value": "DllName",
-                    },
-                ]
             },
         }
     ]
@@ -8699,28 +8391,27 @@ class WindowsXMLEventLogTerminalServices(GRRArtifactBase):
     aliases: ClassVar[Optional[list[str]]] = None
 
 
-class WinSock2LayeredServiceProviders(GRRArtifactBase):
+class WindowsApplicationCompatibilityShims(GRRArtifactBase):
     """
-    Used to filter TCP/IP traffic through WinSock2.
-
-    Reference URLs:
-    http://gladiator-antivirus.com/forum/index.php?showtopic=24610
-    https://en.wikipedia.org/wiki/Layered_Service_Provider
-    https://www.microsoftpressstore.com/articles/article.aspx?p=2762082&seqNum=2
+    Windows Application Compatibility Shim Database Files and Application
+    Mappings
     """
 
     SOURCES = [
         {
-            "type": "REGISTRY_KEY",
+            "type": "ARTIFACT_GROUP",
             "attributes": {
-                "keys": [
-                    "HKEY_LOCAL_MACHINE\\System\\CurrentControlSet\\Services\\WinSock2\\Parameters\\Protocol_Catalog9\\Catalog_Entries\\*",
-                    "HKEY_LOCAL_MACHINE\\System\\CurrentControlSet\\Services\\WinSock2\\Parameters\\Protocol_Catalog9\\Catalog_Entries64\\*",
+                "names": [
+                    "WindowsApplicationCompatibilityInstalledShimDatabases",
+                    "WindowsApplicationCompatibilityShimDatabaseMappings",
                 ]
             },
         }
     ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {
+        "WindowsApplicationCompatibilityInstalledShimDatabases": WindowsApplicationCompatibilityInstalledShimDatabases,
+        "WindowsApplicationCompatibilityShimDatabaseMappings": WindowsApplicationCompatibilityShimDatabaseMappings,
+    }
 
     sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
     supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
@@ -8729,35 +8420,374 @@ class WinSock2LayeredServiceProviders(GRRArtifactBase):
     aliases: ClassVar[Optional[list[str]]] = None
 
 
-class WinSock2NamespaceProviders(GRRArtifactBase):
+class WindowsEnvironmentVariableSystemDrive(GRRArtifactBase):
     """
-    Used to provide name-resolution services through WinSock2
+    The %SystemDrive% environment variable contains the letter of the drive in
+    which the system directory is located, typically "C:".
+
+    This value is not present in the Windows Registry but can be derived from
+    %SystemRoot%.
 
     Reference URLs:
-    https://www.symantec.com/security_response/writeup.jsp?docid=2012-020609-4221-99&tabid=2
-    http://www.nirsoft.net/utils/winsock_service_providers.html
-    https://msdn.microsoft.com/en-us/library/windows/desktop/ms739923(v=vs.85).aspx
-    https://www.microsoftpressstore.com/articles/article.aspx?p=2762082&seqNum=2
+    https://artifacts-kb.readthedocs.io/en/latest/sources/windows/EnvironmentVariables.html
     """
 
     SOURCES = [
         {
-            "type": "REGISTRY_VALUE",
+            "type": "ARTIFACT_GROUP",
+            "attributes": {"names": ["WindowsEnvironmentVariableSystemRoot"]},
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {
+        "WindowsEnvironmentVariableSystemRoot": WindowsEnvironmentVariableSystemRoot
+    }
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.WINDOWS
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class WindowsPersistenceRegistryKeys(GRRArtifactBase):
+    """
+    Windows Registry keys used for persistence.
+    """
+
+    SOURCES = [
+        {
+            "type": "ARTIFACT_GROUP",
             "attributes": {
-                "key_value_pairs": [
-                    {
-                        "key": "HKEY_LOCAL_MACHINE\\System\\CurrentControlSet\\Services\\WinSock2\\Parameters\\NameSpace_Catalog5\\Catalog_Entries\\*",
-                        "value": "LibraryPath",
-                    },
-                    {
-                        "key": "HKEY_LOCAL_MACHINE\\System\\CurrentControlSet\\Services\\WinSock2\\Parameters\\NameSpace_Catalog5\\Catalog_Entries64\\*",
-                        "value": "LibraryPath",
-                    },
+                "names": [
+                    "InternetExplorerBrowserHelperObjects",
+                    "WindowsActiveDesktop",
+                    "WindowsActiveSyncAutoStart",
+                    "WindowsAlternateShell",
+                    "WindowsAppCertDLLs",
+                    "WindowsAppInitDLLs",
+                    "WindowsBootVerificationProgram",
+                    "WindowsCommandProcessorAutoRun",
+                    "WindowsCredentialProviderFilters",
+                    "WindowsCredentialProviders",
+                    "WindowsDebugger",
+                    "WindowsEnvironmentUserLoginScripts",
+                    "WindowsExplorerAutoplayHandlers",
+                    "WindowsFileTypeAutorunAssociations",
+                    "WindowsFontDrivers",
+                    "WindowsIconServiceLib",
+                    "WindowsLSAAuthenticationPackages",
+                    "WindowsLSANotificationPackages",
+                    "WindowsLSASecurityPackages",
+                    "WindowsMSDTCDLLs",
+                    "WindowsMultiMediaDrivers",
+                    "WindowsNetworkShellHelpers",
+                    "WindowsPendingGPOs",
+                    "WindowsPLAPProviders",
+                    "WindowsPrintMonitors",
+                    "WindowsRunGrpConv",
+                    "WindowsRunKeys",
+                    "WindowsRunServices",
+                    "WindowsScreenSaverExecutable",
+                    "WindowsSearchFilterHandlers",
+                    "WindowsSecurityProviders",
+                    "WindowsServiceControlManagerExtension",
+                    "WindowsSessionManagerBootExecute",
+                    "WindowsSessionManagerExecute",
+                    "WindowsSessionManagerS0InitialCommand",
+                    "WindowsSessionManagerSetupExecute",
+                    "WindowsSessionManagerSubSystems",
+                    "WindowsSessionManagerWOWCommandLine",
+                    "WindowsSetupCommandLine",
+                    "WindowsSharedTaskScheduler",
+                    "WindowsShellExecuteHooks",
+                    "WindowsShellExtensions",
+                    "WindowsShellIconOverlayIdentifiers",
+                    "WindowsShellLoadAndRun",
+                    "WindowsShellOpenCommand",
+                    "WindowsShellRunasCommand",
+                    "WindowsShellServiceObjects",
+                    "WindowsStubPaths",
+                    "WindowsSystemPolicyShell",
+                    "WindowsTerminalServerInitialProgram",
+                    "WindowsTerminalServerRunKeys",
+                    "WindowsTerminalServerStartupPrograms",
+                    "WindowsToolPaths",
+                    "WindowsWinlogonAppSetup",
+                    "WindowsWinlogonAvailableShells",
+                    "WindowsWinlogonGinaDLL",
+                    "WindowsWinlogonGPExtensions",
+                    "WindowsWinlogonNotify",
+                    "WindowsWinlogonShell",
+                    "WindowsWinlogonSystem",
+                    "WindowsWinlogonTaskman",
+                    "WindowsWinlogonUiHost",
+                    "WindowsWinlogonUserinit",
+                    "WindowsWinlogonVMApplet",
+                    "WinSock2LayeredServiceProviders",
+                    "WinSock2NamespaceProviders",
                 ]
             },
         }
     ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {
+        "WindowsPLAPProviders": WindowsPLAPProviders,
+        "WindowsPrintMonitors": WindowsPrintMonitors,
+        "WindowsLSANotificationPackages": WindowsLSANotificationPackages,
+        "WindowsShellExecuteHooks": WindowsShellExecuteHooks,
+        "WindowsSessionManagerBootExecute": WindowsSessionManagerBootExecute,
+        "WindowsTerminalServerRunKeys": WindowsTerminalServerRunKeys,
+        "WindowsLSASecurityPackages": WindowsLSASecurityPackages,
+        "WindowsWinlogonAppSetup": WindowsWinlogonAppSetup,
+        "WindowsCredentialProviders": WindowsCredentialProviders,
+        "WindowsSessionManagerSubSystems": WindowsSessionManagerSubSystems,
+        "WindowsRunKeys": WindowsRunKeys,
+        "WindowsLSAAuthenticationPackages": WindowsLSAAuthenticationPackages,
+        "WinSock2NamespaceProviders": WinSock2NamespaceProviders,
+        "WindowsWinlogonNotify": WindowsWinlogonNotify,
+        "WindowsCredentialProviderFilters": WindowsCredentialProviderFilters,
+        "WindowsStubPaths": WindowsStubPaths,
+        "WindowsShellRunasCommand": WindowsShellRunasCommand,
+        "WindowsWinlogonSystem": WindowsWinlogonSystem,
+        "WindowsSearchFilterHandlers": WindowsSearchFilterHandlers,
+        "WindowsRunServices": WindowsRunServices,
+        "WindowsAppInitDLLs": WindowsAppInitDLLs,
+        "WindowsServiceControlManagerExtension": WindowsServiceControlManagerExtension,
+        "WindowsWinlogonGPExtensions": WindowsWinlogonGPExtensions,
+        "WindowsSessionManagerSetupExecute": WindowsSessionManagerSetupExecute,
+        "WindowsShellServiceObjects": WindowsShellServiceObjects,
+        "WindowsIconServiceLib": WindowsIconServiceLib,
+        "WindowsShellExtensions": WindowsShellExtensions,
+        "WindowsWinlogonAvailableShells": WindowsWinlogonAvailableShells,
+        "InternetExplorerBrowserHelperObjects": webbrowser.InternetExplorerBrowserHelperObjects,
+        "WindowsSystemPolicyShell": WindowsSystemPolicyShell,
+        "WinSock2LayeredServiceProviders": WinSock2LayeredServiceProviders,
+        "WindowsWinlogonShell": WindowsWinlogonShell,
+        "WindowsWinlogonUserinit": WindowsWinlogonUserinit,
+        "WindowsSetupCommandLine": WindowsSetupCommandLine,
+        "WindowsWinlogonVMApplet": WindowsWinlogonVMApplet,
+        "WindowsActiveSyncAutoStart": WindowsActiveSyncAutoStart,
+        "WindowsMSDTCDLLs": WindowsMSDTCDLLs,
+        "WindowsCommandProcessorAutoRun": WindowsCommandProcessorAutoRun,
+        "WindowsSecurityProviders": WindowsSecurityProviders,
+        "WindowsSessionManagerExecute": WindowsSessionManagerExecute,
+        "WindowsScreenSaverExecutable": WindowsScreenSaverExecutable,
+        "WindowsSharedTaskScheduler": WindowsSharedTaskScheduler,
+        "WindowsShellOpenCommand": WindowsShellOpenCommand,
+        "WindowsToolPaths": WindowsToolPaths,
+        "WindowsNetworkShellHelpers": WindowsNetworkShellHelpers,
+        "WindowsSessionManagerS0InitialCommand": WindowsSessionManagerS0InitialCommand,
+        "WindowsDebugger": WindowsDebugger,
+        "WindowsWinlogonGinaDLL": WindowsWinlogonGinaDLL,
+        "WindowsTerminalServerStartupPrograms": WindowsTerminalServerStartupPrograms,
+        "WindowsShellLoadAndRun": WindowsShellLoadAndRun,
+        "WindowsRunGrpConv": WindowsRunGrpConv,
+        "WindowsFontDrivers": WindowsFontDrivers,
+        "WindowsWinlogonUiHost": WindowsWinlogonUiHost,
+        "WindowsShellIconOverlayIdentifiers": WindowsShellIconOverlayIdentifiers,
+        "WindowsEnvironmentUserLoginScripts": WindowsEnvironmentUserLoginScripts,
+        "WindowsAlternateShell": WindowsAlternateShell,
+        "WindowsExplorerAutoplayHandlers": WindowsExplorerAutoplayHandlers,
+        "WindowsActiveDesktop": WindowsActiveDesktop,
+        "WindowsAppCertDLLs": WindowsAppCertDLLs,
+        "WindowsTerminalServerInitialProgram": WindowsTerminalServerInitialProgram,
+        "WindowsWinlogonTaskman": WindowsWinlogonTaskman,
+        "WindowsMultiMediaDrivers": WindowsMultiMediaDrivers,
+        "WindowsSessionManagerWOWCommandLine": WindowsSessionManagerWOWCommandLine,
+        "WindowsBootVerificationProgram": WindowsBootVerificationProgram,
+        "WindowsFileTypeAutorunAssociations": WindowsFileTypeAutorunAssociations,
+        "WindowsPendingGPOs": WindowsPendingGPOs,
+    }
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.WINDOWS
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class WindowsSystemRegistryFilesAndTransactionLogs(GRRArtifactBase):
+    """
+    Windows system Registry files and transaction logs.
+
+    Reference URLs:
+    https://artifacts-kb.readthedocs.io/en/latest/sources/windows/RegistryFiles.html
+    """
+
+    SOURCES = [
+        {
+            "type": "ARTIFACT_GROUP",
+            "attributes": {
+                "names": [
+                    "WindowsSystemRegistryFiles",
+                    "WindowsSystemRegistryTransactionLogFiles",
+                ]
+            },
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {
+        "WindowsSystemRegistryTransactionLogFiles": WindowsSystemRegistryTransactionLogFiles,
+        "WindowsSystemRegistryFiles": WindowsSystemRegistryFiles,
+    }
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.WINDOWS
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class WindowsRegistryFilesAndTransactionLogs(GRRArtifactBase):
+    """
+    Windows user and system Registry files and transaction logs.
+
+    Reference URLs:
+    https://artifacts-kb.readthedocs.io/en/latest/sources/windows/RegistryFiles.html
+    """
+
+    SOURCES = [
+        {
+            "type": "ARTIFACT_GROUP",
+            "attributes": {
+                "names": [
+                    "WindowsSystemRegistryFiles",
+                    "WindowsSystemRegistryTransactionLogFiles",
+                    "WindowsUserRegistryFiles",
+                    "WindowsUserRegistryTransactionLogFiles",
+                ]
+            },
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {
+        "WindowsUserRegistryFiles": WindowsUserRegistryFiles,
+        "WindowsSystemRegistryTransactionLogFiles": WindowsSystemRegistryTransactionLogFiles,
+        "WindowsSystemRegistryFiles": WindowsSystemRegistryFiles,
+        "WindowsUserRegistryTransactionLogFiles": WindowsUserRegistryTransactionLogFiles,
+    }
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.WINDOWS
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class WindowsUserRegistryFilesAndTransactionLogs(GRRArtifactBase):
+    """
+    Windows user Registry files and transaction logs.
+
+    Reference URLs:
+    https://artifacts-kb.readthedocs.io/en/latest/sources/windows/RegistryFiles.html
+    """
+
+    SOURCES = [
+        {
+            "type": "ARTIFACT_GROUP",
+            "attributes": {
+                "names": [
+                    "WindowsUserRegistryFiles",
+                    "WindowsUserRegistryTransactionLogFiles",
+                ]
+            },
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {
+        "WindowsUserRegistryFiles": WindowsUserRegistryFiles,
+        "WindowsUserRegistryTransactionLogFiles": WindowsUserRegistryTransactionLogFiles,
+    }
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.WINDOWS
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class WindowsSystemRegistryFilesAndTransactionLogsBackup(GRRArtifactBase):
+    """
+    Backup of Windows system Registry files and transaction logs.
+
+    Reference URLs:
+    https://artifacts-kb.readthedocs.io/en/latest/sources/windows/RegistryFiles.html
+    """
+
+    SOURCES = [
+        {
+            "type": "ARTIFACT_GROUP",
+            "attributes": {
+                "names": [
+                    "WindowsSystemRegistryFilesBackup",
+                    "WindowsSystemRegistryTransactionLogFilesBackup",
+                ]
+            },
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {
+        "WindowsSystemRegistryTransactionLogFilesBackup": WindowsSystemRegistryTransactionLogFilesBackup,
+        "WindowsSystemRegistryFilesBackup": WindowsSystemRegistryFilesBackup,
+    }
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.WINDOWS
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class WindowsUserJumpLists(GRRArtifactBase):
+    """
+    Windows user Jump Lists.
+
+    Reference URLs:
+    https://artifacts-kb.readthedocs.io/en/latest/sources/windows/JumpLists.html
+    """
+
+    SOURCES = [
+        {
+            "type": "ARTIFACT_GROUP",
+            "attributes": {
+                "names": [
+                    "WindowsProgramsCacheJumpLists",
+                    "WindowsUserAutomaticDestinationsJumpLists",
+                    "WindowsUserCustomDestinationsJumpLists",
+                ]
+            },
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {
+        "WindowsUserCustomDestinationsJumpLists": WindowsUserCustomDestinationsJumpLists,
+        "WindowsUserAutomaticDestinationsJumpLists": WindowsUserAutomaticDestinationsJumpLists,
+        "WindowsProgramsCacheJumpLists": WindowsProgramsCacheJumpLists,
+    }
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.WINDOWS
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class WindowsPersistenceMechanisms(GRRArtifactBase):
+    """
+    Persistence mechanisms in Windows.
+    """
+
+    SOURCES = [
+        {
+            "type": "ARTIFACT_GROUP",
+            "attributes": {
+                "names": [
+                    "WindowsPersistenceRegistryKeys",
+                    "WindowsPowerShellDefaultProfiles",
+                    "WindowsServices",
+                ]
+            },
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {
+        "WindowsServices": WindowsServices,
+        "WindowsPowerShellDefaultProfiles": WindowsPowerShellDefaultProfiles,
+        "WindowsPersistenceRegistryKeys": WindowsPersistenceRegistryKeys,
+    }
 
     sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
     supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
