@@ -247,9 +247,6 @@ if __name__ == "__main__":
 
     # Generate the Pydantic models for each module group
     for group_name, members in module_groups.items():
-        if group_name != "triage":
-            continue
-
         target_file = get_target_dir() / f"{group_name}.py"
         print(
             f"Generating models for {group_name} -> {target_file.relative_to(get_target_dir())}"

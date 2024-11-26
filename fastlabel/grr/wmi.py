@@ -279,26 +279,6 @@ class WMILastBootupTime(GRRArtifactBase):
     aliases: ClassVar[Optional[list[str]]] = None
 
 
-class WMILogicalDisks(GRRArtifactBase):
-    """
-    Disk information via Windows Management Instrumentation (WMI).
-
-    Reference URLs:
-    http://msdn.microsoft.com/en-us/library/aa394173(v=vs.85).aspx
-    """
-
-    SOURCES = [
-        {"type": "WMI", "attributes": {"query": "SELECT * FROM Win32_LogicalDisk"}}
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.WINDOWS
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
 class WMILoggedOnSessions(GRRArtifactBase):
     """
     Logged on users queried from WMI.
@@ -323,6 +303,26 @@ class WMILoggedOnUsers(GRRArtifactBase):
 
     SOURCES = [
         {"type": "WMI", "attributes": {"query": "SELECT * FROM Win32_LoggedonUser"}}
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.WINDOWS
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class WMILogicalDisks(GRRArtifactBase):
+    """
+    Disk information via Windows Management Instrumentation (WMI).
+
+    Reference URLs:
+    http://msdn.microsoft.com/en-us/library/aa394173(v=vs.85).aspx
+    """
+
+    SOURCES = [
+        {"type": "WMI", "attributes": {"query": "SELECT * FROM Win32_LogicalDisk"}}
     ]
     ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
 

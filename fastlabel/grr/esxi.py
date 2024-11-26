@@ -31,6 +31,23 @@ class ESXApiForwarder(GRRArtifactBase):
     aliases: ClassVar[Optional[list[str]]] = None
 
 
+class ESXTokenService(GRRArtifactBase):
+    """
+    Records activities related to the vSphere Trust Authority ESX Token Service.
+    """
+
+    SOURCES = [
+        {"type": "FILE", "attributes": {"paths": ["/var/run/log/esxtokend.log"]}}
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.ESXI
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
 class ESXiAttestationService(GRRArtifactBase):
     """
     Records activities related to the vSphere Trust Authority Attestation
@@ -150,23 +167,6 @@ class ESXiSystemMessageslog(GRRArtifactBase):
     """
 
     SOURCES = [{"type": "FILE", "attributes": {"paths": ["/var/log/syslog.log"]}}]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.ESXI
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
-class ESXTokenService(GRRArtifactBase):
-    """
-    Records activities related to the vSphere Trust Authority ESX Token Service.
-    """
-
-    SOURCES = [
-        {"type": "FILE", "attributes": {"paths": ["/var/run/log/esxtokend.log"]}}
-    ]
     ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
 
     sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)

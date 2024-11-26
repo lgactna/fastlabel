@@ -137,6 +137,24 @@ class SambaConfigFile(GRRArtifactBase):
     aliases: ClassVar[Optional[list[str]]] = None
 
 
+class SshUserConfigFile(GRRArtifactBase):
+    """
+    User ssh configuration file
+    """
+
+    SOURCES = [
+        {"type": "FILE", "attributes": {"paths": ["%%users.homedir%%/.ssh/config"]}}
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.LINUX,
+        ArtifactSupportedOS.DARWIN,
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
 class SshdConfigFile(GRRArtifactBase):
     """
     Sshd configuration
@@ -155,24 +173,6 @@ class SshdConfigFile(GRRArtifactBase):
             "attributes": {"paths": ["/etc/ssh/sshd_config"]},
             "supported_os": ["Linux"],
         },
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.LINUX,
-        ArtifactSupportedOS.DARWIN,
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
-class SshUserConfigFile(GRRArtifactBase):
-    """
-    User ssh configuration file
-    """
-
-    SOURCES = [
-        {"type": "FILE", "attributes": {"paths": ["%%users.homedir%%/.ssh/config"]}}
     ]
     ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
 

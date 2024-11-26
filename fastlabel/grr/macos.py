@@ -190,97 +190,6 @@ class MacOSApplicationResourcesStringsPlistFile(GRRArtifactBase):
     aliases: ClassVar[Optional[list[str]]] = None
 
 
-class MacOSAssetCacheInfoSQLiteDatabaseFile(GRRArtifactBase):
-    """
-    Asset cache information SQLite database file.
-    """
-
-    SOURCES = [
-        {
-            "type": "FILE",
-            "attributes": {
-                "paths": ["/Library/Caches/com.apple.AssetCache/AssetInfo.db"]
-            },
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.DARWIN
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
-class MacOSAuthorizationRulesSQLiteDatabaseFile(GRRArtifactBase):
-    """
-    Authorization rules SQLite database file.
-
-    Superscedes /etc/authorization seen Mac OS X 10.8 Mountain Lion and earlier
-    versions.
-    """
-
-    SOURCES = [
-        {
-            "type": "FILE",
-            "attributes": {"paths": ["/private/var/db/auth.db", "/var/db/auth.db"]},
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.DARWIN
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
-class MacOSCalendarCacheSQLiteDatabaseFile(GRRArtifactBase):
-    """
-    Calendar cache SQLite database file.
-    """
-
-    SOURCES = [
-        {
-            "type": "FILE",
-            "attributes": {
-                "paths": ["%%users.homedir%%/Library/Calendars/Calendar Cache"]
-            },
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.DARWIN
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
-class MacOSCallHistoryCacheSQLiteDatabaseFile(GRRArtifactBase):
-    """
-    Call history cache SQLite database file.
-    """
-
-    SOURCES = [
-        {
-            "type": "FILE",
-            "attributes": {
-                "paths": [
-                    "%%users.homedir%%/Library/Application Support/CallHistoryDB/CallHistory.storedata"
-                ]
-            },
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.DARWIN
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
 class MacOSApplicationsDirectory(GRRArtifactBase):
     """
     Contents of the Applications directory.
@@ -314,6 +223,28 @@ class MacOSApplicationsRecentItems(GRRArtifactBase):
                 "paths": [
                     "%%users.homedir%%/Library/Preferences/*.LSSharedFileList.plist"
                 ]
+            },
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.DARWIN
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class MacOSAssetCacheInfoSQLiteDatabaseFile(GRRArtifactBase):
+    """
+    Asset cache information SQLite database file.
+    """
+
+    SOURCES = [
+        {
+            "type": "FILE",
+            "attributes": {
+                "paths": ["/Library/Caches/com.apple.AssetCache/AssetInfo.db"]
             },
         }
     ]
@@ -373,6 +304,29 @@ class MacOSAuditLogFile(GRRArtifactBase):
     aliases: ClassVar[Optional[list[str]]] = ["MacOSAuditLogFiles"]
 
 
+class MacOSAuthorizationRulesSQLiteDatabaseFile(GRRArtifactBase):
+    """
+    Authorization rules SQLite database file.
+
+    Superscedes /etc/authorization seen Mac OS X 10.8 Mountain Lion and earlier
+    versions.
+    """
+
+    SOURCES = [
+        {
+            "type": "FILE",
+            "attributes": {"paths": ["/private/var/db/auth.db", "/var/db/auth.db"]},
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.DARWIN
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
 class MacOSBluetoothPlistFile(GRRArtifactBase):
     """
     Bluetooth preferences and paired device information property list (plist)
@@ -386,6 +340,52 @@ class MacOSBluetoothPlistFile(GRRArtifactBase):
         {
             "type": "FILE",
             "attributes": {"paths": ["/Library/Preferences/com.apple.Bluetooth.plist"]},
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.DARWIN
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class MacOSCalendarCacheSQLiteDatabaseFile(GRRArtifactBase):
+    """
+    Calendar cache SQLite database file.
+    """
+
+    SOURCES = [
+        {
+            "type": "FILE",
+            "attributes": {
+                "paths": ["%%users.homedir%%/Library/Calendars/Calendar Cache"]
+            },
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.DARWIN
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class MacOSCallHistoryCacheSQLiteDatabaseFile(GRRArtifactBase):
+    """
+    Call history cache SQLite database file.
+    """
+
+    SOURCES = [
+        {
+            "type": "FILE",
+            "attributes": {
+                "paths": [
+                    "%%users.homedir%%/Library/Application Support/CallHistoryDB/CallHistory.storedata"
+                ]
+            },
         }
     ]
     ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
@@ -560,6 +560,31 @@ class MacOSCronTabs(GRRArtifactBase):
     aliases: ClassVar[Optional[list[str]]] = None
 
 
+class MacOSDirectoryServicesLocalNodesSQLiteDatabaseFile(GRRArtifactBase):
+    """
+    Directory services local nodes database.
+    """
+
+    SOURCES = [
+        {
+            "type": "FILE",
+            "attributes": {
+                "paths": [
+                    "/private/var/db/dslocal/nodes/Default/sqlindex",
+                    "/var/db/dslocal/nodes/Default/sqlindex",
+                ]
+            },
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.DARWIN
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
 class MacOSDockConfigurationPlistFile(GRRArtifactBase):
     """
     Dock configuration property list (plist) file.
@@ -588,31 +613,6 @@ class MacOSDockConfigurationPlistFile(GRRArtifactBase):
     aliases: ClassVar[Optional[list[str]]] = ["MacOSDock"]
 
 
-class MacOSDirectoryServicesLocalNodesSQLiteDatabaseFile(GRRArtifactBase):
-    """
-    Directory services local nodes database.
-    """
-
-    SOURCES = [
-        {
-            "type": "FILE",
-            "attributes": {
-                "paths": [
-                    "/private/var/db/dslocal/nodes/Default/sqlindex",
-                    "/var/db/dslocal/nodes/Default/sqlindex",
-                ]
-            },
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.DARWIN
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
 class MacOSDuetActivitySchedulerSQLiteDatabaseFile(GRRArtifactBase):
     """
     Duet activity scheduler database.
@@ -625,31 +625,6 @@ class MacOSDuetActivitySchedulerSQLiteDatabaseFile(GRRArtifactBase):
                 "paths": [
                     "/private/var/db/DuetActivityScheduler/DuetActivitySchedulerClassC.db",
                     "/var/db/DuetActivityScheduler/DuetActivitySchedulerClassC.db",
-                ]
-            },
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.DARWIN
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
-class MacOSDuetinteractionCSQLiteDatabaseFile(GRRArtifactBase):
-    """
-    Duet interactionC database.
-    """
-
-    SOURCES = [
-        {
-            "type": "FILE",
-            "attributes": {
-                "paths": [
-                    "/private/var/db/CoreDuet/People/interactionC.db",
-                    "/var/db/CoreDuet/People/interactionC.db",
                 ]
             },
         }
@@ -742,6 +717,31 @@ class MacOSDuetSystemEventsSQLiteDatabaseFile(GRRArtifactBase):
     aliases: ClassVar[Optional[list[str]]] = None
 
 
+class MacOSDuetinteractionCSQLiteDatabaseFile(GRRArtifactBase):
+    """
+    Duet interactionC database.
+    """
+
+    SOURCES = [
+        {
+            "type": "FILE",
+            "attributes": {
+                "paths": [
+                    "/private/var/db/CoreDuet/People/interactionC.db",
+                    "/var/db/CoreDuet/People/interactionC.db",
+                ]
+            },
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.DARWIN
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
 class MacOSFSEventsFile(GRRArtifactBase):
     """
     File system events disk log stream (fsevents) files.
@@ -811,57 +811,6 @@ class MacOSGlobalPreferencesPlistFile(GRRArtifactBase):
     aliases: ClassVar[Optional[list[str]]] = None
 
 
-class MacOSiCloudAccounts(GRRArtifactBase):
-    """
-    iCloud Accounts
-    """
-
-    SOURCES = [
-        {
-            "type": "FILE",
-            "attributes": {
-                "paths": [
-                    "%%users.homedir%%/Library/Application Support/iCloud/Accounts/*"
-                ]
-            },
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.DARWIN
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
-class MacOSiCloudPreferences(GRRArtifactBase):
-    """
-    iCloud user preferences
-
-    Reference URLs:
-    https://forensics.wiki/mac_os_x_10.9_artifacts_location#preferences
-    """
-
-    SOURCES = [
-        {
-            "type": "FILE",
-            "attributes": {
-                "paths": [
-                    "%%users.homedir%%/Library/Preferences/MobileMeAccounts.plist"
-                ]
-            },
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.DARWIN
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
 class MacOSIdentityServicesSQLiteDatabaseFile(GRRArtifactBase):
     """
     Identity services SQLite database file.
@@ -872,31 +821,6 @@ class MacOSIdentityServicesSQLiteDatabaseFile(GRRArtifactBase):
             "type": "FILE",
             "attributes": {
                 "paths": ["%%users.homedir%%/Library/IdentityServices/ids.db"]
-            },
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.DARWIN
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
-class MacOSiDevices(GRRArtifactBase):
-    """
-    Attached iDevices
-
-    Reference URLs:
-    https://forensics.wiki/mac_os_x_10.9_artifacts_location#preferences
-    """
-
-    SOURCES = [
-        {
-            "type": "FILE",
-            "attributes": {
-                "paths": ["%%users.homedir%%/Library/Preferences/com.apple.iPod.plist"]
             },
         }
     ]
@@ -945,163 +869,6 @@ class MacOSInstallationLogFile(GRRArtifactBase):
             "type": "FILE",
             "attributes": {
                 "paths": ["/private/var/log/install.log", "/var/log/install.log"]
-            },
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.DARWIN
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
-class MacOSiTunesInterfaceBuilderDocumentPlistFile(GRRArtifactBase):
-    """
-    iTunes Interface Builder document (*.itxib) plist file.
-    """
-
-    SOURCES = [
-        {
-            "type": "FILE",
-            "attributes": {
-                "paths": ["/Applications/iTunes.app/Contents/Resources/*.lproj/*.itxib"]
-            },
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.DARWIN
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
-class MacOSiOSBackupInfo(GRRArtifactBase):
-    """
-    iOS device backup information
-
-    Reference URLs:
-    https://forensics.wiki/mac_os_x_10.9_artifacts_location#idevice-backup
-    """
-
-    SOURCES = [
-        {
-            "type": "FILE",
-            "attributes": {
-                "paths": [
-                    "%%users.homedir%%/Library/Application Support/MobileSync/Backup/*/info.plist"
-                ]
-            },
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.DARWIN
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
-class MacOSiOSBackupManifest(GRRArtifactBase):
-    """
-    iOS device backup apps information
-
-    Reference URLs:
-    https://forensics.wiki/mac_os_x_10.9_artifacts_location#idevice-backup
-    """
-
-    SOURCES = [
-        {
-            "type": "FILE",
-            "attributes": {
-                "paths": [
-                    "%%users.homedir%%/Library/Application Support/MobileSync/Backup/*/Manifest.plist"
-                ]
-            },
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.DARWIN
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
-class MacOSiOSBackupMbdb(GRRArtifactBase):
-    """
-    iOS device backup files information
-
-    Reference URLs:
-    https://forensics.wiki/mac_os_x_10.9_artifacts_location#idevice-backup
-    """
-
-    SOURCES = [
-        {
-            "type": "FILE",
-            "attributes": {
-                "paths": [
-                    "%%users.homedir%%/Library/Application Support/MobileSync/Backup/*/Manifest.mdbd"
-                ]
-            },
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.DARWIN
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
-class MacOSiOSBackupsMainDirectory(GRRArtifactBase):
-    """
-    iOS device backups directory
-
-    Reference URLs:
-    https://forensics.wiki/mac_os_x_10.9_artifacts_location#idevice-backup
-    """
-
-    SOURCES = [
-        {
-            "type": "FILE",
-            "attributes": {
-                "paths": [
-                    "%%users.homedir%%/Library/Application Support/MobileSync/Backup/*"
-                ]
-            },
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.DARWIN
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
-class MacOSiOSBackupStatus(GRRArtifactBase):
-    """
-    iOS device backup status information.
-
-    Reference URLs:
-    https://forensics.wiki/mac_os_x_10.9_artifacts_location#idevice-backup
-    """
-
-    SOURCES = [
-        {
-            "type": "FILE",
-            "attributes": {
-                "paths": [
-                    "%%users.homedir%%/Library/Application Support/MobileSync/Backup/*/Status.plist"
-                ]
             },
         }
     ]
@@ -1358,30 +1125,6 @@ class MacOSMailBackupTOC(GRRArtifactBase):
     aliases: ClassVar[Optional[list[str]]] = None
 
 
-class MacOSMailboxes(GRRArtifactBase):
-    """
-    Mail Mailbox Directory. Until now only V2, V3 and V5 have been observed.
-
-    Reference URLs: https://forensics.wiki/mac_os_x_10.9_artifacts_location#mail
-    """
-
-    SOURCES = [
-        {
-            "type": "FILE",
-            "attributes": {
-                "paths": ["%%users.homedir%%/Library/Mail/V[0-9]/Mailboxes/*"]
-            },
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.DARWIN
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
 class MacOSMailDownloadAttachments(GRRArtifactBase):
     """
     Mail Downloads Directory
@@ -1589,6 +1332,30 @@ class MacOSMailSignatures(GRRArtifactBase):
             "type": "FILE",
             "attributes": {
                 "paths": ["%%users.homedir%%/Library/Mail/V[0-9]/MailData/Signatures/*"]
+            },
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.DARWIN
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class MacOSMailboxes(GRRArtifactBase):
+    """
+    Mail Mailbox Directory. Until now only V2, V3 and V5 have been observed.
+
+    Reference URLs: https://forensics.wiki/mac_os_x_10.9_artifacts_location#mail
+    """
+
+    SOURCES = [
+        {
+            "type": "FILE",
+            "attributes": {
+                "paths": ["%%users.homedir%%/Library/Mail/V[0-9]/Mailboxes/*"]
             },
         }
     ]
@@ -2438,6 +2205,36 @@ class MacOSUnifiedLogging(GRRArtifactBase):
     aliases: ClassVar[Optional[list[str]]] = None
 
 
+class MacOSUserAccountsSQLiteDatabaseFile(GRRArtifactBase):
+    """
+    User Accounts SQLite database files.
+
+    Seen Accounts3.sqlite and Accounts4.sqlite
+
+    Reference URLs:
+    https://forensics.wiki/mac_os_x_10.9_artifacts_location#user.27s-accounts
+    """
+
+    SOURCES = [
+        {
+            "type": "FILE",
+            "attributes": {
+                "paths": [
+                    "%%users.homedir%%/Library/Accounts/Accounts*.sqlite",
+                    "%%users.homedir%%/Library/Accounts/Accounts*.sqlite-wal",
+                ]
+            },
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.DARWIN
+    ]
+    aliases: ClassVar[Optional[list[str]]] = ["MacOSUserSocialAccounts"]
+
+
 class MacOSUserApplicationLogFile(GRRArtifactBase):
     """
     User applications log files.
@@ -2841,36 +2638,6 @@ class MacOSUserPublicDirectory(GRRArtifactBase):
     aliases: ClassVar[Optional[list[str]]] = None
 
 
-class MacOSUserAccountsSQLiteDatabaseFile(GRRArtifactBase):
-    """
-    User Accounts SQLite database files.
-
-    Seen Accounts3.sqlite and Accounts4.sqlite
-
-    Reference URLs:
-    https://forensics.wiki/mac_os_x_10.9_artifacts_location#user.27s-accounts
-    """
-
-    SOURCES = [
-        {
-            "type": "FILE",
-            "attributes": {
-                "paths": [
-                    "%%users.homedir%%/Library/Accounts/Accounts*.sqlite",
-                    "%%users.homedir%%/Library/Accounts/Accounts*.sqlite-wal",
-                ]
-            },
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.DARWIN
-    ]
-    aliases: ClassVar[Optional[list[str]]] = ["MacOSUserSocialAccounts"]
-
-
 class MacOSUserTrashDirectory(GRRArtifactBase):
     """
     Contents of the user Trash directories.
@@ -2972,6 +2739,239 @@ class MacOSXcodeiOSDeviceLogsSQLiteDatabaseFile(GRRArtifactBase):
                 "paths": [
                     "%%users.homedir%%/Library/Developer/Xcode/iOS Device Logs/iOS Device Logs *.db"
                 ]
+            },
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.DARWIN
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class MacOSiCloudAccounts(GRRArtifactBase):
+    """
+    iCloud Accounts
+    """
+
+    SOURCES = [
+        {
+            "type": "FILE",
+            "attributes": {
+                "paths": [
+                    "%%users.homedir%%/Library/Application Support/iCloud/Accounts/*"
+                ]
+            },
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.DARWIN
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class MacOSiCloudPreferences(GRRArtifactBase):
+    """
+    iCloud user preferences
+
+    Reference URLs:
+    https://forensics.wiki/mac_os_x_10.9_artifacts_location#preferences
+    """
+
+    SOURCES = [
+        {
+            "type": "FILE",
+            "attributes": {
+                "paths": [
+                    "%%users.homedir%%/Library/Preferences/MobileMeAccounts.plist"
+                ]
+            },
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.DARWIN
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class MacOSiDevices(GRRArtifactBase):
+    """
+    Attached iDevices
+
+    Reference URLs:
+    https://forensics.wiki/mac_os_x_10.9_artifacts_location#preferences
+    """
+
+    SOURCES = [
+        {
+            "type": "FILE",
+            "attributes": {
+                "paths": ["%%users.homedir%%/Library/Preferences/com.apple.iPod.plist"]
+            },
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.DARWIN
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class MacOSiOSBackupInfo(GRRArtifactBase):
+    """
+    iOS device backup information
+
+    Reference URLs:
+    https://forensics.wiki/mac_os_x_10.9_artifacts_location#idevice-backup
+    """
+
+    SOURCES = [
+        {
+            "type": "FILE",
+            "attributes": {
+                "paths": [
+                    "%%users.homedir%%/Library/Application Support/MobileSync/Backup/*/info.plist"
+                ]
+            },
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.DARWIN
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class MacOSiOSBackupManifest(GRRArtifactBase):
+    """
+    iOS device backup apps information
+
+    Reference URLs:
+    https://forensics.wiki/mac_os_x_10.9_artifacts_location#idevice-backup
+    """
+
+    SOURCES = [
+        {
+            "type": "FILE",
+            "attributes": {
+                "paths": [
+                    "%%users.homedir%%/Library/Application Support/MobileSync/Backup/*/Manifest.plist"
+                ]
+            },
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.DARWIN
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class MacOSiOSBackupMbdb(GRRArtifactBase):
+    """
+    iOS device backup files information
+
+    Reference URLs:
+    https://forensics.wiki/mac_os_x_10.9_artifacts_location#idevice-backup
+    """
+
+    SOURCES = [
+        {
+            "type": "FILE",
+            "attributes": {
+                "paths": [
+                    "%%users.homedir%%/Library/Application Support/MobileSync/Backup/*/Manifest.mdbd"
+                ]
+            },
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.DARWIN
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class MacOSiOSBackupStatus(GRRArtifactBase):
+    """
+    iOS device backup status information.
+
+    Reference URLs:
+    https://forensics.wiki/mac_os_x_10.9_artifacts_location#idevice-backup
+    """
+
+    SOURCES = [
+        {
+            "type": "FILE",
+            "attributes": {
+                "paths": [
+                    "%%users.homedir%%/Library/Application Support/MobileSync/Backup/*/Status.plist"
+                ]
+            },
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.DARWIN
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class MacOSiOSBackupsMainDirectory(GRRArtifactBase):
+    """
+    iOS device backups directory
+
+    Reference URLs:
+    https://forensics.wiki/mac_os_x_10.9_artifacts_location#idevice-backup
+    """
+
+    SOURCES = [
+        {
+            "type": "FILE",
+            "attributes": {
+                "paths": [
+                    "%%users.homedir%%/Library/Application Support/MobileSync/Backup/*"
+                ]
+            },
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.DARWIN
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class MacOSiTunesInterfaceBuilderDocumentPlistFile(GRRArtifactBase):
+    """
+    iTunes Interface Builder document (*.itxib) plist file.
+    """
+
+    SOURCES = [
+        {
+            "type": "FILE",
+            "attributes": {
+                "paths": ["/Applications/iTunes.app/Contents/Resources/*.lproj/*.itxib"]
             },
         }
     ]

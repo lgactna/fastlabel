@@ -157,33 +157,6 @@ class UnixPasswdFile(GRRArtifactBase):
     aliases: ClassVar[Optional[list[str]]] = ["UnixPasswd"]
 
 
-class UnixShadowFile(GRRArtifactBase):
-    """
-    Unix shadow file.
-    """
-
-    SOURCES = [
-        {
-            "type": "FILE",
-            "attributes": {"paths": ["/etc/shadow"]},
-            "supported_os": ["Darwin", "Linux"],
-        },
-        {
-            "type": "FILE",
-            "attributes": {"paths": ["/private/etc/shadow"]},
-            "supported_os": ["Darwin"],
-        },
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.DARWIN,
-        ArtifactSupportedOS.LINUX,
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
 class UnixShadowBackupFile(GRRArtifactBase):
     """
     Unix shadow backup file.
@@ -200,6 +173,33 @@ class UnixShadowBackupFile(GRRArtifactBase):
         {
             "type": "FILE",
             "attributes": {"paths": ["/private/etc/shadow-"]},
+            "supported_os": ["Darwin"],
+        },
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.DARWIN,
+        ArtifactSupportedOS.LINUX,
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class UnixShadowFile(GRRArtifactBase):
+    """
+    Unix shadow file.
+    """
+
+    SOURCES = [
+        {
+            "type": "FILE",
+            "attributes": {"paths": ["/etc/shadow"]},
+            "supported_os": ["Darwin", "Linux"],
+        },
+        {
+            "type": "FILE",
+            "attributes": {"paths": ["/private/etc/shadow"]},
             "supported_os": ["Darwin"],
         },
     ]
@@ -292,9 +292,9 @@ class UnixUsersGroups(GRRArtifactBase):
         }
     ]
     ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {
+        "UnixShadowFile": UnixShadowFile,
         "UnixGroupsFile": UnixGroupsFile,
         "UnixPasswdFile": UnixPasswdFile,
-        "UnixShadowFile": UnixShadowFile,
     }
 
     sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
