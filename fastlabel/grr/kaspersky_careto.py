@@ -193,9 +193,9 @@ class KasperskyCaretoIndicators(GRRArtifactBase):
         }
     ]
     ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {
-        "KasperskyCaretoDarwinFile": KasperskyCaretoDarwinFile,
         "KasperskyCaretoWindowsRegistryValue": KasperskyCaretoWindowsRegistryValue,
         "KasperskyCaretoWindowsFile": KasperskyCaretoWindowsFile,
+        "KasperskyCaretoDarwinFile": KasperskyCaretoDarwinFile,
     }
 
     sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)

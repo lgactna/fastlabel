@@ -164,25 +164,6 @@ class KubernetesKubeletPod(GRRArtifactBase):
     aliases: ClassVar[Optional[list[str]]] = None
 
 
-class KubernetesKubeletPodManifest(GRRArtifactBase):
-    """
-    Manifest file that has been used to deploy a (Kubernetes) Pod.
-
-    The manifest contains the Pods specification.
-    """
-
-    SOURCES = [
-        {"type": "FILE", "attributes": {"paths": ["/etc/kubernetes/manifests/*.yaml"]}}
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.LINUX
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
 class KubernetesKubeletPodContainer(GRRArtifactBase):
     """
     Path where the container resources created within a (Kubernetes) Pod are
@@ -219,6 +200,48 @@ class KubernetesKubeletPodContainer(GRRArtifactBase):
     aliases: ClassVar[Optional[list[str]]] = None
 
 
+class KubernetesKubeletPodLogs(GRRArtifactBase):
+    """
+    Location where the log data of (Kubernetes) Pods can be found.
+
+    The path's name would contain the following elements:
+    '/var/log/pods/<namespace>_<pod_name>_<pod_id>/<container_name>/<num>.log'
+    Includes also redirected stdout, stderr and (if applicable) stdin of
+    container executions.
+
+    Reference URLs: https://github.com/kubernetes/kubernetes/pull/74441
+    https://kubernetes.io/docs/concepts/cluster-administration/logging/
+    """
+
+    SOURCES = [{"type": "FILE", "attributes": {"paths": ["/var/log/pods/*/*/*.log"]}}]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.LINUX
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class KubernetesKubeletPodManifest(GRRArtifactBase):
+    """
+    Manifest file that has been used to deploy a (Kubernetes) Pod.
+
+    The manifest contains the Pods specification.
+    """
+
+    SOURCES = [
+        {"type": "FILE", "attributes": {"paths": ["/etc/kubernetes/manifests/*.yaml"]}}
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.LINUX
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
 class KubernetesKubeletPodVolumes(GRRArtifactBase):
     """
     Volumes and other objects that are mounted into a (Kubernetes) Pod and
@@ -239,29 +262,6 @@ class KubernetesKubeletPodVolumes(GRRArtifactBase):
     SOURCES = [
         {"type": "PATH", "attributes": {"paths": ["/var/lib/kubelet/pods/*/volumes/*"]}}
     ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.LINUX
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
-class KubernetesKubeletPodLogs(GRRArtifactBase):
-    """
-    Location where the log data of (Kubernetes) Pods can be found.
-
-    The path's name would contain the following elements:
-    '/var/log/pods/<namespace>_<pod_name>_<pod_id>/<container_name>/<num>.log'
-    Includes also redirected stdout, stderr and (if applicable) stdin of
-    container executions.
-
-    Reference URLs: https://github.com/kubernetes/kubernetes/pull/74441
-    https://kubernetes.io/docs/concepts/cluster-administration/logging/
-    """
-
-    SOURCES = [{"type": "FILE", "attributes": {"paths": ["/var/log/pods/*/*/*.log"]}}]
     ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
 
     sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)

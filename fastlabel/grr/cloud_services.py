@@ -14,11 +14,13 @@ from fastlabel.grr._base import (
 )
 
 
-class DropboxClient(GRRArtifactBase):
+class SkyDriveClient(GRRArtifactBase):
     """
-    Dropbox cloud storage client artifacts.
+    Microsoft Sky Drive cloud storage client artifacts.
 
-    Reference URLs: https://forensics.wiki/dropbox
+    Note that Sky Drive was renamed to One Drive.
+
+    Reference URLs: https://forensics.wiki/one_drive#sky-drive-client
     """
 
     SOURCES = [
@@ -26,32 +28,22 @@ class DropboxClient(GRRArtifactBase):
             "type": "FILE",
             "attributes": {
                 "paths": [
-                    "%%users.appdata%%\\Dropbox\\*.db*",
-                    "%%users.localappdata%%\\Dropbox\\*.db*",
-                    "%%users.localappdata%%\\Dropbox\\instance*\\sync_history.db",
+                    "%%users.localappdata%%\\Microsoft\\SkyDrive\\logs\\*.log",
+                    "%%users.localappdata%%\\Microsoft\\SkyDrive\\setup\\logs\\*.log",
+                    "%%users.localappdata%%\\Microsoft\\SkyDrive\\settings\\ApplicationSettings.xml",
+                    "%%users.localappdata%%\\Microsoft\\SkyDrive\\settings\\*.dat",
+                    "%%users.localappdata%%\\Microsoft\\SkyDrive\\settings\\*.ini",
                 ],
                 "separator": "\\",
             },
             "supported_os": ["Windows"],
-        },
-        {
-            "type": "FILE",
-            "attributes": {
-                "paths": [
-                    "%%users.homedir%%/.dropbox/*.db*",
-                    "%%users.homedir%%/.dropbox/instance*/sync_history.db",
-                ]
-            },
-            "supported_os": ["Darwin", "Linux"],
-        },
+        }
     ]
     ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
 
     sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
     supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.DARWIN,
-        ArtifactSupportedOS.LINUX,
-        ArtifactSupportedOS.WINDOWS,
+        ArtifactSupportedOS.WINDOWS
     ]
     aliases: ClassVar[Optional[list[str]]] = None
 
@@ -105,13 +97,11 @@ class GoogleDriveClient(GRRArtifactBase):
     aliases: ClassVar[Optional[list[str]]] = None
 
 
-class SkyDriveClient(GRRArtifactBase):
+class DropboxClient(GRRArtifactBase):
     """
-    Microsoft Sky Drive cloud storage client artifacts.
+    Dropbox cloud storage client artifacts.
 
-    Note that Sky Drive was renamed to One Drive.
-
-    Reference URLs: https://forensics.wiki/one_drive#sky-drive-client
+    Reference URLs: https://forensics.wiki/dropbox
     """
 
     SOURCES = [
@@ -119,22 +109,32 @@ class SkyDriveClient(GRRArtifactBase):
             "type": "FILE",
             "attributes": {
                 "paths": [
-                    "%%users.localappdata%%\\Microsoft\\SkyDrive\\logs\\*.log",
-                    "%%users.localappdata%%\\Microsoft\\SkyDrive\\setup\\logs\\*.log",
-                    "%%users.localappdata%%\\Microsoft\\SkyDrive\\settings\\ApplicationSettings.xml",
-                    "%%users.localappdata%%\\Microsoft\\SkyDrive\\settings\\*.dat",
-                    "%%users.localappdata%%\\Microsoft\\SkyDrive\\settings\\*.ini",
+                    "%%users.appdata%%\\Dropbox\\*.db*",
+                    "%%users.localappdata%%\\Dropbox\\*.db*",
+                    "%%users.localappdata%%\\Dropbox\\instance*\\sync_history.db",
                 ],
                 "separator": "\\",
             },
             "supported_os": ["Windows"],
-        }
+        },
+        {
+            "type": "FILE",
+            "attributes": {
+                "paths": [
+                    "%%users.homedir%%/.dropbox/*.db*",
+                    "%%users.homedir%%/.dropbox/instance*/sync_history.db",
+                ]
+            },
+            "supported_os": ["Darwin", "Linux"],
+        },
     ]
     ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
 
     sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
     supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.WINDOWS
+        ArtifactSupportedOS.DARWIN,
+        ArtifactSupportedOS.LINUX,
+        ArtifactSupportedOS.WINDOWS,
     ]
     aliases: ClassVar[Optional[list[str]]] = None
 
@@ -153,9 +153,9 @@ class CloudStorageClients(GRRArtifactBase):
         }
     ]
     ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {
-        "DropboxClient": DropboxClient,
-        "GoogleDriveClient": GoogleDriveClient,
         "SkyDriveClient": SkyDriveClient,
+        "GoogleDriveClient": GoogleDriveClient,
+        "DropboxClient": DropboxClient,
     }
 
     sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)

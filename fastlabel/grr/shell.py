@@ -372,6 +372,44 @@ class RootUserShellHistory(GRRArtifactBase):
     aliases: ClassVar[Optional[list[str]]] = None
 
 
+class ShellProfileFile(GRRArtifactBase):
+    """
+    Shell profile file.
+    """
+
+    SOURCES = [
+        {
+            "type": "FILE",
+            "attributes": {"paths": ["%%users.homedir%%/.profile", "/etc/profile"]},
+            "supported_os": ["Darwin", "Linux"],
+        },
+        {
+            "type": "FILE",
+            "attributes": {"paths": ["/private/etc/profile"]},
+            "supported_os": ["Darwin"],
+        },
+        {
+            "type": "FILE",
+            "attributes": {
+                "paths": [
+                    "%%users.localappdata%%\\Packages\\*\\LocalState\\rootfs\\home\\*\\.profile"
+                ],
+                "separator": "\\",
+            },
+            "supported_os": ["Windows"],
+        },
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.DARWIN,
+        ArtifactSupportedOS.LINUX,
+        ArtifactSupportedOS.WINDOWS,
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
 class ZShellConfigurationFile(GRRArtifactBase):
     """
     Z shell (zsh) configuration files.
@@ -453,44 +491,6 @@ class ShellLogoutFile(GRRArtifactBase):
             "attributes": {
                 "paths": [
                     "%%users.localappdata%%\\Packages\\*\\LocalState\\rootfs\\home\\*\\.logout"
-                ],
-                "separator": "\\",
-            },
-            "supported_os": ["Windows"],
-        },
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.DARWIN,
-        ArtifactSupportedOS.LINUX,
-        ArtifactSupportedOS.WINDOWS,
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
-class ShellProfileFile(GRRArtifactBase):
-    """
-    Shell profile file.
-    """
-
-    SOURCES = [
-        {
-            "type": "FILE",
-            "attributes": {"paths": ["%%users.homedir%%/.profile", "/etc/profile"]},
-            "supported_os": ["Darwin", "Linux"],
-        },
-        {
-            "type": "FILE",
-            "attributes": {"paths": ["/private/etc/profile"]},
-            "supported_os": ["Darwin"],
-        },
-        {
-            "type": "FILE",
-            "attributes": {
-                "paths": [
-                    "%%users.localappdata%%\\Packages\\*\\LocalState\\rootfs\\home\\*\\.profile"
                 ],
                 "separator": "\\",
             },
@@ -607,14 +607,14 @@ class ShellConfigurationFile(GRRArtifactBase):
         }
     ]
     ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {
+        "BashShellConfigurationFile": BashShellConfigurationFile,
+        "ShellProfileFile": ShellProfileFile,
         "CShellConfigurationFile": CShellConfigurationFile,
-        "FishShellConfigurationFile": FishShellConfigurationFile,
-        "KornShellConfigurationFile": KornShellConfigurationFile,
         "ZShellConfigurationFile": ZShellConfigurationFile,
         "ShellLogoutFile": ShellLogoutFile,
-        "ShellProfileFile": ShellProfileFile,
+        "FishShellConfigurationFile": FishShellConfigurationFile,
+        "KornShellConfigurationFile": KornShellConfigurationFile,
         "TeeShellConfigurationFile": TeeShellConfigurationFile,
-        "BashShellConfigurationFile": BashShellConfigurationFile,
     }
 
     sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
@@ -649,9 +649,9 @@ class ShellHistoryFile(GRRArtifactBase):
         }
     ]
     ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {
-        "ZShellHistoryFile": ZShellHistoryFile,
         "BourneShellHistoryFile": BourneShellHistoryFile,
         "BashShellHistoryFile": BashShellHistoryFile,
+        "ZShellHistoryFile": ZShellHistoryFile,
         "FishShellHistoryFile": FishShellHistoryFile,
     }
 

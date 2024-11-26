@@ -15,55 +15,6 @@ from fastlabel.grr._base import (
 )
 
 
-class AnacronFiles(GRRArtifactBase):
-    """
-    Anacron files.
-    """
-
-    SOURCES = [
-        {
-            "type": "FILE",
-            "attributes": {
-                "paths": [
-                    "/etc/anacrontab",
-                    "/etc/cron.daily/*",
-                    "/etc/cron.hourly/*",
-                    "/etc/cron.monthly/*",
-                    "/etc/cron.weekly/*",
-                    "/var/spool/anacron/cron.daily",
-                    "/var/spool/anacron/cron.hourly",
-                    "/var/spool/anacron/cron.monthly",
-                    "/var/spool/anacron/cron.weekly",
-                ]
-            },
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.LINUX
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
-class AptitudeLogFiles(GRRArtifactBase):
-    """
-    Linux aptitude package manager log files.
-
-    Reference URLs: https://www.debian.org/doc/manuals/aptitude/rn01re01.en.html
-    """
-
-    SOURCES = [{"type": "FILE", "attributes": {"paths": ["/var/log/aptitude*"]}}]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.LINUX
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
 class APTSources(GRRArtifactBase):
     """
     APT package sources list
@@ -118,6 +69,55 @@ class APTTrustKeys(GRRArtifactBase):
     aliases: ClassVar[Optional[list[str]]] = None
 
 
+class AnacronFiles(GRRArtifactBase):
+    """
+    Anacron files.
+    """
+
+    SOURCES = [
+        {
+            "type": "FILE",
+            "attributes": {
+                "paths": [
+                    "/etc/anacrontab",
+                    "/etc/cron.daily/*",
+                    "/etc/cron.hourly/*",
+                    "/etc/cron.monthly/*",
+                    "/etc/cron.weekly/*",
+                    "/var/spool/anacron/cron.daily",
+                    "/var/spool/anacron/cron.hourly",
+                    "/var/spool/anacron/cron.monthly",
+                    "/var/spool/anacron/cron.weekly",
+                ]
+            },
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.LINUX
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class AptitudeLogFiles(GRRArtifactBase):
+    """
+    Linux aptitude package manager log files.
+
+    Reference URLs: https://www.debian.org/doc/manuals/aptitude/rn01re01.en.html
+    """
+
+    SOURCES = [{"type": "FILE", "attributes": {"paths": ["/var/log/aptitude*"]}}]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.LINUX
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
 class CronAtAllowDenyFiles(GRRArtifactBase):
     """
     Files containing users authorised to run cron or at jobs.
@@ -140,6 +140,23 @@ class CronAtAllowDenyFiles(GRRArtifactBase):
             },
         }
     ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.LINUX
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class DNSResolvConfFile(GRRArtifactBase):
+    """
+    DNS Resolver configuration file.
+
+    Reference URLs: http://man7.org/linux/man-pages/man5/resolv.conf.5.html
+    """
+
+    SOURCES = [{"type": "FILE", "attributes": {"paths": ["/etc/resolv.conf"]}}]
     ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
 
     sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
@@ -205,38 +222,18 @@ class DebianVersion(GRRArtifactBase):
     aliases: ClassVar[Optional[list[str]]] = None
 
 
-class DNSResolvConfFile(GRRArtifactBase):
+class FreeDesktopTrashFiles(GRRArtifactBase):
     """
-    DNS Resolver configuration file.
+    FreeDesktop.org Trash Files.
 
-    Reference URLs: http://man7.org/linux/man-pages/man5/resolv.conf.5.html
-    """
-
-    SOURCES = [{"type": "FILE", "attributes": {"paths": ["/etc/resolv.conf"]}}]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.LINUX
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
-class GnomeApplicationState(GRRArtifactBase):
-    """
-    Gnome application state for frequent application data.
-
-    Reference URLs: https://forensics.wiki/gnome_desktop_environment
+    Reference URLs:
+    https://specifications.freedesktop.org/trash-spec/trashspec-latest.html
     """
 
     SOURCES = [
         {
             "type": "FILE",
-            "attributes": {
-                "paths": [
-                    "%%users.homedir%%/.local/share/gnome-shell/application_state"
-                ]
-            },
+            "attributes": {"paths": ["%%users.homedir%%/.local/share/Trash/files/*"]},
         }
     ]
     ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
@@ -273,18 +270,43 @@ class FreeDesktopTrashInfoFiles(GRRArtifactBase):
     aliases: ClassVar[Optional[list[str]]] = None
 
 
-class FreeDesktopTrashFiles(GRRArtifactBase):
+class GTKRecentlyUsedDatabase(GRRArtifactBase):
     """
-    FreeDesktop.org Trash Files.
-
-    Reference URLs:
-    https://specifications.freedesktop.org/trash-spec/trashspec-latest.html
+    GTK Recent Manager database.
     """
 
     SOURCES = [
         {
             "type": "FILE",
-            "attributes": {"paths": ["%%users.homedir%%/.local/share/Trash/files/*"]},
+            "attributes": {
+                "paths": ["%%users.homedir%%/.local/share/recently-used.xbel"]
+            },
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.LINUX
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class GnomeApplicationState(GRRArtifactBase):
+    """
+    Gnome application state for frequent application data.
+
+    Reference URLs: https://forensics.wiki/gnome_desktop_environment
+    """
+
+    SOURCES = [
+        {
+            "type": "FILE",
+            "attributes": {
+                "paths": [
+                    "%%users.homedir%%/.local/share/gnome-shell/application_state"
+                ]
+            },
         }
     ]
     ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
@@ -312,28 +334,6 @@ class GnomeTracker(GRRArtifactBase):
                     "%%users.homedir%%/.cache/tracker/*",
                     "%%users.homedir%%/.local/share/tracker/data/*",
                 ]
-            },
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.LINUX
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
-class GTKRecentlyUsedDatabase(GRRArtifactBase):
-    """
-    GTK Recent Manager database.
-    """
-
-    SOURCES = [
-        {
-            "type": "FILE",
-            "attributes": {
-                "paths": ["%%users.homedir%%/.local/share/recently-used.xbel"]
             },
         }
     ]
@@ -497,19 +497,6 @@ class LinuxAuthLogs(GRRArtifactBase):
     aliases: ClassVar[Optional[list[str]]] = None
 
 
-class LinuxCACertificatesConfiguration(GRRArtifactBase):
-    """
-    Linux CA Certificates configuration file.
-    """
-
-    SOURCES = [{"type": "FILE", "attributes": {"paths": ["/etc/ca-certificates.conf"]}}]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = []
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
 class LinuxCACertificates(GRRArtifactBase):
     """
     Linux CA Certificates.
@@ -533,6 +520,19 @@ class LinuxCACertificates(GRRArtifactBase):
     supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
         ArtifactSupportedOS.LINUX
     ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class LinuxCACertificatesConfiguration(GRRArtifactBase):
+    """
+    Linux CA Certificates configuration file.
+    """
+
+    SOURCES = [{"type": "FILE", "attributes": {"paths": ["/etc/ca-certificates.conf"]}}]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = []
     aliases: ClassVar[Optional[list[str]]] = None
 
 
@@ -573,12 +573,12 @@ class LinuxCronTabs(GRRArtifactBase):
     aliases: ClassVar[Optional[list[str]]] = None
 
 
-class LinuxDaemonLogFiles(GRRArtifactBase):
+class LinuxDHCPConfigurationFile(GRRArtifactBase):
     """
-    Linux daemon log files.
+    Linux DHCP Configuration File
     """
 
-    SOURCES = [{"type": "FILE", "attributes": {"paths": ["/var/log/daemon*"]}}]
+    SOURCES = [{"type": "FILE", "attributes": {"paths": ["/etc/dhcp/dhcp.conf"]}}]
     ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
 
     sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
@@ -588,12 +588,32 @@ class LinuxDaemonLogFiles(GRRArtifactBase):
     aliases: ClassVar[Optional[list[str]]] = None
 
 
-class LinuxDHCPConfigurationFile(GRRArtifactBase):
+class LinuxDSDTTable(GRRArtifactBase):
     """
-    Linux DHCP Configuration File
+    Linux file containing DSDT table.
+
+    Reference URLs:
+    https://www.kernel.org/doc/Documentation/acpi/initrd_table_override.txt
     """
 
-    SOURCES = [{"type": "FILE", "attributes": {"paths": ["/etc/dhcp/dhcp.conf"]}}]
+    SOURCES = [
+        {"type": "FILE", "attributes": {"paths": ["/sys/firmware/acpi/tables/DSDT"]}}
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.LINUX
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class LinuxDaemonLogFiles(GRRArtifactBase):
+    """
+    Linux daemon log files.
+    """
+
+    SOURCES = [{"type": "FILE", "attributes": {"paths": ["/var/log/daemon*"]}}]
     ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
 
     sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
@@ -623,26 +643,6 @@ class LinuxDistributionRelease(GRRArtifactBase):
                 ]
             },
         }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.LINUX
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
-class LinuxDSDTTable(GRRArtifactBase):
-    """
-    Linux file containing DSDT table.
-
-    Reference URLs:
-    https://www.kernel.org/doc/Documentation/acpi/initrd_table_override.txt
-    """
-
-    SOURCES = [
-        {"type": "FILE", "attributes": {"paths": ["/sys/firmware/acpi/tables/DSDT"]}}
     ]
     ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
 
@@ -802,6 +802,51 @@ class LinuxKernelLogFiles(GRRArtifactBase):
     aliases: ClassVar[Optional[list[str]]] = None
 
 
+class LinuxLSBInit(GRRArtifactBase):
+    """
+    Linux LSB-style init scripts.
+
+    Reference URLs: https://wiki.debian.org/LSBInitScripts
+    """
+
+    SOURCES = [
+        {
+            "type": "FILE",
+            "attributes": {
+                "paths": [
+                    "/etc/init.d/*",
+                    "/etc/insserv.conf",
+                    "/etc/insserv.conf.d/**",
+                ]
+            },
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.LINUX
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class LinuxLSBRelease(GRRArtifactBase):
+    """
+    Linux Standard Base (LSB) release information
+
+    Reference URLs: https://linux.die.net/man/1/lsb_release
+    """
+
+    SOURCES = [{"type": "FILE", "attributes": {"paths": ["/etc/lsb-release"]}}]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.LINUX
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
 class LinuxLastlogFile(GRRArtifactBase):
     """
     Linux lastlog file.
@@ -834,57 +879,12 @@ class LinuxLoaderSystemPreloadFile(GRRArtifactBase):
     aliases: ClassVar[Optional[list[str]]] = None
 
 
-class LinuxLSBInit(GRRArtifactBase):
-    """
-    Linux LSB-style init scripts.
-
-    Reference URLs: https://wiki.debian.org/LSBInitScripts
-    """
-
-    SOURCES = [
-        {
-            "type": "FILE",
-            "attributes": {
-                "paths": [
-                    "/etc/init.d/*",
-                    "/etc/insserv.conf",
-                    "/etc/insserv.conf.d/**",
-                ]
-            },
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.LINUX
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
 class LinuxLocalTime(GRRArtifactBase):
     """
     Local time zone configuration
     """
 
     SOURCES = [{"type": "FILE", "attributes": {"paths": ["/etc/localtime"]}}]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.LINUX
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
-class LinuxLSBRelease(GRRArtifactBase):
-    """
-    Linux Standard Base (LSB) release information
-
-    Reference URLs: https://linux.die.net/man/1/lsb_release
-    """
-
-    SOURCES = [{"type": "FILE", "attributes": {"paths": ["/etc/lsb-release"]}}]
     ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
 
     sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
@@ -915,24 +915,6 @@ class LinuxMountCmd(GRRArtifactBase):
     """
 
     SOURCES = [{"type": "COMMAND", "attributes": {"args": [], "cmd": "/bin/mount"}}]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.LINUX
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
-class LinuxProcMounts(GRRArtifactBase):
-    """
-    Current mounted filesystems.
-
-    Reference URLs:
-    https://www.kernel.org/doc/Documentation/filesystems/proc.txt
-    """
-
-    SOURCES = [{"type": "FILE", "attributes": {"paths": ["/proc/mounts"]}}]
     ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
 
     sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
@@ -1086,6 +1068,26 @@ class LinuxRsyslogConfigs(GRRArtifactBase):
     aliases: ClassVar[Optional[list[str]]] = None
 
 
+class LinuxSSDTTables(GRRArtifactBase):
+    """
+    Linux files containing SSDT table.
+
+    Reference URLs:
+    https://www.kernel.org/doc/Documentation/acpi/initrd_table_override.txt
+    """
+
+    SOURCES = [
+        {"type": "FILE", "attributes": {"paths": ["/sys/firmware/acpi/tables/SSDT*"]}}
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.LINUX
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
 class LinuxSystemdServices(GRRArtifactBase):
     """
     Linux systemd service unit files
@@ -1190,17 +1192,12 @@ class LinuxXinetd(GRRArtifactBase):
     aliases: ClassVar[Optional[list[str]]] = None
 
 
-class LinuxSSDTTables(GRRArtifactBase):
+class LinuxSudoReplayLogs(GRRArtifactBase):
     """
-    Linux files containing SSDT table.
-
-    Reference URLs:
-    https://www.kernel.org/doc/Documentation/acpi/initrd_table_override.txt
+    Linux sudoreplay log files.
     """
 
-    SOURCES = [
-        {"type": "FILE", "attributes": {"paths": ["/sys/firmware/acpi/tables/SSDT*"]}}
-    ]
+    SOURCES = [{"type": "FILE", "attributes": {"paths": ["/var/log/sudo-io/**"]}}]
     ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
 
     sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
@@ -1210,12 +1207,12 @@ class LinuxSSDTTables(GRRArtifactBase):
     aliases: ClassVar[Optional[list[str]]] = None
 
 
-class LinuxSudoReplayLogs(GRRArtifactBase):
+class LinuxSysLogFiles(GRRArtifactBase):
     """
-    Linux sudoreplay log files.
+    Linux syslog log files.
     """
 
-    SOURCES = [{"type": "FILE", "attributes": {"paths": ["/var/log/sudo-io/**"]}}]
+    SOURCES = [{"type": "FILE", "attributes": {"paths": ["/var/log/syslog*"]}}]
     ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
 
     sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
@@ -1247,21 +1244,6 @@ class LinuxSysctlConfigurationFiles(GRRArtifactBase):
             },
         }
     ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.LINUX
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
-class LinuxSysLogFiles(GRRArtifactBase):
-    """
-    Linux syslog log files.
-    """
-
-    SOURCES = [{"type": "FILE", "attributes": {"paths": ["/var/log/syslog*"]}}]
     ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
 
     sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
@@ -1731,53 +1713,6 @@ class RHostsFile(GRRArtifactBase):
     aliases: ClassVar[Optional[list[str]]] = None
 
 
-class SambaLogFiles(GRRArtifactBase):
-    """
-    Samba log files.
-
-    Reference URLs:
-    https://wiki.samba.org/index.php/Configuring_Logging_on_a_Samba_Server
-    """
-
-    SOURCES = [{"type": "FILE", "attributes": {"paths": ["/var/log/samba/*.log"]}}]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.LINUX
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
-class SecretsServiceDatabaseFile(GRRArtifactBase):
-    """
-    The System Security Services Daemon (SSSD) database file.
-
-    Reference URLs:
-    https://docs.pagure.org/SSSD.sssd/design_pages/secrets_service.html
-    https://www.fireeye.com/blog/threat-research/2020/04/kerberos-tickets-on-linux-red-teams.html
-    """
-
-    SOURCES = [
-        {
-            "type": "FILE",
-            "attributes": {
-                "paths": [
-                    "/var/lib/sss/secrets/secrets.ldb",
-                    "/var/lib/sss/secrets/.secrets.mkey",
-                ]
-            },
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.LINUX
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
 class SQLiteHistoryFile(GRRArtifactBase):
     """
     SQLite History file.
@@ -1847,6 +1782,53 @@ class SSHKnownHostsFiles(GRRArtifactBase):
             "type": "FILE",
             "attributes": {
                 "paths": ["%%users.homedir%%/.ssh/known_hosts", "/etc/ssh/known_hosts"]
+            },
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.LINUX
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class SambaLogFiles(GRRArtifactBase):
+    """
+    Samba log files.
+
+    Reference URLs:
+    https://wiki.samba.org/index.php/Configuring_Logging_on_a_Samba_Server
+    """
+
+    SOURCES = [{"type": "FILE", "attributes": {"paths": ["/var/log/samba/*.log"]}}]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.LINUX
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class SecretsServiceDatabaseFile(GRRArtifactBase):
+    """
+    The System Security Services Daemon (SSSD) database file.
+
+    Reference URLs:
+    https://docs.pagure.org/SSSD.sssd/design_pages/secrets_service.html
+    https://www.fireeye.com/blog/threat-research/2020/04/kerberos-tickets-on-linux-red-teams.html
+    """
+
+    SOURCES = [
+        {
+            "type": "FILE",
+            "attributes": {
+                "paths": [
+                    "/var/lib/sss/secrets/secrets.ldb",
+                    "/var/lib/sss/secrets/.secrets.mkey",
+                ]
             },
         }
     ]
@@ -2045,8 +2027,8 @@ class LinuxScheduleFiles(GRRArtifactBase):
         }
     ]
     ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {
-        "LinuxAtJobs": LinuxAtJobs,
         "LinuxCronTabs": LinuxCronTabs,
+        "LinuxAtJobs": LinuxAtJobs,
         "AnacronFiles": AnacronFiles,
     }
 
@@ -2098,9 +2080,9 @@ class LinuxReleaseInfo(GRRArtifactBase):
         }
     ]
     ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {
+        "LinuxLSBRelease": LinuxLSBRelease,
         "LinuxDistributionRelease": LinuxDistributionRelease,
         "LinuxSystemdOSRelease": LinuxSystemdOSRelease,
-        "LinuxLSBRelease": LinuxLSBRelease,
     }
 
     sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
@@ -2129,9 +2111,9 @@ class LinuxServices(GRRArtifactBase):
         }
     ]
     ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {
-        "LinuxLSBInit": LinuxLSBInit,
         "LinuxSystemdServices": LinuxSystemdServices,
         "LinuxSysVInit": LinuxSysVInit,
+        "LinuxLSBInit": LinuxLSBInit,
         "LinuxXinetd": LinuxXinetd,
     }
 

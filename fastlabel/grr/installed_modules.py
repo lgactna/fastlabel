@@ -211,9 +211,9 @@ class PythonModuleInfo(GRRArtifactBase):
         }
     ]
     ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {
+        "PythonEggInfo": PythonEggInfo,
         "PythonDistInfo": PythonDistInfo,
         "PythonWheelInfo": PythonWheelInfo,
-        "PythonEggInfo": PythonEggInfo,
     }
 
     sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)

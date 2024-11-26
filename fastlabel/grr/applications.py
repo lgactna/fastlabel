@@ -116,6 +116,34 @@ class MicrosoftOfficeMRU(GRRArtifactBase):
     aliases: ClassVar[Optional[list[str]]] = None
 
 
+class MicrosoftOutlookOSTFiles(GRRArtifactBase):
+    """
+    Microsoft Outlook OST Files
+
+    Reference URLs: https://forensics.wiki/personal_folder_file_(pab,_pst,_ost)
+    """
+
+    SOURCES = [
+        {
+            "type": "FILE",
+            "attributes": {
+                "paths": [
+                    "%%users.localappdata%%\\Microsoft\\Outlook\\*.ost",
+                    "%%users.userprofile%%\\Documents\\Outlook Files\\*.ost",
+                ],
+                "separator": "\\",
+            },
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.WINDOWS
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
 class MicrosoftOutlookPABFiles(GRRArtifactBase):
     """
     Microsoft Outlook PAB Files
@@ -172,129 +200,6 @@ class MicrosoftOutlookPSTFiles(GRRArtifactBase):
     aliases: ClassVar[Optional[list[str]]] = None
 
 
-class MicrosoftOutlookOSTFiles(GRRArtifactBase):
-    """
-    Microsoft Outlook OST Files
-
-    Reference URLs: https://forensics.wiki/personal_folder_file_(pab,_pst,_ost)
-    """
-
-    SOURCES = [
-        {
-            "type": "FILE",
-            "attributes": {
-                "paths": [
-                    "%%users.localappdata%%\\Microsoft\\Outlook\\*.ost",
-                    "%%users.userprofile%%\\Documents\\Outlook Files\\*.ost",
-                ],
-                "separator": "\\",
-            },
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.WINDOWS
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
-class NodeJSPackageManagerCacheFiles(GRRArtifactBase):
-    """
-    Node JS package manager (NPM) cache files
-
-    Reference URLs: https://docs.npmjs.com/cli/cache
-    """
-
-    SOURCES = [
-        {
-            "type": "FILE",
-            "attributes": {"paths": ["%%users.homedir%%/.npm/*"]},
-            "supported_os": ["Darwin", "Linux"],
-        },
-        {
-            "type": "FILE",
-            "attributes": {
-                "paths": ["%%users.appdata%%\\npm-cache\\*"],
-                "separator": "\\",
-            },
-            "supported_os": ["Windows"],
-        },
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.DARWIN,
-        ArtifactSupportedOS.LINUX,
-        ArtifactSupportedOS.WINDOWS,
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
-class WinRARExternalViewer(GRRArtifactBase):
-    """
-    Executable run when a file is opened by WinRAR inside an archive.
-
-    Reference URLs:
-    http://www.hexacorn.com/blog/2012/09/16/beyond-good-ol-run-key-part-2/
-    http://acritum.com/software/manuals/winrar/html/helpinterfaceviewing.htm
-    """
-
-    SOURCES = [
-        {
-            "type": "REGISTRY_VALUE",
-            "attributes": {
-                "key_value_pairs": [
-                    {
-                        "key": "HKEY_USERS\\%%users.sid%%\\Software\\WinRAR\\Viewer\\",
-                        "value": "ExternalViewer",
-                    }
-                ]
-            },
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.WINDOWS
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
-class WinRARAVScan(GRRArtifactBase):
-    """
-    Executable run to scan a file when it is opened by WinRAR.
-
-    Reference URLs:
-    http://www.hexacorn.com/blog/2012/09/16/beyond-good-ol-run-key-part-2/
-    http://acritum.com/software/manuals/winrar/html/helpcommandsvirusscan.htm
-    """
-
-    SOURCES = [
-        {
-            "type": "REGISTRY_VALUE",
-            "attributes": {
-                "key_value_pairs": [
-                    {
-                        "key": "HKEY_USERS\\%%users.sid%%\\Software\\WinRAR\\VirusScan\\",
-                        "value": "Name",
-                    }
-                ]
-            },
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.WINDOWS
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
 class MicrosoftSqlServerErrorLogs(GRRArtifactBase):
     """
     Microsoft SQL Server's error log files.
@@ -334,5 +239,100 @@ class MozillaThunderbird(GRRArtifactBase):
     sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
     supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
         ArtifactSupportedOS.LINUX
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class NodeJSPackageManagerCacheFiles(GRRArtifactBase):
+    """
+    Node JS package manager (NPM) cache files
+
+    Reference URLs: https://docs.npmjs.com/cli/cache
+    """
+
+    SOURCES = [
+        {
+            "type": "FILE",
+            "attributes": {"paths": ["%%users.homedir%%/.npm/*"]},
+            "supported_os": ["Darwin", "Linux"],
+        },
+        {
+            "type": "FILE",
+            "attributes": {
+                "paths": ["%%users.appdata%%\\npm-cache\\*"],
+                "separator": "\\",
+            },
+            "supported_os": ["Windows"],
+        },
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.DARWIN,
+        ArtifactSupportedOS.LINUX,
+        ArtifactSupportedOS.WINDOWS,
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class WinRARAVScan(GRRArtifactBase):
+    """
+    Executable run to scan a file when it is opened by WinRAR.
+
+    Reference URLs:
+    http://www.hexacorn.com/blog/2012/09/16/beyond-good-ol-run-key-part-2/
+    http://acritum.com/software/manuals/winrar/html/helpcommandsvirusscan.htm
+    """
+
+    SOURCES = [
+        {
+            "type": "REGISTRY_VALUE",
+            "attributes": {
+                "key_value_pairs": [
+                    {
+                        "key": "HKEY_USERS\\%%users.sid%%\\Software\\WinRAR\\VirusScan\\",
+                        "value": "Name",
+                    }
+                ]
+            },
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.WINDOWS
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
+class WinRARExternalViewer(GRRArtifactBase):
+    """
+    Executable run when a file is opened by WinRAR inside an archive.
+
+    Reference URLs:
+    http://www.hexacorn.com/blog/2012/09/16/beyond-good-ol-run-key-part-2/
+    http://acritum.com/software/manuals/winrar/html/helpinterfaceviewing.htm
+    """
+
+    SOURCES = [
+        {
+            "type": "REGISTRY_VALUE",
+            "attributes": {
+                "key_value_pairs": [
+                    {
+                        "key": "HKEY_USERS\\%%users.sid%%\\Software\\WinRAR\\Viewer\\",
+                        "value": "ExternalViewer",
+                    }
+                ]
+            },
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.WINDOWS
     ]
     aliases: ClassVar[Optional[list[str]]] = None

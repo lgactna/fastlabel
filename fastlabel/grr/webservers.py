@@ -141,6 +141,34 @@ class ApacheErrorLogs(GRRArtifactBase):
     aliases: ClassVar[Optional[list[str]]] = None
 
 
+class MicrosoftIISLogs(GRRArtifactBase):
+    """
+    Internet Information Services (IIS) web server's log files.
+    """
+
+    SOURCES = [
+        {
+            "type": "FILE",
+            "attributes": {
+                "paths": [
+                    "%%environ_systemdrive%%\\inetpub\\logs\\LogFiles\\*.log",
+                    "%%environ_systemdrive%%\\inetpub\\logs\\LogFiles\\W3SVC*\\*.log",
+                    "%%environ_systemdrive%%\\Resources\\Directory\\*\\LogFiles\\Web\\W3SVC*\\*.log",
+                    "%%environ_systemroot%%\\System32\\LogFiles\\W3SVC*\\*.log",
+                ],
+                "separator": "\\",
+            },
+        }
+    ]
+    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
+
+    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
+    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
+        ArtifactSupportedOS.WINDOWS
+    ]
+    aliases: ClassVar[Optional[list[str]]] = None
+
+
 class NginxAccessLogs(GRRArtifactBase):
     """
     Location where nginx access logs are stored
@@ -211,33 +239,5 @@ class WordpressConfigFile(GRRArtifactBase):
     supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
         ArtifactSupportedOS.LINUX,
         ArtifactSupportedOS.DARWIN,
-    ]
-    aliases: ClassVar[Optional[list[str]]] = None
-
-
-class MicrosoftIISLogs(GRRArtifactBase):
-    """
-    Internet Information Services (IIS) web server's log files.
-    """
-
-    SOURCES = [
-        {
-            "type": "FILE",
-            "attributes": {
-                "paths": [
-                    "%%environ_systemdrive%%\\inetpub\\logs\\LogFiles\\*.log",
-                    "%%environ_systemdrive%%\\inetpub\\logs\\LogFiles\\W3SVC*\\*.log",
-                    "%%environ_systemdrive%%\\Resources\\Directory\\*\\LogFiles\\Web\\W3SVC*\\*.log",
-                    "%%environ_systemroot%%\\System32\\LogFiles\\W3SVC*\\*.log",
-                ],
-                "separator": "\\",
-            },
-        }
-    ]
-    ARTIFACT_MAP: ClassVar[dict[str, Type[GRRArtifactBase]]] = {}
-
-    sources: ClassVar[list[ArtifactSource]] = generate_sources(SOURCES)
-    supported_os: ClassVar[Optional[list[ArtifactSupportedOS]]] = [
-        ArtifactSupportedOS.WINDOWS
     ]
     aliases: ClassVar[Optional[list[str]]] = None
