@@ -43,6 +43,7 @@ class KapeModule(BaseModel):
     name: ClassVar[str]
     # The supported export formats for this module. Attempting to use a module
     # with an unsupported type should raise an error before calling KAPE.
+    # TODO: i don't actually do this yet
     supported_types: ClassVar[list[KapeExportFormat]]
 
     # Module-specific information should follow, as typical Pydantic fields.
@@ -84,6 +85,9 @@ class KapeTarget(BaseModel):
 
     # A set of instance variables specific to this target; broadly, artifact-specific
     # variables that we care about converting to CASE. These are Pydantic fields.
+    
+    # TODO: i think the originating filepaths for this target should be here, 
+    # since it's common to all?
 
     @classmethod
     def from_target_destination(
