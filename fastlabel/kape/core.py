@@ -85,9 +85,10 @@ class KapeTarget(BaseModel):
 
     # A set of instance variables specific to this target; broadly, artifact-specific
     # variables that we care about converting to CASE. These are Pydantic fields.
-    
-    # TODO: i think the originating filepaths for this target should be here, 
-    # since it's common to all?
+
+    # The *original* filepaths of any target files collected.
+    # TODO: do we want the copied filepaths as well?
+    associated_files: list[Path]
 
     @classmethod
     def from_target_destination(

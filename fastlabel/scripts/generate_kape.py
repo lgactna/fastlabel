@@ -263,7 +263,7 @@ class KapeModuleDefinition(BaseModel):
     version: str
     id: uuid.UUID
     binary_url: Optional[str] = None
-    export_format: KapeExportFormat
+    export_format: KapeExportFormat  # This is the *default* format
     wait_timeout: Optional[int] = None
     file_mask: Optional[str] = None
 
@@ -302,6 +302,39 @@ class KapeModuleDefinition(BaseModel):
         with mkape_file.open("r") as f:
             mkape_doc = yaml.load(f)
         return cls.from_mkape_dict(mkape_doc, mkape_file.stem)
+
+    def get_supported_types(self) -> list[str]:
+        """
+        Get all supported types under each of the individual processors.
+        """
+        return [f"KapeExportFormat.{x.export_format.name}" for x in self.processors]
+
+    def to_pydantic_model(self) -> str:
+        """
+        Generate a Pydantic model for this target configuration.
+
+        This simply generates a class for each of the targets in the configuration,
+        as well as one "container" class that contains all of the targets.
+        """
+
+        output = ""
+
+        # Write the definition for the class
+        output += f"class {to_valid_identifier(self.name, remove_underscores=True)}(KapeModule):\n"
+
+        docstring = f"Author: {self.author}\n\n"
+        docstring += f"Version: {self.version}\n\n"
+        docstring += f"ID: {self.id}\n\n"
+        docstring += self.description
+        output += generate_docstring(docstring) + "\n"
+
+        output += f'    name: ClassVar[str] = "{self.name}"\n'
+        type_list = ",".join(self.get_supported_types())
+        output += (
+            f"    supported_types: ClassVar[list[KapeExportFormat]] = [{type_list}]\n"
+        )
+
+        return output + "\n\n"
 
 
 def get_artifacts_dir() -> Path:
@@ -358,23 +391,13 @@ def generate_class_file_from_targets(
     return output
 
 
-if __name__ == "__main__":
-    # Start by processing all of the .tkape files we have
-    tkape_root = get_artifacts_dir() / "targets"
-
-    # Recursively search for all .tkape files under the targets directory
-    target_configs: list[KapeTargetConfigurationDefinition] = []
-    for tkape_file in tkape_root.glob("**/*.tkape"):
-        print(f"Processing {tkape_file.relative_to(get_artifacts_dir())}")
-        target_config = (
-            KapeTargetConfigurationDefinition.generate_target_config_from_yaml(
-                tkape_file
-            )
-        )
-        target_configs.append(target_config)
-
+def generate_files_from_target_configs(
+    target_configs: list[KapeTargetConfigurationDefinition],
+) -> None:
     # Group each target config by category name
-    target_groups: dict[str, list[KapeTargetConfigurationDefinition]] = defaultdict(list)
+    target_groups: dict[str, list[KapeTargetConfigurationDefinition]] = defaultdict(
+        list
+    )
     for target in target_configs:
         target_groups[target.targets[0].category].append(target)
 
@@ -389,10 +412,82 @@ if __name__ == "__main__":
         with open(target_file, "wt+") as fp:
             fp.write(output)
 
-    # # Next, process all of the .mkape files we have
-    # mkape_root = get_artifacts_dir() / "modules"
 
-    # # Recursively search for all .mkape files under the modules directory
-    # for mkape_file in mkape_root.glob("**/*.mkape"):
-    #     print(f"Processing {mkape_file.relative_to(get_artifacts_dir())}")
-    #     module = KapeModuleDefinition.generate_module_from_yaml(mkape_file)
+def generate_class_file_from_modules(modules: list[KapeModuleDefinition]) -> str:
+    """
+    Generate a Python file containing all of the KAPE module classes.
+    """
+    output = ""
+
+    # let's just assume it's the same category for all modules
+    category = modules[0].category
+    docstring = dedent(
+        f'''
+        """
+        Auto-generated classes from the .mkape files for the {category} category.
+        
+        This file was generated using the `generate_kape.py` script.
+        """
+        '''  # noqa: W293
+    )
+    output += docstring + "\n\n"
+
+    # Imports are static, it's up to the user to add any extras as needed
+    output += "from pathlib import Path\n"
+    output += "from typing import ClassVar, Type\n\n"
+    output += "from fastlabel.kape.core import KapeModule, KapeExportFormat\n\n"
+
+    # Generate the module classes
+    for module in modules:
+        output += module.to_pydantic_model()
+        output += "\n\n"
+
+    return output
+
+
+def generate_files_from_modules(modules: list[KapeModuleDefinition]) -> None:
+    # Group each module by category name
+    module_groups: dict[str, list[KapeModuleDefinition]] = defaultdict(list)
+    for module in modules:
+        module_groups[module.category].append(module)
+
+    # Write each category to a separate file
+    for category, modules in module_groups.items():
+        output = generate_class_file_from_modules(modules)
+        module_file = (
+            get_target_dir() / "modules" / f"{to_valid_identifier(category.lower())}.py"
+        )
+        print(f"Writing to {module_file.relative_to(get_target_dir())}")
+
+        with open(module_file, "wt+") as fp:
+            fp.write(output)
+
+
+if __name__ == "__main__":
+    # # Start by processing all of the .tkape files we have
+    # tkape_root = get_artifacts_dir() / "targets"
+
+    # # Recursively search for all .tkape files under the targets directory
+    # target_configs: list[KapeTargetConfigurationDefinition] = []
+    # for tkape_file in tkape_root.glob("**/*.tkape"):
+    #     print(f"Processing {tkape_file.relative_to(get_artifacts_dir())}")
+    #     target_config = (
+    #         KapeTargetConfigurationDefinition.generate_target_config_from_yaml(
+    #             tkape_file
+    #         )
+    #     )
+    #     target_configs.append(target_config)
+
+    # generate_files_from_target_configs(target_configs)
+
+    # Next, process all of the .mkape files we have
+    mkape_root = get_artifacts_dir() / "modules"
+
+    # Recursively search for all .mkape files under the modules directory
+    modules: list[KapeModuleDefinition] = []
+    for mkape_file in mkape_root.glob("**/*.mkape"):
+        print(f"Processing {mkape_file.relative_to(get_artifacts_dir())}")
+        module = KapeModuleDefinition.generate_module_from_yaml(mkape_file)
+        modules.append(module)
+
+    generate_files_from_modules(modules)
