@@ -2,11 +2,15 @@
 Core definitions for the KAPE Python bindings.
 """
 
+import csv
+import ctypes
+import datetime
 from enum import Enum
 from pathlib import Path
 from typing import ClassVar, Optional, Type
+import subprocess
 
-from pydantic import BaseModel
+from pydantic import AwareDatetime, BaseModel
 
 from fastlabel.uco.core import UcoObject
 
@@ -119,6 +123,54 @@ class KapeTargetConfiguration(BaseModel):
     targets: ClassVar[list[Type[KapeTarget]]]
 
 
+class KapeTargetLogEntry(BaseModel):
+    copied_time: AwareDatetime
+    source: Path
+    destination: Path
+    file_size: int
+    sha1: str
+    deferred_copy: bool
+    created_on: AwareDatetime
+    modified_on: AwareDatetime
+    last_accessed: AwareDatetime
+    
+    @staticmethod
+    def to_aware_datetime(date_str: str) -> datetime:
+        # KAPE uses 7 decimal places after the second, but %f is only 6
+        # so we need to truncate the last digit
+        date_str = date_str[:-1]
+        
+        return datetime.datetime.strptime(date_str, "%Y-%m-%d %H:%M:%S.%f").astimezone(datetime.UTC)
+    
+    @classmethod
+    def from_csv_line(cls, line: list[str]) -> "KapeTargetLogEntry":
+        """
+        Parse a single line from a KAPE target log CSV file.
+        """
+        return cls(
+            copied_time=cls.to_aware_datetime(line[0]),
+            source=Path(line[1]),
+            destination=Path(line[2]),
+            file_size=int(line[3]),
+            sha1=line[4],
+            deferred_copy=line[5] == "True",
+            created_on=cls.to_aware_datetime(line[6]),
+            modified_on=cls.to_aware_datetime(line[7]),
+            last_accessed=cls.to_aware_datetime(line[8])            
+        )
+
+def is_admin():
+    """
+    https://stackoverflow.com/questions/130763/request-uac-elevation-from-within-a-python-script
+    """
+    try:
+        return ctypes.windll.shell32.IsUserAnAdmin()
+    except:
+        return False
+
+class AdminPrivilegeError(RuntimeError):
+    pass
+
 def run_kape(
     kape_path: Path,
     targets: Optional[list[Type[KapeTargetConfiguration]]] = None,
@@ -136,10 +188,12 @@ def run_kape(
     target_variables: Optional[dict[str, str]] = None,
     module_variables: Optional[dict[str, str]] = None,
     deduplicate: bool = True,
-) -> tuple[list[KapeTarget], list[KapeModule]]:
+) -> tuple[bytes, bytes]:
     """
     Run KAPE with the provided targets and modules, then process the resulting
     outputs. Generate a set of targets and modules associated with the result.
+    
+    This function will 
 
     :param kape_path: The path to the KAPE CLI.
     :param target: A list of targets to pass to KAPE. If empty, targets are disabled.
@@ -158,6 +212,9 @@ def run_kape(
     :param module_variables: Any variables to pass to the module system.
     :param deduplicate: Indicates KAPE should deduplicate files based on SHA256.
     """
+    if not is_admin():
+        raise AdminPrivilegeError("KAPE will not run without administrator privileges. Rerun this script as an administrator.")
+    
     args: list[str] = []
 
     # Add the binary itself
@@ -214,7 +271,30 @@ def run_kape(
         args += ["--mef", export_format.value]
 
     print(f"Running command: {' '.join(args)}")
+    s = subprocess.run(args, capture_output=True, check=True)
 
-    # s = subprocess.run(args, capture_output=True, check=True)
+    return (s.stdout, s.stderr)
 
-    return ([], [])
+def process_kape_target_dir(
+    target_destination: Path,
+    targets: list[Type[KapeTarget]]
+)-> list[KapeTarget]:
+    """
+    Process all files in the provided target destination path with
+    the associated modules, then return the resulting updated artifact(s)
+    """
+    # Search for a file of the format *_CopyLog.csv
+    copy_log = next(target_destination.glob("*_CopyLog.csv"))
+    
+    # Read the copy log using the csv library
+    with open(copy_log, "r") as f:
+        reader = csv.reader(f)
+        # Skip the header
+        next(reader)
+        # Read the rest of the lines
+        target_log_entries = [KapeTargetLogEntry.from_csv_line(line) for line in reader]
+
+    # Now we need to associate the log entries with the targets
+    
+
+    print(target_log_entries)
