@@ -15,7 +15,7 @@ class EventTranscriptDBEventTranscriptdb0(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\ProgramData\\Microsoft\\Diagnosis\\EventTranscript"
     )
-    regex: ClassVar[str] = r"(?s:EventTranscript\.db.*)\Z"
+    file_mask: ClassVar[str] = "EventTranscript.db*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -27,7 +27,7 @@ class EventTranscriptDBEventTranscriptdb1(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Windows.old\\ProgramData\\Microsoft\\Diagnosis\\EventTranscript"
     )
-    regex: ClassVar[str] = r"(?s:EventTranscript\.db.*)\Z"
+    file_mask: ClassVar[str] = "EventTranscript.db*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -39,7 +39,7 @@ class EventTranscriptDBMicrosoftOfficeDiagnosticLogs2(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%User%\\AppData\\Local\\Temp\\Diagnostics"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -74,7 +74,7 @@ class WindowsTelemetryDiagnosticsLegacyLegacyrbsfilesrelatingtoWindowsTelemetrya
         "Legacy .rbs files relating to Windows Telemetry and Diagnostics"
     )
     base_path: ClassVar[Path] = Path("C:\\ProgramData\\Microsoft\\Diagnosis\\")
-    regex: ClassVar[str] = r"(?s:events.*\.rbs)\Z"
+    file_mask: ClassVar[str] = "events*.rbs"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -90,7 +90,7 @@ class WindowsTelemetryDiagnosticsLegacyLegacyrbsfilesrelatingtoWindowsTelemetrya
     base_path: ClassVar[Path] = Path(
         "C:\\Windows.old\\ProgramData\\Microsoft\\Diagnosis\\"
     )
-    regex: ClassVar[str] = r"(?s:events.*\.rbs)\Z"
+    file_mask: ClassVar[str] = "events*.rbs"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 

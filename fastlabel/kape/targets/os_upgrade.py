@@ -13,7 +13,7 @@ from fastlabel.kape.core import KapeModule, KapeTarget, KapeTargetConfiguration
 class WindowsOSUpgradeArtifactsMigLogxml0(KapeTarget):
     name: ClassVar[str] = "MigLog.xml"
     base_path: ClassVar[Path] = Path("C:\\Windows\\Panther")
-    regex: ClassVar[str] = r"(?s:MigLog\.xml)\Z"
+    file_mask: ClassVar[str] = "MigLog.xml"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -23,7 +23,7 @@ class WindowsOSUpgradeArtifactsMigLogxml0(KapeTarget):
 class WindowsOSUpgradeArtifactsSetupactlog1(KapeTarget):
     name: ClassVar[str] = "Setupact.log"
     base_path: ClassVar[Path] = Path("C:\\Windows\\Panther")
-    regex: ClassVar[str] = r"(?s:Setupact\.log)\Z"
+    file_mask: ClassVar[str] = "Setupact.log"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -33,7 +33,7 @@ class WindowsOSUpgradeArtifactsSetupactlog1(KapeTarget):
 class WindowsOSUpgradeArtifactsHumanReadablexml2(KapeTarget):
     name: ClassVar[str] = "HumanReadable.xml"
     base_path: ClassVar[Path] = Path("C:\\Windows\\Panther")
-    regex: ClassVar[str] = r"(?s:.*HumanReadable\.xml)\Z"
+    file_mask: ClassVar[str] = "*HumanReadable.xml"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -43,7 +43,7 @@ class WindowsOSUpgradeArtifactsHumanReadablexml2(KapeTarget):
 class WindowsOSUpgradeArtifactsFolderMoveLogtxt3(KapeTarget):
     name: ClassVar[str] = "FolderMoveLog.txt"
     base_path: ClassVar[Path] = Path("C:\\Windows\\Panther\\Rollback")
-    regex: ClassVar[str] = r"(?s:FolderMoveLog\.txt)\Z"
+    file_mask: ClassVar[str] = "FolderMoveLog.txt"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -53,7 +53,7 @@ class WindowsOSUpgradeArtifactsFolderMoveLogtxt3(KapeTarget):
 class WindowsOSUpgradeArtifactsUpdateStoredb4(KapeTarget):
     name: ClassVar[str] = "Update Store.db"
     base_path: ClassVar[Path] = Path("C:\\ProgramData\\USOPrivate\\UpdateStore")
-    regex: ClassVar[str] = r"(?s:store\.db)\Z"
+    file_mask: ClassVar[str] = "store.db"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 

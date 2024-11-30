@@ -15,7 +15,7 @@ class PowerShellConsolePowerShellConsoleLog0(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Roaming\\Microsoft\\Windows\\PowerShell\\PSReadline\\"
     )
-    regex: ClassVar[str] = r"(?s:ConsoleHost_history\.txt)\Z"
+    file_mask: ClassVar[str] = "ConsoleHost_history.txt"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 

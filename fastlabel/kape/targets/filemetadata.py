@@ -13,7 +13,7 @@ from fastlabel.kape.core import KapeModule, KapeTarget, KapeTargetConfiguration
 class SignatureCatalogSignatureCatalog0(KapeTarget):
     name: ClassVar[str] = "SignatureCatalog"
     base_path: ClassVar[Path] = Path("C:\\Windows\\System32\\CatRoot\\")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -23,7 +23,7 @@ class SignatureCatalogSignatureCatalog0(KapeTarget):
 class SignatureCatalogSignatureCatalog1(KapeTarget):
     name: ClassVar[str] = "SignatureCatalog"
     base_path: ClassVar[Path] = Path("C:\\Windows.old\\Windows\\System32\\CatRoot\\")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 

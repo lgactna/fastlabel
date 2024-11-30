@@ -13,7 +13,7 @@ from fastlabel.kape.core import KapeModule, KapeTarget, KapeTargetConfiguration
 class FTPClientsFileZillaClient0(KapeTarget):
     name: ClassVar[str] = "FileZilla Client"
     base_path: ClassVar[Path] = Path("FileZillaClient.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -23,7 +23,7 @@ class FTPClientsFileZillaClient0(KapeTarget):
 class FTPClientsFileZillaServer1(KapeTarget):
     name: ClassVar[str] = "FileZilla Server"
     base_path: ClassVar[Path] = Path("FileZillaServer.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -33,7 +33,7 @@ class FTPClientsFileZillaServer1(KapeTarget):
 class FTPClientsWinSCP2(KapeTarget):
     name: ClassVar[str] = "WinSCP"
     base_path: ClassVar[Path] = Path("WinSCP.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 

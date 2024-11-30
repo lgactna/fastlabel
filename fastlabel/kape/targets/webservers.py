@@ -13,7 +13,7 @@ from fastlabel.kape.core import KapeModule, KapeTarget, KapeTargetConfiguration
 class ApacheAccessLogApacheAccessLog0(KapeTarget):
     name: ClassVar[str] = "Apache Access Log"
     base_path: ClassVar[Path] = Path("C:\\")
-    regex: ClassVar[str] = r"(?s:access\.log)\Z"
+    file_mask: ClassVar[str] = "access.log"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 

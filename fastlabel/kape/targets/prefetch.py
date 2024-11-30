@@ -13,7 +13,7 @@ from fastlabel.kape.core import KapeModule, KapeTarget, KapeTargetConfiguration
 class EvidenceOfExecutionPrefetch0(KapeTarget):
     name: ClassVar[str] = "Prefetch"
     base_path: ClassVar[Path] = Path("Prefetch.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -23,7 +23,7 @@ class EvidenceOfExecutionPrefetch0(KapeTarget):
 class EvidenceOfExecutionRecentFileCache1(KapeTarget):
     name: ClassVar[str] = "RecentFileCache"
     base_path: ClassVar[Path] = Path("RecentFileCache.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -33,7 +33,7 @@ class EvidenceOfExecutionRecentFileCache1(KapeTarget):
 class EvidenceOfExecutionAmcache2(KapeTarget):
     name: ClassVar[str] = "Amcache"
     base_path: ClassVar[Path] = Path("Amcache.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -43,7 +43,7 @@ class EvidenceOfExecutionAmcache2(KapeTarget):
 class EvidenceOfExecutionSyscache3(KapeTarget):
     name: ClassVar[str] = "Syscache"
     base_path: ClassVar[Path] = Path("Syscache.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -74,7 +74,7 @@ class EvidenceOfExecution(KapeTargetConfiguration):
 class PrefetchPrefetch0(KapeTarget):
     name: ClassVar[str] = "Prefetch"
     base_path: ClassVar[Path] = Path("C:\\Windows\\prefetch\\")
-    regex: ClassVar[str] = r"(?s:.*\.pf)\Z"
+    file_mask: ClassVar[str] = "*.pf"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -84,7 +84,7 @@ class PrefetchPrefetch0(KapeTarget):
 class PrefetchPrefetch1(KapeTarget):
     name: ClassVar[str] = "Prefetch"
     base_path: ClassVar[Path] = Path("C:\\Windows.old\\Windows\\prefetch\\")
-    regex: ClassVar[str] = r"(?s:.*\.pf)\Z"
+    file_mask: ClassVar[str] = "*.pf"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 

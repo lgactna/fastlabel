@@ -13,7 +13,7 @@ from fastlabel.kape.core import KapeModule, KapeTarget, KapeTargetConfiguration
 class WSLDebian0(KapeTarget):
     name: ClassVar[str] = "Debian"
     base_path: ClassVar[Path] = Path("Debian.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -23,7 +23,7 @@ class WSLDebian0(KapeTarget):
 class WSLUbuntu1(KapeTarget):
     name: ClassVar[str] = "Ubuntu"
     base_path: ClassVar[Path] = Path("Ubuntu.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -33,7 +33,7 @@ class WSLUbuntu1(KapeTarget):
 class WSLKali2(KapeTarget):
     name: ClassVar[str] = "Kali"
     base_path: ClassVar[Path] = Path("Kali.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -43,7 +43,7 @@ class WSLKali2(KapeTarget):
 class WSLopenSUSE3(KapeTarget):
     name: ClassVar[str] = "openSUSE"
     base_path: ClassVar[Path] = Path("openSUSE.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -53,7 +53,7 @@ class WSLopenSUSE3(KapeTarget):
 class WSLSUSELinuxEnterpriseServer4(KapeTarget):
     name: ClassVar[str] = "SUSE Linux Enterprise Server"
     base_path: ClassVar[Path] = Path("SUSELinuxEnterpriseServer.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 

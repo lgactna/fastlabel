@@ -17,7 +17,7 @@ class AteraAgentAteraAgentinifiles0(KapeTarget):
 
     name: ClassVar[str] = "AteraAgent .ini files"
     base_path: ClassVar[Path] = Path("C:\\Program Files\\ATERA Networks\\AteraAgent")
-    regex: ClassVar[str] = r"(?s:.*\.ini)\Z"
+    file_mask: ClassVar[str] = "*.ini"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -31,7 +31,7 @@ class AteraAgentAteraAgentLogs1(KapeTarget):
 
     name: ClassVar[str] = "AteraAgent Logs"
     base_path: ClassVar[Path] = Path("C:\\Program Files\\ATERA Networks\\AteraAgent")
-    regex: ClassVar[str] = r"(?s:.*\.txt)\Z"
+    file_mask: ClassVar[str] = "*.txt"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -45,7 +45,7 @@ class AteraAgentAteraAgentLogs2(KapeTarget):
 
     name: ClassVar[str] = "AteraAgent Logs"
     base_path: ClassVar[Path] = Path("C:\\Program Files\\ATERA Networks\\AteraAgent")
-    regex: ClassVar[str] = r"(?s:.*\.db)\Z"
+    file_mask: ClassVar[str] = "*.db"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -59,7 +59,7 @@ class AteraAgentAteraAgentLogs3(KapeTarget):
 
     name: ClassVar[str] = "AteraAgent Logs"
     base_path: ClassVar[Path] = Path("C:\\Program Files\\ATERA Networks\\AteraAgent")
-    regex: ClassVar[str] = r"(?s:.*\.config)\Z"
+    file_mask: ClassVar[str] = "*.config"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -73,7 +73,7 @@ class AteraAgentAteraAgentLogs4(KapeTarget):
 
     name: ClassVar[str] = "AteraAgent Logs"
     base_path: ClassVar[Path] = Path("C:\\Program Files\\ATERA Networks\\AteraAgent")
-    regex: ClassVar[str] = r"(?s:.*\.cfg)\Z"
+    file_mask: ClassVar[str] = "*.cfg"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -111,7 +111,7 @@ class SplashtopSplashtopLogFiles0(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Program Files*\\Splashtop\\Splashtop Remote\\Server\\log"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -125,7 +125,7 @@ class SplashtopSplashtopLogFilesinProgramData1(KapeTarget):
 
     name: ClassVar[str] = "Splashtop Log Files in ProgramData"
     base_path: ClassVar[Path] = Path("C:\\ProgramData\\Splashtop\\Temp\\log")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 

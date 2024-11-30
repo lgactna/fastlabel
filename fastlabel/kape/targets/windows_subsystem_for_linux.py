@@ -15,7 +15,7 @@ class DebianDebianWSLetcdebianversion0(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\TheDebianProject.DebianGNULinux_*\\LocalState\\rootfs\\etc\\"
     )
-    regex: ClassVar[str] = r"(?s:debian_version)\Z"
+    file_mask: ClassVar[str] = "debian_version"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -27,7 +27,7 @@ class DebianDebianWSLetcfstab1(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\TheDebianProject.DebianGNULinux_*\\LocalState\\rootfs\\etc\\"
     )
-    regex: ClassVar[str] = r"(?s:fstab)\Z"
+    file_mask: ClassVar[str] = "fstab"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -39,7 +39,7 @@ class DebianDebianWSLetcosrelease2(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\TheDebianProject.DebianGNULinux_*\\LocalState\\rootfs\\etc\\"
     )
-    regex: ClassVar[str] = r"(?s:os\-release)\Z"
+    file_mask: ClassVar[str] = "os-release"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -51,7 +51,7 @@ class DebianDebianWSLetcpasswd3(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\TheDebianProject.DebianGNULinux_*\\LocalState\\rootfs\\etc\\"
     )
-    regex: ClassVar[str] = r"(?s:passwd)\Z"
+    file_mask: ClassVar[str] = "passwd"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -63,7 +63,7 @@ class DebianDebianWSLetcgroup4(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\TheDebianProject.DebianGNULinux_*\\LocalState\\rootfs\\etc\\"
     )
-    regex: ClassVar[str] = r"(?s:group)\Z"
+    file_mask: ClassVar[str] = "group"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -75,7 +75,7 @@ class DebianDebianWSLetcshadow5(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\TheDebianProject.DebianGNULinux_*\\LocalState\\rootfs\\etc\\"
     )
-    regex: ClassVar[str] = r"(?s:shadow)\Z"
+    file_mask: ClassVar[str] = "shadow"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -87,7 +87,7 @@ class DebianDebianWSLetctimezone6(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\TheDebianProject.DebianGNULinux_*\\LocalState\\rootfs\\etc\\"
     )
-    regex: ClassVar[str] = r"(?s:timezone)\Z"
+    file_mask: ClassVar[str] = "timezone"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -99,7 +99,7 @@ class DebianDebianWSLetchostname7(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\TheDebianProject.DebianGNULinux_*\\LocalState\\rootfs\\etc\\"
     )
-    regex: ClassVar[str] = r"(?s:hostname)\Z"
+    file_mask: ClassVar[str] = "hostname"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -111,7 +111,7 @@ class DebianDebianWSLetchosts8(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\TheDebianProject.DebianGNULinux_*\\LocalState\\rootfs\\etc\\"
     )
-    regex: ClassVar[str] = r"(?s:hosts)\Z"
+    file_mask: ClassVar[str] = "hosts"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -123,7 +123,7 @@ class DebianDebianWSLetccrontab9(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\TheDebianProject.DebianGNULinux_*\\LocalState\\rootfs\\etc\\"
     )
-    regex: ClassVar[str] = r"(?s:crontab)\Z"
+    file_mask: ClassVar[str] = "crontab"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -135,7 +135,7 @@ class DebianDebianWSLetcbashbashrc10(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\TheDebianProject.DebianGNULinux_*\\LocalState\\rootfs\\etc\\"
     )
-    regex: ClassVar[str] = r"(?s:bash\.bashrc)\Z"
+    file_mask: ClassVar[str] = "bash.bashrc"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -147,7 +147,7 @@ class DebianDebianWSLetcprofile11(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\TheDebianProject.DebianGNULinux_*\\LocalState\\rootfs\\etc\\"
     )
-    regex: ClassVar[str] = r"(?s:profile)\Z"
+    file_mask: ClassVar[str] = "profile"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -159,7 +159,7 @@ class DebianDebianWSLbashhistory12(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\TheDebianProject.DebianGNULinux_*\\LocalState\\rootfs\\"
     )
-    regex: ClassVar[str] = r"(?s:\.bash_history)\Z"
+    file_mask: ClassVar[str] = ".bash_history"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -171,7 +171,7 @@ class DebianDebianWSLbashrc13(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\TheDebianProject.DebianGNULinux_*\\LocalState\\rootfs\\"
     )
-    regex: ClassVar[str] = r"(?s:\.bashrc)\Z"
+    file_mask: ClassVar[str] = ".bashrc"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -183,7 +183,7 @@ class DebianDebianWSLprofile14(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\TheDebianProject.DebianGNULinux_*\\LocalState\\rootfs\\"
     )
-    regex: ClassVar[str] = r"(?s:\.profile)\Z"
+    file_mask: ClassVar[str] = ".profile"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -195,7 +195,7 @@ class DebianDebianWSLUserCrontabs15(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\TheDebianProject.DebianGNULinux_*\\LocalState\\rootfs\\var\\spool\\cron\\crontabs\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -207,7 +207,7 @@ class DebianDebianWSLAptLogs16(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\TheDebianProject.DebianGNULinux_*\\LocalState\\rootfs\\var\\log\\apt\\"
     )
-    regex: ClassVar[str] = r"(?s:.*\.log)\Z"
+    file_mask: ClassVar[str] = "*.log"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -253,7 +253,7 @@ class KaliKaliWSLetcdebianversion0(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\KaliLinux.54290C8133FEE_*\\LocalState\\rootfs\\etc\\"
     )
-    regex: ClassVar[str] = r"(?s:debian_version)\Z"
+    file_mask: ClassVar[str] = "debian_version"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -265,7 +265,7 @@ class KaliKaliWSLetcfstab1(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\KaliLinux.54290C8133FEE_*\\LocalState\\rootfs\\etc\\"
     )
-    regex: ClassVar[str] = r"(?s:fstab)\Z"
+    file_mask: ClassVar[str] = "fstab"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -277,7 +277,7 @@ class KaliKaliWSLetcosrelease2(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\KaliLinux.54290C8133FEE_*\\LocalState\\rootfs\\etc\\"
     )
-    regex: ClassVar[str] = r"(?s:os\-release)\Z"
+    file_mask: ClassVar[str] = "os-release"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -289,7 +289,7 @@ class KaliKaliWSLetcpasswd3(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\KaliLinux.54290C8133FEE_*\\LocalState\\rootfs\\etc\\"
     )
-    regex: ClassVar[str] = r"(?s:passwd)\Z"
+    file_mask: ClassVar[str] = "passwd"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -301,7 +301,7 @@ class KaliKaliWSLetcgroup4(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\KaliLinux.54290C8133FEE_*\\LocalState\\rootfs\\etc\\"
     )
-    regex: ClassVar[str] = r"(?s:group)\Z"
+    file_mask: ClassVar[str] = "group"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -313,7 +313,7 @@ class KaliKaliWSLetcshadow5(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\KaliLinux.54290C8133FEE_*\\LocalState\\rootfs\\etc\\"
     )
-    regex: ClassVar[str] = r"(?s:shadow)\Z"
+    file_mask: ClassVar[str] = "shadow"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -325,7 +325,7 @@ class KaliKaliWSLetctimezone6(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\KaliLinux.54290C8133FEE_*\\LocalState\\rootfs\\etc\\"
     )
-    regex: ClassVar[str] = r"(?s:timezone)\Z"
+    file_mask: ClassVar[str] = "timezone"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -337,7 +337,7 @@ class KaliKaliWSLetchostname7(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\KaliLinux.54290C8133FEE_*\\LocalState\\rootfs\\etc\\"
     )
-    regex: ClassVar[str] = r"(?s:hostname)\Z"
+    file_mask: ClassVar[str] = "hostname"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -349,7 +349,7 @@ class KaliKaliWSLetchosts8(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\KaliLinux.54290C8133FEE_*\\LocalState\\rootfs\\etc\\"
     )
-    regex: ClassVar[str] = r"(?s:hosts)\Z"
+    file_mask: ClassVar[str] = "hosts"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -361,7 +361,7 @@ class KaliKaliWSLetccrontab9(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\KaliLinux.54290C8133FEE_*\\LocalState\\rootfs\\etc\\"
     )
-    regex: ClassVar[str] = r"(?s:crontab)\Z"
+    file_mask: ClassVar[str] = "crontab"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -373,7 +373,7 @@ class KaliKaliWSLetcbashbashrc10(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\KaliLinux.54290C8133FEE_*\\LocalState\\rootfs\\etc\\"
     )
-    regex: ClassVar[str] = r"(?s:bash\.bashrc)\Z"
+    file_mask: ClassVar[str] = "bash.bashrc"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -385,7 +385,7 @@ class KaliKaliWSLetcprofile11(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\KaliLinux.54290C8133FEE_*\\LocalState\\rootfs\\etc\\"
     )
-    regex: ClassVar[str] = r"(?s:profile)\Z"
+    file_mask: ClassVar[str] = "profile"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -397,7 +397,7 @@ class KaliKaliWSLbashhistory12(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\KaliLinux.54290C8133FEE_*\\LocalState\\rootfs\\"
     )
-    regex: ClassVar[str] = r"(?s:\.bash_history)\Z"
+    file_mask: ClassVar[str] = ".bash_history"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -409,7 +409,7 @@ class KaliKaliWSLbashrc13(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\KaliLinux.54290C8133FEE_*\\LocalState\\rootfs\\"
     )
-    regex: ClassVar[str] = r"(?s:\.bashrc)\Z"
+    file_mask: ClassVar[str] = ".bashrc"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -421,7 +421,7 @@ class KaliKaliWSLprofile14(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\KaliLinux.54290C8133FEE_*\\LocalState\\rootfs\\"
     )
-    regex: ClassVar[str] = r"(?s:\.profile)\Z"
+    file_mask: ClassVar[str] = ".profile"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -433,7 +433,7 @@ class KaliKaliWSLUserCrontabs15(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\KaliLinux.54290C8133FEE_*\\LocalState\\rootfs\\var\\spool\\cron\\crontabs\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -445,7 +445,7 @@ class KaliKaliWSLAptLogs16(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\KaliLinux.54290C8133FEE_*\\LocalState\\rootfs\\var\\log\\apt\\"
     )
-    regex: ClassVar[str] = r"(?s:.*\.log)\Z"
+    file_mask: ClassVar[str] = "*.log"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -491,7 +491,7 @@ class openSUSEopenSUSEWSLetcosrelease0(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\46932SUSE.openSUSE*Leap*\\LocalState\\rootfs\\etc\\"
     )
-    regex: ClassVar[str] = r"(?s:os\-release)\Z"
+    file_mask: ClassVar[str] = "os-release"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -503,7 +503,7 @@ class openSUSEopenSUSEWSLetcfstab1(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\46932SUSE.openSUSE*Leap*\\LocalState\\rootfs\\etc\\"
     )
-    regex: ClassVar[str] = r"(?s:fstab)\Z"
+    file_mask: ClassVar[str] = "fstab"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -515,7 +515,7 @@ class openSUSEopenSUSEWSLetcpasswd2(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\46932SUSE.openSUSE*Leap*\\LocalState\\rootfs\\etc\\"
     )
-    regex: ClassVar[str] = r"(?s:passwd)\Z"
+    file_mask: ClassVar[str] = "passwd"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -527,7 +527,7 @@ class openSUSEopenSUSEWSLetcgroup3(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\46932SUSE.openSUSE*Leap*\\LocalState\\rootfs\\etc\\"
     )
-    regex: ClassVar[str] = r"(?s:group)\Z"
+    file_mask: ClassVar[str] = "group"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -539,7 +539,7 @@ class openSUSEopenSUSEWSLetcshadow4(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\46932SUSE.openSUSE*Leap*\\LocalState\\rootfs\\etc\\"
     )
-    regex: ClassVar[str] = r"(?s:shadow)\Z"
+    file_mask: ClassVar[str] = "shadow"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -551,7 +551,7 @@ class openSUSEopenSUSEWSLetctimezone5(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\46932SUSE.openSUSE*Leap*\\LocalState\\rootfs\\etc\\"
     )
-    regex: ClassVar[str] = r"(?s:timezone)\Z"
+    file_mask: ClassVar[str] = "timezone"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -563,7 +563,7 @@ class openSUSEopenSUSEWSLetchostname6(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\46932SUSE.openSUSE*Leap*\\LocalState\\rootfs\\etc\\"
     )
-    regex: ClassVar[str] = r"(?s:hostname)\Z"
+    file_mask: ClassVar[str] = "hostname"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -575,7 +575,7 @@ class openSUSEopenSUSEWSLetchosts7(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\46932SUSE.openSUSE*Leap*\\LocalState\\rootfs\\etc\\"
     )
-    regex: ClassVar[str] = r"(?s:hosts)\Z"
+    file_mask: ClassVar[str] = "hosts"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -587,7 +587,7 @@ class openSUSEopenSUSEWSLetcbashbashrc8(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\46932SUSE.openSUSE*Leap*\\LocalState\\rootfs\\etc\\"
     )
-    regex: ClassVar[str] = r"(?s:bash\.bashrc)\Z"
+    file_mask: ClassVar[str] = "bash.bashrc"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -599,7 +599,7 @@ class openSUSEopenSUSEWSLetcprofile9(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\46932SUSE.openSUSE*Leap*\\LocalState\\rootfs\\etc\\"
     )
-    regex: ClassVar[str] = r"(?s:profile)\Z"
+    file_mask: ClassVar[str] = "profile"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -611,7 +611,7 @@ class openSUSEopenSUSEWSLbashhistory10(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\46932SUSE.openSUSE*Leap*\\LocalState\\rootfs\\"
     )
-    regex: ClassVar[str] = r"(?s:\.bash_history)\Z"
+    file_mask: ClassVar[str] = ".bash_history"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -623,7 +623,7 @@ class openSUSEopenSUSEWSLbashrc11(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\46932SUSE.openSUSE*Leap*\\LocalState\\rootfs\\"
     )
-    regex: ClassVar[str] = r"(?s:\.bashrc)\Z"
+    file_mask: ClassVar[str] = ".bashrc"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -635,7 +635,7 @@ class openSUSEopenSUSEWSLprofile12(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\46932SUSE.openSUSE*Leap*\\LocalState\\rootfs\\"
     )
-    regex: ClassVar[str] = r"(?s:\.profile)\Z"
+    file_mask: ClassVar[str] = ".profile"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -677,7 +677,7 @@ class SUSELinuxEnterpriseServerSUSELinuxEnterpriseServerWSLetcosrelease0(KapeTar
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\46932SUSE.SUSELinuxEnterpriseServer*\\LocalState\\rootfs\\etc\\"
     )
-    regex: ClassVar[str] = r"(?s:os\-release)\Z"
+    file_mask: ClassVar[str] = "os-release"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -689,7 +689,7 @@ class SUSELinuxEnterpriseServerSUSELinuxEnterpriseServerWSLetcfstab1(KapeTarget)
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\46932SUSE.SUSELinuxEnterpriseServer*\\LocalState\\rootfs\\etc\\"
     )
-    regex: ClassVar[str] = r"(?s:fstab)\Z"
+    file_mask: ClassVar[str] = "fstab"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -701,7 +701,7 @@ class SUSELinuxEnterpriseServerSUSELinuxEnterpriseServerWSLetcpasswd2(KapeTarget
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\46932SUSE.SUSELinuxEnterpriseServer*\\LocalState\\rootfs\\etc\\"
     )
-    regex: ClassVar[str] = r"(?s:passwd)\Z"
+    file_mask: ClassVar[str] = "passwd"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -713,7 +713,7 @@ class SUSELinuxEnterpriseServerSUSELinuxEnterpriseServerWSLetcgroup3(KapeTarget)
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\46932SUSE.SUSELinuxEnterpriseServer*\\LocalState\\rootfs\\etc\\"
     )
-    regex: ClassVar[str] = r"(?s:group)\Z"
+    file_mask: ClassVar[str] = "group"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -725,7 +725,7 @@ class SUSELinuxEnterpriseServerSUSELinuxEnterpriseServerWSLetcshadow4(KapeTarget
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\46932SUSE.SUSELinuxEnterpriseServer*\\LocalState\\rootfs\\etc\\"
     )
-    regex: ClassVar[str] = r"(?s:shadow)\Z"
+    file_mask: ClassVar[str] = "shadow"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -737,7 +737,7 @@ class SUSELinuxEnterpriseServerSUSELinuxEnterpriseServerWSLetctimezone5(KapeTarg
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\46932SUSE.SUSELinuxEnterpriseServer*\\LocalState\\rootfs\\etc\\"
     )
-    regex: ClassVar[str] = r"(?s:timezone)\Z"
+    file_mask: ClassVar[str] = "timezone"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -749,7 +749,7 @@ class SUSELinuxEnterpriseServerSUSELinuxEnterpriseServerWSLetchostname6(KapeTarg
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\46932SUSE.SUSELinuxEnterpriseServer*\\LocalState\\rootfs\\etc\\"
     )
-    regex: ClassVar[str] = r"(?s:hostname)\Z"
+    file_mask: ClassVar[str] = "hostname"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -761,7 +761,7 @@ class SUSELinuxEnterpriseServerSUSELinuxEnterpriseServerWSLetchosts7(KapeTarget)
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\46932SUSE.SUSELinuxEnterpriseServer*\\LocalState\\rootfs\\etc\\"
     )
-    regex: ClassVar[str] = r"(?s:hosts)\Z"
+    file_mask: ClassVar[str] = "hosts"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -773,7 +773,7 @@ class SUSELinuxEnterpriseServerSUSELinuxEnterpriseServerWSLetcbashbashrc8(KapeTa
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\46932SUSE.SUSELinuxEnterpriseServer*\\LocalState\\rootfs\\etc\\"
     )
-    regex: ClassVar[str] = r"(?s:bash\.bashrc)\Z"
+    file_mask: ClassVar[str] = "bash.bashrc"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -785,7 +785,7 @@ class SUSELinuxEnterpriseServerSUSELinuxEnterpriseServerWSLetcprofile9(KapeTarge
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\46932SUSE.SUSELinuxEnterpriseServer*\\LocalState\\rootfs\\etc\\"
     )
-    regex: ClassVar[str] = r"(?s:profile)\Z"
+    file_mask: ClassVar[str] = "profile"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -797,7 +797,7 @@ class SUSELinuxEnterpriseServerSUSELinuxEnterpriseServerWSLbashhistory10(KapeTar
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\46932SUSE.SUSELinuxEnterpriseServer*\\LocalState\\rootfs\\"
     )
-    regex: ClassVar[str] = r"(?s:\.bash_history)\Z"
+    file_mask: ClassVar[str] = ".bash_history"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -809,7 +809,7 @@ class SUSELinuxEnterpriseServerSUSELinuxEnterpriseServerWSLbashrc11(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\46932SUSE.SUSELinuxEnterpriseServer*\\LocalState\\rootfs\\"
     )
-    regex: ClassVar[str] = r"(?s:\.bashrc)\Z"
+    file_mask: ClassVar[str] = ".bashrc"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -821,7 +821,7 @@ class SUSELinuxEnterpriseServerSUSELinuxEnterpriseServerWSLprofile12(KapeTarget)
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\46932SUSE.SUSELinuxEnterpriseServer*\\LocalState\\rootfs\\"
     )
-    regex: ClassVar[str] = r"(?s:\.profile)\Z"
+    file_mask: ClassVar[str] = ".profile"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -863,7 +863,7 @@ class UbuntuUbuntuWSLetcosrelease0(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\CanonicalGroupLimited.Ubuntu*\\LocalState\\rootfs\\etc\\"
     )
-    regex: ClassVar[str] = r"(?s:os\-release)\Z"
+    file_mask: ClassVar[str] = "os-release"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -875,7 +875,7 @@ class UbuntuUbuntuWSLetcfstab1(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\CanonicalGroupLimited.Ubuntu*\\LocalState\\rootfs\\etc\\"
     )
-    regex: ClassVar[str] = r"(?s:fstab)\Z"
+    file_mask: ClassVar[str] = "fstab"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -887,7 +887,7 @@ class UbuntuUbuntuWSLetcpasswd2(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\CanonicalGroupLimited.Ubuntu*\\LocalState\\rootfs\\etc\\"
     )
-    regex: ClassVar[str] = r"(?s:passwd)\Z"
+    file_mask: ClassVar[str] = "passwd"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -899,7 +899,7 @@ class UbuntuUbuntuWSLetcgroup3(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\CanonicalGroupLimited.Ubuntu*\\LocalState\\rootfs\\etc\\"
     )
-    regex: ClassVar[str] = r"(?s:group)\Z"
+    file_mask: ClassVar[str] = "group"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -911,7 +911,7 @@ class UbuntuUbuntuWSLetcshadow4(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\CanonicalGroupLimited.Ubuntu*\\LocalState\\rootfs\\etc\\"
     )
-    regex: ClassVar[str] = r"(?s:shadow)\Z"
+    file_mask: ClassVar[str] = "shadow"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -923,7 +923,7 @@ class UbuntuUbuntuWSLetctimezone5(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\CanonicalGroupLimited.Ubuntu*\\LocalState\\rootfs\\etc\\"
     )
-    regex: ClassVar[str] = r"(?s:timezone)\Z"
+    file_mask: ClassVar[str] = "timezone"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -935,7 +935,7 @@ class UbuntuUbuntuWSLetchostname6(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\CanonicalGroupLimited.Ubuntu*\\LocalState\\rootfs\\etc\\"
     )
-    regex: ClassVar[str] = r"(?s:hostname)\Z"
+    file_mask: ClassVar[str] = "hostname"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -947,7 +947,7 @@ class UbuntuUbuntuWSLetchosts7(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\CanonicalGroupLimited.Ubuntu*\\LocalState\\rootfs\\etc\\"
     )
-    regex: ClassVar[str] = r"(?s:hosts)\Z"
+    file_mask: ClassVar[str] = "hosts"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -959,7 +959,7 @@ class UbuntuUbuntuWSLetccrontab8(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\CanonicalGroupLimited.Ubuntu*\\LocalState\\rootfs\\etc\\"
     )
-    regex: ClassVar[str] = r"(?s:crontab)\Z"
+    file_mask: ClassVar[str] = "crontab"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -971,7 +971,7 @@ class UbuntuUbuntuWSLetcbashbashrc9(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\CanonicalGroupLimited.Ubuntu*\\LocalState\\rootfs\\etc\\"
     )
-    regex: ClassVar[str] = r"(?s:bash\.bashrc)\Z"
+    file_mask: ClassVar[str] = "bash.bashrc"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -983,7 +983,7 @@ class UbuntuUbuntuWSLetcprofile10(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\CanonicalGroupLimited.Ubuntu*\\LocalState\\rootfs\\etc\\"
     )
-    regex: ClassVar[str] = r"(?s:profile)\Z"
+    file_mask: ClassVar[str] = "profile"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -995,7 +995,7 @@ class UbuntuUbuntuWSLbashhistory11(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\CanonicalGroupLimited.Ubuntu*\\LocalState\\rootfs\\"
     )
-    regex: ClassVar[str] = r"(?s:\.bash_history)\Z"
+    file_mask: ClassVar[str] = ".bash_history"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1007,7 +1007,7 @@ class UbuntuUbuntuWSLbashrc12(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\CanonicalGroupLimited.Ubuntu*\\LocalState\\rootfs\\"
     )
-    regex: ClassVar[str] = r"(?s:\.bashrc)\Z"
+    file_mask: ClassVar[str] = ".bashrc"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1019,7 +1019,7 @@ class UbuntuUbuntuWSLprofile13(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\CanonicalGroupLimited.Ubuntu*\\LocalState\\rootfs\\"
     )
-    regex: ClassVar[str] = r"(?s:\.profile)\Z"
+    file_mask: ClassVar[str] = ".profile"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1031,7 +1031,7 @@ class UbuntuUbuntuWSLUserCrontabs14(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\CanonicalGroupLimited.Ubuntu*\\LocalState\\rootfs\\var\\spool\\cron\\crontabs\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1043,7 +1043,7 @@ class UbuntuUbuntuWSLAptLogs15(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\CanonicalGroupLimited.Ubuntu*\\LocalState\\rootfs\\var\\log\\apt\\"
     )
-    regex: ClassVar[str] = r"(?s:.*\.log)\Z"
+    file_mask: ClassVar[str] = "*.log"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 

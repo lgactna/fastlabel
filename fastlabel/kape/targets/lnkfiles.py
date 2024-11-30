@@ -19,7 +19,7 @@ class LNKFilesAndJumpListsLNKFilesfromRecent0(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Roaming\\Microsoft\\Windows\\Recent\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -31,7 +31,7 @@ class LNKFilesAndJumpListsLNKFilesfromMicrosoftOfficeRecent1(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Roaming\\Microsoft\\Office\\Recent\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -43,7 +43,7 @@ class LNKFilesAndJumpListsStartMenuLNKFiles2(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs"
     )
-    regex: ClassVar[str] = r"(?s:.*\.LNK)\Z"
+    file_mask: ClassVar[str] = "*.LNK"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -53,7 +53,7 @@ class LNKFilesAndJumpListsStartMenuLNKFiles2(KapeTarget):
 class LNKFilesAndJumpListsLNKFilesfromRecentXP3(KapeTarget):
     name: ClassVar[str] = "LNK Files from Recent (XP)"
     base_path: ClassVar[Path] = Path("C:\\Documents and Settings\\%user%\\Recent\\")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -63,7 +63,7 @@ class LNKFilesAndJumpListsLNKFilesfromRecentXP3(KapeTarget):
 class LNKFilesAndJumpListsDesktopLNKFilesXP4(KapeTarget):
     name: ClassVar[str] = "Desktop LNK Files XP"
     base_path: ClassVar[Path] = Path("C:\\Documents and Settings\\%user%\\Desktop\\")
-    regex: ClassVar[str] = r"(?s:.*\.LNK)\Z"
+    file_mask: ClassVar[str] = "*.LNK"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -73,7 +73,7 @@ class LNKFilesAndJumpListsDesktopLNKFilesXP4(KapeTarget):
 class LNKFilesAndJumpListsDesktopLNKFiles5(KapeTarget):
     name: ClassVar[str] = "Desktop LNK Files"
     base_path: ClassVar[Path] = Path("C:\\Users\\%user%\\Desktop\\")
-    regex: ClassVar[str] = r"(?s:.*\.LNK)\Z"
+    file_mask: ClassVar[str] = "*.LNK"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -83,7 +83,7 @@ class LNKFilesAndJumpListsDesktopLNKFiles5(KapeTarget):
 class LNKFilesAndJumpListsRestorepointLNKFilesXP6(KapeTarget):
     name: ClassVar[str] = "Restore point LNK Files XP"
     base_path: ClassVar[Path] = Path("C:\\System Volume Information\\_restore*\\RP*\\")
-    regex: ClassVar[str] = r"(?s:.*\.LNK)\Z"
+    file_mask: ClassVar[str] = "*.LNK"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -95,7 +95,7 @@ class LNKFilesAndJumpListsLNKFilesfromCProgramData7(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\"
     )
-    regex: ClassVar[str] = r"(?s:.*\.LNK)\Z"
+    file_mask: ClassVar[str] = "*.LNK"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 

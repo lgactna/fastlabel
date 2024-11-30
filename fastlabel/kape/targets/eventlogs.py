@@ -13,7 +13,7 @@ from fastlabel.kape.core import KapeModule, KapeTarget, KapeTargetConfiguration
 class CombinedLogsWindowsEventLogs0(KapeTarget):
     name: ClassVar[str] = "Windows Event Logs"
     base_path: ClassVar[Path] = Path("EventLogs.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -23,7 +23,7 @@ class CombinedLogsWindowsEventLogs0(KapeTarget):
 class CombinedLogsEventTraceLogs1(KapeTarget):
     name: ClassVar[str] = "Event Trace Logs"
     base_path: ClassVar[Path] = Path("EventTraceLogs.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -33,7 +33,7 @@ class CombinedLogsEventTraceLogs1(KapeTarget):
 class CombinedLogsPowerShellConsoleLog2(KapeTarget):
     name: ClassVar[str] = "PowerShell Console Log"
     base_path: ClassVar[Path] = Path("PowerShellConsole.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -43,7 +43,7 @@ class CombinedLogsPowerShellConsoleLog2(KapeTarget):
 class CombinedLogsWindowsFirewallLog3(KapeTarget):
     name: ClassVar[str] = "Windows Firewall Log"
     base_path: ClassVar[Path] = Path("WindowsFirewall.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -53,7 +53,7 @@ class CombinedLogsWindowsFirewallLog3(KapeTarget):
 class CombinedLogsUSBDevicesLogs4(KapeTarget):
     name: ClassVar[str] = "USBDevicesLogs"
     base_path: ClassVar[Path] = Path("USBDevicesLogs.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -85,7 +85,7 @@ class CombinedLogs(KapeTargetConfiguration):
 class ApplicationEventsApplicationEventLogXP0(KapeTarget):
     name: ClassVar[str] = "Application Event Log XP"
     base_path: ClassVar[Path] = Path("C:\\Windows\\System32\\config\\")
-    regex: ClassVar[str] = r"(?s:AppEvent\.evt)\Z"
+    file_mask: ClassVar[str] = "AppEvent.evt"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -95,7 +95,7 @@ class ApplicationEventsApplicationEventLogXP0(KapeTarget):
 class ApplicationEventsApplicationEventLogXP1(KapeTarget):
     name: ClassVar[str] = "Application Event Log XP"
     base_path: ClassVar[Path] = Path("C:\\Windows.old\\Windows\\System32\\config\\")
-    regex: ClassVar[str] = r"(?s:AppEvent\.evt)\Z"
+    file_mask: ClassVar[str] = "AppEvent.evt"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -105,7 +105,7 @@ class ApplicationEventsApplicationEventLogXP1(KapeTarget):
 class ApplicationEventsApplicationEventLogWin72(KapeTarget):
     name: ClassVar[str] = "Application Event Log Win7+"
     base_path: ClassVar[Path] = Path("C:\\Windows\\System32\\winevt\\logs\\")
-    regex: ClassVar[str] = r"(?s:application\.evtx)\Z"
+    file_mask: ClassVar[str] = "application.evtx"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -117,7 +117,7 @@ class ApplicationEventsApplicationEventLogWin73(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Windows.old\\Windows\\System32\\winevt\\logs\\"
     )
-    regex: ClassVar[str] = r"(?s:application\.evtx)\Z"
+    file_mask: ClassVar[str] = "application.evtx"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -148,7 +148,7 @@ class ApplicationEvents(KapeTargetConfiguration):
 class EventLogsRDPEventlogsWin70(KapeTarget):
     name: ClassVar[str] = "Event logs Win7+"
     base_path: ClassVar[Path] = Path("C:\\Windows\\System32\\winevt\\logs\\")
-    regex: ClassVar[str] = r"(?s:System\.evtx)\Z"
+    file_mask: ClassVar[str] = "System.evtx"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -160,7 +160,7 @@ class EventLogsRDPEventlogsWin71(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Windows.old\\Windows\\System32\\winevt\\logs\\"
     )
-    regex: ClassVar[str] = r"(?s:System\.evtx)\Z"
+    file_mask: ClassVar[str] = "System.evtx"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -170,7 +170,7 @@ class EventLogsRDPEventlogsWin71(KapeTarget):
 class EventLogsRDPEventlogsWin72(KapeTarget):
     name: ClassVar[str] = "Event logs Win7+"
     base_path: ClassVar[Path] = Path("C:\\Windows\\System32\\winevt\\logs\\")
-    regex: ClassVar[str] = r"(?s:Security\.evtx)\Z"
+    file_mask: ClassVar[str] = "Security.evtx"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -182,7 +182,7 @@ class EventLogsRDPEventlogsWin73(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Windows.old\\Windows\\System32\\winevt\\logs\\"
     )
-    regex: ClassVar[str] = r"(?s:Security\.evtx)\Z"
+    file_mask: ClassVar[str] = "Security.evtx"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -194,8 +194,8 @@ class EventLogsRDPEventlogsWin74(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Windows\\System32\\winevt\\Logs\\Microsoft-Windows-TerminalServices-LocalSessionManager%4Operational.evtx"
     )
-    regex: ClassVar[str] = (
-        r"(?s:Microsoft\-Windows\-TerminalServices\-LocalSessionManager%4Operational\.evtx)\Z"
+    file_mask: ClassVar[str] = (
+        "Microsoft-Windows-TerminalServices-LocalSessionManager%4Operational.evtx"
     )
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
@@ -206,8 +206,8 @@ class EventLogsRDPEventlogsWin74(KapeTarget):
 class EventLogsRDPEventlogsWin75(KapeTarget):
     name: ClassVar[str] = "Event logs Win7+"
     base_path: ClassVar[Path] = Path("C:\\Windows\\System32\\winevt\\Logs\\")
-    regex: ClassVar[str] = (
-        r"(?s:Microsoft\-Windows\-TerminalServices\-RemoteConnectionManager%4Operational\.evtx)\Z"
+    file_mask: ClassVar[str] = (
+        "Microsoft-Windows-TerminalServices-RemoteConnectionManager%4Operational.evtx"
     )
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
@@ -241,7 +241,7 @@ class EventLogsRDP(KapeTargetConfiguration):
 class EventLogsEventlogsXP0(KapeTarget):
     name: ClassVar[str] = "Event logs XP"
     base_path: ClassVar[Path] = Path("C:\\Windows\\System32\\config\\")
-    regex: ClassVar[str] = r"(?s:.*\.evt)\Z"
+    file_mask: ClassVar[str] = "*.evt"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -251,7 +251,7 @@ class EventLogsEventlogsXP0(KapeTarget):
 class EventLogsEventlogsWin71(KapeTarget):
     name: ClassVar[str] = "Event logs Win7+"
     base_path: ClassVar[Path] = Path("C:\\Windows\\System32\\winevt\\logs\\")
-    regex: ClassVar[str] = r"(?s:.*\.evtx)\Z"
+    file_mask: ClassVar[str] = "*.evtx"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -263,7 +263,7 @@ class EventLogsEventlogsWin72(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Windows.old\\Windows\\System32\\winevt\\logs\\"
     )
-    regex: ClassVar[str] = r"(?s:.*\.evtx)\Z"
+    file_mask: ClassVar[str] = "*.evtx"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -293,8 +293,8 @@ class EventLogs(KapeTargetConfiguration):
 class RDPLogsRemoteConnectionManagerEventLogs0(KapeTarget):
     name: ClassVar[str] = "RemoteConnectionManager Event Logs"
     base_path: ClassVar[Path] = Path("C:\\Windows\\System32\\winevt\\logs\\")
-    regex: ClassVar[str] = (
-        r"(?s:Microsoft\-Windows\-TerminalServices\-RemoteConnectionManager.*)\Z"
+    file_mask: ClassVar[str] = (
+        "Microsoft-Windows-TerminalServices-RemoteConnectionManager*"
     )
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
@@ -307,8 +307,8 @@ class RDPLogsRemoteConnectionManagerEventLogs1(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Windows.old\\Windows\\System32\\winevt\\logs\\"
     )
-    regex: ClassVar[str] = (
-        r"(?s:Microsoft\-Windows\-TerminalServices\-RemoteConnectionManager.*)\Z"
+    file_mask: ClassVar[str] = (
+        "Microsoft-Windows-TerminalServices-RemoteConnectionManager*"
     )
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
@@ -319,9 +319,7 @@ class RDPLogsRemoteConnectionManagerEventLogs1(KapeTarget):
 class RDPLogsLocalSessionManagerEventLogs2(KapeTarget):
     name: ClassVar[str] = "LocalSessionManager Event Logs"
     base_path: ClassVar[Path] = Path("C:\\Windows\\System32\\winevt\\logs\\")
-    regex: ClassVar[str] = (
-        r"(?s:Microsoft\-Windows\-TerminalServices\-LocalSessionManager.*)\Z"
-    )
+    file_mask: ClassVar[str] = "Microsoft-Windows-TerminalServices-LocalSessionManager*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -333,9 +331,7 @@ class RDPLogsLocalSessionManagerEventLogs3(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Windows.old\\Windows\\System32\\winevt\\logs\\"
     )
-    regex: ClassVar[str] = (
-        r"(?s:Microsoft\-Windows\-TerminalServices\-LocalSessionManager.*)\Z"
-    )
+    file_mask: ClassVar[str] = "Microsoft-Windows-TerminalServices-LocalSessionManager*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -345,7 +341,7 @@ class RDPLogsLocalSessionManagerEventLogs3(KapeTarget):
 class RDPLogsRDPClientEventLogs4(KapeTarget):
     name: ClassVar[str] = "RDPClient Event Logs"
     base_path: ClassVar[Path] = Path("C:\\Windows\\System32\\winevt\\logs\\")
-    regex: ClassVar[str] = r"(?s:Microsoft\-Windows\-TerminalServices\-RDPClient.*)\Z"
+    file_mask: ClassVar[str] = "Microsoft-Windows-TerminalServices-RDPClient*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -357,7 +353,7 @@ class RDPLogsRDPClientEventLogs5(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Windows.old\\Windows\\System32\\winevt\\logs\\"
     )
-    regex: ClassVar[str] = r"(?s:Microsoft\-Windows\-TerminalServices\-RDPClient.*)\Z"
+    file_mask: ClassVar[str] = "Microsoft-Windows-TerminalServices-RDPClient*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -371,9 +367,7 @@ class RDPLogsRDPCoreTSEventLogs6(KapeTarget):
 
     name: ClassVar[str] = "RDPCoreTS Event Logs"
     base_path: ClassVar[Path] = Path("C:\\Windows\\System32\\winevt\\logs\\")
-    regex: ClassVar[str] = (
-        r"(?s:Microsoft\-Windows\-RemoteDesktopServices\-RdpCoreTS.*)\Z"
-    )
+    file_mask: ClassVar[str] = "Microsoft-Windows-RemoteDesktopServices-RdpCoreTS*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -389,9 +383,7 @@ class RDPLogsRDPCoreTSEventLogs7(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Windows.old\\Windows\\System32\\winevt\\logs\\"
     )
-    regex: ClassVar[str] = (
-        r"(?s:Microsoft\-Windows\-RemoteDesktopServices\-RdpCoreTS.*)\Z"
-    )
+    file_mask: ClassVar[str] = "Microsoft-Windows-RemoteDesktopServices-RdpCoreTS*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 

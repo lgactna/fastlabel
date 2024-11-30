@@ -15,7 +15,7 @@ class ConfluenceLogsConfluenceWikiLogFiles0(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Atlassian\\Application Data\\Confluence\\logs\\"
     )
-    regex: ClassVar[str] = r"(?s:(?>.*?\.log).*)\Z"
+    file_mask: ClassVar[str] = "*.log*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -25,7 +25,7 @@ class ConfluenceLogsConfluenceWikiLogFiles0(KapeTarget):
 class ConfluenceLogsConfluenceWikiLogFiles1(KapeTarget):
     name: ClassVar[str] = "Confluence Wiki Log Files"
     base_path: ClassVar[Path] = Path("C:\\Program Files\\Atlassian\\Confluence\\logs\\")
-    regex: ClassVar[str] = r"(?s:.*\.log)\Z"
+    file_mask: ClassVar[str] = "*.log"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -60,7 +60,7 @@ class ExchangeClientAccessExchangeclientaccesslogfiles0(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Program Files\\Microsoft\\Exchange Server\\*\\Logging\\"
     )
-    regex: ClassVar[str] = r"(?s:.*\.log)\Z"
+    file_mask: ClassVar[str] = "*.log"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -94,7 +94,7 @@ class ExchangeTransportExchangeTransportRoleslogfiles0(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Program Files\\Microsoft\\Exchange Server\\*\\TransportRoles\\Logs\\"
     )
-    regex: ClassVar[str] = r"(?s:.*\.log)\Z"
+    file_mask: ClassVar[str] = "*.log"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -122,7 +122,7 @@ class ExchangeTransport(KapeTargetConfiguration):
 class FileZillaClientFileZillaXMLLogFiles0(KapeTarget):
     name: ClassVar[str] = "FileZilla XML Log Files"
     base_path: ClassVar[Path] = Path("C:\\Users\\%user%\\AppData\\Roaming\\FileZilla\\")
-    regex: ClassVar[str] = r"(?s:(?>.*?\.xml).*)\Z"
+    file_mask: ClassVar[str] = "*.xml*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -132,7 +132,7 @@ class FileZillaClientFileZillaXMLLogFiles0(KapeTarget):
 class FileZillaClientFileZillaSQLite3LogFiles1(KapeTarget):
     name: ClassVar[str] = "FileZilla SQLite3 Log Files"
     base_path: ClassVar[Path] = Path("C:\\Users\\%user%\\AppData\\Roaming\\FileZilla\\")
-    regex: ClassVar[str] = r"(?s:(?>.*?\.sqlite3).*)\Z"
+    file_mask: ClassVar[str] = "*.sqlite3*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -163,7 +163,7 @@ class FileZillaServerFileZillaServerXMLLogFiles0(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Roaming\\FileZilla Server\\"
     )
-    regex: ClassVar[str] = r"(?s:(?>.*?\.xml).*)\Z"
+    file_mask: ClassVar[str] = "*.xml*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -175,7 +175,7 @@ class FileZillaServerFileZillaLogFiles1(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Program Files (x86)\\FileZilla Server\\Logs\\"
     )
-    regex: ClassVar[str] = r"(?s:(?>.*?\.log).*)\Z"
+    file_mask: ClassVar[str] = "*.log*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -206,7 +206,7 @@ class TablacusExplorerTablacusExplorerrememberxml0(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Temp\\*\\config"
     )
-    regex: ClassVar[str] = r"(?s:remember\.xml)\Z"
+    file_mask: ClassVar[str] = "remember.xml"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -218,7 +218,7 @@ class TablacusExplorerTablacusExplorerwindowxml1(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Temp\\*\\config"
     )
-    regex: ClassVar[str] = r"(?s:window\.xml)\Z"
+    file_mask: ClassVar[str] = "window.xml"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -230,7 +230,7 @@ class TablacusExplorerTablacusExplorerwindow1xml2(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Temp\\*\\config"
     )
-    regex: ClassVar[str] = r"(?s:window1\.xml)\Z"
+    file_mask: ClassVar[str] = "window1.xml"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -260,7 +260,7 @@ class TablacusExplorer(KapeTargetConfiguration):
 class WinSCPWinSCPinifile0(KapeTarget):
     name: ClassVar[str] = "WinSCP (.ini file)"
     base_path: ClassVar[Path] = Path("C:\\")
-    regex: ClassVar[str] = r"(?s:WinSCP\.ini)\Z"
+    file_mask: ClassVar[str] = "WinSCP.ini"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -286,7 +286,7 @@ class WinSCP(KapeTargetConfiguration):
 class ExchangeExchangeclientaccesslogfiles0(KapeTarget):
     name: ClassVar[str] = "Exchange client access log files"
     base_path: ClassVar[Path] = Path("ExchangeClientAccess.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -296,7 +296,7 @@ class ExchangeExchangeclientaccesslogfiles0(KapeTarget):
 class ExchangeExchangeTransportRoleslogfiles1(KapeTarget):
     name: ClassVar[str] = "Exchange TransportRoles log files"
     base_path: ClassVar[Path] = Path("ExchangeTransport.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -325,7 +325,7 @@ class Exchange(KapeTargetConfiguration):
 class WebServersApacheAccessLogs0(KapeTarget):
     name: ClassVar[str] = "Apache Access Logs"
     base_path: ClassVar[Path] = Path("ApacheAccessLog.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -335,7 +335,7 @@ class WebServersApacheAccessLogs0(KapeTarget):
 class WebServersIISLogs1(KapeTarget):
     name: ClassVar[str] = "IIS Logs"
     base_path: ClassVar[Path] = Path("IISLogFiles.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -345,7 +345,7 @@ class WebServersIISLogs1(KapeTarget):
 class WebServersNGINXLogs2(KapeTarget):
     name: ClassVar[str] = "NGINX Logs"
     base_path: ClassVar[Path] = Path("NGINXLogs.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -355,7 +355,7 @@ class WebServersNGINXLogs2(KapeTarget):
 class WebServersMSSQLErrorLogs3(KapeTarget):
     name: ClassVar[str] = "MSSQL Error Logs"
     base_path: ClassVar[Path] = Path("MSSQLErrorLog.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -386,7 +386,7 @@ class WebServers(KapeTargetConfiguration):
 class IISLogFilesIISlogfiles0(KapeTarget):
     name: ClassVar[str] = "IIS log files"
     base_path: ClassVar[Path] = Path("C:\\Windows\\System32\\LogFiles\\W3SVC*\\")
-    regex: ClassVar[str] = r"(?s:.*\.log)\Z"
+    file_mask: ClassVar[str] = "*.log"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -398,7 +398,7 @@ class IISLogFilesIISlogfiles1(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Windows.old\\Windows\\System32\\LogFiles\\W3SVC*\\"
     )
-    regex: ClassVar[str] = r"(?s:.*\.log)\Z"
+    file_mask: ClassVar[str] = "*.log"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -408,7 +408,7 @@ class IISLogFilesIISlogfiles1(KapeTarget):
 class IISLogFilesIISlogfiles2(KapeTarget):
     name: ClassVar[str] = "IIS log files"
     base_path: ClassVar[Path] = Path("C:\\inetpub\\logs\\LogFiles\\")
-    regex: ClassVar[str] = r"(?s:.*\.log)\Z"
+    file_mask: ClassVar[str] = "*.log"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -418,7 +418,7 @@ class IISLogFilesIISlogfiles2(KapeTarget):
 class IISLogFilesIISlogfiles3(KapeTarget):
     name: ClassVar[str] = "IIS log files"
     base_path: ClassVar[Path] = Path("C:\\inetpub\\logs\\LogFiles\\W3SVC*\\")
-    regex: ClassVar[str] = r"(?s:.*\.log)\Z"
+    file_mask: ClassVar[str] = "*.log"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -430,7 +430,7 @@ class IISLogFilesIISlogfiles4(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Resources\\Directory\\*\\LogFiles\\Web\\W3SVC*\\"
     )
-    regex: ClassVar[str] = r"(?s:.*\.log)\Z"
+    file_mask: ClassVar[str] = "*.log"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -462,7 +462,7 @@ class IISLogFiles(KapeTargetConfiguration):
 class ManageEngineLogsManageEngineDesktopCentralLogFiles0(KapeTarget):
     name: ClassVar[str] = "ManageEngine Desktop Central Log Files"
     base_path: ClassVar[Path] = Path("C:\\ManageEngine\\DesktopCentral_Server\\logs\\")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -490,7 +490,7 @@ class ManageEngineLogs(KapeTargetConfiguration):
 class NGINXLogsNGINXLogFiles0(KapeTarget):
     name: ClassVar[str] = "NGINX Log Files"
     base_path: ClassVar[Path] = Path("C:\\nginx\\logs\\")
-    regex: ClassVar[str] = r"(?s:.*\.log)\Z"
+    file_mask: ClassVar[str] = "*.log"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -516,7 +516,7 @@ class NGINXLogs(KapeTargetConfiguration):
 class LogFilesLogFiles0(KapeTarget):
     name: ClassVar[str] = "LogFiles"
     base_path: ClassVar[Path] = Path("C:\\Windows\\System32\\LogFiles\\")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -526,7 +526,7 @@ class LogFilesLogFiles0(KapeTarget):
 class LogFilesLogFiles1(KapeTarget):
     name: ClassVar[str] = "LogFiles"
     base_path: ClassVar[Path] = Path("C:\\Windows.old\\Windows\\System32\\LogFiles\\")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -556,7 +556,7 @@ class SUMSUMDatabasemdbfiles0(KapeTarget):
 
     name: ClassVar[str] = "SUM Database (.mdb files)"
     base_path: ClassVar[Path] = Path("C:\\Windows\\System32\\LogFiles\\SUM")
-    regex: ClassVar[str] = r"(?s:.*\.mdb)\Z"
+    file_mask: ClassVar[str] = "*.mdb"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 

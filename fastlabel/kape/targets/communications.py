@@ -17,7 +17,7 @@ class AnyDeskAnyDeskLogsUserProfiletrace0(KapeTarget):
 
     name: ClassVar[str] = "AnyDesk Logs - User Profile - *.trace"
     base_path: ClassVar[Path] = Path("C:\\Users\\%user%\\AppData\\Roaming\\AnyDesk\\")
-    regex: ClassVar[str] = r"(?s:.*\.trace)\Z"
+    file_mask: ClassVar[str] = "*.trace"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -31,7 +31,7 @@ class AnyDeskAnyDeskLogsProgramDatatrace1(KapeTarget):
 
     name: ClassVar[str] = "AnyDesk Logs - ProgramData - *.trace"
     base_path: ClassVar[Path] = Path("C:\\ProgramData\\AnyDesk\\")
-    regex: ClassVar[str] = r"(?s:.*\.trace)\Z"
+    file_mask: ClassVar[str] = "*.trace"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -45,7 +45,7 @@ class AnyDeskAnyDeskLogsUserProfileconf2(KapeTarget):
 
     name: ClassVar[str] = "AnyDesk Logs - User Profile - *.conf"
     base_path: ClassVar[Path] = Path("C:\\Users\\%user%\\AppData\\Roaming\\AnyDesk\\")
-    regex: ClassVar[str] = r"(?s:.*\.conf)\Z"
+    file_mask: ClassVar[str] = "*.conf"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -59,7 +59,7 @@ class AnyDeskAnyDeskLogsProgramDataconf3(KapeTarget):
 
     name: ClassVar[str] = "AnyDesk Logs - ProgramData - *.conf"
     base_path: ClassVar[Path] = Path("C:\\ProgramData\\AnyDesk\\")
-    regex: ClassVar[str] = r"(?s:.*\.conf)\Z"
+    file_mask: ClassVar[str] = "*.conf"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -73,7 +73,7 @@ class AnyDeskAnyDeskVideos4(KapeTarget):
 
     name: ClassVar[str] = "AnyDesk Videos"
     base_path: ClassVar[Path] = Path("C:\\Users\\%user%\\Videos\\AnyDesk\\")
-    regex: ClassVar[str] = r"(?s:.*\.anydesk)\Z"
+    file_mask: ClassVar[str] = "*.anydesk"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -87,7 +87,7 @@ class AnyDeskAnyDeskLogsUserProfileconnectiontracetxt5(KapeTarget):
 
     name: ClassVar[str] = "AnyDesk Logs - User Profile - connection_trace.txt"
     base_path: ClassVar[Path] = Path("C:\\Users\\%user%\\AppData\\Roaming\\AnyDesk\\")
-    regex: ClassVar[str] = r"(?s:connection_trace\.txt)\Z"
+    file_mask: ClassVar[str] = "connection_trace.txt"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -101,7 +101,7 @@ class AnyDeskAnyDeskLogsProgramDataconnectiontracetxt6(KapeTarget):
 
     name: ClassVar[str] = "AnyDesk Logs - ProgramData - connection_trace.txt"
     base_path: ClassVar[Path] = Path("C:\\ProgramData\\AnyDesk\\")
-    regex: ClassVar[str] = r"(?s:connection_trace\.txt)\Z"
+    file_mask: ClassVar[str] = "connection_trace.txt"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -117,7 +117,7 @@ class AnyDeskAnyDeskLogsSystemUserAccount7(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Windows\\SysWOW64\\config\\systemprofile\\AppData\\Roaming\\AnyDesk\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -158,7 +158,7 @@ class CiscoJabberCiscoJabberDatabase0(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Cisco\\Unified Communications\\Jabber\\CSF\\History\\"
     )
-    regex: ClassVar[str] = r"(?s:.*\.db)\Z"
+    file_mask: ClassVar[str] = "*.db"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -190,7 +190,7 @@ class DiscordDiscordCacheFiles0(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Roaming\\discord\\cache\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -206,7 +206,7 @@ class DiscordDiscordLocalStorageLevelDBFiles1(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Roaming\\discord\\local storage\\leveldb\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -237,7 +237,7 @@ class HexChatHexChatChatLogs0(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Roaming\\HexChat\\logs\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -265,7 +265,7 @@ class IceChatIceChatChatLogs0(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\IceChat Networks\\IceChat\\Logs\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -293,7 +293,7 @@ class iTunesBackupiTunesBackupFolder0(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Roaming\\Apple\\Mobilesync\\Backup\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -305,7 +305,7 @@ class iTunesBackupiTunesBackupFolder1(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Roaming\\Apple Computer\\Mobilesync\\Backup\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -315,7 +315,7 @@ class iTunesBackupiTunesBackupFolder1(KapeTarget):
 class iTunesBackupiTunesBackupFolderiOS132(KapeTarget):
     name: ClassVar[str] = "iTunes Backup Folder - iOS13"
     base_path: ClassVar[Path] = Path("C:\\Users\\%user%\\Apple\\Mobilesync\\Backup\\")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -347,7 +347,7 @@ class mIRCmIRCChatLogsVista0(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Roaming\\mIRC\\logs\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -359,7 +359,7 @@ class mIRCmIRCChatLogs2000XP1(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Documents and Settings\\%user%\\Application Data\\mIRC\\logs\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -392,7 +392,7 @@ class mRemoteNGmRemoteNGLogs0(KapeTarget):
 
     name: ClassVar[str] = "mRemoteNG Logs"
     base_path: ClassVar[Path] = Path("C:\\Users\\%user%\\AppData\\Roaming\\mRemoteNG\\")
-    regex: ClassVar[str] = r"(?s:mRemoteNG\.log)\Z"
+    file_mask: ClassVar[str] = "mRemoteNG.log"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -406,7 +406,7 @@ class mRemoteNGmRemoteNGConnectionConfigurationandBackups1(KapeTarget):
 
     name: ClassVar[str] = "mRemoteNG Connection Configuration and Backups"
     base_path: ClassVar[Path] = Path("C:\\Users\\%user%\\AppData\\Roaming\\mRemoteNG\\")
-    regex: ClassVar[str] = r"(?s:confCons\.xml.*)\Z"
+    file_mask: ClassVar[str] = "confCons.xml*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -420,7 +420,7 @@ class mRemoteNGmRemoteNGProgramSettings2(KapeTarget):
 
     name: ClassVar[str] = "mRemoteNG Program Settings"
     base_path: ClassVar[Path] = Path("C:\\Users\\%user%\\AppData\\*\\mRemoteNG\\")
-    regex: ClassVar[str] = r"(?s:user\.config)\Z"
+    file_mask: ClassVar[str] = "user.config"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -452,7 +452,7 @@ class OutlookPSTOSTPSTXP0(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Documents and Settings\\%user%\\Local Settings\\Application Data\\Microsoft\\Outlook\\"
     )
-    regex: ClassVar[str] = r"(?s:.*\.pst)\Z"
+    file_mask: ClassVar[str] = "*.pst"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -464,7 +464,7 @@ class OutlookPSTOSTOSTXP1(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Documents and Settings\\%user%\\Local Settings\\Application Data\\Microsoft\\Outlook\\"
     )
-    regex: ClassVar[str] = r"(?s:.*\.ost)\Z"
+    file_mask: ClassVar[str] = "*.ost"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -474,7 +474,7 @@ class OutlookPSTOSTOSTXP1(KapeTarget):
 class OutlookPSTOSTPST2013or20162(KapeTarget):
     name: ClassVar[str] = "PST (2013 or 2016)"
     base_path: ClassVar[Path] = Path("C:\\Users\\%user%\\Documents\\Outlook Files\\")
-    regex: ClassVar[str] = r"(?s:.*\.pst)\Z"
+    file_mask: ClassVar[str] = "*.pst"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -484,7 +484,7 @@ class OutlookPSTOSTPST2013or20162(KapeTarget):
 class OutlookPSTOSTOST2013or20163(KapeTarget):
     name: ClassVar[str] = "OST (2013 or 2016)"
     base_path: ClassVar[Path] = Path("C:\\Users\\%user%\\Documents\\Outlook Files\\")
-    regex: ClassVar[str] = r"(?s:.*\.ost)\Z"
+    file_mask: ClassVar[str] = "*.ost"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -500,7 +500,7 @@ class OutlookPSTOSTPST4(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Microsoft\\Outlook\\"
     )
-    regex: ClassVar[str] = r"(?s:.*\.pst)\Z"
+    file_mask: ClassVar[str] = "*.pst"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -516,7 +516,7 @@ class OutlookPSTOSTOST5(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Microsoft\\Outlook\\"
     )
-    regex: ClassVar[str] = r"(?s:.*\.ost)\Z"
+    file_mask: ClassVar[str] = "*.ost"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -532,7 +532,7 @@ class OutlookPSTOSTNST6(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Microsoft\\Outlook\\"
     )
-    regex: ClassVar[str] = r"(?s:.*\.nst)\Z"
+    file_mask: ClassVar[str] = "*.nst"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -548,7 +548,7 @@ class OutlookPSTOSTOutlookAttachmentTemporaryStorage7(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Microsoft\\Windows\\INetCache\\Content.Outlook\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -590,7 +590,7 @@ class SignalSignalAttachmentscache0(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Roaming\\Signal\\attachments.noindex\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -607,7 +607,7 @@ class SignalSignalLogs1(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Roaming\\Signal\\logs\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -621,7 +621,7 @@ class SignalSignalconfigjson2(KapeTarget):
 
     name: ClassVar[str] = "Signal config.json"
     base_path: ClassVar[Path] = Path("C:\\Users\\%user%\\AppData\\Roaming\\Signal\\")
-    regex: ClassVar[str] = r"(?s:config\.json)\Z"
+    file_mask: ClassVar[str] = "config.json"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -637,7 +637,7 @@ class SignalSignalDatabase3(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Roaming\\Signal\\sql\\"
     )
-    regex: ClassVar[str] = r"(?s:db\.sqlite)\Z"
+    file_mask: ClassVar[str] = "db.sqlite"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -670,7 +670,7 @@ class SkypemaindbAppv120(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\Microsoft.SkypeApp_*\\LocalState\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:main\.db)\Z"
+    file_mask: ClassVar[str] = "main.db"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -682,7 +682,7 @@ class SkypeskypedbAppv121(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\Microsoft.SkypeApp_*\\LocalState\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:skype\.db)\Z"
+    file_mask: ClassVar[str] = "skype.db"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -694,7 +694,7 @@ class SkypemaindbXP2(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Documents and Settings\\%user%\\Application Data\\Skype\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:main\.db)\Z"
+    file_mask: ClassVar[str] = "main.db"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -704,7 +704,7 @@ class SkypemaindbXP2(KapeTarget):
 class SkypemaindbWin73(KapeTarget):
     name: ClassVar[str] = "main.db Win7+"
     base_path: ClassVar[Path] = Path("C:\\Users\\%user%\\AppData\\Roaming\\Skype\\*\\")
-    regex: ClassVar[str] = r"(?s:main\.db)\Z"
+    file_mask: ClassVar[str] = "main.db"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -716,7 +716,7 @@ class Skypes4lusernamedbAppv84(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\Microsoft.SkypeApp_*\\LocalState\\"
     )
-    regex: ClassVar[str] = r"(?s:s4l\-.*\.db)\Z"
+    file_mask: ClassVar[str] = "s4l-*.db"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -728,7 +728,7 @@ class SkypeleveldbSkypeforDesktopv85(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Roaming\\Microsoft\\Skype for Desktop\\IndexedDB\\*.leveldb\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -744,7 +744,7 @@ class SkypeSkypeforDestkopv8ChromiumCache6(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Roaming\\Microsoft\\Skype for Desktop\\Cache\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -782,7 +782,7 @@ class SupremoRemoteDesktopSupremoConnectionLogs0(KapeTarget):
 
     name: ClassVar[str] = "Supremo Connection Logs"
     base_path: ClassVar[Path] = Path("C:\\ProgramData\\SupremoRemoteDesktop\\Log")
-    regex: ClassVar[str] = r"(?s:.*\.log)\Z"
+    file_mask: ClassVar[str] = "*.log"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -796,7 +796,7 @@ class SupremoRemoteDesktopSupremoFileTransferInbox1(KapeTarget):
 
     name: ClassVar[str] = "Supremo File Transfer Inbox"
     base_path: ClassVar[Path] = Path("C:\\ProgramData\\SupremoRemoteDesktop\\Inbox")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -829,7 +829,7 @@ class TeamViewerLogsTeamViewerConnectionLogs0(KapeTarget):
 
     name: ClassVar[str] = "TeamViewer Connection Logs"
     base_path: ClassVar[Path] = Path("C:\\Program Files*\\TeamViewer\\")
-    regex: ClassVar[str] = r"(?s:connections.*\.txt)\Z"
+    file_mask: ClassVar[str] = "connections*.txt"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -844,7 +844,7 @@ class TeamViewerLogsTeamViewerApplicationLogs1(KapeTarget):
 
     name: ClassVar[str] = "TeamViewer Application Logs"
     base_path: ClassVar[Path] = Path("C:\\Program Files*\\TeamViewer\\")
-    regex: ClassVar[str] = r"(?s:TeamViewer(?>.*?_Logfile).*)\Z"
+    file_mask: ClassVar[str] = "TeamViewer*_Logfile*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -860,7 +860,7 @@ class TeamViewerLogsTeamViewerConfigurationFiles2(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Roaming\\TeamViewer\\MRU\\RemoteSupport\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -892,7 +892,7 @@ class BraveBrowserBookmarks0(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\BraveSoftware\\Brave-Browser\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Bookmarks.*)\Z"
+    file_mask: ClassVar[str] = "Bookmarks*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -904,7 +904,7 @@ class BraveBrowserCookies1(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\BraveSoftware\\Brave-Browser\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Cookies.*)\Z"
+    file_mask: ClassVar[str] = "Cookies*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -916,7 +916,7 @@ class BraveBrowserCurrentSession2(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\BraveSoftware\\Brave-Browser\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Current\ Session)\Z"
+    file_mask: ClassVar[str] = "Current Session"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -928,7 +928,7 @@ class BraveBrowserCurrentTabs3(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\BraveSoftware\\Brave-Browser\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Current\ Tabs)\Z"
+    file_mask: ClassVar[str] = "Current Tabs"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -940,7 +940,7 @@ class BraveBrowserDownloadMetadata4(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\BraveSoftware\\Brave-Browser\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:DownloadMetadata)\Z"
+    file_mask: ClassVar[str] = "DownloadMetadata"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -952,7 +952,7 @@ class BraveBrowserFavicons5(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\BraveSoftware\\Brave-Browser\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Favicons.*)\Z"
+    file_mask: ClassVar[str] = "Favicons*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -964,7 +964,7 @@ class BraveBrowserHistory6(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\BraveSoftware\\Brave-Browser\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:History.*)\Z"
+    file_mask: ClassVar[str] = "History*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -976,7 +976,7 @@ class BraveBrowserSessionsFolder7(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\BraveSoftware\\Brave-Browser\\User Data\\Default\\Sessions\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -988,7 +988,7 @@ class BraveBrowserLoginData8(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\BraveSoftware\\Brave-Browser\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Login\ Data)\Z"
+    file_mask: ClassVar[str] = "Login Data"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1000,7 +1000,7 @@ class BraveBrowserNetworkActionPredictor9(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\BraveSoftware\\Brave-Browser\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Network\ Action\ Predictor)\Z"
+    file_mask: ClassVar[str] = "Network Action Predictor"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1012,7 +1012,7 @@ class BraveBrowserNetworkPersistentState10(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\BraveSoftware\\Brave-Browser\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Network\ Persistent\ State)\Z"
+    file_mask: ClassVar[str] = "Network Persistent State"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1024,7 +1024,7 @@ class BraveBrowserPreferences11(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\BraveSoftware\\Brave-Browser\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Preferences)\Z"
+    file_mask: ClassVar[str] = "Preferences"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1036,7 +1036,7 @@ class BraveBrowserQuotaManager12(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\BraveSoftware\\Brave-Browser\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:QuotaManager)\Z"
+    file_mask: ClassVar[str] = "QuotaManager"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1048,7 +1048,7 @@ class BraveBrowserReportingandNEL13(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\BraveSoftware\\Brave-Browser\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Reporting\ and\ NEL)\Z"
+    file_mask: ClassVar[str] = "Reporting and NEL"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1060,7 +1060,7 @@ class BraveBrowserShortcuts14(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\BraveSoftware\\Brave-Browser\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Shortcuts.*)\Z"
+    file_mask: ClassVar[str] = "Shortcuts*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1076,7 +1076,7 @@ class BraveBrowserPublisherInfoDBBraveRewards15(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\BraveSoftware\\Brave-Browser\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:publisher_info_db.*)\Z"
+    file_mask: ClassVar[str] = "publisher_info_db*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1088,7 +1088,7 @@ class BraveBrowserTopSites16(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\BraveSoftware\\Brave-Browser\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Top\ Sites.*)\Z"
+    file_mask: ClassVar[str] = "Top Sites*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1100,7 +1100,7 @@ class BraveBrowserVisitedLinks17(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\BraveSoftware\\Brave-Browser\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Visited\ Links.*)\Z"
+    file_mask: ClassVar[str] = "Visited Links*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1112,7 +1112,7 @@ class BraveBrowserWebData18(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\BraveSoftware\\Brave-Browser\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Web\ Data.*)\Z"
+    file_mask: ClassVar[str] = "Web Data*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1128,7 +1128,7 @@ class BraveBrowserSecurePreferences19(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\BraveSoftware\\Brave-Browser\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Secure\ Preferences.*)\Z"
+    file_mask: ClassVar[str] = "Secure Preferences*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1177,7 +1177,7 @@ class BrowserCacheChromeCacheFolder0(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Google\\Chrome\\User Data\\*\\Cache\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1189,7 +1189,7 @@ class BrowserCacheChromiumEdgeCacheFolder1(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Microsoft\\Edge\\User Data\\*\\Cache\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1201,7 +1201,7 @@ class BrowserCacheFirefoxCacheFolder2(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Mozilla\\Firefox\\Profiles\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1213,7 +1213,7 @@ class BrowserCacheIE910Cache3(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Microsoft\\Windows\\Temporary Internet Files\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1225,7 +1225,7 @@ class BrowserCacheIEIndexdattempinternetfiles4(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Documents and Settings\\%user%\\Local Settings\\Temporary Internet Files\\Content.IE5\\"
     )
-    regex: ClassVar[str] = r"(?s:index\.dat)\Z"
+    file_mask: ClassVar[str] = "index.dat"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1237,7 +1237,7 @@ class BrowserCacheIE11Cache5(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Microsoft\\Windows\\INetCache\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1249,7 +1249,7 @@ class BrowserCacheEdgeWebcacheV01dat6(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Microsoft\\Windows\\WebCache\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1261,7 +1261,7 @@ class BrowserCacheBraveCacheFolder7(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%users%\\AppData\\Local\\BraveSoftware\\Brave-Browser\\User Data\\Default\\Cache\\Cache_Data"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1298,7 +1298,7 @@ class ChromeChromebookmarksXP0(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Documents and Settings\\%user%\\Local Settings\\Application Data\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Bookmarks.*)\Z"
+    file_mask: ClassVar[str] = "Bookmarks*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1310,7 +1310,7 @@ class ChromeChromeCookiesXP1(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Documents and Settings\\%user%\\Local Settings\\Application Data\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Cookies.*)\Z"
+    file_mask: ClassVar[str] = "Cookies*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1322,7 +1322,7 @@ class ChromeChromeCurrentSessionXP2(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Documents and Settings\\%user%\\Local Settings\\Application Data\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Current\ Session)\Z"
+    file_mask: ClassVar[str] = "Current Session"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1334,7 +1334,7 @@ class ChromeChromeCurrentTabsXP3(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Documents and Settings\\%user%\\Local Settings\\Application Data\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Current\ Tabs)\Z"
+    file_mask: ClassVar[str] = "Current Tabs"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1346,7 +1346,7 @@ class ChromeChromeFaviconsXP4(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Documents and Settings\\%user%\\Local Settings\\Application Data\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Favicons.*)\Z"
+    file_mask: ClassVar[str] = "Favicons*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1358,7 +1358,7 @@ class ChromeChromeHistoryXP5(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Documents and Settings\\%user%\\Local Settings\\Application Data\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:History.*)\Z"
+    file_mask: ClassVar[str] = "History*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1370,7 +1370,7 @@ class ChromeChromeLastSessionXP6(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Documents and Settings\\%user%\\Local Settings\\Application Data\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Last\ Session)\Z"
+    file_mask: ClassVar[str] = "Last Session"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1382,7 +1382,7 @@ class ChromeChromeLastTabsXP7(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Documents and Settings\\%user%\\Local Settings\\Application Data\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Last\ Tabs)\Z"
+    file_mask: ClassVar[str] = "Last Tabs"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1394,7 +1394,7 @@ class ChromeChromeLoginDataXP8(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Documents and Settings\\%user%\\Local Settings\\Application Data\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Login\ Data)\Z"
+    file_mask: ClassVar[str] = "Login Data"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1406,7 +1406,7 @@ class ChromeChromePreferencesXP9(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Documents and Settings\\%user%\\Local Settings\\Application Data\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Preferences)\Z"
+    file_mask: ClassVar[str] = "Preferences"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1418,7 +1418,7 @@ class ChromeChromeShortcutsXP10(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Documents and Settings\\%user%\\Local Settings\\Application Data\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Shortcuts.*)\Z"
+    file_mask: ClassVar[str] = "Shortcuts*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1430,7 +1430,7 @@ class ChromeChromeTopSitesXP11(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Documents and Settings\\%user%\\Local Settings\\Application Data\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Top\ Sites.*)\Z"
+    file_mask: ClassVar[str] = "Top Sites*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1442,7 +1442,7 @@ class ChromeChromeVisitedLinksXP12(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Documents and Settings\\%user%\\Local Settings\\Application Data\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Visited\ Links)\Z"
+    file_mask: ClassVar[str] = "Visited Links"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1454,7 +1454,7 @@ class ChromeChromeWebDataXP13(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Documents and Settings\\%user%\\Local Settings\\Application Data\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Web\ Data.*)\Z"
+    file_mask: ClassVar[str] = "Web Data*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1466,7 +1466,7 @@ class ChromeChromebookmarks14(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Bookmarks.*)\Z"
+    file_mask: ClassVar[str] = "Bookmarks*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1478,7 +1478,7 @@ class ChromeChromeCookies15(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Cookies.*)\Z"
+    file_mask: ClassVar[str] = "Cookies*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1490,7 +1490,7 @@ class ChromeChromeCurrentSession16(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Current\ Session)\Z"
+    file_mask: ClassVar[str] = "Current Session"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1502,7 +1502,7 @@ class ChromeChromeCurrentTabs17(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Current\ Tabs)\Z"
+    file_mask: ClassVar[str] = "Current Tabs"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1514,7 +1514,7 @@ class ChromeChromeDownloadMetadata18(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:DownloadMetadata)\Z"
+    file_mask: ClassVar[str] = "DownloadMetadata"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1526,7 +1526,7 @@ class ChromeChromeExtensionCookies19(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Extension\ Cookies)\Z"
+    file_mask: ClassVar[str] = "Extension Cookies"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1538,7 +1538,7 @@ class ChromeChromeFavicons20(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Favicons.*)\Z"
+    file_mask: ClassVar[str] = "Favicons*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1550,7 +1550,7 @@ class ChromeChromeHistory21(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:History.*)\Z"
+    file_mask: ClassVar[str] = "History*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1562,7 +1562,7 @@ class ChromeChromeLastSession22(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Last\ Session)\Z"
+    file_mask: ClassVar[str] = "Last Session"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1574,7 +1574,7 @@ class ChromeChromeLastTabs23(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Last\ Tabs)\Z"
+    file_mask: ClassVar[str] = "Last Tabs"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1586,7 +1586,7 @@ class ChromeChromeSessionsFolder24(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Google\\Chrome\\User Data\\*\\Sessions\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1598,7 +1598,7 @@ class ChromeChromeLoginData25(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Login\ Data)\Z"
+    file_mask: ClassVar[str] = "Login Data"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1610,7 +1610,7 @@ class ChromeChromeMediaHistory26(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Media\ History.*)\Z"
+    file_mask: ClassVar[str] = "Media History*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1622,7 +1622,7 @@ class ChromeChromeNetworkActionPredictor27(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Network\ Action\ Predictor)\Z"
+    file_mask: ClassVar[str] = "Network Action Predictor"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1634,7 +1634,7 @@ class ChromeChromeNetworkPersistentState28(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Network\ Persistent\ State)\Z"
+    file_mask: ClassVar[str] = "Network Persistent State"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1646,7 +1646,7 @@ class ChromeChromePreferences29(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Preferences)\Z"
+    file_mask: ClassVar[str] = "Preferences"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1658,7 +1658,7 @@ class ChromeChromeQuotaManager30(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:QuotaManager)\Z"
+    file_mask: ClassVar[str] = "QuotaManager"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1670,7 +1670,7 @@ class ChromeChromeReportingandNEL31(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Reporting\ and\ NEL)\Z"
+    file_mask: ClassVar[str] = "Reporting and NEL"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1682,7 +1682,7 @@ class ChromeChromeShortcuts32(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Shortcuts.*)\Z"
+    file_mask: ClassVar[str] = "Shortcuts*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1694,7 +1694,7 @@ class ChromeChromeTopSites33(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Top\ Sites.*)\Z"
+    file_mask: ClassVar[str] = "Top Sites*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1706,7 +1706,7 @@ class ChromeChromeTrustTokens34(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Trust\ Tokens.*)\Z"
+    file_mask: ClassVar[str] = "Trust Tokens*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1718,7 +1718,7 @@ class ChromeChromeSyncDataDatabase35(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Google\\Chrome\\User Data\\*\\Sync Data"
     )
-    regex: ClassVar[str] = r"(?s:SyncData\.sqlite3)\Z"
+    file_mask: ClassVar[str] = "SyncData.sqlite3"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1730,7 +1730,7 @@ class ChromeChromeVisitedLinks36(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Visited\ Links)\Z"
+    file_mask: ClassVar[str] = "Visited Links"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1742,7 +1742,7 @@ class ChromeChromeWebData37(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Web\ Data.*)\Z"
+    file_mask: ClassVar[str] = "Web Data*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1758,7 +1758,7 @@ class ChromeWindowsProtectFolder38(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Roaming\\Microsoft\\Protect\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1826,7 +1826,7 @@ class EdgeEdgefolder0(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\Microsoft.MicrosoftEdge_8wekyb3d8bbwe\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1854,7 +1854,7 @@ class EdgeChromiumEdgebookmarks0(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Microsoft\\Edge\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Bookmarks.*)\Z"
+    file_mask: ClassVar[str] = "Bookmarks*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1866,7 +1866,7 @@ class EdgeChromiumEdgeCollections1(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Microsoft\\Edge\\User Data\\*\\Collections"
     )
-    regex: ClassVar[str] = r"(?s:collectionsSQLite)\Z"
+    file_mask: ClassVar[str] = "collectionsSQLite"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1878,7 +1878,7 @@ class EdgeChromiumEdgeCookies2(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Microsoft\\Edge\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Cookies.*)\Z"
+    file_mask: ClassVar[str] = "Cookies*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1890,7 +1890,7 @@ class EdgeChromiumEdgeCurrentSession3(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Microsoft\\Edge\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Current\ Session)\Z"
+    file_mask: ClassVar[str] = "Current Session"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1902,7 +1902,7 @@ class EdgeChromiumEdgeCurrentTabs4(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Microsoft\\Edge\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Current\ Tabs)\Z"
+    file_mask: ClassVar[str] = "Current Tabs"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1914,7 +1914,7 @@ class EdgeChromiumEdgeFavicons5(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Microsoft\\Edge\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Favicons.*)\Z"
+    file_mask: ClassVar[str] = "Favicons*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1926,7 +1926,7 @@ class EdgeChromiumEdgeHistory6(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Microsoft\\Edge\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:History.*)\Z"
+    file_mask: ClassVar[str] = "History*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1938,7 +1938,7 @@ class EdgeChromiumEdgeLastSession7(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Microsoft\\Edge\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Last\ Session)\Z"
+    file_mask: ClassVar[str] = "Last Session"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1950,7 +1950,7 @@ class EdgeChromiumEdgeLastTabs8(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Microsoft\\Edge\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Last\ Tabs)\Z"
+    file_mask: ClassVar[str] = "Last Tabs"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1962,7 +1962,7 @@ class EdgeChromiumEdgeSessionsFolder9(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Microsoft\\Edge\\User Data\\*\\Sessions\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1974,7 +1974,7 @@ class EdgeChromiumEdgeLoginData10(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Microsoft\\Edge\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Login\ Data)\Z"
+    file_mask: ClassVar[str] = "Login Data"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1986,7 +1986,7 @@ class EdgeChromiumEdgeMediaHistory11(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Microsoft\\Edge\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Media\ History.*)\Z"
+    file_mask: ClassVar[str] = "Media History*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1998,7 +1998,7 @@ class EdgeChromiumEdgeNetworkActionPredictor12(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Microsoft\\Edge\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Network\ Action\ Predictor)\Z"
+    file_mask: ClassVar[str] = "Network Action Predictor"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -2010,7 +2010,7 @@ class EdgeChromiumEdgePreferences13(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Microsoft\\Edge\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Preferences)\Z"
+    file_mask: ClassVar[str] = "Preferences"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -2022,7 +2022,7 @@ class EdgeChromiumEdgeShortcuts14(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Microsoft\\Edge\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Shortcuts.*)\Z"
+    file_mask: ClassVar[str] = "Shortcuts*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -2034,7 +2034,7 @@ class EdgeChromiumEdgeTopSites15(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Microsoft\\Edge\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Top\ Sites.*)\Z"
+    file_mask: ClassVar[str] = "Top Sites*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -2046,7 +2046,7 @@ class EdgeChromiumEdgeSyncDataDatabase16(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Microsoft\\Edge\\User Data\\*\\Sync Data"
     )
-    regex: ClassVar[str] = r"(?s:SyncData\.sqlite3)\Z"
+    file_mask: ClassVar[str] = "SyncData.sqlite3"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -2058,7 +2058,7 @@ class EdgeChromiumEdgeBookmarks17(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Microsoft\\Edge\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Bookmarks.*)\Z"
+    file_mask: ClassVar[str] = "Bookmarks*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -2070,7 +2070,7 @@ class EdgeChromiumEdgeVisitedLinks18(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Microsoft\\Edge\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Visited\ Links)\Z"
+    file_mask: ClassVar[str] = "Visited Links"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -2082,7 +2082,7 @@ class EdgeChromiumEdgeWebData19(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Microsoft\\Edge\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Web\ Data.*)\Z"
+    file_mask: ClassVar[str] = "Web Data*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -2098,7 +2098,7 @@ class EdgeChromiumWindowsProtectFolder20(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Roaming\\Microsoft\\Protect\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -2116,7 +2116,7 @@ class EdgeChromiumEdgeSnapshotsFolder21(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Microsoft\\Edge\\User Data\\Snapshots\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -2167,7 +2167,7 @@ class FirefoxAddons0(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:addons\.sqlite.*)\Z"
+    file_mask: ClassVar[str] = "addons.sqlite*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -2179,7 +2179,7 @@ class FirefoxBookmarks1(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\*\\weave\\"
     )
-    regex: ClassVar[str] = r"(?s:bookmarks\.sqlite.*)\Z"
+    file_mask: ClassVar[str] = "bookmarks.sqlite*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -2191,7 +2191,7 @@ class FirefoxBookmarks2(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\*\\bookmarkbackups"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -2203,7 +2203,7 @@ class FirefoxCookies3(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:cookies\.sqlite.*)\Z"
+    file_mask: ClassVar[str] = "cookies.sqlite*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -2215,7 +2215,7 @@ class FirefoxCookies4(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:firefox_cookies\.sqlite.*)\Z"
+    file_mask: ClassVar[str] = "firefox_cookies.sqlite*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -2227,7 +2227,7 @@ class FirefoxDownloads5(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:downloads\.sqlite.*)\Z"
+    file_mask: ClassVar[str] = "downloads.sqlite*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -2239,7 +2239,7 @@ class FirefoxExtensions6(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:extensions\.json)\Z"
+    file_mask: ClassVar[str] = "extensions.json"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -2251,7 +2251,7 @@ class FirefoxFavicons7(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:favicons\.sqlite.*)\Z"
+    file_mask: ClassVar[str] = "favicons.sqlite*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -2263,7 +2263,7 @@ class FirefoxFormhistory8(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:formhistory\.sqlite.*)\Z"
+    file_mask: ClassVar[str] = "formhistory.sqlite*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -2275,7 +2275,7 @@ class FirefoxPermissions9(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:permissions\.sqlite.*)\Z"
+    file_mask: ClassVar[str] = "permissions.sqlite*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -2287,7 +2287,7 @@ class FirefoxPlaces10(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:places\.sqlite.*)\Z"
+    file_mask: ClassVar[str] = "places.sqlite*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -2299,7 +2299,7 @@ class FirefoxProtections11(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:protections\.sqlite.*)\Z"
+    file_mask: ClassVar[str] = "protections.sqlite*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -2311,7 +2311,7 @@ class FirefoxSearch12(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:search\.sqlite.*)\Z"
+    file_mask: ClassVar[str] = "search.sqlite*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -2323,7 +2323,7 @@ class FirefoxSignons13(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:signons\.sqlite.*)\Z"
+    file_mask: ClassVar[str] = "signons.sqlite*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -2335,7 +2335,7 @@ class FirefoxStorageSync14(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:storage\-sync\.sqlite.*)\Z"
+    file_mask: ClassVar[str] = "storage-sync.sqlite*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -2347,7 +2347,7 @@ class FirefoxWebappstore15(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:webappstore\.sqlite.*)\Z"
+    file_mask: ClassVar[str] = "webappstore.sqlite*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -2359,7 +2359,7 @@ class FirefoxPassword16(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:key.*\.db)\Z"
+    file_mask: ClassVar[str] = "key*.db"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -2371,7 +2371,7 @@ class FirefoxPassword17(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:signon(?>.*?\.).*)\Z"
+    file_mask: ClassVar[str] = "signon*.*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -2383,7 +2383,7 @@ class FirefoxPassword18(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:logins\.json)\Z"
+    file_mask: ClassVar[str] = "logins.json"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -2395,7 +2395,7 @@ class FirefoxPreferences19(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:prefs\.js)\Z"
+    file_mask: ClassVar[str] = "prefs.js"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -2407,7 +2407,7 @@ class FirefoxSessionstore20(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:sessionstore.*)\Z"
+    file_mask: ClassVar[str] = "sessionstore*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -2419,7 +2419,7 @@ class FirefoxSessionstoreFolder21(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\*\\sessionstore-backups"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -2431,7 +2431,7 @@ class FirefoxPlacesXP22(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Documents and Settings\\%user%\\Application Data\\Mozilla\\Firefox\\Profiles\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:places\.sqlite.*)\Z"
+    file_mask: ClassVar[str] = "places.sqlite*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -2443,7 +2443,7 @@ class FirefoxDownloadsXP23(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Documents and Settings\\%user%\\Application Data\\Mozilla\\Firefox\\Profiles\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:downloads\.sqlite.*)\Z"
+    file_mask: ClassVar[str] = "downloads.sqlite*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -2455,7 +2455,7 @@ class FirefoxFormhistoryXP24(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Documents and Settings\\%user%\\Application Data\\Mozilla\\Firefox\\Profiles\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:formhistory\.sqlite.*)\Z"
+    file_mask: ClassVar[str] = "formhistory.sqlite*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -2467,7 +2467,7 @@ class FirefoxCookiesXP25(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Documents and Settings\\%user%\\Application Data\\Mozilla\\Firefox\\Profiles\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:cookies\.sqlite.*)\Z"
+    file_mask: ClassVar[str] = "cookies.sqlite*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -2479,7 +2479,7 @@ class FirefoxSignonsXP26(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Documents and Settings\\%user%\\Application Data\\Mozilla\\Firefox\\Profiles\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:signons\.sqlite.*)\Z"
+    file_mask: ClassVar[str] = "signons.sqlite*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -2491,7 +2491,7 @@ class FirefoxWebappstoreXP27(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Documents and Settings\\%user%\\Application Data\\Mozilla\\Firefox\\Profiles\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:webappstore\.sqlite.*)\Z"
+    file_mask: ClassVar[str] = "webappstore.sqlite*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -2503,7 +2503,7 @@ class FirefoxFaviconsXP28(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Documents and Settings\\%user%\\Application Data\\Mozilla\\Firefox\\Profiles\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:favicons\.sqlite.*)\Z"
+    file_mask: ClassVar[str] = "favicons.sqlite*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -2515,7 +2515,7 @@ class FirefoxAddonsXP29(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Documents and Settings\\%user%\\Application Data\\Mozilla\\Firefox\\Profiles\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:addons\.sqlite.*)\Z"
+    file_mask: ClassVar[str] = "addons.sqlite*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -2527,7 +2527,7 @@ class FirefoxSearchXP30(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Documents and Settings\\%user%\\Application Data\\Mozilla\\Firefox\\Profiles\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:search\.sqlite.*)\Z"
+    file_mask: ClassVar[str] = "search.sqlite*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -2539,7 +2539,7 @@ class FirefoxPasswordXP31(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Documents and Settings\\%user%\\Application Data\\Mozilla\\Firefox\\Profiles\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:key.*\.db)\Z"
+    file_mask: ClassVar[str] = "key*.db"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -2551,7 +2551,7 @@ class FirefoxPasswordXP32(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Documents and Settings\\%user%\\Application Data\\Mozilla\\Firefox\\Profiles\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:signon(?>.*?\.).*)\Z"
+    file_mask: ClassVar[str] = "signon*.*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -2563,7 +2563,7 @@ class FirefoxPasswordXP33(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Documents and Settings\\%user%\\Application Data\\Mozilla\\Firefox\\Profiles\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:logins\.json)\Z"
+    file_mask: ClassVar[str] = "logins.json"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -2575,7 +2575,7 @@ class FirefoxSessionstoreXP34(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Documents and Settings\\%user%\\Application Data\\Mozilla\\Firefox\\Profiles\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:sessionstore.*)\Z"
+    file_mask: ClassVar[str] = "sessionstore*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -2639,7 +2639,7 @@ class InternetExplorerIndexdatHistory0(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Documents and Settings\\%user%\\Local Settings\\History\\History.IE5\\"
     )
-    regex: ClassVar[str] = r"(?s:index\.dat)\Z"
+    file_mask: ClassVar[str] = "index.dat"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -2651,7 +2651,7 @@ class InternetExplorerIndexdatHistorysubdirectory1(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Documents and Settings\\%user%\\Local Settings\\History\\History.IE5\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:index\.dat)\Z"
+    file_mask: ClassVar[str] = "index.dat"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -2661,7 +2661,7 @@ class InternetExplorerIndexdatHistorysubdirectory1(KapeTarget):
 class InternetExplorerIndexdatcookies2(KapeTarget):
     name: ClassVar[str] = "Index.dat cookies"
     base_path: ClassVar[Path] = Path("C:\\Documents and Settings\\%user%\\Cookies\\")
-    regex: ClassVar[str] = r"(?s:index\.dat)\Z"
+    file_mask: ClassVar[str] = "index.dat"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -2673,7 +2673,7 @@ class InternetExplorerIndexdatUserData3(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Documents and Settings\\%user%\\Application Data\\Microsoft\\Internet Explorer\\UserData\\"
     )
-    regex: ClassVar[str] = r"(?s:index\.dat)\Z"
+    file_mask: ClassVar[str] = "index.dat"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -2685,7 +2685,7 @@ class InternetExplorerIndexdatOfficeXP4(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Documents and Settings\\%user%\\Application Data\\Microsoft\\Office\\Recent\\"
     )
-    regex: ClassVar[str] = r"(?s:index\.dat)\Z"
+    file_mask: ClassVar[str] = "index.dat"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -2697,7 +2697,7 @@ class InternetExplorerIndexdatOffice5(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Roaming\\Microsoft\\Office\\Recent\\"
     )
-    regex: ClassVar[str] = r"(?s:index\.dat)\Z"
+    file_mask: ClassVar[str] = "index.dat"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -2709,7 +2709,7 @@ class InternetExplorerLocalInternetExplorerfolder6(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Microsoft\\Internet Explorer\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -2721,7 +2721,7 @@ class InternetExplorerRoamingInternetExplorerfolder7(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Roaming\\Microsoft\\Internet Explorer\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -2733,7 +2733,7 @@ class InternetExplorerIE910History8(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Microsoft\\Windows\\History\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -2745,7 +2745,7 @@ class InternetExplorerIE910Cookies9(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Microsoft\\Windows\\Cookies\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -2757,7 +2757,7 @@ class InternetExplorerIE910DownloadHistory10(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Microsoft\\Windows\\IEDownloadHistory\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -2769,7 +2769,7 @@ class InternetExplorerIE11Metadata11(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Microsoft\\Windows\\WebCache\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -2781,7 +2781,7 @@ class InternetExplorerIE11Cookies12(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Microsoft\\Windows\\INetCookies\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -2827,7 +2827,7 @@ class OperaOperaLocalFolder0(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Opera Software\\Opera Stable"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -2843,7 +2843,7 @@ class OperaOperaRoamingFolder1(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Roaming\\Opera Software\\Opera Stable"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -2878,7 +2878,7 @@ class PuffinSecureBrowserPuffindatadb0(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\PuffinSecureBrowser"
     )
-    regex: ClassVar[str] = r"(?s:data\.db)\Z"
+    file_mask: ClassVar[str] = "data.db"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -2894,7 +2894,7 @@ class PuffinSecureBrowserPuffinAutocompleteData1(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\PuffinSecureBrowser"
     )
-    regex: ClassVar[str] = r"(?s:autocompletes\.dat)\Z"
+    file_mask: ClassVar[str] = "autocompletes.dat"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -2910,7 +2910,7 @@ class PuffinSecureBrowserPuffinPasswordFormsData2(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\PuffinSecureBrowser"
     )
-    regex: ClassVar[str] = r"(?s:passwordForms\.dat)\Z"
+    file_mask: ClassVar[str] = "passwordForms.dat"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -2926,7 +2926,7 @@ class PuffinSecureBrowserPuffinPasswordEncrypted3(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\PuffinSecureBrowser"
     )
-    regex: ClassVar[str] = r"(?s:credential\.dat)\Z"
+    file_mask: ClassVar[str] = "credential.dat"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -2943,7 +2943,7 @@ class PuffinSecureBrowserPuffinSubscriptionData4(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\PuffinSecureBrowser"
     )
-    regex: ClassVar[str] = r"(?s:subscription)\Z"
+    file_mask: ClassVar[str] = "subscription"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -2959,7 +2959,7 @@ class PuffinSecureBrowserPuffinCookies5(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\PuffinSecureBrowser"
     )
-    regex: ClassVar[str] = r"(?s:cookies\.dat)\Z"
+    file_mask: ClassVar[str] = "cookies.dat"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -2975,7 +2975,7 @@ class PuffinSecureBrowserPuffinImageCache6(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\PuffinSecureBrowser\\image_cache"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -3009,7 +3009,7 @@ class PuffinSecureBrowser(KapeTargetConfiguration):
 class IRCClientsHexChat0(KapeTarget):
     name: ClassVar[str] = "HexChat"
     base_path: ClassVar[Path] = Path("HexChat.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -3019,7 +3019,7 @@ class IRCClientsHexChat0(KapeTarget):
 class IRCClientsIceChat1(KapeTarget):
     name: ClassVar[str] = "IceChat"
     base_path: ClassVar[Path] = Path("IceChat.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -3029,7 +3029,7 @@ class IRCClientsIceChat1(KapeTarget):
 class IRCClientsmIRC2(KapeTarget):
     name: ClassVar[str] = "mIRC"
     base_path: ClassVar[Path] = Path("mIRC.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -3059,7 +3059,7 @@ class IRCClients(KapeTargetConfiguration):
 class WebBrowsersChrome0(KapeTarget):
     name: ClassVar[str] = "Chrome"
     base_path: ClassVar[Path] = Path("Chrome.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -3069,7 +3069,7 @@ class WebBrowsersChrome0(KapeTarget):
 class WebBrowsersEdge1(KapeTarget):
     name: ClassVar[str] = "Edge"
     base_path: ClassVar[Path] = Path("Edge.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -3079,7 +3079,7 @@ class WebBrowsersEdge1(KapeTarget):
 class WebBrowsersEdgeChromium2(KapeTarget):
     name: ClassVar[str] = "Edge Chromium"
     base_path: ClassVar[Path] = Path("EdgeChromium.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -3089,7 +3089,7 @@ class WebBrowsersEdgeChromium2(KapeTarget):
 class WebBrowsersFirefox3(KapeTarget):
     name: ClassVar[str] = "Firefox"
     base_path: ClassVar[Path] = Path("Firefox.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -3099,7 +3099,7 @@ class WebBrowsersFirefox3(KapeTarget):
 class WebBrowsersInternetExplorer4(KapeTarget):
     name: ClassVar[str] = "Internet Explorer"
     base_path: ClassVar[Path] = Path("InternetExplorer.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -3109,7 +3109,7 @@ class WebBrowsersInternetExplorer4(KapeTarget):
 class WebBrowsersOpera5(KapeTarget):
     name: ClassVar[str] = "Opera"
     base_path: ClassVar[Path] = Path("Opera.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -3119,7 +3119,7 @@ class WebBrowsersOpera5(KapeTarget):
 class WebBrowsersPuffinSecureBrowser6(KapeTarget):
     name: ClassVar[str] = "Puffin Secure Browser"
     base_path: ClassVar[Path] = Path("PuffinSecureBrowser.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -3129,7 +3129,7 @@ class WebBrowsersPuffinSecureBrowser6(KapeTarget):
 class WebBrowsersBraveBrowser7(KapeTarget):
     name: ClassVar[str] = "Brave Browser"
     base_path: ClassVar[Path] = Path("BraveBrowser.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 

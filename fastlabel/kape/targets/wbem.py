@@ -13,7 +13,7 @@ from fastlabel.kape.core import KapeModule, KapeTarget, KapeTargetConfiguration
 class WBEMWBEM0(KapeTarget):
     name: ClassVar[str] = "WBEM"
     base_path: ClassVar[Path] = Path("C:\\Windows\\System32\\wbem\\Repository\\")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -25,7 +25,7 @@ class WBEMWBEM1(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Windows.old\\Windows\\System32\\wbem\\Repository\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 

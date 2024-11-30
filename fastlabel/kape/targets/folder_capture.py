@@ -13,7 +13,7 @@ from fastlabel.kape.core import KapeModule, KapeTarget, KapeTargetConfiguration
 class XPRestorePointsSystemVolumeInformation0(KapeTarget):
     name: ClassVar[str] = "System Volume Information"
     base_path: ClassVar[Path] = Path("C:\\System Volume Information\\")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 

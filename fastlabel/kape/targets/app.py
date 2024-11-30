@@ -19,7 +19,7 @@ class EvernoteEvernoteAccounts0(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Evernote\\Evernote\\Databases\\"
     )
-    regex: ClassVar[str] = r"(?s:\.accounts)\Z"
+    file_mask: ClassVar[str] = ".accounts"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -35,7 +35,7 @@ class EvernoteEvernoteNotebooks1(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Evernote\\Evernote\\Databases\\"
     )
-    regex: ClassVar[str] = r"(?s:.*\.exb)\Z"
+    file_mask: ClassVar[str] = "*.exb"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -51,7 +51,7 @@ class EvernoteEvernoteNotebookSnippets2(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Evernote\\Evernote\\Databases\\"
     )
-    regex: ClassVar[str] = r"(?s:.*\.exb\.snippets)\Z"
+    file_mask: ClassVar[str] = "*.exb.snippets"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -88,7 +88,7 @@ class FreeDownloadManagerFDMDatabase0(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Free Download Manager\\"
     )
-    regex: ClassVar[str] = r"(?s:fdm\.sqlite)\Z"
+    file_mask: ClassVar[str] = "fdm.sqlite"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -105,7 +105,7 @@ class FreeDownloadManagerFDMBackupInfo1(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Free Download Manager\\backup\\"
     )
-    regex: ClassVar[str] = r"(?s:backup\.info)\Z"
+    file_mask: ClassVar[str] = "backup.info"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -122,7 +122,7 @@ class FreeDownloadManagerFDMDatabaseuserdatazip2(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Free Download Manager\\backup\\"
     )
-    regex: ClassVar[str] = r"(?s:userdata\.zip)\Z"
+    file_mask: ClassVar[str] = "userdata.zip"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -160,7 +160,7 @@ class JDownloader2JDownloader20DownloadLists0(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\JDownloader 2.0\\cfg"
     )
-    regex: ClassVar[str] = r"(?s:downloadList.*\.zip)\Z"
+    file_mask: ClassVar[str] = "downloadList*.zip"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -177,7 +177,7 @@ class JDownloader2JDownloader20LinkCollector1(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\JDownloader 2.0\\cfg"
     )
-    regex: ClassVar[str] = r"(?s:linkcollector.*\.zip)\Z"
+    file_mask: ClassVar[str] = "linkcollector*.zip"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -193,7 +193,7 @@ class JDownloader2JDownloader20GeneralSettings2(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\JDownloader 2.0\\cfg"
     )
-    regex: ClassVar[str] = r"(?s:org\.jdownloader\.settings\.GeneralSettings\.json)\Z"
+    file_mask: ClassVar[str] = "org.jdownloader.settings.GeneralSettings.json"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -210,8 +210,8 @@ class JDownloader2JDownloader20LinkGrabberSettings3(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\JDownloader 2.0\\cfg"
     )
-    regex: ClassVar[str] = (
-        r"(?s:org\.jdownloader\.gui\.views\.linkgrabber\.addlinksdialog\.LinkgrabberSettings\.json)\Z"
+    file_mask: ClassVar[str] = (
+        "org.jdownloader.gui.views.linkgrabber.addlinksdialog.LinkgrabberSettings.json"
     )
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
@@ -228,8 +228,8 @@ class JDownloader2JDownloader20ProxySettings4(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\JDownloader 2.0\\cfg"
     )
-    regex: ClassVar[str] = (
-        r"(?s:org\.jdownloader\.settings\.InternetConnectionSettings\.customproxylist\.json)\Z"
+    file_mask: ClassVar[str] = (
+        "org.jdownloader.settings.InternetConnectionSettings.customproxylist.json"
     )
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []

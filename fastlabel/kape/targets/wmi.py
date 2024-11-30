@@ -13,7 +13,7 @@ from fastlabel.kape.core import KapeModule, KapeTarget, KapeTargetConfiguration
 class MOFMOFfiles0(KapeTarget):
     name: ClassVar[str] = "MOF files"
     base_path: ClassVar[Path] = Path("C:\\")
-    regex: ClassVar[str] = r"(?s:.*\.MOF)\Z"
+    file_mask: ClassVar[str] = "*.MOF"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 

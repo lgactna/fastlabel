@@ -15,7 +15,7 @@ class BITSBITSfiles0(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\ProgramData\\Microsoft\\Network\\Downloader\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -41,7 +41,7 @@ class BITS(KapeTargetConfiguration):
 class ScheduledTasksatjob0(KapeTarget):
     name: ClassVar[str] = "at .job"
     base_path: ClassVar[Path] = Path("C:\\Windows\\Tasks\\")
-    regex: ClassVar[str] = r"(?s:.*\.job)\Z"
+    file_mask: ClassVar[str] = "*.job"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -51,7 +51,7 @@ class ScheduledTasksatjob0(KapeTarget):
 class ScheduledTasksatjob1(KapeTarget):
     name: ClassVar[str] = "at .job"
     base_path: ClassVar[Path] = Path("C:\\Windows.old\\Windows\\Tasks\\")
-    regex: ClassVar[str] = r"(?s:.*\.job)\Z"
+    file_mask: ClassVar[str] = "*.job"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -61,7 +61,7 @@ class ScheduledTasksatjob1(KapeTarget):
 class ScheduledTasksatSchedLgUtxt2(KapeTarget):
     name: ClassVar[str] = "at SchedLgU.txt"
     base_path: ClassVar[Path] = Path("C:\\Windows\\")
-    regex: ClassVar[str] = r"(?s:SchedLgU\.txt)\Z"
+    file_mask: ClassVar[str] = "SchedLgU.txt"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -71,7 +71,7 @@ class ScheduledTasksatSchedLgUtxt2(KapeTarget):
 class ScheduledTasksatSchedLgUtxt3(KapeTarget):
     name: ClassVar[str] = "at SchedLgU.txt"
     base_path: ClassVar[Path] = Path("C:\\Windows.old\\Windows\\")
-    regex: ClassVar[str] = r"(?s:SchedLgU\.txt)\Z"
+    file_mask: ClassVar[str] = "SchedLgU.txt"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -81,7 +81,7 @@ class ScheduledTasksatSchedLgUtxt3(KapeTarget):
 class ScheduledTasksXML4(KapeTarget):
     name: ClassVar[str] = "XML"
     base_path: ClassVar[Path] = Path("C:\\Windows\\System32\\Tasks\\")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -91,7 +91,7 @@ class ScheduledTasksXML4(KapeTarget):
 class ScheduledTasksXML5(KapeTarget):
     name: ClassVar[str] = "XML"
     base_path: ClassVar[Path] = Path("C:\\Windows.old\\Windows\\System32\\Tasks\\")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -126,7 +126,7 @@ class StartupFoldersUserstartupfolders0(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -138,7 +138,7 @@ class StartupFoldersSystemwidestartupfolder1(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\StartUp"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -169,7 +169,7 @@ class StartupInfoStartupInfoXMLFiles0(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Windows\\System32\\WDI\\LogFiles\\StartupInfo\\"
     )
-    regex: ClassVar[str] = r"(?s:.*\.xml)\Z"
+    file_mask: ClassVar[str] = "*.xml"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -181,7 +181,7 @@ class StartupInfoStartupInfoXMLFiles1(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Windows.old\\Windows\\System32\\WDI\\LogFiles\\StartupInfo\\"
     )
-    regex: ClassVar[str] = r"(?s:.*\.xml)\Z"
+    file_mask: ClassVar[str] = "*.xml"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 

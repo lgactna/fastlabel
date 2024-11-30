@@ -5,10 +5,11 @@ Core definitions for the KAPE Python bindings.
 import csv
 import ctypes
 import datetime
+import os
+import subprocess
 from enum import Enum
 from pathlib import Path
 from typing import ClassVar, Optional, Type
-import subprocess
 
 from pydantic import AwareDatetime, BaseModel
 
@@ -72,10 +73,10 @@ class KapeTarget(BaseModel):
     # The name of the module as it should be called on the KAPE CLI.
     name: ClassVar[str]
 
-    # The base path for the target.
+    # The base path for the target. May be a valid path or a pattern to be converted.
     base_path: ClassVar[Path]
-    # The regex to use in each directory to search in, beginning at `base_path`.
-    regex: ClassVar[str]
+    # The file mask for this target.
+    file_mask: ClassVar[str]
     # If `True`, search in all directories underneath base_path. From our side,
     # that just means updating our regex to support any number of directories
     # between the base path and the file regex above.
@@ -111,6 +112,22 @@ class KapeTarget(BaseModel):
         """
         raise NotImplementedError
 
+    @classmethod
+    def path_matches(cls, path: Path) -> bool:
+        """
+        Determine if the provided path *could* match this target.
+        """
+
+        # Check if the base path matches (assume that children can be wildcarded)
+        if not path.match(str(cls.base_path) + "\\*"):
+            return False
+
+        # Check if the file mask matches
+        if not path.match(cls.file_mask):
+            return False
+
+        return True
+
 
 class KapeTargetConfiguration(BaseModel):
     """
@@ -133,15 +150,20 @@ class KapeTargetLogEntry(BaseModel):
     created_on: AwareDatetime
     modified_on: AwareDatetime
     last_accessed: AwareDatetime
-    
+
+    # What target this log entry has been assigned to, if any.
+    assigned_target: Optional[Type[KapeTarget]] = None
+
     @staticmethod
-    def to_aware_datetime(date_str: str) -> datetime:
+    def to_aware_datetime(date_str: str) -> datetime.datetime:
         # KAPE uses 7 decimal places after the second, but %f is only 6
         # so we need to truncate the last digit
         date_str = date_str[:-1]
-        
-        return datetime.datetime.strptime(date_str, "%Y-%m-%d %H:%M:%S.%f").astimezone(datetime.UTC)
-    
+
+        return datetime.datetime.strptime(date_str, "%Y-%m-%d %H:%M:%S.%f").astimezone(
+            datetime.UTC
+        )
+
     @classmethod
     def from_csv_line(cls, line: list[str]) -> "KapeTargetLogEntry":
         """
@@ -156,20 +178,26 @@ class KapeTargetLogEntry(BaseModel):
             deferred_copy=line[5] == "True",
             created_on=cls.to_aware_datetime(line[6]),
             modified_on=cls.to_aware_datetime(line[7]),
-            last_accessed=cls.to_aware_datetime(line[8])            
+            last_accessed=cls.to_aware_datetime(line[8]),
         )
 
-def is_admin():
+
+def is_admin() -> bool:
     """
     https://stackoverflow.com/questions/130763/request-uac-elevation-from-within-a-python-script
     """
+    if os.name != "nt":
+        raise RuntimeError("This function is only implemented for Windows.")
+
     try:
-        return ctypes.windll.shell32.IsUserAnAdmin()
-    except:
+        return ctypes.windll.shell32.IsUserAnAdmin()  # type: ignore[attr-defined, no-any-return]
+    except Exception:
         return False
+
 
 class AdminPrivilegeError(RuntimeError):
     pass
+
 
 def run_kape(
     kape_path: Path,
@@ -192,8 +220,8 @@ def run_kape(
     """
     Run KAPE with the provided targets and modules, then process the resulting
     outputs. Generate a set of targets and modules associated with the result.
-    
-    This function will 
+
+    This function will
 
     :param kape_path: The path to the KAPE CLI.
     :param target: A list of targets to pass to KAPE. If empty, targets are disabled.
@@ -213,8 +241,10 @@ def run_kape(
     :param deduplicate: Indicates KAPE should deduplicate files based on SHA256.
     """
     if not is_admin():
-        raise AdminPrivilegeError("KAPE will not run without administrator privileges. Rerun this script as an administrator.")
-    
+        raise AdminPrivilegeError(
+            "KAPE will not run without administrator privileges. Rerun this script as an administrator."
+        )
+
     args: list[str] = []
 
     # Add the binary itself
@@ -275,17 +305,20 @@ def run_kape(
 
     return (s.stdout, s.stderr)
 
+
 def process_kape_target_dir(
-    target_destination: Path,
-    targets: list[Type[KapeTarget]]
-)-> list[KapeTarget]:
+    target_destination: Path, target_configs: list[Type[KapeTargetConfiguration]]
+) -> list[KapeTarget]:
     """
     Process all files in the provided target destination path with
     the associated modules, then return the resulting updated artifact(s)
+
+    Note that targets are matched in the order they are passed in `targets`. If
+    multiple targets *could* match a file, the first match by its regex wins.
     """
     # Search for a file of the format *_CopyLog.csv
     copy_log = next(target_destination.glob("*_CopyLog.csv"))
-    
+
     # Read the copy log using the csv library
     with open(copy_log, "r") as f:
         reader = csv.reader(f)
@@ -294,7 +327,26 @@ def process_kape_target_dir(
         # Read the rest of the lines
         target_log_entries = [KapeTargetLogEntry.from_csv_line(line) for line in reader]
 
-    # Now we need to associate the log entries with the targets
-    
+    # Extract all KapeTargets from the target_configs
+    target_types = []
+    for target_config in target_configs:
+        target_types += target_config.targets
 
-    print(target_log_entries)
+    # For each target entry we have, test it against each available target type
+    # and assign if it matches. First target type that matches wins.
+    #
+    # TODO: optimize this
+    for entry in target_log_entries:
+        for target_type in target_types:
+            if target_type.path_matches(entry.source):
+                entry.assigned_target = target_type
+                break
+
+    for entry in target_log_entries:
+        if not entry.assigned_target:
+            print(f"No target matched {entry.source}")
+        else:
+            print(f"Matched {entry.source} to {entry.assigned_target}")
+
+    # print(target_log_entries)
+    # print(targets)

@@ -19,7 +19,7 @@ class WindowsSubsystemforAndroidDiagnosticLogsforWSA0(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\MicrosoftCorporationII.WindowsSubsystemForAndroid_8wekyb3d8bbwe\\LocalState\\diagnostics\\logcat\\"
     )
-    regex: ClassVar[str] = r"(?s:.*\.log)\Z"
+    file_mask: ClassVar[str] = "*.log"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -35,7 +35,7 @@ class WindowsSubsystemforAndroidAppdownloadartifactsPNG1(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\MicrosoftCorporationII.WindowsSubsystemForAndroid_8wekyb3d8bbwe\\LocalCache\\"
     )
-    regex: ClassVar[str] = r"(?s:.*\.png)\Z"
+    file_mask: ClassVar[str] = "*.png"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -53,7 +53,7 @@ class WindowsSubsystemforAndroidAppdownloadartifactsICO2(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\MicrosoftCorporationII.WindowsSubsystemForAndroid_8wekyb3d8bbwe\\LocalCache\\"
     )
-    regex: ClassVar[str] = r"(?s:.*\.ico)\Z"
+    file_mask: ClassVar[str] = "*.ico"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -70,7 +70,7 @@ class WindowsSubsystemforAndroidAppcompatdbjson3(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\MicrosoftCorporationII.WindowsSubsystemForAndroid_8wekyb3d8bbwe\\LocalState\\"
     )
-    regex: ClassVar[str] = r"(?s:appcompatdb\.json)\Z"
+    file_mask: ClassVar[str] = "appcompatdb.json"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -86,7 +86,7 @@ class WindowsSubsystemforAndroiduserdatavhdx4(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\MicrosoftCorporationII.WindowsSubsystemForAndroid_8wekyb3d8bbwe\\LocalCache\\"
     )
-    regex: ClassVar[str] = r"(?s:userdata\.vhdx)\Z"
+    file_mask: ClassVar[str] = "userdata.vhdx"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 

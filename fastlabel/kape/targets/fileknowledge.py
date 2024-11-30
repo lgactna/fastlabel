@@ -13,7 +13,7 @@ from fastlabel.kape.core import KapeModule, KapeTarget, KapeTargetConfiguration
 class IrfanViewIrfanViewConfigurationFile0(KapeTarget):
     name: ClassVar[str] = "IrfanView Configuration File"
     base_path: ClassVar[Path] = Path("C:\\Users\\%user%\\AppData\\Roaming\\IrfanView\\")
-    regex: ClassVar[str] = r"(?s:i_view32\.ini)\Z"
+    file_mask: ClassVar[str] = "i_view32.ini"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -39,7 +39,7 @@ class IrfanView(KapeTargetConfiguration):
 class PeaZipPeaZipConfigurationFiles0(KapeTarget):
     name: ClassVar[str] = "PeaZip Configuration Files"
     base_path: ClassVar[Path] = Path("C:\\Users\\%user%\\AppData\\Roaming\\PeaZip\\")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -69,7 +69,7 @@ class SumatraPDFSumatraPDFSettingsSessionData0(KapeTarget):
 
     name: ClassVar[str] = "SumatraPDF Settings - SessionData"
     base_path: ClassVar[Path] = Path("C:\\Users\\%user%\\AppData\\Local\\SumatraPDF")
-    regex: ClassVar[str] = r"(?s:SumatraPDF\-settings\.txt)\Z"
+    file_mask: ClassVar[str] = "SumatraPDF-settings.txt"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -86,7 +86,7 @@ class SumatraPDFSumatraPDFCache1(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\SumatraPDF\\sumatrapdfcache"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -117,7 +117,7 @@ class CertUtilSystemCryptnetUrlCache0(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Windows\\System32\\config\\systemprofile\\AppData\\LocalLow\\Microsoft\\CryptnetUrlCache\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -129,7 +129,7 @@ class CertUtilUserCryptnetUrlCache1(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\LocalLow\\Microsoft\\CryptnetUrlCache\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -141,7 +141,7 @@ class CertUtilINetCache2(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Microsoft\\Windows\\INetCache\\IE\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -173,7 +173,7 @@ class OfficeAutosaveWordAutosaveLocation0(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Roaming\\Microsoft\\Word\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -185,7 +185,7 @@ class OfficeAutosaveExcelAutosaveLocation1(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Roaming\\Microsoft\\Excel\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -197,7 +197,7 @@ class OfficeAutosavePowerpointAutosaveLocation2(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Roaming\\Microsoft\\Powerpoint\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -209,7 +209,7 @@ class OfficeAutosavePublisherAutosaveLocation3(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Roaming\\Microsoft\\Publisher\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -242,7 +242,7 @@ class OfficeDocumentCacheOfficeDocumentCache0(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Microsoft\\Office\\*\\OfficeFileCache\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -277,7 +277,7 @@ class SnipAndSketchSnipSketch0(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\*\\AppData\\Local\\Packages\\Microsoft.ScreenSketch_8wekyb3d8bbwe\\TempState\\"
     )
-    regex: ClassVar[str] = r"(?s:.*\.png)\Z"
+    file_mask: ClassVar[str] = "*.png"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -305,7 +305,7 @@ class ThumbCacheThumbcacheDB0(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Microsoft\\Windows\\Explorer\\"
     )
-    regex: ClassVar[str] = r"(?s:thumbcache_.*\.db)\Z"
+    file_mask: ClassVar[str] = "thumbcache_*.db"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -333,7 +333,7 @@ class WindowsIndexSearchWindowsIndexSearch0(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\programdata\\microsoft\\search\\data\\applications\\windows\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -345,7 +345,7 @@ class WindowsIndexSearchGatherLogs1(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\programdata\\microsoft\\search\\data\\applications\\windows\\GatherLogs\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 

@@ -15,7 +15,7 @@ class WindowsTimelineActivitiesCachedb0(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\ConnectedDevicesPlatform\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:ActivitiesCache\.db.*)\Z"
+    file_mask: ClassVar[str] = "ActivitiesCache.db*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 

@@ -13,7 +13,7 @@ from fastlabel.kape.core import KapeModule, KapeTarget, KapeTargetConfiguration
 class SyscacheSyscache0(KapeTarget):
     name: ClassVar[str] = "Syscache"
     base_path: ClassVar[Path] = Path("C:\\System Volume Information\\")
-    regex: ClassVar[str] = r"(?s:Syscache\.hve)\Z"
+    file_mask: ClassVar[str] = "Syscache.hve"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -23,7 +23,7 @@ class SyscacheSyscache0(KapeTarget):
 class SyscacheSyscachetransactionfiles1(KapeTarget):
     name: ClassVar[str] = "Syscache transaction files"
     base_path: ClassVar[Path] = Path("C:\\System Volume Information\\")
-    regex: ClassVar[str] = r"(?s:Syscache\.hve\.LOG.*)\Z"
+    file_mask: ClassVar[str] = "Syscache.hve.LOG*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 

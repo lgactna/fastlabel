@@ -13,7 +13,7 @@ from fastlabel.kape.core import KapeModule, KapeTarget, KapeTargetConfiguration
 class VirtualDisksVHD0(KapeTarget):
     name: ClassVar[str] = "VHD"
     base_path: ClassVar[Path] = Path("C:\\")
-    regex: ClassVar[str] = r"(?s:.*\.VHD)\Z"
+    file_mask: ClassVar[str] = "*.VHD"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -23,7 +23,7 @@ class VirtualDisksVHD0(KapeTarget):
 class VirtualDisksVHDX1(KapeTarget):
     name: ClassVar[str] = "VHDX"
     base_path: ClassVar[Path] = Path("C:\\")
-    regex: ClassVar[str] = r"(?s:.*\.VHDX)\Z"
+    file_mask: ClassVar[str] = "*.VHDX"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -33,7 +33,7 @@ class VirtualDisksVHDX1(KapeTarget):
 class VirtualDisksVDI2(KapeTarget):
     name: ClassVar[str] = "VDI"
     base_path: ClassVar[Path] = Path("C:\\")
-    regex: ClassVar[str] = r"(?s:.*\.VDI)\Z"
+    file_mask: ClassVar[str] = "*.VDI"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -43,7 +43,7 @@ class VirtualDisksVDI2(KapeTarget):
 class VirtualDisksVMDK3(KapeTarget):
     name: ClassVar[str] = "VMDK"
     base_path: ClassVar[Path] = Path("C:\\")
-    regex: ClassVar[str] = r"(?s:.*\.VMDK)\Z"
+    file_mask: ClassVar[str] = "*.VMDK"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 

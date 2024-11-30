@@ -15,7 +15,7 @@ class JavaWebCacheJavaWebStartCacheUserLevelDefault0(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Sun\\Java\\Deployment\\cache\\*\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:.*\.idx)\Z"
+    file_mask: ClassVar[str] = "*.idx"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -27,7 +27,7 @@ class JavaWebCacheJavaWebStartCacheUserLevelIEProtectedMode1(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\LocalLow\\Sun\\Java\\Deployment\\cache\\*\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:.*\.idx)\Z"
+    file_mask: ClassVar[str] = "*.idx"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -39,7 +39,7 @@ class JavaWebCacheJavaWebStartCacheSystemlevel2(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Windows\\System32\\config\\systemprofile\\AppData\\Local\\Sun\\Java\\Deployment\\cache\\*\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:.*\.idx)\Z"
+    file_mask: ClassVar[str] = "*.idx"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -51,7 +51,7 @@ class JavaWebCacheJavaWebStartCacheSystemlevel3(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Windows.old\\Windows\\System32\\config\\systemprofile\\AppData\\Local\\Sun\\Java\\Deployment\\cache\\*\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:.*\.idx)\Z"
+    file_mask: ClassVar[str] = "*.idx"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -63,7 +63,7 @@ class JavaWebCacheJavaWebStartCacheSystemlevelIEProtectedMode4(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Windows\\System32\\config\\systemprofile\\AppData\\LocalLow\\Sun\\Java\\Deployment\\cache\\*\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:.*\.idx)\Z"
+    file_mask: ClassVar[str] = "*.idx"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -75,7 +75,7 @@ class JavaWebCacheJavaWebStartCacheSystemlevelIEProtectedMode5(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Windows.old\\Windows\\System32\\config\\systemprofile\\AppData\\LocalLow\\Sun\\Java\\Deployment\\cache\\*\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:.*\.idx)\Z"
+    file_mask: ClassVar[str] = "*.idx"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -87,7 +87,7 @@ class JavaWebCacheJavaWebStartCacheSystemlevelSysWow646(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Windows\\SysWOW64\\config\\systemprofile\\AppData\\Local\\Sun\\Java\\Deployment\\cache\\*\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:.*\.idx)\Z"
+    file_mask: ClassVar[str] = "*.idx"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -99,7 +99,7 @@ class JavaWebCacheJavaWebStartCacheSystemlevelSysWow647(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Windows.old\\Windows\\SysWOW64\\config\\systemprofile\\AppData\\Local\\Sun\\Java\\Deployment\\cache\\*\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:.*\.idx)\Z"
+    file_mask: ClassVar[str] = "*.idx"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -113,7 +113,7 @@ class JavaWebCacheJavaWebStartCacheSystemlevelSysWow64IEProtectedMode8(KapeTarge
     base_path: ClassVar[Path] = Path(
         "C:\\Windows\\SysWOW64\\config\\systemprofile\\AppData\\LocalLow\\Sun\\Java\\Deployment\\cache\\*\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:.*\.idx)\Z"
+    file_mask: ClassVar[str] = "*.idx"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -127,7 +127,7 @@ class JavaWebCacheJavaWebStartCacheSystemlevelSysWow64IEProtectedMode9(KapeTarge
     base_path: ClassVar[Path] = Path(
         "C:\\Windows.old\\Windows\\SysWOW64\\config\\systemprofile\\AppData\\LocalLow\\Sun\\Java\\Deployment\\cache\\*\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:.*\.idx)\Z"
+    file_mask: ClassVar[str] = "*.idx"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -139,7 +139,7 @@ class JavaWebCacheJavaWebStartCacheUserLevelXP10(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Documents and Settings\\%user%\\Application Data\\Sun\\Java\\Deployment\\cache\\*\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:.*\.idx)\Z"
+    file_mask: ClassVar[str] = "*.idx"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -179,7 +179,7 @@ class ChromeExtensionsChromeExtensionFiles0(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Google\\Chrome\\User Data\\*\\Extensions\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -191,7 +191,7 @@ class ChromeExtensionsChromeExtensionFilesXP1(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Documents and Settings\\%user%\\Local Settings\\Application Data\\Google\\Chrome\\User Data\\*\\Extensions\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -222,7 +222,7 @@ class ChromeFileSystemChromeHTML5FileSystemFolder0(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Google\\Chrome\\User Data\\*\\File System\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -250,7 +250,7 @@ class ChromeFileSystem(KapeTargetConfiguration):
 class GroupPolicyLocalGroupPolicyINIFiles0(KapeTarget):
     name: ClassVar[str] = "Local Group Policy INI Files"
     base_path: ClassVar[Path] = Path("C:\\Windows\\System32\\grouppolicy\\")
-    regex: ClassVar[str] = r"(?s:.*\.ini)\Z"
+    file_mask: ClassVar[str] = "*.ini"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -262,7 +262,7 @@ class GroupPolicyLocalGroupPolicyINIFiles1(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Windows.old\\Windows\\System32\\grouppolicy\\"
     )
-    regex: ClassVar[str] = r"(?s:.*\.ini)\Z"
+    file_mask: ClassVar[str] = "*.ini"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -272,7 +272,7 @@ class GroupPolicyLocalGroupPolicyINIFiles1(KapeTarget):
 class GroupPolicyLocalGroupPolicyFilesRegistryPolicyFiles2(KapeTarget):
     name: ClassVar[str] = "Local Group Policy Files - Registry Policy Files"
     base_path: ClassVar[Path] = Path("C:\\Windows\\System32\\grouppolicy\\")
-    regex: ClassVar[str] = r"(?s:.*\.pol)\Z"
+    file_mask: ClassVar[str] = "*.pol"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -284,7 +284,7 @@ class GroupPolicyLocalGroupPolicyFilesRegistryPolicyFiles3(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Windows.old\\Windows\\System32\\grouppolicy\\"
     )
-    regex: ClassVar[str] = r"(?s:.*\.pol)\Z"
+    file_mask: ClassVar[str] = "*.pol"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -294,7 +294,7 @@ class GroupPolicyLocalGroupPolicyFilesRegistryPolicyFiles3(KapeTarget):
 class GroupPolicyLocalGroupPolicyFilesStartupShutdownScripts4(KapeTarget):
     name: ClassVar[str] = "Local Group Policy Files - Startup/Shutdown Scripts"
     base_path: ClassVar[Path] = Path("C:\\Windows\\System32\\grouppolicy\\*\\Scripts\\")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -306,7 +306,7 @@ class GroupPolicyLocalGroupPolicyFilesStartupShutdownScripts5(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Windows.old\\Windows\\System32\\grouppolicy\\*\\Scripts\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 

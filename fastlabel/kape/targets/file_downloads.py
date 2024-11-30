@@ -13,7 +13,7 @@ from fastlabel.kape.core import KapeModule, KapeTarget, KapeTargetConfiguration
 class FreenetFreenet0(KapeTarget):
     name: ClassVar[str] = "Freenet"
     base_path: ClassVar[Path] = Path("C:\\Users\\%user%\\AppData\\Local\\Freenet\\")
-    regex: ClassVar[str] = r"(?s:node.*)\Z"
+    file_mask: ClassVar[str] = "node*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -23,7 +23,7 @@ class FreenetFreenet0(KapeTarget):
 class FreenetFreenet1(KapeTarget):
     name: ClassVar[str] = "Freenet"
     base_path: ClassVar[Path] = Path("C:\\Users\\%user%\\AppData\\Local\\Freenet\\")
-    regex: ClassVar[str] = r"(?s:.*completed\.list\.downloads)\Z"
+    file_mask: ClassVar[str] = "*completed.list.downloads"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -33,7 +33,7 @@ class FreenetFreenet1(KapeTarget):
 class FreenetFreenet2(KapeTarget):
     name: ClassVar[str] = "Freenet"
     base_path: ClassVar[Path] = Path("C:\\Users\\%user%\\AppData\\Local\\Freenet\\")
-    regex: ClassVar[str] = r"(?s:.*completed\.list\.uploads)\Z"
+    file_mask: ClassVar[str] = "*completed.list.uploads"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -43,7 +43,7 @@ class FreenetFreenet2(KapeTarget):
 class FreenetFreenet3(KapeTarget):
     name: ClassVar[str] = "Freenet"
     base_path: ClassVar[Path] = Path("C:\\Users\\%user%\\AppData\\Local\\Freenet\\")
-    regex: ClassVar[str] = r"(?s:.*\.bak)\Z"
+    file_mask: ClassVar[str] = "*.bak"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -55,7 +55,7 @@ class FreenetFreenet4(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Freenet\\downloads\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
