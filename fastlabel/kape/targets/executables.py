@@ -13,7 +13,7 @@ from fastlabel.kape.core import KapeModule, KapeTarget, KapeTargetConfiguration
 class AssetAdvisorLogAssetAdvisorLog0(KapeTarget):
     name: ClassVar[str] = "Asset Advisor Log"
     base_path: ClassVar[Path] = Path("C:\\Windows\\CCM\\Logs\\AssetAdvisor.log")
-    regex: ClassVar[str] = r"(?s:EncapsulationLogging\.hve)\Z"
+    file_mask: ClassVar[str] = "EncapsulationLogging.hve"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -39,7 +39,7 @@ class AssetAdvisorLog(KapeTargetConfiguration):
 class EncapsulationLoggingEncapsulationLogging0(KapeTarget):
     name: ClassVar[str] = "EncapsulationLogging"
     base_path: ClassVar[Path] = Path("C:\\Windows\\Appcompat\\Programs\\")
-    regex: ClassVar[str] = r"(?s:EncapsulationLogging\.hve)\Z"
+    file_mask: ClassVar[str] = "EncapsulationLogging.hve"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -49,7 +49,7 @@ class EncapsulationLoggingEncapsulationLogging0(KapeTarget):
 class EncapsulationLoggingEncapsulationLogging1(KapeTarget):
     name: ClassVar[str] = "EncapsulationLogging"
     base_path: ClassVar[Path] = Path("C:\\Windows.old\\Windows\\Appcompat\\Programs\\")
-    regex: ClassVar[str] = r"(?s:EncapsulationLogging\.hve)\Z"
+    file_mask: ClassVar[str] = "EncapsulationLogging.hve"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -59,7 +59,7 @@ class EncapsulationLoggingEncapsulationLogging1(KapeTarget):
 class EncapsulationLoggingEncapsulationLoggingLogs2(KapeTarget):
     name: ClassVar[str] = "EncapsulationLogging Logs"
     base_path: ClassVar[Path] = Path("C:\\Windows\\Appcompat\\Programs\\")
-    regex: ClassVar[str] = r"(?s:EncapsulationLogging\.hve\.log.*)\Z"
+    file_mask: ClassVar[str] = "EncapsulationLogging.hve.log*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -69,7 +69,7 @@ class EncapsulationLoggingEncapsulationLoggingLogs2(KapeTarget):
 class EncapsulationLoggingEncapsulationLoggingLogs3(KapeTarget):
     name: ClassVar[str] = "EncapsulationLogging Logs"
     base_path: ClassVar[Path] = Path("C:\\Windows.old\\Windows\\Appcompat\\Programs\\")
-    regex: ClassVar[str] = r"(?s:EncapsulationLogging\.hve\.log.*)\Z"
+    file_mask: ClassVar[str] = "EncapsulationLogging.hve.log*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -100,7 +100,7 @@ class EncapsulationLogging(KapeTargetConfiguration):
 class SDBSDBFiles0(KapeTarget):
     name: ClassVar[str] = "SDB Files"
     base_path: ClassVar[Path] = Path("C:\\Windows\\apppatch\\Custom\\")
-    regex: ClassVar[str] = r"(?s:.*\.sdb)\Z"
+    file_mask: ClassVar[str] = "*.sdb"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -110,7 +110,7 @@ class SDBSDBFiles0(KapeTarget):
 class SDBSDBFiles1(KapeTarget):
     name: ClassVar[str] = "SDB Files"
     base_path: ClassVar[Path] = Path("C:\\Windows.old\\Windows\\apppatch\\Custom\\")
-    regex: ClassVar[str] = r"(?s:.*\.sdb)\Z"
+    file_mask: ClassVar[str] = "*.sdb"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -120,7 +120,7 @@ class SDBSDBFiles1(KapeTarget):
 class SDBSDBFilesx642(KapeTarget):
     name: ClassVar[str] = "SDB Files x64"
     base_path: ClassVar[Path] = Path("C:\\Windows\\apppatch\\Custom\\Custom64\\")
-    regex: ClassVar[str] = r"(?s:.*\.sdb)\Z"
+    file_mask: ClassVar[str] = "*.sdb"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -132,7 +132,7 @@ class SDBSDBFilesx643(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Windows.old\\Windows\\apppatch\\Custom\\Custom64\\"
     )
-    regex: ClassVar[str] = r"(?s:.*\.sdb)\Z"
+    file_mask: ClassVar[str] = "*.sdb"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -163,7 +163,7 @@ class SDB(KapeTargetConfiguration):
 class WERWERFiles0(KapeTarget):
     name: ClassVar[str] = "WER Files"
     base_path: ClassVar[Path] = Path("C:\\ProgramData\\Microsoft\\Windows\\WER\\")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -173,7 +173,7 @@ class WERWERFiles0(KapeTarget):
 class WERCrashDumps1(KapeTarget):
     name: ClassVar[str] = "Crash Dumps"
     base_path: ClassVar[Path] = Path("C:\\Users\\%user%\\AppData\\Local\\CrashDumps\\")
-    regex: ClassVar[str] = r"(?s:.*\.dmp)\Z"
+    file_mask: ClassVar[str] = "*.dmp"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -183,7 +183,7 @@ class WERCrashDumps1(KapeTarget):
 class WERCrashDumps2(KapeTarget):
     name: ClassVar[str] = "Crash Dumps"
     base_path: ClassVar[Path] = Path("C:\\Windows\\")
-    regex: ClassVar[str] = r"(?s:.*\.dmp)\Z"
+    file_mask: ClassVar[str] = "*.dmp"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -193,7 +193,7 @@ class WERCrashDumps2(KapeTarget):
 class WERCrashDumps3(KapeTarget):
     name: ClassVar[str] = "Crash Dumps"
     base_path: ClassVar[Path] = Path("C:\\Windows.old\\Windows\\")
-    regex: ClassVar[str] = r"(?s:.*\.dmp)\Z"
+    file_mask: ClassVar[str] = "*.dmp"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 

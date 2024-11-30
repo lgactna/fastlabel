@@ -13,7 +13,7 @@ from fastlabel.kape.core import KapeModule, KapeTarget, KapeTargetConfiguration
 class WindowsFirewallWindowsFirewallLogs0(KapeTarget):
     name: ClassVar[str] = "Windows Firewall Logs"
     base_path: ClassVar[Path] = Path("C:\\Windows\\System32\\LogFiles\\Firewall\\")
-    regex: ClassVar[str] = r"(?s:pfirewall\..*)\Z"
+    file_mask: ClassVar[str] = "pfirewall.*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -25,7 +25,7 @@ class WindowsFirewallWindowsFirewallLogs1(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Windows.old\\Windows\\System32\\LogFiles\\Firewall\\"
     )
-    regex: ClassVar[str] = r"(?s:pfirewall\..*)\Z"
+    file_mask: ClassVar[str] = "pfirewall.*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 

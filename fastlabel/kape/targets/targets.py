@@ -13,7 +13,7 @@ from fastlabel.kape.core import KapeModule, KapeTarget, KapeTargetConfiguration
 class KapeTriageAntivirus0(KapeTarget):
     name: ClassVar[str] = "Antivirus"
     base_path: ClassVar[Path] = Path("Antivirus.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -23,7 +23,7 @@ class KapeTriageAntivirus0(KapeTarget):
 class KapeTriageEventLogs1(KapeTarget):
     name: ClassVar[str] = "EventLogs"
     base_path: ClassVar[Path] = Path("EventLogs.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -33,7 +33,7 @@ class KapeTriageEventLogs1(KapeTarget):
 class KapeTriageEvidenceOfExecution2(KapeTarget):
     name: ClassVar[str] = "EvidenceOfExecution"
     base_path: ClassVar[Path] = Path("EvidenceOfExecution.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -43,7 +43,7 @@ class KapeTriageEvidenceOfExecution2(KapeTarget):
 class KapeTriageFileSystem3(KapeTarget):
     name: ClassVar[str] = "FileSystem"
     base_path: ClassVar[Path] = Path("FileSystem.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -53,7 +53,7 @@ class KapeTriageFileSystem3(KapeTarget):
 class KapeTriageLNKFilesAndJumpLists4(KapeTarget):
     name: ClassVar[str] = "LNKFilesAndJumpLists"
     base_path: ClassVar[Path] = Path("LNKFilesAndJumpLists.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -63,7 +63,7 @@ class KapeTriageLNKFilesAndJumpLists4(KapeTarget):
 class KapeTriagePowerShellConsole5(KapeTarget):
     name: ClassVar[str] = "PowerShellConsole"
     base_path: ClassVar[Path] = Path("PowerShellConsole.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -73,7 +73,7 @@ class KapeTriagePowerShellConsole5(KapeTarget):
 class KapeTriageRecycleBinInfoFiles6(KapeTarget):
     name: ClassVar[str] = "RecycleBin_InfoFiles"
     base_path: ClassVar[Path] = Path("RecycleBin_InfoFiles.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -83,7 +83,7 @@ class KapeTriageRecycleBinInfoFiles6(KapeTarget):
 class KapeTriageRegistryHives7(KapeTarget):
     name: ClassVar[str] = "RegistryHives"
     base_path: ClassVar[Path] = Path("RegistryHives.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -93,7 +93,7 @@ class KapeTriageRegistryHives7(KapeTarget):
 class KapeTriageRemoteAccess8(KapeTarget):
     name: ClassVar[str] = "RemoteAccess"
     base_path: ClassVar[Path] = Path("RemoteAdmin.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -103,7 +103,7 @@ class KapeTriageRemoteAccess8(KapeTarget):
 class KapeTriageScheduledTasks9(KapeTarget):
     name: ClassVar[str] = "ScheduledTasks"
     base_path: ClassVar[Path] = Path("ScheduledTasks.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -113,7 +113,7 @@ class KapeTriageScheduledTasks9(KapeTarget):
 class KapeTriageSRUM10(KapeTarget):
     name: ClassVar[str] = "SRUM"
     base_path: ClassVar[Path] = Path("SRUM.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -123,7 +123,7 @@ class KapeTriageSRUM10(KapeTarget):
 class KapeTriageSUM11(KapeTarget):
     name: ClassVar[str] = "SUM"
     base_path: ClassVar[Path] = Path("SUM.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -133,7 +133,7 @@ class KapeTriageSUM11(KapeTarget):
 class KapeTriageWebBrowsers12(KapeTarget):
     name: ClassVar[str] = "WebBrowsers"
     base_path: ClassVar[Path] = Path("WebBrowsers.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -143,7 +143,7 @@ class KapeTriageWebBrowsers12(KapeTarget):
 class KapeTriageWindowsTimeline13(KapeTarget):
     name: ClassVar[str] = "WindowsTimeline"
     base_path: ClassVar[Path] = Path("WindowsTimeline.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -190,7 +190,7 @@ class KapeTriage(KapeTargetConfiguration):
 class SOFELKEventLogs0(KapeTarget):
     name: ClassVar[str] = "EventLogs"
     base_path: ClassVar[Path] = Path("EventLogs.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -200,7 +200,7 @@ class SOFELKEventLogs0(KapeTarget):
 class SOFELKEvidenceOfExecution1(KapeTarget):
     name: ClassVar[str] = "EvidenceOfExecution"
     base_path: ClassVar[Path] = Path("EvidenceOfExecution.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -210,7 +210,7 @@ class SOFELKEvidenceOfExecution1(KapeTarget):
 class SOFELKFileSystem2(KapeTarget):
     name: ClassVar[str] = "FileSystem"
     base_path: ClassVar[Path] = Path("FileSystem.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -220,7 +220,7 @@ class SOFELKFileSystem2(KapeTarget):
 class SOFELKLNKFilesAndJumpLists3(KapeTarget):
     name: ClassVar[str] = "LNKFilesAndJumpLists"
     base_path: ClassVar[Path] = Path("LNKFilesAndJumpLists.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -230,7 +230,7 @@ class SOFELKLNKFilesAndJumpLists3(KapeTarget):
 class SOFELKPrefetch4(KapeTarget):
     name: ClassVar[str] = "Prefetch"
     base_path: ClassVar[Path] = Path("Prefetch.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 

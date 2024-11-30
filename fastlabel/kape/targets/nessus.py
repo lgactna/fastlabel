@@ -13,7 +13,7 @@ from fastlabel.kape.core import KapeModule, KapeTarget, KapeTargetConfiguration
 class NessusNessusLogs0(KapeTarget):
     name: ClassVar[str] = "Nessus Logs"
     base_path: ClassVar[Path] = Path("C:\\ProgramData\\Tenable\\Nessus\\conf")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -23,7 +23,7 @@ class NessusNessusLogs0(KapeTarget):
 class NessusNessusLogs1(KapeTarget):
     name: ClassVar[str] = "Nessus Logs"
     base_path: ClassVar[Path] = Path("C:\\ProgramData\\Tenable\\Nessus\\nessus\\logs\\")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 

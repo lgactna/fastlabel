@@ -13,7 +13,7 @@ from fastlabel.kape.core import KapeModule, KapeTarget, KapeTargetConfiguration
 class RecycleBinRecycleBinInfoFiles0(KapeTarget):
     name: ClassVar[str] = "RecycleBin_InfoFiles"
     base_path: ClassVar[Path] = Path("RecycleBin_InfoFiles.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -23,7 +23,7 @@ class RecycleBinRecycleBinInfoFiles0(KapeTarget):
 class RecycleBinRecycleBinDataFiles1(KapeTarget):
     name: ClassVar[str] = "RecycleBin_DataFiles"
     base_path: ClassVar[Path] = Path("RecycleBin_DataFiles.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -52,7 +52,7 @@ class RecycleBin(KapeTargetConfiguration):
 class RecycleBinDataFilesRecycleBinWindowsVista0(KapeTarget):
     name: ClassVar[str] = "Recycle Bin - Windows Vista+"
     base_path: ClassVar[Path] = Path("C:\\$Recycle.Bin\\")
-    regex: ClassVar[str] = r"(?s:\$R.*)\Z"
+    file_mask: ClassVar[str] = "$R*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -62,7 +62,7 @@ class RecycleBinDataFilesRecycleBinWindowsVista0(KapeTarget):
 class RecycleBinDataFilesRecycleBinWindowsVista1(KapeTarget):
     name: ClassVar[str] = "Recycle Bin - Windows Vista+"
     base_path: ClassVar[Path] = Path("C:\\$Recycle.Bin\\*\\$R*\\")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -72,7 +72,7 @@ class RecycleBinDataFilesRecycleBinWindowsVista1(KapeTarget):
 class RecycleBinDataFilesRECYCLERWinXP2(KapeTarget):
     name: ClassVar[str] = "RECYCLER - WinXP"
     base_path: ClassVar[Path] = Path("C:\\RECYCLE*\\")
-    regex: ClassVar[str] = r"(?s:D.*)\Z"
+    file_mask: ClassVar[str] = "D*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -102,7 +102,7 @@ class RecycleBinDataFiles(KapeTargetConfiguration):
 class RecycleBinInfoFilesRecycleBinWindowsVista0(KapeTarget):
     name: ClassVar[str] = "Recycle Bin - Windows Vista+"
     base_path: ClassVar[Path] = Path("C:\\$Recycle.Bin\\")
-    regex: ClassVar[str] = r"(?s:\$I.*)\Z"
+    file_mask: ClassVar[str] = "$I*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -112,7 +112,7 @@ class RecycleBinInfoFilesRecycleBinWindowsVista0(KapeTarget):
 class RecycleBinInfoFilesRECYCLERWinXP1(KapeTarget):
     name: ClassVar[str] = "RECYCLER - WinXP"
     base_path: ClassVar[Path] = Path("C:\\RECYCLE*\\")
-    regex: ClassVar[str] = r"(?s:INFO2)\Z"
+    file_mask: ClassVar[str] = "INFO2"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 

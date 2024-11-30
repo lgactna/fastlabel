@@ -13,7 +13,7 @@ from fastlabel.kape.core import KapeModule, KapeTarget, KapeTargetConfiguration
 class RegistryHivesSystemRegistryFiles0(KapeTarget):
     name: ClassVar[str] = "System Registry Files"
     base_path: ClassVar[Path] = Path("RegistryHivesSystem.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -23,7 +23,7 @@ class RegistryHivesSystemRegistryFiles0(KapeTarget):
 class RegistryHivesUserLevelRegistryFiles1(KapeTarget):
     name: ClassVar[str] = "User Level Registry Files"
     base_path: ClassVar[Path] = Path("RegistryHivesUser.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -52,7 +52,7 @@ class RegistryHives(KapeTargetConfiguration):
 class BCDBCD0(KapeTarget):
     name: ClassVar[str] = "BCD"
     base_path: ClassVar[Path] = Path("C:\\Boot\\")
-    regex: ClassVar[str] = r"(?s:BCD)\Z"
+    file_mask: ClassVar[str] = "BCD"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -62,7 +62,7 @@ class BCDBCD0(KapeTarget):
 class BCDBCDLogs1(KapeTarget):
     name: ClassVar[str] = "BCD Logs"
     base_path: ClassVar[Path] = Path("C:\\Boot\\")
-    regex: ClassVar[str] = r"(?s:BCD\.LOG.*)\Z"
+    file_mask: ClassVar[str] = "BCD.LOG*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -88,7 +88,7 @@ class BCD(KapeTargetConfiguration):
 class RegistryHivesOtherBBIregistryhive0(KapeTarget):
     name: ClassVar[str] = "BBI registry hive"
     base_path: ClassVar[Path] = Path("C:\\Windows\\System32\\config\\")
-    regex: ClassVar[str] = r"(?s:BBI)\Z"
+    file_mask: ClassVar[str] = "BBI"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -98,7 +98,7 @@ class RegistryHivesOtherBBIregistryhive0(KapeTarget):
 class RegistryHivesOtherBBIregistryhive1(KapeTarget):
     name: ClassVar[str] = "BBI registry hive"
     base_path: ClassVar[Path] = Path("C:\\Windows.old\\Windows\\System32\\config\\")
-    regex: ClassVar[str] = r"(?s:BBI)\Z"
+    file_mask: ClassVar[str] = "BBI"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -108,7 +108,7 @@ class RegistryHivesOtherBBIregistryhive1(KapeTarget):
 class RegistryHivesOtherBBIregistrytransactionfiles2(KapeTarget):
     name: ClassVar[str] = "BBI registry transaction files"
     base_path: ClassVar[Path] = Path("C:\\Windows\\System32\\config\\")
-    regex: ClassVar[str] = r"(?s:BBI\.LOG.*)\Z"
+    file_mask: ClassVar[str] = "BBI.LOG*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -118,7 +118,7 @@ class RegistryHivesOtherBBIregistrytransactionfiles2(KapeTarget):
 class RegistryHivesOtherBBIregistrytransactionfiles3(KapeTarget):
     name: ClassVar[str] = "BBI registry transaction files"
     base_path: ClassVar[Path] = Path("C:\\Windows.old\\System32\\config\\")
-    regex: ClassVar[str] = r"(?s:BBI\.LOG.*)\Z"
+    file_mask: ClassVar[str] = "BBI.LOG*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -128,7 +128,7 @@ class RegistryHivesOtherBBIregistrytransactionfiles3(KapeTarget):
 class RegistryHivesOtherBCDTemplateregistryhive4(KapeTarget):
     name: ClassVar[str] = "BCD-Template registry hive"
     base_path: ClassVar[Path] = Path("C:\\Windows\\System32\\config\\")
-    regex: ClassVar[str] = r"(?s:BCD\-Template)\Z"
+    file_mask: ClassVar[str] = "BCD-Template"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -138,7 +138,7 @@ class RegistryHivesOtherBCDTemplateregistryhive4(KapeTarget):
 class RegistryHivesOtherBCDTemplateregistryhive5(KapeTarget):
     name: ClassVar[str] = "BCD-Template registry hive"
     base_path: ClassVar[Path] = Path("C:\\Windows.old\\Windows\\System32\\config\\")
-    regex: ClassVar[str] = r"(?s:BCD\-Template)\Z"
+    file_mask: ClassVar[str] = "BCD-Template"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -148,7 +148,7 @@ class RegistryHivesOtherBCDTemplateregistryhive5(KapeTarget):
 class RegistryHivesOtherBCDTemplateregistrytransactionfiles6(KapeTarget):
     name: ClassVar[str] = "BCD-Template registry transaction files"
     base_path: ClassVar[Path] = Path("C:\\Windows\\System32\\config\\")
-    regex: ClassVar[str] = r"(?s:BCD\-Template\.LOG.*)\Z"
+    file_mask: ClassVar[str] = "BCD-Template.LOG*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -158,7 +158,7 @@ class RegistryHivesOtherBCDTemplateregistrytransactionfiles6(KapeTarget):
 class RegistryHivesOtherBCDTemplateregistrytransactionfiles7(KapeTarget):
     name: ClassVar[str] = "BCD-Template registry transaction files"
     base_path: ClassVar[Path] = Path("C:\\Windows.old\\System32\\config\\")
-    regex: ClassVar[str] = r"(?s:BCD\-Template\.LOG.*)\Z"
+    file_mask: ClassVar[str] = "BCD-Template.LOG*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -168,7 +168,7 @@ class RegistryHivesOtherBCDTemplateregistrytransactionfiles7(KapeTarget):
 class RegistryHivesOtherCOMPONENTSregistryhive8(KapeTarget):
     name: ClassVar[str] = "COMPONENTS registry hive"
     base_path: ClassVar[Path] = Path("C:\\Windows\\System32\\config\\")
-    regex: ClassVar[str] = r"(?s:COMPONENTS)\Z"
+    file_mask: ClassVar[str] = "COMPONENTS"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -178,7 +178,7 @@ class RegistryHivesOtherCOMPONENTSregistryhive8(KapeTarget):
 class RegistryHivesOtherCOMPONENTSregistryhive9(KapeTarget):
     name: ClassVar[str] = "COMPONENTS registry hive"
     base_path: ClassVar[Path] = Path("C:\\Windows.old\\Windows\\System32\\config\\")
-    regex: ClassVar[str] = r"(?s:COMPONENTS)\Z"
+    file_mask: ClassVar[str] = "COMPONENTS"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -188,7 +188,7 @@ class RegistryHivesOtherCOMPONENTSregistryhive9(KapeTarget):
 class RegistryHivesOtherCOMPONENTSregistrytransactionfiles10(KapeTarget):
     name: ClassVar[str] = "COMPONENTS registry transaction files"
     base_path: ClassVar[Path] = Path("C:\\Windows\\System32\\config\\")
-    regex: ClassVar[str] = r"(?s:COMPONENTS\.LOG.*)\Z"
+    file_mask: ClassVar[str] = "COMPONENTS.LOG*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -198,7 +198,7 @@ class RegistryHivesOtherCOMPONENTSregistrytransactionfiles10(KapeTarget):
 class RegistryHivesOtherCOMPONENTSregistrytransactionfiles11(KapeTarget):
     name: ClassVar[str] = "COMPONENTS registry transaction files"
     base_path: ClassVar[Path] = Path("C:\\Windows.old\\System32\\config\\")
-    regex: ClassVar[str] = r"(?s:COMPONENTS\.LOG.*)\Z"
+    file_mask: ClassVar[str] = "COMPONENTS.LOG*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -208,7 +208,7 @@ class RegistryHivesOtherCOMPONENTSregistrytransactionfiles11(KapeTarget):
 class RegistryHivesOtherDRIVERSregistryhive12(KapeTarget):
     name: ClassVar[str] = "DRIVERS registry hive"
     base_path: ClassVar[Path] = Path("C:\\Windows\\System32\\config\\")
-    regex: ClassVar[str] = r"(?s:DRIVERS)\Z"
+    file_mask: ClassVar[str] = "DRIVERS"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -218,7 +218,7 @@ class RegistryHivesOtherDRIVERSregistryhive12(KapeTarget):
 class RegistryHivesOtherDRIVERSregistryhive13(KapeTarget):
     name: ClassVar[str] = "DRIVERS registry hive"
     base_path: ClassVar[Path] = Path("C:\\Windows.old\\Windows\\System32\\config\\")
-    regex: ClassVar[str] = r"(?s:DRIVERS)\Z"
+    file_mask: ClassVar[str] = "DRIVERS"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -228,7 +228,7 @@ class RegistryHivesOtherDRIVERSregistryhive13(KapeTarget):
 class RegistryHivesOtherDRIVERSregistrytransactionfiles14(KapeTarget):
     name: ClassVar[str] = "DRIVERS registry transaction files"
     base_path: ClassVar[Path] = Path("C:\\Windows\\System32\\config\\")
-    regex: ClassVar[str] = r"(?s:DRIVERS\.LOG.*)\Z"
+    file_mask: ClassVar[str] = "DRIVERS.LOG*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -238,7 +238,7 @@ class RegistryHivesOtherDRIVERSregistrytransactionfiles14(KapeTarget):
 class RegistryHivesOtherDRIVERSregistrytransactionfiles15(KapeTarget):
     name: ClassVar[str] = "DRIVERS registry transaction files"
     base_path: ClassVar[Path] = Path("C:\\Windows.old\\System32\\config\\")
-    regex: ClassVar[str] = r"(?s:DRIVERS\.LOG.*)\Z"
+    file_mask: ClassVar[str] = "DRIVERS.LOG*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -248,7 +248,7 @@ class RegistryHivesOtherDRIVERSregistrytransactionfiles15(KapeTarget):
 class RegistryHivesOtherELAMregistryhive16(KapeTarget):
     name: ClassVar[str] = "ELAM registry hive"
     base_path: ClassVar[Path] = Path("C:\\Windows\\System32\\config\\")
-    regex: ClassVar[str] = r"(?s:ELAM)\Z"
+    file_mask: ClassVar[str] = "ELAM"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -258,7 +258,7 @@ class RegistryHivesOtherELAMregistryhive16(KapeTarget):
 class RegistryHivesOtherELAMregistryhive17(KapeTarget):
     name: ClassVar[str] = "ELAM registry hive"
     base_path: ClassVar[Path] = Path("C:\\Windows.old\\Windows\\System32\\config\\")
-    regex: ClassVar[str] = r"(?s:ELAM)\Z"
+    file_mask: ClassVar[str] = "ELAM"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -268,7 +268,7 @@ class RegistryHivesOtherELAMregistryhive17(KapeTarget):
 class RegistryHivesOtherELAMregistrytransactionfiles18(KapeTarget):
     name: ClassVar[str] = "ELAM registry transaction files"
     base_path: ClassVar[Path] = Path("C:\\Windows\\System32\\config\\")
-    regex: ClassVar[str] = r"(?s:ELAM\.LOG.*)\Z"
+    file_mask: ClassVar[str] = "ELAM.LOG*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -278,7 +278,7 @@ class RegistryHivesOtherELAMregistrytransactionfiles18(KapeTarget):
 class RegistryHivesOtherELAMregistrytransactionfiles19(KapeTarget):
     name: ClassVar[str] = "ELAM registry transaction files"
     base_path: ClassVar[Path] = Path("C:\\Windows.old\\System32\\config\\")
-    regex: ClassVar[str] = r"(?s:ELAM\.LOG.*)\Z"
+    file_mask: ClassVar[str] = "ELAM.LOG*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -288,7 +288,7 @@ class RegistryHivesOtherELAMregistrytransactionfiles19(KapeTarget):
 class RegistryHivesOtheruserdiffregistryhive20(KapeTarget):
     name: ClassVar[str] = "userdiff registry hive"
     base_path: ClassVar[Path] = Path("C:\\Windows\\System32\\config\\")
-    regex: ClassVar[str] = r"(?s:userdiff)\Z"
+    file_mask: ClassVar[str] = "userdiff"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -298,7 +298,7 @@ class RegistryHivesOtheruserdiffregistryhive20(KapeTarget):
 class RegistryHivesOtheruserdiffregistryhive21(KapeTarget):
     name: ClassVar[str] = "userdiff registry hive"
     base_path: ClassVar[Path] = Path("C:\\Windows.old\\Windows\\System32\\config\\")
-    regex: ClassVar[str] = r"(?s:userdiff)\Z"
+    file_mask: ClassVar[str] = "userdiff"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -308,7 +308,7 @@ class RegistryHivesOtheruserdiffregistryhive21(KapeTarget):
 class RegistryHivesOtheruserdiffregistrytransactionfiles22(KapeTarget):
     name: ClassVar[str] = "userdiff registry transaction files"
     base_path: ClassVar[Path] = Path("C:\\Windows\\System32\\config\\")
-    regex: ClassVar[str] = r"(?s:userdiff\.LOG.*)\Z"
+    file_mask: ClassVar[str] = "userdiff.LOG*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -318,7 +318,7 @@ class RegistryHivesOtheruserdiffregistrytransactionfiles22(KapeTarget):
 class RegistryHivesOtheruserdiffregistrytransactionfiles23(KapeTarget):
     name: ClassVar[str] = "userdiff registry transaction files"
     base_path: ClassVar[Path] = Path("C:\\Windows.old\\System32\\config\\")
-    regex: ClassVar[str] = r"(?s:userdiff\.LOG.*)\Z"
+    file_mask: ClassVar[str] = "userdiff.LOG*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -328,7 +328,7 @@ class RegistryHivesOtheruserdiffregistrytransactionfiles23(KapeTarget):
 class RegistryHivesOtherVSMIDKregistryhive24(KapeTarget):
     name: ClassVar[str] = "VSMIDK registry hive"
     base_path: ClassVar[Path] = Path("C:\\Windows\\System32\\config\\")
-    regex: ClassVar[str] = r"(?s:VSMIDK)\Z"
+    file_mask: ClassVar[str] = "VSMIDK"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -338,7 +338,7 @@ class RegistryHivesOtherVSMIDKregistryhive24(KapeTarget):
 class RegistryHivesOtherVSMIDKregistryhive25(KapeTarget):
     name: ClassVar[str] = "VSMIDK registry hive"
     base_path: ClassVar[Path] = Path("C:\\Windows.old\\Windows\\System32\\config\\")
-    regex: ClassVar[str] = r"(?s:VSMIDK)\Z"
+    file_mask: ClassVar[str] = "VSMIDK"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -348,7 +348,7 @@ class RegistryHivesOtherVSMIDKregistryhive25(KapeTarget):
 class RegistryHivesOtherVSMIDKregistrytransactionfiles26(KapeTarget):
     name: ClassVar[str] = "VSMIDK registry transaction files"
     base_path: ClassVar[Path] = Path("C:\\Windows\\System32\\config\\")
-    regex: ClassVar[str] = r"(?s:VSMIDK\.LOG.*)\Z"
+    file_mask: ClassVar[str] = "VSMIDK.LOG*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -358,7 +358,7 @@ class RegistryHivesOtherVSMIDKregistrytransactionfiles26(KapeTarget):
 class RegistryHivesOtherVSMIDKregistrytransactionfiles27(KapeTarget):
     name: ClassVar[str] = "VSMIDK registry transaction files"
     base_path: ClassVar[Path] = Path("C:\\Windows.old\\System32\\config\\")
-    regex: ClassVar[str] = r"(?s:VSMIDK\.LOG.*)\Z"
+    file_mask: ClassVar[str] = "VSMIDK.LOG*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -413,7 +413,7 @@ class RegistryHivesOther(KapeTargetConfiguration):
 class RegistryHivesSystemSAMregistrytransactionfiles0(KapeTarget):
     name: ClassVar[str] = "SAM registry transaction files"
     base_path: ClassVar[Path] = Path("C:\\Windows\\System32\\config\\")
-    regex: ClassVar[str] = r"(?s:SAM\.LOG.*)\Z"
+    file_mask: ClassVar[str] = "SAM.LOG*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -423,7 +423,7 @@ class RegistryHivesSystemSAMregistrytransactionfiles0(KapeTarget):
 class RegistryHivesSystemSAMregistrytransactionfiles1(KapeTarget):
     name: ClassVar[str] = "SAM registry transaction files"
     base_path: ClassVar[Path] = Path("C:\\Windows.old\\Windows\\System32\\config\\")
-    regex: ClassVar[str] = r"(?s:SAM\.LOG.*)\Z"
+    file_mask: ClassVar[str] = "SAM.LOG*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -433,7 +433,7 @@ class RegistryHivesSystemSAMregistrytransactionfiles1(KapeTarget):
 class RegistryHivesSystemSECURITYregistrytransactionfiles2(KapeTarget):
     name: ClassVar[str] = "SECURITY registry transaction files"
     base_path: ClassVar[Path] = Path("C:\\Windows\\System32\\config\\")
-    regex: ClassVar[str] = r"(?s:SECURITY\.LOG.*)\Z"
+    file_mask: ClassVar[str] = "SECURITY.LOG*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -443,7 +443,7 @@ class RegistryHivesSystemSECURITYregistrytransactionfiles2(KapeTarget):
 class RegistryHivesSystemSECURITYregistrytransactionfiles3(KapeTarget):
     name: ClassVar[str] = "SECURITY registry transaction files"
     base_path: ClassVar[Path] = Path("C:\\Windows.old\\Windows\\System32\\config\\")
-    regex: ClassVar[str] = r"(?s:SECURITY\.LOG.*)\Z"
+    file_mask: ClassVar[str] = "SECURITY.LOG*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -453,7 +453,7 @@ class RegistryHivesSystemSECURITYregistrytransactionfiles3(KapeTarget):
 class RegistryHivesSystemSOFTWAREregistrytransactionfiles4(KapeTarget):
     name: ClassVar[str] = "SOFTWARE registry transaction files"
     base_path: ClassVar[Path] = Path("C:\\Windows\\System32\\config\\")
-    regex: ClassVar[str] = r"(?s:SOFTWARE\.LOG.*)\Z"
+    file_mask: ClassVar[str] = "SOFTWARE.LOG*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -463,7 +463,7 @@ class RegistryHivesSystemSOFTWAREregistrytransactionfiles4(KapeTarget):
 class RegistryHivesSystemSOFTWAREregistrytransactionfiles5(KapeTarget):
     name: ClassVar[str] = "SOFTWARE registry transaction files"
     base_path: ClassVar[Path] = Path("C:\\Windows.old\\Windows\\System32\\config\\")
-    regex: ClassVar[str] = r"(?s:SOFTWARE\.LOG.*)\Z"
+    file_mask: ClassVar[str] = "SOFTWARE.LOG*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -473,7 +473,7 @@ class RegistryHivesSystemSOFTWAREregistrytransactionfiles5(KapeTarget):
 class RegistryHivesSystemSYSTEMregistrytransactionfiles6(KapeTarget):
     name: ClassVar[str] = "SYSTEM registry transaction files"
     base_path: ClassVar[Path] = Path("C:\\Windows\\System32\\config\\")
-    regex: ClassVar[str] = r"(?s:SYSTEM\.LOG.*)\Z"
+    file_mask: ClassVar[str] = "SYSTEM.LOG*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -483,7 +483,7 @@ class RegistryHivesSystemSYSTEMregistrytransactionfiles6(KapeTarget):
 class RegistryHivesSystemSYSTEMregistrytransactionfiles7(KapeTarget):
     name: ClassVar[str] = "SYSTEM registry transaction files"
     base_path: ClassVar[Path] = Path("C:\\Windows.old\\Windows\\System32\\config\\")
-    regex: ClassVar[str] = r"(?s:SYSTEM\.LOG.*)\Z"
+    file_mask: ClassVar[str] = "SYSTEM.LOG*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -493,7 +493,7 @@ class RegistryHivesSystemSYSTEMregistrytransactionfiles7(KapeTarget):
 class RegistryHivesSystemSAMregistryhive8(KapeTarget):
     name: ClassVar[str] = "SAM registry hive"
     base_path: ClassVar[Path] = Path("C:\\Windows\\System32\\config\\")
-    regex: ClassVar[str] = r"(?s:SAM)\Z"
+    file_mask: ClassVar[str] = "SAM"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -503,7 +503,7 @@ class RegistryHivesSystemSAMregistryhive8(KapeTarget):
 class RegistryHivesSystemSAMregistryhive9(KapeTarget):
     name: ClassVar[str] = "SAM registry hive"
     base_path: ClassVar[Path] = Path("C:\\Windows.old\\Windows\\System32\\config\\")
-    regex: ClassVar[str] = r"(?s:SAM)\Z"
+    file_mask: ClassVar[str] = "SAM"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -513,7 +513,7 @@ class RegistryHivesSystemSAMregistryhive9(KapeTarget):
 class RegistryHivesSystemSECURITYregistryhive10(KapeTarget):
     name: ClassVar[str] = "SECURITY registry hive"
     base_path: ClassVar[Path] = Path("C:\\Windows\\System32\\config\\")
-    regex: ClassVar[str] = r"(?s:SECURITY)\Z"
+    file_mask: ClassVar[str] = "SECURITY"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -523,7 +523,7 @@ class RegistryHivesSystemSECURITYregistryhive10(KapeTarget):
 class RegistryHivesSystemSECURITYregistryhive11(KapeTarget):
     name: ClassVar[str] = "SECURITY registry hive"
     base_path: ClassVar[Path] = Path("C:\\Windows.old\\Windows\\System32\\config\\")
-    regex: ClassVar[str] = r"(?s:SECURITY)\Z"
+    file_mask: ClassVar[str] = "SECURITY"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -533,7 +533,7 @@ class RegistryHivesSystemSECURITYregistryhive11(KapeTarget):
 class RegistryHivesSystemSOFTWAREregistryhive12(KapeTarget):
     name: ClassVar[str] = "SOFTWARE registry hive"
     base_path: ClassVar[Path] = Path("C:\\Windows\\System32\\config\\")
-    regex: ClassVar[str] = r"(?s:SOFTWARE)\Z"
+    file_mask: ClassVar[str] = "SOFTWARE"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -543,7 +543,7 @@ class RegistryHivesSystemSOFTWAREregistryhive12(KapeTarget):
 class RegistryHivesSystemSOFTWAREregistryhive13(KapeTarget):
     name: ClassVar[str] = "SOFTWARE registry hive"
     base_path: ClassVar[Path] = Path("C:\\Windows.old\\Windows\\System32\\config\\")
-    regex: ClassVar[str] = r"(?s:SOFTWARE)\Z"
+    file_mask: ClassVar[str] = "SOFTWARE"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -553,7 +553,7 @@ class RegistryHivesSystemSOFTWAREregistryhive13(KapeTarget):
 class RegistryHivesSystemSYSTEMregistryhive14(KapeTarget):
     name: ClassVar[str] = "SYSTEM registry hive"
     base_path: ClassVar[Path] = Path("C:\\Windows\\System32\\config\\")
-    regex: ClassVar[str] = r"(?s:SYSTEM)\Z"
+    file_mask: ClassVar[str] = "SYSTEM"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -563,7 +563,7 @@ class RegistryHivesSystemSYSTEMregistryhive14(KapeTarget):
 class RegistryHivesSystemSYSTEMregistryhive15(KapeTarget):
     name: ClassVar[str] = "SYSTEM registry hive"
     base_path: ClassVar[Path] = Path("C:\\Windows.old\\Windows\\System32\\config\\")
-    regex: ClassVar[str] = r"(?s:SYSTEM)\Z"
+    file_mask: ClassVar[str] = "SYSTEM"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -573,7 +573,7 @@ class RegistryHivesSystemSYSTEMregistryhive15(KapeTarget):
 class RegistryHivesSystemRegBackregistrytransactionfiles16(KapeTarget):
     name: ClassVar[str] = "RegBack registry transaction files"
     base_path: ClassVar[Path] = Path("C:\\Windows\\System32\\config\\RegBack\\")
-    regex: ClassVar[str] = r"(?s:(?>.*?\.LOG).*)\Z"
+    file_mask: ClassVar[str] = "*.LOG*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -585,7 +585,7 @@ class RegistryHivesSystemRegBackregistrytransactionfiles17(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Windows.old\\Windows\\System32\\config\\RegBack\\"
     )
-    regex: ClassVar[str] = r"(?s:(?>.*?\.LOG).*)\Z"
+    file_mask: ClassVar[str] = "*.LOG*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -595,7 +595,7 @@ class RegistryHivesSystemRegBackregistrytransactionfiles17(KapeTarget):
 class RegistryHivesSystemSAMregistryhiveRegBack18(KapeTarget):
     name: ClassVar[str] = "SAM registry hive (RegBack)"
     base_path: ClassVar[Path] = Path("C:\\Windows\\System32\\config\\RegBack\\")
-    regex: ClassVar[str] = r"(?s:SAM)\Z"
+    file_mask: ClassVar[str] = "SAM"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -607,7 +607,7 @@ class RegistryHivesSystemSAMregistryhiveRegBack19(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Windows.old\\Windows\\System32\\config\\RegBack\\"
     )
-    regex: ClassVar[str] = r"(?s:SAM)\Z"
+    file_mask: ClassVar[str] = "SAM"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -617,7 +617,7 @@ class RegistryHivesSystemSAMregistryhiveRegBack19(KapeTarget):
 class RegistryHivesSystemSECURITYregistryhiveRegBack20(KapeTarget):
     name: ClassVar[str] = "SECURITY registry hive (RegBack)"
     base_path: ClassVar[Path] = Path("C:\\Windows\\System32\\config\\RegBack\\")
-    regex: ClassVar[str] = r"(?s:SECURITY)\Z"
+    file_mask: ClassVar[str] = "SECURITY"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -629,7 +629,7 @@ class RegistryHivesSystemSECURITYregistryhiveRegBack21(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Windows.old\\Windows\\System32\\config\\RegBack\\"
     )
-    regex: ClassVar[str] = r"(?s:SECURITY)\Z"
+    file_mask: ClassVar[str] = "SECURITY"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -639,7 +639,7 @@ class RegistryHivesSystemSECURITYregistryhiveRegBack21(KapeTarget):
 class RegistryHivesSystemSOFTWAREregistryhiveRegBack22(KapeTarget):
     name: ClassVar[str] = "SOFTWARE registry hive (RegBack)"
     base_path: ClassVar[Path] = Path("C:\\Windows\\System32\\config\\RegBack\\")
-    regex: ClassVar[str] = r"(?s:SOFTWARE)\Z"
+    file_mask: ClassVar[str] = "SOFTWARE"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -651,7 +651,7 @@ class RegistryHivesSystemSOFTWAREregistryhiveRegBack23(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Windows.old\\Windows\\System32\\config\\RegBack\\"
     )
-    regex: ClassVar[str] = r"(?s:SOFTWARE)\Z"
+    file_mask: ClassVar[str] = "SOFTWARE"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -661,7 +661,7 @@ class RegistryHivesSystemSOFTWAREregistryhiveRegBack23(KapeTarget):
 class RegistryHivesSystemSYSTEMregistryhiveRegBack24(KapeTarget):
     name: ClassVar[str] = "SYSTEM registry hive (RegBack)"
     base_path: ClassVar[Path] = Path("C:\\Windows\\System32\\config\\RegBack\\")
-    regex: ClassVar[str] = r"(?s:SYSTEM)\Z"
+    file_mask: ClassVar[str] = "SYSTEM"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -673,7 +673,7 @@ class RegistryHivesSystemSYSTEMregistryhiveRegBack25(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Windows.old\\Windows\\System32\\config\\RegBack\\"
     )
-    regex: ClassVar[str] = r"(?s:SYSTEM)\Z"
+    file_mask: ClassVar[str] = "SYSTEM"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -683,7 +683,7 @@ class RegistryHivesSystemSYSTEMregistryhiveRegBack25(KapeTarget):
 class RegistryHivesSystemSYSTEMregistryhiveRegBack26(KapeTarget):
     name: ClassVar[str] = "SYSTEM registry hive (RegBack)"
     base_path: ClassVar[Path] = Path("C:\\Windows\\System32\\config\\RegBack\\")
-    regex: ClassVar[str] = r"(?s:SYSTEM1)\Z"
+    file_mask: ClassVar[str] = "SYSTEM1"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -695,7 +695,7 @@ class RegistryHivesSystemSYSTEMregistryhiveRegBack27(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Windows.old\\Windows\\System32\\config\\RegBack\\"
     )
-    regex: ClassVar[str] = r"(?s:SYSTEM1)\Z"
+    file_mask: ClassVar[str] = "SYSTEM1"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -705,7 +705,7 @@ class RegistryHivesSystemSYSTEMregistryhiveRegBack27(KapeTarget):
 class RegistryHivesSystemSystemProfileregistryhive28(KapeTarget):
     name: ClassVar[str] = "System Profile registry hive"
     base_path: ClassVar[Path] = Path("C:\\Windows\\System32\\config\\systemprofile\\")
-    regex: ClassVar[str] = r"(?s:NTUSER\.DAT)\Z"
+    file_mask: ClassVar[str] = "NTUSER.DAT"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -717,7 +717,7 @@ class RegistryHivesSystemSystemProfileregistryhive29(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Windows.old\\Windows\\System32\\config\\systemprofile\\"
     )
-    regex: ClassVar[str] = r"(?s:NTUSER\.DAT)\Z"
+    file_mask: ClassVar[str] = "NTUSER.DAT"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -727,7 +727,7 @@ class RegistryHivesSystemSystemProfileregistryhive29(KapeTarget):
 class RegistryHivesSystemSystemProfileregistrytransactionfiles30(KapeTarget):
     name: ClassVar[str] = "System Profile registry transaction files"
     base_path: ClassVar[Path] = Path("C:\\Windows\\System32\\config\\systemprofile\\")
-    regex: ClassVar[str] = r"(?s:NTUSER\.DAT\.LOG.*)\Z"
+    file_mask: ClassVar[str] = "NTUSER.DAT.LOG*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -739,7 +739,7 @@ class RegistryHivesSystemSystemProfileregistrytransactionfiles31(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Windows.old\\Windows\\System32\\config\\systemprofile\\"
     )
-    regex: ClassVar[str] = r"(?s:NTUSER\.DAT\.LOG.*)\Z"
+    file_mask: ClassVar[str] = "NTUSER.DAT.LOG*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -749,7 +749,7 @@ class RegistryHivesSystemSystemProfileregistrytransactionfiles31(KapeTarget):
 class RegistryHivesSystemLocalServiceregistryhive32(KapeTarget):
     name: ClassVar[str] = "Local Service registry hive"
     base_path: ClassVar[Path] = Path("C:\\Windows\\ServiceProfiles\\LocalService\\")
-    regex: ClassVar[str] = r"(?s:NTUSER\.DAT)\Z"
+    file_mask: ClassVar[str] = "NTUSER.DAT"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -761,7 +761,7 @@ class RegistryHivesSystemLocalServiceregistryhive33(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Windows.old\\Windows\\ServiceProfiles\\LocalService\\"
     )
-    regex: ClassVar[str] = r"(?s:NTUSER\.DAT)\Z"
+    file_mask: ClassVar[str] = "NTUSER.DAT"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -771,7 +771,7 @@ class RegistryHivesSystemLocalServiceregistryhive33(KapeTarget):
 class RegistryHivesSystemLocalServiceregistrytransactionfiles34(KapeTarget):
     name: ClassVar[str] = "Local Service registry transaction files"
     base_path: ClassVar[Path] = Path("C:\\Windows\\ServiceProfiles\\LocalService\\")
-    regex: ClassVar[str] = r"(?s:NTUSER\.DAT\.LOG.*)\Z"
+    file_mask: ClassVar[str] = "NTUSER.DAT.LOG*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -783,7 +783,7 @@ class RegistryHivesSystemLocalServiceregistrytransactionfiles35(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Windows.old\\Windows\\ServiceProfiles\\LocalService\\"
     )
-    regex: ClassVar[str] = r"(?s:NTUSER\.DAT\.LOG.*)\Z"
+    file_mask: ClassVar[str] = "NTUSER.DAT.LOG*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -793,7 +793,7 @@ class RegistryHivesSystemLocalServiceregistrytransactionfiles35(KapeTarget):
 class RegistryHivesSystemNetworkServiceregistryhive36(KapeTarget):
     name: ClassVar[str] = "Network Service registry hive"
     base_path: ClassVar[Path] = Path("C:\\Windows\\ServiceProfiles\\NetworkService\\")
-    regex: ClassVar[str] = r"(?s:NTUSER\.DAT)\Z"
+    file_mask: ClassVar[str] = "NTUSER.DAT"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -805,7 +805,7 @@ class RegistryHivesSystemNetworkServiceregistryhive37(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Windows.old\\Windows\\ServiceProfiles\\NetworkService\\"
     )
-    regex: ClassVar[str] = r"(?s:NTUSER\.DAT)\Z"
+    file_mask: ClassVar[str] = "NTUSER.DAT"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -815,7 +815,7 @@ class RegistryHivesSystemNetworkServiceregistryhive37(KapeTarget):
 class RegistryHivesSystemNetworkServiceregistrytransactionfiles38(KapeTarget):
     name: ClassVar[str] = "Network Service registry transaction files"
     base_path: ClassVar[Path] = Path("C:\\Windows\\ServiceProfiles\\NetworkService\\")
-    regex: ClassVar[str] = r"(?s:NTUSER\.DAT\.LOG.*)\Z"
+    file_mask: ClassVar[str] = "NTUSER.DAT.LOG*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -827,7 +827,7 @@ class RegistryHivesSystemNetworkServiceregistrytransactionfiles39(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Windows.old\\Windows\\ServiceProfiles\\NetworkService\\"
     )
-    regex: ClassVar[str] = r"(?s:NTUSER\.DAT\.LOG.*)\Z"
+    file_mask: ClassVar[str] = "NTUSER.DAT.LOG*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -839,7 +839,7 @@ class RegistryHivesSystemSystemRestorePointsRegistryHivesXP40(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\System Volume Information\\_restore*\\RP*\\snapshot\\"
     )
-    regex: ClassVar[str] = r"(?s:_REGISTRY_.*)\Z"
+    file_mask: ClassVar[str] = "_REGISTRY_*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -907,7 +907,7 @@ class RegistryHivesSystem(KapeTargetConfiguration):
 class RegistryHivesUserNTUSERDATregistryhiveXP0(KapeTarget):
     name: ClassVar[str] = "NTUSER.DAT registry hive XP"
     base_path: ClassVar[Path] = Path("C:\\Documents and Settings\\%user%\\")
-    regex: ClassVar[str] = r"(?s:NTUSER\.DAT)\Z"
+    file_mask: ClassVar[str] = "NTUSER.DAT"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -917,7 +917,7 @@ class RegistryHivesUserNTUSERDATregistryhiveXP0(KapeTarget):
 class RegistryHivesUserNTUSERDATregistryhive1(KapeTarget):
     name: ClassVar[str] = "NTUSER.DAT registry hive"
     base_path: ClassVar[Path] = Path("C:\\Users\\%user%\\")
-    regex: ClassVar[str] = r"(?s:NTUSER\.DAT)\Z"
+    file_mask: ClassVar[str] = "NTUSER.DAT"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -927,7 +927,7 @@ class RegistryHivesUserNTUSERDATregistryhive1(KapeTarget):
 class RegistryHivesUserNTUSERDATregistrytransactionfiles2(KapeTarget):
     name: ClassVar[str] = "NTUSER.DAT registry transaction files"
     base_path: ClassVar[Path] = Path("C:\\Users\\%user%\\")
-    regex: ClassVar[str] = r"(?s:NTUSER\.DAT\.LOG.*)\Z"
+    file_mask: ClassVar[str] = "NTUSER.DAT.LOG*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -937,7 +937,7 @@ class RegistryHivesUserNTUSERDATregistrytransactionfiles2(KapeTarget):
 class RegistryHivesUserNTUSERDATDEFAULTregistryhive3(KapeTarget):
     name: ClassVar[str] = "NTUSER.DAT DEFAULT registry hive"
     base_path: ClassVar[Path] = Path("C:\\Windows\\System32\\config\\")
-    regex: ClassVar[str] = r"(?s:DEFAULT)\Z"
+    file_mask: ClassVar[str] = "DEFAULT"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -947,7 +947,7 @@ class RegistryHivesUserNTUSERDATDEFAULTregistryhive3(KapeTarget):
 class RegistryHivesUserNTUSERDATDEFAULTregistryhive4(KapeTarget):
     name: ClassVar[str] = "NTUSER.DAT DEFAULT registry hive"
     base_path: ClassVar[Path] = Path("C:\\Windows.old\\Windows\\System32\\config\\")
-    regex: ClassVar[str] = r"(?s:DEFAULT)\Z"
+    file_mask: ClassVar[str] = "DEFAULT"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -957,7 +957,7 @@ class RegistryHivesUserNTUSERDATDEFAULTregistryhive4(KapeTarget):
 class RegistryHivesUserNTUSERDATDEFAULTtransactionfiles5(KapeTarget):
     name: ClassVar[str] = "NTUSER.DAT DEFAULT transaction files"
     base_path: ClassVar[Path] = Path("C:\\Windows\\System32\\config\\")
-    regex: ClassVar[str] = r"(?s:DEFAULT\.LOG.*)\Z"
+    file_mask: ClassVar[str] = "DEFAULT.LOG*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -967,7 +967,7 @@ class RegistryHivesUserNTUSERDATDEFAULTtransactionfiles5(KapeTarget):
 class RegistryHivesUserNTUSERDATDEFAULTtransactionfiles6(KapeTarget):
     name: ClassVar[str] = "NTUSER.DAT DEFAULT transaction files"
     base_path: ClassVar[Path] = Path("C:\\Windows.old\\Windows\\System32\\config\\")
-    regex: ClassVar[str] = r"(?s:DEFAULT\.LOG.*)\Z"
+    file_mask: ClassVar[str] = "DEFAULT.LOG*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -979,7 +979,7 @@ class RegistryHivesUserUsrClassdatregistryhive7(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Microsoft\\Windows\\"
     )
-    regex: ClassVar[str] = r"(?s:UsrClass\.dat)\Z"
+    file_mask: ClassVar[str] = "UsrClass.dat"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -991,7 +991,7 @@ class RegistryHivesUserUsrClassdatregistrytransactionfiles8(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Microsoft\\Windows\\"
     )
-    regex: ClassVar[str] = r"(?s:UsrClass\.dat\.LOG.*)\Z"
+    file_mask: ClassVar[str] = "UsrClass.dat.LOG*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1027,7 +1027,7 @@ class RegistryHivesUser(KapeTargetConfiguration):
 class RoamingProfileNTUSERDATregistryhive0(KapeTarget):
     name: ClassVar[str] = "NTUSER.DAT registry hive"
     base_path: ClassVar[Path] = Path("C:\\")
-    regex: ClassVar[str] = r"(?s:NTUSER\.DAT)\Z"
+    file_mask: ClassVar[str] = "NTUSER.DAT"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1037,7 +1037,7 @@ class RoamingProfileNTUSERDATregistryhive0(KapeTarget):
 class RoamingProfileNTUSERDATregistrytransactionfiles1(KapeTarget):
     name: ClassVar[str] = "NTUSER.DAT registry transaction files"
     base_path: ClassVar[Path] = Path("C:\\")
-    regex: ClassVar[str] = r"(?s:NTUSER\.DAT\.LOG.*)\Z"
+    file_mask: ClassVar[str] = "NTUSER.DAT.LOG*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1047,7 +1047,7 @@ class RoamingProfileNTUSERDATregistrytransactionfiles1(KapeTarget):
 class RoamingProfileNTUSERDATDEFAULTregistryhive2(KapeTarget):
     name: ClassVar[str] = "NTUSER.DAT DEFAULT registry hive"
     base_path: ClassVar[Path] = Path("C:\\")
-    regex: ClassVar[str] = r"(?s:DEFAULT)\Z"
+    file_mask: ClassVar[str] = "DEFAULT"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1057,7 +1057,7 @@ class RoamingProfileNTUSERDATDEFAULTregistryhive2(KapeTarget):
 class RoamingProfileNTUSERDATDEFAULTtransactionfiles3(KapeTarget):
     name: ClassVar[str] = "NTUSER.DAT DEFAULT transaction files"
     base_path: ClassVar[Path] = Path("C:\\")
-    regex: ClassVar[str] = r"(?s:DEFAULT\.LOG.*)\Z"
+    file_mask: ClassVar[str] = "DEFAULT.LOG*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1067,7 +1067,7 @@ class RoamingProfileNTUSERDATDEFAULTtransactionfiles3(KapeTarget):
 class RoamingProfileUsrClassdatregistryhive4(KapeTarget):
     name: ClassVar[str] = "UsrClass.dat registry hive"
     base_path: ClassVar[Path] = Path("C:\\")
-    regex: ClassVar[str] = r"(?s:UsrClass\.dat)\Z"
+    file_mask: ClassVar[str] = "UsrClass.dat"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1077,7 +1077,7 @@ class RoamingProfileUsrClassdatregistryhive4(KapeTarget):
 class RoamingProfileUsrClassdatregistrytransactionfiles5(KapeTarget):
     name: ClassVar[str] = "UsrClass.dat registry transaction files"
     base_path: ClassVar[Path] = Path("C:\\")
-    regex: ClassVar[str] = r"(?s:UsrClass\.dat\.LOG.*)\Z"
+    file_mask: ClassVar[str] = "UsrClass.dat.LOG*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1087,7 +1087,7 @@ class RoamingProfileUsrClassdatregistrytransactionfiles5(KapeTarget):
 class RoamingProfileLNKFiles6(KapeTarget):
     name: ClassVar[str] = "LNK Files"
     base_path: ClassVar[Path] = Path("C:\\")
-    regex: ClassVar[str] = r"(?s:.*\.LNK)\Z"
+    file_mask: ClassVar[str] = "*.LNK"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1097,7 +1097,7 @@ class RoamingProfileLNKFiles6(KapeTarget):
 class RoamingProfileWordAutosaveLocation7(KapeTarget):
     name: ClassVar[str] = "Word Autosave Location"
     base_path: ClassVar[Path] = Path("C:\\AppData\\Roaming\\Microsoft\\Word\\")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1107,7 +1107,7 @@ class RoamingProfileWordAutosaveLocation7(KapeTarget):
 class RoamingProfileExcelAutosaveLocation8(KapeTarget):
     name: ClassVar[str] = "Excel Autosave Location"
     base_path: ClassVar[Path] = Path("C:\\AppData\\Roaming\\Microsoft\\Word\\")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1117,7 +1117,7 @@ class RoamingProfileExcelAutosaveLocation8(KapeTarget):
 class RoamingProfilePowerpointAutosaveLocation9(KapeTarget):
     name: ClassVar[str] = "Powerpoint Autosave Location"
     base_path: ClassVar[Path] = Path("C:\\AppData\\Roaming\\Microsoft\\Word\\")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1127,7 +1127,7 @@ class RoamingProfilePowerpointAutosaveLocation9(KapeTarget):
 class RoamingProfilePublisherAutosaveLocation10(KapeTarget):
     name: ClassVar[str] = "Publisher Autosave Location"
     base_path: ClassVar[Path] = Path("C:\\AppData\\Roaming\\Microsoft\\Word\\")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1137,7 +1137,7 @@ class RoamingProfilePublisherAutosaveLocation10(KapeTarget):
 class RoamingProfilePublisherAutosaveLocation11(KapeTarget):
     name: ClassVar[str] = "Publisher Autosave Location"
     base_path: ClassVar[Path] = Path("C:\\*\\AppData\\Roaming\\Microsoft\\Word\\")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1149,7 +1149,7 @@ class RoamingProfileOfficeDocumentCache12(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\AppData\\Local\\Microsoft\\Office\\*\\OfficeFileCache\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1161,7 +1161,7 @@ class RoamingProfileOfficeDocumentCache13(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\*\\AppData\\Local\\Microsoft\\Office\\*\\OfficeFileCache\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1173,7 +1173,7 @@ class RoamingProfileChromebookmarks14(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\AppData\\Local\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Bookmarks.*)\Z"
+    file_mask: ClassVar[str] = "Bookmarks*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1185,7 +1185,7 @@ class RoamingProfileChromebookmarks15(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\*\\AppData\\Local\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Bookmarks.*)\Z"
+    file_mask: ClassVar[str] = "Bookmarks*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1197,7 +1197,7 @@ class RoamingProfileChromeCookies16(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\AppData\\Local\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Cookies.*)\Z"
+    file_mask: ClassVar[str] = "Cookies*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1209,7 +1209,7 @@ class RoamingProfileChromeCookies17(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\*\\AppData\\Local\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Cookies.*)\Z"
+    file_mask: ClassVar[str] = "Cookies*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1221,7 +1221,7 @@ class RoamingProfileChromeCurrentSession18(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\AppData\\Local\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Current\ Session)\Z"
+    file_mask: ClassVar[str] = "Current Session"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1233,7 +1233,7 @@ class RoamingProfileChromeCurrentSession19(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\*\\AppData\\Local\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Current\ Session)\Z"
+    file_mask: ClassVar[str] = "Current Session"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1245,7 +1245,7 @@ class RoamingProfileChromeCurrentTabs20(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\AppData\\Local\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Current\ Tabs)\Z"
+    file_mask: ClassVar[str] = "Current Tabs"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1257,7 +1257,7 @@ class RoamingProfileChromeCurrentTabs21(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\*\\AppData\\Local\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Current\ Tabs)\Z"
+    file_mask: ClassVar[str] = "Current Tabs"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1269,7 +1269,7 @@ class RoamingProfileChromeDownloadMetadata22(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\AppData\\Local\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Download\ Metadata)\Z"
+    file_mask: ClassVar[str] = "Download Metadata"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1281,7 +1281,7 @@ class RoamingProfileChromeDownloadMetadata23(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\*\\AppData\\Local\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Download\ Metadata)\Z"
+    file_mask: ClassVar[str] = "Download Metadata"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1293,7 +1293,7 @@ class RoamingProfileChromeExtensionCookies24(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\AppData\\Local\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Extension\ Cookies)\Z"
+    file_mask: ClassVar[str] = "Extension Cookies"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1305,7 +1305,7 @@ class RoamingProfileChromeExtensionCookies25(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\*\\AppData\\Local\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Extension\ Cookies)\Z"
+    file_mask: ClassVar[str] = "Extension Cookies"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1317,7 +1317,7 @@ class RoamingProfileChromeFavicons26(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\AppData\\Local\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Favicons.*)\Z"
+    file_mask: ClassVar[str] = "Favicons*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1329,7 +1329,7 @@ class RoamingProfileChromeFavicons27(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\*\\AppData\\Local\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Favicons.*)\Z"
+    file_mask: ClassVar[str] = "Favicons*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1341,7 +1341,7 @@ class RoamingProfileChromeHistory28(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\AppData\\Local\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:History.*)\Z"
+    file_mask: ClassVar[str] = "History*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1353,7 +1353,7 @@ class RoamingProfileChromeHistory29(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\*\\AppData\\Local\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:History.*)\Z"
+    file_mask: ClassVar[str] = "History*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1365,7 +1365,7 @@ class RoamingProfileChromeLastSession30(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\AppData\\Local\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Last\ Session)\Z"
+    file_mask: ClassVar[str] = "Last Session"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1377,7 +1377,7 @@ class RoamingProfileChromeLastSession31(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\*\\AppData\\Local\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Last\ Session)\Z"
+    file_mask: ClassVar[str] = "Last Session"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1389,7 +1389,7 @@ class RoamingProfileChromeLastTabs32(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\AppData\\Local\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Last\ Tabs)\Z"
+    file_mask: ClassVar[str] = "Last Tabs"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1401,7 +1401,7 @@ class RoamingProfileChromeLastTabs33(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\*\\AppData\\Local\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Last\ Tabs)\Z"
+    file_mask: ClassVar[str] = "Last Tabs"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1413,7 +1413,7 @@ class RoamingProfileChromeSessionsFolder34(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\AppData\\Local\\Google\\Chrome\\User Data\\*\\Sessions\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1425,7 +1425,7 @@ class RoamingProfileChromeSessionsFolder35(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\*\\AppData\\Local\\Google\\Chrome\\User Data\\*\\Sessions\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1437,7 +1437,7 @@ class RoamingProfileChromeLoginData36(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\AppData\\Local\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Login\ Data)\Z"
+    file_mask: ClassVar[str] = "Login Data"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1449,7 +1449,7 @@ class RoamingProfileChromeLoginData37(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\*\\AppData\\Local\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Login\ Data)\Z"
+    file_mask: ClassVar[str] = "Login Data"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1461,7 +1461,7 @@ class RoamingProfileChromeMediaHistory38(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\AppData\\Local\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Media\ History.*)\Z"
+    file_mask: ClassVar[str] = "Media History*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1473,7 +1473,7 @@ class RoamingProfileChromeMediaHistory39(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\*\\AppData\\Local\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Media\ History.*)\Z"
+    file_mask: ClassVar[str] = "Media History*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1485,7 +1485,7 @@ class RoamingProfileChromeNetworkActionPredictor40(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\AppData\\Local\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Network\ Action\ Predictor)\Z"
+    file_mask: ClassVar[str] = "Network Action Predictor"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1497,7 +1497,7 @@ class RoamingProfileChromeNetworkActionPredictor41(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\*\\AppData\\Local\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Network\ Action\ Predictor)\Z"
+    file_mask: ClassVar[str] = "Network Action Predictor"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1509,7 +1509,7 @@ class RoamingProfileChromeNetworkPersistentState42(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\AppData\\Local\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Network\ Persistent\ State)\Z"
+    file_mask: ClassVar[str] = "Network Persistent State"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1521,7 +1521,7 @@ class RoamingProfileChromeNetworkPersistentState43(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\*\\AppData\\Local\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Network\ Persistent\ State)\Z"
+    file_mask: ClassVar[str] = "Network Persistent State"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1533,7 +1533,7 @@ class RoamingProfileChromePreferences44(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\AppData\\Local\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Preferences)\Z"
+    file_mask: ClassVar[str] = "Preferences"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1545,7 +1545,7 @@ class RoamingProfileChromePreferences45(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\*\\AppData\\Local\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Preferences)\Z"
+    file_mask: ClassVar[str] = "Preferences"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1557,7 +1557,7 @@ class RoamingProfileChromeQuotaManager46(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\AppData\\Local\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:QuotaManager)\Z"
+    file_mask: ClassVar[str] = "QuotaManager"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1569,7 +1569,7 @@ class RoamingProfileChromeQuotaManager47(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\*\\AppData\\Local\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:QuotaManager)\Z"
+    file_mask: ClassVar[str] = "QuotaManager"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1581,7 +1581,7 @@ class RoamingProfileChromeReportingandNEL48(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\AppData\\Local\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Reporting\ and\ NEL)\Z"
+    file_mask: ClassVar[str] = "Reporting and NEL"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1593,7 +1593,7 @@ class RoamingProfileChromeReportingandNEL49(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\*\\AppData\\Local\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Reporting\ and\ NEL)\Z"
+    file_mask: ClassVar[str] = "Reporting and NEL"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1605,7 +1605,7 @@ class RoamingProfileChromeShortcuts50(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\AppData\\Local\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Shortcuts.*)\Z"
+    file_mask: ClassVar[str] = "Shortcuts*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1617,7 +1617,7 @@ class RoamingProfileChromeShortcuts51(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\*\\AppData\\Local\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Shortcuts.*)\Z"
+    file_mask: ClassVar[str] = "Shortcuts*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1629,7 +1629,7 @@ class RoamingProfileChromeTopSites52(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\AppData\\Local\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Top\ Sites.*)\Z"
+    file_mask: ClassVar[str] = "Top Sites*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1641,7 +1641,7 @@ class RoamingProfileChromeTopSites53(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\*\\AppData\\Local\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Top\ Sites.*)\Z"
+    file_mask: ClassVar[str] = "Top Sites*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1653,7 +1653,7 @@ class RoamingProfileChromeTrustTokens54(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\AppData\\Local\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Trust\ Tokens.*)\Z"
+    file_mask: ClassVar[str] = "Trust Tokens*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1665,7 +1665,7 @@ class RoamingProfileChromeTrustTokens55(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\*\\AppData\\Local\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Trust\ Tokens.*)\Z"
+    file_mask: ClassVar[str] = "Trust Tokens*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1677,7 +1677,7 @@ class RoamingProfileChromeSyncDataDatabase56(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\AppData\\Local\\Google\\Chrome\\User Data\\*\\Sync Data"
     )
-    regex: ClassVar[str] = r"(?s:SyncData\.sqlite3)\Z"
+    file_mask: ClassVar[str] = "SyncData.sqlite3"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1689,7 +1689,7 @@ class RoamingProfileChromeSyncDataDatabase57(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\*\\AppData\\Local\\Google\\Chrome\\User Data\\*\\Sync Data"
     )
-    regex: ClassVar[str] = r"(?s:SyncData\.sqlite3)\Z"
+    file_mask: ClassVar[str] = "SyncData.sqlite3"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1701,7 +1701,7 @@ class RoamingProfileChromeVisitedLinks58(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\AppData\\Local\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Visited\ Links)\Z"
+    file_mask: ClassVar[str] = "Visited Links"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1713,7 +1713,7 @@ class RoamingProfileChromeVisitedLinks59(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\*\\AppData\\Local\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Visited\ Links)\Z"
+    file_mask: ClassVar[str] = "Visited Links"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1725,7 +1725,7 @@ class RoamingProfileChromeWebData60(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\AppData\\Local\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Web\ Data.*)\Z"
+    file_mask: ClassVar[str] = "Web Data*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1737,7 +1737,7 @@ class RoamingProfileChromeWebData61(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\*\\AppData\\Local\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Web\ Data.*)\Z"
+    file_mask: ClassVar[str] = "Web Data*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1751,7 +1751,7 @@ class RoamingProfileWindowsProtectFolder62(KapeTarget):
 
     name: ClassVar[str] = "Windows Protect Folder"
     base_path: ClassVar[Path] = Path("C:\\AppData\\Roaming\\Microsoft\\Protect\\*\\")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1765,7 +1765,7 @@ class RoamingProfileWindowsProtectFolder63(KapeTarget):
 
     name: ClassVar[str] = "Windows Protect Folder"
     base_path: ClassVar[Path] = Path("C:\\*\\AppData\\Roaming\\Microsoft\\Protect\\*\\")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1777,7 +1777,7 @@ class RoamingProfileEdgefolder64(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\AppData\\Local\\Packages\\Microsoft.MicrosoftEdge_8wekyb3d8bbwe\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1789,7 +1789,7 @@ class RoamingProfileEdgefolder65(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\*\\AppData\\Local\\Packages\\Microsoft.MicrosoftEdge_8wekyb3d8bbwe\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1799,7 +1799,7 @@ class RoamingProfileEdgefolder65(KapeTarget):
 class RoamingProfileAmcache66(KapeTarget):
     name: ClassVar[str] = "Amcache"
     base_path: ClassVar[Path] = Path("C:\\")
-    regex: ClassVar[str] = r"(?s:Amcache\.hve)\Z"
+    file_mask: ClassVar[str] = "Amcache.hve"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1809,7 +1809,7 @@ class RoamingProfileAmcache66(KapeTarget):
 class RoamingProfileAmcachetransactionfiles67(KapeTarget):
     name: ClassVar[str] = "Amcache transaction files"
     base_path: ClassVar[Path] = Path("C:\\")
-    regex: ClassVar[str] = r"(?s:Amcache\.hve\.LOG.*)\Z"
+    file_mask: ClassVar[str] = "Amcache.hve.LOG*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1821,7 +1821,7 @@ class RoamingProfileLNKFilesfromRecent68(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\AppData\\Roaming\\Microsoft\\Windows\\Recent\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1833,7 +1833,7 @@ class RoamingProfileLNKFilesfromRecent69(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\*\\AppData\\Roaming\\Microsoft\\Windows\\Recent\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1845,7 +1845,7 @@ class RoamingProfileLNKFilesfromMicrosoftOfficeRecent70(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\AppData\\Roaming\\Microsoft\\Office\\Recent\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1857,7 +1857,7 @@ class RoamingProfileLNKFilesfromMicrosoftOfficeRecent71(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\*\\AppData\\Roaming\\Microsoft\\Office\\Recent\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1867,7 +1867,7 @@ class RoamingProfileLNKFilesfromMicrosoftOfficeRecent71(KapeTarget):
 class RoamingProfileDesktopLNKFiles72(KapeTarget):
     name: ClassVar[str] = "Desktop LNK Files"
     base_path: ClassVar[Path] = Path("C:\\")
-    regex: ClassVar[str] = r"(?s:.*\.LNK)\Z"
+    file_mask: ClassVar[str] = "*.LNK"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 

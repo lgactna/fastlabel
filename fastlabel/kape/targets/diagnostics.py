@@ -15,7 +15,7 @@ class WindowsPowerDiagnosticsWindowsPowerDiagnostics0(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\ProgramData\\Microsoft\\Windows\\Power Efficiency Diagnostics"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 

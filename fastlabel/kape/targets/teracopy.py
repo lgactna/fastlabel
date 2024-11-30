@@ -13,7 +13,7 @@ from fastlabel.kape.core import KapeModule, KapeTarget, KapeTargetConfiguration
 class TeraCopyTeraCopy0(KapeTarget):
     name: ClassVar[str] = "TeraCopy"
     base_path: ClassVar[Path] = Path("C:\\Users\\%user%\\AppData\\Roaming\\TeraCopy\\")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 

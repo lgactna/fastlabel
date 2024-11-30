@@ -17,7 +17,7 @@ class EverythingVoidToolsEverythingVoidTools0(KapeTarget):
 
     name: ClassVar[str] = "Everything (VoidTools)"
     base_path: ClassVar[Path] = Path("C:\\Users\\%user%\\AppData\\Local\\Everything\\")
-    regex: ClassVar[str] = r"(?s:Everything\.db)\Z"
+    file_mask: ClassVar[str] = "Everything.db"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -34,7 +34,7 @@ class EverythingVoidToolsEverythingVoidToolsRunHistory1(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Roaming\\Everything\\"
     )
-    regex: ClassVar[str] = r"(?s:Run\ History\.csv)\Z"
+    file_mask: ClassVar[str] = "Run History.csv"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -51,7 +51,7 @@ class EverythingVoidToolsEverythingVoidToolsSearchHistory2(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Roaming\\Everything\\"
     )
-    regex: ClassVar[str] = r"(?s:Search\ History\.csv)\Z"
+    file_mask: ClassVar[str] = "Search History.csv"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -67,7 +67,7 @@ class EverythingVoidToolsEverythingVoidToolsinifile3(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Roaming\\Everything\\"
     )
-    regex: ClassVar[str] = r"(?s:Everything\.ini)\Z"
+    file_mask: ClassVar[str] = "Everything.ini"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -98,7 +98,7 @@ class EverythingVoidTools(KapeTargetConfiguration):
 class FileSystemMFT0(KapeTarget):
     name: ClassVar[str] = "$MFT"
     base_path: ClassVar[Path] = Path("$MFT.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -108,7 +108,7 @@ class FileSystemMFT0(KapeTarget):
 class FileSystemLogFile1(KapeTarget):
     name: ClassVar[str] = "$LogFile"
     base_path: ClassVar[Path] = Path("$LogFile.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -118,7 +118,7 @@ class FileSystemLogFile1(KapeTarget):
 class FileSystemJ2(KapeTarget):
     name: ClassVar[str] = "$J"
     base_path: ClassVar[Path] = Path("$J.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -128,7 +128,7 @@ class FileSystemJ2(KapeTarget):
 class FileSystemSDS3(KapeTarget):
     name: ClassVar[str] = "$SDS"
     base_path: ClassVar[Path] = Path("$SDS.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -138,7 +138,7 @@ class FileSystemSDS3(KapeTarget):
 class FileSystemBoot4(KapeTarget):
     name: ClassVar[str] = "$Boot"
     base_path: ClassVar[Path] = Path("$Boot.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -148,7 +148,7 @@ class FileSystemBoot4(KapeTarget):
 class FileSystemT5(KapeTarget):
     name: ClassVar[str] = "$T"
     base_path: ClassVar[Path] = Path("$T.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -181,7 +181,7 @@ class FileSystem(KapeTargetConfiguration):
 class BootBoot0(KapeTarget):
     name: ClassVar[str] = "$Boot"
     base_path: ClassVar[Path] = Path("C:\\")
-    regex: ClassVar[str] = r"(?s:\$Boot)\Z"
+    file_mask: ClassVar[str] = "$Boot"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -207,7 +207,7 @@ class Boot(KapeTargetConfiguration):
 class JJ0(KapeTarget):
     name: ClassVar[str] = "$J"
     base_path: ClassVar[Path] = Path("C:\\$Extend\\")
-    regex: ClassVar[str] = r"(?s:\$UsnJrnl:\$J)\Z"
+    file_mask: ClassVar[str] = "$UsnJrnl:$J"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -217,7 +217,7 @@ class JJ0(KapeTarget):
 class JMax1(KapeTarget):
     name: ClassVar[str] = "$Max"
     base_path: ClassVar[Path] = Path("C:\\$Extend\\")
-    regex: ClassVar[str] = r"(?s:\$UsnJrnl:\$Max)\Z"
+    file_mask: ClassVar[str] = "$UsnJrnl:$Max"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -234,7 +234,7 @@ class JJ2(KapeTarget):
 
     name: ClassVar[str] = "$J"
     base_path: ClassVar[Path] = Path("C:\\$Extend\\")
-    regex: ClassVar[str] = r"(?s:\$J)\Z"
+    file_mask: ClassVar[str] = "$J"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -251,7 +251,7 @@ class JMax3(KapeTarget):
 
     name: ClassVar[str] = "$Max"
     base_path: ClassVar[Path] = Path("C:\\$Extend\\")
-    regex: ClassVar[str] = r"(?s:\$Max)\Z"
+    file_mask: ClassVar[str] = "$Max"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -277,7 +277,7 @@ class J(KapeTargetConfiguration):
 class LogFileLogFile0(KapeTarget):
     name: ClassVar[str] = "$LogFile"
     base_path: ClassVar[Path] = Path("C:\\")
-    regex: ClassVar[str] = r"(?s:\$LogFile)\Z"
+    file_mask: ClassVar[str] = "$LogFile"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -303,7 +303,7 @@ class LogFile(KapeTargetConfiguration):
 class MFTMFT0(KapeTarget):
     name: ClassVar[str] = "$MFT"
     base_path: ClassVar[Path] = Path("C:\\")
-    regex: ClassVar[str] = r"(?s:\$MFT)\Z"
+    file_mask: ClassVar[str] = "$MFT"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -333,7 +333,7 @@ class MFTMirrMFTMirr0(KapeTarget):
 
     name: ClassVar[str] = "$MFTMirr"
     base_path: ClassVar[Path] = Path("C:\\")
-    regex: ClassVar[str] = r"(?s:\$MFTMirr)\Z"
+    file_mask: ClassVar[str] = "$MFTMirr"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -359,7 +359,7 @@ class MFTMirr(KapeTargetConfiguration):
 class SDSSDS0(KapeTarget):
     name: ClassVar[str] = "$SDS"
     base_path: ClassVar[Path] = Path("C:\\")
-    regex: ClassVar[str] = r"(?s:\$Secure:\$SDS)\Z"
+    file_mask: ClassVar[str] = "$Secure:$SDS"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -376,7 +376,7 @@ class SDSSDS1(KapeTarget):
 
     name: ClassVar[str] = "$SDS"
     base_path: ClassVar[Path] = Path("C:\\")
-    regex: ClassVar[str] = r"(?s:\$Secure_\$SDS)\Z"
+    file_mask: ClassVar[str] = "$Secure_$SDS"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -402,7 +402,7 @@ class SDS(KapeTargetConfiguration):
 class TT0(KapeTarget):
     name: ClassVar[str] = "$T"
     base_path: ClassVar[Path] = Path("C:\\$Extend\\$RmMetadata\\$TxfLog\\")
-    regex: ClassVar[str] = r"(?s:\$Tops:\$T)\Z"
+    file_mask: ClassVar[str] = "$Tops:$T"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -419,7 +419,7 @@ class TT1(KapeTarget):
 
     name: ClassVar[str] = "$T"
     base_path: ClassVar[Path] = Path("C:\\$Extend\\$RmMetadata\\$TxfLog\\")
-    regex: ClassVar[str] = r"(?s:\$T)\Z"
+    file_mask: ClassVar[str] = "$T"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -447,7 +447,7 @@ class RDPCacheRDPCacheFiles0(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Microsoft\\Terminal Server Client\\Cache\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -459,7 +459,7 @@ class RDPCacheWindowsoldRDPCacheFiles1(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Windows.old\\Users\\%user%\\AppData\\Local\\Microsoft\\Terminal Server Client\\Cache\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -471,7 +471,7 @@ class RDPCacheRDPCacheFiles2(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Documents and Settings\\%user%\\Local Settings\\Application Data\\Microsoft\\Terminal Server Client\\Cache\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 

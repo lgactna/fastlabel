@@ -13,7 +13,7 @@ from fastlabel.kape.core import KapeModule, KapeTarget, KapeTargetConfiguration
 class EventTraceLogsWDITraceLogs10(KapeTarget):
     name: ClassVar[str] = "WDI Trace Logs 1"
     base_path: ClassVar[Path] = Path("C:\\Windows\\System32\\WDI\\LogFiles\\")
-    regex: ClassVar[str] = r"(?s:(?>.*?\.etl).*)\Z"
+    file_mask: ClassVar[str] = "*.etl*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -25,7 +25,7 @@ class EventTraceLogsWDITraceLogs11(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Windows.old\\Windows\\System32\\WDI\\LogFiles\\"
     )
-    regex: ClassVar[str] = r"(?s:(?>.*?\.etl).*)\Z"
+    file_mask: ClassVar[str] = "*.etl*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -35,7 +35,7 @@ class EventTraceLogsWDITraceLogs11(KapeTarget):
 class EventTraceLogsWDITraceLogs22(KapeTarget):
     name: ClassVar[str] = "WDI Trace Logs 2"
     base_path: ClassVar[Path] = Path("C:\\Windows\\System32\\WDI\\{*\\")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -45,7 +45,7 @@ class EventTraceLogsWDITraceLogs22(KapeTarget):
 class EventTraceLogsWDITraceLogs23(KapeTarget):
     name: ClassVar[str] = "WDI Trace Logs 2"
     base_path: ClassVar[Path] = Path("C:\\Windows.old\\Windows\\System32\\WDI\\{*\\")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -55,7 +55,7 @@ class EventTraceLogsWDITraceLogs23(KapeTarget):
 class EventTraceLogsWMITraceLogs4(KapeTarget):
     name: ClassVar[str] = "WMI Trace Logs"
     base_path: ClassVar[Path] = Path("C:\\Windows\\System32\\LogFiles\\WMI\\")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -67,7 +67,7 @@ class EventTraceLogsWMITraceLogs5(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Windows.old\\Windows\\System32\\LogFiles\\WMI\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -77,7 +77,7 @@ class EventTraceLogsWMITraceLogs5(KapeTarget):
 class EventTraceLogsSleepStudyTraceLogs6(KapeTarget):
     name: ClassVar[str] = "SleepStudy Trace Logs"
     base_path: ClassVar[Path] = Path("C:\\Windows\\System32\\SleepStudy\\")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -87,7 +87,7 @@ class EventTraceLogsSleepStudyTraceLogs6(KapeTarget):
 class EventTraceLogsSleepStudyTraceLogs7(KapeTarget):
     name: ClassVar[str] = "SleepStudy Trace Logs"
     base_path: ClassVar[Path] = Path("C:\\Windows.old\\Windows\\System32\\SleepStudy\\")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -99,7 +99,7 @@ class EventTraceLogsEnergyNTKLTraceLogs8(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\ProgramData\\Microsoft\\Windows\\PowerEfficiency Diagnostics\\"
     )
-    regex: ClassVar[str] = r"(?s:energy\-ntkl\.etl)\Z"
+    file_mask: ClassVar[str] = "energy-ntkl.etl"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -111,7 +111,7 @@ class EventTraceLogsDeliveryOptimizationTraceLogs9(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Windows\\ServiceProfiles\\NetworkService\\AppData\\Local\\Microsoft\\Windows\\DeliveryOptimization\\Logs\\"
     )
-    regex: ClassVar[str] = r"(?s:(?>.*?\.etl).*)\Z"
+    file_mask: ClassVar[str] = "*.etl*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 

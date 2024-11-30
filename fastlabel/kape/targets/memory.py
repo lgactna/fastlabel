@@ -17,7 +17,7 @@ class VirtualBoxMemoryVirtualBox0(KapeTarget):
 
     name: ClassVar[str] = "VirtualBox"
     base_path: ClassVar[Path] = Path("C:\\")
-    regex: ClassVar[str] = r"(?s:.*\.sav)\Z"
+    file_mask: ClassVar[str] = "*.sav"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -47,7 +47,7 @@ class VMwareMemoryVMwareFusionWorkstationServerPlayer0(KapeTarget):
 
     name: ClassVar[str] = "VMware (Fusion/Workstation/Server/Player)"
     base_path: ClassVar[Path] = Path("C:\\")
-    regex: ClassVar[str] = r"(?s:.*\.vmem)\Z"
+    file_mask: ClassVar[str] = "*.vmem"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -61,7 +61,7 @@ class VMwareMemoryVMwareFusionWorkstationServerPlayer1(KapeTarget):
 
     name: ClassVar[str] = "VMware (Fusion/Workstation/Server/Player)"
     base_path: ClassVar[Path] = Path("C:\\")
-    regex: ClassVar[str] = r"(?s:.*\.vmss)\Z"
+    file_mask: ClassVar[str] = "*.vmss"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -75,7 +75,7 @@ class VMwareMemoryVMwareFusionWorkstationServerPlayer2(KapeTarget):
 
     name: ClassVar[str] = "VMware (Fusion/Workstation/Server/Player)"
     base_path: ClassVar[Path] = Path("C:\\")
-    regex: ClassVar[str] = r"(?s:.*\.vmsn)\Z"
+    file_mask: ClassVar[str] = "*.vmsn"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -105,7 +105,7 @@ class VMwareMemory(KapeTargetConfiguration):
 class MemoryFileshiberfilsys0(KapeTarget):
     name: ClassVar[str] = "hiberfil.sys"
     base_path: ClassVar[Path] = Path("C:\\")
-    regex: ClassVar[str] = r"(?s:hiberfil\.sys)\Z"
+    file_mask: ClassVar[str] = "hiberfil.sys"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -115,7 +115,7 @@ class MemoryFileshiberfilsys0(KapeTarget):
 class MemoryFilespagefilesys1(KapeTarget):
     name: ClassVar[str] = "pagefile.sys"
     base_path: ClassVar[Path] = Path("C:\\")
-    regex: ClassVar[str] = r"(?s:pagefile\.sys)\Z"
+    file_mask: ClassVar[str] = "pagefile.sys"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -125,7 +125,7 @@ class MemoryFilespagefilesys1(KapeTarget):
 class MemoryFilesswapfilesys2(KapeTarget):
     name: ClassVar[str] = "swapfile.sys"
     base_path: ClassVar[Path] = Path("C:\\")
-    regex: ClassVar[str] = r"(?s:swapfile\.sys)\Z"
+    file_mask: ClassVar[str] = "swapfile.sys"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -140,7 +140,7 @@ class MemoryFilesSmallMemoryDumpdirectory3(KapeTarget):
 
     name: ClassVar[str] = "Small Memory Dump directory"
     base_path: ClassVar[Path] = Path("C:\\Windows\\Minidump\\")
-    regex: ClassVar[str] = r"(?s:.*\.dmp)\Z"
+    file_mask: ClassVar[str] = "*.dmp"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -155,7 +155,7 @@ class MemoryFilesSmallMemoryDumpdirectory4(KapeTarget):
 
     name: ClassVar[str] = "Small Memory Dump directory"
     base_path: ClassVar[Path] = Path("C:\\Windows.old\\Windows\\Minidump\\")
-    regex: ClassVar[str] = r"(?s:.*\.dmp)\Z"
+    file_mask: ClassVar[str] = "*.dmp"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 

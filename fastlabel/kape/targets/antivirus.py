@@ -15,7 +15,7 @@ class AvastAvastAVLogsXP0(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Documents And Settings\\All Users\\Application Data\\Avast Software\\Avast\\Log\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -25,7 +25,7 @@ class AvastAvastAVLogsXP0(KapeTarget):
 class AvastAvastAVLogs1(KapeTarget):
     name: ClassVar[str] = "Avast AV Logs"
     base_path: ClassVar[Path] = Path("C:\\ProgramData\\Avast Software\\Avast\\Log\\")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -35,7 +35,7 @@ class AvastAvastAVLogs1(KapeTarget):
 class AvastAvastAVUserLogs2(KapeTarget):
     name: ClassVar[str] = "Avast AV User Logs"
     base_path: ClassVar[Path] = Path("C:\\Users\\%user%\\Avast Software\\Avast\\Log\\")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -45,7 +45,7 @@ class AvastAvastAVUserLogs2(KapeTarget):
 class AvastAvastAVIndex3(KapeTarget):
     name: ClassVar[str] = "Avast AV Index"
     base_path: ClassVar[Path] = Path("C:\\ProgramData\\Avast Software\\Avast\\Chest\\")
-    regex: ClassVar[str] = r"(?s:index\.xml)\Z"
+    file_mask: ClassVar[str] = "index.xml"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -57,7 +57,7 @@ class AvastAvastPersistentDataLogs4(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\ProgramData\\Avast Software\\Persistent Data\\Avast\\Logs"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -67,7 +67,7 @@ class AvastAvastPersistentDataLogs4(KapeTarget):
 class AvastAvastIcarusLogs5(KapeTarget):
     name: ClassVar[str] = "Avast Icarus Logs"
     base_path: ClassVar[Path] = Path("C:\\ProgramData\\Avast Software\\Icarus\\Logs")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -102,7 +102,7 @@ class AVGAVGAVLogsXP0(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Documents and Settings\\All Users\\Application Data\\AVG\\Antivirus\\log"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -114,7 +114,7 @@ class AVGAVGAVReportLogsXP1(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Documents and Settings\\All Users\\Application Data\\AVG\\Antivirus\\report"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -124,7 +124,7 @@ class AVGAVGAVReportLogsXP1(KapeTarget):
 class AVGAVGAVLogs2(KapeTarget):
     name: ClassVar[str] = "AVG AV Logs"
     base_path: ClassVar[Path] = Path("C:\\ProgramData\\AVG\\Antivirus\\log")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -134,7 +134,7 @@ class AVGAVGAVLogs2(KapeTarget):
 class AVGAVGReportLogs3(KapeTarget):
     name: ClassVar[str] = "AVG Report Logs"
     base_path: ClassVar[Path] = Path("C:\\ProgramData\\AVG\\Antivirus\\report")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -146,7 +146,7 @@ class AVGAVGPersistentLogs4(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\ProgramData\\AVG\\Persistent Data\\Antivirus\\Logs"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -156,7 +156,7 @@ class AVGAVGPersistentLogs4(KapeTarget):
 class AVGAVGFileInfoDB5(KapeTarget):
     name: ClassVar[str] = "AVG FileInfo DB"
     base_path: ClassVar[Path] = Path("C:\\ProgramData\\AVG\\Antivirus")
-    regex: ClassVar[str] = r"(?s:FileInfo2\.db)\Z"
+    file_mask: ClassVar[str] = "FileInfo2.db"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -166,7 +166,7 @@ class AVGAVGFileInfoDB5(KapeTarget):
 class AVGAVGlsdbj2JSON6(KapeTarget):
     name: ClassVar[str] = "AVG lsdbj2 JSON"
     base_path: ClassVar[Path] = Path("C:\\ProgramData\\AVG\\Antivirus")
-    regex: ClassVar[str] = r"(?s:lsdb2\.json)\Z"
+    file_mask: ClassVar[str] = "lsdb2.json"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -204,7 +204,7 @@ class AviraAVLogsAviraActivityLogs0(KapeTarget):
 
     name: ClassVar[str] = "Avira Activity Logs"
     base_path: ClassVar[Path] = Path("C:\\ProgramData\\Avira\\Antivirus\\LOGFILES\\")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -214,7 +214,7 @@ class AviraAVLogsAviraActivityLogs0(KapeTarget):
 class AviraAVLogsAviraSecurityLogs1(KapeTarget):
     name: ClassVar[str] = "Avira Security Logs"
     base_path: ClassVar[Path] = Path("C:\\ProgramData\\Avira\\Security\\Logs")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -228,7 +228,7 @@ class AviraAVLogsAviraVPNLogs2(KapeTarget):
 
     name: ClassVar[str] = "Avira VPN Logs"
     base_path: ClassVar[Path] = Path("C:\\ProgramData\\Avira\\VPN")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -260,7 +260,7 @@ class BitdefenderBitdefenderEndpointSecurityLogs0(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\ProgramData\\Bitdefender\\Endpoint Security\\Logs\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -272,7 +272,7 @@ class BitdefenderBitdefenderInternetSecurityLogs1(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\ProgramData\\Bitdefender\\Desktop\\Profiles\\Logs\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -286,7 +286,7 @@ class BitdefenderBitdefenderSQLiteDBFiles2(KapeTarget):
 
     name: ClassVar[str] = "Bitdefender SQLite DB Files"
     base_path: ClassVar[Path] = Path("C:\\Program Files*\\Bitdefender*\\")
-    regex: ClassVar[str] = r"(?s:regex:.*\.\+\\\.\(db\|db\-wal\|db\-shm\))\Z"
+    file_mask: ClassVar[str] = "regex:*.+\\.(db|db-wal|db-shm)"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -316,7 +316,7 @@ class Bitdefender(KapeTargetConfiguration):
 class CombofixComboFix0(KapeTarget):
     name: ClassVar[str] = "ComboFix"
     base_path: ClassVar[Path] = Path("C:\\")
-    regex: ClassVar[str] = r"(?s:ComboFix\.txt)\Z"
+    file_mask: ClassVar[str] = "ComboFix.txt"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -342,7 +342,7 @@ class Combofix(KapeTargetConfiguration):
 class CybereasonCybereasonAntiRansomwareLogs0(KapeTarget):
     name: ClassVar[str] = "Cybereason Anti-Ransomware Logs"
     base_path: ClassVar[Path] = Path("C:\\ProgramData\\crs1\\Logs")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -352,7 +352,7 @@ class CybereasonCybereasonAntiRansomwareLogs0(KapeTarget):
 class CybereasonCybereasonSensorCommunicationsandAntiMalwareLogs1(KapeTarget):
     name: ClassVar[str] = "Cybereason Sensor Communications and Anti-Malware Logs"
     base_path: ClassVar[Path] = Path("C:\\ProgramData\\apv2\\Logs")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -362,7 +362,7 @@ class CybereasonCybereasonSensorCommunicationsandAntiMalwareLogs1(KapeTarget):
 class CybereasonCybereasonApplicationControlandNGAVLogs2(KapeTarget):
     name: ClassVar[str] = "Cybereason Application Control and NGAV Logs"
     base_path: ClassVar[Path] = Path("C:\\ProgramData\\crb1\\Logs")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -394,7 +394,7 @@ class ESETESETNOD32AVLogsXP0(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Documents and Settings\\All Users\\Application Data\\ESET\\ESET NOD32 Antivirus\\Logs\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -410,7 +410,7 @@ class ESETESETNOD32AVLogs1(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\ProgramData\\ESET\\ESET NOD32 Antivirus\\Logs\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -420,7 +420,7 @@ class ESETESETNOD32AVLogs1(KapeTarget):
 class ESETESETNOD32AVLogs2(KapeTarget):
     name: ClassVar[str] = "ESET NOD32 AV Logs"
     base_path: ClassVar[Path] = Path("C:\\ProgramData\\ESET\\ESET Security\\Logs")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -437,7 +437,7 @@ class ESETESETRemoteAdministratorLogs3(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\ProgramData\\ESET\\RemoteAdministrator\\Agent\\EraAgentApplicationData\\Logs"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -468,7 +468,7 @@ class ESET(KapeTargetConfiguration):
 class FSecureFSecureLogs0(KapeTarget):
     name: ClassVar[str] = "F-Secure Logs"
     base_path: ClassVar[Path] = Path("C:\\ProgramData\\F-Secure\\Log\\")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -480,7 +480,7 @@ class FSecureFSecureUserLogs1(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\F-Secure\\Log\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -492,7 +492,7 @@ class FSecureFSecureScheduledScanReports2(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\ProgramData\\F-Secure\\Antivirus\\ScheduledScanReports\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -522,7 +522,7 @@ class FSecure(KapeTargetConfiguration):
 class HitmanProHitmanProLogs0(KapeTarget):
     name: ClassVar[str] = "HitmanPro Logs"
     base_path: ClassVar[Path] = Path("C:\\ProgramData\\HitmanPro\\Logs\\")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -532,7 +532,7 @@ class HitmanProHitmanProLogs0(KapeTarget):
 class HitmanProHitmanProAlertLogs1(KapeTarget):
     name: ClassVar[str] = "HitmanPro Alert Logs"
     base_path: ClassVar[Path] = Path("C:\\ProgramData\\HitmanPro.Alert\\Logs\\")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -546,7 +546,7 @@ class HitmanProHitmanProDatabase2(KapeTarget):
 
     name: ClassVar[str] = "HitmanPro Database"
     base_path: ClassVar[Path] = Path("C:\\ProgramData\\HitmanPro.Alert\\")
-    regex: ClassVar[str] = r"(?s:excalibur\.db)\Z"
+    file_mask: ClassVar[str] = "excalibur.db"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -578,7 +578,7 @@ class MalwarebytesMalwareBytesAntiMalwareLogs0(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\ProgramData\\Malwarebytes\\Malwarebytes Anti-Malware\\Logs\\"
     )
-    regex: ClassVar[str] = r"(?s:mbam\-log\-.*\.xml)\Z"
+    file_mask: ClassVar[str] = "mbam-log-*.xml"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -590,7 +590,7 @@ class MalwarebytesMalwareBytesAntiMalwareServiceLogs1(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\ProgramData\\Malwarebytes\\MBAMService\\logs\\"
     )
-    regex: ClassVar[str] = r"(?s:mbamservice\.log.*)\Z"
+    file_mask: ClassVar[str] = "mbamservice.log*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -602,7 +602,7 @@ class MalwarebytesMalwareBytesAntiMalwareScanLogs2(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Roaming\\Malwarebytes\\Malwarebytes Anti-Malware\\Logs\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -614,7 +614,7 @@ class MalwarebytesMalwareBytesAntiMalwareScanResultsLogs3(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\ProgramData\\Malwarebytes\\MBAMService\\ScanResults"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -647,7 +647,7 @@ class McAfeeMcAfeeDesktopProtectionLogsXP0(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\All Users\\Application Data\\McAfee\\DesktopProtection\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -657,7 +657,7 @@ class McAfeeMcAfeeDesktopProtectionLogsXP0(KapeTarget):
 class McAfeeMcAfeeDesktopProtectionLogs1(KapeTarget):
     name: ClassVar[str] = "McAfee Desktop Protection Logs"
     base_path: ClassVar[Path] = Path("C:\\ProgramData\\McAfee\\DesktopProtection\\")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -669,7 +669,7 @@ class McAfeeMcAfeeEndpointSecurityLogs2(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\ProgramData\\McAfee\\Endpoint Security\\Logs\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -681,7 +681,7 @@ class McAfeeMcAfeeEndpointSecurityLogs3(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\ProgramData\\McAfee\\Endpoint Security\\Logs_Old\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -691,7 +691,7 @@ class McAfeeMcAfeeEndpointSecurityLogs3(KapeTarget):
 class McAfeeMcAfeeVirusScanLogs4(KapeTarget):
     name: ClassVar[str] = "McAfee VirusScan Logs"
     base_path: ClassVar[Path] = Path("C:\\ProgramData\\Mcafee\\VirusScan\\")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -725,7 +725,7 @@ class McAfeeePOMcAfeeePOLogs0(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\ProgramData\\McAfee\\Endpoint Security\\Logs\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -751,7 +751,7 @@ class McAfeeePO(KapeTargetConfiguration):
 class RogueKillerRogueKillerReports0(KapeTarget):
     name: ClassVar[str] = "RogueKiller Reports"
     base_path: ClassVar[Path] = Path("C:\\ProgramData\\RogueKiller\\logs\\")
-    regex: ClassVar[str] = r"(?s:AdliceReport_.*\.json)\Z"
+    file_mask: ClassVar[str] = "AdliceReport_*.json"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -779,7 +779,7 @@ class SecureAgeSecureAgeAntvirusLogs0(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\ProgramData\\SecureAge Technology\\SecureAge\\log\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -809,7 +809,7 @@ class SentinelOneSentinelOneEDRLog0(KapeTarget):
 
     name: ClassVar[str] = "SentinelOne EDR Log"
     base_path: ClassVar[Path] = Path("C:\\programdata\\sentinel\\logs\\")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -843,7 +843,7 @@ class SophosSophosLogsXP0(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Documents and Settings\\All Users\\Application Data\\Sophos\\Sophos *\\Logs\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -859,7 +859,7 @@ class SophosSophosLogs1(KapeTarget):
 
     name: ClassVar[str] = "Sophos Logs"
     base_path: ClassVar[Path] = Path("C:\\ProgramData\\Sophos\\Sophos *\\Logs\\")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -873,7 +873,7 @@ class SophosSophosApplicationEvents2(KapeTarget):
 
     name: ClassVar[str] = "Sophos Application Events"
     base_path: ClassVar[Path] = Path("ApplicationEvents.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -905,7 +905,7 @@ class SUPERAntiSpywareSUPERAntiSpywareLogs0(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Roaming\\SUPERAntiSpyware\\Logs\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -933,7 +933,7 @@ class SymantecAVLogsSymantecEndpointProtectionLogsXP0(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Documents and Settings\\All Users\\Application Data\\Symantec\\Symantec Endpoint Protection\\Logs\\AV\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -945,7 +945,7 @@ class SymantecAVLogsSymantecEndpointProtectionLogs1(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\ProgramData\\Symantec\\Symantec Endpoint Protection\\*\\Data\\Logs\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -957,7 +957,7 @@ class SymantecAVLogsSymantecEndpointProtectionUserLogs2(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Symantec\\Symantec Endpoint Protection\\Logs\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -971,7 +971,7 @@ class SymantecAVLogsSymantecEventLogWin73(KapeTarget):
 
     name: ClassVar[str] = "Symantec Event Log Win7+"
     base_path: ClassVar[Path] = Path("C:\\Windows\\System32\\winevt\\logs\\")
-    regex: ClassVar[str] = r"(?s:Symantec\ Endpoint\ Protection\ Client\.evtx)\Z"
+    file_mask: ClassVar[str] = "Symantec Endpoint Protection Client.evtx"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -987,7 +987,7 @@ class SymantecAVLogsSymantecEventLogWin74(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Windows.old\\Windows\\System32\\winevt\\logs\\"
     )
-    regex: ClassVar[str] = r"(?s:Symantec\ Endpoint\ Protection\ Client\.evtx)\Z"
+    file_mask: ClassVar[str] = "Symantec Endpoint Protection Client.evtx"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1004,7 +1004,7 @@ class SymantecAVLogsSymantecEndpointProtectionManagerSEPMApplicationEvents5(Kape
         "Symantec Endpoint Protection Manager (SEPM) Application Events"
     )
     base_path: ClassVar[Path] = Path("ApplicationEvents.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1016,7 +1016,7 @@ class SymantecAVLogsSymantecEndpointProtectionQuarantineXP6(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Documents and Settings\\All Users\\Application Data\\Symantec\\Symantec Endpoint Protection\\Quarantine\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1028,7 +1028,7 @@ class SymantecAVLogsSymantecEndpointProtectionQuarantine7(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\ProgramData\\Symantec\\Symantec Endpoint Protection\\*\\Data\\Quarantine\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1040,7 +1040,7 @@ class SymantecAVLogsccSubSDKDatabase8(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\ProgramData\\Symantec\\Symantec Endpoint Protection\\*\\Data\\CmnClnt\\ccSubSDK\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1052,7 +1052,7 @@ class SymantecAVLogsregistrationInfoxml9(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\ProgramData\\Symantec\\Symantec Endpoint Protection\\*\\Data\\"
     )
-    regex: ClassVar[str] = r"(?s:registrationInfo\.xml)\Z"
+    file_mask: ClassVar[str] = "registrationInfo.xml"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1089,7 +1089,7 @@ class SymantecAVLogs(KapeTargetConfiguration):
 class TotalAVTotalAVLogs0(KapeTarget):
     name: ClassVar[str] = "TotalAV Logs"
     base_path: ClassVar[Path] = Path("C:\\Program Files*\\TotalAV\\logs")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1099,7 +1099,7 @@ class TotalAVTotalAVLogs0(KapeTarget):
 class TotalAVTotalAVLogs1(KapeTarget):
     name: ClassVar[str] = "TotalAV Logs"
     base_path: ClassVar[Path] = Path("C:\\ProgramData\\TotalAV\\logs")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1128,7 +1128,7 @@ class TotalAV(KapeTargetConfiguration):
 class TrendMicroTrendMicroLogs0(KapeTarget):
     name: ClassVar[str] = "Trend Micro Logs"
     base_path: ClassVar[Path] = Path("C:\\ProgramData\\Trend Micro\\")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1140,7 +1140,7 @@ class TrendMicroTrendMicroSecurityAgentReportLogs1(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Program Files*\\Trend Micro\\Security Agent\\Report\\"
     )
-    regex: ClassVar[str] = r"(?s:.*\.log)\Z"
+    file_mask: ClassVar[str] = "*.log"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1152,7 +1152,7 @@ class TrendMicroTrendMicroSecurityAgentConnectionLogs2(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Program Files*\\Trend Micro\\Security Agent\\ConnLog\\"
     )
-    regex: ClassVar[str] = r"(?s:.*\.log)\Z"
+    file_mask: ClassVar[str] = "*.log"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1182,7 +1182,7 @@ class TrendMicro(KapeTargetConfiguration):
 class VIPREVIPREBusinessAgentLogs0(KapeTarget):
     name: ClassVar[str] = "VIPRE Business Agent Logs"
     base_path: ClassVar[Path] = Path("C:\\ProgramData\\VIPRE Business Agent\\Logs\\")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1194,7 +1194,7 @@ class VIPREVIPREBusinessUserLogsv71(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Roaming\\VIPRE Business\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1206,7 +1206,7 @@ class VIPREVIPREBusinessUserLogsv5v62(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Roaming\\GFI Software\\AntiMalware\\Logs\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1218,7 +1218,7 @@ class VIPREVIPREBusinessUserLogsuptov43(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Roaming\\Sunbelt Software\\AntiMalware\\Logs\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1249,7 +1249,7 @@ class VIPRE(KapeTargetConfiguration):
 class WebrootWebrootProgramData0(KapeTarget):
     name: ClassVar[str] = "Webroot Program Data"
     base_path: ClassVar[Path] = Path("C:\\ProgramData\\WRData\\")
-    regex: ClassVar[str] = r"(?s:WRLog\.log)\Z"
+    file_mask: ClassVar[str] = "WRLog.log"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1277,7 +1277,7 @@ class WinDefendDetectionHistDetectionHistory0(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\ProgramData\\Microsoft\\Windows Defender\\Scans\\History\\Service\\DetectionHistory\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1307,7 +1307,7 @@ class WindowsDefenderWindowsDefenderLogs0(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\ProgramData\\Microsoft\\Microsoft AntiMalware\\Support\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1317,7 +1317,7 @@ class WindowsDefenderWindowsDefenderLogs0(KapeTarget):
 class WindowsDefenderWindowsDefenderEventLogs1(KapeTarget):
     name: ClassVar[str] = "Windows Defender Event Logs"
     base_path: ClassVar[Path] = Path("C:\\Windows\\System32\\winevt\\Logs\\")
-    regex: ClassVar[str] = r"(?s:Microsoft\-Windows\-Windows\ Defender.*\.evtx)\Z"
+    file_mask: ClassVar[str] = "Microsoft-Windows-Windows Defender*.evtx"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1329,7 +1329,7 @@ class WindowsDefenderWindowsDefenderEventLogs2(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Windows.old\\Windows\\System32\\winevt\\Logs\\"
     )
-    regex: ClassVar[str] = r"(?s:Microsoft\-Windows\-Windows\ Defender.*\.evtx)\Z"
+    file_mask: ClassVar[str] = "Microsoft-Windows-Windows Defender*.evtx"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1341,7 +1341,7 @@ class WindowsDefenderWindowsDefenderLogs3(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\ProgramData\\Microsoft\\Windows Defender\\Support\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1351,7 +1351,7 @@ class WindowsDefenderWindowsDefenderLogs3(KapeTarget):
 class WindowsDefenderWindowsDefenderLogs4(KapeTarget):
     name: ClassVar[str] = "Windows Defender Logs"
     base_path: ClassVar[Path] = Path("C:\\Windows\\Temp\\")
-    regex: ClassVar[str] = r"(?s:MpCmdRun\.log)\Z"
+    file_mask: ClassVar[str] = "MpCmdRun.log"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1361,7 +1361,7 @@ class WindowsDefenderWindowsDefenderLogs4(KapeTarget):
 class WindowsDefenderWindowsDefenderLogs5(KapeTarget):
     name: ClassVar[str] = "Windows Defender Logs"
     base_path: ClassVar[Path] = Path("C:\\Windows.old\\Windows\\Temp\\")
-    regex: ClassVar[str] = r"(?s:MpCmdRun\.log)\Z"
+    file_mask: ClassVar[str] = "MpCmdRun.log"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1394,7 +1394,7 @@ class WindowsDefender(KapeTargetConfiguration):
 class SANSTriageAntivirus0(KapeTarget):
     name: ClassVar[str] = "Antivirus"
     base_path: ClassVar[Path] = Path("Antivirus.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1404,7 +1404,7 @@ class SANSTriageAntivirus0(KapeTarget):
 class SANSTriageCloudStorageMetadata1(KapeTarget):
     name: ClassVar[str] = "CloudStorage_Metadata"
     base_path: ClassVar[Path] = Path("CloudStorage_Metadata.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1414,7 +1414,7 @@ class SANSTriageCloudStorageMetadata1(KapeTarget):
 class SANSTriageCombinedLogs2(KapeTarget):
     name: ClassVar[str] = "CombinedLogs"
     base_path: ClassVar[Path] = Path("CombinedLogs.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1424,7 +1424,7 @@ class SANSTriageCombinedLogs2(KapeTarget):
 class SANSTriageEvidenceOfExecution3(KapeTarget):
     name: ClassVar[str] = "EvidenceOfExecution"
     base_path: ClassVar[Path] = Path("EvidenceOfExecution.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1434,7 +1434,7 @@ class SANSTriageEvidenceOfExecution3(KapeTarget):
 class SANSTriageFileSystem4(KapeTarget):
     name: ClassVar[str] = "FileSystem"
     base_path: ClassVar[Path] = Path("FileSystem.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1444,7 +1444,7 @@ class SANSTriageFileSystem4(KapeTarget):
 class SANSTriageLNKFilesAndJumpLists5(KapeTarget):
     name: ClassVar[str] = "LNKFilesAndJumpLists"
     base_path: ClassVar[Path] = Path("LNKFilesAndJumpLists.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1454,7 +1454,7 @@ class SANSTriageLNKFilesAndJumpLists5(KapeTarget):
 class SANSTriageMessagingClients6(KapeTarget):
     name: ClassVar[str] = "MessagingClients"
     base_path: ClassVar[Path] = Path("MessagingClients.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1464,7 +1464,7 @@ class SANSTriageMessagingClients6(KapeTarget):
 class SANSTriageRecycleBinInfoFiles7(KapeTarget):
     name: ClassVar[str] = "RecycleBin_InfoFiles"
     base_path: ClassVar[Path] = Path("RecycleBin_InfoFiles.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1474,7 +1474,7 @@ class SANSTriageRecycleBinInfoFiles7(KapeTarget):
 class SANSTriageRegistryHives8(KapeTarget):
     name: ClassVar[str] = "RegistryHives"
     base_path: ClassVar[Path] = Path("RegistryHives.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1484,7 +1484,7 @@ class SANSTriageRegistryHives8(KapeTarget):
 class SANSTriageRemoteAccess9(KapeTarget):
     name: ClassVar[str] = "RemoteAccess"
     base_path: ClassVar[Path] = Path("RemoteAdmin.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1494,7 +1494,7 @@ class SANSTriageRemoteAccess9(KapeTarget):
 class SANSTriageScheduledTasks10(KapeTarget):
     name: ClassVar[str] = "ScheduledTasks"
     base_path: ClassVar[Path] = Path("ScheduledTasks.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1504,7 +1504,7 @@ class SANSTriageScheduledTasks10(KapeTarget):
 class SANSTriageSRUM11(KapeTarget):
     name: ClassVar[str] = "SRUM"
     base_path: ClassVar[Path] = Path("SRUM.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1514,7 +1514,7 @@ class SANSTriageSRUM11(KapeTarget):
 class SANSTriageSUM12(KapeTarget):
     name: ClassVar[str] = "SUM"
     base_path: ClassVar[Path] = Path("SUM.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1524,7 +1524,7 @@ class SANSTriageSUM12(KapeTarget):
 class SANSTriageThumbCache13(KapeTarget):
     name: ClassVar[str] = "ThumbCache"
     base_path: ClassVar[Path] = Path("Thumbcache.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1534,7 +1534,7 @@ class SANSTriageThumbCache13(KapeTarget):
 class SANSTriageWBEM14(KapeTarget):
     name: ClassVar[str] = "WBEM"
     base_path: ClassVar[Path] = Path("WBEM.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1544,7 +1544,7 @@ class SANSTriageWBEM14(KapeTarget):
 class SANSTriageWebBrowsers15(KapeTarget):
     name: ClassVar[str] = "WebBrowsers"
     base_path: ClassVar[Path] = Path("WebBrowsers.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1554,7 +1554,7 @@ class SANSTriageWebBrowsers15(KapeTarget):
 class SANSTriageWindowsIndexSearch16(KapeTarget):
     name: ClassVar[str] = "WindowsIndexSearch"
     base_path: ClassVar[Path] = Path("WindowsIndexSearch.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1564,7 +1564,7 @@ class SANSTriageWindowsIndexSearch16(KapeTarget):
 class SANSTriageWindowsTimeline17(KapeTarget):
     name: ClassVar[str] = "WindowsTimeline"
     base_path: ClassVar[Path] = Path("WindowsTimeline.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1609,7 +1609,7 @@ class SANSTriage(KapeTargetConfiguration):
 class AntivirusAvast0(KapeTarget):
     name: ClassVar[str] = "Avast"
     base_path: ClassVar[Path] = Path("Avast.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1619,7 +1619,7 @@ class AntivirusAvast0(KapeTarget):
 class AntivirusAVG1(KapeTarget):
     name: ClassVar[str] = "AVG"
     base_path: ClassVar[Path] = Path("AVG.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1629,7 +1629,7 @@ class AntivirusAVG1(KapeTarget):
 class AntivirusAvira2(KapeTarget):
     name: ClassVar[str] = "Avira"
     base_path: ClassVar[Path] = Path("AviraAVLogs.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1639,7 +1639,7 @@ class AntivirusAvira2(KapeTarget):
 class AntivirusBitdefender3(KapeTarget):
     name: ClassVar[str] = "Bitdefender"
     base_path: ClassVar[Path] = Path("Bitdefender.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1649,7 +1649,7 @@ class AntivirusBitdefender3(KapeTarget):
 class AntivirusComboFix4(KapeTarget):
     name: ClassVar[str] = "ComboFix"
     base_path: ClassVar[Path] = Path("ComboFix.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1659,7 +1659,7 @@ class AntivirusComboFix4(KapeTarget):
 class AntivirusCybereason5(KapeTarget):
     name: ClassVar[str] = "Cybereason"
     base_path: ClassVar[Path] = Path("Cybereason.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1669,7 +1669,7 @@ class AntivirusCybereason5(KapeTarget):
 class AntivirusEmsisoft6(KapeTarget):
     name: ClassVar[str] = "Emsisoft"
     base_path: ClassVar[Path] = Path("Emsisoft.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1679,7 +1679,7 @@ class AntivirusEmsisoft6(KapeTarget):
 class AntivirusESET7(KapeTarget):
     name: ClassVar[str] = "ESET"
     base_path: ClassVar[Path] = Path("ESET.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1689,7 +1689,7 @@ class AntivirusESET7(KapeTarget):
 class AntivirusFSecure8(KapeTarget):
     name: ClassVar[str] = "FSecure"
     base_path: ClassVar[Path] = Path("FSecure.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1699,7 +1699,7 @@ class AntivirusFSecure8(KapeTarget):
 class AntivirusHitmanPro9(KapeTarget):
     name: ClassVar[str] = "HitmanPro"
     base_path: ClassVar[Path] = Path("HitmanPro.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1709,7 +1709,7 @@ class AntivirusHitmanPro9(KapeTarget):
 class AntivirusMalwarebytes10(KapeTarget):
     name: ClassVar[str] = "Malwarebytes"
     base_path: ClassVar[Path] = Path("Malwarebytes.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1719,7 +1719,7 @@ class AntivirusMalwarebytes10(KapeTarget):
 class AntivirusMcAfee11(KapeTarget):
     name: ClassVar[str] = "McAfee"
     base_path: ClassVar[Path] = Path("McAfee.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1729,7 +1729,7 @@ class AntivirusMcAfee11(KapeTarget):
 class AntivirusMcAfeeePO12(KapeTarget):
     name: ClassVar[str] = "McAfee ePO"
     base_path: ClassVar[Path] = Path("McAfee_ePO.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1739,7 +1739,7 @@ class AntivirusMcAfeeePO12(KapeTarget):
 class AntivirusRogueKiller13(KapeTarget):
     name: ClassVar[str] = "RogueKiller"
     base_path: ClassVar[Path] = Path("RogueKiller.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1749,7 +1749,7 @@ class AntivirusRogueKiller13(KapeTarget):
 class AntivirusSecureAge14(KapeTarget):
     name: ClassVar[str] = "SecureAge"
     base_path: ClassVar[Path] = Path("SecureAge.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1759,7 +1759,7 @@ class AntivirusSecureAge14(KapeTarget):
 class AntivirusSentinelOne15(KapeTarget):
     name: ClassVar[str] = "SentinelOne"
     base_path: ClassVar[Path] = Path("SentinelOne.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1769,7 +1769,7 @@ class AntivirusSentinelOne15(KapeTarget):
 class AntivirusSophos16(KapeTarget):
     name: ClassVar[str] = "Sophos"
     base_path: ClassVar[Path] = Path("Sophos.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1779,7 +1779,7 @@ class AntivirusSophos16(KapeTarget):
 class AntivirusSUPERAntiSpyware17(KapeTarget):
     name: ClassVar[str] = "SUPERAntiSpyware"
     base_path: ClassVar[Path] = Path("SUPERAntiSpyware.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1789,7 +1789,7 @@ class AntivirusSUPERAntiSpyware17(KapeTarget):
 class AntivirusSymantec18(KapeTarget):
     name: ClassVar[str] = "Symantec"
     base_path: ClassVar[Path] = Path("Symantec_AV_Logs.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1799,7 +1799,7 @@ class AntivirusSymantec18(KapeTarget):
 class AntivirusTotalAV19(KapeTarget):
     name: ClassVar[str] = "TotalAV"
     base_path: ClassVar[Path] = Path("TotalAV.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1809,7 +1809,7 @@ class AntivirusTotalAV19(KapeTarget):
 class AntivirusTrendMicro20(KapeTarget):
     name: ClassVar[str] = "TrendMicro"
     base_path: ClassVar[Path] = Path("TrendMicro.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1819,7 +1819,7 @@ class AntivirusTrendMicro20(KapeTarget):
 class AntivirusVIPRE21(KapeTarget):
     name: ClassVar[str] = "VIPRE"
     base_path: ClassVar[Path] = Path("VIPRE.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1829,7 +1829,7 @@ class AntivirusVIPRE21(KapeTarget):
 class AntivirusWebroot22(KapeTarget):
     name: ClassVar[str] = "Webroot"
     base_path: ClassVar[Path] = Path("Webroot.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1839,7 +1839,7 @@ class AntivirusWebroot22(KapeTarget):
 class AntivirusWindowsDefender23(KapeTarget):
     name: ClassVar[str] = "Windows Defender"
     base_path: ClassVar[Path] = Path("WindowsDefender.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 

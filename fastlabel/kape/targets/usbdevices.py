@@ -13,7 +13,7 @@ from fastlabel.kape.core import KapeModule, KapeTarget, KapeTargetConfiguration
 class USBDevicesLogsSetupapilogXP0(KapeTarget):
     name: ClassVar[str] = "Setupapi.log XP"
     base_path: ClassVar[Path] = Path("C:\\Windows\\")
-    regex: ClassVar[str] = r"(?s:setupapi\.log)\Z"
+    file_mask: ClassVar[str] = "setupapi.log"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -23,7 +23,7 @@ class USBDevicesLogsSetupapilogXP0(KapeTarget):
 class USBDevicesLogsSetupapilogWin71(KapeTarget):
     name: ClassVar[str] = "Setupapi.log Win7+"
     base_path: ClassVar[Path] = Path("C:\\Windows\\inf\\")
-    regex: ClassVar[str] = r"(?s:setupapi\.dev\.log)\Z"
+    file_mask: ClassVar[str] = "setupapi.dev.log"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -33,7 +33,7 @@ class USBDevicesLogsSetupapilogWin71(KapeTarget):
 class USBDevicesLogsSetupapilogWin72(KapeTarget):
     name: ClassVar[str] = "Setupapi.log Win7+"
     base_path: ClassVar[Path] = Path("C:\\Windows.old\\Windows\\inf\\")
-    regex: ClassVar[str] = r"(?s:setupapi\.dev\.log)\Z"
+    file_mask: ClassVar[str] = "setupapi.dev.log"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 

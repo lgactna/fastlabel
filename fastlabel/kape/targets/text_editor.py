@@ -19,7 +19,7 @@ class NotepadNotepadUnsavedEdits0(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Roaming\\Notepad++\\backup\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -34,7 +34,7 @@ class NotepadNotepadConfig1(KapeTarget):
 
     name: ClassVar[str] = "Notepad++ Config"
     base_path: ClassVar[Path] = Path("C:\\Users\\%user%\\AppData\\Roaming\\Notepad++\\")
-    regex: ClassVar[str] = r"(?s:config\.xml)\Z"
+    file_mask: ClassVar[str] = "config.xml"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -48,7 +48,7 @@ class NotepadNotepadSession2(KapeTarget):
 
     name: ClassVar[str] = "Notepad++ Session"
     base_path: ClassVar[Path] = Path("C:\\Users\\%user%\\AppData\\Roaming\\Notepad++\\")
-    regex: ClassVar[str] = r"(?s:session\.xml)\Z"
+    file_mask: ClassVar[str] = "session.xml"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -86,7 +86,7 @@ class SublimeTextSublimeText23AutoSaveSession0(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Roaming\\Sublime Text*\\Settings"
     )
-    regex: ClassVar[str] = r"(?s:Session\.sublime_session)\Z"
+    file_mask: ClassVar[str] = "Session.sublime_session"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 

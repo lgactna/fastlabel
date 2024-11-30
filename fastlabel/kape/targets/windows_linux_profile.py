@@ -15,7 +15,7 @@ class LinuxOnWindowsProfileFilesbashhistory0(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\*\\LocalState\\rootfs\\home\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:\.bash_history)\Z"
+    file_mask: ClassVar[str] = ".bash_history"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -27,7 +27,7 @@ class LinuxOnWindowsProfileFilesbashlogout1(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\*\\LocalState\\rootfs\\home\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:\.bash_logout)\Z"
+    file_mask: ClassVar[str] = ".bash_logout"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -39,7 +39,7 @@ class LinuxOnWindowsProfileFilesbashrc2(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\*\\LocalState\\rootfs\\home\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:\.bashrc)\Z"
+    file_mask: ClassVar[str] = ".bashrc"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -51,7 +51,7 @@ class LinuxOnWindowsProfileFilesprofile3(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\*\\LocalState\\rootfs\\home\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:\.profile)\Z"
+    file_mask: ClassVar[str] = ".profile"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 

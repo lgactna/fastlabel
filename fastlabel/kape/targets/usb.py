@@ -13,7 +13,7 @@ from fastlabel.kape.core import KapeModule, KapeTarget, KapeTargetConfiguration
 class USBDetectiveUSBDevicesLogs0(KapeTarget):
     name: ClassVar[str] = "USBDevicesLogs"
     base_path: ClassVar[Path] = Path("USBDevicesLogs.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -23,7 +23,7 @@ class USBDetectiveUSBDevicesLogs0(KapeTarget):
 class USBDetectiveRegistryHives1(KapeTarget):
     name: ClassVar[str] = "RegistryHives"
     base_path: ClassVar[Path] = Path("RegistryHives.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -33,7 +33,7 @@ class USBDetectiveRegistryHives1(KapeTarget):
 class USBDetectiveEventLogs2(KapeTarget):
     name: ClassVar[str] = "Event Logs"
     base_path: ClassVar[Path] = Path("EventLogs.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -43,7 +43,7 @@ class USBDetectiveEventLogs2(KapeTarget):
 class USBDetectiveLNKFilesAndJumplists3(KapeTarget):
     name: ClassVar[str] = "LNKFilesAndJumplists"
     base_path: ClassVar[Path] = Path("LNKFilesAndJumplists.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -53,7 +53,7 @@ class USBDetectiveLNKFilesAndJumplists3(KapeTarget):
 class USBDetectiveAmcache4(KapeTarget):
     name: ClassVar[str] = "Amcache"
     base_path: ClassVar[Path] = Path("Amcache.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 

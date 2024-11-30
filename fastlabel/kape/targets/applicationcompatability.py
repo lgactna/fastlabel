@@ -13,7 +13,7 @@ from fastlabel.kape.core import KapeModule, KapeTarget, KapeTargetConfiguration
 class RecentFileCacheRecentFileCache0(KapeTarget):
     name: ClassVar[str] = "RecentFileCache"
     base_path: ClassVar[Path] = Path("C:\\Windows\\AppCompat\\Programs\\")
-    regex: ClassVar[str] = r"(?s:RecentFileCache\.bcf)\Z"
+    file_mask: ClassVar[str] = "RecentFileCache.bcf"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -23,7 +23,7 @@ class RecentFileCacheRecentFileCache0(KapeTarget):
 class RecentFileCacheRecentFileCache1(KapeTarget):
     name: ClassVar[str] = "RecentFileCache"
     base_path: ClassVar[Path] = Path("C:\\Windows.old\\Windows\\AppCompat\\Programs\\")
-    regex: ClassVar[str] = r"(?s:RecentFileCache\.bcf)\Z"
+    file_mask: ClassVar[str] = "RecentFileCache.bcf"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 

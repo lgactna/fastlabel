@@ -19,7 +19,7 @@ class RemoteUtilitiesappRemoteUtilitiesConnectionLogs0(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Program Files*\\Remote Utilities - Host\\Logs"
     )
-    regex: ClassVar[str] = r"(?s:rut_log_.*\.html)\Z"
+    file_mask: ClassVar[str] = "rut_log_*.html"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -33,7 +33,7 @@ class RemoteUtilitiesappRemoteUtilitiesInstallLog1(KapeTarget):
 
     name: ClassVar[str] = "RemoteUtilities Install Log"
     base_path: ClassVar[Path] = Path("C:\\ProgramData\\Remote Utilities")
-    regex: ClassVar[str] = r"(?s:install\.log)\Z"
+    file_mask: ClassVar[str] = "install.log"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -66,7 +66,7 @@ class UltraviewerUltraViewerLogs0(KapeTarget):
 
     name: ClassVar[str] = "UltraViewer Logs"
     base_path: ClassVar[Path] = Path("C:\\Users\\%user%\\AppData\\Roaming\\UltraViewer")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -82,7 +82,7 @@ class UltraviewerUltraViewerLogs1(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Program Files*\\UltraViewer\\UltraViewerService_log.txt"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -98,7 +98,7 @@ class UltraviewerUltraViewerLogs2(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Program Files*\\UltraViewer\\ConnectionLog.Log"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 

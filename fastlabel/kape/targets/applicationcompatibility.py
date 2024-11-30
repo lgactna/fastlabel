@@ -13,7 +13,7 @@ from fastlabel.kape.core import KapeModule, KapeTarget, KapeTargetConfiguration
 class AmcacheAmcache0(KapeTarget):
     name: ClassVar[str] = "Amcache"
     base_path: ClassVar[Path] = Path("C:\\Windows\\AppCompat\\Programs\\")
-    regex: ClassVar[str] = r"(?s:Amcache\.hve)\Z"
+    file_mask: ClassVar[str] = "Amcache.hve"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -23,7 +23,7 @@ class AmcacheAmcache0(KapeTarget):
 class AmcacheAmcache1(KapeTarget):
     name: ClassVar[str] = "Amcache"
     base_path: ClassVar[Path] = Path("C:\\Windows.old\\Windows\\AppCompat\\Programs\\")
-    regex: ClassVar[str] = r"(?s:Amcache\.hve)\Z"
+    file_mask: ClassVar[str] = "Amcache.hve"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -33,7 +33,7 @@ class AmcacheAmcache1(KapeTarget):
 class AmcacheAmcachetransactionfiles2(KapeTarget):
     name: ClassVar[str] = "Amcache transaction files"
     base_path: ClassVar[Path] = Path("C:\\Windows\\AppCompat\\Programs\\")
-    regex: ClassVar[str] = r"(?s:Amcache\.hve\.LOG.*)\Z"
+    file_mask: ClassVar[str] = "Amcache.hve.LOG*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -43,7 +43,7 @@ class AmcacheAmcachetransactionfiles2(KapeTarget):
 class AmcacheAmcachetransactionfiles3(KapeTarget):
     name: ClassVar[str] = "Amcache transaction files"
     base_path: ClassVar[Path] = Path("C:\\Windows.old\\Windows\\AppCompat\\Programs\\")
-    regex: ClassVar[str] = r"(?s:Amcache\.hve\.LOG.*)\Z"
+    file_mask: ClassVar[str] = "Amcache.hve.LOG*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 

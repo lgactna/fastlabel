@@ -19,7 +19,7 @@ class SQLiteDatabases4KVideoDownloader0(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\4kdownload.com\\4K Video Downloader\\4K Video Downloader"
     )
-    regex: ClassVar[str] = r"(?s:.*\.sqlite)\Z"
+    file_mask: ClassVar[str] = "*.sqlite"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -35,7 +35,7 @@ class SQLiteDatabasesMicrosoftOneNoteFullTextSearchIndex1(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\Microsoft.Office.OneNote_8wekyb3d8bbwe\\LocalState\\AppData\\Local\\OneNote\\*\\FullTextSearchIndex"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -51,7 +51,7 @@ class SQLiteDatabasesMicrosoftOneNoteRecentNotebooksSeenURLs2(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\Microsoft.Office.OneNote_8wekyb3d8bbwe\\LocalState\\AppData\\Local\\OneNote\\Notifications"
     )
-    regex: ClassVar[str] = r"(?s:RecentNotebooks_SeenURLs)\Z"
+    file_mask: ClassVar[str] = "RecentNotebooks_SeenURLs"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -68,7 +68,7 @@ class SQLiteDatabasesMicrosoftOneNoteAccessibilityCheckerIndex3(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\Microsoft.Office.OneNote_8wekyb3d8bbwe\\LocalState\\AppData\\Local\\OneNote\\16.0\\AccessibilityCheckerIndex"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -85,7 +85,7 @@ class SQLiteDatabasesMicrosoftOneNoteUserNoteTags4(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\Microsoft.Office.OneNote_8wekyb3d8bbwe\\LocalState\\AppData\\Local\\OneNote\\16.0\\NoteTags"
     )
-    regex: ClassVar[str] = r"(?s:.*LiveId\.db)\Z"
+    file_mask: ClassVar[str] = "*LiveId.db"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -101,7 +101,7 @@ class SQLiteDatabasesMicrosoftOneNoteRecentSearches5(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\Microsoft.Office.OneNote_8wekyb3d8bbwe\\LocalState\\AppData\\Local\\OneNote\\16.0\\RecentSearches"
     )
-    regex: ClassVar[str] = r"(?s:RecentSearches\.db)\Z"
+    file_mask: ClassVar[str] = "RecentSearches.db"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -113,7 +113,7 @@ class SQLiteDatabasesMicrosoftStickyNotes1607andlater6(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\Microsoft.MicrosoftStickyNotes*\\LocalState\\"
     )
-    regex: ClassVar[str] = r"(?s:plum\.sqlite.*)\Z"
+    file_mask: ClassVar[str] = "plum.sqlite*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -125,7 +125,7 @@ class SQLiteDatabasesMicrosoftToDoSQLiteDatabaseofToDotasks7(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Packages\\Microsoft.Todos_8wekyb3d8bbwe\\LocalState\\AccountsRoot\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:todosqlite\.db.*)\Z"
+    file_mask: ClassVar[str] = "todosqlite.db*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -137,7 +137,7 @@ class SQLiteDatabasesTeraCopyHistoryDatabases8(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Roaming\\TeraCopy\\History"
     )
-    regex: ClassVar[str] = r"(?s:.*\.db)\Z"
+    file_mask: ClassVar[str] = "*.db"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -147,7 +147,7 @@ class SQLiteDatabasesTeraCopyHistoryDatabases8(KapeTarget):
 class SQLiteDatabasesTeraCopyMainDatabase9(KapeTarget):
     name: ClassVar[str] = "TeraCopy - Main Database"
     base_path: ClassVar[Path] = Path("C:\\Users\\%user%\\AppData\\Roaming\\TeraCopy\\")
-    regex: ClassVar[str] = r"(?s:main\.db)\Z"
+    file_mask: ClassVar[str] = "main.db"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -162,7 +162,7 @@ class SQLiteDatabasesDropboxMetadata10(KapeTarget):
 
     name: ClassVar[str] = "Dropbox Metadata"
     base_path: ClassVar[Path] = Path("C:\\Users\\%user%\\AppData\\Local\\Dropbox\\*\\")
-    regex: ClassVar[str] = r"(?s:filecache\.db.*)\Z"
+    file_mask: ClassVar[str] = "filecache.db*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -177,7 +177,7 @@ class SQLiteDatabasesDropboxMetadata11(KapeTarget):
 
     name: ClassVar[str] = "Dropbox Metadata"
     base_path: ClassVar[Path] = Path("C:\\Users\\%user%\\AppData\\Local\\Dropbox\\*\\")
-    regex: ClassVar[str] = r"(?s:config\.dbx)\Z"
+    file_mask: ClassVar[str] = "config.dbx"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -192,7 +192,7 @@ class SQLiteDatabasesDropboxMetadata12(KapeTarget):
 
     name: ClassVar[str] = "Dropbox Metadata"
     base_path: ClassVar[Path] = Path("C:\\Users\\%user%\\AppData\\Local\\Dropbox\\*\\")
-    regex: ClassVar[str] = r"(?s:home\.db)\Z"
+    file_mask: ClassVar[str] = "home.db"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -208,7 +208,7 @@ class SQLiteDatabasesDropboxMetadata13(KapeTarget):
 
     name: ClassVar[str] = "Dropbox Metadata"
     base_path: ClassVar[Path] = Path("C:\\Users\\%user%\\AppData\\Local\\Dropbox\\*\\")
-    regex: ClassVar[str] = r"(?s:icon\.db)\Z"
+    file_mask: ClassVar[str] = "icon.db"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -223,7 +223,7 @@ class SQLiteDatabasesDropboxMetadata14(KapeTarget):
 
     name: ClassVar[str] = "Dropbox Metadata"
     base_path: ClassVar[Path] = Path("C:\\Users\\%user%\\AppData\\Local\\Dropbox\\*\\")
-    regex: ClassVar[str] = r"(?s:sync_history\.db)\Z"
+    file_mask: ClassVar[str] = "sync_history.db"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -239,7 +239,7 @@ class SQLiteDatabasesDropboxMetadata15(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Dropbox\\*\\sync\\"
     )
-    regex: ClassVar[str] = r"(?s:nucleus\.sqlite3.*)\Z"
+    file_mask: ClassVar[str] = "nucleus.sqlite3*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -254,7 +254,7 @@ class SQLiteDatabasesDropboxMetadata16(KapeTarget):
 
     name: ClassVar[str] = "Dropbox Metadata"
     base_path: ClassVar[Path] = Path("C:\\Users\\%user%\\AppData\\Local\\Dropbox\\")
-    regex: ClassVar[str] = r"(?s:host\.db)\Z"
+    file_mask: ClassVar[str] = "host.db"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -269,7 +269,7 @@ class SQLiteDatabasesDropboxMetadata17(KapeTarget):
 
     name: ClassVar[str] = "Dropbox Metadata"
     base_path: ClassVar[Path] = Path("C:\\Users\\%user%\\AppData\\Local\\Dropbox\\")
-    regex: ClassVar[str] = r"(?s:host\.dbx)\Z"
+    file_mask: ClassVar[str] = "host.dbx"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -286,7 +286,7 @@ class SQLiteDatabasesDropboxMetadata18(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Dropbox\\*\\sync\\"
     )
-    regex: ClassVar[str] = r"(?s:aggregation\.dbx)\Z"
+    file_mask: ClassVar[str] = "aggregation.dbx"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -301,7 +301,7 @@ class SQLiteDatabasesDropboxMetadata19(KapeTarget):
 
     name: ClassVar[str] = "Dropbox Metadata"
     base_path: ClassVar[Path] = Path("C:\\Users\\%user%\\AppData\\Local\\Dropbox\\*\\")
-    regex: ClassVar[str] = r"(?s:avatarcache\.db)\Z"
+    file_mask: ClassVar[str] = "avatarcache.db"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -316,7 +316,7 @@ class SQLiteDatabasesDropboxMetadata20(KapeTarget):
 
     name: ClassVar[str] = "Dropbox Metadata"
     base_path: ClassVar[Path] = Path("C:\\Users\\%user%\\AppData\\Local\\Dropbox\\*\\")
-    regex: ClassVar[str] = r"(?s:avatarcache\.db)\Z"
+    file_mask: ClassVar[str] = "avatarcache.db"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -332,7 +332,7 @@ class SQLiteDatabasesGoogleFileStreamMetadata21(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Google\\Drive\\*\\cloud_graph\\"
     )
-    regex: ClassVar[str] = r"(?s:cloud_graph\.db)\Z"
+    file_mask: ClassVar[str] = "cloud_graph.db"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -349,7 +349,7 @@ class SQLiteDatabasesGoogleFileStreamMetadata22(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Google\\Drive\\*\\TempData\\*\\change_buffer\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -365,7 +365,7 @@ class SQLiteDatabasesGoogleFileStreamMetadata23(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Google\\Drive\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:snapshot\.db)\Z"
+    file_mask: ClassVar[str] = "snapshot.db"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -381,7 +381,7 @@ class SQLiteDatabasesGoogleFileStreamMetadata24(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Google\\Drive\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:sync_config\.db)\Z"
+    file_mask: ClassVar[str] = "sync_config.db"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -391,7 +391,7 @@ class SQLiteDatabasesGoogleFileStreamMetadata24(KapeTarget):
 class SQLiteDatabasesFileZillaSQLite3LogFiles25(KapeTarget):
     name: ClassVar[str] = "FileZilla SQLite3 Log Files"
     base_path: ClassVar[Path] = Path("C:\\Users\\%user%\\AppData\\Roaming\\FileZilla\\")
-    regex: ClassVar[str] = r"(?s:(?>.*?\.sqlite3).*)\Z"
+    file_mask: ClassVar[str] = "*.sqlite3*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -403,7 +403,7 @@ class SQLiteDatabasesChromebookmarksXP26(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Documents and Settings\\%user%\\Local Settings\\Application Data\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Bookmarks.*)\Z"
+    file_mask: ClassVar[str] = "Bookmarks*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -415,7 +415,7 @@ class SQLiteDatabasesChromeCookiesXP27(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Documents and Settings\\%user%\\Local Settings\\Application Data\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Cookies.*)\Z"
+    file_mask: ClassVar[str] = "Cookies*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -427,7 +427,7 @@ class SQLiteDatabasesChromeCurrentSessionXP28(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Documents and Settings\\%user%\\Local Settings\\Application Data\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Current\ Session)\Z"
+    file_mask: ClassVar[str] = "Current Session"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -439,7 +439,7 @@ class SQLiteDatabasesChromeCurrentTabsXP29(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Documents and Settings\\%user%\\Local Settings\\Application Data\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Current\ Tabs)\Z"
+    file_mask: ClassVar[str] = "Current Tabs"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -451,7 +451,7 @@ class SQLiteDatabasesChromeFaviconsXP30(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Documents and Settings\\%user%\\Local Settings\\Application Data\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Favicons.*)\Z"
+    file_mask: ClassVar[str] = "Favicons*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -463,7 +463,7 @@ class SQLiteDatabasesChromeHistoryXP31(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Documents and Settings\\%user%\\Local Settings\\Application Data\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:History.*)\Z"
+    file_mask: ClassVar[str] = "History*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -475,7 +475,7 @@ class SQLiteDatabasesChromeLastSessionXP32(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Documents and Settings\\%user%\\Local Settings\\Application Data\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Last\ Session)\Z"
+    file_mask: ClassVar[str] = "Last Session"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -487,7 +487,7 @@ class SQLiteDatabasesChromeLastTabsXP33(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Documents and Settings\\%user%\\Local Settings\\Application Data\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Last\ Tabs)\Z"
+    file_mask: ClassVar[str] = "Last Tabs"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -499,7 +499,7 @@ class SQLiteDatabasesChromeLoginDataXP34(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Documents and Settings\\%user%\\Local Settings\\Application Data\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Login\ Data)\Z"
+    file_mask: ClassVar[str] = "Login Data"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -511,7 +511,7 @@ class SQLiteDatabasesChromePreferencesXP35(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Documents and Settings\\%user%\\Local Settings\\Application Data\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Preferences)\Z"
+    file_mask: ClassVar[str] = "Preferences"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -523,7 +523,7 @@ class SQLiteDatabasesChromeShortcutsXP36(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Documents and Settings\\%user%\\Local Settings\\Application Data\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Shortcuts.*)\Z"
+    file_mask: ClassVar[str] = "Shortcuts*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -535,7 +535,7 @@ class SQLiteDatabasesChromeTopSitesXP37(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Documents and Settings\\%user%\\Local Settings\\Application Data\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Top\ Sites.*)\Z"
+    file_mask: ClassVar[str] = "Top Sites*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -547,7 +547,7 @@ class SQLiteDatabasesChromeVisitedLinksXP38(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Documents and Settings\\%user%\\Local Settings\\Application Data\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Visited\ Links)\Z"
+    file_mask: ClassVar[str] = "Visited Links"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -559,7 +559,7 @@ class SQLiteDatabasesChromeWebDataXP39(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Documents and Settings\\%user%\\Local Settings\\Application Data\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Web\ Data.*)\Z"
+    file_mask: ClassVar[str] = "Web Data*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -571,7 +571,7 @@ class SQLiteDatabasesChromebookmarks40(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Bookmarks.*)\Z"
+    file_mask: ClassVar[str] = "Bookmarks*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -583,7 +583,7 @@ class SQLiteDatabasesChromeCookies41(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Cookies.*)\Z"
+    file_mask: ClassVar[str] = "Cookies*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -595,7 +595,7 @@ class SQLiteDatabasesChromeCurrentSession42(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Current\ Session)\Z"
+    file_mask: ClassVar[str] = "Current Session"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -607,7 +607,7 @@ class SQLiteDatabasesChromeCurrentTabs43(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Current\ Tabs)\Z"
+    file_mask: ClassVar[str] = "Current Tabs"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -619,7 +619,7 @@ class SQLiteDatabasesChromeDownloadMetadata44(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Download\ Metadata)\Z"
+    file_mask: ClassVar[str] = "Download Metadata"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -631,7 +631,7 @@ class SQLiteDatabasesChromeExtensionCookies45(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Extension\ Cookies)\Z"
+    file_mask: ClassVar[str] = "Extension Cookies"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -643,7 +643,7 @@ class SQLiteDatabasesChromeFavicons46(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Favicons.*)\Z"
+    file_mask: ClassVar[str] = "Favicons*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -655,7 +655,7 @@ class SQLiteDatabasesChromeHistory47(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:History.*)\Z"
+    file_mask: ClassVar[str] = "History*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -667,7 +667,7 @@ class SQLiteDatabasesChromeLastSession48(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Last\ Session)\Z"
+    file_mask: ClassVar[str] = "Last Session"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -679,7 +679,7 @@ class SQLiteDatabasesChromeLastTabs49(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Last\ Tabs)\Z"
+    file_mask: ClassVar[str] = "Last Tabs"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -691,7 +691,7 @@ class SQLiteDatabasesChromeLoginData50(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Login\ Data)\Z"
+    file_mask: ClassVar[str] = "Login Data"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -703,7 +703,7 @@ class SQLiteDatabasesChromeMediaHistory51(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Media\ History.*)\Z"
+    file_mask: ClassVar[str] = "Media History*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -715,7 +715,7 @@ class SQLiteDatabasesChromeNetworkActionPredictor52(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Network\ Action\ Predictor)\Z"
+    file_mask: ClassVar[str] = "Network Action Predictor"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -727,7 +727,7 @@ class SQLiteDatabasesChromeNetworkPersistentState53(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Network\ Persistent\ State)\Z"
+    file_mask: ClassVar[str] = "Network Persistent State"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -739,7 +739,7 @@ class SQLiteDatabasesChromePreferences54(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Preferences)\Z"
+    file_mask: ClassVar[str] = "Preferences"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -751,7 +751,7 @@ class SQLiteDatabasesChromeQuotaManager55(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:QuotaManager)\Z"
+    file_mask: ClassVar[str] = "QuotaManager"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -763,7 +763,7 @@ class SQLiteDatabasesChromeReportingandNEL56(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Reporting\ and\ NEL)\Z"
+    file_mask: ClassVar[str] = "Reporting and NEL"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -775,7 +775,7 @@ class SQLiteDatabasesChromeShortcuts57(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Shortcuts.*)\Z"
+    file_mask: ClassVar[str] = "Shortcuts*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -787,7 +787,7 @@ class SQLiteDatabasesChromeTopSites58(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Top\ Sites.*)\Z"
+    file_mask: ClassVar[str] = "Top Sites*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -799,7 +799,7 @@ class SQLiteDatabasesChromeTrustTokens59(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Trust\ Tokens.*)\Z"
+    file_mask: ClassVar[str] = "Trust Tokens*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -811,7 +811,7 @@ class SQLiteDatabasesChromeSyncDataDatabase60(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Google\\Chrome\\User Data\\*\\Sync Data"
     )
-    regex: ClassVar[str] = r"(?s:SyncData\.sqlite3)\Z"
+    file_mask: ClassVar[str] = "SyncData.sqlite3"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -823,7 +823,7 @@ class SQLiteDatabasesChromeVisitedLinks61(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Visited\ Links)\Z"
+    file_mask: ClassVar[str] = "Visited Links"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -835,7 +835,7 @@ class SQLiteDatabasesChromeWebData62(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Google\\Chrome\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Web\ Data.*)\Z"
+    file_mask: ClassVar[str] = "Web Data*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -847,7 +847,7 @@ class SQLiteDatabasesEdgebookmarks63(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Microsoft\\Edge\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Bookmarks.*)\Z"
+    file_mask: ClassVar[str] = "Bookmarks*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -859,7 +859,7 @@ class SQLiteDatabasesEdgeCollections64(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Microsoft\\Edge\\User Data\\*\\Collections"
     )
-    regex: ClassVar[str] = r"(?s:collectionsSQLite)\Z"
+    file_mask: ClassVar[str] = "collectionsSQLite"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -871,7 +871,7 @@ class SQLiteDatabasesEdgeCookies65(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Microsoft\\Edge\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Cookies.*)\Z"
+    file_mask: ClassVar[str] = "Cookies*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -883,7 +883,7 @@ class SQLiteDatabasesEdgeCurrentSession66(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Microsoft\\Edge\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Current\ Session)\Z"
+    file_mask: ClassVar[str] = "Current Session"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -895,7 +895,7 @@ class SQLiteDatabasesEdgeCurrentTabs67(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Microsoft\\Edge\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Current\ Tabs)\Z"
+    file_mask: ClassVar[str] = "Current Tabs"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -907,7 +907,7 @@ class SQLiteDatabasesEdgeFavicons68(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Microsoft\\Edge\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Favicons.*)\Z"
+    file_mask: ClassVar[str] = "Favicons*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -919,7 +919,7 @@ class SQLiteDatabasesEdgeHistory69(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Microsoft\\Edge\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:History.*)\Z"
+    file_mask: ClassVar[str] = "History*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -931,7 +931,7 @@ class SQLiteDatabasesEdgeLastSession70(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Microsoft\\Edge\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Last\ Session)\Z"
+    file_mask: ClassVar[str] = "Last Session"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -943,7 +943,7 @@ class SQLiteDatabasesEdgeLastTabs71(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Microsoft\\Edge\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Last\ Tabs)\Z"
+    file_mask: ClassVar[str] = "Last Tabs"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -955,7 +955,7 @@ class SQLiteDatabasesEdgeLoginData72(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Microsoft\\Edge\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Login\ Data)\Z"
+    file_mask: ClassVar[str] = "Login Data"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -967,7 +967,7 @@ class SQLiteDatabasesEdgeMediaHistory73(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Microsoft\\Edge\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Media\ History.*)\Z"
+    file_mask: ClassVar[str] = "Media History*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -979,7 +979,7 @@ class SQLiteDatabasesEdgeNetworkActionPredictor74(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Microsoft\\Edge\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Network\ Action\ Predictor)\Z"
+    file_mask: ClassVar[str] = "Network Action Predictor"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -991,7 +991,7 @@ class SQLiteDatabasesEdgePreferences75(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Microsoft\\Edge\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Preferences)\Z"
+    file_mask: ClassVar[str] = "Preferences"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1003,7 +1003,7 @@ class SQLiteDatabasesEdgeShortcuts76(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Microsoft\\Edge\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Shortcuts.*)\Z"
+    file_mask: ClassVar[str] = "Shortcuts*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1015,7 +1015,7 @@ class SQLiteDatabasesEdgeTopSites77(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Microsoft\\Edge\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Top\ Sites.*)\Z"
+    file_mask: ClassVar[str] = "Top Sites*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1027,7 +1027,7 @@ class SQLiteDatabasesEdgeSyncDataDatabase78(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Microsoft\\Edge\\User Data\\*\\Sync Data"
     )
-    regex: ClassVar[str] = r"(?s:SyncData\.sqlite3)\Z"
+    file_mask: ClassVar[str] = "SyncData.sqlite3"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1039,7 +1039,7 @@ class SQLiteDatabasesEdgeBookmarks79(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Microsoft\\Edge\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Bookmarks.*)\Z"
+    file_mask: ClassVar[str] = "Bookmarks*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1051,7 +1051,7 @@ class SQLiteDatabasesEdgeVisitedLinks80(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Microsoft\\Edge\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Visited\ Links)\Z"
+    file_mask: ClassVar[str] = "Visited Links"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1063,7 +1063,7 @@ class SQLiteDatabasesEdgeWebData81(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Microsoft\\Edge\\User Data\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:Web\ Data.*)\Z"
+    file_mask: ClassVar[str] = "Web Data*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1075,7 +1075,7 @@ class SQLiteDatabasesAddons82(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:addons\.sqlite.*)\Z"
+    file_mask: ClassVar[str] = "addons.sqlite*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1087,7 +1087,7 @@ class SQLiteDatabasesBookmarks83(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\*\\weave\\"
     )
-    regex: ClassVar[str] = r"(?s:bookmarks\.sqlite.*)\Z"
+    file_mask: ClassVar[str] = "bookmarks.sqlite*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1099,7 +1099,7 @@ class SQLiteDatabasesCookies84(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:cookies\.sqlite.*)\Z"
+    file_mask: ClassVar[str] = "cookies.sqlite*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1111,7 +1111,7 @@ class SQLiteDatabasesCookies85(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:firefox_cookies\.sqlite.*)\Z"
+    file_mask: ClassVar[str] = "firefox_cookies.sqlite*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1123,7 +1123,7 @@ class SQLiteDatabasesDownloads86(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:downloads\.sqlite.*)\Z"
+    file_mask: ClassVar[str] = "downloads.sqlite*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1135,7 +1135,7 @@ class SQLiteDatabasesFavicons87(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:favicons\.sqlite.*)\Z"
+    file_mask: ClassVar[str] = "favicons.sqlite*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1147,7 +1147,7 @@ class SQLiteDatabasesFormhistory88(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:formhistory\.sqlite.*)\Z"
+    file_mask: ClassVar[str] = "formhistory.sqlite*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1159,7 +1159,7 @@ class SQLiteDatabasesPermissions89(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:permissions\.sqlite.*)\Z"
+    file_mask: ClassVar[str] = "permissions.sqlite*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1171,7 +1171,7 @@ class SQLiteDatabasesPlaces90(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:places\.sqlite.*)\Z"
+    file_mask: ClassVar[str] = "places.sqlite*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1183,7 +1183,7 @@ class SQLiteDatabasesProtections91(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:protections\.sqlite.*)\Z"
+    file_mask: ClassVar[str] = "protections.sqlite*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1195,7 +1195,7 @@ class SQLiteDatabasesSearch92(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:search\.sqlite.*)\Z"
+    file_mask: ClassVar[str] = "search.sqlite*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1207,7 +1207,7 @@ class SQLiteDatabasesSignons93(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:signons\.sqlite.*)\Z"
+    file_mask: ClassVar[str] = "signons.sqlite*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1219,7 +1219,7 @@ class SQLiteDatabasesStorageSync94(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:storage\-sync\.sqlite.*)\Z"
+    file_mask: ClassVar[str] = "storage-sync.sqlite*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1231,7 +1231,7 @@ class SQLiteDatabasesWebappstore95(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:webappstore\.sqlite.*)\Z"
+    file_mask: ClassVar[str] = "webappstore.sqlite*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1243,7 +1243,7 @@ class SQLiteDatabasesWindows10NotificationDB96(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Microsoft\\Windows\\Notifications\\"
     )
-    regex: ClassVar[str] = r"(?s:wpndatabase\.db)\Z"
+    file_mask: ClassVar[str] = "wpndatabase.db"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1255,7 +1255,7 @@ class SQLiteDatabasesWindows10NotificationDB97(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Microsoft\\Windows\\Notifications\\"
     )
-    regex: ClassVar[str] = r"(?s:appdb\.dat)\Z"
+    file_mask: ClassVar[str] = "appdb.dat"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1267,7 +1267,7 @@ class SQLiteDatabasesActivitiesCachedb98(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\ConnectedDevicesPlatform\\*\\"
     )
-    regex: ClassVar[str] = r"(?s:ActivitiesCache\.db.*)\Z"
+    file_mask: ClassVar[str] = "ActivitiesCache.db*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1277,7 +1277,7 @@ class SQLiteDatabasesActivitiesCachedb98(KapeTarget):
 class SQLiteDatabasesUpdateStoredb99(KapeTarget):
     name: ClassVar[str] = "Update Store.db"
     base_path: ClassVar[Path] = Path("C:\\ProgramData\\USOPrivate\\UpdateStore")
-    regex: ClassVar[str] = r"(?s:store\.db)\Z"
+    file_mask: ClassVar[str] = "store.db"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1291,7 +1291,7 @@ class SQLiteDatabasesBitdefenderSQLiteDBFiles100(KapeTarget):
 
     name: ClassVar[str] = "Bitdefender SQLite DB Files"
     base_path: ClassVar[Path] = Path("C:\\Program Files*\\Bitdefender*\\")
-    regex: ClassVar[str] = r"(?s:regex:.*\.\+\\\.\(db\|db\-wal\|db\-shm\))\Z"
+    file_mask: ClassVar[str] = "regex:*.+\\.(db|db-wal|db-shm)"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1303,7 +1303,7 @@ class SQLiteDatabasesEventTranscriptdb101(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\ProgramData\\Microsoft\\Diagnosis\\EventTranscript"
     )
-    regex: ClassVar[str] = r"(?s:EventTranscript\.db.*)\Z"
+    file_mask: ClassVar[str] = "EventTranscript.db*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -1315,7 +1315,7 @@ class SQLiteDatabasesEventTranscriptdb102(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Windows.old\\ProgramData\\Microsoft\\Diagnosis\\EventTranscript"
     )
-    regex: ClassVar[str] = r"(?s:EventTranscript\.db.*)\Z"
+    file_mask: ClassVar[str] = "EventTranscript.db*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 

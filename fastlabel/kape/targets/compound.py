@@ -13,7 +13,7 @@ from fastlabel.kape.core import KapeModule, KapeTarget, KapeTargetConfiguration
 class MessagingClientsIRCClients0(KapeTarget):
     name: ClassVar[str] = "IRC Clients"
     base_path: ClassVar[Path] = Path("IRCClients.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -23,7 +23,7 @@ class MessagingClientsIRCClients0(KapeTarget):
 class MessagingClientsCiscoJabber1(KapeTarget):
     name: ClassVar[str] = "Cisco Jabber"
     base_path: ClassVar[Path] = Path("CiscoJabber.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -33,7 +33,7 @@ class MessagingClientsCiscoJabber1(KapeTarget):
 class MessagingClientsDiscord2(KapeTarget):
     name: ClassVar[str] = "Discord"
     base_path: ClassVar[Path] = Path("Discord.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -43,7 +43,7 @@ class MessagingClientsDiscord2(KapeTarget):
 class MessagingClientsMattermost3(KapeTarget):
     name: ClassVar[str] = "Mattermost"
     base_path: ClassVar[Path] = Path("Mattermost.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -53,7 +53,7 @@ class MessagingClientsMattermost3(KapeTarget):
 class MessagingClientsMicrosoftTeams4(KapeTarget):
     name: ClassVar[str] = "Microsoft Teams"
     base_path: ClassVar[Path] = Path("MicrosoftTeams.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -63,7 +63,7 @@ class MessagingClientsMicrosoftTeams4(KapeTarget):
 class MessagingClientsSignal5(KapeTarget):
     name: ClassVar[str] = "Signal"
     base_path: ClassVar[Path] = Path("Signal.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -73,7 +73,7 @@ class MessagingClientsSignal5(KapeTarget):
 class MessagingClientsSkype6(KapeTarget):
     name: ClassVar[str] = "Skype"
     base_path: ClassVar[Path] = Path("Skype.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -83,7 +83,7 @@ class MessagingClientsSkype6(KapeTarget):
 class MessagingClientsSlack7(KapeTarget):
     name: ClassVar[str] = "Slack"
     base_path: ClassVar[Path] = Path("Slack.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -93,7 +93,7 @@ class MessagingClientsSlack7(KapeTarget):
 class MessagingClientsTelegram8(KapeTarget):
     name: ClassVar[str] = "Telegram"
     base_path: ClassVar[Path] = Path("Telegram.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -103,7 +103,7 @@ class MessagingClientsTelegram8(KapeTarget):
 class MessagingClientsViber9(KapeTarget):
     name: ClassVar[str] = "Viber"
     base_path: ClassVar[Path] = Path("Viber.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -113,7 +113,7 @@ class MessagingClientsViber9(KapeTarget):
 class MessagingClientsWhatsApp10(KapeTarget):
     name: ClassVar[str] = "WhatsApp"
     base_path: ClassVar[Path] = Path("WhatsApp.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -151,7 +151,7 @@ class MessagingClients(KapeTargetConfiguration):
 class ServerTriageWebServers0(KapeTarget):
     name: ClassVar[str] = "WebServers"
     base_path: ClassVar[Path] = Path("WebServers.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -161,7 +161,7 @@ class ServerTriageWebServers0(KapeTarget):
 class ServerTriageExchange1(KapeTarget):
     name: ClassVar[str] = "Exchange"
     base_path: ClassVar[Path] = Path("Exchange.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -171,7 +171,7 @@ class ServerTriageExchange1(KapeTarget):
 class ServerTriageConfluence2(KapeTarget):
     name: ClassVar[str] = "Confluence"
     base_path: ClassVar[Path] = Path("ConfluenceLogs.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -181,7 +181,7 @@ class ServerTriageConfluence2(KapeTarget):
 class ServerTriageFileZillaServer3(KapeTarget):
     name: ClassVar[str] = "FileZilla Server"
     base_path: ClassVar[Path] = Path("FileZillaServer.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -191,7 +191,7 @@ class ServerTriageFileZillaServer3(KapeTarget):
 class ServerTriageOpenSSHServer4(KapeTarget):
     name: ClassVar[str] = "OpenSSH Server"
     base_path: ClassVar[Path] = Path("OpenSSHServer.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -201,7 +201,7 @@ class ServerTriageOpenSSHServer4(KapeTarget):
 class ServerTriageManageEngine5(KapeTarget):
     name: ClassVar[str] = "ManageEngine"
     base_path: ClassVar[Path] = Path("ManageEngineLogs.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 

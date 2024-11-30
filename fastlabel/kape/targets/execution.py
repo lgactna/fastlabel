@@ -17,7 +17,7 @@ class OfficeDiagnosticsOfficeDiagnostics0(KapeTarget):
 
     name: ClassVar[str] = "Office Diagnostics"
     base_path: ClassVar[Path] = Path("C:\\Users\\%user%\\AppData\\Local\\Diagnostics\\")
-    regex: ClassVar[str] = r"(?s:PCW\.debugreport\.xml)\Z"
+    file_mask: ClassVar[str] = "PCW.debugreport.xml"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -33,7 +33,7 @@ class OfficeDiagnosticsOfficeElevatedDiagnostics1(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\ElevatedDiagnostics\\"
     )
-    regex: ClassVar[str] = r"(?s:PCW\.debugreport\.xml)\Z"
+    file_mask: ClassVar[str] = "PCW.debugreport.xml"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -62,7 +62,7 @@ class OfficeDiagnostics(KapeTargetConfiguration):
 class SRUMSRUM0(KapeTarget):
     name: ClassVar[str] = "SRUM"
     base_path: ClassVar[Path] = Path("C:\\Windows\\System32\\SRU\\")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -72,7 +72,7 @@ class SRUMSRUM0(KapeTarget):
 class SRUMSRUM1(KapeTarget):
     name: ClassVar[str] = "SRUM"
     base_path: ClassVar[Path] = Path("C:\\Windows.old\\Windows\\System32\\SRU\\")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -82,7 +82,7 @@ class SRUMSRUM1(KapeTarget):
 class SRUMSOFTWAREregistryhive2(KapeTarget):
     name: ClassVar[str] = "SOFTWARE registry hive"
     base_path: ClassVar[Path] = Path("C:\\Windows\\System32\\config\\")
-    regex: ClassVar[str] = r"(?s:SOFTWARE)\Z"
+    file_mask: ClassVar[str] = "SOFTWARE"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -92,7 +92,7 @@ class SRUMSOFTWAREregistryhive2(KapeTarget):
 class SRUMSOFTWAREregistryhive3(KapeTarget):
     name: ClassVar[str] = "SOFTWARE registry hive"
     base_path: ClassVar[Path] = Path("C:\\Windows.old\\Windows\\System32\\config\\")
-    regex: ClassVar[str] = r"(?s:SOFTWARE)\Z"
+    file_mask: ClassVar[str] = "SOFTWARE"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -102,7 +102,7 @@ class SRUMSOFTWAREregistryhive3(KapeTarget):
 class SRUMSOFTWAREregistrytransactionfiles4(KapeTarget):
     name: ClassVar[str] = "SOFTWARE registry transaction files"
     base_path: ClassVar[Path] = Path("C:\\Windows\\System32\\config\\")
-    regex: ClassVar[str] = r"(?s:SOFTWARE\.LOG.*)\Z"
+    file_mask: ClassVar[str] = "SOFTWARE.LOG*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -112,7 +112,7 @@ class SRUMSOFTWAREregistrytransactionfiles4(KapeTarget):
 class SRUMSOFTWAREregistrytransactionfiles5(KapeTarget):
     name: ClassVar[str] = "SOFTWARE registry transaction files"
     base_path: ClassVar[Path] = Path("C:\\Windows.old\\Windows\\System32\\config\\")
-    regex: ClassVar[str] = r"(?s:SOFTWARE\.LOG.*)\Z"
+    file_mask: ClassVar[str] = "SOFTWARE.LOG*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 

@@ -17,7 +17,7 @@ class EmsisoftEmsisoftScanLogs0(KapeTarget):
 
     name: ClassVar[str] = "Emsisoft Scan Logs"
     base_path: ClassVar[Path] = Path("C:\\ProgramData\\Emsisoft\\Reports\\")
-    regex: ClassVar[str] = r"(?s:scan.*\.txt)\Z"
+    file_mask: ClassVar[str] = "scan*.txt"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -48,7 +48,7 @@ class AmmyyAmmyyProgramData0(KapeTarget):
 
     name: ClassVar[str] = "Ammyy Program Data"
     base_path: ClassVar[Path] = Path("C:\\ProgramData\\Ammyy\\")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -81,7 +81,7 @@ class KaseyaKaseyaLiveConnectLogsXP0(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Documents and Settings\\%user%\\Application Data\\Kaseya\\Log\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -98,7 +98,7 @@ class KaseyaKaseyaLiveConnectLogs1(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Kaseya\\Log\\KaseyaLiveConnect\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -115,7 +115,7 @@ class KaseyaKaseyaAgentEndpointServiceLogsXP2(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Documents and Settings\\All Users\\Application Data\\Kaseya\\Log\\Endpoint\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -130,7 +130,7 @@ class KaseyaKaseyaAgentEndpointServiceLogs3(KapeTarget):
 
     name: ClassVar[str] = "Kaseya Agent Endpoint Service Logs"
     base_path: ClassVar[Path] = Path("C:\\ProgramData\\Kaseya\\Log\\Endpoint\\")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -145,7 +145,7 @@ class KaseyaKaseyaAgentServiceLog4(KapeTarget):
 
     name: ClassVar[str] = "Kaseya Agent Service Log"
     base_path: ClassVar[Path] = Path("C:\\Program Files*\\Kaseya\\*\\")
-    regex: ClassVar[str] = r"(?s:agentmon\.log.*)\Z"
+    file_mask: ClassVar[str] = "agentmon.log*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -159,7 +159,7 @@ class KaseyaKaseyaSetupLog5(KapeTarget):
 
     name: ClassVar[str] = "Kaseya Setup Log"
     base_path: ClassVar[Path] = Path("C:\\Users\\%user%\\AppData\\Local\\Temp\\")
-    regex: ClassVar[str] = r"(?s:KASetup\.log)\Z"
+    file_mask: ClassVar[str] = "KASetup.log"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -173,7 +173,7 @@ class KaseyaKaseyaSetupLog6(KapeTarget):
 
     name: ClassVar[str] = "Kaseya Setup Log"
     base_path: ClassVar[Path] = Path("C:\\Windows\\Temp\\")
-    regex: ClassVar[str] = r"(?s:KASetup\.log)\Z"
+    file_mask: ClassVar[str] = "KASetup.log"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -187,7 +187,7 @@ class KaseyaKaseyaSetupLog7(KapeTarget):
 
     name: ClassVar[str] = "Kaseya Setup Log"
     base_path: ClassVar[Path] = Path("C:\\Windows.old\\Windows\\Temp\\")
-    regex: ClassVar[str] = r"(?s:KASetup\.log)\Z"
+    file_mask: ClassVar[str] = "KASetup.log"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -204,7 +204,7 @@ class KaseyaKaseyaAgentEdgeServiceLogs8(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\ProgramData\\Kaseya\\Log\\KaseyaEdgeServices\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -240,7 +240,7 @@ class Kaseya(KapeTargetConfiguration):
 class LogMeInLogMeInProgramDataLogs0(KapeTarget):
     name: ClassVar[str] = "LogMeIn ProgramData Logs"
     base_path: ClassVar[Path] = Path("C:\\ProgramData\\LogMeIn\\Logs\\")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -254,7 +254,7 @@ class LogMeInLogMeInApplicationEvents1(KapeTarget):
 
     name: ClassVar[str] = "LogMeIn Application Events"
     base_path: ClassVar[Path] = Path("ApplicationEvents.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -271,7 +271,7 @@ class LogMeInLogMeInApplicationLogs2(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\temp\\LogMeInLogs\\"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -305,7 +305,7 @@ class OpenVPNClientOpenVPNClientConfig0(KapeTarget):
 
     name: ClassVar[str] = "OpenVPN Client Config"
     base_path: ClassVar[Path] = Path("C:\\Users\\%user%\\OpenVPN\\config\\")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -319,7 +319,7 @@ class OpenVPNClientOpenVPNClientConfig1(KapeTarget):
 
     name: ClassVar[str] = "OpenVPN Client Config"
     base_path: ClassVar[Path] = Path("C:\\Program Files*\\OpenVPN\\config")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = True
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -333,7 +333,7 @@ class OpenVPNClientOpenVPNClientConfig2(KapeTarget):
 
     name: ClassVar[str] = "OpenVPN Client Config"
     base_path: ClassVar[Path] = Path("C:\\Users\\%user%\\OpenVPN\\log\\")
-    regex: ClassVar[str] = r"(?s:.*\.log)\Z"
+    file_mask: ClassVar[str] = "*.log"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -369,7 +369,7 @@ class ProtonVPNProtonVPNConnectionLogs0(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\ProtonVPN\\Logs"
     )
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -400,7 +400,7 @@ class RadminRadminServer32bitLog0(KapeTarget):
 
     name: ClassVar[str] = "Radmin Server 32bit Log"
     base_path: ClassVar[Path] = Path("C:\\Windows\\SysWOW64\\rserver30\\")
-    regex: ClassVar[str] = r"(?s:Radm_log\.htm)\Z"
+    file_mask: ClassVar[str] = "Radm_log.htm"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -415,7 +415,7 @@ class RadminRadminServer64bitLog1(KapeTarget):
 
     name: ClassVar[str] = "Radmin Server 64bit Log"
     base_path: ClassVar[Path] = Path("C:\\Windows\\System32\\rserver30\\")
-    regex: ClassVar[str] = r"(?s:Radm_log\.htm)\Z"
+    file_mask: ClassVar[str] = "Radm_log.htm"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -429,7 +429,7 @@ class RadminRadminServer32bitChats2(KapeTarget):
 
     name: ClassVar[str] = "Radmin Server 32bit Chats"
     base_path: ClassVar[Path] = Path("C:\\Windows\\SysWOW64\\rserver30\\CHATLOGS\\*\\")
-    regex: ClassVar[str] = r"(?s:.*\.htm)\Z"
+    file_mask: ClassVar[str] = "*.htm"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -443,7 +443,7 @@ class RadminRadminServer64bitChats3(KapeTarget):
 
     name: ClassVar[str] = "Radmin Server 64bit Chats"
     base_path: ClassVar[Path] = Path("C:\\Windows\\System32\\rserver30\\CHATLOGS\\*\\")
-    regex: ClassVar[str] = r"(?s:.*\.htm)\Z"
+    file_mask: ClassVar[str] = "*.htm"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -457,7 +457,7 @@ class RadminRadminViewerChats4(KapeTarget):
 
     name: ClassVar[str] = "Radmin Viewer Chats"
     base_path: ClassVar[Path] = Path("C:\\Users\\%user%\\Documents\\ChatLogs\\*\\")
-    regex: ClassVar[str] = r"(?s:.*\.htm)\Z"
+    file_mask: ClassVar[str] = "*.htm"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -493,7 +493,7 @@ class ScreenConnectScreenConnectSessionDatabase0(KapeTarget):
 
     name: ClassVar[str] = "ScreenConnect Session Database"
     base_path: ClassVar[Path] = Path("C:\\Program Files*\\ScreenConnect\\App_Data\\")
-    regex: ClassVar[str] = r"(?s:Session\.db)\Z"
+    file_mask: ClassVar[str] = "Session.db"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -507,7 +507,7 @@ class ScreenConnectScreenConnectSessionDatabase1(KapeTarget):
 
     name: ClassVar[str] = "ScreenConnect Session Database"
     base_path: ClassVar[Path] = Path("C:\\Program Files*\\ScreenConnect\\App_Data\\")
-    regex: ClassVar[str] = r"(?s:User\.xml)\Z"
+    file_mask: ClassVar[str] = "User.xml"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -521,7 +521,7 @@ class ScreenConnectScreenConnectApplicationEvents2(KapeTarget):
 
     name: ClassVar[str] = "ScreenConnect Application Events"
     base_path: ClassVar[Path] = Path("ApplicationEvents.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -535,7 +535,7 @@ class ScreenConnectScreenConnectUserConfig3(KapeTarget):
 
     name: ClassVar[str] = "ScreenConnect User Config"
     base_path: ClassVar[Path] = Path("C:\\ProgramData\\ScreenConnect Client*\\")
-    regex: ClassVar[str] = r"(?s:user\.config)\Z"
+    file_mask: ClassVar[str] = "user.config"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -570,7 +570,7 @@ class VNCLogsRealVNCLog0(KapeTarget):
 
     name: ClassVar[str] = "RealVNC Log"
     base_path: ClassVar[Path] = Path("C:\\Users\\%user%\\AppData\\Local\\RealVNC\\")
-    regex: ClassVar[str] = r"(?s:vncserver\.log)\Z"
+    file_mask: ClassVar[str] = "vncserver.log"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -584,7 +584,7 @@ class VNCLogsRealVNCApplicationLogs1(KapeTarget):
 
     name: ClassVar[str] = "RealVNC Application Logs"
     base_path: ClassVar[Path] = Path("ApplicationEvents.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -613,7 +613,7 @@ class VNCLogs(KapeTargetConfiguration):
 class RemoteAdminAmmyy0(KapeTarget):
     name: ClassVar[str] = "Ammyy"
     base_path: ClassVar[Path] = Path("Ammyy.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -623,7 +623,7 @@ class RemoteAdminAmmyy0(KapeTarget):
 class RemoteAdminAnyDesk1(KapeTarget):
     name: ClassVar[str] = "AnyDesk"
     base_path: ClassVar[Path] = Path("AnyDesk.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -633,7 +633,7 @@ class RemoteAdminAnyDesk1(KapeTarget):
 class RemoteAdminChromeRemoteDesktop2(KapeTarget):
     name: ClassVar[str] = "Chrome Remote Desktop"
     base_path: ClassVar[Path] = Path("ApplicationEvents.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -643,7 +643,7 @@ class RemoteAdminChromeRemoteDesktop2(KapeTarget):
 class RemoteAdminKaseya3(KapeTarget):
     name: ClassVar[str] = "Kaseya"
     base_path: ClassVar[Path] = Path("Kaseya.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -653,7 +653,7 @@ class RemoteAdminKaseya3(KapeTarget):
 class RemoteAdminLogMeIn4(KapeTarget):
     name: ClassVar[str] = "LogMeIn"
     base_path: ClassVar[Path] = Path("LogMeIn.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -663,7 +663,7 @@ class RemoteAdminLogMeIn4(KapeTarget):
 class RemoteAdminmRemoteNG5(KapeTarget):
     name: ClassVar[str] = "mRemoteNG"
     base_path: ClassVar[Path] = Path("mRemoteNG.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -677,7 +677,7 @@ class RemoteAdminRadmin6(KapeTarget):
 
     name: ClassVar[str] = "Radmin"
     base_path: ClassVar[Path] = Path("Radmin.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -691,7 +691,7 @@ class RemoteAdminRDPCache7(KapeTarget):
 
     name: ClassVar[str] = "RDP Cache"
     base_path: ClassVar[Path] = Path("RDPCache.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -705,7 +705,7 @@ class RemoteAdminRDPLogs8(KapeTarget):
 
     name: ClassVar[str] = "RDP Logs"
     base_path: ClassVar[Path] = Path("RDPLogs.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -719,7 +719,7 @@ class RemoteAdminRemoteUtilities9(KapeTarget):
 
     name: ClassVar[str] = "Remote Utilities"
     base_path: ClassVar[Path] = Path("RemoteUtilities_app.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -729,7 +729,7 @@ class RemoteAdminRemoteUtilities9(KapeTarget):
 class RemoteAdminScreenConnectConnectWiseControl10(KapeTarget):
     name: ClassVar[str] = "ScreenConnect (ConnectWise Control)"
     base_path: ClassVar[Path] = Path("ScreenConnect.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -739,7 +739,7 @@ class RemoteAdminScreenConnectConnectWiseControl10(KapeTarget):
 class RemoteAdminSplashtop11(KapeTarget):
     name: ClassVar[str] = "Splashtop"
     base_path: ClassVar[Path] = Path("Splashtop.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -749,7 +749,7 @@ class RemoteAdminSplashtop11(KapeTarget):
 class RemoteAdminSupremoRemoteDesktopControl12(KapeTarget):
     name: ClassVar[str] = "Supremo Remote Desktop Control"
     base_path: ClassVar[Path] = Path("SupremoRemoteDesktop.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -759,7 +759,7 @@ class RemoteAdminSupremoRemoteDesktopControl12(KapeTarget):
 class RemoteAdminTeamViewer13(KapeTarget):
     name: ClassVar[str] = "TeamViewer"
     base_path: ClassVar[Path] = Path("TeamViewerLogs.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -769,7 +769,7 @@ class RemoteAdminTeamViewer13(KapeTarget):
 class RemoteAdminUltraViewer14(KapeTarget):
     name: ClassVar[str] = "UltraViewer"
     base_path: ClassVar[Path] = Path("UltraViewer.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -779,7 +779,7 @@ class RemoteAdminUltraViewer14(KapeTarget):
 class RemoteAdminVNC15(KapeTarget):
     name: ClassVar[str] = "VNC"
     base_path: ClassVar[Path] = Path("VNCLogs.tkape")
-    regex: ClassVar[str] = r"(?s:.*)\Z"
+    file_mask: ClassVar[str] = "*"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 

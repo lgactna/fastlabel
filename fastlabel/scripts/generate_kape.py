@@ -1,4 +1,3 @@
-import fnmatch
 import uuid
 from collections import defaultdict
 from pathlib import Path
@@ -93,7 +92,9 @@ class KapeTargetDefinition(BaseModel):
         output += (
             f'    base_path: ClassVar[Path] = Path("{to_valid_pystring(self.path)}")\n'
         )
-        output += f'    regex: ClassVar[str] = r"{fnmatch.translate(self.file_mask)}"\n'
+        output += (
+            f'    file_mask: ClassVar[str] = "{to_valid_pystring(self.file_mask)}"\n'
+        )
         output += f"    recursive: ClassVar[bool] = {self.recursive}\n"
         output += "    associated_modules: ClassVar[list[Type[KapeModule]]] = []\n\n"
 
@@ -465,20 +466,20 @@ def generate_files_from_modules(modules: list[KapeModuleDefinition]) -> None:
 
 if __name__ == "__main__":
     # # Start by processing all of the .tkape files we have
-    # tkape_root = get_artifacts_dir() / "targets"
+    tkape_root = get_artifacts_dir() / "targets"
 
-    # # Recursively search for all .tkape files under the targets directory
-    # target_configs: list[KapeTargetConfigurationDefinition] = []
-    # for tkape_file in tkape_root.glob("**/*.tkape"):
-    #     print(f"Processing {tkape_file.relative_to(get_artifacts_dir())}")
-    #     target_config = (
-    #         KapeTargetConfigurationDefinition.generate_target_config_from_yaml(
-    #             tkape_file
-    #         )
-    #     )
-    #     target_configs.append(target_config)
+    # Recursively search for all .tkape files under the targets directory
+    target_configs: list[KapeTargetConfigurationDefinition] = []
+    for tkape_file in tkape_root.glob("**/*.tkape"):
+        print(f"Processing {tkape_file.relative_to(get_artifacts_dir())}")
+        target_config = (
+            KapeTargetConfigurationDefinition.generate_target_config_from_yaml(
+                tkape_file
+            )
+        )
+        target_configs.append(target_config)
 
-    # generate_files_from_target_configs(target_configs)
+    generate_files_from_target_configs(target_configs)
 
     # Next, process all of the .mkape files we have
     mkape_root = get_artifacts_dir() / "modules"

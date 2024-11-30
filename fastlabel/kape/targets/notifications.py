@@ -15,7 +15,7 @@ class WindowsNotificationsDBWindows10NotificationDB0(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Microsoft\\Windows\\Notifications\\"
     )
-    regex: ClassVar[str] = r"(?s:wpndatabase\.db)\Z"
+    file_mask: ClassVar[str] = "wpndatabase.db"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
@@ -27,7 +27,7 @@ class WindowsNotificationsDBWindows10NotificationDB1(KapeTarget):
     base_path: ClassVar[Path] = Path(
         "C:\\Users\\%user%\\AppData\\Local\\Microsoft\\Windows\\Notifications\\"
     )
-    regex: ClassVar[str] = r"(?s:appdb\.dat)\Z"
+    file_mask: ClassVar[str] = "appdb.dat"
     recursive: ClassVar[bool] = False
     associated_modules: ClassVar[list[Type[KapeModule]]] = []
 
