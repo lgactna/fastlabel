@@ -8,6 +8,7 @@ from pathlib import Path
 from typing import ClassVar, Type
 
 from fastlabel.kape.core import KapeModule, KapeTarget, KapeTargetConfiguration
+from fastlabel.kape.modules import programexecution
 
 
 class EvidenceOfExecutionPrefetch0(KapeTarget):
@@ -76,7 +77,7 @@ class PrefetchPrefetch0(KapeTarget):
     base_path: ClassVar[Path] = Path("C:\\Windows\\prefetch\\")
     file_mask: ClassVar[str] = "*.pf"
     recursive: ClassVar[bool] = False
-    associated_modules: ClassVar[list[Type[KapeModule]]] = []
+    associated_modules: ClassVar[list[Type[KapeModule]]] = [programexecution.PECmd]
 
     # Add any instance variables specific to this target as Pydantic fields here.
 
@@ -86,9 +87,14 @@ class PrefetchPrefetch1(KapeTarget):
     base_path: ClassVar[Path] = Path("C:\\Windows.old\\Windows\\prefetch\\")
     file_mask: ClassVar[str] = "*.pf"
     recursive: ClassVar[bool] = False
-    associated_modules: ClassVar[list[Type[KapeModule]]] = []
+    associated_modules: ClassVar[list[Type[KapeModule]]] = [programexecution.PECmd]
 
     # Add any instance variables specific to this target as Pydantic fields here.
+    @classmethod
+    def run_modules_on_target_dest(
+        self, target_destination: Path
+    ) -> "PrefetchPrefetch1":
+        return super().run_modules_on_target_dest(target_destination)
 
 
 class Prefetch(KapeTargetConfiguration):
