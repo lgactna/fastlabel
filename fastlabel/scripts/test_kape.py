@@ -6,9 +6,12 @@ simplest option is to start a new command prompt as an administrator and run
 `python -m fastlabel.scripts.test_kape` from the root of the fastlabel repo.
 """
 
+import datetime
+import json
 from pathlib import Path
 
 import fastlabel.kape.core as core
+import fastlabel.uco as uco
 from fastlabel.kape.modules.programexecution import PECmd
 from fastlabel.kape.targets.prefetch import Prefetch
 
@@ -47,6 +50,26 @@ if __name__ == "__main__":
         target_types=core.get_target_types(TARGETS),
     )
 
+    bundle_identity = uco.identity.Identity()
+    bundle_identity_name = uco.identity.SimpleNameFacet(givenName="fastlabel")
+    bundle_identity.hasFacet.append(bundle_identity_name)
+
+    bundle_created_time = datetime.datetime.now(datetime.UTC)
+
+    bundle = uco.core.Bundle(
+        createdBy=[bundle_identity.ref()],
+        name="fastlabel demo",
+        description="Auto-generated demonstration bundle",
+        objectCreatedTime=bundle_created_time,
+        modifiedTime=bundle_created_time,
+        specVersion="UCO/CASE 2.0",
+    )
+    bundle.object.append(bundle_identity)
     for target in targets:
-        # print(type(target))
-        print(target.to_case_objects())
+        bundle.object.extend(target.to_case_objects())
+
+    with open("fastlabel.jsonld", "wt+") as f:
+        # model_dump_json doesn't work because XMLSchema doesn't have any JSOON
+        # serializers provided - this is fine, though not great
+        data = bundle.model_dump(serialize_as_any=True)
+        f.write(json.dumps(data, indent=2))
