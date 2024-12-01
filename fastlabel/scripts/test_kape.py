@@ -9,6 +9,7 @@ simplest option is to start a new command prompt as an administrator and run
 from pathlib import Path
 
 import fastlabel.kape.core as core
+from fastlabel.kape.modules.programexecution import PECmd
 from fastlabel.kape.targets.prefetch import Prefetch
 
 # admin privileges required
@@ -16,22 +17,36 @@ KAPE_PATH = Path("C:\\Users\\Kisun\\Downloads\\kape\\kape.exe")
 
 
 if __name__ == "__main__":
+    TARGET_SOURCE = Path("C:\\")
+    TARGET_DESTINATION = Path("C:\\Users\\Kisun\\Downloads\\kape_test\\targets")
+    MODULE_DESTINATION = Path("C:\\Users\\Kisun\\Downloads\\kape_test\\module_out")
+
+    TARGETS = [Prefetch]
+    MODULES = [PECmd]
+
+    # TODO: integrate that one python image mounting library
+
     # try:
     #     core.run_kape(
     #         kape_path=KAPE_PATH,
-    #         targets=[Prefetch],
+    #         targets=TARGETS,
     #         target_json=None,
-    #         modules=[PECmd],
+    #         modules=MODULES,
     #         module_json=None,
-    #         target_source=Path("C:\\"),
-    #         target_destination=Path("C:\\Users\\Kisun\\Downloads\\kape_test\\targets"),
-    #         module_destination=Path("C:\\Users\\Kisun\\Downloads\\kape_test\\module_out"),
+    #         target_source=TARGET_SOURCE,
+    #         target_destination=TARGET_DESTINATION,
+    #         module_destination=MODULE_DESTINATION,
     #     )
     # except core.AdminPrivilegeError as e:
     #     print(e)
     #     exit()
 
-    core.process_kape_target_dir(
-        Path("C:\\Users\\Kisun\\Downloads\\kape_test\\targets"),
-        target_configs=[Prefetch],
+    targets = core.process_kape_target_dir(
+        TARGET_DESTINATION,
+        target_types=core.get_target_types(TARGETS),
+        run_modules=False,
     )
+    # print(targets)
+
+    for target in targets:
+        print(target.model_dump_json(indent=2))

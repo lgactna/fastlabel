@@ -4,15 +4,15 @@ Core definitions for the KAPE Python bindings.
 
 import csv
 import ctypes
-import datetime
 import os
 import subprocess
 from enum import Enum
 from pathlib import Path
-from typing import ClassVar, Optional, Type
+from typing import ClassVar, Iterable, Optional, Type, TypeVar
 
 from pydantic import AwareDatetime, BaseModel
 
+from fastlabel.kape.util import ez_to_aware_datetime
 from fastlabel.uco.core import UcoObject
 
 
@@ -44,19 +44,20 @@ class KapeExportFormat(str, Enum):
 
 
 class KapeModule(BaseModel):
+    T = TypeVar("T", bound="KapeModule")
+
     # The name of the module as it should be called on the KAPE CLI.
     name: ClassVar[str]
     # The supported export formats for this module. Attempting to use a module
     # with an unsupported type should raise an error before calling KAPE.
-    # TODO: i don't actually do this yet
     supported_types: ClassVar[list[KapeExportFormat]]
 
     # Module-specific information should follow, as typical Pydantic fields.
-    # When implementing `scan_module_outputs`, you should assign these field members
-    # as applicable.
+    # When implementing `scan_module_destination`, you should assign these
+    # field members as applicable.
 
     @classmethod
-    def read_module_outputs(cls, module_destination: Path) -> "KapeModule":
+    def scan_module_destination(cls: Type[T], module_destination: Path) -> "T":
         """
         Process the module destination outputs into information specific to this
         class.
@@ -67,9 +68,23 @@ class KapeModule(BaseModel):
         raise NotImplementedError
 
 
+class SourceDestPair(BaseModel):
+    """
+    A simple model for keeping track of source and destination files.
+    """
+
+    source: Path
+    destination: Path
+
+    def __str__(self) -> str:
+        return f"{self.source} -> {self.destination}"
+
+
 # The class name needs to be converted to a valid Python identifier, if needed;
 # some use hyphens and other weird symbols
 class KapeTarget(BaseModel):
+    T = TypeVar("T", bound="KapeTarget")
+
     # The name of the module as it should be called on the KAPE CLI.
     name: ClassVar[str]
 
@@ -89,16 +104,14 @@ class KapeTarget(BaseModel):
     associated_modules: ClassVar[list[Type[KapeModule]]]
 
     # A set of instance variables specific to this target; broadly, artifact-specific
-    # variables that we care about converting to CASE. These are Pydantic fields.
+    # variables that we care about converting to CASE. These are Pydantic fields,
+    # and MUST have default values defined.
 
-    # The *original* filepaths of any target files collected.
-    # TODO: do we want the copied filepaths as well?
-    associated_files: list[Path]
+    # All KapeTarget instances have a mapping of source to destination files.
+    files: list[SourceDestPair] = []
 
     @classmethod
-    def from_target_destination(
-        self, target_destination: Path, run_modules: bool = True
-    ) -> "KapeTarget":
+    def run_modules_on_target_dest(cls: Type[T], target_destination: Path) -> T:
         """
         Process all files in the provided target destination path with
         the associated modules, then return the resulting updated artifact(s)
@@ -154,31 +167,21 @@ class KapeTargetLogEntry(BaseModel):
     # What target this log entry has been assigned to, if any.
     assigned_target: Optional[Type[KapeTarget]] = None
 
-    @staticmethod
-    def to_aware_datetime(date_str: str) -> datetime.datetime:
-        # KAPE uses 7 decimal places after the second, but %f is only 6
-        # so we need to truncate the last digit
-        date_str = date_str[:-1]
-
-        return datetime.datetime.strptime(date_str, "%Y-%m-%d %H:%M:%S.%f").astimezone(
-            datetime.UTC
-        )
-
     @classmethod
     def from_csv_line(cls, line: list[str]) -> "KapeTargetLogEntry":
         """
         Parse a single line from a KAPE target log CSV file.
         """
         return cls(
-            copied_time=cls.to_aware_datetime(line[0]),
+            copied_time=ez_to_aware_datetime(line[0]),
             source=Path(line[1]),
             destination=Path(line[2]),
             file_size=int(line[3]),
             sha1=line[4],
             deferred_copy=line[5] == "True",
-            created_on=cls.to_aware_datetime(line[6]),
-            modified_on=cls.to_aware_datetime(line[7]),
-            last_accessed=cls.to_aware_datetime(line[8]),
+            created_on=ez_to_aware_datetime(line[6]),
+            modified_on=ez_to_aware_datetime(line[7]),
+            last_accessed=ez_to_aware_datetime(line[8]),
         )
 
 
@@ -197,6 +200,18 @@ def is_admin() -> bool:
 
 class AdminPrivilegeError(RuntimeError):
     pass
+
+
+def get_target_types(
+    target_configs: Iterable[Type[KapeTargetConfiguration]],
+) -> list[Type[KapeTarget]]:
+    """
+    Flatten the set of available target types.
+    """
+    target_types: list[Type[KapeTarget]] = []
+    for target_config in target_configs:
+        target_types += target_config.targets
+    return target_types
 
 
 def run_kape(
@@ -221,7 +236,9 @@ def run_kape(
     Run KAPE with the provided targets and modules, then process the resulting
     outputs. Generate a set of targets and modules associated with the result.
 
-    This function will
+    This function will raise AdminPrivilegeError (a subclass of RuntimeError) if
+    run without administrator privileges. This function also indirectly raises
+    RuntimeError if run on a non-Windows system.
 
     :param kape_path: The path to the KAPE CLI.
     :param target: A list of targets to pass to KAPE. If empty, targets are disabled.
@@ -298,6 +315,15 @@ def run_kape(
         args += ["--tdd", "false"]
 
     if export_format != KapeExportFormat.NONE:
+        # Check that the declared export format is compatible with all provided
+        # modules
+        if modules:
+            for module in modules:
+                if export_format not in module.supported_types:
+                    raise ValueError(
+                        f"Export format {export_format} is not supported by module {module.name}"
+                    )
+
         args += ["--mef", export_format.value]
 
     print(f"Running command: {' '.join(args)}")
@@ -307,14 +333,22 @@ def run_kape(
 
 
 def process_kape_target_dir(
-    target_destination: Path, target_configs: list[Type[KapeTargetConfiguration]]
+    target_destination: Path,
+    target_types: list[Type[KapeTarget]],
+    run_modules: bool = True,
 ) -> list[KapeTarget]:
     """
-    Process all files in the provided target destination path with
-    the associated modules, then return the resulting updated artifact(s)
+    Process all files in the provided target destination using the logfile, giving
+    you a list of KapeTarget instances tied to the files they came from.
 
     Note that targets are matched in the order they are passed in `targets`. If
     multiple targets *could* match a file, the first match by its regex wins.
+
+    If `run_modules` is set to `True`, then the modules associated with each *matching*
+    target type will also be run. Otherwise, only the matching operation is performed,
+    and KapeTargets returned will have nothing assigned other than their source
+    and destination files. Any instance-specific variables will have their default
+    values set.
     """
     # Search for a file of the format *_CopyLog.csv
     copy_log = next(target_destination.glob("*_CopyLog.csv"))
@@ -327,26 +361,30 @@ def process_kape_target_dir(
         # Read the rest of the lines
         target_log_entries = [KapeTargetLogEntry.from_csv_line(line) for line in reader]
 
-    # Extract all KapeTargets from the target_configs
-    target_types = []
-    for target_config in target_configs:
-        target_types += target_config.targets
-
     # For each target entry we have, test it against each available target type
     # and assign if it matches. First target type that matches wins.
     #
     # TODO: optimize this
+    matched_types: set[Type[KapeTarget]] = set()
     for entry in target_log_entries:
         for target_type in target_types:
             if target_type.path_matches(entry.source):
                 entry.assigned_target = target_type
-                break
+                matched_types.add(target_type)
 
-    for entry in target_log_entries:
-        if not entry.assigned_target:
-            print(f"No target matched {entry.source}")
-        else:
-            print(f"Matched {entry.source} to {entry.assigned_target}")
+    # Now, generate target instances from anything that matched
+    targets = []
+    for target_type in matched_types:
+        target: KapeTarget = target_type()
+        if run_modules:
+            target = target_type.run_modules_on_target_dest(target_destination)
 
-    # print(target_log_entries)
-    # print(targets)
+        # Assign the source and destination files to the target instance
+        target.files = [
+            SourceDestPair(source=entry.source, destination=entry.destination)
+            for entry in target_log_entries
+            if entry.assigned_target == target_type
+        ]
+        targets.append(target)
+
+    return targets
