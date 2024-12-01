@@ -41,12 +41,12 @@ if __name__ == "__main__":
     #     print(e)
     #     exit()
 
-    targets = core.process_kape_target_dir(
-        TARGET_DESTINATION,
+    targets = core.process_kape_results(
+        target_destination=TARGET_DESTINATION,
+        module_destination=MODULE_DESTINATION,
         target_types=core.get_target_types(TARGETS),
-        run_modules=False,
     )
-    # print(targets)
 
     for target in targets:
-        print(target.model_dump_json(indent=2))
+        # print(type(target))
+        print(target.to_case_objects())

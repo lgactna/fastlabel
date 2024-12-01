@@ -64,6 +64,7 @@ class PrefetchTimelineEntry(BaseModel):
         """
         Parse a PECmd_Output_Timeline.csv file.
         """
+        csv.field_size_limit(2147483647)
         with open(path, "r") as f:
             reader = csv.reader(f)
             # Skip the header
@@ -78,7 +79,7 @@ class PrefetchOutputEntry(BaseModel):
     """
 
     note: Optional[str] = None
-    source_file: str
+    source_file: Path
     source_create_time: AwareDatetime
     source_modify_time: AwareDatetime
     source_access_time: AwareDatetime
@@ -105,7 +106,7 @@ class PrefetchOutputEntry(BaseModel):
         """
         return cls(
             note=line[0],
-            source_file=line[1],
+            source_file=Path(line[1]),
             source_create_time=ez_to_aware_datetime(line[2]),
             source_modify_time=ez_to_aware_datetime(line[3]),
             source_access_time=ez_to_aware_datetime(line[4]),
@@ -131,6 +132,7 @@ class PrefetchOutputEntry(BaseModel):
         """
         Parse a PECmd_Output_Prefetch.csv file.
         """
+        csv.field_size_limit(2147483647)
         with open(path, "r") as f:
             reader = csv.reader(f)
             # Skip the header
