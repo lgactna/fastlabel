@@ -20,6 +20,9 @@ KAPE_PATH = Path("C:\\Users\\Kisun\\Downloads\\kape\\kape.exe")
 
 
 if __name__ == "__main__":
+    print(core.KapeModule.get_module_classes())
+    exit()
+    
     TARGET_SOURCE = Path("C:\\")
     TARGET_DESTINATION = Path("C:\\Users\\Kisun\\Downloads\\kape_test\\targets")
     MODULE_DESTINATION = Path("C:\\Users\\Kisun\\Downloads\\kape_test\\module_out")

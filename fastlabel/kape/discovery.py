@@ -1,7 +1,5 @@
 from pathlib import Path
-from typing import Type
 from types import ModuleType
-import datetime
 import importlib
 import pkgutil
 
@@ -41,29 +39,3 @@ def import_modules_from_dir(prefix_dirs: dict[str, str]) -> list[ModuleType]:
             modules.append(module)
 
     return modules
-
-def get_subclasses_recursive(type: Type) -> list[Type]:
-    """
-    Get all visible subclasses of `type`, recursive.
-
-    From https://stackoverflow.com/questions/3862310
-    """
-    subclasses = set(type.__subclasses__()).union(
-        [s for c in type.__subclasses__() for s in get_subclasses_recursive(c)]
-    )
-
-    return list(subclasses)
-
-def ez_to_aware_datetime(date_str: str) -> datetime.datetime:
-    """
-    Convert an Eric Zimmerman datetime to an aware datetime object, assumed to
-    be UTC.
-    """
-
-    # KAPE uses 7 decimal places after the second, but %f is only 6
-    # so we need to truncate the last digit
-    date_str = date_str[:-1]
-
-    return datetime.datetime.strptime(date_str, "%Y-%m-%d %H:%M:%S.%f").astimezone(
-        datetime.UTC
-    )

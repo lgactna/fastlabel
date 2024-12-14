@@ -8,11 +8,12 @@ import os
 import subprocess
 from enum import Enum
 from pathlib import Path
+from types import ModuleType
 from typing import ClassVar, Iterable, Optional, Type, TypeVar
 
 from pydantic import AwareDatetime, BaseModel
 
-from fastlabel.kape.util import ez_to_aware_datetime
+from fastlabel.kape import util 
 from fastlabel.uco.core import UcoObject
 
 
@@ -67,6 +68,33 @@ class KapeModule(BaseModel):
         destination.
         """
         raise NotImplementedError
+    
+    @staticmethod
+    def get_module_dir() -> Path:
+        """
+        Get an absolute path to the directory where modules are stored.
+        """
+        return util.get_kape_subdir("modules")
+    
+    @classmethod
+    def get_module_modules(cls, extra_prefix_dirs: Optional[dict[str, str]] = None) -> list[ModuleType]:
+        """
+        Get a handle to all modules found in /fastlabel/kape/modules.
+        
+        Here, "modules" refers to Python modules, not KAPE modules.
+        """
+        prefix_dirs = {"fastlabel.kape.modules.": str(cls.get_module_dir())}
+        if extra_prefix_dirs:
+            prefix_dirs = prefix_dirs | extra_prefix_dirs
+        return util.import_modules_from_dir(prefix_dirs)
+    
+    @classmethod
+    def get_module_classes(cls, extra_prefix_dirs: Optional[dict[str, str]] = None) -> list[Type["KapeModule"]]:
+        """
+        Get all known subclasses of KapeModule.
+        """
+        cls.get_module_modules(extra_prefix_dirs)
+        return util.get_subclasses_recursive(cls)
 
 
 class SourceDestPair(BaseModel):
@@ -176,15 +204,15 @@ class KapeTargetLogEntry(BaseModel):
         Parse a single line from a KAPE target log CSV file.
         """
         return cls(
-            copied_time=ez_to_aware_datetime(line[0]),
+            copied_time=util.ez_to_aware_datetime(line[0]),
             source=Path(line[1]),
             destination=Path(line[2]),
             file_size=int(line[3]),
             sha1=line[4],
             deferred_copy=line[5] == "True",
-            created_on=ez_to_aware_datetime(line[6]),
-            modified_on=ez_to_aware_datetime(line[7]),
-            last_accessed=ez_to_aware_datetime(line[8]),
+            created_on=util.ez_to_aware_datetime(line[6]),
+            modified_on=util.ez_to_aware_datetime(line[7]),
+            last_accessed=util.ez_to_aware_datetime(line[8]),
         )
 
 
