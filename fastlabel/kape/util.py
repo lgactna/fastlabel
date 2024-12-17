@@ -64,6 +64,11 @@ def ez_to_aware_datetime(date_str: str) -> datetime.datetime:
     # so we need to truncate the last digit
     date_str = date_str[:-1]
 
-    return datetime.datetime.strptime(date_str, "%Y-%m-%d %H:%M:%S.%f").astimezone(
-        datetime.UTC
-    )
+    try:
+        return datetime.datetime.strptime(date_str, "%Y-%m-%d %H:%M:%S.%f").astimezone(
+            datetime.UTC
+        )
+    except OSError:
+        # Return epoch time if we can't parse the date; usually this is because
+        # it exceeds the minimum/maximum representable date
+        return datetime.datetime.fromtimestamp(0, datetime.UTC)

@@ -83,6 +83,10 @@ def prefetch_output_entries_to_case(
     for prefetch_entry in output_entries:
         root = observable.WindowsPrefetch()
 
+        # TODO: the filepath is *technically* incorrect, because the source file
+        # is the file at the time PECmd was run. This means it'll give back the 
+        # reconstructed filepath, not the original filepath on the mounted drive.
+        # It's possible to re-map this, but it's not trivial.
         file_facet = observable.FileFacet(
             isDirectory=False,
             accessedTime=prefetch_entry.source_access_time,

@@ -2,9 +2,11 @@
 Core definitions for the KAPE Python bindings.
 """
 
+import concurrent.futures
 import csv
 import ctypes
 import os
+import re
 import subprocess
 from enum import Enum
 from pathlib import Path
@@ -12,6 +14,7 @@ from types import ModuleType
 from typing import ClassVar, Iterable, Optional, Type, TypeVar
 
 from pydantic import AwareDatetime, BaseModel
+from wcmatch import glob
 
 from fastlabel.kape import util 
 from fastlabel.uco.core import UcoObject
@@ -156,22 +159,56 @@ class KapeTarget(BaseModel):
         """
         raise NotImplementedError
 
+    @classmethod 
+    def get_match_str(cls) -> str:
+        """
+        Get the string that will be used to match the base path.
+        
+        The following assumptions are used:
+        - If the target is recursive, a ** wildcard is appended to the end of 
+          the path
+        - The drive letter is completely ignored for both the match and the path
+        - All variables, enclosed in %, are replaced with a wildcard
+        """
+        match_str = str(cls.base_path).replace("\\", "/")
+        
+        # Always end in terminating slash
+        if not match_str.endswith("/"):
+            match_str += "/"
+        
+        # If recursive, tack on ** (or /**)
+        if cls.recursive:
+            match_str += "**/"
+        
+        # Ignore the drive letter
+        match_str = re.sub(r"[A-Za-z]:/", "", match_str)
+        
+        # Replace all variables in the match string with a wildcard
+        match_str = re.sub(r"%[^%]+%", "*", match_str)
+        
+        # Tack on the file mask
+        return match_str + cls.file_mask
+
     @classmethod
     def path_matches(cls, path: Path) -> bool:
         """
         Determine if the provided path *could* match this target.
-        """
+        
+        This uses wcmatch, which has more powerful glob matching:
+        https://stackoverflow.com/questions/66948794/how-to-match-python-paths-against-recursive-glob-patterns
+        """        
+        # wcmatch normalizes forward slashes, so it's safe to use them here
+        path_str = str(path).replace("\\", "/")
+        match_str = cls.get_match_str()
+        
+        # Ignore the drive letter
+        path_str = re.sub(r"[A-Za-z]:/", "", path_str)
 
-        # Check if the base path matches (assume that children can be wildcarded)
-        if not path.match(str(cls.base_path) + "\\*"):
-            return False
-
-        # Check if the file mask matches
-        if not path.match(cls.file_mask):
-            return False
-
-        return True
-
+        # print(f"Matching {path_str} against {match_str}")
+        
+        return glob.globmatch(path_str, match_str, flags=glob.GLOBSTAR)
+        
+    
 
 class KapeTargetConfiguration(BaseModel):
     """
@@ -182,6 +219,33 @@ class KapeTargetConfiguration(BaseModel):
 
     recreate_directories: ClassVar[bool]
     targets: ClassVar[list[Type[KapeTarget]]]
+    
+    @staticmethod
+    def get_target_dir() -> Path:
+        """
+        Get an absolute path to the directory where targets are stored.
+        """
+        return util.get_kape_subdir("targets")
+    
+    @classmethod
+    def get_target_modules(cls, extra_prefix_dirs: Optional[dict[str, str]] = None) -> list[ModuleType]:
+        """
+        Get a handle to all modules found in /fastlabel/kape/targets.
+        
+        Here, "modules" refers to Python modules, not KAPE modules.
+        """
+        prefix_dirs = {"fastlabel.kape.targets.": str(cls.get_target_dir())}
+        if extra_prefix_dirs:
+            prefix_dirs = prefix_dirs | extra_prefix_dirs
+        return util.import_modules_from_dir(prefix_dirs)
+    
+    @classmethod
+    def get_target_classes(cls, extra_prefix_dirs: Optional[dict[str, str]] = None) -> list[Type["KapeTarget"]]:
+        """
+        Get all known subclasses of KapeTarget.
+        """
+        cls.get_target_modules(extra_prefix_dirs)
+        return util.get_subclasses_recursive(cls)
 
 
 class KapeTargetLogEntry(BaseModel):
@@ -362,11 +426,19 @@ def run_kape(
 
     return (s.stdout, s.stderr)
 
+def match_entry(entry: KapeTargetLogEntry, target_types: list[Type[KapeTarget]]) -> Optional[Type[KapeTarget]]:
+    for target_type in target_types:
+        if target_type.path_matches(entry.source):
+            # print(f"Matched {entry.source} to {target_type.name} ({target_type.get_match_str()})")
+            return target_type
+    return None
 
 def process_kape_results(
     target_destination: Path,
     target_types: list[Type[KapeTarget]],
     module_destination: Optional[Path] = None,
+    *,
+    workers: Optional[int] = None
 ) -> list[KapeTarget]:
     """
     Process all files in the provided target destination using the logfile, giving
@@ -384,7 +456,10 @@ def process_kape_results(
     information).
     """
     # Search for a file of the format *_CopyLog.csv
-    copy_log = next(target_destination.glob("*_CopyLog.csv"))
+    try:
+        copy_log = next(target_destination.glob("*_CopyLog.csv"))
+    except StopIteration:
+        raise RuntimeError(f"No copy log found in target destination {target_destination}")
 
     # Read the copy log using the csv library
     with open(copy_log, "r") as f:
@@ -396,21 +471,29 @@ def process_kape_results(
 
     # For each target entry we have, test it against each available target type
     # and assign if it matches. First target type that matches wins.
-    #
-    # TODO: optimize this
     matched_types: set[Type[KapeTarget]] = set()
-    for entry in target_log_entries:
-        for target_type in target_types:
-            if target_type.path_matches(entry.source):
-                entry.assigned_target = target_type
+    future_to_entry: dict[concurrent.futures.Future, KapeTargetLogEntry] = {}
+    
+    with concurrent.futures.ProcessPoolExecutor(max_workers=None) as executor:
+        future_to_entry = {executor.submit(match_entry, entry, target_types): entry for entry in target_log_entries}
+        for future in concurrent.futures.as_completed(future_to_entry):
+            target_type = future.result()
+            entry = future_to_entry[future]
+            if target_type:
                 matched_types.add(target_type)
+                entry.assigned_target = target_type
+            else:
+                print(f"No target type matched {entry.source} - skipping")
 
     # Now, generate target instances from anything that matched
     targets = []
     for target_type in matched_types:
         target: KapeTarget = target_type()
         if module_destination:
-            target = target_type.run_modules_on_module_dest(module_destination)
+            try:
+                target = target_type.run_modules_on_module_dest(module_destination)
+            except NotImplementedError:
+                pass
 
         # Assign the source and destination files to the target instance
         target.files = [
